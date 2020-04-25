@@ -1,0 +1,64 @@
+{
+    "diveSites":[
+        {
+         "latitude": -33.990819,
+         "longitude": 151.232334,
+         "id": "1",
+         "name": "Bare Island",
+         "area": "La Parouse",
+         "description": "A easy shore dive with alot too see! Plenty of fish and coral to see blah blah blah, yada yada yada, etc etc etc.",
+         "depth": 18,
+         "visibility":"Good",
+         "weather": "21 Degrees and Sunny",
+         "siteType": "Shore"
+        }, 
+        {
+         "latitude": -34.002299, 
+         "longitude": 151.220662,
+         "id": "2",
+         "name": "Inscription Point",
+         "area": "Kurnell",
+         "description": "A easy shore dive with alot too see! Plenty of fish and coral to see blah blah blah, yada yada yada, etc etc etc.",
+         "depth": 12,
+         "visibility":"Decent",
+         "weather": "31 Degrees and Sunny",
+         "siteType": "Shore"
+        }, 
+        {
+         "latitude": -34.003152,
+         "longitude": 151.226102,
+         "id": "3",
+         "name": "The Steps",
+         "area": "Kurnell",
+         "description": "A easy  blah blah blah, yada yada yada, etc etc etc.A easy  blah blah blah, yada yada yada, etc etc etc.",
+         "depth": 24,
+         "visibility":"good",
+         "weather": "31 Degrees and Sunny",
+         "siteType": "Boat"
+        }, 
+        {
+         "latitude": -33.799753,
+         "longitude": 151.296887,
+         "id": "4",
+         "name": "Shelly Beach",
+         "area": "Manly",
+         "description": "A lovely beach for snorkelling as well as diving. plenty to see and Also easy  lah blah, yada yada yada, etc etc etc.",
+         "depth": 15,
+         "visibility":"amazing",
+         "weather": "35 Degrees and Sunny",
+         "siteType": "Shore"
+        }, 
+        {
+         "latitude": -33.915517,
+         "longitude": 151.264486,
+         "id": "5",
+         "name": "Gordons Bay",
+         "area": "Clovelly",
+         "description": "A lovely beach for snorkelling as well as diving. plenty to see and Also easy  lah blah, yada yada yada, etc etc etc.",
+         "depth": 24,
+         "visibility":"bad",
+         "weather": "14 Degrees and Cloudy",
+         "siteType": "Boat"
+        } 
+    ]
+    }

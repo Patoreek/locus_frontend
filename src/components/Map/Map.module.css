@@ -1,0 +1,128 @@
+.infowindowContainer {
+    border: 2px solid black;
+    width:99%;
+    padding: 0;
+    margin: 0;
+}
+
+.siteTypeContainer {
+    font-size: 1.2em;
+    height:auto;
+    width:auto;
+    background-color: #ff0000;
+    float: left;
+    z-index: 5;
+    overflow:
+}
+
+.siteTypeContainer h3, .siteTypeContainer p {
+
+    float:left;
+}
+
+.nameContainer{
+    font-size: 1.2em;
+    height:10vh;
+    width:100%;
+    background-color: yellowgreen;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+.mediaContainer {
+    font-size: 1.2em;
+    height:25vh;
+    width:100%;
+    background-color: blueviolet;
+    display: inline-block;
+}
+
+.descriptionContainer {
+    font-size: 1.2em;
+    height:25vh;
+    width:50%;
+    background-color: green;
+    /* display: inline-flex; */
+    float: left;
+}
+
+.depthContainer {
+    font-size: 1.2em;
+    height:5vh;
+    width:50%;
+    background-color: orange;
+    display: inline-flex; 
+}
+
+.visibilityContainer {
+    font-size: 1.2em;
+    height:5vh;
+    width:50%;
+    background-color: gold;
+    display: inline-flex; 
+}
+
+.weatherContainer {
+    font-size: 1.2em;
+    height:5vh;
+    width:50%;
+    background-color: #00d9ff;
+    display: inline-flex; 
+}
+/* WILL BE PUT INTO MORE DETAILS PAGE
+.waterMapContainer {
+    font-size: 1.2em;
+    height:5vh;
+    width:50%;
+    background-color: #c300ff;
+    display: inline-flex; 
+} */
+
+.sightsContainer{
+    font-size: 1.2em;
+    height:5vh;
+    width:50%;
+    background-color: #00b7ff;
+    display: inline-flex;
+}
+
+.detailsContainer {
+    font-size: 1.2em;
+    height:5vh;
+    width:50%;
+    background-color: #6ddd04;
+    display: inline-flex;
+}
+
+.reviewContainer {
+    font-size: 1.2em;
+    height:5vh;
+    width:50%;
+    background-color: #ff0000;
+    display:inline-flex;
+}
+
+.commentsContainer {
+    font-size: 1.2em;
+    height:5vh;
+    width:50%;
+    background-color: #2f00ff;
+    display: inline-flex;
+}
+
+
+
+.buttonsContainer {
+    font-size: 1.2em;
+    height:5vh;
+    width:100%;
+    background-color: #a1a1a1;
+    display: inline-flex;   
+    justify-content: center;
+}
+
+.Icon {
+    width:auto;
+    height: 10vh;
+}
