@@ -1,3 +1,8 @@
+.NavBar {
+    background-color: darkgoldenrod;
+    height: 7vh;
+}
+
 .uList {
     list-style: none;
     margin:0;
@@ -19,4 +24,15 @@
 .listItem a:hover,
 .listItem a:active {
     color:#008cff;
+}
+
+.logo {
+    background-color: aqua;
+    width:8vw;
+}
+
+.logoItem {
+    display:inline-block;
+    background-color: pink;
+    margin: 20px;
 }

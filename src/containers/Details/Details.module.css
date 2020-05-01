@@ -1,8 +1,9 @@
 .detailsContainer {
-    width: 60%;
-    height:100vh;
+    width: 70%;
+    height:93vh;
     background-color: grey;
     display: inline-block;
+    overflow:scroll;
 }
 
 .siteTypeContainer {

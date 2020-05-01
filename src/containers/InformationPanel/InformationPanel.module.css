@@ -1,0 +1,9 @@
+.infoPanelContainer {
+    width:30%;
+    height:93vh;
+    background-color: crimson;
+    border: 2px solid black;
+    box-sizing: border-box;
+    float:left;
+    overflow: scroll;
+}
