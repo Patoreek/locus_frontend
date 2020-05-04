@@ -126,3 +126,7 @@
     width:auto;
     height: 10vh;
 }
+
+.moreDetailsLink:hover {
+    color:grey;
+}

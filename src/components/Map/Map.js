@@ -8,8 +8,8 @@ import { GoogleMap,
 import { AuthContext } from '../../context/AuthContext';
 
 
-import AdminMap from './AdminMap/AdminMap';
 import UserMap from './UserMap/UserMap';
+import GuestMap from './GuestMap/GuestMap';
 
 
 
@@ -26,12 +26,12 @@ const Map = (props) => {
         >
 
         {isAuth && (
-            <AdminMap/>
+            <UserMap/>
         )}
 
 
         {!isAuth && (
-            <UserMap/>
+            <GuestMap/>
         )}
 
         </GoogleMap>

@@ -1,18 +1,25 @@
 import React, {useState, useContext} from 'react';
 
+import axios from 'axios';
+
 import { Input } from "baseui/input";
 import { FormControl } from "baseui/form-control";
 import { RadioGroup, Radio } from "baseui/radio";
 import { Textarea } from "baseui/textarea";
 import { Button } from "baseui/button";
-import { FileUploader } from "baseui/file-uploader";
 
 import { CoordsContext } from '../../../context/DiveSiteContext';
+
+import { AccountContext } from '../../../context/AuthContext';
 
 
 import {Provider as StyletronProvider} from 'styletron-react';
 import {LightTheme, BaseProvider, styled} from 'baseui';
 import {Client as Styletron} from 'styletron-engine-atomic';
+
+import { FilePond } from 'react-filepond';
+import 'filepond/dist/filepond.min.css';
+
 
 import classes from './CreateSiteForm.module.css';
 
@@ -26,7 +33,8 @@ const Centered = styled('div', {
   });
 
 
-const createDiveSite = (siteName, siteArea, siteDescription, siteType, siteLatitude, siteLongitude ) => {
+const createDiveSite = (siteName, siteArea, siteDescription, siteType, siteLatitude, siteLongitude, userId) => {
+    
     return fetch('http://localhost:8080/diveSites/createSite',{
         method: 'POST',
         headers: {
@@ -39,24 +47,31 @@ const createDiveSite = (siteName, siteArea, siteDescription, siteType, siteLatit
                 latitude: siteLatitude,
                 longitude: siteLongitude,
                 description: siteDescription,
-                siteType: siteType
+                siteType: siteType,
+                userId: userId
             }
         })
     });
 
 }
 
+
 const CreateSiteForm = (props) => {
 
     const [coords, setCoords] = useContext(CoordsContext);
+
+    const [account, setAccount] = useContext(AccountContext);
 
     const [siteName, setSiteName] = useState("");
     const [siteArea, setSiteArea] = useState("");
     const [siteDescription, setSiteDescription] = useState("");
     const [siteType, setSiteType] = useState("1");
+    const [imageFiles, setImageFiles] = useState(null);
 
     const coordsLat = coords.lat;
     const coordsLng = coords.lng;
+
+    
     
 
 
@@ -69,7 +84,9 @@ const CreateSiteForm = (props) => {
         const type = siteType;
         const latitude = coordsLat;
         const longitude = coordsLng;
-        createDiveSite(name, area, description, type, latitude, longitude);
+        const userId = account.id;
+
+       createDiveSite(name, area, description, type, latitude, longitude, userId);
     }
 
     return (
@@ -115,37 +132,11 @@ const CreateSiteForm = (props) => {
             </FormControl>
 
             <FormControl label={() => "Images"}>
-            <FileUploader
-                // onCancel={stopFakeProgress}
-                // onDrop={(acceptedFiles, rejectedFiles) => {
-                // // handle file upload...
-                // startFakeProgress();
-                // }}
-                // progressAmount is a number from 0 - 100 which indicates the percent of file transfer completed
-                // progressAmount={progressAmount}
-                // progressMessage={
-                // progressAmount
-                //     ? `Uploading... ${progressAmount}% of 100%`
-                //     : ''
-                // }
-            />
-            </FormControl>
-
-            <FormControl label={() => "Videos"}>
-            <FileUploader
-                // onCancel={stopFakeProgress}
-                // onDrop={(acceptedFiles, rejectedFiles) => {
-                // // handle file upload...
-                // startFakeProgress();
-                // }}
-                // progressAmount is a number from 0 - 100 which indicates the percent of file transfer completed
-                // progressAmount={progressAmount}
-                // progressMessage={
-                // progressAmount
-                //     ? `Uploading... ${progressAmount}% of 100%`
-                //     : ''
-                // }
-            />
+                <FilePond 
+                    allowMultiple={true}
+                    name={"images"}
+                    server="http://localhost:8080/diveSites/uploadImages"
+                />
             </FormControl>
 
 

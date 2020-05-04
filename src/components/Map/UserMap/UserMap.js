@@ -6,10 +6,13 @@ import {
     InfoWindow
 } from 'react-google-maps';
 
-import { DetailsContext } from '../../../context/UserContext';
 
+import { FormContext } from '../../../context/UserContext';
 import { DiveSitesContext,
-         SiteContext } from '../../../context/DiveSiteContext';
+         SiteContext,
+         CoordsContext } from '../../../context/DiveSiteContext';
+
+
 
 import shoreIcon from '../../../images/locationIcons/ShoreLocation.svg';
 import boatIcon from '../../../images/locationIcons/BoatLocation.svg';
@@ -21,11 +24,13 @@ import classes from './UserMap.module.css';
 
 const UserMap = () => {
 
+    const [ showForm, toggleShowForm ] = useContext(FormContext);
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
-
     const [diveSites, setDiveSites] = useContext(DiveSitesContext);
+    const [coords, setCoords] = useContext(CoordsContext);
 
-    const [moreDetails, setMoreDetails] = useContext(DetailsContext);
+
+
 
 
     useEffect(() => {
@@ -41,35 +46,29 @@ const UserMap = () => {
         const sites = data.site;
         setDiveSites(sites);
             // ...
-          }
-
+        }
         loadDiveSites();
-        
     }, [diveSites]);
 
-    const moreDetailsClicked = () => {
-
-        if (!moreDetails){
-            setMoreDetails(true);
+    const editSiteHandler = () => {
+        console.log('[Selected Site]' + selectedSite);
+        if (showForm !== 'EDIT'){
+            toggleShowForm('EDIT');
         } else {
-            setMoreDetails(false);
+            toggleShowForm(null);
         }
-
-        // if (props.moreDetails.pressed) {
-        //     props.setMoreDetails({
-        //         pressed: false,
-        //         siteId: selectedSite._id
-        //     })
-        // } else {
-        //     props.setMoreDetails({
-        //         pressed: true,
-        //         siteId: selectedSite._id
-        //     })
-        // }
-
-        console.log('More Detailed Clicked Function Works');
-        console.log(moreDetails);
     }
+
+
+    const showDeleteForm = () => {
+        console.log('[Selected Site]' + selectedSite);
+        if (showForm !== 'DELETE'){
+            toggleShowForm('DELETE');
+        } else {
+            toggleShowForm(null);
+        }
+    }
+
 
     return (
         <div>
@@ -97,42 +96,16 @@ const UserMap = () => {
                         lng: parseFloat(selectedSite.longitude)
                     }}
                     onCloseClick={() => {
+                        toggleShowForm(null);
                         setSelectedSite(null);
                     } }
                 >
-                    <div className={classes.infowindowContainer}>
-                        <div className={classes.nameContainer}>
-                            <div className={classes.siteTypeContainer}>
-                                <img className={classes.Icon}
-                                     src={selectedSite.siteType === "Shore" ? shoreIconCircle : boatIconCircle}/>
-                            </div>
-                            <h2>{selectedSite.name}, {selectedSite.area}</h2>
-                        </div>
-                        <div className={classes.mediaContainer}>
-                            <div className={classes.picturesContainer}>
-                                <h3>Picture</h3>
-                            </div>
-                            <div className={classes.videosContainer}>
-                                <h3>Videos</h3>
-                            </div>
-                            <div className={classes.buttonMediaContainer}>
-                                <button>Pictures</button>
-                                <button>Videos</button>
-                            </div>
-                        </div>
-                        <div className={classes.detailsContainer}>
-                            <h3 className = {classes.moreDetailsLink}
-                                onClick = {moreDetailsClicked}>more details</h3>
-                        </div>
-                        <div className={classes.reviewContainer}>
-                            <h3>review stars</h3>
-                        </div>
+
                         <div className={classes.buttonsContainer}>
-                            <button>Favourite</button>
-                            <button>Report</button>
+                            <button onClick = {editSiteHandler}>Edit</button>
+                            <button onClick = {showDeleteForm}>Delete</button>
                         </div>
                    
-                    </div>
                 </InfoWindow>
             )}
             

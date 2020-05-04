@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
+import GuestPanel from './GuestPanel/GuestPanel';
 import UserPanel from './UserPanel/UserPanel';
-import AdminPanel from './AdminPanel/AdminPanel';
 
 import { AuthContext } from '../../context/AuthContext';
 
@@ -15,10 +15,10 @@ const InformationPanel = (props) => {
         <div className={classes.infoPanelContainer}>
 
             {!isAuth && (
-                <UserPanel/>
+                <GuestPanel/>
             )}
             {isAuth && (
-                <AdminPanel/>
+                <UserPanel/>
             )}
 
 

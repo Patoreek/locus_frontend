@@ -14,7 +14,7 @@ import {Client as Styletron} from 'styletron-engine-atomic';
 
 import classes from './DeleteContainer.module.css';
 
-import { FormContext } from '../../../context/AdminContext';
+import { FormContext } from '../../../context/UserContext';
 import { SiteContext,
          DiveSitesContext } from '../../../context/DiveSiteContext';
 

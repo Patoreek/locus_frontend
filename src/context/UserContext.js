@@ -1,18 +1,23 @@
 import React, { useState, createContext } from 'react';
 
-export const DetailsContext = createContext();
+export const FormContext = createContext();
+
+
+
 
 export const UserProvider = (props) => {
 
-    const [moreDetails, setMoreDetails] = useState(false);
+    const [ showForm, toggleShowForm ] = useState(null); // Add
+    
+
 
 
     return (
-        <DetailsContext.Provider value = {[moreDetails, setMoreDetails]}>
-        
+        <FormContext.Provider value = {[showForm, toggleShowForm]}>
+
                 {props.children}
-                
-        </DetailsContext.Provider>
+    
+        </FormContext.Provider>
     );
 }
 

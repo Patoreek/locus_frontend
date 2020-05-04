@@ -2,7 +2,7 @@ import React, {useEffect, useContext} from 'react';
 
 import { SiteContext } from '../../context/DiveSiteContext';
 
-import { DetailsContext } from '../../context/UserContext';
+import { DetailsContext } from '../../context/GuestContext';
 
 
 import classes from './Details.module.css';
