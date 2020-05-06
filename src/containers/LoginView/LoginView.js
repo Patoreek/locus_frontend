@@ -4,8 +4,7 @@ import {useHistory} from 'react-router-dom';
 import classes from './LoginView.module.css';
 
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import { AuthContext,
-         AccountContext } from '../../context/AuthContext';
+import { AuthContext, TokenContext, AccountContext } from '../../context/AuthContext';
 
 
 const LoginView = () => {
@@ -14,13 +13,14 @@ const LoginView = () => {
     const [inputPassword, setInputPassword] = useState("");
 
     const [isAuth, setIsAuth] = useContext(AuthContext);
+    const [token, setToken] = useContext(TokenContext);
     const [account, setAccount] = useContext(AccountContext);
 
 
     let history = useHistory();
 
 
-    const submitHandler = (event) => {
+    const loginHandler = (event) => {
         event.preventDefault();
 
         const email = inputEmail;
@@ -28,6 +28,7 @@ const LoginView = () => {
 
         return fetch('http://localhost:8080/login',{
             method: 'POST',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -42,13 +43,14 @@ const LoginView = () => {
             return res.json();
         })
         .then(resData => {
-            //console.log(resData.userId);
             if (resData.userId !== null){
+                console.log(resData);
+                setToken(resData.token);
                 setIsAuth(true);
-                setAccount({
-                    id: resData.userId,
-                    username: resData.username
-                })
+                    setAccount({
+                        id: resData.userId,
+                        username: resData.username
+                    })
                 history.push("/mySites");
             }
         })
@@ -62,13 +64,12 @@ const LoginView = () => {
 
     }
 
-    console.log(isAuth);
+    //console.log(isAuth);
 
     return (
         <div className={classes.LoginContainer}>
-            <h1>Log in</h1>
             <Form className={classes.LoginForm}>
-
+            <h1 className={classes.LoginHeader}>Log in</h1>
                 <Form.Group as={Row} controlId="formHorizontalEmail">
                     <Form.Label column sm={4}>
                     Email:
@@ -95,7 +96,12 @@ const LoginView = () => {
 
                 <Form.Group as={Row}>
                     <Col sm={{ span: 10, offset: 1 }}>
-                    <Button type="submit" onClick={submitHandler}>Log In</Button>
+                    <Button type="submit" onClick={loginHandler}>Log In</Button>
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row}>
+                    <Col sm={{ span: 10, offset: 1 }}>
+                    <a href='/signup'>Create an account</a>
                     </Col>
                 </Form.Group>
             </Form>

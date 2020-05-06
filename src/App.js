@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
 
 import Navbar from './components/Navbar/Navbar';
@@ -14,26 +14,32 @@ import LoginView from './containers/LoginView/LoginView';
 import SignupView from './containers/SignupView/SignupView';
 import FavouritesView from './containers/FavouritesView/FavouritesView';
 import ProfileView from './containers/ProfileView/ProfileView';
+import HomeView from './containers/Home/Home';
 
 
 
 import { UserProvider } from './context/UserContext';
 import { GuestProvider } from './context/GuestContext';
-import { AuthProvider } from './context/AuthContext';
+import { AuthContext } from './context/AuthContext';
 import { DiveSiteProvider } from './context/DiveSiteContext';
 
 //import 'filepond/dist/filepond.min.css';
 
 function App() {
 
+  const [isAuth, setIsAuth] = useContext(AuthContext);
+
+  //console.log('[App.js] isAuth = ' + isAuth);
+
 
   return (
     <BrowserRouter>
     <div className="App">
-    <AuthProvider>
       <Navbar/>
 
-      <Route path="/login" exact component={LoginView}/>
+      <Route path="/" exact component={HomeView}/>
+
+      <Route path="/login" component={LoginView}/>
 
       <Route path="/signup" exact component={SignupView}/>
 
@@ -50,11 +56,12 @@ function App() {
         <DiveSiteProvider>
           <GuestProvider>
             <Route path="/details" exact component={DetailsView}/>
-            <Route path="/" exact component={GuestView}/>
+            <Route path="/map" exact component={GuestView}/>
           </GuestProvider>
         </DiveSiteProvider>
-      </AuthProvider>
-           
+
+
+      
       {/* API-KEY: AIzaSyA-9fLyV56TU5kt5qw3guZ4Vi3BXuDlNts */}
     </div>
     </BrowserRouter>

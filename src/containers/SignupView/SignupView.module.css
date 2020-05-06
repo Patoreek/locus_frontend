@@ -1,5 +1,5 @@
 .SignUpContainer {
-    background-color: darkgray;
+    background-color: ghostwhite;
     width: 100vw;
     height: 93vh;
     padding-top: 5%;
@@ -8,6 +8,13 @@
 .SignUpForm {
     width: 45%;
     margin: 0 auto;
-    padding: 50px;
-    background-color: darkkhaki;
+    padding: 25px 50px 50px 50px;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px ;
+    background-color: white;
+}
+
+.SignUpHeader {
+    padding: 0px 0px 25px 0px;
 }

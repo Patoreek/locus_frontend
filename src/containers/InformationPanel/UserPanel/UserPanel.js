@@ -30,7 +30,7 @@ const UserPanel = () => {
     return (
         <div>
                 <div>
-                    <h1> ADMIN SECTION</h1>
+                    <h1> USER SECTION</h1>
                     <h1> Information section</h1>
                     <h2> How to use this section</h2>
                     <p>Click on the map in an empty location to place a marker.</p>

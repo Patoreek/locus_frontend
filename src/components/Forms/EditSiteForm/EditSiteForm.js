@@ -15,6 +15,7 @@ import {Client as Styletron} from 'styletron-engine-atomic';
 import classes from './EditSiteForm.module.css';
 
 import { SiteContext } from '../../../context/DiveSiteContext';
+import { TokenContext } from '../../../context/AuthContext';
 
 const engine = new Styletron();
 
@@ -31,6 +32,7 @@ const Centered = styled('div', {
 const EditSiteForm = (props) => {
 
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
+    const [token, setToken] = useContext(TokenContext);
 
     const [siteName, setSiteName] = useState(selectedSite.name);
     const [siteArea, setSiteArea] = useState(selectedSite.area);
@@ -42,7 +44,8 @@ const EditSiteForm = (props) => {
         return fetch('http://localhost:8080/diveSites/editDiveSite/' + selectedSite._id,{
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token
             },
             body: JSON.stringify({
                 diveSite: {

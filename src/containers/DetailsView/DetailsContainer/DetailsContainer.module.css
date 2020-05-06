@@ -1,0 +1,92 @@
+.detailsContainer {
+    width: 70%;
+    height:93vh;
+    background-color: grey;
+    display: inline-block;
+    overflow:scroll;
+}
+
+.siteTypeContainer {
+    width: 20%;
+    height:10vh;
+    background-color: antiquewhite;
+    float:left;
+}
+
+.nameContainer {
+    width: 100%;
+    height:10vh;
+    background-color: aqua;
+    display: inline-block;
+}
+
+.mediaContainer {
+    width: 100%;
+    height:40vh;
+    background-color: #00ff95;
+    display: inline-block; 
+}
+
+.reviewContainer {
+    width:50%;
+    height:10vh;
+    background-color: #043bb1;
+    float:left;
+}
+
+.buttonsContainer {
+    width:50%;
+    height:10vh;
+    background-color: #0fa9b4;
+    display: inline-block; 
+}
+
+.descriptionContainer {
+    width:75%;
+    height:50vh;
+    background-color: #eeff00;
+    /* display: inline-block; */
+    float:left;
+}
+
+.depthContainer {
+    width:25%;
+    height:10vh;
+    background-color: #ff4800;
+    display: inline-block; 
+}
+
+.visibilityContainer {
+    width:25%;
+    height:10vh;
+    background-color: #4476e0;
+    display: inline-block; 
+}
+
+.weatherContainer {
+    width:25%;
+    height:10vh;
+    background-color: #e044e0;
+    display: inline-block; 
+}
+
+.waterMapContainer {
+    width:25%;
+    height:10vh;
+    background-color: #13f313;
+    display: inline-block; 
+}
+
+.sightsContainer {
+    width:25%;
+    height:10vh;
+    background-color: #eb0808;
+    display: inline-block; 
+}
+
+.commentsContainer {
+    width:100%;
+    height:50vh;
+    background-color: #5cd416;
+    display: inline-block; 
+}

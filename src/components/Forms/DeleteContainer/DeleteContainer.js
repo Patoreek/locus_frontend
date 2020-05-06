@@ -17,6 +17,8 @@ import classes from './DeleteContainer.module.css';
 import { FormContext } from '../../../context/UserContext';
 import { SiteContext,
          DiveSitesContext } from '../../../context/DiveSiteContext';
+import { TokenContext } from '../../../context/AuthContext';
+
 
 const engine = new Styletron();
 
@@ -35,6 +37,7 @@ const DeleteContainer = () => {
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
     const [showForm, setShowForm] = useContext(FormContext);
     const [diveSites, setDiveSites] = useContext(DiveSitesContext);
+    const [token , setToken] = useContext(TokenContext);
 
     const siteId = selectedSite._id;
 
@@ -46,9 +49,14 @@ const DeleteContainer = () => {
         console.log('Delete Confirmed');
         console.log('Deleting name ' + selectedSite.name);
         console.log('Deleting id ' + selectedSite._id);
+
+        console.log('TOKEN FOR DELETING ' + token);
         
         fetch('http://localhost:8080/diveSites/deleteDiveSite/' + siteId, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
           })
         .then(res => {
             if (res.status !== 200 && res.status !== 201) {

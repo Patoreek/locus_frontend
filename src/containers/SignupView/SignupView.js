@@ -12,7 +12,7 @@ const SignupView = () => {
     const [inputConfirmPassword, setInputConfirmPassword] = useState("");
 
 
-    const submitHandler = (event) => {
+    const signupHandler = (event) => {
         event.preventDefault();
         const username = inputUsername;
         const email = inputEmail;
@@ -40,8 +40,9 @@ const SignupView = () => {
 
     return (
         <div className={classes.SignUpContainer}>
-            <h1>Sign up</h1>
+            
             <Form className={classes.SignUpForm}>
+            <h1 className={classes.SignUpHeader}>Sign up</h1>
                 <Form.Group as={Row} controlId="formHorizontalUsername">
                     <Form.Label column sm={4}>
                     Username:
@@ -94,7 +95,13 @@ const SignupView = () => {
 
                 <Form.Group as={Row}>
                     <Col sm={{ span: 10, offset: 1 }}>
-                    <Button type="submit" onClick={submitHandler}>Sign Up</Button>
+                    <Button type="submit" onClick={signupHandler}>Sign Up</Button>
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row}>
+                    <Col sm={{ span: 10, offset: 1 }}>
+                    <p> Have an account already? </p>
+                    <a href='/login'>Login</a>
                     </Col>
                 </Form.Group>
             </Form>

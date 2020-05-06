@@ -11,6 +11,7 @@ import { FormContext } from '../../../context/UserContext';
 import { DiveSitesContext,
          SiteContext,
          CoordsContext } from '../../../context/DiveSiteContext';
+import { TokenContext, AuthContext } from '../../../context/AuthContext';
 
 
 
@@ -29,6 +30,9 @@ const UserMap = () => {
     const [diveSites, setDiveSites] = useContext(DiveSitesContext);
     const [coords, setCoords] = useContext(CoordsContext);
 
+    const [isAuth, setIsAuth] = useContext(AuthContext);
+    const [token, setToken] = useContext(TokenContext);
+
 
 
 
@@ -38,8 +42,8 @@ const UserMap = () => {
             // You can await here
         const response = await fetch('http://localhost:8080/diveSites/getSites',{
             method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
+            headers: { // Dont need a header for GET Requests Unless you have a token
+                Authorization: 'Bearer ' + token
             }
         });
         const data = await response.json();
@@ -48,7 +52,7 @@ const UserMap = () => {
             // ...
         }
         loadDiveSites();
-    }, [diveSites]);
+    }, [diveSites]); //remove diveSites for performance
 
     const editSiteHandler = () => {
         console.log('[Selected Site]' + selectedSite);

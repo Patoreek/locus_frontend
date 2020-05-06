@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
 import InformationPanel from '../InformationPanel/InformationPanel';
 
@@ -7,15 +7,27 @@ import { SiteContext,
 import { FormContext } from '../../context/UserContext';
 import { AuthContext } from '../../context/AuthContext';
 
+import { useHistory} from 'react-router-dom';
+
 import Map from '../../components/Map/Map';
 import classes from './UserView.module.css';
 
 
-const AdminView = () => {
+const UserView = () => {
 
         const [coords, setCoords] = useContext(CoordsContext);
         const [ showForm, toggleShowForm ] = useContext(FormContext);
         const [selectedSite, setSelectedSite] = useContext(SiteContext);
+
+        const [isAuth, setIsAuth] = useContext(AuthContext);
+
+        let history = useHistory();
+        
+        useEffect(() => {
+                if (!isAuth) {
+                        history.replace('/login');
+                }       
+        },[]);
 
         const onMapClick = (event) => {
 
@@ -71,4 +83,4 @@ const AdminView = () => {
     );
 };
 
-export default AdminView;
+export default UserView;

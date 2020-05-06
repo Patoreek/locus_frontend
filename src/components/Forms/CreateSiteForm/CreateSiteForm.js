@@ -9,8 +9,9 @@ import { Textarea } from "baseui/textarea";
 import { Button } from "baseui/button";
 
 import { CoordsContext } from '../../../context/DiveSiteContext';
+import { TokenContext, AccountContext } from '../../../context/AuthContext';
 
-import { AccountContext } from '../../../context/AuthContext';
+
 
 
 import {Provider as StyletronProvider} from 'styletron-react';
@@ -33,12 +34,15 @@ const Centered = styled('div', {
   });
 
 
-const createDiveSite = (siteName, siteArea, siteDescription, siteType, siteLatitude, siteLongitude, userId) => {
+
+const createDiveSite = (siteName, siteArea, siteDescription, siteType, siteLatitude, siteLongitude, token, userId) => {
     
+    console.log('tokenID = ' + token);
     return fetch('http://localhost:8080/diveSites/createSite',{
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + token
         },
         body: JSON.stringify({
             diveSite: {
@@ -49,6 +53,7 @@ const createDiveSite = (siteName, siteArea, siteDescription, siteType, siteLatit
                 description: siteDescription,
                 siteType: siteType,
                 userId: userId
+                
             }
         })
     });
@@ -59,7 +64,7 @@ const createDiveSite = (siteName, siteArea, siteDescription, siteType, siteLatit
 const CreateSiteForm = (props) => {
 
     const [coords, setCoords] = useContext(CoordsContext);
-
+    const [token, setToken] = useContext(TokenContext);
     const [account, setAccount] = useContext(AccountContext);
 
     const [siteName, setSiteName] = useState("");
@@ -86,7 +91,7 @@ const CreateSiteForm = (props) => {
         const longitude = coordsLng;
         const userId = account.id;
 
-       createDiveSite(name, area, description, type, latitude, longitude, userId);
+       createDiveSite(name, area, description, type, latitude, longitude, token, userId);
     }
 
     return (

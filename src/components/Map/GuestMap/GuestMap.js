@@ -8,8 +8,7 @@ import {
 
 import { DetailsContext } from '../../../context/GuestContext';
 
-import { AccountContext,
-         AuthContext } from '../../../context/AuthContext';
+import { AuthContext } from '../../../context/AuthContext';
 
 import { DiveSitesContext,
          SiteContext } from '../../../context/DiveSiteContext';
@@ -28,10 +27,9 @@ const GuestMap = () => {
 
     const [diveSites, setDiveSites] = useContext(DiveSitesContext);
 
-    const [moreDetails, setMoreDetails] = useContext(DetailsContext);
+    //const [moreDetails, setMoreDetails] = useContext(DetailsContext);
 
-    const [account, setAccount] = useContext(AccountContext);
-    const [isAuth, setIsAuth] = useContext(AuthContext);
+    //const [isAuth, setIsAuth] = useContext(AuthContext);
 
 
     useEffect(() => {
@@ -55,11 +53,11 @@ const GuestMap = () => {
 
     const moreDetailsClicked = () => {
 
-        if (!moreDetails){
-            setMoreDetails(true);
-        } else {
-            setMoreDetails(false);
-        }
+        // if (!moreDetails){
+        //     setMoreDetails(true);
+        // } else {
+        //     setMoreDetails(false);
+        // }
 
         // if (props.moreDetails.pressed) {
         //     props.setMoreDetails({
@@ -73,8 +71,8 @@ const GuestMap = () => {
         //     })
         // }
 
-        console.log('More Detailed Clicked Function Works');
-        console.log(moreDetails);
+        // console.log('More Detailed Clicked Function Works');
+        // console.log(moreDetails);
     }
 
     return (
