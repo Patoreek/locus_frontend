@@ -1,0 +1,21 @@
+.infowindowContainer {
+    border: 2px solid black;
+    width:99%;
+    padding: 0;
+    margin: 0;
+}
+
+
+.buttonsContainer {
+    font-size: 1.2em;
+    height:5vh;
+    width:100%;
+    background-color: #a1a1a1;
+    display: inline-flex;   
+    justify-content: center;
+}
+
+.Icon {
+    width:auto;
+    height: 10vh;
+}

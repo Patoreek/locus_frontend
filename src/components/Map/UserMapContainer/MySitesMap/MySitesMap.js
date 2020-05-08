@@ -7,24 +7,21 @@ import {
 } from 'react-google-maps';
 
 
-import { FormContext } from '../../../context/UserContext';
+import { FormContext } from '../../../../context/UserContext';
 import { DiveSitesContext,
          SiteContext,
          CoordsContext,
-         LoadDiveSiteContext } from '../../../context/DiveSiteContext';
-import { TokenContext, AuthContext } from '../../../context/AuthContext';
+         LoadDiveSiteContext } from '../../../../context/DiveSiteContext';
+import { TokenContext, AuthContext } from '../../../../context/AuthContext';
 
 
 
-import shoreIcon from '../../../images/locationIcons/ShoreLocation.svg';
-import boatIcon from '../../../images/locationIcons/BoatLocation.svg';
+import shoreIcon from '../../../../images/locationIcons/ShoreLocation.svg';
+import boatIcon from '../../../../images/locationIcons/BoatLocation.svg';
 
-import shoreIconCircle from '../../../images/locationIcons/shoreIconCircle.png';
-import boatIconCircle from '../../../images/locationIcons/boatIconCircle.png';
+import classes from './MySitesMap.module.css';
 
-import classes from './UserMap.module.css';
-
-const UserMap = () => {
+const MySitesMap = () => {
 
     const [ showForm, toggleShowForm ] = useContext(FormContext);
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
@@ -102,7 +99,7 @@ const UserMap = () => {
     );
 };
 
-export default UserMap;
+export default MySitesMap;
 
 
 
