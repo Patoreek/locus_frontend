@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom';
 import classes from './LoginView.module.css';
 
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import { AuthContext, TokenContext, AccountContext } from '../../context/AuthContext';
+import { AuthContext, AccountContext } from '../../context/AuthContext';
 
 
 const LoginView = () => {
@@ -13,7 +13,6 @@ const LoginView = () => {
     const [inputPassword, setInputPassword] = useState("");
 
     const [isAuth, setIsAuth] = useContext(AuthContext);
-    const [token, setToken] = useContext(TokenContext);
     const [account, setAccount] = useContext(AccountContext);
 
 
@@ -33,26 +32,24 @@ const LoginView = () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                user: {
-                    email: email,
-                    password: password
-                }
+                email: email,
+                password: password
             })
         })
         .then(res => {
             return res.json();
         })
         .then(resData => {
-            if (resData.userId !== null){
-                console.log(resData);
-                setToken(resData.token);
-                setIsAuth(true);
-                    setAccount({
-                        id: resData.userId,
-                        username: resData.username
-                    })
+           
+            console.log(resData);
+            setIsAuth(true);
+                setAccount({
+                    id: resData._id,
+                    username: resData.username,
+                    email: resData.email
+                }) 
                 history.push("/mySites");
-            }
+            
         })
         .catch(err => {
             console.log('Caught.');

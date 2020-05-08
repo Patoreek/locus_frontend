@@ -10,7 +10,8 @@ import {
 import { FormContext } from '../../../context/UserContext';
 import { DiveSitesContext,
          SiteContext,
-         CoordsContext } from '../../../context/DiveSiteContext';
+         CoordsContext,
+         LoadDiveSiteContext } from '../../../context/DiveSiteContext';
 import { TokenContext, AuthContext } from '../../../context/AuthContext';
 
 
@@ -30,29 +31,13 @@ const UserMap = () => {
     const [diveSites, setDiveSites] = useContext(DiveSitesContext);
     const [coords, setCoords] = useContext(CoordsContext);
 
+    const loadDiveSites = useContext(LoadDiveSiteContext);
+
     const [isAuth, setIsAuth] = useContext(AuthContext);
-    const [token, setToken] = useContext(TokenContext);
-
-
-
-
 
     useEffect(() => {
-        async function loadDiveSites() {
-            // You can await here
-        const response = await fetch('http://localhost:8080/diveSites/getSites',{
-            method: 'GET',
-            headers: { // Dont need a header for GET Requests Unless you have a token
-                Authorization: 'Bearer ' + token
-            }
-        });
-        const data = await response.json();
-        const sites = data.site;
-        setDiveSites(sites);
-            // ...
-        }
         loadDiveSites();
-    }, [diveSites]); //remove diveSites for performance
+    }, []); //remove diveSites for performance
 
     const editSiteHandler = () => {
         console.log('[Selected Site]' + selectedSite);

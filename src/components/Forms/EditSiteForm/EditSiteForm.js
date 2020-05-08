@@ -14,8 +14,7 @@ import {Client as Styletron} from 'styletron-engine-atomic';
 
 import classes from './EditSiteForm.module.css';
 
-import { SiteContext } from '../../../context/DiveSiteContext';
-import { TokenContext } from '../../../context/AuthContext';
+import { SiteContext, LoadDiveSiteContext } from '../../../context/DiveSiteContext';
 
 const engine = new Styletron();
 
@@ -32,7 +31,7 @@ const Centered = styled('div', {
 const EditSiteForm = (props) => {
 
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
-    const [token, setToken] = useContext(TokenContext);
+    const loadDiveSites = useContext(LoadDiveSiteContext)
 
     const [siteName, setSiteName] = useState(selectedSite.name);
     const [siteArea, setSiteArea] = useState(selectedSite.area);
@@ -40,12 +39,11 @@ const EditSiteForm = (props) => {
     const [siteType, setSiteType] = useState(selectedSite.siteType);
 
 
-    const editDiveSite = (siteName, siteArea, siteDescription, siteType, siteLatitude, siteLongitude ) => {
+    const editDiveSite = (siteName, siteArea, siteDescription, siteType, siteLatitude, siteLongitude) => {
         return fetch('http://localhost:8080/diveSites/editDiveSite/' + selectedSite._id,{
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + token
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 diveSite: {
@@ -57,6 +55,17 @@ const EditSiteForm = (props) => {
                     siteType: siteType
                 }
             })
+            
+        })
+        .then(res => {
+            return res.json();
+        })
+        .then(result => {
+            console.log(result);
+            loadDiveSites();
+        })
+        .catch(err => {
+            console.log(err);
         });
     
     }
@@ -67,6 +76,7 @@ const EditSiteForm = (props) => {
         const area = siteArea;
         const description = siteDescription;
         const type = siteType;
+        console.log('handleEditSiteSubmit');
         editDiveSite(name, area, description, type);
     }
 

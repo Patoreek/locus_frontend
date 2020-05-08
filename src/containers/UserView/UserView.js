@@ -5,7 +5,7 @@ import InformationPanel from '../InformationPanel/InformationPanel';
 import { SiteContext,
          CoordsContext } from '../../context/DiveSiteContext';
 import { FormContext } from '../../context/UserContext';
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext, BusyContext } from '../../context/AuthContext';
 
 import { useHistory} from 'react-router-dom';
 
@@ -20,14 +20,17 @@ const UserView = () => {
         const [selectedSite, setSelectedSite] = useContext(SiteContext);
 
         const [isAuth, setIsAuth] = useContext(AuthContext);
+        const [isBusy, setIsBusy] = useContext(BusyContext);
 
         let history = useHistory();
-        
-        useEffect(() => {
-                if (!isAuth) {
-                        history.replace('/login');
-                }       
-        },[]);
+
+        if (!isBusy){
+            console.log('[UserView] isBusy in IF = ' + isBusy);
+            console.log('[UserView] isAuth in IF = ' + isAuth);
+            if (!isAuth){
+                history.replace('/login');
+            }
+        }
 
         const onMapClick = (event) => {
 

@@ -2,9 +2,9 @@ import React, { useState, createContext } from 'react';
 
 export const AuthContext = createContext();
 
-export const TokenContext = createContext();
-
 export const AccountContext = createContext();
+
+export const BusyContext = createContext();
 
 
 
@@ -12,22 +12,24 @@ export const AuthProvider = (props) => {
 
     const [isAuth, setIsAuth] = useState(false);
 
-    const [token, setToken] = useState(null);
 
     const [account, setAccount] = useState({
         id: null,
-        username: null
+        username: null,
+        email: null
     })
+
+    const [ isBusy, setIsBusy ] = useState(true);
 
     return (
         <AuthContext.Provider value = {[isAuth, setIsAuth]}>
-        <TokenContext.Provider value = {[token, setToken]}>
         <AccountContext.Provider value = {[account, setAccount]}>
+        <BusyContext.Provider value = {[isBusy, setIsBusy]}>
 
                 {props.children}
 
+        </BusyContext.Provider>
         </AccountContext.Provider>
-        </TokenContext.Provider>
         </AuthContext.Provider>
 
     );

@@ -16,8 +16,8 @@ import classes from './DeleteContainer.module.css';
 
 import { FormContext } from '../../../context/UserContext';
 import { SiteContext,
-         DiveSitesContext } from '../../../context/DiveSiteContext';
-import { TokenContext } from '../../../context/AuthContext';
+         DiveSitesContext,
+         LoadDiveSiteContext } from '../../../context/DiveSiteContext';
 
 
 const engine = new Styletron();
@@ -37,7 +37,7 @@ const DeleteContainer = () => {
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
     const [showForm, setShowForm] = useContext(FormContext);
     const [diveSites, setDiveSites] = useContext(DiveSitesContext);
-    const [token , setToken] = useContext(TokenContext);
+    const loadDiveSites = useContext(LoadDiveSiteContext);
 
     const siteId = selectedSite._id;
 
@@ -50,13 +50,9 @@ const DeleteContainer = () => {
         console.log('Deleting name ' + selectedSite.name);
         console.log('Deleting id ' + selectedSite._id);
 
-        console.log('TOKEN FOR DELETING ' + token);
         
         fetch('http://localhost:8080/diveSites/deleteDiveSite/' + siteId, {
-            method: 'DELETE',
-            headers: {
-                Authorization: 'Bearer ' + token
-            }
+            method: 'DELETE'
           })
         .then(res => {
             if (res.status !== 200 && res.status !== 201) {
@@ -65,16 +61,8 @@ const DeleteContainer = () => {
             return res.json();
         })
         .then(resData => {
-              console.log('[resData] = ' + resData);
-              setDiveSites(prevState => {
-                const updatedSites = prevState.filter(s => s._id !== siteId);
-                console.log('[UpdatedSites] = ' + updatedSites);
-                return updatedSites;
-              })
-            //   this.setState(prevState => {
-            //     const updatedPosts = prevState.posts.filter(p => p._id !== postId);
-            //     return { posts: updatedPosts, postsLoading: false };
-            //   });
+              console.log('[resData] = ' + resData.message);
+              loadDiveSites();
         })
         .catch(err => {
             console.log(err);

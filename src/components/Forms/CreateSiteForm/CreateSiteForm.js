@@ -8,8 +8,9 @@ import { RadioGroup, Radio } from "baseui/radio";
 import { Textarea } from "baseui/textarea";
 import { Button } from "baseui/button";
 
-import { CoordsContext } from '../../../context/DiveSiteContext';
-import { TokenContext, AccountContext } from '../../../context/AuthContext';
+import { CoordsContext,
+         LoadDiveSiteContext } from '../../../context/DiveSiteContext';
+import { AccountContext } from '../../../context/AuthContext';
 
 
 
@@ -34,15 +35,13 @@ const Centered = styled('div', {
   });
 
 
+const createDiveSite = (siteName, siteArea, siteDescription, siteType, siteLatitude, siteLongitude, userId, loadDiveSites) => {
 
-const createDiveSite = (siteName, siteArea, siteDescription, siteType, siteLatitude, siteLongitude, token, userId) => {
-    
-    console.log('tokenID = ' + token);
+
     return fetch('http://localhost:8080/diveSites/createSite',{
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + token
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({
             diveSite: {
@@ -56,16 +55,25 @@ const createDiveSite = (siteName, siteArea, siteDescription, siteType, siteLatit
                 
             }
         })
+    })
+    .then(res => {
+        return res.json();
+    })
+    .then(result => {
+        console.log(result);
+        loadDiveSites();
+    })
+    .catch(err => {
+        console.log(err);
     });
-
 }
 
 
 const CreateSiteForm = (props) => {
 
     const [coords, setCoords] = useContext(CoordsContext);
-    const [token, setToken] = useContext(TokenContext);
     const [account, setAccount] = useContext(AccountContext);
+    const loadDiveSites = useContext(LoadDiveSiteContext);
 
     const [siteName, setSiteName] = useState("");
     const [siteArea, setSiteArea] = useState("");
@@ -80,7 +88,6 @@ const CreateSiteForm = (props) => {
     
 
 
-
     const handleAddMarkerSubmit = (event) => {
         event.preventDefault();
         const name = siteName;
@@ -91,7 +98,7 @@ const CreateSiteForm = (props) => {
         const longitude = coordsLng;
         const userId = account.id;
 
-       createDiveSite(name, area, description, type, latitude, longitude, token, userId);
+       createDiveSite(name, area, description, type, latitude, longitude, userId, loadDiveSites);
     }
 
     return (

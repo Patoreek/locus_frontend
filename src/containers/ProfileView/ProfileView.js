@@ -1,18 +1,21 @@
 import React, {useEffect, useContext} from 'react';
 import { useHistory } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext, BusyContext } from '../../context/AuthContext';
 
 const ProfileView = () => {
 
     const [isAuth, setIsAuth] = useContext(AuthContext);
+    const [isBusy, setIsBusy] = useContext(BusyContext);
 
     let history = useHistory();
 
-    useEffect(() => {
-        if (!isAuth) {
-                history.replace('/signup');
-        }       
-    },[]);
+    if (!isBusy){
+        console.log('[UserView] isBusy in IF = ' + isBusy);
+        console.log('[UserView] isAuth in IF = ' + isAuth);
+        if (!isAuth){
+            history.replace('/login');
+        }
+    }
 
 
     return (

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -20,7 +20,9 @@ import HomeView from './containers/Home/Home';
 
 import { UserProvider } from './context/UserContext';
 import { GuestProvider } from './context/GuestContext';
-import { AuthContext } from './context/AuthContext';
+import { AuthContext,
+         AccountContext,
+         BusyContext } from './context/AuthContext';
 import { DiveSiteProvider } from './context/DiveSiteContext';
 
 //import 'filepond/dist/filepond.min.css';
@@ -28,9 +30,40 @@ import { DiveSiteProvider } from './context/DiveSiteContext';
 function App() {
 
   const [isAuth, setIsAuth] = useContext(AuthContext);
+  const [account, setAccount] = useContext(AccountContext);
+  const [isBusy, setIsBusy] = useContext(BusyContext);
 
   //console.log('[App.js] isAuth = ' + isAuth);
 
+  useEffect(() => {
+    return fetch('http://localhost:8080/loggedIn',{
+      method: 'GET',
+      credentials: 'include',
+    })
+    .then(res => {
+      return res.json();
+    })
+    .then(result => {
+      if (result.isLoggedIn) {
+        console.log('USER IS STILL LOGGED IN');
+        setIsAuth(true);
+        console.log('[loggedIn] = ' + result.user._id);
+        setAccount({
+          id: result.user._id,
+          username: result.user.username,
+          email: result.user.email
+        })
+        setIsBusy(false);
+      } else {
+        console.log('THERE IS NO SESSION');
+        setIsBusy(false);
+      }
+    }).catch(err => {
+      console.log(err);
+    })
+  },[])
+// console.log('Account:');
+// console.log(account);
 
   return (
     <BrowserRouter>
