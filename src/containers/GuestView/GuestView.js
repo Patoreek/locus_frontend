@@ -4,11 +4,12 @@ import InformationPanel from '../InformationPanel/InformationPanel';
 import Map from '../../components/Map/Map';
 import Details from '../DetailsView/DetailsView';
 
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext, UserOnMapContext } from '../../context/AuthContext';
 
 import { CoordsContext } from '../../context/DiveSiteContext';
 
 import { DetailsContext } from '../../context/GuestContext';
+
 
 
 import classes from './GuestView.module.css';
@@ -21,9 +22,11 @@ const UserView = () => {
 
         const [moreDetails, setMoreDetails] = useContext(DetailsContext);
 
-
-        setIsAuth(false);
-
+        const [isUserOnMap, setIsUserOnMap] = useContext(UserOnMapContext);
+        //setIsAuth(false);
+        if (isAuth){
+            setIsUserOnMap(true);
+        }
         const onMapClick = (event) => {
 
                 setCoords({
@@ -36,7 +39,7 @@ const UserView = () => {
 
     return (
         <div>
-            <InformationPanel/>
+            {/* <InformationPanel/> */}
 
             {!moreDetails && (
 

@@ -5,7 +5,7 @@ import InformationPanel from '../InformationPanel/InformationPanel';
 import { SiteContext,
          CoordsContext } from '../../context/DiveSiteContext';
 import { FormContext } from '../../context/UserContext';
-import { AuthContext, BusyContext } from '../../context/AuthContext';
+import { AuthContext, LoadingContext } from '../../context/AuthContext';
 
 import { useHistory} from 'react-router-dom';
 
@@ -20,12 +20,12 @@ const UserView = () => {
         const [selectedSite, setSelectedSite] = useContext(SiteContext);
 
         const [isAuth, setIsAuth] = useContext(AuthContext);
-        const [isBusy, setIsBusy] = useContext(BusyContext);
+        const [isLoading, setIsLoading] = useContext(LoadingContext);
 
         let history = useHistory();
 
-        if (!isBusy){
-            console.log('[UserView] isBusy in IF = ' + isBusy);
+        if (!isLoading){
+            console.log('[UserView] isBusy in IF = ' + isLoading);
             console.log('[UserView] isAuth in IF = ' + isAuth);
             if (!isAuth){
                 history.replace('/login');

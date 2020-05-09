@@ -4,8 +4,9 @@ export const AuthContext = createContext();
 
 export const AccountContext = createContext();
 
-export const BusyContext = createContext();
+export const LoadingContext = createContext();
 
+export const UserOnMapContext = createContext();
 
 
 export const AuthProvider = (props) => {
@@ -19,16 +20,21 @@ export const AuthProvider = (props) => {
         email: null
     })
 
-    const [ isBusy, setIsBusy ] = useState(true);
+    const [ isLoading, setIsLoading ] = useState(true);
+
+    const [ isUserOnMap, setIsUserOnMap ] = useState(false); // Add
+
 
     return (
         <AuthContext.Provider value = {[isAuth, setIsAuth]}>
         <AccountContext.Provider value = {[account, setAccount]}>
-        <BusyContext.Provider value = {[isBusy, setIsBusy]}>
+        <LoadingContext.Provider value = {[isLoading, setIsLoading]}>
+        <UserOnMapContext.Provider value = {[isUserOnMap, setIsUserOnMap]}>
 
                 {props.children}
-
-        </BusyContext.Provider>
+                
+        </UserOnMapContext.Provider>
+        </LoadingContext.Provider>
         </AccountContext.Provider>
         </AuthContext.Provider>
 

@@ -1,21 +1,21 @@
 import React, {useEffect, useContext} from 'react';
 import { useHistory } from 'react-router-dom';
-import { AuthContext, AccountContext, BusyContext } from '../../context/AuthContext';
+import { AuthContext, AccountContext, LoadingContext } from '../../context/AuthContext';
 
 
 const FavouritesView = () => {
 
     const [isAuth, setIsAuth] = useContext(AuthContext);
     const [account, setAccount] = useContext(AccountContext);
-    const [isBusy, setIsBusy] = useContext(BusyContext);
+    const [isLoading, setIsLoading] = useContext(LoadingContext);
 
     console.log('[FavouritesView] isAuth = ' + isAuth);
-    console.log('[FavouritesView] isBusy = ' + isBusy);
+    console.log('[FavouritesView] isBusy = ' + isLoading);
 
     let history = useHistory();
 
-    if (!isBusy){
-        console.log('[FavouritesView] isBusy in IF = ' + isBusy);
+    if (!isLoading){
+        console.log('[FavouritesView] isBusy in IF = ' + isLoading);
         console.log('[FavouritesView] isAuth in IF = ' + isAuth);
         if (!isAuth){
             history.replace('/login');

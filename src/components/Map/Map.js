@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import { GoogleMap,
     withScriptjs,
     withGoogleMap } from "react-google-maps";
 
 
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext, UserOnMapContext } from '../../context/AuthContext';
 
 
 import UserMapContainer from './UserMapContainer/UserMapContainer';
@@ -16,7 +16,26 @@ import GuestMap from './GuestMap/GuestMap';
 
 const Map = (props) => {
 
-    const [isAuth, setIsAuth] = useContext(AuthContext);   
+    const [isAuth, setIsAuth] = useContext(AuthContext);
+    const [isUserOnMap, setIsUserOnMap] = useContext(UserOnMapContext);  
+    
+    const [guestMap, setGuestMap] = useState(true);
+
+   
+
+    useEffect(() => {
+        console.log('[Map] isAuth = ' + isAuth);
+        console.log('[Map] isUserOnMap = ' + isUserOnMap);
+        if (isAuth){
+            if(isUserOnMap){
+                setGuestMap(true);
+            }
+            else {
+                setGuestMap(false);
+            }
+        }
+    },[])
+
     
     return (
         <GoogleMap
@@ -25,12 +44,12 @@ const Map = (props) => {
         onClick={props.onMapClick}
         >
 
-        {isAuth && (
+        {!guestMap && (
             <UserMapContainer/>
         )}
 
 
-        {!isAuth && (
+        {guestMap && (
             <GuestMap/>
         )}
 

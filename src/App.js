@@ -22,7 +22,7 @@ import { UserProvider } from './context/UserContext';
 import { GuestProvider } from './context/GuestContext';
 import { AuthContext,
          AccountContext,
-         BusyContext } from './context/AuthContext';
+         LoadingContext } from './context/AuthContext';
 import { DiveSiteProvider } from './context/DiveSiteContext';
 
 //import 'filepond/dist/filepond.min.css';
@@ -31,45 +31,81 @@ function App() {
 
   const [isAuth, setIsAuth] = useContext(AuthContext);
   const [account, setAccount] = useContext(AccountContext);
-  const [isBusy, setIsBusy] = useContext(BusyContext);
+  const [isLoading, setIsLoading] = useContext(LoadingContext);
 
   //console.log('[App.js] isAuth = ' + isAuth);
 
   useEffect(() => {
-    return fetch('http://localhost:8080/loggedIn',{
-      method: 'GET',
-      credentials: 'include',
-    })
-    .then(res => {
-      return res.json();
-    })
-    .then(result => {
-      if (result.isLoggedIn) {
-        console.log('USER IS STILL LOGGED IN');
-        setIsAuth(true);
-        console.log('[loggedIn] = ' + result.user._id);
-        setAccount({
-          id: result.user._id,
-          username: result.user.username,
-          email: result.user.email
-        })
-        setIsBusy(false);
-      } else {
-        console.log('THERE IS NO SESSION');
-        setIsBusy(false);
+    async function isLoggedIn() {
+
+      try {
+        const response = await fetch('http://localhost:8080/loggedIn',{
+          method: 'GET',
+          credentials: 'include',
+        });
+        const json = await response.json();
+        console.log(json);
+
+        if (json.isLoggedIn) {
+          console.log('[loggedIn] = ' + json.user._id);
+          console.log('USER IS STILL LOGGED IN');
+          setIsAuth(true);
+          setAccount({
+            id: json.user._id,
+            username: json.user.username,
+            email: json.user.email
+          })
+          setIsLoading(false);
+        } else {
+          console.log('THERE IS NO SESSION');
+          setIsLoading(false);
+        }
+
+      } catch (error) {
+        setIsLoading(null);
       }
-    }).catch(err => {
-      console.log(err);
-    })
+
+
+      ///////////////////////////////
+      // fetch('http://localhost:8080/loggedIn',{
+      // method: 'GET',
+      // credentials: 'include',
+      // })
+      // .then(res => {
+      //   return res.json();
+      // })
+      // .then(result => {
+      //   if (result.isLoggedIn) {
+      //     console.log('USER IS STILL LOGGED IN');
+      //     setIsAuth(true);
+      //     console.log('[loggedIn] = ' + result.user._id);
+      //     setAccount({
+      //       id: result.user._id,
+      //       username: result.user.username,
+      //       email: result.user.email
+      //     })
+      //     setIsLoading(false);
+      //   } else {
+      //     console.log('THERE IS NO SESSION');
+      //     setIsLoading(false);
+      //   }
+      // }).catch(err => {
+      //   console.log(err);
+      // })
+
+
+    }
+    isLoggedIn();
   },[])
 // console.log('Account:');
 // console.log(account);
 
   return (
     <BrowserRouter>
-    <div className="App">
+      {!isLoading && (
+      <div className="App">
       <Navbar/>
-
+      
       <Route path="/" exact component={HomeView}/>
 
       <Route path="/login" component={LoginView}/>
@@ -97,6 +133,10 @@ function App() {
       
       {/* API-KEY: AIzaSyA-9fLyV56TU5kt5qw3guZ4Vi3BXuDlNts */}
     </div>
+    )}
+    {isLoading === null && (
+      <h1>Error Loading</h1>
+    )}
     </BrowserRouter>
   );
 }
