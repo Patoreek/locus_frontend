@@ -22,15 +22,25 @@ const UserView = () => {
         const [isAuth, setIsAuth] = useContext(AuthContext);
         const [isLoading, setIsLoading] = useContext(LoadingContext);
 
+        const [userViewLoaded, setUserViewLoaded] = useState(false);
+
         let history = useHistory();
 
-        if (!isLoading){
-            console.log('[UserView] isBusy in IF = ' + isLoading);
-            console.log('[UserView] isAuth in IF = ' + isAuth);
-            if (!isAuth){
-                history.replace('/login');
-            }
-        }
+        useEffect(() => {
+            // if (!isLoading){
+                console.log('[UserView] isBusy in IF = ' + isLoading);
+                console.log('[UserView] isAuth in IF = ' + isAuth);
+                if (!isAuth){
+                    history.replace('/login');
+                }
+                setUserViewLoaded(true);
+
+                return () => {
+                    setUserViewLoaded(false);
+                }
+            //}
+        }, [])
+        
 
         const onMapClick = (event) => {
 
@@ -54,9 +64,10 @@ const UserView = () => {
 
     return (
         <div>
-        
-            <InformationPanel/>
-
+            {userViewLoaded && (
+                <InformationPanel/>
+            )}
+            {userViewLoaded && (
             <Map googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyA-9fLyV56TU5kt5qw3guZ4Vi3BXuDlNts&v=3.exp&libraries=geometry,drawing,places`}
                 loadingElement={<div style={{ 
                                         height: "93vh",
@@ -81,6 +92,8 @@ const UserView = () => {
                 onMapClick = {onMapClick}
                 coords = {coords}
             />
+            )}
+
         </div>
         
     );

@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
 import InformationPanel from '../InformationPanel/InformationPanel';
 import Map from '../../components/Map/Map';
 import Details from '../DetailsView/DetailsView';
 
-import { AuthContext, UserOnMapContext } from '../../context/AuthContext';
+import { AuthContext, UserOnMapContext, LoadingContext } from '../../context/AuthContext';
 
 import { CoordsContext } from '../../context/DiveSiteContext';
 
@@ -14,7 +14,7 @@ import { DetailsContext } from '../../context/GuestContext';
 
 import classes from './GuestView.module.css';
 
-const UserView = () => {
+const GuestView = () => {
 
         const [isAuth, setIsAuth] = useContext(AuthContext);
 
@@ -23,10 +23,22 @@ const UserView = () => {
         const [moreDetails, setMoreDetails] = useContext(DetailsContext);
 
         const [isUserOnMap, setIsUserOnMap] = useContext(UserOnMapContext);
+
+        const [guestViewLoaded, setGuestViewLoaded] = useState(false);
         //setIsAuth(false);
-        if (isAuth){
-            setIsUserOnMap(true);
-        }
+        useEffect(() => {
+            
+            console.log('[GuestView] isAuth in IF = ' + isAuth);
+            if (isAuth){
+                setIsUserOnMap(true);
+            }
+            setGuestViewLoaded(true);
+            return () => {
+                setGuestViewLoaded(false);
+            }
+            //console.log("[GuestView] isAuth " + isAuth);
+        }, []);
+
         const onMapClick = (event) => {
 
                 setCoords({
@@ -39,7 +51,9 @@ const UserView = () => {
 
     return (
         <div>
-            {/* <InformationPanel/> */}
+            {guestViewLoaded && (
+                <InformationPanel/>
+            )}
 
             {!moreDetails && (
 
@@ -77,4 +91,4 @@ const UserView = () => {
     );
 };
 
-export default UserView;
+export default GuestView;

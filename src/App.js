@@ -64,41 +64,10 @@ function App() {
       } catch (error) {
         setIsLoading(null);
       }
-
-
-      ///////////////////////////////
-      // fetch('http://localhost:8080/loggedIn',{
-      // method: 'GET',
-      // credentials: 'include',
-      // })
-      // .then(res => {
-      //   return res.json();
-      // })
-      // .then(result => {
-      //   if (result.isLoggedIn) {
-      //     console.log('USER IS STILL LOGGED IN');
-      //     setIsAuth(true);
-      //     console.log('[loggedIn] = ' + result.user._id);
-      //     setAccount({
-      //       id: result.user._id,
-      //       username: result.user.username,
-      //       email: result.user.email
-      //     })
-      //     setIsLoading(false);
-      //   } else {
-      //     console.log('THERE IS NO SESSION');
-      //     setIsLoading(false);
-      //   }
-      // }).catch(err => {
-      //   console.log(err);
-      // })
-
-
     }
     isLoggedIn();
   },[])
-// console.log('Account:');
-// console.log(account);
+
 
   return (
     <BrowserRouter>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UserPanel = () => {
+const GuestPanel = () => {
     return (
         <div>
             <h1>GUEST PANEL</h1>
@@ -10,4 +10,4 @@ const UserPanel = () => {
     );
 };
 
-export default UserPanel;
+export default GuestPanel;
