@@ -1,35 +1,70 @@
-import React, {useEffect, useContext} from 'react';
+import React, {useEffect, useContext, useState} from 'react';
 import { useHistory } from 'react-router-dom';
-import { AuthContext, AccountContext, LoadingContext } from '../../context/AuthContext';
+import { AuthContext, 
+         AccountContext, 
+         FavouritesContext,
+         GetFavouritesContext } from '../../context/AuthContext';
+
+import FavouritesList from './FavouritesList/FavouritesList';
 
 
 const FavouritesView = () => {
 
     const [isAuth, setIsAuth] = useContext(AuthContext);
     const [account, setAccount] = useContext(AccountContext);
-    const [isLoading, setIsLoading] = useContext(LoadingContext);
+    const [isLoading, setIsLoading] = useState(true);
+    const [favourites, setFavourites] = useContext(FavouritesContext);
 
-    console.log('[FavouritesView] isAuth = ' + isAuth);
-    console.log('[FavouritesView] isBusy = ' + isLoading);
+    const getFavourites = useContext(GetFavouritesContext);
 
-    let history = useHistory();
+     let history = useHistory();
 
-    if (!isLoading){
-        console.log('[FavouritesView] isBusy in IF = ' + isLoading);
-        console.log('[FavouritesView] isAuth in IF = ' + isAuth);
         if (!isAuth){
             history.replace('/login');
         }
-    }
 
-    // useEffect(() => {
-        
-    // },[])
+
+
+
+    useEffect(() => {
+        // async function getFavourites() {
+
+        //     try {
+        //       const response = await fetch('http://localhost:8080/user/getFavourites',{
+        //         method: 'GET',
+        //         credentials: 'include',
+        //       });
+        //       const favourites = await response.json();
+        //       console.log(favourites);
+        //       setFavourites(favourites.favSites);
+        //       setIsLoading(false);
+      
+        //     } catch (error) {
+        //      console.log(error);
+        //      setIsLoading(null);
+        //     }
+        //   }
+          getFavourites(setIsLoading);
+    },[])
 
     return (
         <div>
-            <h1> Favourites Section</h1>   
-            <h2>{account.username}</h2>
+            {!isLoading && (
+                <div>
+                <h1> Favourites Section</h1>   
+                <h2>{account.username}</h2>
+                <FavouritesList
+                    favourites={favourites}
+                    setIsLoading={setIsLoading}
+                    // getFavs = {getFavourites}
+                />
+            </div>
+            )}
+
+            {isLoading && (
+                <h1>Loading...</h1>
+            )}
+            
         </div>
     );
 };

@@ -9,10 +9,13 @@ import {
 import { DetailsContext } from '../../../context/GuestContext';
 
 import { AuthContext,
-         AccountContext } from '../../../context/AuthContext';
+         AccountContext,
+         FavButtonContext,
+         RemoveFavContext } from '../../../context/AuthContext';
 
 import { DiveSitesContext,
-         SiteContext } from '../../../context/DiveSiteContext';
+         SiteContext,
+         LoadDiveSiteContext } from '../../../context/DiveSiteContext';
 
 import shoreIcon from '../../../images/locationIcons/ShoreLocation.svg';
 import boatIcon from '../../../images/locationIcons/BoatLocation.svg';
@@ -33,25 +36,30 @@ const GuestMap = () => {
     const [isAuth, setIsAuth] = useContext(AuthContext);
     const [account, setAccount] = useContext(AccountContext);
 
-    const [favButton, setFavButton] = useState(true);
+    // const [favButton, setFavButton] = useState(true);
+    const [favButton, setFavButton] = useContext(FavButtonContext);
+
+    const loadDiveSites = useContext(LoadDiveSiteContext);
+
+    const removeFromFavourite = useContext(RemoveFavContext);
 
 
 
 
     useEffect(() => {
-        async function loadDiveSites() {
-            // You can await here
-        const response = await fetch('http://localhost:8080/diveSites/getSites',{
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        const data = await response.json();
-        const sites = data.site;
-        setDiveSites(sites);
-            // ...
-          }
+        // async function loadDiveSites() {
+        //     // You can await here
+        // const response = await fetch('http://localhost:8080/diveSites/getSites',{
+        //     method: 'GET',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // });
+        // const data = await response.json();
+        // const sites = data.site;
+        // setDiveSites(sites);
+        //     // ...
+        //   }
 
         loadDiveSites();
         
@@ -90,7 +98,7 @@ const GuestMap = () => {
     } else {
 
         favouriteButton = (
-            <button onClick={removeFromFavourite}>UnFavourite</button>
+            <button onClick={() => removeFromFavourite(selectedSite)}>UnFavourite</button>
         );
     }
     useEffect(() => {
@@ -129,34 +137,34 @@ const GuestMap = () => {
         // TO SHOW UNFAVOURITE ELSE I WILL SHOW FAVOURITE THE SITE
     }
 
-    async function removeFromFavourite() {
-        console.log('removing to favourite');
-        // SELECTEDSITE ID PUT INTO FAVOURITE SITES ID FOR THAT USER
-        console.log(selectedSite._id);
-        const response = await fetch('http://localhost:8080/user/removeFromFavourite',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include',
-            body: JSON.stringify({
-                selectedSiteId: selectedSite._id,
-                userId: account.id
-            })
-        });
-        const data = await response.json();
+    // async function removeFromFavourite() {
+    //     console.log('removing to favourite');
+    //     // SELECTEDSITE ID PUT INTO FAVOURITE SITES ID FOR THAT USER
+    //     console.log(selectedSite._id);
+    //     const response = await fetch('http://localhost:8080/user/removeFromFavourite',{
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         credentials: 'include',
+    //         body: JSON.stringify({
+    //             selectedSiteId: selectedSite._id,
+    //             userId: account.id
+    //         })
+    //     });
+    //     const data = await response.json();
 
-        if (data.removedFav){
-            setFavButton(true);
-        } else {
-            setFavButton(false);
-        }
-        console.log(data.message);
-        //setFavButton(false);
-        //const sites = data;
+    //     if (data.removedFav){
+    //         setFavButton(true);
+    //     } else {
+    //         setFavButton(false);
+    //     }
+    //     console.log(data.message);
+    //     //setFavButton(false);
+    //     //const sites = data;
  
           
-    }
+    // }
 
     
 
