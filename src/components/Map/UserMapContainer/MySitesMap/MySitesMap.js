@@ -12,7 +12,7 @@ import { DiveSitesContext,
          SiteContext,
          CoordsContext,
          LoadDiveSiteContext } from '../../../../context/DiveSiteContext';
-import { TokenContext, AuthContext } from '../../../../context/AuthContext';
+import { AuthContext } from '../../../../context/AuthContext';
 
 
 

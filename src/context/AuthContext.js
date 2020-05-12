@@ -18,7 +18,7 @@ export const AuthProvider = (props) => {
         id: null,
         username: null,
         email: null
-    })
+    });
 
     const [ isLoading, setIsLoading ] = useState(true);
 

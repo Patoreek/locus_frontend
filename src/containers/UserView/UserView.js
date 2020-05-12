@@ -53,7 +53,7 @@ const UserView = () => {
                         setSelectedSite(null);
                        
                 } else {
-                        toggleShowForm("");
+                        toggleShowForm(null);
                 }
                 console.log('[AdminView OnMapClick Selected Site] ' + selectedSite);
                 console.log('[AdminView OnMapClick ShowForm] ' + showForm);

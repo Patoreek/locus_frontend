@@ -48,6 +48,7 @@ function App() {
 
         if (json.isLoggedIn) {
           console.log('[loggedIn] = ' + json.user._id);
+          console.log('[loggedIn] = ' + json.user);
           console.log('USER IS STILL LOGGED IN');
           setIsAuth(true);
           setAccount({

@@ -6,6 +6,9 @@ import { SiteContext } from '../../../context/DiveSiteContext';
 import CreateSiteForm from '../../../components/Forms/CreateSiteForm/CreateSiteForm';
 import EditSiteForm from '../../../components/Forms/EditSiteForm/EditSiteForm';
 import DeleteContainer from '../../../components/Forms/DeleteContainer/DeleteContainer';
+import UserSiteListContainer from './UserSiteListContainer/UserSiteListContainer';
+
+import ToggleButtons from '../ToggleButtons/ToggleButtons';
 
 const UserPanel = () => {
 
@@ -16,27 +19,48 @@ const UserPanel = () => {
     let form;
     
     if (showForm === 'ADD') {
-        form =  <CreateSiteForm/>;
+        form = (
+            <div>
+                <button onClick={() => {
+                    toggleShowForm(null)
+                }}>Back
+                </button>
+                <CreateSiteForm/>
+            </div>
+        )
     }
     //console.log('[Before ShowForm === EDIT ~ showForm is]' + showForm);
     if (showForm === 'EDIT') {
-        form = <EditSiteForm/>
+        form = (
+            <div>
+                <button onClick={() => {
+                    toggleShowForm(null)
+                }}>Back
+                </button>
+                <EditSiteForm/>
+            </div>
+        )
     }
 
     if (showForm === 'DELETE'){
-        form = <DeleteContainer/>
+        form = (
+                <div>
+                    <button onClick={() => {
+                        toggleShowForm(null)
+                    }}>Back
+                    </button>
+                    <DeleteContainer/>
+                </div>
+                )
+    }
+
+    if (showForm === null){
+        form = <UserSiteListContainer/>
     }
 
     return (
         <div>
-                <div>
-                    <h1> USER SECTION</h1>
-                    <h1> Information section</h1>
-                    <h2> How to use this section</h2>
-                    <p>Click on the map in an empty location to place a marker.</p>
-                    <p>Click on your existing markers to edit the information</p>
-                </div>
-
+                <ToggleButtons/>
                 {form}
         </div>
     );

@@ -8,7 +8,8 @@ import {
 
 import { DetailsContext } from '../../../context/GuestContext';
 
-import { AuthContext } from '../../../context/AuthContext';
+import { AuthContext,
+         AccountContext } from '../../../context/AuthContext';
 
 import { DiveSitesContext,
          SiteContext } from '../../../context/DiveSiteContext';
@@ -29,7 +30,12 @@ const GuestMap = () => {
 
     //const [moreDetails, setMoreDetails] = useContext(DetailsContext);
 
-    //const [isAuth, setIsAuth] = useContext(AuthContext);
+    const [isAuth, setIsAuth] = useContext(AuthContext);
+    const [account, setAccount] = useContext(AccountContext);
+
+    const [favButton, setFavButton] = useState(true);
+
+
 
 
     useEffect(() => {
@@ -74,6 +80,116 @@ const GuestMap = () => {
         // console.log('More Detailed Clicked Function Works');
         // console.log(moreDetails);
     }
+
+    let favouriteButton;
+    if (favButton) {
+
+        favouriteButton = (
+            <button onClick={addToFavourite}>Favourite</button>
+        );
+    } else {
+
+        favouriteButton = (
+            <button onClick={removeFromFavourite}>UnFavourite</button>
+        );
+    }
+    useEffect(() => {
+        checkUserRelation();
+    },[selectedSite]);
+    
+
+    async function checkUserRelation(){
+        if (selectedSite !== null){
+            console.log('Checking uSer Relation');
+            console.log(selectedSite);
+            const response = await fetch('http://localhost:8080/user/checkFavourites',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include',
+                body: JSON.stringify({
+                    selectedSiteId: selectedSite._id
+                })
+            });
+            const data = await response.json();
+            console.log('RESPONSE FROM API');
+            console.log(data.message);
+            const isFav = data.isFav;
+            
+            if (isFav){
+                setFavButton(false);
+            } else {
+                setFavButton(true);
+            }
+            
+        }
+
+        // HERE I WILL CHECK IF USER LOGGED IN IS A FAVOURITE AND IF SO THEN I WILL TOGGLE
+        // TO SHOW UNFAVOURITE ELSE I WILL SHOW FAVOURITE THE SITE
+    }
+
+    async function removeFromFavourite() {
+        console.log('removing to favourite');
+        // SELECTEDSITE ID PUT INTO FAVOURITE SITES ID FOR THAT USER
+        console.log(selectedSite._id);
+        const response = await fetch('http://localhost:8080/user/removeFromFavourite',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                selectedSiteId: selectedSite._id,
+                userId: account.id
+            })
+        });
+        const data = await response.json();
+
+        if (data.removedFav){
+            setFavButton(true);
+        } else {
+            setFavButton(false);
+        }
+        console.log(data.message);
+        //setFavButton(false);
+        //const sites = data;
+ 
+          
+    }
+
+    
+
+    async function addToFavourite() {
+        console.log('Adding to favourite');
+        // SELECTEDSITE ID PUT INTO FAVOURITE SITES ID FOR THAT USER
+        console.log(selectedSite._id);
+        const response = await fetch('http://localhost:8080/user/addToFavourite',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                selectedSiteId: selectedSite._id,
+                userId: account.id
+            })
+        });
+        const data = await response.json();
+
+        console.log(data.message);
+        setFavButton(false);
+        //const sites = data;
+ 
+          
+    }
+
+    const commentHandler = () => {
+        console.log('Commenting on Site');
+        
+    }
+
+    
 
     return (
         <div>
@@ -131,12 +247,13 @@ const GuestMap = () => {
                         <div className={classes.reviewContainer}>
                             <h3>review stars</h3>
                         </div>
-                        {/* isAuth && ( */ }
-                                <div className={classes.buttonsContainer}>
-                                <button>Favourite</button>
-                                <button>Report</button>
+                        {isAuth && (
+                            <div className={classes.buttonsContainer}>
+                                {favouriteButton}
+                                <button onClick={commentHandler}>Comment</button>
+                                <button>...</button> {/* Share and report buttons*/}
                             </div>
-                        {/* })} */}
+                        )} 
      
                    
                     </div>
