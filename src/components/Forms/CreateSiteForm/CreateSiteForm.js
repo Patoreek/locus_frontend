@@ -1,6 +1,5 @@
 import React, {useState, useContext} from 'react';
 
-import axios from 'axios';
 
 import { Input } from "baseui/input";
 import { FormControl } from "baseui/form-control";

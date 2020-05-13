@@ -47,7 +47,7 @@ export const AuthProvider = (props) => {
           const favourites = await response.json();
           console.log(favourites);
           setFavourites(favourites.favSites);
-          if (setIsLoading !== null){
+          if (setIsLoading != null){
               setIsLoading(false);
           }
   

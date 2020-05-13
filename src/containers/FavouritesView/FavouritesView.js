@@ -27,23 +27,7 @@ const FavouritesView = () => {
 
 
     useEffect(() => {
-        // async function getFavourites() {
-
-        //     try {
-        //       const response = await fetch('http://localhost:8080/user/getFavourites',{
-        //         method: 'GET',
-        //         credentials: 'include',
-        //       });
-        //       const favourites = await response.json();
-        //       console.log(favourites);
-        //       setFavourites(favourites.favSites);
-        //       setIsLoading(false);
-      
-        //     } catch (error) {
-        //      console.log(error);
-        //      setIsLoading(null);
-        //     }
-        //   }
+        
           getFavourites(setIsLoading);
     },[])
 

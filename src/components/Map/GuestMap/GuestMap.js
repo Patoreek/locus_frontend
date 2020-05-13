@@ -1,6 +1,8 @@
 
 import React, { useState, useEffect, useContext } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import {
     Marker,
     InfoWindow
@@ -23,11 +25,15 @@ import boatIcon from '../../../images/locationIcons/BoatLocation.svg';
 import shoreIconCircle from '../../../images/locationIcons/shoreIconCircle.png';
 import boatIconCircle from '../../../images/locationIcons/boatIconCircle.png';
 
+import WeatherContainer from '../../../containers/WeatherContainer/WeatherContainer';
+
 import classes from './GuestMap.module.css';
 
 const GuestMap = () => {
 
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
+
+    const [moreDetails, setMoreDetails] = useContext(DetailsContext);
 
     const [diveSites, setDiveSites] = useContext(DiveSitesContext);
 
@@ -47,47 +53,10 @@ const GuestMap = () => {
 
 
     useEffect(() => {
-        // async function loadDiveSites() {
-        //     // You can await here
-        // const response = await fetch('http://localhost:8080/diveSites/getSites',{
-        //     method: 'GET',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     }
-        // });
-        // const data = await response.json();
-        // const sites = data.site;
-        // setDiveSites(sites);
-        //     // ...
-        //   }
-
+       
         loadDiveSites();
         
     }, [diveSites]);
-
-    const moreDetailsClicked = () => {
-
-        // if (!moreDetails){
-        //     setMoreDetails(true);
-        // } else {
-        //     setMoreDetails(false);
-        // }
-
-        // if (props.moreDetails.pressed) {
-        //     props.setMoreDetails({
-        //         pressed: false,
-        //         siteId: selectedSite._id
-        //     })
-        // } else {
-        //     props.setMoreDetails({
-        //         pressed: true,
-        //         siteId: selectedSite._id
-        //     })
-        // }
-
-        // console.log('More Detailed Clicked Function Works');
-        // console.log(moreDetails);
-    }
 
     let favouriteButton;
     if (favButton) {
@@ -109,7 +78,7 @@ const GuestMap = () => {
     async function checkUserRelation(){
         if (selectedSite !== null){
             console.log('Checking uSer Relation');
-            console.log(selectedSite);
+            //console.log(selectedSite);
             const response = await fetch('http://localhost:8080/user/checkFavourites',{
                 method: 'POST',
                 headers: {
@@ -132,39 +101,8 @@ const GuestMap = () => {
             }
             
         }
-
-        // HERE I WILL CHECK IF USER LOGGED IN IS A FAVOURITE AND IF SO THEN I WILL TOGGLE
-        // TO SHOW UNFAVOURITE ELSE I WILL SHOW FAVOURITE THE SITE
     }
 
-    // async function removeFromFavourite() {
-    //     console.log('removing to favourite');
-    //     // SELECTEDSITE ID PUT INTO FAVOURITE SITES ID FOR THAT USER
-    //     console.log(selectedSite._id);
-    //     const response = await fetch('http://localhost:8080/user/removeFromFavourite',{
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         credentials: 'include',
-    //         body: JSON.stringify({
-    //             selectedSiteId: selectedSite._id,
-    //             userId: account.id
-    //         })
-    //     });
-    //     const data = await response.json();
-
-    //     if (data.removedFav){
-    //         setFavButton(true);
-    //     } else {
-    //         setFavButton(false);
-    //     }
-    //     console.log(data.message);
-    //     //setFavButton(false);
-    //     //const sites = data;
- 
-          
-    // }
 
     
 
@@ -190,6 +128,10 @@ const GuestMap = () => {
         //const sites = data;
  
           
+    }
+
+    const detailsHandler = () => {
+        setMoreDetails(true);
     }
 
     const commentHandler = () => {
@@ -248,9 +190,9 @@ const GuestMap = () => {
                                 <button>Videos</button>
                             </div>
                         </div>
+                        
                         <div className={classes.detailsContainer}>
-                            <h3 className = {classes.moreDetailsLink}
-                                onClick = {moreDetailsClicked}>more details</h3>
+                            <button onClick={detailsHandler}>More Details</button>
                         </div>
                         <div className={classes.reviewContainer}>
                             <h3>review stars</h3>
