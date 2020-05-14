@@ -4,6 +4,7 @@ export const SiteContext = createContext();
 export const DiveSitesContext = createContext();
 export const CoordsContext = createContext();
 export const LoadDiveSiteContext = createContext();
+export const DetailsContext = createContext();
 
 
 
@@ -11,6 +12,8 @@ export const DiveSiteProvider = (props) => {
 
     
     const [ selectedSite, setSelectedSite ] = useState(null);
+
+    const [moreDetails, setMoreDetails] = useState(false);
 
     const [diveSites, setDiveSites] = useState([]);
 
@@ -37,8 +40,11 @@ export const DiveSiteProvider = (props) => {
         <DiveSitesContext.Provider value = { [diveSites, setDiveSites] }>
         <CoordsContext.Provider value = {[coords, setCoords]}>
         <LoadDiveSiteContext.Provider value = {loadDiveSites} >
-
-                {props.children}
+        <DetailsContext.Provider value = {[moreDetails, setMoreDetails]}>
+        
+        {props.children}
+        
+        </DetailsContext.Provider>  
         </LoadDiveSiteContext.Provider>        
         </CoordsContext.Provider>
         </DiveSitesContext.Provider>

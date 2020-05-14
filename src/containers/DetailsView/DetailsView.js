@@ -1,8 +1,7 @@
 import React, { useState, useContext } from 'react';
 
-import { SiteContext } from '../../context/DiveSiteContext';
-
-import { DetailsContext } from '../../context/GuestContext';
+import { SiteContext,
+         DetailsContext } from '../../context/DiveSiteContext';
 
 import classes from './DetailsView.module.css';
 
@@ -48,7 +47,11 @@ const Details = (props) => {
         <div className={classes.mediaContainer}>
             <div className={classes.picturesContainer}>
                 <h3>Picture</h3>
-                <p>{siteImages}</p>
+                {siteImages.map(image => (
+                    <div className={classes.images}>
+                    <img src = {'http://localhost:8080/' + image} width="400px" height="200px"/>
+                    </div>
+                ))}
             </div>
             <div className={classes.videosContainer}>
                 <h3>Videos</h3>

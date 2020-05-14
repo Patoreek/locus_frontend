@@ -142,14 +142,6 @@ const CreateSiteForm = (props) => {
                 </RadioGroup>
             </FormControl>
 
-            <FormControl label={() => "Images"}>
-                <FilePond 
-                    allowMultiple={true}
-                    name={"images"}
-                    server="http://localhost:8080/diveSites/uploadImages"
-                />
-            </FormControl>
-
 
             <Button onClick={handleAddMarkerSubmit}>Submit</Button>
 

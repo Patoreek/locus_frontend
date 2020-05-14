@@ -5,7 +5,7 @@ import { AuthContext, LoadingContext } from '../../context/AuthContext';
 const ProfileView = () => {
 
     const [isAuth, setIsAuth] = useContext(AuthContext);
-    const [isLoading, setIsLoading] = useContext(LoadingContext);
+    const [isLoading, setIsLoading] = useState(true);
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -32,29 +32,39 @@ const ProfileView = () => {
                             console.log(profile);
                             setFirstName(profile.firstName);
                             setLastName(profile.lastName);
-                            setProfilePic(profile.profilePic);
+                            setProfilePic('http://localhost:8080/' + profile.profilePic);
                             setBio(profile.bio);
                             setLocation(profile.location);
                             setLicenseType(profile.licenseType);
+                            
+                            setIsLoading(false);
                         } catch (error) {
                         console.log(error);
-                        //setIsLoading(null);
+                        setIsLoading(null);
                         }
             }
             getProfile();
         }, []);
-  
 
 
     return (
         <div>
             <h1>Profile Section</h1>
             <a href="/editprofile">Edit profile</a>
-            <h1>{firstName} {lastName}</h1>
-            <h3>{location}</h3>
-            <h4>{licenseType}</h4>
-            <p>{bio}</p>
-            <p>{profilePic}</p>
+            {!isLoading && (
+                <div>  
+                    <h1>{firstName} {lastName}</h1>
+                    <h3>{location}</h3>
+                    <h4>{licenseType}</h4>
+                    <p>{bio}</p>
+                    <img src={profilePic}/>
+                </div>
+            )}
+            {isLoading && (
+                <h1> Loading...</h1>
+            )}
+            
+            
         </div>
     );
 };

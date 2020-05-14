@@ -22,10 +22,12 @@
 
 .mediaContainer {
     width: 100%;
-    height:40vh;
+    height:70vh;
     background-color: #00ff95;
     display: inline-block; 
 }
+
+
 
 .reviewContainer {
     width:50%;
@@ -89,4 +91,12 @@
     height:50vh;
     background-color: #5cd416;
     display: inline-block; 
+}
+
+.images {
+    display:inline-block;
+}
+
+.picturesContainer {
+    /* background-color: red; */
 }

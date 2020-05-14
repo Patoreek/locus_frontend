@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 
 import {Provider as StyletronProvider} from 'styletron-react';
 import {LightTheme, BaseProvider, styled} from 'baseui';
@@ -9,6 +9,11 @@ import { FormControl } from "baseui/form-control";
 import { RadioGroup, Radio } from "baseui/radio";
 import { Textarea } from "baseui/textarea";
 import { Button } from "baseui/button";
+import { FileUploader } from "baseui/file-uploader";
+
+import { FilePond } from 'react-filepond';
+
+import { AccountContext } from '../../context/AuthContext';
 
 import classes from './EditProfileView.module.css';
 
@@ -29,6 +34,9 @@ const EditProfileView = () => {
     const [location, setLocation] = useState("");
     const [licenseType, setLicenseType] = useState("");
     const [profilePic, setProfilePic] = useState("");
+
+    const [account, setAccount] = useContext(AccountContext);
+
 
     useEffect(() => {
         async function getProfile() {
@@ -63,6 +71,9 @@ const EditProfileView = () => {
         console.log('Location: ' + location);
         console.log('License Type: ' + licenseType);
 
+
+
+
         return fetch('http://localhost:8080/user/editProfile',{
         method: 'POST',
         headers: {
@@ -70,15 +81,11 @@ const EditProfileView = () => {
         },
         credentials: 'include',
         body: JSON.stringify({
-            profile: {
                 firstName: firstName,
                 lastName: lastName,
-                profilePic: profilePic,
                 bio: bio,
                 location: location,
-                licenseType: licenseType
-                
-            }
+                licenseType: licenseType 
         })
         })
         .then(res => {
@@ -93,7 +100,6 @@ const EditProfileView = () => {
         });
         
     }
-
 
     return (
         <div>
@@ -116,15 +122,6 @@ const EditProfileView = () => {
                     onChange={e => setLastName(e.target.value)}
                     placeholder="Last Name" />
             </FormControl>
-
-            <FormControl label={() => "Profile Picture"}>
-                <Textarea
-                    value={profilePic}
-                    onChange={e => setProfilePic(e.target.value)}
-                    placeholder="Picture will be uploaded here"
-                />
-            </FormControl>
-
             <FormControl label={() => "Bio"}>
                 <Textarea
                     value={bio}
@@ -146,11 +143,24 @@ const EditProfileView = () => {
                 <Input
                     value={licenseType}
                     onChange={e => setLicenseType(e.target.value)}
-                    placeholder="Where are you from?"
+                    placeholder="Scuba Diving License Type?"
                 />
             </FormControl>
 
-
+            <FormControl label={() => "Images"}>
+                <FilePond 
+                    allowMultiple={false}
+                    name={"profilePicture"}
+                    server={
+                        {
+                            url: "http://localhost:8080/user/uploadImages/" + account.id,
+                            process:{
+                                withCredentials: true
+                            }
+                        }
+                    }
+                />
+            </FormControl>
 
 
             <Button onClick={editProfileHandler}>Edit</Button>

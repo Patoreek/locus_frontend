@@ -66,7 +66,9 @@ const Navbar = () => {
                         {isAuth ? <li className={classes.listItem}><a href="/favourites">Favourites</a></li> : null }
                         {isAuth ? <li className={classes.listItem}><a href="/mySites">My Sites</a></li> : null }
                         {isAuth ? <li className={classes.listItem}><a href="/profile">Profile</a></li> : null }
-    {isAuth ? <li className={classes.listItem}><b>Welcome, {account.username}!</b></li> : null }
+                        {isAuth ? <li className={classes.listItem}>
+                            <b>Welcome, {account.username}!</b>
+                        </li> : null }
                         {isAuth ? <li className={classes.listItem}><a onClick={logoutHandler}>Logout</a></li> : null }
                            
 

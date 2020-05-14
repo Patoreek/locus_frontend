@@ -6,9 +6,9 @@ import Details from '../DetailsView/DetailsView';
 
 import { AuthContext, UserOnMapContext, LoadingContext } from '../../context/AuthContext';
 
-import { CoordsContext } from '../../context/DiveSiteContext';
+import { CoordsContext, DetailsContext } from '../../context/DiveSiteContext';
 
-import { DetailsContext } from '../../context/GuestContext';
+
 
 
 

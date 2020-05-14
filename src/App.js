@@ -21,7 +21,6 @@ import HomeView from './containers/Home/Home';
 
 
 import { UserProvider } from './context/UserContext';
-import { GuestProvider } from './context/GuestContext';
 import { AuthContext,
          AccountContext,
          LoadingContext } from './context/AuthContext';
@@ -96,10 +95,8 @@ function App() {
 
       
         <DiveSiteProvider>
-          <GuestProvider>
             <Route path="/map" exact component={GuestView}/>
             <Route path="/details/:siteId" component={DetailsView}/>
-          </GuestProvider>
         </DiveSiteProvider>
 
 

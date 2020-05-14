@@ -8,8 +8,6 @@ import {
     InfoWindow
 } from 'react-google-maps';
 
-import { DetailsContext } from '../../../context/GuestContext';
-
 import { AuthContext,
          AccountContext,
          FavButtonContext,
@@ -17,7 +15,8 @@ import { AuthContext,
 
 import { DiveSitesContext,
          SiteContext,
-         LoadDiveSiteContext } from '../../../context/DiveSiteContext';
+         LoadDiveSiteContext,
+         DetailsContext } from '../../../context/DiveSiteContext';
 
 import shoreIcon from '../../../images/locationIcons/ShoreLocation.svg';
 import boatIcon from '../../../images/locationIcons/BoatLocation.svg';
@@ -181,6 +180,11 @@ const GuestMap = () => {
                         <div className={classes.mediaContainer}>
                             <div className={classes.picturesContainer}>
                                 <h3>Picture</h3>
+                                {selectedSite.images.map(image => (
+                                    <div className={classes.siteImages}>
+                                    <img src = {'http://localhost:8080/' + image} className={classes.siteImage}/>
+                                    </div>
+                                ))}
                             </div>
                             <div className={classes.videosContainer}>
                                 <h3>Videos</h3>

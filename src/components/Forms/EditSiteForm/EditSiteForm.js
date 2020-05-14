@@ -6,6 +6,7 @@ import { RadioGroup, Radio } from "baseui/radio";
 import { Textarea } from "baseui/textarea";
 import { Button } from "baseui/button";
 import { FileUploader } from "baseui/file-uploader";
+import { FilePond } from 'react-filepond';
 
 
 import {Provider as StyletronProvider} from 'styletron-react';
@@ -123,39 +124,19 @@ const EditSiteForm = (props) => {
             </FormControl>
 
             <FormControl label={() => "Images"}>
-            <FileUploader
-                // onCancel={stopFakeProgress}
-                // onDrop={(acceptedFiles, rejectedFiles) => {
-                // // handle file upload...
-                // startFakeProgress();
-                // }}
-                // progressAmount is a number from 0 - 100 which indicates the percent of file transfer completed
-                // progressAmount={progressAmount}
-                // progressMessage={
-                // progressAmount
-                //     ? `Uploading... ${progressAmount}% of 100%`
-                //     : ''
-                // }
-            />
+            <FilePond 
+                    allowMultiple={false}
+                    name={"divesiteImages"}
+                    server={
+                        {
+                            url: "http://localhost:8080/diveSites/uploadImages/" + selectedSite._id,
+                            process:{
+                                withCredentials: true
+                            }
+                        }
+                    }
+                />
             </FormControl>
-
-            <FormControl label={() => "Videos"}>
-            <FileUploader
-                // onCancel={stopFakeProgress}
-                // onDrop={(acceptedFiles, rejectedFiles) => {
-                // // handle file upload...
-                // startFakeProgress();
-                // }}
-                // progressAmount is a number from 0 - 100 which indicates the percent of file transfer completed
-                // progressAmount={progressAmount}
-                // progressMessage={
-                // progressAmount
-                //     ? `Uploading... ${progressAmount}% of 100%`
-                //     : ''
-                // }
-            />
-            </FormControl>
-
 
             <Button onClick={handleEditSiteSubmit}>Edit</Button>
 
