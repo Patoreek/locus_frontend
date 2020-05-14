@@ -3,6 +3,8 @@ import React, { useState, useEffect, useContext } from 'react';
 
 import { Link } from 'react-router-dom';
 
+import {Popover, OverlayTrigger, Button} from 'react-bootstrap';
+
 import {
     Marker,
     InfoWindow
@@ -18,6 +20,8 @@ import { DiveSitesContext,
          LoadDiveSiteContext,
          DetailsContext } from '../../../context/DiveSiteContext';
 
+    
+
 import shoreIcon from '../../../images/locationIcons/ShoreLocation.svg';
 import boatIcon from '../../../images/locationIcons/BoatLocation.svg';
 
@@ -25,6 +29,7 @@ import shoreIconCircle from '../../../images/locationIcons/shoreIconCircle.png';
 import boatIconCircle from '../../../images/locationIcons/boatIconCircle.png';
 
 import WeatherContainer from '../../../containers/WeatherContainer/WeatherContainer';
+import PhotoContainer from './PhotosContainer/PhotoContainer';
 
 import classes from './GuestMap.module.css';
 
@@ -61,12 +66,12 @@ const GuestMap = () => {
     if (favButton) {
 
         favouriteButton = (
-            <button onClick={addToFavourite}>Favourite</button>
+            <Button onClick={addToFavourite}>Favourite</Button>
         );
     } else {
 
         favouriteButton = (
-            <button onClick={() => removeFromFavourite(selectedSite)}>UnFavourite</button>
+            <Button onClick={() => removeFromFavourite(selectedSite)}>UnFavourite</Button>
         );
     }
     useEffect(() => {
@@ -138,6 +143,16 @@ const GuestMap = () => {
         
     }
 
+    const popover = (
+        <Popover id="popover-basic">
+          <Popover.Title as="h3">Popover right</Popover.Title>
+          <Popover.Content>
+           <Button> Share </Button>
+           <Button> Report </Button>
+          </Popover.Content>
+        </Popover>
+      );
+
     
 
     return (
@@ -178,25 +193,11 @@ const GuestMap = () => {
                             <h2>{selectedSite.name}, {selectedSite.area}</h2>
                         </div>
                         <div className={classes.mediaContainer}>
-                            <div className={classes.picturesContainer}>
-                                <h3>Picture</h3>
-                                {selectedSite.images.map(image => (
-                                    <div className={classes.siteImages}>
-                                    <img src = {'http://localhost:8080/' + image} className={classes.siteImage}/>
-                                    </div>
-                                ))}
-                            </div>
-                            <div className={classes.videosContainer}>
-                                <h3>Videos</h3>
-                            </div>
-                            <div className={classes.buttonMediaContainer}>
-                                <button>Pictures</button>
-                                <button>Videos</button>
-                            </div>
+                            <PhotoContainer selectedSite={selectedSite}/>
                         </div>
                         
                         <div className={classes.detailsContainer}>
-                            <button onClick={detailsHandler}>More Details</button>
+                            <Button variant="link" onClick={detailsHandler}>More Details</Button>
                         </div>
                         <div className={classes.reviewContainer}>
                             <h3>review stars</h3>
@@ -204,8 +205,10 @@ const GuestMap = () => {
                         {isAuth && (
                             <div className={classes.buttonsContainer}>
                                 {favouriteButton}
-                                <button onClick={commentHandler}>Comment</button>
-                                <button>...</button> {/* Share and report buttons*/}
+                                <Button onClick={commentHandler}>Comment</Button>
+                                <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+                                    <Button variant="info">...</Button>
+                                </OverlayTrigger>
                             </div>
                         )} 
      

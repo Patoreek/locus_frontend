@@ -130,17 +130,3 @@
 .moreDetailsLink:hover {
     color:grey;
 }
-
-.siteImages {
-    float:left;
-    background-color: magenta;
-    border:1px solid black;
-    width: 20vw;    
-    height:20vh;
-}
-
-.siteImage {
-    object-fit: cover;
-    width: 20vw;    
-    height:20vh;
-}
