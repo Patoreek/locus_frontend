@@ -30,6 +30,7 @@ import boatIconCircle from '../../../images/locationIcons/boatIconCircle.png';
 
 import WeatherContainer from '../../../containers/WeatherContainer/WeatherContainer';
 import PhotoContainer from './PhotosContainer/PhotoContainer';
+import ReviewStars from '../../ReviewStars/ReviewStars';
 
 import classes from './GuestMap.module.css';
 
@@ -200,7 +201,7 @@ const GuestMap = () => {
                             <Button variant="link" onClick={detailsHandler}>More Details</Button>
                         </div>
                         <div className={classes.reviewContainer}>
-                            <h3>review stars</h3>
+                            <ReviewStars/>
                         </div>
                         {isAuth && (
                             <div className={classes.buttonsContainer}>
