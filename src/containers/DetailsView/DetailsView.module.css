@@ -88,7 +88,7 @@
 
 .commentsContainer {
     width:100%;
-    height:50vh;
+    height:auto;
     background-color: #5cd416;
     display: inline-block; 
 }

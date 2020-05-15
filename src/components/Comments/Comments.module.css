@@ -1,0 +1,11 @@
+.commentContainer {
+    height: auto;
+    width:90%;
+    background-color: ghostwhite;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
+    padding:10px;
+}

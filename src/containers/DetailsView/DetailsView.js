@@ -3,6 +3,9 @@ import React, { useState, useContext } from 'react';
 import { SiteContext,
          DetailsContext } from '../../context/DiveSiteContext';
 
+import StarRating from '../../components/StarRating/StarRating';
+import Comments from '../../components/Comments/Comments';
+
 import classes from './DetailsView.module.css';
 
 const Details = (props) => {
@@ -64,7 +67,7 @@ const Details = (props) => {
         </div>
 
         <div className={classes.reviewContainer}>
-            <h3>review stars</h3>
+            <StarRating/>
         </div>
 
         <div className={classes.buttonsContainer}>
@@ -103,6 +106,7 @@ const Details = (props) => {
 
         <div className={classes.commentsContainer}>
             <h3><a href="">comments</a></h3>
+            <Comments/>
         </div>
 </div>
             

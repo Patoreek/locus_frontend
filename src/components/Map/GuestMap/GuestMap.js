@@ -30,7 +30,7 @@ import boatIconCircle from '../../../images/locationIcons/boatIconCircle.png';
 
 import WeatherContainer from '../../../containers/WeatherContainer/WeatherContainer';
 import PhotoContainer from './PhotosContainer/PhotoContainer';
-import ReviewStars from '../../ReviewStars/ReviewStars';
+import ReviewStars from '../../StarRating/StarRating';
 
 import classes from './GuestMap.module.css';
 
