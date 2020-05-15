@@ -1,0 +1,17 @@
+.siteContainer {
+    width: 90%;
+    height:auto;
+    background-color: khaki;
+    margin: 0 auto;
+    margin-top: 1vh;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.siteImage {
+    object-fit: cover;
+    width: 10vw;    
+    height:10vh;
+    border-radius: 10px;
+}
