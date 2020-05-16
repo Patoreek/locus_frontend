@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const ReviewStars = () => {
+const ReviewStars = (props) => {
     const classes = useStyles();
 
     const [isAuth, setIsAuth] = useContext(AuthContext);
@@ -60,7 +60,27 @@ const ReviewStars = () => {
                 console.log(err);
             }
         }
+        if(!props.siteRatings){
           checkRating();
+        } else {
+          let numOfRatings = 0;
+          let totalRatingNum = 0;
+
+          for (let i = 0; i < props.siteRatings.length; i++) {
+            console.log('RAING NUMBER => ' + i);
+             console.log(props.siteRatings[i]);
+             numOfRatings++;
+             totalRatingNum = totalRatingNum + props.siteRatings[i].rating;
+          }
+
+          const avgRating = totalRatingNum / numOfRatings;
+        
+          const fixedAvgRating = (Math.round(avgRating * 2) / 2).toFixed(1);
+
+          setRating(fixedAvgRating);
+          setTotalRatings(numOfRatings);
+
+        }
     
     },[])
 

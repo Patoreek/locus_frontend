@@ -85,12 +85,16 @@ const MySitesMap = () => {
                         toggleShowForm(null);
                         setSelectedSite(null);
                     } }
-                >
-
+                >       
+ 
+                    <div>
+                        <h3><b>{selectedSite.name}</b></h3>
+                        <h5><b>{selectedSite.area}</b></h5>
                         <div className={classes.buttonsContainer}>
                             <button onClick = {editSiteHandler}>Edit</button>
                             <button onClick = {showDeleteForm}>Delete</button>
                         </div>
+                    </div>
                    
                 </InfoWindow>
             )}

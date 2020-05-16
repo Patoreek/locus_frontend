@@ -29,7 +29,7 @@ const GuestPanel = () => {
             <img src={'http://localhost:8080/' + site.images[0]}
                  className={classes.siteImage}
             />
-            <StarRating/>
+            <StarRating siteRatings = {site.ratings}/>
             </div>
         ))}
 
