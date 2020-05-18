@@ -136,7 +136,7 @@ const Comments = () => {
 
             {siteComments.map(comment => (
                 <div className={classes.commentContainer}>
-                    <h1>Username: {comment.commentUsername}</h1>
+                    <h1>Username:<a href={"/viewprofile/" + comment.userId}> {comment.commentUsername}</a></h1>
                     <h3> {comment.userComment}</h3>
                     <p>CommentId = {comment.commentId}</p>
                     <p>UserId = {comment.userId}</p>

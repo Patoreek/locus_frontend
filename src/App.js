@@ -14,6 +14,8 @@ import LoginView from './containers/LoginView/LoginView';
 import SignupView from './containers/SignupView/SignupView';
 import FavouritesView from './containers/FavouritesView/FavouritesView';
 import ProfileView from './containers/ProfileView/ProfileView';
+import ViewProfileView from './containers/ViewProfileView/ViewProfileView';
+
 import EditProfileView from './containers/EditProfileView/EditProfileView';
 
 import HomeView from './containers/Home/Home';
@@ -96,7 +98,8 @@ function App() {
       
         <DiveSiteProvider>
             <Route path="/map" exact component={GuestView}/>
-            <Route path="/details/:siteId" component={DetailsView}/>
+            <Route path="/details" component={DetailsView}/>
+            <Route path="/viewprofile/:profileId" component={ViewProfileView}/>
         </DiveSiteProvider>
 
 
