@@ -10,6 +10,8 @@ import { SiteContext } from '../../../context/DiveSiteContext';
 
 import { DetailsContext } from '../../../context/DiveSiteContext';
 
+import FavouriteButton from '../../../components/Buttons/FavouriteButton/FavouriteButton';
+
 
 
 const FavouritesList = (props) => {
@@ -45,13 +47,7 @@ const FavouritesList = (props) => {
                     <div className={classes.buttonsContainer}>
                     <button onClick={() => moreDetailsHandler(site)}>More Details...</button>
                     
-                                <button onClick={() => {
-                                    console.log('SITE');
-                                    console.log(site);
-                                    removeFromFavourite(site, props.setIsLoading);
-                                    //getFavourites();
-                                }
-                                }>Unfavourite</button>
+                                <FavouriteButton site={site}/>
                                
                                 <button onClick={commentHandler}>Comment</button>
                                 <button>...</button> {/* Share and report buttons*/}
