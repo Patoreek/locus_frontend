@@ -7,6 +7,11 @@ import { AuthContext,
 
 import FavouritesList from './FavouritesList/FavouritesList';
 
+import { DetailsContext } from '../../context/DiveSiteContext';
+
+import DetailsView from '../DetailsView/DetailsView';
+
+
 
 const FavouritesView = () => {
 
@@ -14,6 +19,9 @@ const FavouritesView = () => {
     const [account, setAccount] = useContext(AccountContext);
     const [isLoading, setIsLoading] = useState(true);
     const [favourites, setFavourites] = useContext(FavouritesContext);
+
+    const [moreDetails, setMoreDetails] = useContext(DetailsContext);
+
 
     const getFavourites = useContext(GetFavouritesContext);
 
@@ -37,11 +45,17 @@ const FavouritesView = () => {
                 <div>
                 <h1> Favourites Section</h1>   
                 <h2>{account.username}</h2>
-                <FavouritesList
+                {!moreDetails && (
+                    <FavouritesList
                     favourites={favourites}
                     setIsLoading={setIsLoading}
                     // getFavs = {getFavourites}
-                />
+                    />
+                )}
+                {moreDetails && (
+                    <DetailsView/>
+                )}
+                
             </div>
             )}
 

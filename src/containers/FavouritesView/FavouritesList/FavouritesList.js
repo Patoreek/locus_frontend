@@ -8,10 +8,15 @@ import { RemoveFavContext,
 
 import { SiteContext } from '../../../context/DiveSiteContext';
 
+import { DetailsContext } from '../../../context/DiveSiteContext';
+
+
 
 const FavouritesList = (props) => {
 
     //const getFavourites = props.getFavs();
+
+    const [moreDetails, setMoreDetails] = useContext(DetailsContext);
 
     const [ selectedSite, setSelectedSite ] = useContext(SiteContext);
 
@@ -25,6 +30,11 @@ const FavouritesList = (props) => {
 
     }
 
+    const moreDetailsHandler = (site) => {
+        setMoreDetails(true);
+        setSelectedSite(site);
+    }
+
     return (
         <div>
             {favourites.map(site => (
@@ -33,6 +43,8 @@ const FavouritesList = (props) => {
                     <h3>Site Area: {site.area}</h3>
                     <p>Description: {site.description}</p>
                     <div className={classes.buttonsContainer}>
+                    <button onClick={() => moreDetailsHandler(site)}>More Details...</button>
+                    
                                 <button onClick={() => {
                                     console.log('SITE');
                                     console.log(site);
@@ -40,6 +52,7 @@ const FavouritesList = (props) => {
                                     //getFavourites();
                                 }
                                 }>Unfavourite</button>
+                               
                                 <button onClick={commentHandler}>Comment</button>
                                 <button>...</button> {/* Share and report buttons*/}
                             </div>

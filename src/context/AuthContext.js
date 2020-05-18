@@ -57,43 +57,7 @@ export const AuthProvider = (props) => {
         }
       }
 
-    async function removeFromFavourite(selectedSite, setIsLoading) {
-        console.log('removing from favourite');
-        // SELECTEDSITE ID PUT INTO FAVOURITE SITES ID FOR THAT USER
-        console.log(selectedSite._id);
-        const response = await fetch('http://localhost:8080/user/removeFromFavourite',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include',
-            body: JSON.stringify({
-                selectedSiteId: selectedSite._id,
-                userId: account.id
-            })
-        });
-        const data = await response.json();
-
-        if (data.removedFav){
-            console.log('UpdatedFav');
-            console.log(data.updatedFav);
-            setFavourites(data.updatedFav);
-            setFavButton(true);
-            if (setIsLoading !== null){
-                getFavourites(setIsLoading);
-            } else {
-                getFavourites();
-            }
-        } else {
-            setFavButton(false);
-        }
-        // console.log(data.message);
-        // console.log('UPDATED FAVOURITES')
-        // console.log(favourites);
-
- 
-          
-    }
+   
 
 
     return (
@@ -102,7 +66,6 @@ export const AuthProvider = (props) => {
         <LoadingContext.Provider value = {[isLoading, setIsLoading]}>
         <UserOnMapContext.Provider value = {[isUserOnMap, setIsUserOnMap]}>
         <FavButtonContext.Provider value = {[favButton, setFavButton]}>
-        <RemoveFavContext.Provider value = {removeFromFavourite}>
         <FavouritesContext.Provider value = {[favourites, setFavourites]}>
         <GetFavouritesContext.Provider value = {getFavourites}>
 
@@ -110,7 +73,6 @@ export const AuthProvider = (props) => {
 
         </GetFavouritesContext.Provider>
         </FavouritesContext.Provider>
-        </RemoveFavContext.Provider>
         </FavButtonContext.Provider>       
         </UserOnMapContext.Provider>
         </LoadingContext.Provider>

@@ -3,6 +3,7 @@ import React, { useEffect, useContext} from 'react';
 import { DiveSitesContext } from '../../../context/DiveSiteContext';
 
 import StarRating from '../../../components/StarRating/StarRating';
+import FavouriteButton from '../../../components/Buttons/FavouriteButton/FavouriteButton';
 
 import classes from './GuestPanel.module.css';
 
@@ -30,6 +31,16 @@ const GuestPanel = () => {
                  className={classes.siteImage}
             />
             <StarRating siteRatings = {site.ratings}/>
+            <FavouriteButton site={site}/>
+            {/* {isAuth && (
+                <div className={classes.buttonsContainer}>
+                    {favouriteButton}
+                    <Button onClick={commentHandler}>Comment</Button>
+                    <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+                        <Button variant="info">...</Button>
+                    </OverlayTrigger>
+                </div>
+             )}  */}
             </div>
         ))}
 

@@ -67,8 +67,8 @@ const ReviewStars = (props) => {
           let totalRatingNum = 0;
 
           for (let i = 0; i < props.siteRatings.length; i++) {
-            console.log('RAING NUMBER => ' + i);
-             console.log(props.siteRatings[i]);
+            //console.log('RAING NUMBER => ' + i);
+             //console.log(props.siteRatings[i]);
              numOfRatings++;
              totalRatingNum = totalRatingNum + props.siteRatings[i].rating;
           }

@@ -1,8 +1,6 @@
 
 import React, { useState, useEffect, useContext } from 'react';
 
-import { Link } from 'react-router-dom';
-
 import {Popover, OverlayTrigger, Button} from 'react-bootstrap';
 
 import {
@@ -11,9 +9,7 @@ import {
 } from 'react-google-maps';
 
 import { AuthContext,
-         AccountContext,
-         FavButtonContext,
-         RemoveFavContext } from '../../../context/AuthContext';
+         FavButtonContext } from '../../../context/AuthContext';
 
 import { DiveSitesContext,
          SiteContext,
@@ -31,6 +27,7 @@ import boatIconCircle from '../../../images/locationIcons/boatIconCircle.png';
 import WeatherContainer from '../../../containers/WeatherContainer/WeatherContainer';
 import PhotoContainer from './PhotosContainer/PhotoContainer';
 import ReviewStars from '../../StarRating/StarRating';
+import FavouriteButton from '../../Buttons/FavouriteButton/FavouriteButton';
 
 import classes from './GuestMap.module.css';
 
@@ -45,14 +42,12 @@ const GuestMap = () => {
     //const [moreDetails, setMoreDetails] = useContext(DetailsContext);
 
     const [isAuth, setIsAuth] = useContext(AuthContext);
-    const [account, setAccount] = useContext(AccountContext);
 
     // const [favButton, setFavButton] = useState(true);
     const [favButton, setFavButton] = useContext(FavButtonContext);
 
     const loadDiveSites = useContext(LoadDiveSiteContext);
 
-    const removeFromFavourite = useContext(RemoveFavContext);
 
 
 
@@ -63,18 +58,7 @@ const GuestMap = () => {
         
     }, [diveSites]);
 
-    let favouriteButton;
-    if (favButton) {
-
-        favouriteButton = (
-            <Button onClick={addToFavourite}>Favourite</Button>
-        );
-    } else {
-
-        favouriteButton = (
-            <Button onClick={() => removeFromFavourite(selectedSite)}>UnFavourite</Button>
-        );
-    }
+    
     useEffect(() => {
         checkUserRelation();
     },[selectedSite]);
@@ -111,29 +95,6 @@ const GuestMap = () => {
 
     
 
-    async function addToFavourite() {
-        console.log('Adding to favourite');
-        // SELECTEDSITE ID PUT INTO FAVOURITE SITES ID FOR THAT USER
-        console.log(selectedSite._id);
-        const response = await fetch('http://localhost:8080/user/addToFavourite',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include',
-            body: JSON.stringify({
-                selectedSiteId: selectedSite._id,
-                userId: account.id
-            })
-        });
-        const data = await response.json();
-
-        console.log(data.message);
-        setFavButton(false);
-        //const sites = data;
- 
-          
-    }
 
     const detailsHandler = () => {
         setMoreDetails(true);
@@ -205,8 +166,7 @@ const GuestMap = () => {
                         </div>
                         {isAuth && (
                             <div className={classes.buttonsContainer}>
-                                {favouriteButton}
-                                <Button onClick={commentHandler}>Comment</Button>
+                                <FavouriteButton site={selectedSite}/>
                                 <OverlayTrigger trigger="click" placement="right" overlay={popover}>
                                     <Button variant="info">...</Button>
                                 </OverlayTrigger>
