@@ -59,39 +59,7 @@ const GuestMap = () => {
     }, [diveSites]);
 
     
-    useEffect(() => {
-        checkUserRelation();
-    },[selectedSite]);
     
-
-    async function checkUserRelation(){
-        if (selectedSite !== null){
-            console.log('Checking uSer Relation');
-            //console.log(selectedSite);
-            const response = await fetch('http://localhost:8080/user/checkFavourites',{
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'include',
-                body: JSON.stringify({
-                    selectedSiteId: selectedSite._id
-                })
-            });
-            const data = await response.json();
-            console.log('RESPONSE FROM API');
-            console.log(data.message);
-            const isFav = data.isFav;
-            
-            if (isFav){
-                setFavButton(false);
-            } else {
-                setFavButton(true);
-            }
-            
-        }
-    }
-
 
     
 

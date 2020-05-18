@@ -1,6 +1,10 @@
 import React, { useEffect, useContext} from 'react';
 
-import { DiveSitesContext } from '../../../context/DiveSiteContext';
+import { Button } from 'react-bootstrap';
+
+import { DiveSitesContext,
+         DetailsContext,
+         SiteContext } from '../../../context/DiveSiteContext';
 
 import StarRating from '../../../components/StarRating/StarRating';
 import FavouriteButton from '../../../components/Buttons/FavouriteButton/FavouriteButton';
@@ -11,7 +15,17 @@ const GuestPanel = () => {
 
     const [diveSites, setDiveSites] = useContext(DiveSitesContext);
 
+    const [moreDetails, setMoreDetails] = useContext(DetailsContext);
+
+    const [selectedSite, setSelectedSite] = useContext(SiteContext);
+
+
+
     //console.log(diveSites);
+    const moreDetailsHandler = (site) => {
+        setSelectedSite(site);
+        setMoreDetails(true);
+    }
 
 
     return (
@@ -32,6 +46,7 @@ const GuestPanel = () => {
             />
             <StarRating siteRatings = {site.ratings}/>
             <FavouriteButton site={site}/>
+            <Button onClick={() => moreDetailsHandler(site)}>More Details</Button>
             {/* {isAuth && (
                 <div className={classes.buttonsContainer}>
                     {favouriteButton}
