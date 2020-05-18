@@ -4,6 +4,8 @@ import { Form, Button } from 'react-bootstrap';
 
 import { SiteContext } from '../../context/DiveSiteContext';
 
+import { AccountContext } from '../../context/AuthContext';
+
 import classes from './Comments.module.css';
 
 const Comments = () => {
@@ -13,6 +15,9 @@ const Comments = () => {
     const [siteComments, setSiteComments] = useState([]);
 
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
+
+    const [account, setAccount] = useContext(AccountContext);
+
 
     async function getComments() {
 
@@ -79,6 +84,39 @@ const Comments = () => {
 
     }
 
+
+    const deleteCommentHandler = (commentId) => {
+        // console.log(commentId);
+        // console.log(selectedSite._id);
+        // console.log(account.id);
+        async function deleteComment() {
+
+            try {
+                const response = await fetch('http://localhost:8080/diveSites/deleteComment',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        commentId: commentId,
+                        siteId: selectedSite._id
+                    })
+                });
+                const data = await response.json();
+                console.log(data);
+                if (data.success){
+                    getComments();
+                }
+   
+            } catch (error) {
+            console.log(error);
+            }
+        }
+
+        deleteComment();
+    }
+
     return (
         <div>
             <Form>
@@ -100,6 +138,11 @@ const Comments = () => {
                 <div className={classes.commentContainer}>
                     <h1>Username: {comment.commentUsername}</h1>
                     <h3> {comment.userComment}</h3>
+                    <p>CommentId = {comment.commentId}</p>
+                    <p>UserId = {comment.userId}</p>
+                    {account.id == comment.userId && (
+                        <button onClick={() => deleteCommentHandler(comment.commentId)}> Delete </button>
+                    )}
                 </div>
             ))}
             
