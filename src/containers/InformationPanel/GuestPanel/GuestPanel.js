@@ -8,6 +8,7 @@ import { DiveSitesContext,
 
 import StarRating from '../../../components/StarRating/StarRating';
 import FavouriteButton from '../../../components/Buttons/FavouriteButton/FavouriteButton';
+import EllipsesButton from '../../../components/Buttons/EllipsesButton/EllipsesButton';
 
 import classes from './GuestPanel.module.css';
 
@@ -19,9 +20,6 @@ const GuestPanel = () => {
 
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
 
-
-
-    //console.log(diveSites);
     const moreDetailsHandler = (site) => {
         setSelectedSite(site);
         setMoreDetails(true);
@@ -47,6 +45,7 @@ const GuestPanel = () => {
             <StarRating siteRatings = {site.ratings}/>
             <FavouriteButton site={site}/>
             <Button onClick={() => moreDetailsHandler(site)}>More Details</Button>
+            <EllipsesButton/>
             {/* {isAuth && (
                 <div className={classes.buttonsContainer}>
                     {favouriteButton}

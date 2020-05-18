@@ -28,6 +28,8 @@ import WeatherContainer from '../../../containers/WeatherContainer/WeatherContai
 import PhotoContainer from './PhotosContainer/PhotoContainer';
 import ReviewStars from '../../StarRating/StarRating';
 import FavouriteButton from '../../Buttons/FavouriteButton/FavouriteButton';
+import EllipsesButton from '../../Buttons/EllipsesButton/EllipsesButton';
+
 
 import classes from './GuestMap.module.css';
 
@@ -135,9 +137,7 @@ const GuestMap = () => {
                         {isAuth && (
                             <div className={classes.buttonsContainer}>
                                 <FavouriteButton site={selectedSite}/>
-                                <OverlayTrigger trigger="click" placement="right" overlay={popover}>
-                                    <Button variant="info">...</Button>
-                                </OverlayTrigger>
+                                <EllipsesButton/>
                             </div>
                         )} 
      
