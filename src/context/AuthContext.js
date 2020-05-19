@@ -20,6 +20,8 @@ export const PanelSizeContext = createContext();
 
 export const MapSizeContext = createContext();
 
+export const SearchCoordsContext = createContext();
+
 
 
 export const AuthProvider = (props) => {
@@ -45,6 +47,11 @@ export const AuthProvider = (props) => {
     const [panelSize, setPanelSize] = useState("30vw");
 
     const [mapSize, setMapSize] = useState("70vw");
+
+    const [searchCoordinates, setSearchCoordinates] = useState({
+      lat: null,
+      lng: null
+    });
 
     
 
@@ -80,11 +87,12 @@ export const AuthProvider = (props) => {
         <FavouritesContext.Provider value = {[favourites, setFavourites]}>
         <MapSizeContext.Provider value = {[mapSize, setMapSize]}>
         <PanelSizeContext.Provider value = {[panelSize, setPanelSize]}>
-
         <GetFavouritesContext.Provider value = {getFavourites}>
-
-                {props.children}
-
+        <SearchCoordsContext.Provider value = {[searchCoordinates, setSearchCoordinates]}>
+        
+        {props.children}
+        
+        </SearchCoordsContext.Provider>
         </GetFavouritesContext.Provider>
         </PanelSizeContext.Provider>
         </MapSizeContext.Provider>

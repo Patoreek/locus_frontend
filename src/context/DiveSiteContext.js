@@ -8,6 +8,7 @@ export const DetailsContext = createContext();
 
 
 
+
 export const DiveSiteProvider = (props) => {
 
     
