@@ -16,6 +16,11 @@ export const FavouritesContext = createContext();
 
 export const GetFavouritesContext = createContext();
 
+export const PanelSizeContext = createContext();
+
+export const MapSizeContext = createContext();
+
+
 
 export const AuthProvider = (props) => {
 
@@ -36,6 +41,12 @@ export const AuthProvider = (props) => {
     const [favButton, setFavButton] = useState(true);
 
     const [favourites, setFavourites] = useState(null);
+
+    const [panelSize, setPanelSize] = useState("30vw");
+
+    const [mapSize, setMapSize] = useState("70vw");
+
+    
 
     async function getFavourites(setIsLoading) {
 
@@ -67,11 +78,16 @@ export const AuthProvider = (props) => {
         <UserOnMapContext.Provider value = {[isUserOnMap, setIsUserOnMap]}>
         <FavButtonContext.Provider value = {[favButton, setFavButton]}>
         <FavouritesContext.Provider value = {[favourites, setFavourites]}>
+        <MapSizeContext.Provider value = {[mapSize, setMapSize]}>
+        <PanelSizeContext.Provider value = {[panelSize, setPanelSize]}>
+
         <GetFavouritesContext.Provider value = {getFavourites}>
 
                 {props.children}
 
         </GetFavouritesContext.Provider>
+        </PanelSizeContext.Provider>
+        </MapSizeContext.Provider>
         </FavouritesContext.Provider>
         </FavButtonContext.Provider>       
         </UserOnMapContext.Provider>

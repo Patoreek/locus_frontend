@@ -8,7 +8,9 @@ import { Button, Modal } from 'react-bootstrap';
 import { SiteContext,
          CoordsContext } from '../../context/DiveSiteContext';
 //import { FormContext } from '../../context/UserContext';
-import { AuthContext, LoadingContext } from '../../context/AuthContext';
+import { AuthContext, 
+         LoadingContext, 
+         MapSizeContext } from '../../context/AuthContext';
 
 import { AddModalContext } from '../../context/UserContext';
 
@@ -23,6 +25,7 @@ const UserView = () => {
         const [coords, setCoords] = useContext(CoordsContext);
         //const [ showForm, toggleShowForm ] = useContext(FormContext);
         const [selectedSite, setSelectedSite] = useContext(SiteContext);
+        const [ mapSize, setMapSize ] = useContext(MapSizeContext);
 
         const [isAuth, setIsAuth] = useContext(AuthContext);
         const [isLoading, setIsLoading] = useContext(LoadingContext);
@@ -81,13 +84,13 @@ const UserView = () => {
             <Map googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyA-9fLyV56TU5kt5qw3guZ4Vi3BXuDlNts&v=3.exp&libraries=geometry,drawing,places`}
                 loadingElement={<div style={{ 
                                         height: "93vh",
-                                        width: "70%",
+                                        width: mapSize,
                                         display: "inline-block"
                                         /*border: "2px solid orange"*/
                                 }}/>}
                 containerElement={<div style={{ 
                                         height: "93vh",
-                                        width: "70%",
+                                        width: mapSize,
                                         display: "inline-block",
                                         /*border: "2px solid purple",*/
                                         boxSizing: 'border-box'

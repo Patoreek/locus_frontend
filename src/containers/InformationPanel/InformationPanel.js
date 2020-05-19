@@ -3,7 +3,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import GuestPanel from './GuestPanel/GuestPanel';
 import UserPanel from './UserPanel/UserPanel';
 
-import { AuthContext, UserOnMapContext } from '../../context/AuthContext';
+import { AuthContext, 
+         UserOnMapContext, 
+         PanelSizeContext } from '../../context/AuthContext';
 
 import classes from './InformationPanel.module.css';
 
@@ -13,7 +15,10 @@ const InformationPanel = (props) => {
     const [isUserOnMap, setIsUserOnMap] = useContext(UserOnMapContext);
 
     const [guestPanel, setGuestPanel] = useState(true);
-    const [panelLoaded, setPanelLoaded] = useState(false)
+    const [panelLoaded, setPanelLoaded] = useState(false);
+
+    const [ panelSize, setPanelSize ] = useContext(PanelSizeContext);
+
 
 
     useEffect(() => {
@@ -32,7 +37,9 @@ const InformationPanel = (props) => {
     },[]);
 
     return (
-        <div className={classes.infoPanelContainer}>
+        <div className={classes.infoPanelContainer} style={{ 
+            width: panelSize
+        }}>
 
             {panelLoaded && guestPanel && (
                 <GuestPanel/>
