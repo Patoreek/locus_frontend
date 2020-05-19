@@ -6,6 +6,8 @@ import {
     InfoWindow
 } from 'react-google-maps';
 
+import { Modal, Button } from 'react-bootstrap';
+
 
 import { FormContext } from '../../../../context/UserContext';
 import { DiveSitesContext,
@@ -18,6 +20,9 @@ import { AuthContext } from '../../../../context/AuthContext';
 
 import shoreIcon from '../../../../images/locationIcons/ShoreLocation.svg';
 import boatIcon from '../../../../images/locationIcons/BoatLocation.svg';
+
+import EditSiteForm from '../../../Forms/EditSiteForm/EditSiteForm';
+import DeleteContainer from '../../../Forms/DeleteContainer/DeleteContainer';
 
 import classes from './MySitesMap.module.css';
 
@@ -32,27 +37,28 @@ const MySitesMap = () => {
 
     const [isAuth, setIsAuth] = useContext(AuthContext);
 
+    const [showEditModal, setShowEditModal] = useState(false);
+    const handleEditClose = () => setShowEditModal(false);
+    const handleEditShow = () => setShowEditModal(true);
+
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const handleDeleteClose = () => setShowDeleteModal(false);
+    const handleDeleteShow = () => setShowDeleteModal(true);
+
     useEffect(() => {
         loadDiveSites();
     }, []); //remove diveSites for performance
 
     const editSiteHandler = () => {
-        console.log('[Selected Site]' + selectedSite);
-        if (showForm !== 'EDIT'){
-            toggleShowForm('EDIT');
-        } else {
-            toggleShowForm(null);
-        }
+        //console.log('[Selected Site]' + selectedSite);
+            setShowDeleteModal(false);
+            setShowEditModal(true);
     }
 
 
     const showDeleteForm = () => {
-        console.log('[Selected Site]' + selectedSite);
-        if (showForm !== 'DELETE'){
-            toggleShowForm('DELETE');
-        } else {
-            toggleShowForm(null);
-        }
+        setShowEditModal(false);
+        setShowDeleteModal(true);
     }
 
 
@@ -98,6 +104,48 @@ const MySitesMap = () => {
                    
                 </InfoWindow>
             )}
+
+            <Modal  show={showEditModal} 
+                    onHide={handleEditClose}
+                    dialogClassName={classes.EditModal}
+            >
+                <Modal.Header className={classes.EditModalHeader} closeButton>
+                    <Modal.Title>Edit Dive Site</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className={classes.EditModalBody}>
+                    Woohoo, you're reading this text in a modal!
+                    <EditSiteForm/>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleEditClose}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={handleEditClose}>
+                        Save Changes
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+            <Modal  show={showDeleteModal} 
+                    onHide={handleDeleteClose}
+                    dialogClassName={classes.DeleteModal}
+            >
+                <Modal.Header className={classes.DeleteModalHeader} closeButton>
+                    <Modal.Title>Delete Dive Site</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className={classes.EditModalBody}>
+                    Do you want to delete this Dive Site?
+                    <DeleteContainer/>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleDeleteClose}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={handleDeleteClose}>
+                        Save Changes
+                    </Button>
+                </Modal.Footer>
+            </Modal>
             
         </div>
     );

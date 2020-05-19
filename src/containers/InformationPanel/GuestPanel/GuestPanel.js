@@ -21,8 +21,15 @@ const GuestPanel = () => {
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
 
     const moreDetailsHandler = (site) => {
-        setSelectedSite(site);
-        setMoreDetails(true);
+        console.log('In more details');
+        if (!moreDetails){
+            setSelectedSite(site);
+            setMoreDetails(true);
+        }
+        if (moreDetails){
+            setMoreDetails(false);
+            // THEN OPEN NEW SITE THAT WAS SELECTED
+        }
     }
 
 
@@ -46,15 +53,6 @@ const GuestPanel = () => {
             <FavouriteButton site={site}/>
             <Button onClick={() => moreDetailsHandler(site)}>More Details</Button>
             <EllipsesButton/>
-            {/* {isAuth && (
-                <div className={classes.buttonsContainer}>
-                    {favouriteButton}
-                    <Button onClick={commentHandler}>Comment</Button>
-                    <OverlayTrigger trigger="click" placement="right" overlay={popover}>
-                        <Button variant="info">...</Button>
-                    </OverlayTrigger>
-                </div>
-             )}  */}
             </div>
         ))}
 

@@ -1,6 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
 
 import InformationPanel from '../InformationPanel/InformationPanel';
+import CreateSiteForm from '../../components/Forms/CreateSiteForm/CreateSiteForm';
+
+import { Button, Modal } from 'react-bootstrap';
 
 import { SiteContext,
          CoordsContext } from '../../context/DiveSiteContext';
@@ -24,6 +27,11 @@ const UserView = () => {
 
         const [userViewLoaded, setUserViewLoaded] = useState(false);
 
+        const [showModal, setShowModal] = useState(false);
+
+        const handleClose = () => setShowModal(false);
+        const handleShow = () => setShowModal(true);
+
         let history = useHistory();
 
         useEffect(() => {
@@ -43,20 +51,20 @@ const UserView = () => {
         
 
         const onMapClick = (event) => {
-
                 setCoords({
                         lat: event.latLng.lat(),
                         lng: event.latLng.lng()
                 });
-                if (showForm !== "ADD") {
-                        toggleShowForm("ADD");
-                        setSelectedSite(null);
+                handleShow();
+                // if (showForm !== "ADD") {
+                //         toggleShowForm("ADD");
+                //         setSelectedSite(null);
                        
-                } else {
-                        toggleShowForm(null);
-                }
-                console.log('[AdminView OnMapClick Selected Site] ' + selectedSite);
-                console.log('[AdminView OnMapClick ShowForm] ' + showForm);
+                // } else {
+                //         toggleShowForm(null);
+                // }
+                // console.log('[AdminView OnMapClick Selected Site] ' + selectedSite);
+                // console.log('[AdminView OnMapClick ShowForm] ' + showForm);
 
 
         } 
@@ -93,6 +101,27 @@ const UserView = () => {
                 coords = {coords}
             />
             )}
+
+            <Modal  show={showModal} 
+                    onHide={handleClose}
+                    dialogClassName={classes.AddModal}
+            >
+                <Modal.Header className={classes.AddModalHeader} closeButton>
+                    <Modal.Title>Add Dive Site</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className={classes.AddModalBody}>
+                   ADDING DIVE SITE
+                    <CreateSiteForm/>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={handleClose}>
+                        Save Changes
+                    </Button>
+                </Modal.Footer>
+            </Modal>        
 
         </div>
         

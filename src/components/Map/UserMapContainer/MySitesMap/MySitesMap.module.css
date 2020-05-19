@@ -19,3 +19,23 @@
     width:auto;
     height: 10vh;
 }
+
+.EditModal {
+    width: 50vw;
+    /* background-color: rgb(255, 194, 204, .5); */
+
+    margin-top: 5vw;
+    margin-left:40vw;
+    max-width: none!important;
+    max-height: none!important;
+}
+
+.EditModalHeader {
+    
+}
+
+.EditModalBody {
+    height: 35vw;
+    overflow: scroll;
+}
+

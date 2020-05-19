@@ -2,6 +2,8 @@ import React, {useContext} from 'react';
 
 import classes from './FavouritesList.module.css';
 
+import { Button } from 'react-bootstrap';
+
 import { RemoveFavContext,
          FavouritesContext,
          GetFavouritesContext } from '../../../context/AuthContext';
@@ -11,6 +13,8 @@ import { SiteContext } from '../../../context/DiveSiteContext';
 import { DetailsContext } from '../../../context/DiveSiteContext';
 
 import FavouriteButton from '../../../components/Buttons/FavouriteButton/FavouriteButton';
+
+import EllipsesButton from '../../../components/Buttons/EllipsesButton/EllipsesButton';
 
 
 
@@ -45,12 +49,12 @@ const FavouritesList = (props) => {
                     <h3>Site Area: {site.area}</h3>
                     <p>Description: {site.description}</p>
                     <div className={classes.buttonsContainer}>
-                    <button onClick={() => moreDetailsHandler(site)}>More Details...</button>
+                    <Button onClick={() => moreDetailsHandler(site)}>More Details...</Button>
                     
                                 <FavouriteButton site={site}/>
                                
-                                <button onClick={commentHandler}>Comment</button>
-                                <button>...</button> {/* Share and report buttons*/}
+                                <Button onClick={commentHandler}>Comment</Button>
+                                <EllipsesButton/>
                             </div>
                 </div>
             ))}

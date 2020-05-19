@@ -5,6 +5,8 @@ import { SiteContext,
 
 import StarRating from '../../components/StarRating/StarRating';
 import Comments from '../../components/Comments/Comments';
+import FavouriteButton from '../../components/Buttons/FavouriteButton/FavouriteButton';
+import EllipsesButton from '../../components/Buttons/EllipsesButton/EllipsesButton';
 
 import classes from './DetailsView.module.css';
 
@@ -71,8 +73,8 @@ const Details = (props) => {
         </div>
 
         <div className={classes.buttonsContainer}>
-            <button>Favourite</button>
-            <button>Report</button>
+            <FavouriteButton site={selectedSite}/>
+            <EllipsesButton/>
         </div>
 
         <div className={classes.descriptionContainer}>
