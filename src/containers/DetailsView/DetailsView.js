@@ -107,7 +107,7 @@ const Details = (props) => {
 
 
         <div className={classes.commentsContainer}>
-            <h3><a href="">comments</a></h3>
+            <h3><b>Comments</b></h3>
             <Comments/>
         </div>
 </div>

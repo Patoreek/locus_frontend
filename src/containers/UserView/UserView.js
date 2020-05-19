@@ -10,6 +10,8 @@ import { SiteContext,
 //import { FormContext } from '../../context/UserContext';
 import { AuthContext, LoadingContext } from '../../context/AuthContext';
 
+import { AddModalContext } from '../../context/UserContext';
+
 import { useHistory} from 'react-router-dom';
 
 import Map from '../../components/Map/Map';
@@ -27,10 +29,10 @@ const UserView = () => {
 
         const [userViewLoaded, setUserViewLoaded] = useState(false);
 
-        const [showModal, setShowModal] = useState(false);
+        const [showAddModal, setShowAddModal] = useContext(AddModalContext);
 
-        const handleClose = () => setShowModal(false);
-        const handleShow = () => setShowModal(true);
+        const handleClose = () => setShowAddModal(false);
+        const handleShow = () => setShowAddModal(true);
 
         let history = useHistory();
 
@@ -102,23 +104,22 @@ const UserView = () => {
             />
             )}
 
-            <Modal  show={showModal} 
+            <Modal  show={showAddModal} 
                     onHide={handleClose}
                     dialogClassName={classes.AddModal}
             >
-                <Modal.Header className={classes.AddModalHeader} closeButton>
-                    <Modal.Title>Add Dive Site</Modal.Title>
+                <Modal.Header closeButton>
+                    <Modal.Title className={classes.AddModalHeader}>Add Dive Site</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className={classes.AddModalBody}>
                    ADDING DIVE SITE
                     <CreateSiteForm/>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
+                <Modal.Footer className={classes.AddModalFooter}>
+                    <Button variant="secondary"
+                            onClick={handleClose}
+                            className={classes.CloseAddModalButton}>
                         Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
                     </Button>
                 </Modal.Footer>
             </Modal>        

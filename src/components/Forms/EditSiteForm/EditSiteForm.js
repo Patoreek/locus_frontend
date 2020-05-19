@@ -1,30 +1,20 @@
 import React, {useState, useContext} from 'react';
 
-import { Input } from "baseui/input";
-import { FormControl } from "baseui/form-control";
-import { RadioGroup, Radio } from "baseui/radio";
-import { Textarea } from "baseui/textarea";
-import { Button } from "baseui/button";
-import { FileUploader } from "baseui/file-uploader";
+import {
+    Form,
+    Col,
+    Row,
+    Button
+} from 'react-bootstrap';
+
 import { FilePond } from 'react-filepond';
-
-
-import {Provider as StyletronProvider} from 'styletron-react';
-import {LightTheme, BaseProvider, styled} from 'baseui';
-import {Client as Styletron} from 'styletron-engine-atomic';
+import "filepond/dist/filepond.min.css";
 
 import classes from './EditSiteForm.module.css';
 
 import { SiteContext, LoadDiveSiteContext } from '../../../context/DiveSiteContext';
+import { EditModalContext } from '../../../context/UserContext';
 
-const engine = new Styletron();
-
-const Centered = styled('div', {
-    display: 'inline-block',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100%',
-  });
 
 
 
@@ -32,6 +22,8 @@ const Centered = styled('div', {
 const EditSiteForm = (props) => {
 
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
+    const [showEditModal, setShowEditModal] = useContext(EditModalContext);
+
     const loadDiveSites = useContext(LoadDiveSiteContext)
 
     const [siteName, setSiteName] = useState(selectedSite.name);
@@ -63,6 +55,7 @@ const EditSiteForm = (props) => {
         })
         .then(result => {
             console.log(result);
+            setShowEditModal(false);
             loadDiveSites();
         })
         .catch(err => {
@@ -83,47 +76,49 @@ const EditSiteForm = (props) => {
 
     return (
         <div className={classes.form}>
-
-        <StyletronProvider value={engine}>
-        <BaseProvider theme={LightTheme}>
-        <Centered>
             <h1>EDIT A DIVE SITE</h1>
-            <FormControl label={() => "Name"} >
-                <Input
-                    value={siteName}
-                    onChange={e => setSiteName(e.target.value)}
-                    placeholder="Site Name"
-                    />
-            </FormControl>
-
-            <FormControl label={() => "Area"}>
-                <Input 
-                    value={siteArea}
-                    onChange={e => setSiteArea(e.target.value)}
-                    placeholder="Site Area" />
-            </FormControl>
-
-            <FormControl label={() => "Description"}>
-                <Textarea
-                    value={siteDescription}
-                    onChange={e => setSiteDescription(e.target.value)}
-                    placeholder="Enter a description about this site"
+            <Form>
+                <Form.Row>
+                    <Col>
+                    <Form.Control placeholder="Name of Dive Site"
+                                  value={siteName}
+                                  onChange={e => setSiteName(e.target.value)} />
+                    </Col>
+                    <Col>
+                    <Form.Control placeholder="Area / Suburb"
+                                  value={siteArea}
+                                  onChange={e => setSiteArea(e.target.value)} />
+                    </Col>
+                </Form.Row>
+                    <Form.Control as="textarea"
+                                  rows="3"
+                                  value={siteDescription}
+                                  placeholder="Description of site"
+                                  onChange={e => setSiteDescription(e.target.value)} />
+                <Form.Row>
+                    
+                </Form.Row>
+                <Form.Row>
+                <Form.Check inline 
+                            type="radio" 
+                            aria-label="shore" 
+                            label="Shore Dive" 
+                            name="siteType" 
+                            value={siteType} 
+                            onChange={e => setSiteType("1")}
+                            checked={siteType == 1}
                 />
-            </FormControl>
-
-            <FormControl label={() => "Dive Type"}>
-                <RadioGroup
-                    align="horizontal"
-                    name="horizontal"
-                    onChange={e => setSiteType(e.target.value)}
-                    value={siteType}
-                >
-                    <Radio value="1">Shore</Radio>
-                    <Radio value="2">Boat</Radio>
-                </RadioGroup>
-            </FormControl>
-
-            <FormControl label={() => "Images"}>
+                <Form.Check inline 
+                            type="radio" 
+                            aria-label="boat" 
+                            label="Boat Dive" 
+                            name="siteType" 
+                            value={siteType} 
+                            onChange={e => setSiteType("2")}
+                            checked={siteType == 2}
+                />
+            </Form.Row>
+            
             <FilePond 
                     allowMultiple={false}
                     name={"divesiteImages"}
@@ -136,14 +131,13 @@ const EditSiteForm = (props) => {
                         }
                     }
                 />
-            </FormControl>
+            <Form.Row>
+                <Button variant="primary" type="submit" onClick={(e) => handleEditSiteSubmit(e)}>
+                    Submit
+                </Button>
+            </Form.Row>
+        </Form>
 
-            <Button onClick={handleEditSiteSubmit}>Edit</Button>
-
-
-        </Centered>
-        </BaseProvider>
-        </StyletronProvider>
         </div>
     );
 };

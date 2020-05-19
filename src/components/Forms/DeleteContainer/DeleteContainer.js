@@ -1,16 +1,8 @@
 import React, {useState, useContext} from 'react';
 
-import { Input } from "baseui/input";
-import { FormControl } from "baseui/form-control";
-import { RadioGroup, Radio } from "baseui/radio";
-import { Textarea } from "baseui/textarea";
-import { Button } from "baseui/button";
-import { FileUploader } from "baseui/file-uploader";
-
-
-import {Provider as StyletronProvider} from 'styletron-react';
-import {LightTheme, BaseProvider, styled} from 'baseui';
-import {Client as Styletron} from 'styletron-engine-atomic';
+import {
+    Button
+} from 'react-bootstrap';
 
 import classes from './DeleteContainer.module.css';
 
@@ -19,15 +11,8 @@ import { SiteContext,
          DiveSitesContext,
          LoadDiveSiteContext } from '../../../context/DiveSiteContext';
 
+import { DeleteModalContext } from '../../../context/UserContext';
 
-const engine = new Styletron();
-
-const Centered = styled('div', {
-    display: 'inline-block',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100%',
-  });
 
 
 
@@ -38,8 +23,11 @@ const DeleteContainer = () => {
     //const [showForm, setShowForm] = useContext(FormContext);
     const [diveSites, setDiveSites] = useContext(DiveSitesContext);
     const loadDiveSites = useContext(LoadDiveSiteContext);
+    
+    const [showDeleteModal, setShowDeleteModal] = useContext(DeleteModalContext);
 
-    const siteId = selectedSite._id;
+
+    
 
     
 
@@ -49,6 +37,7 @@ const DeleteContainer = () => {
         console.log('Delete Confirmed');
         console.log('Deleting name ' + selectedSite.name);
         console.log('Deleting id ' + selectedSite._id);
+        const siteId = selectedSite._id;
 
         
         fetch('http://localhost:8080/diveSites/deleteDiveSite/' + siteId, {
@@ -62,6 +51,7 @@ const DeleteContainer = () => {
         })
         .then(resData => {
               console.log('[resData] = ' + resData.message);
+              setShowDeleteModal(false);
               loadDiveSites();
         })
         .catch(err => {
@@ -80,18 +70,10 @@ const DeleteContainer = () => {
 
     return (
         <div className={classes.form}>
-
-        <StyletronProvider value={engine}>
-        <BaseProvider theme={LightTheme}>
-        <Centered>
             <h1>ARE YOU SURE YOU WANT TO DELETE SITE: {/*name*/}</h1>
-            <Button onClick={deleteSiteHandler}>Yes</Button>
-            <Button onClick={cancelDeleteHandler}>No</Button>
-            {/*onClick=handleEditSiteSubmit*/}
+            <Button variant="danger" onClick={deleteSiteHandler}>Yes</Button>
+            <Button variant="primary" onClick={cancelDeleteHandler}>No</Button>
 
-        </Centered>
-        </BaseProvider>
-        </StyletronProvider>
         </div>
     );
 };

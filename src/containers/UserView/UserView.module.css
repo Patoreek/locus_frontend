@@ -1,3 +1,17 @@
-.mapContainer {
-    
+.AddModal {
+    width: 50vw;
+    max-width: none!important;
+    margin-top: 5vw;
+    margin-left:40vw;
 }
+
+.AddModalHeader, .AddModalBody, .AddModalFooter {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.CloseAddModalButton {
+    margin: 0 auto;
+}
+

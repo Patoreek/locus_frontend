@@ -3,6 +3,10 @@ import React, {useContext, useEffect, useState} from 'react';
 import classes from './UserSiteList.module.css';
 
 import { AccountContext } from '../../../../context/AuthContext';
+import { AddModalContext,
+         EditModalContext,
+         DeleteModalContext } from '../../../../context/UserContext';
+
 
 import SiteList from './SiteList/SiteList';
 
@@ -13,6 +17,11 @@ const UserSiteList = () => {
     const [sites, setSites] = useState(null);
 
     const [listLoading, setListLoading] = useState(true);
+
+    const [showEditModal, setShowEditModal] = useContext(EditModalContext);
+    const [showAddModal, setShowAddModal] = useContext(AddModalContext);
+    const [showDeleteModal, setShowDeleteModal] = useContext(DeleteModalContext);
+
 
     useEffect(() => {
         async function loadMyDiveSites() {
@@ -39,7 +48,7 @@ const UserSiteList = () => {
         loadMyDiveSites();
         console.log('[UserSiteList]' + sites);
         
-    }, []);
+    }, [showAddModal,showDeleteModal,showEditModal]);
 
  
 
