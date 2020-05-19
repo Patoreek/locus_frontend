@@ -12,56 +12,18 @@ import ToggleButtons from '../ToggleButtons/ToggleButtons';
 
 const UserPanel = () => {
 
-    const [ showForm, toggleShowForm ] = useContext(FormContext);
+    //const [ showForm, toggleShowForm ] = useContext(FormContext);
 
     const [ selectedSite, setSelectedSite ] = useContext(SiteContext);
     // console.log(selectedSite);
     let form;
     
-    if (showForm === 'ADD') {
-        form = (
-            <div>
-                <button onClick={() => {
-                    toggleShowForm(null)
-                }}>Back
-                </button>
-                <CreateSiteForm/>
-            </div>
-        )
-    }
-    //console.log('[Before ShowForm === EDIT ~ showForm is]' + showForm);
-    if (showForm === 'EDIT') {
-        form = (
-            <div>
-                <button onClick={() => {
-                    toggleShowForm(null)
-                }}>Back
-                </button>
-                <EditSiteForm/>
-            </div>
-        )
-    }
 
-    if (showForm === 'DELETE'){
-        form = (
-                <div>
-                    <button onClick={() => {
-                        toggleShowForm(null)
-                    }}>Back
-                    </button>
-                    <DeleteContainer/>
-                </div>
-                )
-    }
-
-    if (showForm === null){
-        form = <UserSiteListContainer/>
-    }
 
     return (
         <div>
                 <ToggleButtons/>
-                {form}
+                <UserSiteListContainer/>
         </div>
     );
 };

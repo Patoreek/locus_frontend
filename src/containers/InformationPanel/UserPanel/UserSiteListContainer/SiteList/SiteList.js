@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
-import { FormContext } from '../../../../../context/UserContext';
+import { EditModalContext,
+         DeleteModalContext } from '../../../../../context/UserContext';
 import { SiteContext } from '../../../../../context/DiveSiteContext';
 
 import classes from './SiteList.module.css';
@@ -9,27 +10,20 @@ import classes from './SiteList.module.css';
 
 const SiteList = (props) => {
 
-    const [ showForm, toggleShowForm ] = useContext(FormContext);
+    const [ showEditModal, setShowEditModal ] = useContext(EditModalContext);
     const [ selectedSite, setSelectedSite ] = useContext(SiteContext);
+    const [showDeleteModal, setShowDeleteModal] = useContext(DeleteModalContext);
 
 
     const editSiteHandler = () => {
-        console.log('[Selected Site]' + selectedSite);
-        if (showForm !== 'EDIT'){
-            toggleShowForm('EDIT');
-        } else {
-            toggleShowForm(null);
-        }
+        setShowDeleteModal(false);
+        setShowEditModal(true);
     }
 
 
     const showDeleteForm = () => {
-        console.log('[Selected Site]' + selectedSite);
-        if (showForm !== 'DELETE'){
-            toggleShowForm('DELETE');
-        } else {
-            toggleShowForm(null);
-        }
+        setShowEditModal(false);
+        setShowDeleteModal(true);
     }
 
     const sites = props.sites;

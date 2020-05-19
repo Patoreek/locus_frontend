@@ -9,7 +9,9 @@ import {
 import { Modal, Button } from 'react-bootstrap';
 
 
-import { FormContext } from '../../../../context/UserContext';
+import { EditModalContext,
+         DeleteModalContext } from '../../../../context/UserContext';
+
 import { DiveSitesContext,
          SiteContext,
          CoordsContext,
@@ -28,7 +30,6 @@ import classes from './MySitesMap.module.css';
 
 const MySitesMap = () => {
 
-    const [ showForm, toggleShowForm ] = useContext(FormContext);
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
     const [diveSites, setDiveSites] = useContext(DiveSitesContext);
     const [coords, setCoords] = useContext(CoordsContext);
@@ -37,11 +38,11 @@ const MySitesMap = () => {
 
     const [isAuth, setIsAuth] = useContext(AuthContext);
 
-    const [showEditModal, setShowEditModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useContext(EditModalContext);
     const handleEditClose = () => setShowEditModal(false);
     const handleEditShow = () => setShowEditModal(true);
 
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useContext(DeleteModalContext);
     const handleDeleteClose = () => setShowDeleteModal(false);
     const handleDeleteShow = () => setShowDeleteModal(true);
 
@@ -88,7 +89,6 @@ const MySitesMap = () => {
                         lng: parseFloat(selectedSite.longitude)
                     }}
                     onCloseClick={() => {
-                        toggleShowForm(null);
                         setSelectedSite(null);
                     } }
                 >       

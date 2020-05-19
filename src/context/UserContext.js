@@ -1,24 +1,27 @@
 import React, { useState, createContext } from 'react';
 
 
-export const FormContext = createContext();
+export const EditModalContext = createContext();
 
-
+export const DeleteModalContext = createContext();
 
 
 
 
 export const UserProvider = (props) => {
 
-    const [ showForm, toggleShowForm ] = useState(null); // Add
+    const [ showEditModal, setShowEditModal ] = useState(null); // Add
+    const [ showDeleteModal, setShowDeleteModal ] = useState(null); // Add
 
     return (
-        <FormContext.Provider value = {[showForm, toggleShowForm]}>
-        
+        <EditModalContext.Provider value = {[showEditModal, setShowEditModal]}>
+        <DeleteModalContext.Provider value = {[showDeleteModal, setShowDeleteModal]}>
+
         
                 {props.children}
 
-        </FormContext.Provider>
+        </DeleteModalContext.Provider>
+        </EditModalContext.Provider>
     );
 }
 

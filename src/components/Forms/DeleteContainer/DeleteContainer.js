@@ -14,7 +14,7 @@ import {Client as Styletron} from 'styletron-engine-atomic';
 
 import classes from './DeleteContainer.module.css';
 
-import { FormContext } from '../../../context/UserContext';
+//import { FormContext } from '../../../context/UserContext';
 import { SiteContext,
          DiveSitesContext,
          LoadDiveSiteContext } from '../../../context/DiveSiteContext';
@@ -35,7 +35,7 @@ const Centered = styled('div', {
 const DeleteContainer = () => {
 
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
-    const [showForm, setShowForm] = useContext(FormContext);
+    //const [showForm, setShowForm] = useContext(FormContext);
     const [diveSites, setDiveSites] = useContext(DiveSitesContext);
     const loadDiveSites = useContext(LoadDiveSiteContext);
 
@@ -69,7 +69,7 @@ const DeleteContainer = () => {
             // this.setState({ postsLoading: false });
         });
         setSelectedSite(null);
-        setShowForm(null);
+        //setShowForm(null);
     }
 
     const cancelDeleteHandler = (event) => {

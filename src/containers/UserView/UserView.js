@@ -7,7 +7,7 @@ import { Button, Modal } from 'react-bootstrap';
 
 import { SiteContext,
          CoordsContext } from '../../context/DiveSiteContext';
-import { FormContext } from '../../context/UserContext';
+//import { FormContext } from '../../context/UserContext';
 import { AuthContext, LoadingContext } from '../../context/AuthContext';
 
 import { useHistory} from 'react-router-dom';
@@ -19,7 +19,7 @@ import classes from './UserView.module.css';
 const UserView = () => {
 
         const [coords, setCoords] = useContext(CoordsContext);
-        const [ showForm, toggleShowForm ] = useContext(FormContext);
+        //const [ showForm, toggleShowForm ] = useContext(FormContext);
         const [selectedSite, setSelectedSite] = useContext(SiteContext);
 
         const [isAuth, setIsAuth] = useContext(AuthContext);
