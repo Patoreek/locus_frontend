@@ -85,7 +85,8 @@ const UserView = () => {
                 loadingElement={<div style={{ 
                                         height: "93vh",
                                         width: mapSize,
-                                        display: "inline-block"
+                                        display: "inline-block",
+                                        transition: "1s ease"
                                         /*border: "2px solid orange"*/
                                 }}/>}
                 containerElement={<div style={{ 
@@ -93,7 +94,8 @@ const UserView = () => {
                                         width: mapSize,
                                         display: "inline-block",
                                         /*border: "2px solid purple",*/
-                                        boxSizing: 'border-box'
+                                        boxSizing: 'border-box',
+                                        transition: "1s ease"
                                 }}/>}
                 mapElement={<div style={{ 
                                         height: "93vh",

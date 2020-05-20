@@ -1,0 +1,7 @@
+.locateButton {
+    position: absolute;
+    top: 10vh;
+    left: 88vw;
+    z-index: 10;
+
+}

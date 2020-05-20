@@ -23,7 +23,7 @@ const SearchBarMap = (props) => {
            value, 
            suggestions: {status, data}, 
            setValue, 
-           clearSuggestion
+           clearSuggestions
         } = usePlacesAutocomplete({
                 requestOptions: { 
                     location: {lat: () => -33.928820 ,lng: () => 151.209290},
@@ -39,11 +39,12 @@ const SearchBarMap = (props) => {
         <div className={classes.comboboxDiv}>
             <Combobox
                 onSelect={async (address) => {
-
+                    setValue(address, false);
+                    clearSuggestions();
                     try {
                         const results = await getGeocode({address});
                         const {lat, lng} = await getLatLng(results[0]);
-                        console.log(lat,lng);
+                        //console.log(lat,lng);
                         panTo({lat, lng});
 
                     } catch(error){
@@ -64,9 +65,11 @@ const SearchBarMap = (props) => {
                     className={classes.comboboxInput}
                 />
                 <ComboboxPopover>
+                <ComboboxList/>
                     {status === "OK" && data.map(({id, description}) => (
                         <ComboboxOption key={id} value={description} />
                     ))}
+                <ComboboxList/>
                 </ComboboxPopover>
             </Combobox>
         </div>

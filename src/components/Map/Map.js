@@ -13,6 +13,7 @@ import { AuthContext,
 import UserMapContainer from './UserMapContainer/UserMapContainer';
 import GuestMap from './GuestMap/GuestMap';
 import SearchBarMap from '../SearchBarMap/SearchBarMap';
+import Locate from '../Locate/Locate';
 
 
 
@@ -92,6 +93,7 @@ const Map = (props) => {
                 panTo={panTo}
                 >
                 <SearchBarMap panTo={panTo}/>
+                <Locate panTo={panTo}/>
             {!guestMap && (
                 <UserMapContainer/>
             )}

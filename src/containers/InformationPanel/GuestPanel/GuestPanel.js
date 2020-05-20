@@ -9,6 +9,7 @@ import { DiveSitesContext,
 import StarRating from '../../../components/StarRating/StarRating';
 import FavouriteButton from '../../../components/Buttons/FavouriteButton/FavouriteButton';
 import EllipsesButton from '../../../components/Buttons/EllipsesButton/EllipsesButton';
+import ToggleButtons from '../ToggleButtons/ToggleButtons';
 
 import classes from './GuestPanel.module.css';
 
@@ -35,13 +36,8 @@ const GuestPanel = () => {
 
     return (
         <div>
+            <ToggleButtons/>
             <h1>GUEST PANEL</h1>
-        {diveSites === [] && (
-            <div>
-            <p> Users that dont have an account but want to search sites view</p>
-            <p> What the user will see </p>
-            </div>
-        )}
         {diveSites.map(site => (
             <div className={classes.siteContainer}>
             <b>{site.name}, {site.area}</b>
