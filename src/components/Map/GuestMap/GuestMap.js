@@ -31,6 +31,8 @@ import FavouriteButton from '../../Buttons/FavouriteButton/FavouriteButton';
 import EllipsesButton from '../../Buttons/EllipsesButton/EllipsesButton';
 
 
+import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerClusterer';
+
 import classes from './GuestMap.module.css';
 
 const GuestMap = () => {
@@ -49,6 +51,8 @@ const GuestMap = () => {
     const [favButton, setFavButton] = useContext(FavButtonContext);
 
     const loadDiveSites = useContext(LoadDiveSiteContext);
+
+    
 
 
 
@@ -85,10 +89,24 @@ const GuestMap = () => {
         </Popover>
       );
 
+    const onMarkerClustererClick = (markerClusterer) => {
+        const clickedMarkers = markerClusterer.getMarkers();
+        //console.log(`Current clicked markers length: ${clickedMarkers.length}`)
+        //console.log(clickedMarkers);
+      }
+
     
 
     return (
         <div>
+
+            <MarkerClusterer
+                onClick={onMarkerClustererClick}
+                averageCenter
+                gridSize={20}
+                maxZoom={11}
+                defaultZoomOnClick
+            >
             { diveSites.map(site => (
                 <Marker 
                 key={site._id}
@@ -105,6 +123,7 @@ const GuestMap = () => {
                 }}
                 />
             ))}
+            </MarkerClusterer>
 
             {selectedSite && ( /* OVERLAYVIEW is needed here for custom CSS and window properties*/
                 <InfoWindow

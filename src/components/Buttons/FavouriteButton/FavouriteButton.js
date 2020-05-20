@@ -72,7 +72,7 @@ const FavouriteButton = (props) => {
 
     async function checkUserRelation(){
 
-        console.log(props.site._id);
+        //console.log(props.site._id);
         //     //console.log(site);
         //     //console.log(selectedSite);
             const response = await fetch('http://localhost:8080/user/checkFavourites',{
