@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useRef, useCallback } from 'react';
 
 import { GoogleMap,
     withScriptjs,
@@ -12,6 +12,7 @@ import { AuthContext,
 
 import UserMapContainer from './UserMapContainer/UserMapContainer';
 import GuestMap from './GuestMap/GuestMap';
+import SearchBarMap from '../SearchBarMap/SearchBarMap';
 
 
 
@@ -34,8 +35,8 @@ const Map = (props) => {
 
 
     useEffect(() => {
-        console.log('[Map] isAuth = ' + isAuth);
-        console.log('[Map] isUserOnMap = ' + isUserOnMap);
+        //console.log('[Map] isAuth = ' + isAuth);
+        //console.log('[Map] isUserOnMap = ' + isUserOnMap);
         if (isAuth){
             if(isUserOnMap){
                 setGuestMap(true);
@@ -46,33 +47,51 @@ const Map = (props) => {
         }
 
         if (searchCoordinates.lat !== null && searchCoordinates.lng !== null) {
-            console.log(searchCoordinates);
+            //console.log(searchCoordinates);
             setLatitude(searchCoordinates.lat);
             setLongitude(searchCoordinates.lng)
             setIsLoading(false);
         } else {
-            console.log('Search Coords is NULL');
+            //console.log('Search Coords is NULL');
             setLatitude(-33.928820);
             setLongitude(151.209290);
             setIsLoading(false);
         }
         
-        console.log(latitude);
-        console.log(longitude);
+        //console.log(latitude);
+        //console.log(longitude);
 
 
-    },[])
+    },[]);
+
+
+    const mapRef = useRef();
+    const onMapLoad = useCallback((map) => {
+        //console.log('Map = ' + map);
+        mapRef.current = map;
+        //console.log("In onMapLoad");
+        //console.log(mapRef.current);
+    }, [],);
+
+    const panTo = useCallback(({ lat, lng }) => {
+        mapRef.current.panTo({ lat, lng });
+        //mapRef.current.setZoom(14);
+      }, []);
 
     
     return (
             <div>
+                
                 {!isLoading && (
                 <GoogleMap
+                id="map"
                 defaultZoom={12}
                 defaultCenter={{lat: latitude, lng: longitude}}
                 onClick={props.onMapClick}
+                ref={onMapLoad}
+                panTo={panTo}
                 >
-            
+                <SearchBarMap panTo={panTo}/>
             {!guestMap && (
                 <UserMapContainer/>
             )}

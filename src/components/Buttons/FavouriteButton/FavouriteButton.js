@@ -86,10 +86,10 @@ const FavouriteButton = (props) => {
                 })
             });
             const data = await response.json();
-            console.log('RESPONSE FROM API');
-            console.log(data.message);
+            //console.log('RESPONSE FROM API');
+            //console.log(data.message);
             const isFav = data.isFav;
-            console.log(data.isFav);
+            //console.log(data.isFav);
             
             if (isFav){
                 setFavButton(false);
@@ -115,7 +115,7 @@ const FavouriteButton = (props) => {
             });
             const data = await response.json();
 
-            console.log(data.message);
+            //console.log(data.message);
             setFavButton(false);
             //const sites = data;
           
