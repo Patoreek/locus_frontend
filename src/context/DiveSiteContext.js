@@ -25,12 +25,14 @@ export const DiveSiteProvider = (props) => {
 
     async function loadDiveSites() {
             // You can await here
+        console.log('IN LOAD DIVE SITE');
         const response = await fetch('http://localhost:8080/diveSites/getSites',{
             method: 'GET'
         });
         const data = await response.json();
         const sites = data.site;
         setDiveSites(sites);
+        return true;
             // ...
     }
 

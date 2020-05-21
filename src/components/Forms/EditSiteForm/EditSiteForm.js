@@ -30,6 +30,11 @@ const EditSiteForm = (props) => {
     const [siteArea, setSiteArea] = useState(selectedSite.area);
     const [siteDescription, setSiteDescription] = useState(selectedSite.description);
     const [siteType, setSiteType] = useState(selectedSite.siteType);
+    const [siteDepth, setSiteDepth] = useState(selectedSite.depth);
+
+    const [commonFeatures, setCommonFeatures] = useState(selectedSite.commonFeatures);
+
+    console.log(commonFeatures);
 
 
     const editDiveSite = (siteName, siteArea, siteDescription, siteType, siteLatitude, siteLongitude) => {
@@ -45,7 +50,9 @@ const EditSiteForm = (props) => {
                     latitude: siteLatitude,
                     longitude: siteLongitude,
                     description: siteDescription,
-                    siteType: siteType
+                    siteType: siteType,
+                    siteDepth: siteDepth,
+                    commonFeatures: commonFeatures
                 }
             })
             
@@ -91,11 +98,18 @@ const EditSiteForm = (props) => {
                     </Col>
                 </Form.Row>
                     <Form.Control as="textarea"
-                                  rows="3"
+                                  rows="10"
                                   value={siteDescription}
                                   placeholder="Description of site"
                                   onChange={e => setSiteDescription(e.target.value)} />
                 <Form.Row>
+                <Form.Row>
+                    <Col>
+                    <Form.Control placeholder="Max Depth of Site"
+                                  value={siteDepth}
+                                  onChange={e => setSiteDepth(e.target.value)} />
+                    </Col>
+                </Form.Row>
                     
                 </Form.Row>
                 <Form.Row>
@@ -119,7 +133,7 @@ const EditSiteForm = (props) => {
                 />
             </Form.Row>
             
-            <FilePond 
+            {/* <FilePond 
                     allowMultiple={false}
                     name={"divesiteImages"}
                     server={
@@ -130,7 +144,7 @@ const EditSiteForm = (props) => {
                             }
                         }
                     }
-                />
+                /> */}
             <Form.Row>
                 <Button variant="primary" type="submit" onClick={(e) => handleEditSiteSubmit(e)}>
                     Submit

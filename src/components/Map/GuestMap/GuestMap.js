@@ -52,6 +52,8 @@ const GuestMap = () => {
 
     const loadDiveSites = useContext(LoadDiveSiteContext);
 
+    const [isLoading, setIsLoading] = useState(true);
+
     
 
 
@@ -60,9 +62,21 @@ const GuestMap = () => {
 
     useEffect(() => {
        
-        loadDiveSites();
-        
-    }, [diveSites]);
+        loadDiveSites()
+        .then(done => {
+            console.log(done);
+            if (done) {
+                console.log('IT IS DONE!');
+                setIsLoading(false);
+                console.log(diveSites);
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            setIsLoading(false);
+        });
+
+    }, []);
 
     
     
@@ -99,72 +113,74 @@ const GuestMap = () => {
 
     return (
         <div>
-
-            <MarkerClusterer
-                onClick={onMarkerClustererClick}
-                averageCenter
-                gridSize={20}
-                maxZoom={11}
-                defaultZoomOnClick
-            >
-            { diveSites.map(site => (
-                <Marker 
-                key={site._id}
-                position={{
-                    lat: parseFloat(site.latitude),
-                    lng: parseFloat(site.longitude)
-                }}
-                onClick={() =>{
-                    setSelectedSite(site);
-                }}
-                icon={{
-                   url: site.siteType === "1" ? shoreIcon : boatIcon,
-                   scaledSize: new window.google.maps.Size(60, 60)
-                }}
-                />
-            ))}
-            </MarkerClusterer>
-
-            {selectedSite && ( /* OVERLAYVIEW is needed here for custom CSS and window properties*/
-                <InfoWindow
-                    position={{
-                        lat: parseFloat(selectedSite.latitude),
-                        lng: parseFloat(selectedSite.longitude)
-                    }}
-                    onCloseClick={() => {
-                        setSelectedSite(null);
-                    } }
+            {!isLoading && (
+                <div>
+                <MarkerClusterer
+                    onClick={onMarkerClustererClick}
+                    averageCenter
+                    gridSize={20}
+                    maxZoom={11}
+                    defaultZoomOnClick
                 >
-                    <div className={classes.infowindowContainer}>
-                        <div className={classes.nameContainer}>
-                            <div className={classes.siteTypeContainer}>
-                                <img className={classes.Icon}
-                                     src={selectedSite.siteType === "Shore" ? shoreIconCircle : boatIconCircle}/>
+                { diveSites.map(site => (
+                    <Marker 
+                    key={site._id}
+                    position={{
+                        lat: parseFloat(site.latitude),
+                        lng: parseFloat(site.longitude)
+                    }}
+                    onClick={() =>{
+                        setSelectedSite(site);
+                    }}
+                    icon={{
+                    url: site.siteType === "1" ? shoreIcon : boatIcon,
+                    scaledSize: new window.google.maps.Size(60, 60)
+                    }}
+                    />
+                ))}
+                </MarkerClusterer>
+
+                {selectedSite && ( /* OVERLAYVIEW is needed here for custom CSS and window properties*/
+                    <InfoWindow
+                        position={{
+                            lat: parseFloat(selectedSite.latitude),
+                            lng: parseFloat(selectedSite.longitude)
+                        }}
+                        onCloseClick={() => {
+                            setSelectedSite(null);
+                        } }
+                    >
+                        <div className={classes.infowindowContainer}>
+                            <div className={classes.nameContainer}>
+                                <div className={classes.siteTypeContainer}>
+                                    <img className={classes.Icon}
+                                        src={selectedSite.siteType === "Shore" ? shoreIconCircle : boatIconCircle}/>
+                                </div>
+                                <h2>{selectedSite.name}, {selectedSite.area}</h2>
                             </div>
-                            <h2>{selectedSite.name}, {selectedSite.area}</h2>
-                        </div>
-                        <div className={classes.mediaContainer}>
-                            <PhotoContainer selectedSite={selectedSite}/>
-                        </div>
-                        
-                        <div className={classes.detailsContainer}>
-                            <Button variant="link" onClick={detailsHandler}>More Details</Button>
-                        </div>
-                        <div className={classes.reviewContainer}>
-                            <ReviewStars/>
-                        </div>
-                        {isAuth && (
-                            <div className={classes.buttonsContainer}>
-                                <FavouriteButton site={selectedSite}/>
-                                <EllipsesButton/>
+                            <div className={classes.mediaContainer}>
+                                <PhotoContainer selectedSite={selectedSite}/>
                             </div>
-                        )} 
-     
+                            
+                            <div className={classes.detailsContainer}>
+                                <Button variant="link" onClick={detailsHandler}>More Details</Button>
+                            </div>
+                            <div className={classes.reviewContainer}>
+                                <ReviewStars/>
+                            </div>
+                            {isAuth && (
+                                <div className={classes.buttonsContainer}>
+                                    <FavouriteButton site={selectedSite}/>
+                                    <EllipsesButton/>
+                                </div>
+                            )} 
+            
                    
                     </div>
                 </InfoWindow>
+                )}
+                </div>
             )}
-            
         </div>
     );
 };

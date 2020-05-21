@@ -6,7 +6,10 @@ import {
     InfoWindow
 } from 'react-google-maps';
 
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, 
+         Button,
+         Tabs,
+         Tab } from 'react-bootstrap';
 
 
 import { EditModalContext,
@@ -25,6 +28,8 @@ import boatIcon from '../../../../images/locationIcons/BoatLocation.svg';
 
 import EditSiteForm from '../../../Forms/EditSiteForm/EditSiteForm';
 import DeleteContainer from '../../../Forms/DeleteContainer/DeleteContainer';
+import ImageUpload from '../../../ImageUpload/ImageUpload';
+import CommonFeatures from '../../../Forms/EditSiteForm/CommonFeatures/CommonFeatures';
 
 import classes from './MySitesMap.module.css';
 
@@ -45,6 +50,8 @@ const MySitesMap = () => {
     const [showDeleteModal, setShowDeleteModal] = useContext(DeleteModalContext);
     const handleDeleteClose = () => setShowDeleteModal(false);
     const handleDeleteShow = () => setShowDeleteModal(true);
+
+    const [key, setKey] = useState('general');
 
     useEffect(() => {
         loadDiveSites();
@@ -113,8 +120,32 @@ const MySitesMap = () => {
                     <Modal.Title>Edit Dive Site</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className={classes.EditModalBody}>
-                    Woohoo, you're reading this text in a modal!
-                    <EditSiteForm/>
+
+
+                    <Tabs
+                        id="controlled-tab-example"
+                        activeKey={key}
+                        onSelect={(k) => setKey(k)}
+                    >
+                    <Tab eventKey="general" title="General">
+                        <EditSiteForm/>
+                    </Tab>
+                    <Tab eventKey="features" title="Features">
+                        <h1> Common Features Added here</h1>
+                        <CommonFeatures/>
+                    </Tab>
+                    <Tab eventKey="images" title="Images">
+                        <h1> Images Upload Here</h1>
+                        <ImageUpload/>
+                    </Tab>
+                    </Tabs>
+                    
+                    
+
+
+
+
+
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleEditClose}>
