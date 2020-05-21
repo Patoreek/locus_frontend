@@ -10,7 +10,7 @@ import { SiteContext } from '../../../../context/DiveSiteContext';
 
 const CommonFeatures = () => {
 
-    const [featureType, setFeatureType] = useState(null);
+    const [featureType, setFeatureType] = useState('Animal');
     const [featureName, setFeatureName] = useState(null);
 
     const [ selectedSite, setSelectedSite ] = useContext(SiteContext);
@@ -39,7 +39,9 @@ const CommonFeatures = () => {
                        siteId: selectedSite._id
                 })
             });
-            // const data = await response.json();
+            const data = await response.json();
+            console.log(data);
+            setSelectedSite(data.updatedSite);
             // const sites = data.site;
             // setDiveSites(sites);
             // return true;
@@ -51,10 +53,35 @@ const CommonFeatures = () => {
     }   
 
 
-    const handleRemoveFeature = () => {
+    const handleRemoveFeature = (feature) => {
 
         console.log('The type is: ' + featureType);
         console.log('The name is: ' + featureName);
+        console.log('featureId = ' + feature._id);
+
+        async function addFeature() {
+            const response = await fetch('http://localhost:8080/diveSites/deleteFeature',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include',
+                body: JSON.stringify({
+                       featureId: feature._id,
+                       siteId: selectedSite._id
+                })
+            });
+            const data = await response.json();
+            console.log(data);
+            //setSelectedSite(data.updatedSite);
+            // const sites = data.site;
+            // setDiveSites(sites);
+            // return true;
+        }
+
+        addFeature();
+
+
     }   
 
 
@@ -93,7 +120,14 @@ const CommonFeatures = () => {
             </td>
             <td><Button variant="success" onClick={handleAddFeature}> + </Button></td>
             </tr>
-            <tr>
+            {selectedSite.commonFeatures.map(feature => (
+                <tr>
+                    <td>{feature.featureType}</td>
+                    <td colSpan="2">{feature.name}</td>
+                    <td><Button variant="danger" onClick={() => handleRemoveFeature(feature)}> - </Button></td>
+                </tr>
+            ))}
+            {/* <tr>
             <td>Animal</td>
             <td colSpan="2">Cuttlefish</td>
             <td><Button variant="danger" onClick={handleRemoveFeature}> - </Button></td>
@@ -102,7 +136,7 @@ const CommonFeatures = () => {
             <td>Animal</td>
             <td colSpan="2">Grey Nurse Shark</td>
             <td><Button variant="danger"> - </Button></td>
-            </tr>
+            </tr> */}
         </tbody>
         </Table>
         </div>
