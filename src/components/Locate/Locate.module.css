@@ -1,7 +1,11 @@
 .locateButton {
     position: absolute;
     top: 10vh;
-    left: 88vw;
+    left: 80vw;
     z-index: 10;
-
+    border-radius: 10%;
+    padding: 9px;
+    height: 3vw;
+    transition: 1s ease;
 }
+

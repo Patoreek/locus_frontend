@@ -6,6 +6,8 @@ import { DiveSitesContext,
          DetailsContext,
          SiteContext } from '../../../context/DiveSiteContext';
 
+import {AuthContext} from '../../../context/AuthContext';
+
 import StarRating from '../../../components/StarRating/StarRating';
 import FavouriteButton from '../../../components/Buttons/FavouriteButton/FavouriteButton';
 import EllipsesButton from '../../../components/Buttons/EllipsesButton/EllipsesButton';
@@ -20,6 +22,8 @@ const GuestPanel = () => {
     const [moreDetails, setMoreDetails] = useContext(DetailsContext);
 
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
+
+    const [isAuth, setIsAuth] = useContext(AuthContext);
 
     const moreDetailsHandler = (site) => {
         console.log('In more details');
@@ -46,7 +50,7 @@ const GuestPanel = () => {
                  className={classes.siteImage}
             />
             <StarRating siteRatings = {site.ratings}/>
-            <FavouriteButton site={site}/>
+            {isAuth ? <FavouriteButton site={site}/> : null}
             <Button onClick={() => moreDetailsHandler(site)}>More Details</Button>
             <EllipsesButton/>
             </div>

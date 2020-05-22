@@ -4,7 +4,7 @@ import { Form, Button } from 'react-bootstrap';
 
 import { SiteContext } from '../../context/DiveSiteContext';
 
-import { AccountContext } from '../../context/AuthContext';
+import { AccountContext, AuthContext } from '../../context/AuthContext';
 
 import classes from './Comments.module.css';
 
@@ -17,6 +17,8 @@ const Comments = () => {
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
 
     const [account, setAccount] = useContext(AccountContext);
+
+    const [isAuth, setIsAuth] = useContext(AuthContext);
 
 
     async function getComments() {
@@ -119,20 +121,26 @@ const Comments = () => {
 
     return (
         <div>
-            <Form>
-                <Form.Group controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Add Comment</Form.Label>
-                    <Form.Control as="textarea" 
-                                  rows="3"
-                                  name="comment"
-                                  onChange={e => setComment(e.target.value)}
-                                  value={comment}
-                    />
-                    <Button variant="primary" onClick={submitComment}>
-                        Comment
-                    </Button>
-                </Form.Group>
-            </Form>
+            {isAuth && (
+                <Form>
+                    <Form.Group controlId="exampleForm.ControlTextarea1">
+                        <Form.Label>Add Comment</Form.Label>
+                        <Form.Control as="textarea" 
+                                    rows="3"
+                                    name="comment"
+                                    onChange={e => setComment(e.target.value)}
+                                    value={comment}
+                        />
+                        <Button variant="primary" onClick={submitComment}>
+                            Comment
+                        </Button>
+                    </Form.Group>
+                </Form>
+            )}
+            {!isAuth && (
+                <b>Log in or Sign up to add comments.</b>
+            )}
+
 
             {siteComments.map(comment => (
                 <div className={classes.commentContainer}>

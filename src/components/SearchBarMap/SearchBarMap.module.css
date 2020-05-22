@@ -1,15 +1,17 @@
 .comboboxDiv {
     position: absolute;
     top: 10vh;
-    left: 50vw;
+    /* left: 50vw; */
     color: red;
     z-index: 10;
     margin:0;
     padding:0;
+    transition: 1s ease;
 }
 
 .comboboxInput {
-    width: 30vw;
+    /* width: 30vw; */
     height: 3vw;
+    transition: 1s ease;
     
 }

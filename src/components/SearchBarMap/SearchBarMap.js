@@ -1,4 +1,6 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useContext} from 'react';
+
+import { SearchBarContext } from '../../context/AuthContext';
 
 import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
 
@@ -19,6 +21,8 @@ const SearchBarMap = (props) => {
     //console.log('In searchBarMap');
     //console.log(props.panTo);
 
+    const [ searchBarStyle, setSearchBarStyle] = useContext(SearchBarContext);
+
     const {ready, 
            value, 
            suggestions: {status, data}, 
@@ -36,7 +40,10 @@ const SearchBarMap = (props) => {
     
 
     return (
-        <div className={classes.comboboxDiv}>
+        <div className={classes.comboboxDiv} style={{
+            left: searchBarStyle.left,
+            display: searchBarStyle.display
+        }}>
             <Combobox
                 onSelect={async (address) => {
                     setValue(address, false);
@@ -63,6 +70,9 @@ const SearchBarMap = (props) => {
                     disabled={!ready}
                     placeholder="Enter location"
                     className={classes.comboboxInput}
+                    style = {{
+                        width: searchBarStyle.width
+                    }}
                 />
                 <ComboboxPopover>
                 <ComboboxList/>

@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { Button } from 'react-bootstrap';
+import { MdMyLocation } from "react-icons/md";
+
+import  { LocateButtonContext } from '../../context/AuthContext';
+
+
 
 import classes from './Locate.module.css'
 
 const Locate = (props) => {
+
+    const [locateButtonStyle, setLocateButtonStyle] = useContext(LocateButtonContext);
+
+
     const panTo = props.panTo;
     
     return (
@@ -19,7 +28,12 @@ const Locate = (props) => {
                     },
                     (err) => console.log(err),
                     ()=> null);
-                }}>My Location</Button>
+                }}
+                style = {{
+                    left: locateButtonStyle.left,
+                    display: locateButtonStyle.display
+                }}
+                ><MdMyLocation size ={ 30 }/></Button>
     );
 };
 

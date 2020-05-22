@@ -3,10 +3,13 @@ import React, { useState, useContext, useEffect } from 'react';
 import { SiteContext,
          DetailsContext } from '../../context/DiveSiteContext';
 
+import { AuthContext } from '../../context/AuthContext';
+
+
 import StarRating from '../../components/StarRating/StarRating';
 import Comments from '../../components/Comments/Comments';
 import FavouriteButton from '../../components/Buttons/FavouriteButton/FavouriteButton';
-import EllipsesButton from '../../components/Buttons/EllipsesButton/EllipsesButton';
+import EllipsesButton from '../../components/Buttons/EllipsesButton/EllipsesButton'; 
 
 import classes from './DetailsView.module.css';
 
@@ -14,6 +17,8 @@ const Details = (props) => {
     
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
     const [moreDetails, setMoreDetails] = useContext(DetailsContext);
+    const [isAuth, setIsAuth] = useContext(AuthContext);
+
 
 
     const [siteName, setSiteName] = useState(selectedSite.name);
@@ -85,10 +90,10 @@ const Details = (props) => {
                 <h3>Videos</h3>
                 <p>{siteVideos}</p>
             </div>
-            <div className={classes.buttonMediaContainer}>
+            {/* <div className={classes.buttonMediaContainer}>
                 <button>Pictures</button>
                 <button>Videos</button>
-            </div>
+            </div> */}
         </div>
 
         <div className={classes.reviewContainer}>
@@ -96,7 +101,7 @@ const Details = (props) => {
         </div>
 
         <div className={classes.buttonsContainer}>
-            <FavouriteButton site={selectedSite}/>
+            {isAuth ? <FavouriteButton site={selectedSite}/>: null}
             <EllipsesButton/>
         </div>
 
@@ -109,9 +114,9 @@ const Details = (props) => {
             <h3>Max Depth: {siteDepth}m</h3>
         </div>
 
-        <div className={classes.visibilityContainer}>
+        {/* <div className={classes.visibilityContainer}>
             <h3>{siteVisibility}m * REMOVE THIS</h3>
-        </div>
+        </div> */}
 
         <div className={classes.weatherContainer}>
             <h3>Current Weather</h3>
@@ -126,7 +131,11 @@ const Details = (props) => {
     
         <div className={classes.sightsContainer}>
             <h6>Common sights / features </h6>
-            <p>{siteFeatures}</p>
+            {siteFeatures.map(feature => (
+                <div>
+                    <h3>{feature.featureType}: {feature.name}</h3>
+                </div>
+            ))}
         </div> 
 
 

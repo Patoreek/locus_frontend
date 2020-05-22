@@ -37,8 +37,8 @@ const Home = () => {
             >
             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
             <div>
-                <p>Latitude: {searchCoordinates.lat}</p>
-                <p>Longitude: {searchCoordinates.lng}</p>
+                {/* <p>Latitude: {searchCoordinates.lat}</p>
+                <p>Longitude: {searchCoordinates.lng}</p> */}
 
                 <input {...getInputProps({placeholder: "Enter a Location"})}/>
                 <div>

@@ -60,11 +60,12 @@ const GuestView = () => {
 
     return (
         <div>
-            {guestViewLoaded && (
-                <InformationPanel/>
+            {guestViewLoaded && !moreDetails && (
+                    <InformationPanel/>
             )}
 
             {!moreDetails && (
+            
 
                 <Map googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyA-9fLyV56TU5kt5qw3guZ4Vi3BXuDlNts&v=3.exp&libraries=geometry,drawing,places`}
                     loadingElement={<div style={{ 

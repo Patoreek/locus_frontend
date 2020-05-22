@@ -20,7 +20,11 @@ export const PanelSizeContext = createContext();
 
 export const MapSizeContext = createContext();
 
+export const SearchBarContext = createContext();
+
 export const SearchCoordsContext = createContext();
+
+export const LocateButtonContext = createContext();
 
 
 
@@ -47,6 +51,17 @@ export const AuthProvider = (props) => {
     const [panelSize, setPanelSize] = useState("30vw");
 
     const [mapSize, setMapSize] = useState("70vw");
+
+    const [searchBarStyle, setSearchBarStyle] = useState({
+      width: "30vw",
+      left: "50vw",
+      display: null
+    });
+
+    const [locateButtonStyle, setLocateButtonStyle] = useState({
+        left: "80vw",
+        display: null
+    });
 
     const [searchCoordinates, setSearchCoordinates] = useState({
       lat: null,
@@ -89,9 +104,13 @@ export const AuthProvider = (props) => {
         <PanelSizeContext.Provider value = {[panelSize, setPanelSize]}>
         <GetFavouritesContext.Provider value = {getFavourites}>
         <SearchCoordsContext.Provider value = {[searchCoordinates, setSearchCoordinates]}>
-        
+        <SearchBarContext.Provider value = {[searchBarStyle, setSearchBarStyle]}>
+        <LocateButtonContext.Provider value = {[locateButtonStyle, setLocateButtonStyle]}>
+       
         {props.children}
-        
+
+        </LocateButtonContext.Provider>
+        </SearchBarContext.Provider>
         </SearchCoordsContext.Provider>
         </GetFavouritesContext.Provider>
         </PanelSizeContext.Provider>
