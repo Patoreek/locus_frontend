@@ -1,0 +1,46 @@
+.homeContainer {
+    background-image: url('../../images/backgroundImages/bgImage001.jpg');
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 95vh;
+    color: white;
+}
+
+.homeTitle {
+    position: relative;
+    margin: 0 auto;
+    padding-top: 20vh;
+
+}
+
+.homeSlogan {
+    position: relative;
+    margin: 0 auto;
+    padding-top: 3vh;
+
+}
+
+.searchBar {
+    position: relative;
+    margin: 0 auto;
+    width: 40vw;
+    height: 5vh;
+    border-radius: 50px;
+    padding-left: 20px;
+    background-color: white;
+    color: black;
+    margin: 4vh 0vw 0vh 0vw;
+    
+}
+
+.dropdownContainer {
+    
+}
+
+.homeDescription {
+    position: relative;
+    margin: 0 auto;
+    width: 40vw;
+    margin-top: 1vh;
+}

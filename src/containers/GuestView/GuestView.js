@@ -59,7 +59,7 @@ const GuestView = () => {
 
 
     return (
-        <div>
+        <div className={classes.guestView}>
             {guestViewLoaded && !moreDetails && (
                     <InformationPanel/>
             )}
@@ -69,24 +69,25 @@ const GuestView = () => {
 
                 <Map googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyA-9fLyV56TU5kt5qw3guZ4Vi3BXuDlNts&v=3.exp&libraries=geometry,drawing,places`}
                     loadingElement={<div style={{ 
-                                            height:"93vh",
+                                            height:"95vh",
                                             width: mapSize,
                                             display: "inline-block",
-                                            transition: "1s ease"
+                                            transition: "1s ease",
+                                            
                                             /*border: "2px solid orange"*/
                                     }}/>}
                     containerElement={<div style={{ 
-                                            height: "93vh",
+                                            height: "95vh",
                                             width: mapSize,
-                                            display: "inline-block",
-                                            /*border: "2px solid purple",*/
+                                            display: "inline-block",                                            /*border: "2px solid purple",*/
                                             boxSizing: 'border-box',
                                             transition: "1s ease"
                                     }}/>}
                     mapElement={<div style={{ 
-                                            height: "93vh",
-                                            width: "100%",
-                                            display: "inline-block" 
+                                            height: "95vh",
+                                            width: mapSize,
+                                            display: "inline-block" ,
+                                            transition: "1s ease"
                                             /*border: "2px solid green"*/          
                                     }}/>}
                     onMapClick = {onMapClick}

@@ -2,6 +2,8 @@ import React, {useContext, useEffect, useState} from 'react';
 
 import {Button} from 'react-bootstrap';
 
+import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
+
 import { FavouritesContext,
          GetFavouritesContext,
          AccountContext 
@@ -125,12 +127,16 @@ const FavouriteButton = (props) => {
     if (favButton) {
 
         favouriteButton = (
-            <Button onClick={addToFavourite}>Favourite</Button>
+            <Button onClick={addToFavourite}>
+                <MdFavorite size={15}/>
+            </Button>
         );
     } else {
 
         favouriteButton = (
-            <Button onClick={() => removeFromFavourite(selectedSite)}>UnFavourite</Button>
+            <Button onClick={() => removeFromFavourite(selectedSite)}>
+                <MdFavoriteBorder size={15}/>
+            </Button>
         );
     }
 

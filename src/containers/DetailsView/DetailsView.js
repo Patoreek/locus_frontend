@@ -5,6 +5,8 @@ import { SiteContext,
 
 import { AuthContext } from '../../context/AuthContext';
 
+import { Button } from 'react-bootstrap';
+
 
 import StarRating from '../../components/StarRating/StarRating';
 import Comments from '../../components/Comments/Comments';
@@ -67,7 +69,7 @@ const Details = (props) => {
 
     return (
         <div className={classes.detailsContainer}>
-        <button onClick={goBackHandler}>Back</button>
+        <Button onClick={goBackHandler}>Back</Button>
 
         <div className={classes.nameContainer}>
             <div className={classes.siteTypeContainer}>
@@ -86,11 +88,11 @@ const Details = (props) => {
                     </div>
                 ))}
             </div>
-            <div className={classes.videosContainer}>
+            {/* <div className={classes.videosContainer}>
                 <h3>Videos</h3>
                 <p>{siteVideos}</p>
             </div>
-            {/* <div className={classes.buttonMediaContainer}>
+            <div className={classes.buttonMediaContainer}>
                 <button>Pictures</button>
                 <button>Videos</button>
             </div> */}

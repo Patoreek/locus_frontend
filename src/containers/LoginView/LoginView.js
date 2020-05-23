@@ -48,7 +48,7 @@ const LoginView = () => {
                     username: resData.username,
                     email: resData.email
                 }) 
-                history.push("/mySites");
+                history.push("/map");
             
         })
         .catch(err => {

@@ -50,7 +50,7 @@ export const AuthProvider = (props) => {
 
     const [panelSize, setPanelSize] = useState("30vw");
 
-    const [mapSize, setMapSize] = useState("70vw");
+    const [mapSize, setMapSize] = useState("70vw"); // 70vw
 
     const [searchBarStyle, setSearchBarStyle] = useState({
       width: "30vw",

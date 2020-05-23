@@ -15,6 +15,8 @@ import GuestMap from './GuestMap/GuestMap';
 import SearchBarMap from '../SearchBarMap/SearchBarMap';
 import Locate from '../Locate/Locate';
 
+import classes from './Map.module.css';
+
 
 
 

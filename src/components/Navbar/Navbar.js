@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useHistory} from 'react-router-dom';
 
 import classes from './Navbar.module.css';
-import logoSVG from '../../images/logo.svg';
+import logoSVG from '../../images/locusLogo.svg';
 
 import { AuthContext,
          AccountContext } from '../../context/AuthContext';
@@ -66,14 +66,14 @@ const Navbar = () => {
                         {isAuth ? <li className={classes.listItem}><a href="/favourites">Favourites</a></li> : null }
                         {isAuth ? <li className={classes.listItem}><a href="/mySites">My Sites</a></li> : null }
                         {isAuth ? <li className={classes.listItem}><a href="/profile">Profile</a></li> : null }
-                        {isAuth ? <li className={classes.listItem}>
-                            <b>Welcome, {account.username}!</b>
+                        {isAuth ? <li className={classes.listItemRight}><a onClick={logoutHandler}>Logout</a></li> : null }
+                        {isAuth ? <li className={classes.listItemName}>
+                            <p className={classes.name}>Welcome, <b>{account.username}!</b></p>
                         </li> : null }
-                        {isAuth ? <li className={classes.listItem}><a onClick={logoutHandler}>Logout</a></li> : null }
                            
 
-                        {!isAuth ? <li className={classes.listItem}><a href="/login">Login</a></li> : null }
-                        {!isAuth ? <li className={classes.listItem}><a href="/signup">Sign Up</a></li> : null }
+                        {!isAuth ? <li className={classes.listItemRight}><a href="/signup">Sign Up</a></li> : null }
+                        {!isAuth ? <li className={classes.listItemRight}><a href="/login">Login</a></li> : null }
                             
          
                     

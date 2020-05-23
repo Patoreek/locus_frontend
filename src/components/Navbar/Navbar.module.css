@@ -1,6 +1,9 @@
 .NavBar {
-    background-color: darkgoldenrod;
-    height: 7vh;
+    background-color: white;
+    height: 5vh;
+    width: 100%;
+    display: inline-block;
+    border-bottom: 2px solid rgb(141, 141, 141);
 }
 
 .uList {
@@ -9,30 +12,63 @@
     padding: 0;
     width: 100%;
     text-align: center;
+    font-size: 1em;
 }
 
 .listItem {
     display:inline-block;
-    margin:20px;
+    padding:0.4em 2em;
+    transition: .2s ease;
 }
 
-.listItem a {
+.listItemRight {
+    float:right;
+    padding:0.4em 2em;
+    transition: .2s ease;
+}
+
+.listItem a, .listItemRight a {
     text-decoration: none;
+    color:black;
+    font-size: 1.1em;
+    transition: .2s ease;
+
+}
+
+.listItemName {
+    float:right;
+    padding:0.5em 2em;
+    color: black;
+}
+
+.name {
     color: black;
 }
 
 .listItem a:hover,
-.listItem a:active {
-    color:#008cff;
+.listItem a:active,
+.listItemRight a:hover,
+.listItemRight a:active {
+    color:#3DA5D9;
+    /* -webkit-transform: scale(1.2) */
+}
+
+.listItem:hover,
+.listItem:active,
+.listItemRight:hover,
+.listItemRight:active {
+    transform: scale(1.3);
+    /* -webkit-transform: scale(1.2) */
 }
 
 .logo {
-    background-color: aqua;
-    width:8vw;
+    /* background-color: aqua; */
+    width: 4vw;
 }
 
 .logoItem {
-    display:inline-block;
-    background-color: pink;
-    margin: 20px;
+    float:left;
+    /* display:inline-block; */
+    /* background-color: pink; */
+    margin: 0.2em 0em 0em 1em ;
 }

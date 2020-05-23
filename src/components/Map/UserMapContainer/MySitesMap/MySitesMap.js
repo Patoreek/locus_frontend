@@ -12,6 +12,7 @@ import { Modal,
          Tab } from 'react-bootstrap';
 
 
+
 import { EditModalContext,
          DeleteModalContext } from '../../../../context/UserContext';
 
@@ -104,8 +105,8 @@ const MySitesMap = () => {
                         <h3><b>{selectedSite.name}</b></h3>
                         <h5><b>{selectedSite.area}</b></h5>
                         <div className={classes.buttonsContainer}>
-                            <button onClick = {editSiteHandler}>Edit</button>
-                            <button onClick = {showDeleteForm}>Delete</button>
+                            <Button variant="info" onClick = {editSiteHandler}>Edit</Button>
+                            <Button variant="danger" onClick = {showDeleteForm}>Delete</Button>
                         </div>
                     </div>
                    

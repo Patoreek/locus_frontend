@@ -32,9 +32,6 @@ const FavouritesList = (props) => {
 
     const removeFromFavourite = useContext(RemoveFavContext);
 
-    const commentHandler = () => {
-
-    }
 
     const moreDetailsHandler = (site) => {
         setMoreDetails(true);
@@ -52,8 +49,6 @@ const FavouritesList = (props) => {
                     <Button onClick={() => moreDetailsHandler(site)}>More Details...</Button>
                     
                                 <FavouriteButton site={site}/>
-                               
-                                <Button onClick={commentHandler}>Comment</Button>
                                 <EllipsesButton/>
                             </div>
                 </div>

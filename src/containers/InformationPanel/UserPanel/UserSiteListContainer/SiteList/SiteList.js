@@ -4,6 +4,8 @@ import { EditModalContext,
          DeleteModalContext } from '../../../../../context/UserContext';
 import { SiteContext } from '../../../../../context/DiveSiteContext';
 
+import { Button } from 'react-bootstrap';
+
 import classes from './SiteList.module.css';
 
 
@@ -36,14 +38,22 @@ const SiteList = (props) => {
                 <h6>Site Area: {site.area}</h6>
                 <p> Description: {site.description}</p>
                 <p> Date Created: {site.createdAt}</p>
-                <button onClick={() =>{
-                    setSelectedSite(site);
-                    editSiteHandler();
-                }}>Edit</button> 
-                <button onClick={() =>{
-                    setSelectedSite(site);
-                    showDeleteForm();
-                }}>Delete</button> 
+                <Button 
+                    variant="info"
+                    onClick={() =>{
+                        setSelectedSite(site);
+                        editSiteHandler();
+                }}>
+                    Edit
+                </Button> 
+                <Button 
+                    variant="danger"
+                    onClick={() =>{
+                        setSelectedSite(site);
+                        showDeleteForm();
+                }}>
+                    Delete
+                </Button> 
 
             </div>
         ))
