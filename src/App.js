@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
 
 import Navbar from './components/Navbar/Navbar';
+import Footer from './containers/Footer/Footer';
 
 import GuestView from './containers/GuestView/GuestView';
 import UserView from './containers/UserView/UserView';
@@ -102,7 +103,7 @@ function App() {
             <Route path="/viewprofile/:profileId" component={ViewProfileView}/>
         </DiveSiteProvider>
 
-
+        <Footer/>
       
       {/* API-KEY: AIzaSyA-9fLyV56TU5kt5qw3guZ4Vi3BXuDlNts */}
     </div>
