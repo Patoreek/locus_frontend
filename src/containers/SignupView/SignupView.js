@@ -43,66 +43,59 @@ const SignupView = () => {
             
             <Form className={classes.SignUpForm}>
             <h1 className={classes.SignUpHeader}>Sign up</h1>
-                <Form.Group as={Row} controlId="formHorizontalUsername">
-                    <Form.Label column sm={4}>
-                    Username:
-                    </Form.Label>
-                    <Col sm={8}>
+                <Form.Group as={Row} 
+                            controlId="formHorizontalUsername"
+                            className={classes.formGroup}>
                     <Form.Control
                         type="text"
                         placeholder="Username"
-                        onChange={e => setInputUsername(e.target.value)}/>
-                    </Col>
+                        onChange={e => setInputUsername(e.target.value)}
+                        className={classes.formInput}/>
                 </Form.Group>
 
-                <Form.Group as={Row} controlId="formHorizontalEmail">
-                    <Form.Label column sm={4}>
-                    Email:
-                    </Form.Label>
-                    <Col sm={8}>
+                <Form.Group as={Row}
+                            controlId="formHorizontalEmail"
+                            className={classes.formGroup}>
                     <Form.Control
                         type="email"
                         placeholder="Email"
-                        onChange={e => setInputEmail(e.target.value)}/>
-                    </Col>
+                        onChange={e => setInputEmail(e.target.value)}
+                        className={classes.formInput}/>
                 </Form.Group>
 
-                <Form.Group as={Row} controlId="formHorizontalPassword">
-                    <Form.Label column sm={4}>
-                    Password:
-                    </Form.Label>
-                    <Col sm={8}>
+                <Form.Group as={Row}
+                            controlId="formHorizontalPassword"
+                            className={classes.formGroup}>
                     <Form.Control 
                         type="password"
                         placeholder="Password"
-                        onChange={e => setInputPassword(e.target.value)}/>
-                    </Col>
+                        onChange={e => setInputPassword(e.target.value)}
+                        className={classes.formInput}/>
                 </Form.Group>
 
 
-                <Form.Group as={Row} controlId="formHorizontalPassword">
-                    <Form.Label column sm={4}>
-                    Reenter Password:
-                    </Form.Label>
-                    <Col sm={8}>
+                <Form.Group as={Row} 
+                            controlId="formHorizontalPassword"
+                            className={classes.formGroup}>
                     <Form.Control 
                         type="password" 
                         placeholder="Type password again"
-                        onChange={e => setInputConfirmPassword(e.target.value)}/>
-                    </Col>
+                        onChange={e => setInputConfirmPassword(e.target.value)}
+                        className={classes.formInput}/>
                 </Form.Group>
   
 
-                <Form.Group as={Row}>
-                    <Col sm={{ span: 10, offset: 1 }}>
-                    <Button type="submit" onClick={signupHandler}>Sign Up</Button>
-                    </Col>
+                <Form.Group as={Row}
+                            className={classes.formGroup}>
+                    <Button type="submit" 
+                            onClick={signupHandler}
+                            className={classes.formInput}>Sign Up</Button>
                 </Form.Group>
-                <Form.Group as={Row}>
-                    <Col sm={{ span: 10, offset: 1 }}>
+
+                <Form.Group as={Row}
+                            className={classes.formGroup}>
                     <p> Have an account already? </p>
                     <a href='/login'>Login</a>
-                    </Col>
                 </Form.Group>
             </Form>
         </div>

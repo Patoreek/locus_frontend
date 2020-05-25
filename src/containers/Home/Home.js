@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 
 import {useHistory} from 'react-router-dom';
 
+import { useMediaQuery } from '../../CustomHooks/useMediaQuery';
+
 
 import PlacesAutocomplete, {
     geocodeByAddress,
@@ -29,11 +31,17 @@ const Home = () => {
 
     }
 
+    const isRowBased = useMediaQuery('(max-width: 800px)');
+
+    console.log(isRowBased);
+
+    let style;
+
     return (
         <div className={classes.homeContainer}>
             <h1 className={classes.homeTitle}>Looking for your next underwater adventure?</h1> 
             <h3 className={classes.homeSlogan}> Discover dive sites all around the world.</h3>
-            <p className={classes.homeDescription}> A description of what this website is trying to achieve</p>
+            {/* <p className={classes.homeDescription}> A description of what this website is trying to achieve</p> */}
             <PlacesAutocomplete value={address}
                                 onChange={setAddress}
                                 onSelect={handleSelect}
@@ -46,14 +54,24 @@ const Home = () => {
                 <input {...getInputProps({placeholder: "Enter a Location"})} className={classes.searchBar}/>
                 <div className={classes.dropdownContainer}>
                     {loading ? <div> ...loading </div> : null}
-
                     {suggestions.map(suggestion => {
 
-                        const style = {
-                            backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
-                            color: "black",
-                            width: "40vw",
-                            margin: "0 auto"
+                        if (isRowBased) {
+                            style = {
+                                backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
+                                color: "black",
+                                width: "82vw",
+                                margin: "0 auto",
+                                padding: "1vw"
+                            }
+                        } else {
+                            style = {
+                                backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
+                                color: "black",
+                                width: "58vw",
+                                margin: "0 auto",
+                                padding: "1vw"
+                            }
                         }
 
                         return <div {...getSuggestionItemProps(suggestion, {style})}>

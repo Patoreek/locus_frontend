@@ -67,39 +67,41 @@ const LoginView = () => {
         <div className={classes.LoginContainer}>
             <Form className={classes.LoginForm}>
             <h1 className={classes.LoginHeader}>Log in</h1>
-                <Form.Group as={Row} controlId="formHorizontalEmail">
-                    <Form.Label column sm={4}>
-                    Email:
-                    </Form.Label>
-                    <Col sm={8}>
+            <p className={classes.LoginSubheader}>Welcome Back! Login to access additional features.</p>
+                <Form.Group as={Row}
+                    controlId="formHorizontalEmail"
+                    className={classes.formGroup}>
+                    
                     <Form.Control
                         type="email"
                         placeholder="Email"
-                        onChange={e => setInputEmail(e.target.value)}/>
-                    </Col>
+                        onChange={e => setInputEmail(e.target.value)}
+                        className={classes.formInput}/>
+                    
                 </Form.Group>
 
-                <Form.Group as={Row} controlId="formHorizontalPassword">
-                    <Form.Label column sm={4}>
-                    Password:
-                    </Form.Label>
-                    <Col sm={8}>
+                <Form.Group as={Row} 
+                            controlId="formHorizontalPassword"
+                            className={classes.formGroup}>
                     <Form.Control 
                         type="password"
                         placeholder="Password"
-                        onChange={e => setInputPassword(e.target.value)}/>
-                    </Col>
+                        onChange={e => setInputPassword(e.target.value)}
+                        className={classes.formInput}/>
                 </Form.Group>
 
-                <Form.Group as={Row}>
-                    <Col sm={{ span: 10, offset: 1 }}>
-                    <Button type="submit" onClick={loginHandler}>Log In</Button>
-                    </Col>
+                <Form.Group as={Row}
+                            className={classes.formGroup}>
+                  
+                    <Button type="submit"
+                            onClick={loginHandler}
+                            className={classes.formInput}>Log In</Button>
                 </Form.Group>
-                <Form.Group as={Row}>
-                    <Col sm={{ span: 10, offset: 1 }}>
+                <Form.Group as={Row}
+                            className={classes.formGroup}>
+                    
                     <a href='/signup'>Create an account</a>
-                    </Col>
+    
                 </Form.Group>
             </Form>
         </div>
