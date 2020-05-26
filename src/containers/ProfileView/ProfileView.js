@@ -107,7 +107,9 @@ const ProfileView = () => {
                     </div>
 
                     <div className={classes.profileFavContainer}>
-                        <h3 className={classes.profileFavHeader}>{firstName}'s Favourites</h3>
+                        <div className={classes.profileFavHeaderContainer}>
+                            <h3 className={classes.profileFavHeader}>{firstName}'s Favourites</h3>
+                        </div>
                         <div className={classes.favouritesContainer}>
                             {favourites.map(favourite => (
                                 <div className={classes.favouriteContainer}>
