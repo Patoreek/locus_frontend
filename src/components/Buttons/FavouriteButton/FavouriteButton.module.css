@@ -1,0 +1,10 @@
+.favouriteIcon {
+    color: blue !important;
+    width: 2.5vw;
+    height: 3vw;
+    transition: 0.2s ease;
+}
+
+.favouriteIcon:hover {
+    transform: scale(1.2);
+}

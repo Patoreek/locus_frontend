@@ -11,6 +11,8 @@ import { FavouritesContext,
 
 import { SiteContext } from '../../../context/DiveSiteContext';
 
+import classes from './FavouriteButton.module.css';
+
 
 const FavouriteButton = (props) => {
 
@@ -94,9 +96,9 @@ const FavouriteButton = (props) => {
             //console.log(data.isFav);
             
             if (isFav){
-                setFavButton(false);
-            } else {
                 setFavButton(true);
+            } else {
+                setFavButton(false);
             }
             
     }
@@ -118,7 +120,7 @@ const FavouriteButton = (props) => {
             const data = await response.json();
 
             //console.log(data.message);
-            setFavButton(false);
+            setFavButton(true);
             //const sites = data;
           
     }
@@ -127,16 +129,28 @@ const FavouriteButton = (props) => {
     if (favButton) {
 
         favouriteButton = (
-            <Button onClick={addToFavourite}>
-                <MdFavorite size={15}/>
-            </Button>
+            // <Button onClick={addToFavourite} 
+            //         className={classes.Button}>
+            //     <MdFavorite size={15}/>
+            // </Button><Button onClick={addToFavourite} 
+            <MdFavorite
+                size={20}
+                className={classes.favouriteIcon}
+                onClick={() => removeFromFavourite(selectedSite)}
+            />
+
         );
     } else {
 
         favouriteButton = (
-            <Button onClick={() => removeFromFavourite(selectedSite)}>
-                <MdFavoriteBorder size={15}/>
-            </Button>
+            // <Button onClick={() => removeFromFavourite(selectedSite)}
+            //         className={classes.Button}>
+            <MdFavoriteBorder
+            size={20}
+            className={classes.favouriteIcon}
+            onClick={() => addToFavourite(selectedSite)}
+            />
+            // </Button>
         );
     }
 

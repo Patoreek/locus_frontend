@@ -11,6 +11,8 @@ import { DetailsContext } from '../../context/DiveSiteContext';
 
 import DetailsView from '../DetailsView/DetailsView';
 
+import classes from './FavouritesView.module.css';
+
 
 
 const FavouritesView = () => {
@@ -42,9 +44,9 @@ const FavouritesView = () => {
     return (
         <div>
             {!isLoading && (
-                <div>
-                <h1> Favourites Section</h1>   
-                <h2>{account.username}</h2>
+                <div className={classes.favouritesContainer}>
+                <h1 className={classes.favouritesHeader}>{account.username}'s Favourites</h1>   
+                
                 {!moreDetails && (
                     <FavouritesList
                     favourites={favourites}

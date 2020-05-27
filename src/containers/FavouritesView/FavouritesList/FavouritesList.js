@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 
 import classes from './FavouritesList.module.css';
 
@@ -32,7 +32,6 @@ const FavouritesList = (props) => {
 
     const removeFromFavourite = useContext(RemoveFavContext);
 
-
     const moreDetailsHandler = (site) => {
         setMoreDetails(true);
         setSelectedSite(site);
@@ -42,15 +41,45 @@ const FavouritesList = (props) => {
         <div>
             {favourites.map(site => (
                 <div className={classes.favListContainer}>
-                    <h1>Site Name: {site.name}</h1>
-                    <h3>Site Area: {site.area}</h3>
-                    <p>Description: {site.description}</p>
-                    <div className={classes.buttonsContainer}>
-                    <Button onClick={() => moreDetailsHandler(site)}>More Details...</Button>
+
+                    <div className={classes.pictureContainer}>
                     
+                            <img src={'http://localhost:8080/' + site.images[0]}
+                                 className={classes.sitePicture}
+                                 alt="Image of divesite"/>
+                    
+            
+                    </div>
+
+                    <div className={classes.informationContainer}>
+
+                        <div className={classes.topHalfContainer}>
+                            <div className={classes.favouriteButtonContainer}>
                                 <FavouriteButton site={site}/>
-                                <EllipsesButton/>
                             </div>
+                            <div className={classes.siteNameContainer}>
+                                <h1 className={classes.siteName}>{site.name}, {site.area}</h1>
+                            </div>
+                        </div>
+
+                        <div className={classes.siteDescriptionContainer}>
+                            <p className={classes.siteDescription}>Description: {site.description}</p>
+                        </div>
+
+                        <div className={classes.buttonsContainer}>
+                            <div className={classes.moreDetailsButtonContainer}>
+                                <Button onClick={() => moreDetailsHandler(site)}
+                                        className={classes.moreDetailsButton}>
+                                            More Details...
+                                </Button>
+                            </div>
+                            <div className={classes.ellipsesButtonContainer}>
+                                    <EllipsesButton/>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
             ))}
 

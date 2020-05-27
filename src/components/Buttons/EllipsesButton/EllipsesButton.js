@@ -93,7 +93,7 @@ const EllipsesButton = () => {
       </Modal>
 
         <OverlayTrigger trigger="click" placement="right" overlay={popover}>
-            <Button variant="info"><FaEllipsisH/></Button>
+            <Button variant="info" className={classes.button}><FaEllipsisH/></Button>
         </OverlayTrigger>
         </div>
     );
