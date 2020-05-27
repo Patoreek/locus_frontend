@@ -1,30 +1,21 @@
 import React, {useEffect, useState, useContext} from 'react';
 
-import {Provider as StyletronProvider} from 'styletron-react';
-import {LightTheme, BaseProvider, styled} from 'baseui';
-import {Client as Styletron} from 'styletron-engine-atomic';
+import { useHistory } from 'react-router-dom';
 
-import { Input } from "baseui/input";
-import { FormControl } from "baseui/form-control";
-import { RadioGroup, Radio } from "baseui/radio";
-import { Textarea } from "baseui/textarea";
-import { Button } from "baseui/button";
-import { FileUploader } from "baseui/file-uploader";
 
 import { FilePond } from 'react-filepond';
+import "filepond/dist/filepond.min.css";
+
+
+import { Form,
+         Col,
+         Button } from 'react-bootstrap';
 
 import { AccountContext } from '../../context/AuthContext';
 
 import classes from './EditProfileView.module.css';
 
-const engine = new Styletron();
 
-const Centered = styled('div', {
-    display: 'inline-block',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100%',
-  });
 
 const EditProfileView = () => {
 
@@ -37,6 +28,7 @@ const EditProfileView = () => {
 
     const [account, setAccount] = useContext(AccountContext);
 
+    let history = useHistory();
 
     useEffect(() => {
         async function getProfile() {
@@ -62,6 +54,10 @@ const EditProfileView = () => {
         getProfile();
     }, []);
 
+    const cancelHandler = () => {
+        console.log('Cancel presesd');
+        history.push("/profile");
+    }
 
     const editProfileHandler = () => {
         console.log('First Name: ' + firstName);
@@ -103,73 +99,83 @@ const EditProfileView = () => {
 
     return (
         <div>
-            <h1>Edit Profile</h1>
+            <div className={classes.editProfileContainer}>
             
-            <StyletronProvider value={engine}>
-        <BaseProvider theme={LightTheme}>
-        <Centered>
-            <FormControl label={() => "First Name"} >
-                <Input
-                    value={firstName}
-                    onChange={e => setFirstName(e.target.value)}
-                    placeholder="First Name"
-                    />
-            </FormControl>
-
-            <FormControl label={() => "Last Name"}>
-                <Input 
-                    value={lastName}
-                    onChange={e => setLastName(e.target.value)}
-                    placeholder="Last Name" />
-            </FormControl>
-            <FormControl label={() => "Bio"}>
-                <Textarea
-                    value={bio}
-                    onChange={e => setBio(e.target.value)}
-                    placeholder="Tell us something about yourself"
-                />
-            </FormControl>
-
-
-            <FormControl label={() => "Location"}>
-                <Textarea
-                    value={location}
-                    onChange={e => setLocation(e.target.value)}
-                    placeholder="Where are you from?"
-                />
-            </FormControl>
-
-            <FormControl label={() => "License Type"}>
-                <Input
-                    value={licenseType}
-                    onChange={e => setLicenseType(e.target.value)}
-                    placeholder="Scuba Diving License Type?"
-                />
-            </FormControl>
-
-            <FormControl label={() => "Images"}>
-                <FilePond 
-                    allowMultiple={false}
-                    name={"profilePicture"}
-                    server={
-                        {
-                            url: "http://localhost:8080/user/uploadImages/" + account.id,
-                            process:{
-                                withCredentials: true
+            <Form className={classes.formContainer}>
+                    <h1 className={classes.formHeader}>Edit Profile</h1>
+                    <Form.Row className={classes.formRow}>
+                        <Col className={classes.formCol}>
+                        <Form.Label className={classes.label}>First Name</Form.Label>
+                        <Form.Control placeholder="First Name" 
+                                    onChange={e => setFirstName(e.target.value)}
+                                    value={firstName}
+                                    className={classes.formInput} />
+                        </Col>
+                        <Col className={classes.formCol}>
+                        <Form.Label className={classes.label}>Last Name</Form.Label>
+                        <Form.Control placeholder="Last Name"
+                                    onChange={e => setLastName(e.target.value)}
+                                    value={lastName}
+                                    className={classes.formInput} />
+                        </Col>
+                    </Form.Row>
+                    <Form.Row className={classes.formRow}>
+                        <Col className={classes.formCol}>
+                            <Form.Label className={classes.label}>Bio</Form.Label>
+                                <Form.Control as="textarea"
+                                            rows="10"
+                                            placeholder="Bio"
+                                            onChange={e => setBio(e.target.value)}
+                                            value={bio}
+                                            className={classes.formTextArea} />
+                        </Col>
+                    </Form.Row>
+                    <Form.Row className={classes.formRow}>
+                        <Col className={classes.formCol}>
+                        <Form.Label className={classes.label}>Location</Form.Label>
+                            <Form.Control placeholder="Where are you from?"
+                                        onChange={e => setLocation(e.target.value)} 
+                                        value={location}
+                                        className={classes.formInput}/>
+                        </Col>
+                        <Col className={classes.formCol}>
+                        <Form.Label className={classes.label}>License Type</Form.Label>
+                            <Form.Control placeholder="License Type"
+                                        onChange={e => setLicenseType(e.target.value)}
+                                        value={licenseType}
+                                        className={classes.formInput} />
+                        </Col>
+                    </Form.Row>
+                        <Form.Label className={classes.labelImages}>Upload Images</Form.Label>
+                        <FilePond 
+                            className={classes.filePond}
+                            allowMultiple={false}
+                            name={"profilePicture"}
+                            server={
+                                {
+                                    url: "http://localhost:8080/user/uploadImages/" + account.id,
+                                    process:{
+                                        withCredentials: true
+                                    }
+                                }
                             }
-                        }
-                    }
-                />
-            </FormControl>
+                        />
+                
+                <Button variant="primary"
+                        type="submit"
+                        className={classes.editButton}
+                        onClick={(e) => editProfileHandler(e)}>
+                    Edit
+                </Button>
 
+                <Button variant="secondary"
+                        className={classes.editButton}
+                        onClick={cancelHandler}>
+                    Cancel
+                </Button>
+            </Form>
 
-            <Button onClick={editProfileHandler}>Edit</Button>
-
-
-        </Centered>
-        </BaseProvider>
-        </StyletronProvider>
-
+            </div>
         </div>
     );
 };

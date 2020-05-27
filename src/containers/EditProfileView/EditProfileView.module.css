@@ -1,0 +1,65 @@
+.editProfileContainer {
+    display: inline-block;
+    margin: 0 auto;
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(97,221,255,0.7301295518207283) 52%, rgba(84,167,255,0.542454481792717) 100%);
+    width: 80vw;
+    height: 95vh;
+
+    border-left: 2px solid lightgrey;
+    border-right: 2px solid lightgrey;
+}
+
+.formContainer {
+    display: inline-block;
+    margin: 0 auto;
+    width: 60%;
+    background-color: ghostwhite;
+    border: 2px solid lightgrey;
+    border-radius: 1vw;
+    margin-top: 3vw;
+}
+
+.formHeader {
+    font-size: 2vw;
+}
+
+
+.formRow {
+    /* background-color: red; */
+    padding: 1vw 0vw 0vw 2vw;
+}
+
+.formCol {
+    /* background-color: green; */
+}
+
+.formInput {
+    width: 20vw;
+}
+
+.formTextArea {
+    width: 43.2vw;
+    resize: none;
+}
+
+.filePond {
+    margin: 0 auto;
+    width: 90%;
+}
+
+.label {
+    /* background-color: red; */
+    width: 100%;
+    text-align: left;
+}
+
+.labelImages {
+    width: 90%;
+    text-align: left;
+    margin-top: 1vw;
+}
+
+.editButton {
+    margin: 1vw;
+    width: 5vw;
+}
