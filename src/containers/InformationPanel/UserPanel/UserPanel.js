@@ -22,7 +22,7 @@ const UserPanel = () => {
 
     return (
         <div>
-                <ToggleButtons/>
+                {/* <ToggleButtons/> */}
                 <UserSiteListContainer/>
         </div>
     );

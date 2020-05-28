@@ -122,8 +122,9 @@ const ReviewStars = (props) => {
                 setValue(newValue);
                 submitRatingHandler(newValue);
               }}
+              style={props.guestMapStyle}
         />
-        <p className={customClasses.totalRatings}><b>({totalRatings})</b></p>
+        <p className={customClasses.totalRatings} style={props.totalRatingStyle}><b>({totalRatings})</b></p>
         </div>
     )}
     {!isAuth && (

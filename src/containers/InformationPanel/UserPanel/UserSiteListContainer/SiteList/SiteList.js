@@ -34,27 +34,49 @@ const SiteList = (props) => {
     return (
         sites.map(site => (
             <div className={classes.siteContainer}>
-                <h4>Site Name: {site.name} </h4>
-                <h6>Site Area: {site.area}</h6>
-                <p> Description: {site.description}</p>
-                <p> Date Created: {site.createdAt}</p>
-                <Button 
-                    variant="info"
-                    onClick={() =>{
-                        setSelectedSite(site);
-                        editSiteHandler();
-                }}>
-                    Edit
-                </Button> 
-                <Button 
-                    variant="danger"
-                    onClick={() =>{
-                        setSelectedSite(site);
-                        showDeleteForm();
-                }}>
-                    Delete
-                </Button> 
+                <div className={classes.siteImageContainer}>
 
+                    <img src={'http://localhost:8080/' + site.images[0]}
+                        className={classes.siteImage}
+                    />
+                </div>
+
+                <div className={classes.siteNameContainer}>
+                    <h5  className={classes.siteName}>
+                             {site.name}, {site.area}
+                    </h5>
+                </div>
+
+                <div className={classes.siteDescriptionContainer}>
+                    <p> {site.description} </p>
+                    <div className={classes.moreDetailsButtonContainer}>
+                    </div>
+                </div>
+
+                <div className={classes.editButtonContainer}>
+                    <Button 
+                        variant="info"
+                        onClick={() =>{
+                            setSelectedSite(site);
+                            editSiteHandler();
+                        }}
+                        className={classes.editButton}>
+                        Edit
+                    </Button> 
+                </div>
+
+                <div className={classes.deleteButtonContainer}>
+                    <Button 
+                        variant="danger"
+                        onClick={() =>{
+                            setSelectedSite(site);
+                            showDeleteForm();
+                        }}
+                        className={classes.deleteButton}>
+                        Delete
+                    </Button> 
+                </div>
+            
             </div>
         ))
             

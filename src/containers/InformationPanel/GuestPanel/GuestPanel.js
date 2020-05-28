@@ -37,22 +37,65 @@ const GuestPanel = () => {
         }
     }
 
+    const style = {
+        backgroundColor: "rgba(255, 255, 255, 0.75)",
+        padding: "0.5vw 1vw 0vw 1vw",
+        borderLeft: "1px solid slateblue",
+        borderTop: "1px solid slateblue",
+        borderBottom: "1px solid slateblue",
+        overflow: "hidden",
+        borderRadius: "0.2vw 0vw 0vw 0vw"
+    }
+
+    const totalRatingStyle = {
+        display:"none"
+    }
 
     return (
         <div>
-            <ToggleButtons/>
-            <h1>GUEST PANEL</h1>
+            {/* <ToggleButtons/> */}
+            <h1 className={classes.panelHeader}>Divesites</h1>
         {diveSites.map(site => (
             <div className={classes.siteContainer}>
-            <b>{site.name}, {site.area}</b>
-            <p> {site.description} </p>
-            <img src={'http://localhost:8080/' + site.images[0]}
-                 className={classes.siteImage}
-            />
-            <StarRating siteRatings = {site.ratings}/>
-            {isAuth ? <FavouriteButton site={site}/> : null}
-            <Button onClick={() => moreDetailsHandler(site)}>More Details</Button>
-            <EllipsesButton/>
+                <div className={classes.siteImageContainer} 
+                     onClick={() => moreDetailsHandler(site)}>
+
+                    <img src={'http://localhost:8080/' + site.images[0]}
+                        className={classes.siteImage}
+                    />
+                </div>
+
+                <div className={classes.favButtonContainer}>
+                    {isAuth ? <FavouriteButton site={site}/> : null}
+                </div>
+
+                <div className={classes.siteRatingsContainer}>
+                    <StarRating siteRatings = {site.ratings}
+                                guestMapStyle={style}
+                                totalRatingStyle={totalRatingStyle}/>
+                </div>
+
+
+                <div className={classes.siteNameContainer}>
+                    <h5  className={classes.siteName}
+                         onClick={() => moreDetailsHandler(site)}>
+                             {site.name}, {site.area}
+                    </h5>
+                    <div className={classes.ellipsesButtonContainer}>
+                        <EllipsesButton/>
+                    </div>
+                    
+                </div>
+
+                <div className={classes.siteDescriptionContainer}>
+                    <p> {site.description} </p>
+                    <div className={classes.moreDetailsButtonContainer}>
+                    <Button onClick={() => moreDetailsHandler(site)}
+                            className={classes.moreDetailsButton}
+                            >More Details...</Button>
+                    </div>
+                </div>
+            
             </div>
         ))}
 
