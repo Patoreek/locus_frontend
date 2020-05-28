@@ -4,8 +4,32 @@
     left: 80vw;
     z-index: 10;
     border-radius: 10%;
-    padding: 9px;
+    /* padding: 0.5vw 1vw; */
     height: 3vw;
     transition: 1s ease;
+    border-radius: 0vw 0.2vw 0.2vw 0vw;
+
 }
 
+.icon {
+    transform: scale(1.2);
+}
+
+
+@media screen and (min-width: 801px) and (max-width: 1279px) { 
+    .locateButton {
+        height: 4vh;
+ 
+    
+    }
+}
+
+@media screen and (max-width: 800px) { 
+    .locateButton {
+        height: 4vh;
+    }
+
+    .locateButton {
+        margin-top: 5vh;
+    }
+}

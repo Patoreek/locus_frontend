@@ -33,7 +33,7 @@ const Locate = (props) => {
                     left: locateButtonStyle.left,
                     display: locateButtonStyle.display
                 }}
-                ><MdMyLocation size ={ 30 }/></Button>
+                ><MdMyLocation className={classes.icon}/></Button>
     );
 };
 

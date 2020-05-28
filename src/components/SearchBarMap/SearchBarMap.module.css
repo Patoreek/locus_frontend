@@ -13,5 +13,26 @@
     /* width: 30vw; */
     height: 3vw;
     transition: 1s ease;
+    border-right: none;
+    padding-left: 1vw;
+    border-radius: 0.2vw 0vw 0vw 0.2vw;
     
+}
+
+@media screen and (min-width: 801px) and (max-width: 1279px) { 
+    .comboboxInput {
+        height: 4vh;
+ 
+    
+    }
+}
+
+@media screen and (max-width: 800px) { 
+    .comboboxInput {
+        height: 4vh;
+    }
+
+    .comboboxDiv {
+        margin-top: 5vh;
+    }
 }
