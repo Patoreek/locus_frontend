@@ -1,3 +1,8 @@
+
+.favouritesHeader {
+    font-size: 3vw;
+}
+
 .favListContainer {
     display: inline-block;
     margin: 0 auto;
@@ -63,6 +68,7 @@
     background-color: white;
     border-bottom: 2px solid lightgrey;
     font-size: 1.2vw;
+    overflow: hidden;
 }
 
 .buttonsContainer {

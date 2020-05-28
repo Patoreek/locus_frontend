@@ -1,7 +1,6 @@
 import React, {useEffect, useContext, useState} from 'react';
 import { useHistory } from 'react-router-dom';
-import { AuthContext, 
-         AccountContext, 
+import { AuthContext,  
          FavouritesContext,
          GetFavouritesContext } from '../../context/AuthContext';
 
@@ -18,7 +17,6 @@ import classes from './FavouritesView.module.css';
 const FavouritesView = () => {
 
     const [isAuth, setIsAuth] = useContext(AuthContext);
-    const [account, setAccount] = useContext(AccountContext);
     const [isLoading, setIsLoading] = useState(true);
     const [favourites, setFavourites] = useContext(FavouritesContext);
 
@@ -44,8 +42,7 @@ const FavouritesView = () => {
     return (
         <div>
             {!isLoading && (
-                <div className={classes.favouritesContainer}>
-                <h1 className={classes.favouritesHeader}>{account.username}'s Favourites</h1>   
+                <div className={classes.favouritesContainer}>  
                 
                 {!moreDetails && (
                     <FavouritesList

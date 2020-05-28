@@ -6,6 +6,7 @@ import { Button } from 'react-bootstrap';
 
 import { RemoveFavContext,
          FavouritesContext,
+         AccountContext,
          GetFavouritesContext } from '../../../context/AuthContext';
 
 import { SiteContext } from '../../../context/DiveSiteContext';
@@ -28,6 +29,8 @@ const FavouritesList = (props) => {
 
     const [ favourites, setFavourites ] = useContext(FavouritesContext);
 
+    const [account, setAccount] = useContext(AccountContext);
+
     const getFavourites = useContext(GetFavouritesContext);
 
     const removeFromFavourite = useContext(RemoveFavContext);
@@ -39,6 +42,7 @@ const FavouritesList = (props) => {
 
     return (
         <div>
+            <h1 className={classes.favouritesHeader}>{account.username}'s Favourites</h1> 
             {favourites.map(site => (
                 <div className={classes.favListContainer}>
 

@@ -6,10 +6,6 @@
     border-right: 1px solid #003F91;
 }
 
-.favouritesHeader {
-    font-size: 3vw;
-}
-
 @media screen and (max-width: 800px) {
     .favouritesContainer {
         width: 100%;

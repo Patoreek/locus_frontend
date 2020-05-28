@@ -1,11 +1,64 @@
-.commentContainer {
+.commentsContainer {
     height: auto;
     width:90%;
-    background-color: ghostwhite;
-    border: 1px solid black;
-    border-radius: 10px;
+    /* background-color: ghostwhite; */
+    border-bottom: 1px solid grey;
     margin: 0 auto;
     margin-top: 0.5vh;
     margin-bottom: 0.5vh;
-    padding:10px;
+    padding:0vw;
 }
+
+.form {
+    float:left;
+    width: 95%;
+    margin: 0 auto;
+    /* background-color: greenyellow; */
+}
+
+.addCommentHeader {
+    float:left;
+    /* background-color: rebeccapurple; */
+}
+
+.commentTextArea {
+    float:left;
+    /* background-color: royalblue; */
+    resize: none;
+}
+
+.commentButton {
+    float:right;
+    margin-left: 1vw;
+}
+
+.usernameContainer {
+    float:left;
+    /* background-color: seagreen; */
+}
+
+.deleteButtonContainer {
+    float:right;
+}
+
+.deleteButton {
+    background-color: transparent;
+    border: none;
+    color: red;
+}
+
+.commentContainer {
+    width: 100%;
+    margin-top: 0.5vw;
+    text-align: left;
+    display: inline-block;
+    /* background-color: pink; */
+}
+
+@media screen and (min-width: 801px) and (max-width: 1280px) {
+    .commentTextArea {
+        margin-top: 1vw;
+    }
+    
+}
+

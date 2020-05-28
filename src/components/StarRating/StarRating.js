@@ -6,6 +6,8 @@ import { AuthContext } from '../../context/AuthContext';
 
 import { SiteContext } from '../../context/DiveSiteContext';
 
+import customClasses from './StarRating.module.css';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -121,7 +123,7 @@ const ReviewStars = (props) => {
                 submitRatingHandler(newValue);
               }}
         />
-        <p><b>({totalRatings})</b></p>
+        <p className={customClasses.totalRatings}><b>({totalRatings})</b></p>
         </div>
     )}
     {!isAuth && (

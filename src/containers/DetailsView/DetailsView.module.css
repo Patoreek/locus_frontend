@@ -1,102 +1,213 @@
 .detailsContainer {
     width: 100%;
-    height:93vh;
-    background-color: grey;
+    height:95vh;
+    background-color: ghostwhite;
     display: inline-block;
     overflow:scroll;
 }
 
+.backButtonContainer {
+    text-align: left;
+    padding: 0.5vw 0.5vw ;
+    width: 100%;
+    height:auto;
+    background-color: ghostwhite;
+    border-bottom: 2px solid grey;
+    position: sticky;
+    z-index: 15;
+    top:0;
+}
+
+.carousel {
+    width: 100%;
+    height:70vh;
+}
+
+.carouselImage {
+    width: 100%;
+    height: 70vh;
+    border-bottom: 2px solid grey;
+
+}
+
 .siteTypeContainer {
-    width: 20%;
-    height:10vh;
-    background-color: antiquewhite;
-    float:left;
+    position: relative;
+    width: 20vw;
+    margin: -9vw 0vw;
+    padding-left: 5vw;
+    /* background-color: indianred; */
+    z-index: 10 !important;
+}
+
+.icon {
+    z-index: 50;
+    width: 15vw;
+    height: 15vw;
+    border-radius: 10vw;
+    border: 2px solid grey;
 }
 
 .nameContainer {
-    width: 100%;
-    height:10vh;
-    background-color: aqua;
-    display: inline-block;
+    /* display: inline-block; */
+    float:left;
+    text-align: left;
+    padding: 1vw;
+    margin-top: 3vw;
+    margin-left: 20vw;
+    width: 40vw;
+    /* background-color: greenyellow; */
 }
 
-.mediaContainer {
-    width: 100%;
-    height:70vh;
-    background-color: #00ff95;
-    display: inline-block; 
+.siteName {
+    font-size: 3vw;
 }
-
-
 
 .reviewContainer {
-    width:50%;
-    height:10vh;
-    background-color: #043bb1;
+    /* background-color: purple; */
     float:left;
-}
-
-.buttonsContainer {
-    width:50%;
-    height:10vh;
-    background-color: #0fa9b4;
-    display: inline-block; 
+    margin-top: 3vw;
+    width:19.8vw;
+    padding-top: 1vw;
+    /* padding: 1.5vw 2.5vw 0vw 1.25vw; */
 }
 
 .descriptionContainer {
-    width:75%;
-    height:50vh;
-    background-color: #eeff00;
-    /* display: inline-block; */
-    float:left;
+   float: left;
+    width: 60%;
+    height: 30vh;
+    /* background-color: hotpink; */
+    overflow: hidden;
+    
+
+
 }
 
-.depthContainer {
-    width:25%;
-    height:10vh;
-    background-color: #ff4800;
-    display: inline-block; 
-}
-
-.visibilityContainer {
-    width:25%;
-    height:10vh;
-    background-color: #4476e0;
-    display: inline-block; 
+.description {
+    padding: 1vw;
 }
 
 .weatherContainer {
-    width:25%;
-    height:30vh;
-    background-color: #e044e0;
-    display: inline-block; 
+    float: left;
+    width: 40%;
+    height: 30vh;
+    /* background-color: mediumturquoise; */
 }
 
-.waterMapContainer {
-    width:25%;
-    height:10vh;
-    background-color: #13f313;
-    display: inline-block; 
+.tabsSection {
+    /* background-color: greenyellow; */
 }
 
 .sightsContainer {
-    width:100%;
-    height:30vh;
-    background-color: #eb0808;
-    display: inline-block; 
+    float:left;
+    width: 40%;
+    height: 40vw;
+    /* background-color: saddlebrown; */
+
+}
+
+.sightsTab {
+    padding: 1vw;
+}
+
+.depthContainer {
+    float: left;
+    width: 20%;
+    height: 5vw;
+    /* background-color: powderblue; */
+}
+
+.waterMapContainer {
+    margin: 0 auto;
+    margin-top: 5vw;
+    width: 70%;
+    height: 10vw;
+    /* background-color: orange; */
 }
 
 .commentsContainer {
-    width:100%;
-    height:auto;
-    background-color: #5cd416;
-    display: inline-block; 
+    float:left;
+    width: 60%;
+    height: 40vw;
+    overflow: scroll;
 }
 
-.images {
-    display:inline-block;
+.commentsHeader {
+    text-align: left;
+    margin: 1vw 2vw;
+    width: 100%;
+    font-size: 1.5vw;
 }
 
-.picturesContainer {
-    /* background-color: red; */
+
+@media screen and (min-width: 801px) and (max-width: 1280px) {
+
+    .reviewContainer {
+        background-color: purple;
+        float:left;
+        margin-top: 3vw;
+        width:19.5vw;
+        padding-top: 1vw;
+        /* padding: 1.5vw 2.5vw 0vw 1.25vw; */
+    }
+
+    /* .tabsSection {
+        display: flex;
+    } */
+}
+
+@media screen and (max-width: 800px) {
+
+    .siteTypeContainer {
+        width: 25vw;
+    }
+
+    .icon {
+        width: 20vw;
+        height: 20vw;
+    }
+
+    .nameContainer {
+        /* display: inline-block; */
+        float:left;
+        text-align: left;
+        padding: 2vw 0vw 0vw 2vw;
+        margin-top: -2vw;
+        margin-left: 25vw;
+        width: 75vw;
+        background-color: greenyellow;
+    }
+
+    .siteName {
+        font-size: 4.5vw;
+    }
+
+    .reviewContainer {
+        display: none;
+    }
+
+    .descriptionContainer {
+        float: left;
+         width: 100%;
+         height: 30vh;
+         background-color: hotpink;
+         overflow: hidden;
+    }
+
+    .weatherContainer {
+        float: left;
+        width: 100%;
+        height: 30vh;
+        background-color: mediumturquoise;
+    }
+
+    .sightsContainer {
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .commentsContainer {
+        margin: 0 auto;
+        width: 100%;
+    }
+
 }

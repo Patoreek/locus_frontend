@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Col, Row } from 'react-bootstrap';
 
 import { SiteContext } from '../../context/DiveSiteContext';
 
@@ -49,6 +49,11 @@ const Comments = () => {
     getComments();
 
     }, []);
+
+
+    const cancelComment = () => {
+        setComment("");
+    }
 
 
     const submitComment = () => {
@@ -122,18 +127,39 @@ const Comments = () => {
     return (
         <div>
             {isAuth && (
-                <Form>
-                    <Form.Group controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>Add Comment</Form.Label>
+                <Form className={classes.form}>
+                    <Form.Group controlId="exampleForm.ControlTextarea1" as={Row} >
+                    <Form.Label className={classes.addCommentHeader} column sm="3">{account.username} says </Form.Label>
+                        <Col sm="9">
                         <Form.Control as="textarea" 
-                                    rows="3"
+                                    rows="1"
                                     name="comment"
                                     onChange={e => setComment(e.target.value)}
                                     value={comment}
+                                    placeholder="Add a comment..."
+                                    className={classes.commentTextArea}
                         />
-                        <Button variant="primary" onClick={submitComment}>
+                        </Col>
+                    </Form.Group>
+                        <Form.Group controlId="exampleForm.ControlTextarea1" as={Row} >
+                        <Col sm="12">
+                    
+                        <Button variant="primary" 
+                                onClick={submitComment}
+                                className={classes.commentButton}
+                        >
                             Comment
                         </Button>
+
+                        <Button variant="secondary" 
+                                onClick={cancelComment}
+                                className={classes.commentButton}
+                        >
+                            Cancel
+                        </Button>
+
+
+                        </Col>
                     </Form.Group>
                 </Form>
             )}
@@ -141,16 +167,26 @@ const Comments = () => {
                 <b>Log in or Sign up to add comments.</b>
             )}
 
-
+            
             {siteComments.map(comment => (
-                <div className={classes.commentContainer}>
-                    <h1>Username:<a href={"/viewprofile/" + comment.userId}> {comment.commentUsername}</a></h1>
-                    <h3> {comment.userComment}</h3>
-                    <p>CommentId = {comment.commentId}</p>
-                    <p>UserId = {comment.userId}</p>
+                <div className={classes.commentsContainer}>
+                    <div  className={classes.usernameContainer}>
+                        <h6 className={classes.commentUsername}><a href={"/viewprofile/" + comment.userId}> {comment.commentUsername}</a></h6>
+                    </div>
+
                     {account.id == comment.userId && (
-                        <button onClick={() => deleteCommentHandler(comment.commentId)}> Delete </button>
+                        <div  className={classes.deleteButtonContainer}>
+                            <Button variant="danger" 
+                                    onClick={() => deleteCommentHandler(comment.commentId)}
+                                    className={classes.deleteButton}> Delete </Button>
+                        </div>
                     )}
+
+                    <div  className={classes.commentContainer}>
+                        <p> {comment.userComment}</p>
+                    </div>
+                    {/* <p>CommentId = {comment.commentId}</p>
+                    <p>UserId = {comment.userId}</p> */}
                 </div>
             ))}
             

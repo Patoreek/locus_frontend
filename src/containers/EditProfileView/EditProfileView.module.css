@@ -3,8 +3,7 @@
     margin: 0 auto;
     background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(97,221,255,0.7301295518207283) 52%, rgba(84,167,255,0.542454481792717) 100%);
     width: 80vw;
-    height: 95vh;
-
+    height: auto;
     border-left: 2px solid lightgrey;
     border-right: 2px solid lightgrey;
 }
@@ -17,9 +16,11 @@
     border: 2px solid lightgrey;
     border-radius: 1vw;
     margin-top: 3vw;
+    margin-bottom: 3vw;
 }
 
 .formHeader {
+    margin-top: 2vw;
     font-size: 2vw;
 }
 
@@ -62,4 +63,66 @@
 .editButton {
     margin: 1vw;
     width: 5vw;
+}
+
+@media screen and (max-width: 800px) {
+
+    .editProfileContainer {
+        width: 100vw;
+    }
+    
+    .formContainer {
+        width: 80%;
+    }
+
+    .formHeader {
+        font-size: 5vw;
+    }
+    
+    
+    .formRow {
+        /* background-color: red; */
+        padding: 5vw 0vw 0vw 2vw;
+    }
+    
+    .formCol {
+        /* background-color: green; */
+    }
+    
+    .formInput {
+        width: 30vw;
+        font-size: 3vw;
+    }
+    
+    .formTextArea {
+        width: 98%;
+        resize: none;
+        font-size: 3vw;
+    }
+    
+    .filePond {
+        margin: 0 auto;
+        width: 90%;
+    }
+    
+    .label {
+        /* background-color: red; */
+        width: 100%;
+        text-align: left;
+        font-size: 3vw;
+    }
+    
+    .labelImages {
+        width: 90%;
+        text-align: left;
+        margin-top: 1vw;
+        font-size: 3vw;
+    }
+    
+    .editButton {
+        margin: 1vw 3vw;
+        width: auto;
+        font-size: 3vw;
+    }
+
 }
