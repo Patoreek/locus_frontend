@@ -9,9 +9,9 @@
 }
 
 .LoginForm {
-    width: 25vw;
+    width: 500px;
     margin: 0 auto;
-    margin-top: 5vw;
+    margin-top: 100px;
     padding: 1vw 1vw;
     border: 1px solid black;
     border-radius: 10px;
@@ -22,17 +22,22 @@
 
 .LoginHeader {
     padding: 0.5vw 0vw 0vw 0vw;
-    font-size: 2.5vw;
+    font-size: 36px;
+}
+
+.LoginSubheader {
+    font-size: 16px;
 }
 
 .formInput {
     width: 100%;
     display: inline-block;
+    font-size: 18px;
 }
 
 .formGroup {
     display: block;
-    width: 15vw;
+    width: 400px;
     border-radius: 10px;
     margin: 0 auto;
     margin-top: 1vw;
@@ -43,7 +48,7 @@
     .LoginForm {
         width: 80vw;
         margin-top: 20vw;
-        padding: 2vw 1vw;
+        padding: 3vw 1vw;
   
     }
 
@@ -56,27 +61,33 @@
         margin-bottom: 1vw;
     }
 
+    .formInput {
+        font-size: 16px;
+    }
+    
+
     .LoginHeader {
-        font-size: 6vw;
+        font-size: 32px;
+        padding-bottom: 10px;
     }
 
     .LoginSubheader {
-        font-size: 4vw;
+        font-size: 18px;
     }
 }
 
 /* @media screen and (max-width: 1280px) { */
     @media screen and (min-width: 801px) and (max-width: 1280px) {
     .LoginForm {
-        width: 25vw;
-        margin-top: 0vw;
-        padding: 2vw 1vw;
+        width: 400px;
+        margin-top: 75px;
+        padding: 3vw 1vw;
   
     }
 
     .formGroup {
         display: block;
-        width: 20vw;
+        width: 350px;
         border-radius: 10px;
         margin: 0 auto;
         margin-top: 2vw;
@@ -85,6 +96,7 @@
 
     .LoginHeader {
         font-size: 3vw;
+        padding-bottom: 10px;
     }
 
 }

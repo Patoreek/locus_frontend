@@ -1,132 +1,112 @@
-.infowindowContainer {
-    border: 2px solid black;
-    width:99%;
-    padding: 0;
-    margin: 0;
-}
 
-.siteTypeContainer {
-    font-size: 1.2em;
+.siteContainer {
+    position: relative;
+    width: 98%;
     height:auto;
-    width:auto;
-    background-color: #ff0000;
+    background-color: white;
+    margin: 0 auto;
+    margin-top: 1vh;
+    padding: 0px;
+    border: 2px solid lightgrey;
+    border-radius: 0.5vw;
+}
+
+.siteContainer:hover {
+    border: 2px solid grey;
+}
+
+.siteImage {
     float: left;
-    z-index: 5;
-    overflow:
+    object-fit: cover;
+    width: 100%;    
+    height: 100%;
+    border-radius: 0.4vw 0.4vw 0vw 0vw;
+    border-bottom: 1px solid slateblue;
 }
 
-.siteTypeContainer h3, .siteTypeContainer p {
-
-    float:left;
+.siteImageContainer {
+    width: 100%;
+    height: 30vh;
 }
 
-.nameContainer{
-    font-size: 1.2em;
-    height:10vh;
-    width:100%;
-    background-color: yellowgreen;
-    padding: 0;
-    margin: 0;
+.siteRatingsContainer {
+    z-index: 20;
+    position: relative;
+    float: right;
+    top: -3.3vw;
+    margin-bottom: -4vw;
+
+}
+
+.siteNameContainer {
+    width: 100%;
+    display: inline-block;
+    /* background-color: hotpink; */
+    border-bottom: 2px solid grey;
+    width: 98%;
+    padding-top: 0.5vw;
+}
+
+.siteName {
+    font-size: 1.5vw;
     display: inline-block;
 }
 
-.mediaContainer {
-    font-size: 1.2em;
-    height:45vh;
-    width:100%;
-    background-color: blueviolet;
-    display: inline-block;
+.siteName:hover {
+    color:slateblue;
 }
 
-.descriptionContainer {
-    font-size: 1.2em;
-    height:25vh;
-    width:50%;
-    background-color: green;
-    /* display: inline-flex; */
-    float: left;
+.siteDescriptionContainer {
+    /* background-color: lawngreen; */
+    position: relative;
+    margin: 0 auto;
+    width: 98%;
+    height: 20vh;
+    overflow: hidden;
+    text-align: left;
 }
 
-.depthContainer {
-    font-size: 1.2em;
-    height:5vh;
-    width:50%;
-    background-color: orange;
-    display: inline-flex; 
+.siteDescription {
+    font-size: 1vw;
 }
 
-.visibilityContainer {
-    font-size: 1.2em;
-    height:5vh;
-    width:50%;
-    background-color: gold;
-    display: inline-flex; 
+.favButtonContainer {
+    background-color: rgba(255, 255, 255, 0.75);
+    z-index: 20;
+    position: relative;
+    float: right;
+    top: -30vh;
+    padding: 0.2vw 0.6vw;
+    margin-bottom: -4vw;
+    border-radius: 0vw 0.5vw 0vw 0.5vw;
+    border-left: 1px solid grey;
+    border-bottom: 1px solid grey;
 }
 
-.weatherContainer {
-    font-size: 1.2em;
-    height:5vh;
-    width:50%;
-    background-color: #00d9ff;
-    display: inline-flex; 
-}
-/* WILL BE PUT INTO MORE DETAILS PAGE
-.waterMapContainer {
-    font-size: 1.2em;
-    height:5vh;
-    width:50%;
-    background-color: #c300ff;
-    display: inline-flex; 
-} */
+.moreDetailsButtonContainer {
+    position: absolute;
+    bottom:0;
+    right:0;
+    background-color: white;
 
-.sightsContainer{
-    font-size: 1.2em;
-    height:5vh;
-    width:50%;
-    background-color: #00b7ff;
-    display: inline-flex;
 }
 
-.detailsContainer {
-    font-size: 1.2em;
-    height:5vh;
-    width:50%;
-    background-color: #6ddd04;
-    display: inline-flex;
+.moreDetailsButton {
+    background-color: white;
+    color:black;
+    padding: 0.2vw 1vw;
+    border:none;
+    border-radius: 0vw;
+
 }
 
-.reviewContainer {
-    font-size: 1.2em;
-    height:5vh;
-    width:50%;
-    background-color: #ff0000;
-    display:inline-flex;
-}
-
-.commentsContainer {
-    font-size: 1.2em;
-    height:5vh;
-    width:50%;
-    background-color: #2f00ff;
-    display: inline-flex;
+.moreDetailsButton:hover {
+    background-color: white;
+    color:slateblue;
 }
 
 
-
-.buttonsContainer {
-    font-size: 1.2em;
-    height:5vh;
-    width:100%;
-    background-color: #a1a1a1;
-    display: inline-flex;   
-    justify-content: center;
-}
-
-.Icon {
-    width:auto;
-    height: 10vh;
-}
-
-.moreDetailsLink:hover {
-    color:grey;
+.ellipsesButtonContainer {
+    float:right;
+    background-color: magenta;
 }

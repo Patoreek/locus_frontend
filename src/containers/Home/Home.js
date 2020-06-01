@@ -60,15 +60,16 @@ const Home = () => {
                             style = {
                                 backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
                                 color: "black",
-                                width: "82vw",
+                                width: "275px",
                                 margin: "0 auto",
-                                padding: "1vw"
+                                padding: "1vw",
+                                fontSize: "10px"
                             }
                         } else {
                             style = {
                                 backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
                                 color: "black",
-                                width: "58vw",
+                                width: "500px",
                                 margin: "0 auto",
                                 padding: "1vw"
                             }

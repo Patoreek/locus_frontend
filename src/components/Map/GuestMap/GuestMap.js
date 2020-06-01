@@ -26,7 +26,7 @@ import boatIconCircle from '../../../images/locationIcons/boatIconCircle.png';
 
 import WeatherContainer from '../../../containers/WeatherContainer/WeatherContainer';
 import PhotoContainer from './PhotosContainer/PhotoContainer';
-import ReviewStars from '../../StarRating/StarRating';
+import StarRating from '../../StarRating/StarRating';
 import FavouriteButton from '../../Buttons/FavouriteButton/FavouriteButton';
 import EllipsesButton from '../../Buttons/EllipsesButton/EllipsesButton';
 
@@ -84,24 +84,39 @@ const GuestMap = () => {
     
 
 
-    const detailsHandler = () => {
+    const moreDetailsHandler = () => {
         setMoreDetails(true);
     }
 
-    const commentHandler = () => {
-        console.log('Commenting on Site');
+    // const commentHandler = () => {
+    //     console.log('Commenting on Site');
         
+    // }
+
+    const style = {
+        backgroundColor: "rgba(255, 255, 255, 0.75)",
+        padding: "0.5vw 1vw 0vw 1vw",
+        borderLeft: "1px solid slateblue",
+        borderTop: "1px solid slateblue",
+        borderBottom: "1px solid slateblue",
+        overflow: "hidden",
+        borderRadius: "0.2vw 0vw 0vw 0vw"
     }
 
-    const popover = (
-        <Popover id="popover-basic">
-          <Popover.Title as="h3">Popover right</Popover.Title>
-          <Popover.Content>
-           <Button> Share </Button>
-           <Button> Report </Button>
-          </Popover.Content>
-        </Popover>
-      );
+    const totalRatingStyle = {
+        display:"none"
+    }
+
+
+    // const popover = (
+    //     <Popover id="popover-basic">
+    //       <Popover.Title as="h3">Popover right</Popover.Title>
+    //       <Popover.Content>
+    //        <Button> Share </Button>
+    //        <Button> Report </Button>
+    //       </Popover.Content>
+    //     </Popover>
+    //   );
 
     const onMarkerClustererClick = (markerClusterer) => {
         const clickedMarkers = markerClusterer.getMarkers();
@@ -150,33 +165,47 @@ const GuestMap = () => {
                             setSelectedSite(null);
                         } }
                     >
-                        <div className={classes.infowindowContainer}>
-                            <div className={classes.nameContainer}>
-                                <div className={classes.siteTypeContainer}>
-                                    <img className={classes.Icon}
-                                        src={selectedSite.siteType === "Shore" ? shoreIconCircle : boatIconCircle}/>
-                                </div>
-                                <h2>{selectedSite.name}, {selectedSite.area}</h2>
-                            </div>
-                            <div className={classes.mediaContainer}>
-                                <PhotoContainer selectedSite={selectedSite}/>
-                            </div>
-                            
-                            <div className={classes.detailsContainer}>
-                                <Button variant="link" onClick={detailsHandler}>More Details</Button>
-                            </div>
-                            <div className={classes.reviewContainer}>
-                                <ReviewStars/>
-                            </div>
-                            {isAuth && (
-                                <div className={classes.buttonsContainer}>
-                                    <FavouriteButton site={selectedSite}/>
-                                    <EllipsesButton/>
-                                </div>
-                            )} 
-            
-                   
+                        <div className={classes.siteContainer}>
+                <div className={classes.siteImageContainer} 
+                     onClick={() => moreDetailsHandler(selectedSite)}>
+
+                    <img src={'http://localhost:8080/' + selectedSite.images[0]}
+                        className={classes.siteImage}
+                    />
+                </div>
+
+                <div className={classes.favButtonContainer}>
+                    {isAuth ? <FavouriteButton site={selectedSite}/> : null}
+                </div>
+
+                <div className={classes.siteRatingsContainer}>
+                    <StarRating siteRatings = {selectedSite.ratings}
+                                guestMapStyle={style}
+                                totalRatingStyle={totalRatingStyle}/>
+                </div>
+
+
+                <div className={classes.siteNameContainer}>
+                    <h5  className={classes.siteName}
+                         onClick={() => moreDetailsHandler(selectedSite)}>
+                             {selectedSite.name}, {selectedSite.area}
+                    </h5>
+                    <div className={classes.ellipsesButtonContainer}>
+                        <EllipsesButton/>
                     </div>
+                    
+                </div>
+
+                <div className={classes.siteDescriptionContainer}>
+                    <p> {selectedSite.description} </p>
+                    <div className={classes.moreDetailsButtonContainer}>
+                    <Button onClick={() => moreDetailsHandler(selectedSite)}
+                            className={classes.moreDetailsButton}
+                            >More Details...</Button>
+                    </div>
+                </div>
+            
+            </div>
                 </InfoWindow>
                 )}
                 </div>
