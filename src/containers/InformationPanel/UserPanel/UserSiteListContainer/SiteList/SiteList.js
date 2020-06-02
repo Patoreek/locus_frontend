@@ -48,7 +48,7 @@ const SiteList = (props) => {
                 </div>
 
                 <div className={classes.siteDescriptionContainer}>
-                    <p> {site.description} </p>
+                    <p className={classes.siteDescription}> {site.description} </p>
                     <div className={classes.moreDetailsButtonContainer}>
                     </div>
                 </div>

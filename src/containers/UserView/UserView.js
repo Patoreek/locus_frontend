@@ -17,6 +17,7 @@ import { AddModalContext } from '../../context/UserContext';
 import { useHistory} from 'react-router-dom';
 
 import Map from '../../components/Map/Map';
+import MobToggleView from '../../components/MobToggleView/MobToggleView';
 import classes from './UserView.module.css';
 
 
@@ -77,20 +78,21 @@ const UserView = () => {
 
     return (
         <div>
+            <MobToggleView/>
             {userViewLoaded && (
                 <InformationPanel/>
             )}
             {userViewLoaded && (
             <Map googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyA-9fLyV56TU5kt5qw3guZ4Vi3BXuDlNts&v=3.exp&libraries=geometry,drawing,places`}
                 loadingElement={<div style={{ 
-                                        height: "93vh",
+                                        height: "97vh",
                                         width: mapSize,
                                         display: "inline-block",
                                         transition: "1s ease"
                                         /*border: "2px solid orange"*/
                                 }}/>}
                 containerElement={<div style={{ 
-                                        height: "93vh",
+                                        height: "97vh",
                                         width: mapSize,
                                         display: "inline-block",
                                         /*border: "2px solid purple",*/
@@ -98,7 +100,7 @@ const UserView = () => {
                                         transition: "1s ease"
                                 }}/>}
                 mapElement={<div style={{ 
-                                        height: "93vh",
+                                        height: "97vh",
                                         width: "100%",
                                         display: "inline-block" 
                                         /*border: "2px solid green"*/          
@@ -117,7 +119,6 @@ const UserView = () => {
                     <Modal.Title className={classes.AddModalHeader}>Add Dive Site</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className={classes.AddModalBody}>
-                   ADDING DIVE SITE
                     <CreateSiteForm/>
                 </Modal.Body>
                 <Modal.Footer className={classes.AddModalFooter}>

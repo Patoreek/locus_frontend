@@ -197,7 +197,7 @@ const GuestMap = () => {
                 </div>
 
                 <div className={classes.siteDescriptionContainer}>
-                    <p> {selectedSite.description} </p>
+                    <p className={classes.siteDescription}> {selectedSite.description} </p>
                     <div className={classes.moreDetailsButtonContainer}>
                     <Button onClick={() => moreDetailsHandler(selectedSite)}
                             className={classes.moreDetailsButton}

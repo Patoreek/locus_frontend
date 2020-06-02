@@ -169,7 +169,7 @@ const EditProfileView = () => {
                 </Button>
 
                 <Button variant="secondary"
-                        className={classes.editButton}
+                        className={classes.cancelButton}
                         onClick={cancelHandler}>
                     Cancel
                 </Button>

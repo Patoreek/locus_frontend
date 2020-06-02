@@ -8,6 +8,8 @@ import { Form,
 
 import { SiteContext } from '../../../../context/DiveSiteContext';
 
+import classes from './CommonFeatures.module.css';
+
 const CommonFeatures = () => {
 
     const [featureType, setFeatureType] = useState('Animal');
@@ -89,7 +91,7 @@ const CommonFeatures = () => {
 
     return (
         <div>
-
+        {/* <h1 className={classes.tabHeader}> Common Features Added here</h1> */}
         <Table striped bordered hover>
         <thead>
             <tr>

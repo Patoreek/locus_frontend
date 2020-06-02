@@ -143,6 +143,13 @@ const Comments = () => {
                     </Form.Group>
                         <Form.Group controlId="exampleForm.ControlTextarea1" as={Row} >
                         <Col sm="12">
+
+                        <Button variant="secondary" 
+                                onClick={cancelComment}
+                                className={classes.cancelButton}
+                        >
+                            Cancel
+                        </Button>
                     
                         <Button variant="primary" 
                                 onClick={submitComment}
@@ -151,12 +158,7 @@ const Comments = () => {
                             Comment
                         </Button>
 
-                        <Button variant="secondary" 
-                                onClick={cancelComment}
-                                className={classes.commentButton}
-                        >
-                            Cancel
-                        </Button>
+                       
 
 
                         </Col>
@@ -183,7 +185,7 @@ const Comments = () => {
                     )}
 
                     <div  className={classes.commentContainer}>
-                        <p> {comment.userComment}</p>
+                        <p className={classes.comment}> {comment.userComment}</p>
                     </div>
                     {/* <p>CommentId = {comment.commentId}</p>
                     <p>UserId = {comment.userId}</p> */}

@@ -1,6 +1,7 @@
 
 .favouritesHeader {
-    font-size: 3vw;
+    font-size: 24px;
+    padding-top: 25px;
 }
 
 .favListContainer {
@@ -8,8 +9,8 @@
     margin: 0 auto;
     margin-top: 0.5vw;
     margin-bottom: 0.5vw;
-    width:70vw;
-    height: 30vw;
+    width:95%;
+    height: 450px;
     /* background-color: hotpink; */
     border: 2px solid lightgrey;
     border-radius: 0.5vw;
@@ -51,15 +52,21 @@
 .favouriteButtonContainer {
     float:left;
     width:10%;
+    height: 50px;
 }
 
 .siteNameContainer {
     display: inline-block;
     width:90%;
+    height: 50px;
+    /* background-color: lightpink; */
 }
 
 .siteName {
-    font-size: 2vw;
+    margin-top: 10px;
+    margin-left: 25px;
+    text-align: left;
+    font-size: 24px;
 }
 
 .siteDescriptionContainer {
@@ -71,6 +78,12 @@
     overflow: hidden;
 }
 
+.siteDescription {
+    text-align: left;
+    padding: 20px;
+    font-size: 16px;
+}
+
 .buttonsContainer {
     width: 100%;
     height: 100%;
@@ -79,45 +92,81 @@
 
 .moreDetailsButtonContainer {
     float:left;
-    margin: 2% 2%;
+    margin: 10px 20px;
 }
 
 .moreDetailsButton {
-    font-size: 1vw;
+    font-size: 16px;
     width: 100%;
-    height: 10%;
+    height: 40px;
 }
 
 .ellipsesButtonContainer {
     float:right;
-    margin: 2% 2%;
+    margin: 10px 20px;
 }
 
 
-@media screen and (min-width: 801px) and (max-width: 1279px) {
+@media screen and (min-width: 761px) and (max-width: 1279px) {
     .siteDescriptionContainer {
         height: 70%;
 
     }
+
+    .ellipsesButtonContainer {
+        font-size: 12px;
+        margin: 1.7vw 1vw;
+    }
+
+    .moreDetailsButton {
+        font-size: 16px;
+        margin: 1vw;
+        padding: 4px 2px;
+
+    }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 760px) {
+
+    .favouriteButtonContainer {
+        padding-left: 5px;
+    }
+
     .favListContainer {
         width:95%;
         height: 40vw;
     }
+
+    .topHalfContainer {
+        height: 70%;
+    }
     .siteName {
-        font-size: 3.25vw;
+        font-size: 12px;
+        margin-left: 15px;
+    }    
+    .siteDescription {
+
+        font-size: 14px;
     }
 
     .siteDescriptionContainer {
-        font-size: 2vw;
-        height: 55%;
+        display: none;
+    }
+
+    .moreDetailsButtonContainer {
+        margin: 2vw;
     }
 
     .moreDetailsButton {
-        font-size: 2vw;
-        padding: 0.4vw 0.8vw;
+        font-size: 10px;
+        width: auto;
+        height: 25px;
 
+    }
+
+    .ellipsesButtonContainer {
+        font-size: 12px;
+        margin: 1vw;
+        padding: 4px 2px;
     }
 }

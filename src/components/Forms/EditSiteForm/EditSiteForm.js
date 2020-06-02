@@ -83,37 +83,41 @@ const EditSiteForm = (props) => {
 
     return (
         <div className={classes.form}>
-            <h1>EDIT A DIVE SITE</h1>
             <Form>
-                <Form.Row>
+                <Form.Row className={classes.formRow}>
                     <Col>
+                    <h3 className={classes.headers}>Name</h3>
                     <Form.Control placeholder="Name of Dive Site"
                                   value={siteName}
                                   onChange={e => setSiteName(e.target.value)} />
                     </Col>
                     <Col>
+                    <h3 className={classes.headers}>Area</h3>
                     <Form.Control placeholder="Area / Suburb"
                                   value={siteArea}
                                   onChange={e => setSiteArea(e.target.value)} />
                     </Col>
                 </Form.Row>
+                    <h3 className={classes.headers}>Description</h3>
                     <Form.Control as="textarea"
                                   rows="10"
                                   value={siteDescription}
                                   placeholder="Description of site"
                                   onChange={e => setSiteDescription(e.target.value)} />
-                <Form.Row>
-                <Form.Row>
+                <Form.Row className={classes.formRow}>
                     <Col>
+                    <h3 className={classes.headers}>Max Depth</h3>
                     <Form.Control placeholder="Max Depth of Site"
                                   value={siteDepth}
-                                  onChange={e => setSiteDepth(e.target.value)} />
+                                  onChange={e => setSiteDepth(e.target.value)} 
+                                  className={classes.depthInput}/>
                     </Col>
                 </Form.Row>
                     
-                </Form.Row>
-                <Form.Row>
-                <Form.Check inline 
+    
+                <Form.Row  className={classes.formRow}>
+                <h3 className={classes.diveTypeHeader}>Dive Type</h3>
+                <Form.Check 
                             type="radio" 
                             aria-label="shore" 
                             label="Shore Dive" 
@@ -121,8 +125,9 @@ const EditSiteForm = (props) => {
                             value={siteType} 
                             onChange={e => setSiteType("1")}
                             checked={siteType == 1}
+                            className={classes.radioButton}
                 />
-                <Form.Check inline 
+                <Form.Check  
                             type="radio" 
                             aria-label="boat" 
                             label="Boat Dive" 
@@ -130,24 +135,16 @@ const EditSiteForm = (props) => {
                             value={siteType} 
                             onChange={e => setSiteType("2")}
                             checked={siteType == 2}
+                            className={classes.radioButton}
                 />
             </Form.Row>
             
-            {/* <FilePond 
-                    allowMultiple={false}
-                    name={"divesiteImages"}
-                    server={
-                        {
-                            url: "http://localhost:8080/diveSites/uploadImages/" + selectedSite._id,
-                            process:{
-                                withCredentials: true
-                            }
-                        }
-                    }
-                /> */}
-            <Form.Row>
-                <Button variant="primary" type="submit" onClick={(e) => handleEditSiteSubmit(e)}>
-                    Submit
+            <Form.Row className={classes.formRow}>
+                <Button variant="primary" 
+                        type="submit"
+                        onClick={(e) => handleEditSiteSubmit(e)}
+                        className={classes.editButton}>
+                    Edit
                 </Button>
             </Form.Row>
         </Form>

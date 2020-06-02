@@ -137,6 +137,7 @@ const FavouriteButton = (props) => {
                 size={20}
                 className={classes.favouriteIcon}
                 onClick={() => removeFromFavourite(selectedSite)}
+                style={props.style}
             />
 
         );
@@ -149,6 +150,7 @@ const FavouriteButton = (props) => {
             size={20}
             className={classes.favouriteIcon}
             onClick={() => addToFavourite(selectedSite)}
+            style={props.style}
             />
             // </Button>
         );

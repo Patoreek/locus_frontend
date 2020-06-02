@@ -19,7 +19,13 @@ const InformationPanel = (props) => {
 
     const [ panelSize, setPanelSize ] = useContext(PanelSizeContext);
 
+    let panelDisplay;
 
+    if (panelSize === "0vw"){
+        panelDisplay = "none";
+    }else {
+        panelDisplay = "inline-block";
+    }
 
     useEffect(() => {
         console.log('[InfoPanel] isAuth = ' + isAuth);
@@ -38,7 +44,8 @@ const InformationPanel = (props) => {
 
     return (
         <div className={classes.infoPanelContainer} style={{ 
-            width: panelSize
+            width: panelSize,
+            display: panelDisplay
         }}>
 
             {panelLoaded && guestPanel && (

@@ -13,6 +13,7 @@
 
 .icon {
     transform: scale(1.2);
+    /* background-color: lightgreen; */
 }
 
 
@@ -25,11 +26,18 @@
 }
 
 @media screen and (max-width: 800px) { 
-    .locateButton {
-        height: 4vh;
+
+    .icon {
+        transform: scale(1.2);
+        /* background-color: lightgreen; */
+        margin-bottom:10px;
     }
 
     .locateButton {
-        margin-top: 5vh;
+        height: 30px;
+    }
+
+    .locateButton {
+        margin-top: 10vh;
     }
 }

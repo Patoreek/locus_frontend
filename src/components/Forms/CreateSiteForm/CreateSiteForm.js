@@ -94,7 +94,7 @@ const CreateSiteForm = (props) => {
 
     return (
             <Form>
-                <Form.Row>
+                <Form.Row className={classes.formRow}>
                     <Col>
                     <Form.Control placeholder="Name of Dive Site" 
                                   onChange={e => setSiteName(e.target.value)} />
@@ -104,35 +104,45 @@ const CreateSiteForm = (props) => {
                                   onChange={e => setSiteArea(e.target.value)} />
                     </Col>
                 </Form.Row>
+                <Form.Row className={classes.formRow}>
+                    <Col>
                     <Form.Control as="textarea"
                                   rows="3"
                                   placeholder="Description of site"
                                   onChange={e => setSiteDescription(e.target.value)} />
-                <Form.Row>
+                    </Col>
                     
                 </Form.Row>
-            <Form.Group controlId="formBasicRadiobox">
-                <Form.Check inline 
-                            type="radio" 
-                            aria-label="shore" 
-                            label="Shore Dive" 
-                            name="siteType" 
-                            value="1" 
-                            onChange={e => setSiteType(e.target.value)} 
-                />
-                <Form.Check inline 
-                            type="radio" 
-                            aria-label="boat" 
-                            label="Boat Dive" 
-                            name="siteType" 
-                            value="2"  
-                            onChange={e => setSiteType(e.target.value)}
-                />
-            </Form.Group>
-
-            <Button variant="primary" type="submit" onClick={(e) => handleAddMarkerSubmit(e)}>
-                Submit
-            </Button>
+                <Form.Row  className={classes.formRow}>
+                <Col>
+                    <Form.Group controlId="formBasicRadiobox">
+                        <h3 className={classes.diveTypeHeader}> Dive Type </h3>
+                        <Form.Check inline 
+                                    type="radio" 
+                                    aria-label="shore" 
+                                    label="Shore Dive" 
+                                    name="siteType" 
+                                    value="1" 
+                                    onChange={e => setSiteType(e.target.value)} 
+                        />
+                        <Form.Check inline 
+                                    type="radio" 
+                                    aria-label="boat" 
+                                    label="Boat Dive" 
+                                    name="siteType" 
+                                    value="2"  
+                                    onChange={e => setSiteType(e.target.value)}
+                        />
+                    </Form.Group>
+                </Col>
+                </Form.Row>
+            <Form.Row className={classes.formRow}>
+                <Col>
+                <Button variant="primary" type="submit" onClick={(e) => handleAddMarkerSubmit(e)}>
+                    Submit
+                </Button>
+                </Col>
+            </Form.Row>
         </Form>
     );
 };

@@ -1,18 +1,25 @@
 .infowindowContainer {
-    border: 2px solid black;
+    border: 1px solid black;
+    border-radius: 5px;
     width:99%;
+    height: 150px;
     padding: 0;
     margin: 0;
 }
 
 
 .buttonsContainer {
-    font-size: 1.2em;
     height:5vh;
     width:100%;
-    background-color: #a1a1a1;
     display: inline-flex;   
     justify-content: center;
+}
+
+.editButton, .deleteButton {
+    width: 75px;
+    height: 40px;
+    font-size: 18px;
+    margin: 5px;
 }
 
 .Icon {
@@ -23,7 +30,6 @@
 .EditModal {
     width: 50vw;
     /* background-color: rgb(255, 194, 204, .5); */
-
     margin-top: 5vw;
     margin-left:40vw;
     max-width: none!important;
@@ -31,11 +37,61 @@
 }
 
 .EditModalHeader {
-    
+    font-size: 28px;
 }
 
 .EditModalBody {
     height: 35vw;
     overflow: scroll;
+}
+
+
+.DeleteModal {
+    width: 25vw;
+    /* background-color: rgb(255, 194, 204, .5); */
+    margin-top: 15vw;
+    margin-left:50vw;
+    max-width: none!important;
+    max-height: none!important;
+}
+
+.DeleteModalBody {
+    height: 10vw;
+}
+
+@media screen and (max-width: 800px) {
+    .EditModal {
+        width: 90vw;
+        /* background-color: rgb(255, 194, 204, .5); */
+        margin-top: 10vh;
+        margin-left:5vw;
+        max-width: none!important;
+        max-height: none!important;
+    }
+
+    .DeleteModal {
+        width: 90vw;
+        /* background-color: rgb(255, 194, 204, .5); */
+        margin-top: 20vh;
+        margin-left:5vw;
+        max-width: none!important;
+        max-height: none!important;
+    }
+
+    .DeleteModalBody {
+        height: 45vw;
+        overflow: scroll;
+    }
+
+    .EditModalHeader {
+        font-size: 18px;
+    }
+    
+    .EditModalBody {
+        height: 65vh;
+        overflow: scroll;
+    }
+    
+
 }
 

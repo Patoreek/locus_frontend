@@ -1,0 +1,22 @@
+.ButtonsContainer {
+    display:none;
+}
+
+@media screen and (max-width: 800px) {
+
+    .ButtonsContainer {
+        display: inline-block;
+        position: absolute;
+        z-index: 20;
+        /* bottom: 25px;
+        left: 30%; */
+        left: 0;
+        bottom: 25px;
+        right: 0;
+    }
+    .panelButton, .mapButton {
+        margin-left: 10px;
+        font-size: 16px;
+        padding: 2px 5px;
+    }
+}

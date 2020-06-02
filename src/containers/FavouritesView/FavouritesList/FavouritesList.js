@@ -2,6 +2,8 @@ import React, {useContext, useEffect} from 'react';
 
 import classes from './FavouritesList.module.css';
 
+import { useMediaQuery } from '../../../CustomHooks/useMediaQuery';
+
 import { Button } from 'react-bootstrap';
 
 import { RemoveFavContext,
@@ -40,6 +42,41 @@ const FavouritesList = (props) => {
         setSelectedSite(site);
     }
 
+    const isMobileBased = useMediaQuery('(max-width: 760px)');
+
+    let ellipsesStyle;
+
+    let favButtonStyle;
+
+    if (isMobileBased) {
+        ellipsesStyle = {
+            width: "auto",
+            height: "25px",
+            fontSize: "12px"
+        }
+
+        favButtonStyle = {
+            width: "auto",
+            height: "20px",
+            fontSize: "12px"
+        }
+
+
+    } else {
+        ellipsesStyle = {
+            width: "50px",
+            height: "40px",
+            fontSize: "25px",
+            padding: "0"
+        }
+
+        favButtonStyle = {
+            width: "auto",
+            height: "40px",
+            margin: "5px 5px"
+        }
+
+    }
     return (
         <div>
             <h1 className={classes.favouritesHeader}>{account.username}'s Favourites</h1> 
@@ -59,7 +96,7 @@ const FavouritesList = (props) => {
 
                         <div className={classes.topHalfContainer}>
                             <div className={classes.favouriteButtonContainer}>
-                                <FavouriteButton site={site}/>
+                                <FavouriteButton site={site} style={favButtonStyle}/>
                             </div>
                             <div className={classes.siteNameContainer}>
                                 <h1 className={classes.siteName}>{site.name}, {site.area}</h1>
@@ -67,7 +104,7 @@ const FavouritesList = (props) => {
                         </div>
 
                         <div className={classes.siteDescriptionContainer}>
-                            <p className={classes.siteDescription}>Description: {site.description}</p>
+                            <p className={classes.siteDescription}>{site.description}</p>
                         </div>
 
                         <div className={classes.buttonsContainer}>
@@ -78,7 +115,7 @@ const FavouritesList = (props) => {
                                 </Button>
                             </div>
                             <div className={classes.ellipsesButtonContainer}>
-                                    <EllipsesButton/>
+                                    <EllipsesButton style={ellipsesStyle}/>
                             </div>
                         </div>
 

@@ -18,7 +18,7 @@ import { FaEllipsisH } from 'react-icons/fa';
 import classes from './EllipsesButton.module.css';
 
 
-const EllipsesButton = () => {
+const EllipsesButton = (props) => {
 
     const [showShare, setShowShare] = useState(false);
     const [showReport, setShowReport] = useState(false);
@@ -93,7 +93,7 @@ const EllipsesButton = () => {
       </Modal>
 
         <OverlayTrigger trigger="click" placement="right" overlay={popover}>
-            <Button variant="info" className={classes.button}><FaEllipsisH/></Button>
+            <Button variant="info" className={classes.button} style={props.style}><FaEllipsisH/></Button>
         </OverlayTrigger>
         </div>
     );

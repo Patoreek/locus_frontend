@@ -75,7 +75,7 @@ const Details = (props) => {
             const data = await response.json();
             setCurrentWeather(data.current);
             setDailyWeather(data.daily);
-            setSiteWeather((data.current.temp - 273.15).toFixed(1));
+            /* setSiteWeather((data.current.temp - 273.15).toFixed(1)); */
             console.log(data);
 
             //const sites = data.site;
@@ -86,7 +86,7 @@ const Details = (props) => {
     return (
       <div className={classes.detailsContainer}>
         <div className={classes.backButtonContainer}>
-          <Button onClick={goBackHandler}>Back</Button>
+          <Button onClick={goBackHandler} className={classes.backButton}>Back</Button>
         </div>
 
         <Carousel activeIndex={index} onSelect={handleSelect} className={classes.carousel}>
@@ -134,12 +134,6 @@ const Details = (props) => {
         </div>
 
 
-
-        <div className={classes.commentsContainer}>
-        <h3 className={classes.commentsHeader}><b>{selectedSite.comments.length} Comments</b></h3>
-            <Comments/>
-        </div>
-
         <div className={classes.sightsContainer}>
 
         <Tabs defaultActiveKey="features" 
@@ -147,7 +141,7 @@ const Details = (props) => {
               className={classes.tabsSection}>
             <Tab eventKey="features" title="Features" className={classes.sightsTab}>
 
-                <h3>Common sights / features </h3>
+                <h3 className={classes.sightsHeader}>Common sights / features </h3>
                 <Table striped bordered hover>
                     <thead>
                         <tr>
@@ -170,7 +164,7 @@ const Details = (props) => {
             </Tab>
             <Tab eventKey="info" title="Info" className={classes.sightsTab}>
 
-                <h1>Information</h1>
+                <h3 className={classes.infoHeader}>Information</h3>
 
                 {/* <div className={classes.depthContainer}>
                     <h3>Max Depth: {siteDepth}m</h3>
@@ -187,7 +181,7 @@ const Details = (props) => {
             </Tab>
             <Tab eventKey="uMap" title="Underwater Map" className={classes.sightsTab}>
 
-                <h3>Underwater Map</h3>
+                <h3  className={classes.uMapHeader}>Underwater Map</h3>
                     <div className={classes.waterMapContainer}>
                     {/* <p>{siteUnderwaterMap}</p> */}
                     <p>To be added...</p> 
@@ -196,6 +190,11 @@ const Details = (props) => {
         </Tabs>
             
         </div> 
+
+        <div className={classes.commentsContainer}>
+        <h3 className={classes.commentsHeader}><b>{selectedSite.comments.length} Comments</b></h3>
+            <Comments/>
+        </div>
 
 
       </div>

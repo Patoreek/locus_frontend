@@ -1,10 +1,20 @@
 .favouriteIcon {
     color: blue !important;
-    width: 2.5vw;
-    height: 3vw;
+    margin-top: 5px;
+    width: 25px;
+    height: 25px;
     transition: 0.2s ease;
 }
 
 .favouriteIcon:hover {
     transform: scale(1.2);
+}
+
+@media screen and (max-width: 800px) {
+    /* .favouriteIcon {
+        color: blue !important;
+        width: 2.5vw;
+        height: 3vw;
+        transition: 0.2s ease;
+    } */
 }

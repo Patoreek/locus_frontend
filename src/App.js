@@ -16,10 +16,16 @@ import SignupView from './containers/SignupView/SignupView';
 import FavouritesView from './containers/FavouritesView/FavouritesView';
 import ProfileView from './containers/ProfileView/ProfileView';
 import ViewProfileView from './containers/ViewProfileView/ViewProfileView';
-
 import EditProfileView from './containers/EditProfileView/EditProfileView';
 
 import HomeView from './containers/Home/Home';
+
+import AboutView from './containers/FooterViews/AboutView/AboutView';
+import AdvertiseView from './containers/FooterViews/AdvertiseView/AdvertiseView';
+import NewsView from './containers/FooterViews/NewsView/NewsView';
+import ContactView from './containers/FooterViews/ContactView/ContactView';
+import SitemapView from './containers/FooterViews/SitemapView/SitemapView';
+import TermsView from './containers/FooterViews/TermsView/TermsView';
 
 
 
@@ -102,6 +108,14 @@ function App() {
             <Route path="/details" component={DetailsView}/>
             <Route path="/viewprofile/:profileId" component={ViewProfileView}/>
         </DiveSiteProvider>
+
+        <Route path="/about" component={AboutView}/>
+        <Route path="/advertise" component={AdvertiseView}/>
+        <Route path="/news" component={NewsView}/>
+        <Route path="/contact" component={ContactView}/>
+        <Route path="/sitemap" component={SitemapView}/>
+        <Route path="/terms" component={TermsView}/>
+
 
         <Footer/>
       

@@ -40,16 +40,21 @@ const GuestPanel = () => {
     const style = {
         backgroundColor: "rgba(255, 255, 255, 0.75)",
         padding: "0.5vw 1vw 0vw 1vw",
-        borderLeft: "1px solid slateblue",
-        borderTop: "1px solid slateblue",
+        borderRight: "1px solid slateblue",
         borderBottom: "1px solid slateblue",
         overflow: "hidden",
-        borderRadius: "0.2vw 0vw 0vw 0vw"
+        borderRadius: "0.5vw 0vw 0.5vw 0vw",
     }
 
     const totalRatingStyle = {
         display:"none"
     }
+
+    /* const ellipsesButtonStyle = {
+        width: "30px",
+        height: "30px",
+        marginBottom: "10px"
+    } */
 
     return (
         <div>
@@ -88,7 +93,7 @@ const GuestPanel = () => {
                 </div>
 
                 <div className={classes.siteDescriptionContainer}>
-                    <p> {site.description} </p>
+                    <p className={classes.siteDescription}> {site.description} </p>
                     <div className={classes.moreDetailsButtonContainer}>
                     <Button onClick={() => moreDetailsHandler(site)}
                             className={classes.moreDetailsButton}

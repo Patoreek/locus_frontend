@@ -1,11 +1,11 @@
 .infoPanelContainer {
     /* width:30vw; */
-    height:94vh;
+    height:97vh;
     background-color: #dedede;
     border-right: 2px solid lightgrey;
     box-sizing: border-box;
     /* float:left; */
-    display: inline-block;
+    float:left;
     overflow: scroll;
     transition: 1s ease;
 }

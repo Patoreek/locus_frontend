@@ -6,12 +6,16 @@ import Details from '../DetailsView/DetailsView';
 
 import { AuthContext,
          UserOnMapContext,
-         LoadingContext,
-         MapSizeContext } from '../../context/AuthContext';
+         SearchBarContext,
+         MapSizeContext,
+         PanelSizeContext,
+         LocateButtonContext } from '../../context/AuthContext';
 
 import { CoordsContext, DetailsContext } from '../../context/DiveSiteContext';
 
+import MobToggleView from '../../components/MobToggleView/MobToggleView';
 
+import { useMediaQuery } from '../../CustomHooks/useMediaQuery';
 
 
 
@@ -23,6 +27,12 @@ const GuestView = () => {
 
         const [ mapSize, setMapSize ] = useContext(MapSizeContext);
 
+        const [ panelSize, setPanelSize ] = useContext(PanelSizeContext);
+
+        const [searchBarStyle, setSearchBarStyle] = useContext(SearchBarContext);
+
+        const [locateButtonStyle, setLocateButtonStyle] = useContext(LocateButtonContext); 
+
         const [coords, setCoords] = useContext(CoordsContext);
 
         const [moreDetails, setMoreDetails] = useContext(DetailsContext);
@@ -30,8 +40,25 @@ const GuestView = () => {
         const [isUserOnMap, setIsUserOnMap] = useContext(UserOnMapContext);
 
         const [guestViewLoaded, setGuestViewLoaded] = useState(false);
+
+        const isMobile = useMediaQuery('(max-width: 800px)');
+
         //setIsAuth(false);
         useEffect(() => {
+
+            if (isMobile) {
+                setMapSize("100vw");
+                setPanelSize("0vw");
+                setSearchBarStyle({
+                    width: "70vw",
+                    left: "10vw",
+                    display: null
+                });
+                // setLocateButtonStyle({
+                //     left: "80vw",
+                //     display: null
+                // })
+            }
             
             console.log('[GuestView] isAuth in IF = ' + isAuth);
             if (isAuth){
@@ -60,6 +87,11 @@ const GuestView = () => {
 
     return (
         <div className={classes.guestView}>
+
+            {!moreDetails && (
+                <MobToggleView/>
+            )}
+
             {guestViewLoaded && !moreDetails && (
                     <InformationPanel/>
             )}

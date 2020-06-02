@@ -70,10 +70,16 @@ const DeleteContainer = () => {
 
     return (
         <div className={classes.form}>
-            <h1>ARE YOU SURE YOU WANT TO DELETE SITE: {/*name*/}</h1>
-            <Button variant="danger" onClick={deleteSiteHandler}>Yes</Button>
-            <Button variant="primary" onClick={cancelDeleteHandler}>No</Button>
+            <h1 className={classes.header}>Are you sure you want to delete this dive site?{/*name*/}</h1>
 
+            <div className={classes.buttonContainer}>
+                <Button variant="danger" 
+                        onClick={deleteSiteHandler}
+                        className={classes.yesButton}>Yes</Button>
+                <Button variant="primary"
+                        onClick={cancelDeleteHandler}
+                        className={classes.noButton}>No</Button>
+            </div>
         </div>
     );
 };

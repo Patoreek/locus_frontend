@@ -6,7 +6,11 @@
     margin: 0 auto;
     margin-top: 0.5vh;
     margin-bottom: 0.5vh;
-    padding:0vw;
+    padding: 5px 0px;
+}
+
+.commentUsername {
+    font-size: 16px;
 }
 
 .form {
@@ -17,19 +21,21 @@
 }
 
 .addCommentHeader {
-    float:left;
+    margin-left: 20px;
+    padding-top: 20px;
     /* background-color: rebeccapurple; */
 }
 
 .commentTextArea {
-    float:left;
-    /* background-color: royalblue; */
+    margin-left: 30px;
+    width: 100%;
     resize: none;
 }
 
-.commentButton {
-    float:right;
-    margin-left: 1vw;
+.commentButton, .cancelButton {
+    font-size: 14px;
+    float:left;
+    margin-left: 30px;
 }
 
 .usernameContainer {
@@ -53,6 +59,21 @@
     text-align: left;
     display: inline-block;
     /* background-color: pink; */
+}
+
+@media screen and (max-width: 800px) {
+    .commentTextArea {
+       margin-left: 10px;
+       font-size: 14px;
+    }
+
+    .commentButton, .cancelButton, .deleteButton {
+        font-size: 12px;
+    }
+
+    .commentUsername, .comment {
+        font-size: 14px;
+    }
 }
 
 @media screen and (min-width: 801px) and (max-width: 1280px) {

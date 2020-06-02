@@ -20,7 +20,15 @@ import { DiveSitesContext,
          SiteContext,
          CoordsContext,
          LoadDiveSiteContext } from '../../../../context/DiveSiteContext';
-import { AuthContext } from '../../../../context/AuthContext';
+
+import { useMediaQuery } from '../../../../CustomHooks/useMediaQuery';
+
+import { AuthContext,
+    SearchBarContext,
+    MapSizeContext,
+    PanelSizeContext,
+    LocateButtonContext } from '../../../../context/AuthContext';
+
 
 
 
@@ -40,6 +48,14 @@ const MySitesMap = () => {
     const [diveSites, setDiveSites] = useContext(DiveSitesContext);
     const [coords, setCoords] = useContext(CoordsContext);
 
+    const [ mapSize, setMapSize ] = useContext(MapSizeContext);
+
+    const [ panelSize, setPanelSize ] = useContext(PanelSizeContext);
+
+    const [searchBarStyle, setSearchBarStyle] = useContext(SearchBarContext);
+
+    const [locateButtonStyle, setLocateButtonStyle] = useContext(LocateButtonContext); 
+
     const loadDiveSites = useContext(LoadDiveSiteContext);
 
     const [isAuth, setIsAuth] = useContext(AuthContext);
@@ -54,7 +70,27 @@ const MySitesMap = () => {
 
     const [key, setKey] = useState('general');
 
+    const isMobile = useMediaQuery('(max-width: 800px)');
+
+
     useEffect(() => {
+
+
+        if (isMobile) {
+            setMapSize("100vw");
+            setPanelSize("0vw");
+            setSearchBarStyle({
+                width: "70vw",
+                left: "10vw",
+                display: null
+            });
+            // setLocateButtonStyle({
+            //     left: "80vw",
+            //     display: null
+            // })
+        }
+
+
         loadDiveSites();
     }, []); //remove diveSites for performance
 
@@ -101,12 +137,16 @@ const MySitesMap = () => {
                     } }
                 >       
  
-                    <div>
+                    <div className={classes.infowindowContainer}>
                         <h3><b>{selectedSite.name}</b></h3>
                         <h5><b>{selectedSite.area}</b></h5>
                         <div className={classes.buttonsContainer}>
-                            <Button variant="info" onClick = {editSiteHandler}>Edit</Button>
-                            <Button variant="danger" onClick = {showDeleteForm}>Delete</Button>
+                            <Button variant="info"
+                                    onClick = {editSiteHandler}
+                                    className={classes.editButton}>Edit</Button>
+                            <Button variant="danger"
+                                    onClick = {showDeleteForm}
+                                    className={classes.deleteButton}>Delete</Button>
                         </div>
                     </div>
                    
@@ -117,8 +157,8 @@ const MySitesMap = () => {
                     onHide={handleEditClose}
                     dialogClassName={classes.EditModal}
             >
-                <Modal.Header className={classes.EditModalHeader} closeButton>
-                    <Modal.Title>Edit Dive Site</Modal.Title>
+                <Modal.Header closeButton>
+                    <Modal.Title className={classes.EditModalHeader}>Edit Dive Site</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className={classes.EditModalBody}>
 
@@ -132,11 +172,9 @@ const MySitesMap = () => {
                         <EditSiteForm/>
                     </Tab>
                     <Tab eventKey="features" title="Features">
-                        <h1> Common Features Added here</h1>
                         <CommonFeatures/>
                     </Tab>
                     <Tab eventKey="images" title="Images">
-                        <h1> Images Upload Here</h1>
                         <ImageUpload/>
                     </Tab>
                     </Tabs>
@@ -165,16 +203,12 @@ const MySitesMap = () => {
                 <Modal.Header className={classes.DeleteModalHeader} closeButton>
                     <Modal.Title>Delete Dive Site</Modal.Title>
                 </Modal.Header>
-                <Modal.Body className={classes.EditModalBody}>
-                    Do you want to delete this Dive Site?
+                <Modal.Body className={classes.DeleteModalBody}>
                     <DeleteContainer/>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleDeleteClose}>
                         Close
-                    </Button>
-                    <Button variant="primary" onClick={handleDeleteClose}>
-                        Save Changes
                     </Button>
                 </Modal.Footer>
             </Modal>

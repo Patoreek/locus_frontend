@@ -33,7 +33,7 @@ const Home = () => {
 
     const isRowBased = useMediaQuery('(max-width: 800px)');
 
-    console.log(isRowBased);
+    //console.log(isRowBased);
 
     let style;
 

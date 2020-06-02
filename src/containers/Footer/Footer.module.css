@@ -1,6 +1,138 @@
 .footer {
     width: 100vw;
-    height: auto;
-    background-color: lime;
+    height: 20vh;
+    background-color: ghostwhite;
+    border-top: 2px solid lightgrey;
+    float:left;
+}
+
+.logoContainer {
     display: inline-block;
+    width: 100%;
+    /* background-color: red; */
+    margin: 0 auto;
+}
+
+.logo {
+    width: 150px;
+    padding-left: 20px;
+    margin: 0 auto;
+}
+
+.socialContainer {
+    display: inline-block;
+    width: 100%;
+    /* background-color: lightsalmon; */
+    margin: 0 auto;
+
+}
+
+.socialHeader {
+    margin-top: 2vh;
+    font-size: 24px;
+}
+
+.fbIcon, .twitterIcon, .instaIcon {
+    margin: 2vh 50px;
+    transform: scale(3);
+    transition: 0.2s ease;
+}
+
+.fbIcon {
+    color: #3b5998;
+}
+
+.twitterIcon {
+    color: #38A1F3;
+}
+
+.instaIcon {
+    color:  #fb3958;
+}
+
+.fbIcon:hover, .twitterIcon:hover, .instaIcon:hover, .mailIcon:hover {
+    transform: scale(3.5);
+}
+
+.mailContainer {
+    width: 100%;
+    /* background-color: lightskyblue; */
+    display: inline-block;
+    margin: 0 auto;
+    padding: 2vh 0px;
+}
+
+.mailIcon {
+    display: inline-block;
+    transform: scale(3);
+    margin: 0 auto;
+    margin-right: 50px;
+    color: #1985A1;
+    transition: 0.2s ease;
+}
+
+
+
+.email {
+    margin: 0 auto;
+    margin-top: 5px;
+    display: inline-block;
+    font-size: 18px;
+    transition: 0.2s ease;
+}
+
+.email:hover {
+    transform: scale(1.1);
+    color: #1985A1;
+}
+
+.footerList {
+    list-style: none;
+    margin: 0 auto;
+}
+
+.listItem {
+    display: inline-block;
+    margin: 2vh 30px;
+}
+
+.listItem a {
+    color: black;
+}
+
+.listItem a:hover {
+    color: #1985A1;
+    text-decoration: none;
+}
+
+.copyrightContainer {
+    width: 100%;
+    /* background-color: lightseagreen; */
+    display: inline-block;
+    margin: 0 auto;
+    padding: 2vh 0px;
+}
+
+@media screen and (max-width:800px) {
+
+    .logo {
+        width: 110px;
+        padding-left: 15px;
+        margin: 0 auto;
+    }
+
+    .socialHeader {
+        margin-top: 5px;
+        font-size: 16px;
+    }
+
+    .fbIcon, .twitterIcon, .instaIcon {
+        margin: 20px 30px;
+        transform: scale(2);
+    }
+
+    .listItem {
+        margin: 10px 20px;
+    }
+
 }

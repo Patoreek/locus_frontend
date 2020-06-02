@@ -62,13 +62,19 @@
 
 .editButton {
     margin: 1vw;
-    width: 5vw;
+    width: auto;
+}
+
+.cancelButton {
+    margin: 1vw;
+    width: auto;
 }
 
 @media screen and (max-width: 800px) {
 
     .editProfileContainer {
         width: 100vw;
+        height: 97vh;
     }
     
     .formContainer {
@@ -125,4 +131,11 @@
         font-size: 3vw;
     }
 
+}
+
+@media screen and (min-width: 801px) and (max-width: 1280px) {
+    .editProfileContainer {
+        width: 100vw;
+        height: 97vh;
+    }
 }

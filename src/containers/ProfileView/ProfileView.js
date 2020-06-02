@@ -101,32 +101,32 @@ const ProfileView = () => {
                         <hr/>
                     </div>
 
-                    <div className={classes.profileBioContainer}>
-                        <h3 className={classes.profileBioHeader}>Bio</h3>
-                        <p className={classes.profileBio}>{bio}</p>
-                    </div>
+                        <div className={classes.profileBioContainer}>
+                            <h3 className={classes.profileBioHeader}>Bio</h3>
+                            <p className={classes.profileBio}>{bio}</p>
+                        </div>
 
-                    <div className={classes.profileFavContainer}>
-                        <div className={classes.profileFavHeaderContainer}>
-                            <h3 className={classes.profileFavHeader}>{firstName}'s Favourites</h3>
+                        <div className={classes.profileFavContainer}>
+                            <div className={classes.profileFavHeaderContainer}>
+                                <h3 className={classes.profileFavHeader}>{firstName}'s Favourites</h3>
+                            </div>
+                            <div className={classes.favouritesContainer}>
+                                {favourites.map(favourite => (
+                                    <div className={classes.favouriteContainer}>
+                                        <p className={classes.siteHeader}
+                                            onClick={() => siteLinkHandler(favourite.site)}>
+                            
+                                            {favourite.siteName}, {favourite.siteArea}
+                                        
+                                        </p>
+                                        {/* <p>{favourite.siteId}</p> */}
+                                        {/* <p>{favourite.siteDescription}</p> */}
+                                        <img src={'http://localhost:8080/' + favourite.siteImage} className={classes.favouritePicture}/> 
+                                    </div>
+                                ))}
+                            </div>
+    
                         </div>
-                        <div className={classes.favouritesContainer}>
-                            {favourites.map(favourite => (
-                                <div className={classes.favouriteContainer}>
-                                    <p className={classes.siteHeader}
-                                        onClick={() => siteLinkHandler(favourite.site)}>
-                        
-                                        {favourite.siteName}, {favourite.siteArea}
-                                    
-                                    </p>
-                                    {/* <p>{favourite.siteId}</p> */}
-                                    {/* <p>{favourite.siteDescription}</p> */}
-                                    <img src={'http://localhost:8080/' + favourite.siteImage} className={classes.favouritePicture}/> 
-                                </div>
-                            ))}
-                        </div>
-  
-                    </div>
 
                 </div>
             )}
