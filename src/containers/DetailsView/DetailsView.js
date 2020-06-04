@@ -114,7 +114,7 @@ const Details = (props) => {
                   icon: "http://openweathermap.org/img/w/" + apiDay.weather[0].icon + ".png"
               }]
               
-             console.log(weatherArray);
+             //console.log(weatherArray);
 
             });
 
@@ -209,7 +209,7 @@ const Details = (props) => {
                 <div className={classes.weatherDayContainer}>
                   <p>{day.day}</p>
                   <img src={day.icon}/>
-                  <p>{day.temp}C</p>
+                  <p>{day.temp}°C</p>
                   {/* <p>{day.weather}</p> */}
                 </div>
               ))}

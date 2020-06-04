@@ -85,6 +85,18 @@ const Home = () => {
             )}
             </PlacesAutocomplete>
 
+            <div className={classes.latestNewsContainer}>
+                <h2 className={classes.latestNewsHeader}>Latest News 04/05/2020</h2>
+                <p className={classes.latestNewsParagraph}>
+                        The Latest news will appear here regarding updates and improvements 
+                        for Locus. Currently at version 1.0 and has currently basic functionalities.
+                        This includes able to make an account and add, edit and contribute to distributing
+                        dive site information and locations. Basic profiles are available and basic image upload
+                        is available. More improvements are planned such as forum and event features for individual
+                        dive sites.
+                </p>
+            </div>
+
              
             
         </div>
