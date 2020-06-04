@@ -17,8 +17,10 @@ import Comments from '../../components/Comments/Comments';
 import FavouriteButton from '../../components/Buttons/FavouriteButton/FavouriteButton';
 import EllipsesButton from '../../components/Buttons/EllipsesButton/EllipsesButton'; 
 
-import shoreIcon from '../../images/locationIcons/shoreIconPH.jpg';
-import boatIcon from '../../images/locationIcons/boatIconPH.jpg';
+import shoreIcon from '../../images/locationIcons/ShoreIcon.svg';
+import boatIcon from '../../images/locationIcons/BoatIcon.svg';
+
+
 
 import classes from './DetailsView.module.css';
 
@@ -47,8 +49,25 @@ const Details = (props) => {
     const [currentWeather, setCurrentWeather] = useState(null);
     const [dailyWeather, setDailyWeather] = useState(null);
     const [siteWeather, setSiteWeather] = useState();
+    const [iconUrl, setIconUrl] = useState("");
+
+
+    const [weatherContent, setWeatherContent] = useState();
+
+
+    const [isLoading, setIsLoading] = useState(true);
 
     const [key, setKey] = useState('features');
+
+
+    const weekday = new Array(7);
+        weekday[0] = "Sun";
+        weekday[1] = "Mon";
+        weekday[2] = "Tues";
+        weekday[3] = "Wed";
+        weekday[4] = "Thur";
+        weekday[5] = "Fri";
+        weekday[6] = "Sat";
 
 
     const goBackHandler = () => {
@@ -61,6 +80,7 @@ const Details = (props) => {
     const handleSelect = (selectedIndex, e) => {
       setIndex(selectedIndex);
     };
+
 
     useEffect(() => {
         const siteLat = selectedSite.latitude;
@@ -75,13 +95,58 @@ const Details = (props) => {
             const data = await response.json();
             setCurrentWeather(data.current);
             setDailyWeather(data.daily);
-            /* setSiteWeather((data.current.temp - 273.15).toFixed(1)); */
+            setSiteWeather((data.current.temp - 273.15).toFixed(1));
+            setIconUrl("http://openweathermap.org/img/w/" + data.current.weather[0].icon + ".png");
+            
             console.log(data);
+
+            let weatherArray = [];
+
+            data.daily.map(apiDay => {
+              const d = new Date(apiDay.dt * 1000);
+              const dayName =  weekday[d.getDay()];
+              console.log(dayName);
+
+              weatherArray = [...weatherArray, {
+                  day:dayName,
+                  temp:(apiDay.temp.day - 273.15).toFixed(1),
+                  weather: apiDay.weather[0].main,
+                  icon: "http://openweathermap.org/img/w/" + apiDay.weather[0].icon + ".png"
+              }]
+              
+             console.log(weatherArray);
+
+            });
+
+            setWeatherContent(weatherArray);
+
+      
+            // setWeatherContent([...weatherContent, {
+            //   day:dayName,
+            //   temp:(apiDay.temp.day - 273.15).toFixed(1),
+            //   weather: apiDay.weather[0].main,
+            //   icon: "http://openweathermap.org/img/w/" + apiDay.weather[0].icon + ".png"
+            // }]
+            // );
+
+
+            setIsLoading(false);
+
+            //<div>
+              //  <img src={"http://openweathermap.org/img/w/" + apiDay.weather[0].icon + ".png"}/>
+              //  <p> Forecast Day {(apiDay.temp.day - 273.15).toFixed(1)}C. Is {apiDay.weather[0].main}</p>
+            //</div>
 
             //const sites = data.site;
         }
+        
+
         getWeather();
     },[]);
+
+    // console.log('WEATHERCONTENT');
+    // console.log(weatherContent);
+    //console.log(weatherContent);
 
     return (
       <div className={classes.detailsContainer}>
@@ -106,32 +171,65 @@ const Details = (props) => {
         
         </Carousel>
         <div className={classes.siteTypeContainer}>
-            <img
-              className={classes.icon}
-              src={selectedSite.siteType === "1" ? shoreIcon : boatIcon}
-            />
-        </div>
-
+            
+            {siteType === "1" && (
+              <div>
+                <img src={shoreIcon} className={classes.siteTypeImage}/>
+                <p className={classes.siteType}> Shore</p>
+              </div>
+            )} 
+            {siteType === "2" && (
+              <div>
+              <img src={boatIcon} className={classes.siteTypeImage}/>
+              <p className={classes.siteType}> Boat </p>
+            </div>
+            )}
+          </div>
         <div className={classes.nameContainer}>
           <h2 className={classes.siteName}>
             {siteName}, {siteArea}
           </h2>
         </div>
 
+
+        <div className={classes.traitsContainer}>
+           Here some be some traits such as snorkel spot, plenty of fish, lots of coral,
+           easy diving spot, usually good visibility.
+        </div>
+
         <div className={classes.reviewContainer}>
             <StarRating/>
         </div>
+
+        {!isLoading && (
+
+          <div className={classes.weatherContainer}>
+
+              {weatherContent.map(day => (
+                <div className={classes.weatherDayContainer}>
+                  <p>{day.day}</p>
+                  <img src={day.icon}/>
+                  <p>{day.temp}C</p>
+                  {/* <p>{day.weather}</p> */}
+                </div>
+              ))}
+              
+
+              
+              {/* {dailyWeather.map(apiDay => (
+                <div>
+                   <img src={"http://openweathermap.org/img/w/" + apiDay.weather[0].icon + ".png"}/>
+                  <p> Forecast Day {(apiDay.temp.day - 273.15).toFixed(1)}C. Is {apiDay.weather[0].main}</p>
+                </div>
+              ))} */}
+          </div>
+        )}
 
         <div className={classes.descriptionContainer}>
             
             <p  className={classes.description}>{siteDescription}</p>
         </div>
 
-        <div className={classes.weatherContainer}>
-            <h3>Current Weather</h3>
-            <p>{siteWeather} Celsius</p>
-            <p>Check Forecast for this week</p>
-        </div>
 
 
         <div className={classes.sightsContainer}>

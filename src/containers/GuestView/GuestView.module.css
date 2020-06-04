@@ -1,7 +1,6 @@
 .guestView {
-    background-color: ghostwhite;
-    height:94vh;
-    /* width: 100%;
-    background-color: blue;
-    display: inline-block; */
+    background-color: #576CD1;
+    width: 100%;
+    height:97vh;
+    float:left;
 }

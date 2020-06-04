@@ -1,3 +1,9 @@
+.userViewPage {
+    float:left;
+    width: 100%;
+    height: 97vh;
+}
+
 .AddModal {
     width: 50vw;
     max-width: none!important;

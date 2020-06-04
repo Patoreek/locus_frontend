@@ -11,11 +11,11 @@
 
 .comboboxInput {
     /* width: 30vw; */
-    height: 3vw;
+    height: 50px;
     transition: 1s ease;
     border-right: none;
     padding-left: 1vw;
-    border-radius: 0.2vw 0vw 0vw 0.2vw;
+    border-radius: 5px 0px 0px 5px;
     
 }
 

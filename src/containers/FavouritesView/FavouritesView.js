@@ -40,7 +40,7 @@ const FavouritesView = () => {
     },[])
 
     return (
-        <div>
+        <div className={classes.favouritesPage}>
             {!isLoading && (
                 <div className={classes.favouritesContainer}>  
                 

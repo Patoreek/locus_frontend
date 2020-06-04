@@ -124,7 +124,6 @@ const ViewProfileView = (props) => {
                     <h1> Loading...</h1>
                 )}
             </div>
-            )}
             {/* {moreDetails && (
             <Details/>
             )} */}

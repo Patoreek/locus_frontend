@@ -1,13 +1,13 @@
 .detailsContainer {
     width: 80%;
-    height:95vh;
+    height:auto;
     background-color: ghostwhite;
     display: inline-block;
     flex-direction: row;
     overflow:scroll;
     justify-content: flex-start;
-    border-left: 2px solid lightgray;
-    border-right: 2px solid lightgray;
+    border-left: 2px solid #C0D6DF;
+    border-right: 2px solid #C0D6DF;
 
 }
 
@@ -26,63 +26,91 @@
 
 .carousel {
     width: 100%;
-    height:70vh;
+    height:65vh;
+    float:left;
 }
 
 .carouselImage {
     object-fit: cover;
     width: 100%;
-    height: 70vh;
-    border-bottom: 2px solid grey;
+    height: 65vh;
+    border-bottom: 2px solid #576CD1;
 
 }
 
 .siteTypeContainer {
+    float:left;
     position: relative;
-    width: 20vw;
-    margin: -9vw 0vw;
-    padding-left: 5vw;
-    /* background-color: indianred; */
-    z-index: 10 !important;
+    width: 10%;
+    height: 100px;
+    /* background-color: skyblue; */
+    top: 0;
+    right: 0;
+    z-index: 20;
+    border-bottom: 2px solid #576CD1;
 }
 
-.icon {
-    z-index: 50;
-    width: 15vw;
-    height: 15vw;
-    border-radius: 10vw;
-    border: 2px solid grey;
+.siteTypeImage {
+    /* background-color: springgreen; */
+    margin: -68px 12px 0px 12px;
+    width: 100%;
+    border: 2px solid #576CD1;
+    border-radius: 100px;
+}
+
+.siteType {
+    position: relative;
+    text-align: center;
+    font-size: 22px;
+    background-color: #F5EFFF ;
+    border-radius: 20px;
+    border: 2px solid #576CD1;
+    margin-top: -30px;
+    margin-left: 20px;
 }
 
 .nameContainer {
-    /* display: inline-block; */
+    position: relative;
     float:left;
     text-align: left;
-    padding: 1vw;
-    margin-top: 3vw;
-    margin-left: 20vw;
     width: 50%;
-    height: auto;
-    background-color: greenyellow;
+    padding: 50px 0px 0px 25px;
+    height: 100px;
+    /* background-color: greenyellow; */
+    border-bottom: 2px solid #576CD1;
+
+    
 }
 
 .siteName {
-    font-size: 32px;
+    font-size: 38px;
+}
+
+.traitsContainer {
+    float: right;
+    width: 40%;
+    height: 500px;
+    /* background-color: gold; */
+    border-left: 2px solid #576CD1;
+
 }
 
 .reviewContainer {
     background-color: purple;
     float:left;
-    margin-top: 3vw;
-    width:19.8vw;
-    padding-top: 1vw;
+    width: 10%;
+    height: 100px;
+    padding-top: 0px;
+    padding-left: 20px;
+
+
     /* padding: 1.5vw 2.5vw 0vw 1.25vw; */
 }
 
 .descriptionContainer {
    float: left;
     width: 60%;
-    height: 30vh;
+    height: 300px;
     background-color: hotpink;
     overflow: hidden;
 }
@@ -96,9 +124,17 @@
 
 .weatherContainer {
     float: left;
-    width: 40%;
-    height: 30vh;
+    width: 50%;
+    /* height: 100px; */
+    height: auto;
     background-color: mediumturquoise;
+    border-bottom: 2px solid #576CD1;
+
+}
+
+.weatherDayContainer {
+    display:inline-block;
+    margin: 10px;
 }
 
 .tabsSection {
@@ -176,9 +212,6 @@
         font-size: 14px;
     }
 
-    .siteTypeContainer {
-        width: 25vw;
-    }
 
     .icon {
         width: 20vw;

@@ -21,9 +21,6 @@ import { DiveSitesContext,
 import shoreIcon from '../../../images/locationIcons/ShoreLocation.svg';
 import boatIcon from '../../../images/locationIcons/BoatLocation.svg';
 
-import shoreIconCircle from '../../../images/locationIcons/shoreIconCircle.png';
-import boatIconCircle from '../../../images/locationIcons/boatIconCircle.png';
-
 import WeatherContainer from '../../../containers/WeatherContainer/WeatherContainer';
 import PhotoContainer from './PhotosContainer/PhotoContainer';
 import StarRating from '../../StarRating/StarRating';
@@ -96,11 +93,11 @@ const GuestMap = () => {
     const style = {
         backgroundColor: "rgba(255, 255, 255, 0.75)",
         padding: "0.5vw 1vw 0vw 1vw",
-        borderLeft: "1px solid slateblue",
-        borderTop: "1px solid slateblue",
-        borderBottom: "1px solid slateblue",
+        borderRight: "2px solid #DBE9EE",
+        borderTop: "2px solid #DBE9EE",
+        borderBottom: "2px solid #DBE9EE",
         overflow: "hidden",
-        borderRadius: "0.2vw 0vw 0vw 0vw"
+        borderRadius: "6px 0px 5px 0px"
     }
 
     const totalRatingStyle = {
@@ -166,7 +163,7 @@ const GuestMap = () => {
                         } }
                     >
                         <div className={classes.siteContainer}>
-                <div className={classes.siteImageContainer} 
+                        <div className={classes.siteImageContainer} 
                      onClick={() => moreDetailsHandler(selectedSite)}>
 
                     <img src={'http://localhost:8080/' + selectedSite.images[0]}
@@ -183,6 +180,8 @@ const GuestMap = () => {
                                 guestMapStyle={style}
                                 totalRatingStyle={totalRatingStyle}/>
                 </div>
+
+               
 
 
                 <div className={classes.siteNameContainer}>

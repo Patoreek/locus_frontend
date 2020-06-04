@@ -5,14 +5,17 @@
     z-index: 10;
     border-radius: 10%;
     /* padding: 0.5vw 1vw; */
-    height: 3vw;
+    height: 50px;
+    width: 55px;
     transition: 1s ease;
     border-radius: 0vw 0.2vw 0.2vw 0vw;
+    background-color: #576CD1 ;
 
 }
 
 .icon {
-    transform: scale(1.2);
+    transform: scale(1.5);
+    color: #F5EFFF;
     /* background-color: lightgreen; */
 }
 

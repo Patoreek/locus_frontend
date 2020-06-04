@@ -32,9 +32,11 @@ import { AuthContext,
 
 
 
-import shoreIcon from '../../../../images/locationIcons/ShoreLocation.svg';
-import boatIcon from '../../../../images/locationIcons/BoatLocation.svg';
+// import shoreIcon from '../../../../images/locationIcons/ShoreLocation.svg';
+// import boatIcon from '../../../../images/locationIcons/BoatLocation.svg';
 
+ import shoreIcon from '../../../../images/locationIcons/ShoreIcon.svg';
+ import boatIcon from '../../../../images/locationIcons/BoatIcon.svg';
 import EditSiteForm from '../../../Forms/EditSiteForm/EditSiteForm';
 import DeleteContainer from '../../../Forms/DeleteContainer/DeleteContainer';
 import ImageUpload from '../../../ImageUpload/ImageUpload';
@@ -137,18 +139,51 @@ const MySitesMap = () => {
                     } }
                 >       
  
-                    <div className={classes.infowindowContainer}>
-                        <h3><b>{selectedSite.name}</b></h3>
-                        <h5><b>{selectedSite.area}</b></h5>
-                        <div className={classes.buttonsContainer}>
-                            <Button variant="info"
-                                    onClick = {editSiteHandler}
-                                    className={classes.editButton}>Edit</Button>
-                            <Button variant="danger"
-                                    onClick = {showDeleteForm}
-                                    className={classes.deleteButton}>Delete</Button>
+                <div className={classes.siteContainer}>
+                    <div className={classes.siteImageContainer}>
+
+                        <img src={'http://localhost:8080/' + selectedSite.images[0]}
+                            className={classes.siteImage}
+                        />
+                    </div>
+
+                    <div className={classes.siteNameContainer}>
+                        <h5  className={classes.siteName}>
+                                {selectedSite.name}, {selectedSite.area}
+                        </h5>
+                    </div>
+
+                    <div className={classes.siteDescriptionContainer}>
+                        <p className={classes.siteDescription}> {selectedSite.description} </p>
+                        <div className={classes.moreDetailsButtonContainer}>
                         </div>
                     </div>
+
+                    <div className={classes.editButtonContainer}>
+                        <Button 
+                            variant="info"
+                            onClick={() =>{
+                                setSelectedSite(selectedSite);
+                                editSiteHandler();
+                            }}
+                            className={classes.editButton}>
+                            Edit
+                        </Button> 
+                    </div>
+
+                    <div className={classes.deleteButtonContainer}>
+                        <Button 
+                            variant="danger"
+                            onClick={() =>{
+                                setSelectedSite(selectedSite);
+                                showDeleteForm();
+                            }}
+                            className={classes.deleteButton}>
+                            Delete
+                        </Button> 
+                    </div>
+            
+                </div>
                    
                 </InfoWindow>
             )}

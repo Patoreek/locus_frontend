@@ -1,9 +1,11 @@
 .NavBar {
-    background-color: white;
+    /* background-color: white; */
+    background-color: #DBE9EE;
     height: 50px;
     width: 100%;
     display: inline-block;
-    border-bottom: 2px solid rgb(209, 208, 208);
+    /* border-bottom: 2px solid rgb(209, 208, 208); */
+    border-bottom: 2px solid #C0D6DF;
     font-size: 16px;
 }
 

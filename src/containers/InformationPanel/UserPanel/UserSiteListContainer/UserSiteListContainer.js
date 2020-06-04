@@ -61,7 +61,18 @@ const UserSiteList = () => {
     return (
        
         <div>
-            <h1> My Sites </h1>
+            <div className={classes.topContainer}>
+                <div className={classes.headerContainer}>
+                    <h1 className={classes.header}> {account.username}'s Sites</h1>
+                </div>
+                <div className={classes.paragraphContainer}>
+                    <p className={classes.paragraph}> 
+                        These are your divesites that you have added. You may add a site by clicking
+                        on the map. To edit and delete, either press the buttons in the panel section
+                        or click on the markers to show options.
+                    </p>
+                </div>
+            </div>
             {/* {sites.map(site => { */}
             {!listLoading ? <SiteList sites={sites}/> : <p>Not Loaded</p>}  
             {/* })} */}

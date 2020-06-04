@@ -21,14 +21,22 @@ const Footer = () => {
 
             <div className={classes.socialContainer}>
                 <h3 className={classes.socialHeader}>Find us on </h3>
-                <FaFacebookSquare className={classes.fbIcon}/>
-                <FaTwitterSquare className={classes.twitterIcon}/>
-                <FaInstagramSquare className={classes.instaIcon}/>
+                <a href="https://www.facebook.com/locusDiving/" target="_blank">
+                    <FaFacebookSquare className={classes.fbIcon}/>
+                </a>
+                <a href="https://twitter.com/locus88596252" target="_blank">
+                    <FaTwitterSquare className={classes.twitterIcon}/>
+                </a>
+                <a href="https://www.instagram.com/locusdiving/" target="_blank">
+                    <FaInstagramSquare className={classes.instaIcon}/>
+                </a>
             </div>
 
             <div className={classes.mailContainer}>
-                <IoIosMail className={classes.mailIcon}/>
-                <p className={classes.email}>support@locus.com</p>
+                <a href="mailto:locusdiving@gmail.com">
+                    <IoIosMail className={classes.mailIcon}/>
+                    <p className={classes.email}>support@locus.com</p>
+                </a>
             </div>
 
             <ul className={classes.footerList}>
@@ -40,9 +48,9 @@ const Footer = () => {
                    <a href="/about"> About </a>
                 </li>
                 
-                <li className={classes.listItem}>
+                {/* <li className={classes.listItem}>
                    <a href="/advertise"> Advertise </a>
-                </li>
+                </li> */}
                 
                 <li className={classes.listItem}>
                    <a href="/news"> News </a>

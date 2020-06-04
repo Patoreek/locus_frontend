@@ -1,8 +1,9 @@
 .infoPanelContainer {
     /* width:30vw; */
+    position: relative;
     height:97vh;
-    background-color: #dedede;
-    border-right: 2px solid lightgrey;
+    background-color: #F5EFFF;
+    border-right: 2px solid #C0D6DF;
     box-sizing: border-box;
     /* float:left; */
     float:left;

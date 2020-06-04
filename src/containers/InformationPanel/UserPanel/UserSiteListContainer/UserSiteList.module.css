@@ -1,0 +1,27 @@
+.topContainer {
+    width: 100%;
+    height: auto;
+    background-color: ghostwhite;
+    border-bottom: 2px solid #C0D6DF;
+    padding: 25px;
+    z-index: 20;
+}
+
+.headerContainer {
+    display: inline-block;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.header {
+    margin: 0 auto;
+    font-size: 32px;
+    border-bottom: 2px solid black;
+    width: 50%;
+}
+
+.paragraph {
+    padding-top: 25px;
+    text-align: left;
+    font-size: 16px;
+}

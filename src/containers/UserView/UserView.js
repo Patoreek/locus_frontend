@@ -77,7 +77,7 @@ const UserView = () => {
 
 
     return (
-        <div>
+        <div className={classes.userViewPage}>
             <MobToggleView/>
             {userViewLoaded && (
                 <InformationPanel/>

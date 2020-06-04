@@ -40,26 +40,25 @@ const GuestPanel = () => {
     const style = {
         backgroundColor: "rgba(255, 255, 255, 0.75)",
         padding: "0.5vw 1vw 0vw 1vw",
-        borderRight: "1px solid slateblue",
-        borderBottom: "1px solid slateblue",
+        borderRight: "2px solid #DBE9EE",
+        borderTop: "2px solid #DBE9EE",
+        borderBottom: "2px solid #DBE9EE",
         overflow: "hidden",
-        borderRadius: "0.5vw 0vw 0.5vw 0vw",
+        borderRadius: "6px 0px 5px 0px"
     }
 
     const totalRatingStyle = {
         display:"none"
     }
 
-    /* const ellipsesButtonStyle = {
-        width: "30px",
-        height: "30px",
-        marginBottom: "10px"
-    } */
+    //const ellipsesButtonStyle = {
+    //    marginTop: "10px"
+    //}
 
     return (
         <div>
             {/* <ToggleButtons/> */}
-            <h1 className={classes.panelHeader}>Divesites</h1>
+            {/* <h1 className={classes.panelHeader}>Divesites</h1> */}
         {diveSites.map(site => (
             <div className={classes.siteContainer}>
                 <div className={classes.siteImageContainer} 

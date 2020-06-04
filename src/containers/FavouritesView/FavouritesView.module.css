@@ -1,9 +1,13 @@
+.favouritesPage {
+    background-color: #576CD1;
+}
+
 .favouritesContainer {
     margin: 0 auto;
     width: 80%;
-    background-color: white;
-    border-left: 1px solid #003F91;
-    border-right: 1px solid #003F91;
+    background-color: #F5EFFF;
+    border-left: 2px solid #DBE9EE;
+    border-right: 2px solid #DBE9EE;
 }
 
 @media screen and (max-width: 800px) {
