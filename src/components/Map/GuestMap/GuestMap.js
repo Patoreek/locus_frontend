@@ -18,8 +18,8 @@ import { DiveSitesContext,
 
     
 
-import shoreIcon from '../../../images/locationIcons/ShoreLocation.svg';
-import boatIcon from '../../../images/locationIcons/BoatLocation.svg';
+import shoreIconMarker from '../../../images/locationIcons/ShoreIconMarker.svg';
+import boatIconMarker from '../../../images/locationIcons/BoatIconMarker.svg';
 
 import WeatherContainer from '../../../containers/WeatherContainer/WeatherContainer';
 import PhotoContainer from './PhotosContainer/PhotoContainer';
@@ -145,7 +145,7 @@ const GuestMap = () => {
                         setSelectedSite(site);
                     }}
                     icon={{
-                    url: site.siteType === "1" ? shoreIcon : boatIcon,
+                    url: site.siteType === "1" ? shoreIconMarker : boatIconMarker,
                     scaledSize: new window.google.maps.Size(60, 60)
                     }}
                     />

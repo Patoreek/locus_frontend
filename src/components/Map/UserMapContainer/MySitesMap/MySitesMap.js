@@ -30,13 +30,14 @@ import { AuthContext,
     LocateButtonContext } from '../../../../context/AuthContext';
 
 
+import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerClusterer';
 
 
 // import shoreIcon from '../../../../images/locationIcons/ShoreLocation.svg';
 // import boatIcon from '../../../../images/locationIcons/BoatLocation.svg';
 
- import shoreIcon from '../../../../images/locationIcons/ShoreIcon.svg';
- import boatIcon from '../../../../images/locationIcons/BoatIcon.svg';
+ import shoreIconMarker from '../../../../images/locationIcons/ShoreIconMarker.svg';
+ import boatIconMarker from '../../../../images/locationIcons/BoatIconMarker.svg';
 import EditSiteForm from '../../../Forms/EditSiteForm/EditSiteForm';
 import DeleteContainer from '../../../Forms/DeleteContainer/DeleteContainer';
 import ImageUpload from '../../../ImageUpload/ImageUpload';
@@ -108,9 +109,23 @@ const MySitesMap = () => {
         setShowDeleteModal(true);
     }
 
+    const onMarkerClustererClick = (markerClusterer) => {
+        const clickedMarkers = markerClusterer.getMarkers();
+        //console.log(`Current clicked markers length: ${clickedMarkers.length}`)
+        //console.log(clickedMarkers);
+      }
+
+
 
     return (
         <div>
+             <MarkerClusterer
+                    onClick={onMarkerClustererClick}
+                    averageCenter
+                    gridSize={20}
+                    maxZoom={11}
+                    defaultZoomOnClick
+                >
             { diveSites.map(site => (
                 <Marker 
                 key={site._id}
@@ -122,11 +137,12 @@ const MySitesMap = () => {
                     setSelectedSite(site);
                 }}
                 icon={{
-                   url: site.siteType === "1" ? shoreIcon : boatIcon,
+                   url: site.siteType === "1" ? shoreIconMarker : boatIconMarker,
                    scaledSize: new window.google.maps.Size(60, 60)
                 }}
                 />
             ))}
+            </MarkerClusterer>
 
             {selectedSite && ( /* OVERLAYVIEW is needed here for custom CSS and window properties*/
                 <InfoWindow
