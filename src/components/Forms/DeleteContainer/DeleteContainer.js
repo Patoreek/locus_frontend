@@ -17,7 +17,7 @@ import { DeleteModalContext } from '../../../context/UserContext';
 
 
 
-const DeleteContainer = () => {
+const DeleteContainer = (props) => {
 
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
     //const [showForm, setShowForm] = useContext(FormContext);
@@ -65,6 +65,7 @@ const DeleteContainer = () => {
     const cancelDeleteHandler = (event) => {
         event.preventDefault();
         console.log('Canceled Delete');
+        props.close();
 
     }
 

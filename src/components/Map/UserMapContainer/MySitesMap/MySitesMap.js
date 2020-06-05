@@ -241,9 +241,6 @@ const MySitesMap = () => {
                     <Button variant="secondary" onClick={handleEditClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleEditClose}>
-                        Save Changes
-                    </Button>
                 </Modal.Footer>
             </Modal>
 
@@ -255,12 +252,10 @@ const MySitesMap = () => {
                     <Modal.Title>Delete Dive Site</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className={classes.DeleteModalBody}>
-                    <DeleteContainer/>
+                    <DeleteContainer close={handleDeleteClose}/>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleDeleteClose}>
-                        Close
-                    </Button>
+                   
                 </Modal.Footer>
             </Modal>
             
