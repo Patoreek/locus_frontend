@@ -12,7 +12,10 @@ import { AuthContext,
          LoadingContext, 
          MapSizeContext } from '../../context/AuthContext';
 
-import { AddModalContext } from '../../context/UserContext';
+import { AddModalContext,
+         EditModalContext,
+         DeleteModalContext } from '../../context/UserContext';
+
 
 import { useHistory} from 'react-router-dom';
 
@@ -34,6 +37,9 @@ const UserView = () => {
         const [userViewLoaded, setUserViewLoaded] = useState(false);
 
         const [showAddModal, setShowAddModal] = useContext(AddModalContext);
+
+        const [showEditModal, setShowEditModal] = useContext(EditModalContext);
+        const [showDeleteModal, setShowDeleteModal] = useContext(DeleteModalContext);
 
         const handleClose = () => setShowAddModal(false);
         const handleShow = () => setShowAddModal(true);
@@ -57,11 +63,22 @@ const UserView = () => {
         
 
         const onMapClick = (event) => {
-                setCoords({
+
+                if (showEditModal) {
+                    setShowEditModal(false);
+                }
+                else if (showDeleteModal){
+                    setShowDeleteModal(false);
+                } else if (selectedSite !== null){
+                    setSelectedSite(null);
+                } else {
+                    setCoords({
                         lat: event.latLng.lat(),
                         lng: event.latLng.lng()
-                });
-                handleShow();
+                    });
+                    handleShow();
+                }
+                
                 // if (showForm !== "ADD") {
                 //         toggleShowForm("ADD");
                 //         setSelectedSite(null);

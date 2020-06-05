@@ -48,17 +48,17 @@ const EllipsesButton = (props) => {
           </Popover.Title>
           {showShare && (
           <Popover.Content>
-          <h3> Buttons to share to certain sites</h3>
-            <FacebookShareButton url='http://www.youtube.com'> {/* CHANGE URL TO THE SELECTED DIVE SITE*/}
+          <p> Sharing features to be completed soon...</p>
+            <FacebookShareButton url='https://www.facebook.com/locusDiving/'> {/* CHANGE URL TO THE SELECTED DIVE SITE*/}
               <FacebookIcon size={32} round={true} /> 
             </FacebookShareButton >
-            <RedditShareButton url='http://www.youtube.com'>
+            <RedditShareButton url='https://www.facebook.com/locusDiving/'>
               <RedditIcon size={32} round={true} /> 
             </RedditShareButton>
-            <TwitterShareButton url='http://www.youtube.com'>
+            <TwitterShareButton url='https://twitter.com/locus88596252'>
               <TwitterIcon size={32} round={true} /> 
             </TwitterShareButton>
-            <WhatsappShareButton url='http://www.youtube.com'>
+            <WhatsappShareButton url='https://www.facebook.com/locusDiving/'>
               <WhatsappIcon size={32} round={true} /> 
             </WhatsappShareButton>
           </Popover.Content>
@@ -79,7 +79,9 @@ const EllipsesButton = (props) => {
         </Modal.Header>
         <Modal.Body>
           <p> Reporting section</p>
-          <p> form with report request that will be sent for evaluation. </p>
+          <p> This section is still under development. If there are any issues regarding 
+            locus feel free to contact us any of our social media links at the bottom
+            of this website. We appreciate the the feedback :)  </p>
 
         </Modal.Body>
         <Modal.Footer>
