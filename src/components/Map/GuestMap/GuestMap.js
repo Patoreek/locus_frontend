@@ -177,7 +177,7 @@ const GuestMap = () => {
 
                 <div className={classes.siteRatingsContainer}>
                     <StarRating siteRatings = {selectedSite.ratings}
-                                guestMapStyle={style}
+                                style={style}
                                 totalRatingStyle={totalRatingStyle}/>
                 </div>
 

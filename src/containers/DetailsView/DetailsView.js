@@ -81,6 +81,30 @@ const Details = (props) => {
       setIndex(selectedIndex);
     };
 
+    const style = {
+      transform: "scale(1.5)"
+    }
+
+    const totalRatingStyle = {
+      fontSize: "18px"
+    }
+
+    const totalRatingsContainerStyle = {
+      float: "right",
+      // backgroundColor: "aqua",
+      paddingLeft: "0px",
+      paddingTop: "-2px"
+
+    }
+
+    const starRatingStyleContainer = {
+      display:"inline-block",
+      margin: "0 auto",
+      // backgroundColor: "orange",
+      marginBottom: "-10px",
+      height: "25px",
+      width:"50%"
+    }
 
     useEffect(() => {
         const siteLat = selectedSite.latitude;
@@ -170,26 +194,37 @@ const Details = (props) => {
           ))}
         
         </Carousel>
-        <div className={classes.siteTypeContainer}>
-            
+        <div className={classes.topHalfContainer}>
+          <div className={classes.siteNameContainer}>
+            <h2 className={classes.siteName}>
+              {siteName}, {siteArea}
+            </h2>
+          </div>
+
+          <div className={classes.reviewContainer}>
+            <StarRating 
+              style={style}
+              totalRatingStyle={totalRatingStyle}
+              totalRatingsContainerStyle={totalRatingsContainerStyle}
+              starRatingStyleContainer={starRatingStyleContainer}
+            />
+          </div>
+
+          <div className={classes.siteTypeContainer}>
             {siteType === "1" && (
               <div>
-                <img src={shoreIcon} className={classes.siteTypeImage}/>
-                <p className={classes.siteType}> Shore</p>
+                <p className={classes.siteType}> Shore Dive</p>
               </div>
             )} 
             {siteType === "2" && (
               <div>
-              <img src={boatIcon} className={classes.siteTypeImage}/>
-              <p className={classes.siteType}> Boat </p>
+                <p className={classes.siteType}> Boat Dive</p>
             </div>
             )}
           </div>
-        <div className={classes.nameContainer}>
-          <h2 className={classes.siteName}>
-            {siteName}, {siteArea}
-          </h2>
+
         </div>
+        
 
 
         <div className={classes.traitsContainer}>
@@ -197,22 +232,32 @@ const Details = (props) => {
            easy diving spot, usually good visibility.
         </div>
 
-        <div className={classes.reviewContainer}>
-            <StarRating/>
-        </div>
-
         {!isLoading && (
 
           <div className={classes.weatherContainer}>
 
+            <div className={classes.weatherInnerContainer}>
+
+              <div className={classes.weatherInnerTitleContainer}>
+                  <h3>Weather</h3>
+              </div>
+
               {weatherContent.map(day => (
                 <div className={classes.weatherDayContainer}>
-                  <p>{day.day}</p>
-                  <img src={day.icon}/>
-                  <p>{day.temp}°C</p>
+                  <div className={classes.weatherDayNameContainer}>
+                    <p>{day.day}</p>
+                  </div>
+                  <div className={classes.weatherDayIconContainer}>
+                    <img src={day.icon}/>
+                  </div>
+                  <div className={classes.weatherDayTempContainer}>
+                    <p>{day.temp}°C</p>
+                  </div>
                   {/* <p>{day.weather}</p> */}
                 </div>
               ))}
+
+            </div>
               
 
               

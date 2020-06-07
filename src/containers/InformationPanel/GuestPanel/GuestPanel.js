@@ -75,7 +75,7 @@ const GuestPanel = () => {
 
                 <div className={classes.siteRatingsContainer}>
                     <StarRating siteRatings = {site.ratings}
-                                guestMapStyle={style}
+                                style={style}
                                 totalRatingStyle={totalRatingStyle}/>
                 </div>
 

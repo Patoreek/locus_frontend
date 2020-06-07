@@ -114,17 +114,21 @@ const ReviewStars = (props) => {
   return (
     <div className={classes.root}>
     {isAuth && (
-        <div>
-        <Rating name="half-rating"
-              precision={0.5}
-              value={rating}
-              onChange={(event, newValue) => {
-                setValue(newValue);
-                submitRatingHandler(newValue);
-              }}
-              style={props.guestMapStyle}
-        />
-        <p className={customClasses.totalRatings} style={props.totalRatingStyle}><b>({totalRatings})</b></p>
+        <div style={props.starRatingStyleContainer}>
+
+            <Rating name="half-rating"
+                  precision={0.5}
+                  value={rating}
+                  onChange={(event, newValue) => {
+                    setValue(newValue);
+                    submitRatingHandler(newValue);
+                  }}
+                  style={props.style}
+            />
+
+          <div className={customClasses.totalRatingsContainer} style={props.totalRatingsContainerStyle}>
+            <p className={customClasses.totalRatings} style={props.totalRatingStyle}><b>({totalRatings})</b></p>
+          </div>
         </div>
     )}
     {!isAuth && (
