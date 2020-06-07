@@ -90,31 +90,35 @@
 }
 
 
-.traitsContainer {
+.sightsContainer {
     float: right;
     width: 40%;
     height: 500px;
     /* background-color: gold; */
     border-left: 2px solid #576CD1;
+    border-bottom: 2px solid #576CD1;
+    position: relative;
+
 
 }
 
-.descriptionContainer {
-   float: left;
-    width: 60%;
-    height: 300px;
-    background-color: hotpink;
-    overflow: hidden;
+.tabsSection {
+    background-color: #313E50;
+    font-size: 18px;
+    border-bottom: 2px solid #C0D6DF;
 }
 
+.tabsSection a {
+    color: white;
+}
 
-.description {
-    text-align: left;
+.sightsTab {
     padding: 1vw;
     font-size: 16px;
 }
 
-.weatherContainer {
+
+.weatherContainer, .descriptionContainer {
     float: left;
     position: relative;
     width: 60%;
@@ -125,13 +129,13 @@
 
 }
 
-.weatherInnerContainer {
+.weatherInnerContainer, .descriptionInnerContainer, .sightsInnerContainer{
     position: absolute;
-    left: 2.5%;
+    left: 1%;
     top: 5%;
     /* right: 50%;
     bottom: 50%; */
-    width: 95%;
+    width: 98%;
     text-align: center;
     background-color: #F5EFFF;
     border: 2px solid #C0D6DF;
@@ -140,7 +144,12 @@
     overflow:hidden;
 }
 
-.weatherInnerTitleContainer {
+.sightsInnerContainer{ 
+    top: 2.5%;
+    height: 94.5%;
+}
+
+.weatherInnerTitleContainer, .descriptionInnerTitleContainer {
     background-color: #313E50;
     border-bottom: 2px solid #C0D6DF;
     color: white;
@@ -189,23 +198,20 @@
 
 }
 
-.tabsSection {
-    /* background-color: greenyellow; */
-    font-size: 18px;
+.descriptionContainer {
+    float: left;
+     width: 60%;
+     height: 300px;
+     /* background-color: hotpink; */
+     overflow: hidden;
 }
-
-.sightsContainer {
-    float:left;
-    width: 40%;
-    height: 40vw;
-    /* background-color: saddlebrown; */
-
-}
-
-.sightsTab {
-    padding: 1vw;
-    font-size: 16px;
-}
+ 
+ 
+ .description {
+     text-align: left;
+     padding: 1vw;
+     font-size: 16px;
+ }
 
 .depthContainer {
     float: left;

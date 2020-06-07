@@ -226,11 +226,70 @@ const Details = (props) => {
         </div>
         
 
-
+{/* 
         <div className={classes.traitsContainer}>
            Here some be some traits such as snorkel spot, plenty of fish, lots of coral,
            easy diving spot, usually good visibility.
+        </div> */}
+
+        <div className={classes.sightsContainer}>
+
+        <div className={classes.sightsInnerContainer}>
+          <Tabs defaultActiveKey="features" 
+                id="uncontrolled-tab-example"
+                className={classes.tabsSection}>
+              <Tab eventKey="features" title="Features" className={classes.sightsTab}>
+
+                  <h3 className={classes.sightsHeader}>Common sights / features </h3>
+                  <Table striped bordered hover>
+                      <thead>
+                          <tr>
+                          <th width={'30%'}>Type</th>
+                          <th width={'70%'}>Name</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                      {siteFeatures.map(feature => (
+                          <tr>
+                          <td>{feature.featureType}</td>
+                          <td> {feature.name}</td>
+                          </tr>
+                      ))}
+                      </tbody>
+                      </Table>
+
+
+
+              </Tab>
+              <Tab eventKey="info" title="Info" className={classes.sightsTab}>
+
+                  <h3 className={classes.infoHeader}>Information</h3>
+
+                  {/* <div className={classes.depthContainer}>
+                      <h3>Max Depth: {siteDepth}m</h3>
+                  </div> */}
+
+                  <Table striped bordered hover>
+                      <tbody>
+                          <tr>
+                          <td width="30%">Max Depth</td>
+                          <td width="70%"> {siteDepth}m</td>
+                          </tr>
+                      </tbody>
+                      </Table>
+              </Tab>
+              <Tab eventKey="uMap" title="Underwater Map" className={classes.sightsTab}>
+
+                  <h3  className={classes.uMapHeader}>Underwater Map</h3>
+                      <div className={classes.waterMapContainer}>
+                      {/* <p>{siteUnderwaterMap}</p> */}
+                      <p>To be added...</p> 
+                  </div>
+              </Tab>
+          </Tabs>
         </div>
+            
+        </div> 
 
         {!isLoading && (
 
@@ -258,81 +317,26 @@ const Details = (props) => {
               ))}
 
             </div>
-              
-
-              
-              {/* {dailyWeather.map(apiDay => (
-                <div>
-                   <img src={"http://openweathermap.org/img/w/" + apiDay.weather[0].icon + ".png"}/>
-                  <p> Forecast Day {(apiDay.temp.day - 273.15).toFixed(1)}C. Is {apiDay.weather[0].main}</p>
-                </div>
-              ))} */}
+            
           </div>
         )}
 
         <div className={classes.descriptionContainer}>
+
+          <div className={classes.descriptionInnerContainer}>
+
+          <div className={classes.descriptionInnerTitleContainer}>
+              <h3>Description</h3>
+          </div>
             
             <p  className={classes.description}>{siteDescription}</p>
+
+          </div>
         </div>
 
 
 
-        <div className={classes.sightsContainer}>
-
-        <Tabs defaultActiveKey="features" 
-              id="uncontrolled-tab-example"
-              className={classes.tabsSection}>
-            <Tab eventKey="features" title="Features" className={classes.sightsTab}>
-
-                <h3 className={classes.sightsHeader}>Common sights / features </h3>
-                <Table striped bordered hover>
-                    <thead>
-                        <tr>
-                        <th width={'30%'}>Type</th>
-                        <th width={'70%'}>Name</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {siteFeatures.map(feature => (
-                        <tr>
-                        <td>{feature.featureType}</td>
-                        <td> {feature.name}</td>
-                        </tr>
-                    ))}
-                    </tbody>
-                    </Table>
-
-
-
-            </Tab>
-            <Tab eventKey="info" title="Info" className={classes.sightsTab}>
-
-                <h3 className={classes.infoHeader}>Information</h3>
-
-                {/* <div className={classes.depthContainer}>
-                    <h3>Max Depth: {siteDepth}m</h3>
-                </div> */}
-
-                <Table striped bordered hover>
-                    <tbody>
-                        <tr>
-                        <td width="30%">Max Depth</td>
-                        <td width="70%"> {siteDepth}m</td>
-                        </tr>
-                    </tbody>
-                    </Table>
-            </Tab>
-            <Tab eventKey="uMap" title="Underwater Map" className={classes.sightsTab}>
-
-                <h3  className={classes.uMapHeader}>Underwater Map</h3>
-                    <div className={classes.waterMapContainer}>
-                    {/* <p>{siteUnderwaterMap}</p> */}
-                    <p>To be added...</p> 
-                </div>
-            </Tab>
-        </Tabs>
-            
-        </div> 
+        
 
         <div className={classes.commentsContainer}>
         <h3 className={classes.commentsHeader}><b>{selectedSite.comments.length} Comments</b></h3>
