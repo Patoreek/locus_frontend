@@ -125,11 +125,11 @@ const Comments = () => {
     }
 
     return (
-        <div>
+        <div className={classes.commentsMainContainer}>
             {isAuth && (
                 <Form className={classes.form}>
                     <Form.Group controlId="exampleForm.ControlTextarea1" as={Row} >
-                    <Form.Label className={classes.addCommentHeader} column sm="3">{account.username} says </Form.Label>
+                    <h3 className={classes.addCommentHeader} column sm="3">{account.username} says </h3>
                         <Col sm="9">
                         <Form.Control as="textarea" 
                                     rows="1"
@@ -169,9 +169,9 @@ const Comments = () => {
                 <b>Log in or Sign up to add comments.</b>
             )}
 
-            
+            <div className={classes.commentsContainer}>
             {siteComments.map(comment => (
-                <div className={classes.commentsContainer}>
+                <div className={classes.commentContainer}>
                     <div  className={classes.usernameContainer}>
                         <h6 className={classes.commentUsername}><a href={"/viewprofile/" + comment.userId}> {comment.commentUsername}</a></h6>
                     </div>
@@ -184,13 +184,14 @@ const Comments = () => {
                         </div>
                     )}
 
-                    <div  className={classes.commentContainer}>
+                    <div  className={classes.commentTextContainer}>
                         <p className={classes.comment}> {comment.userComment}</p>
                     </div>
                     {/* <p>CommentId = {comment.commentId}</p>
                     <p>UserId = {comment.userId}</p> */}
                 </div>
             ))}
+            </div>
             
         </div>
     );

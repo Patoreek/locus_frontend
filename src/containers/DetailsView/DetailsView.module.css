@@ -95,8 +95,8 @@
     width: 40%;
     height: 500px;
     /* background-color: gold; */
-    border-left: 2px solid #576CD1;
-    border-bottom: 2px solid #576CD1;
+    /* border-left: 2px solid #576CD1;
+    border-bottom: 2px solid #576CD1; */
     position: relative;
 
 
@@ -113,23 +113,58 @@
 }
 
 .sightsTab {
-    padding: 1vw;
-    font-size: 16px;
+    padding: 10px;
+    font-size: 24px;
 }
 
 
-.weatherContainer, .descriptionContainer {
+.weatherContainer, 
+.descriptionContainer {
     float: left;
     position: relative;
     width: 60%;
     /* height: 100px; */
     height: 200px;
-    /* background-color: #DBE9EE; */
-    border-bottom: 2px solid #576CD1;
+    /* background-color: rgb(15, 185, 247); */
+    /* border-bottom: 2px solid #576CD1; */
+}
+
+.commentsContainer {
+    float:left;
+    position: relative;
+    width: 60%;
+    /* min-height: 500px; */
+    height: auto;
+    background-color: red;
 
 }
 
-.weatherInnerContainer, .descriptionInnerContainer, .sightsInnerContainer{
+.commentsInnerContainer {
+    position: absolute;
+    left: 1%;
+    top: 5%;
+    width: 98%;
+    height: auto;
+    margin: 10px 0px;
+    background-color: #F5EFFF;
+    border: 2px solid #C0D6DF;
+    border-radius: 10px;
+    overflow: hidden;
+
+}
+
+.commentsTotalTitleContainer {
+    float:left;
+    padding: 15px 0px 0px 25px;
+}
+
+.commentsTotalTitle {
+    font-size: 18px;
+}
+
+.weatherInnerContainer,
+.descriptionInnerContainer,
+.sightsInnerContainer {
     position: absolute;
     left: 1%;
     top: 5%;
@@ -145,11 +180,13 @@
 }
 
 .sightsInnerContainer{ 
-    top: 2.5%;
-    height: 94.5%;
+    top: 2%;
+    height: 95%;
 }
 
-.weatherInnerTitleContainer, .descriptionInnerTitleContainer {
+.weatherInnerTitleContainer, 
+.descriptionInnerTitleContainer,
+.commentsInnerTitleContainer {
     background-color: #313E50;
     border-bottom: 2px solid #C0D6DF;
     color: white;
@@ -205,6 +242,11 @@
      /* background-color: hotpink; */
      overflow: hidden;
 }
+
+.descriptionTitle,
+.weatherTitle {
+    font-size: 24px;
+}
  
  
  .description {
@@ -227,21 +269,6 @@
     height: 10vw;
     /* background-color: orange; */
 }
-
-.commentsContainer {
-    float:right;
-    width: 60%;
-    height: 40vw;
-    overflow: scroll;
-}
-
-.commentsHeader {
-    text-align: left;
-    margin: 1vw 2vw;
-    width: 100%;
-    font-size: 24px;
-}
-
 
 @media screen and (min-width: 801px) and (max-width: 1280px) {
 

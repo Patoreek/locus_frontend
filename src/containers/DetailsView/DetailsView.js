@@ -239,8 +239,6 @@ const Details = (props) => {
                 id="uncontrolled-tab-example"
                 className={classes.tabsSection}>
               <Tab eventKey="features" title="Features" className={classes.sightsTab}>
-
-                  <h3 className={classes.sightsHeader}>Common sights / features </h3>
                   <Table striped bordered hover>
                       <thead>
                           <tr>
@@ -263,7 +261,6 @@ const Details = (props) => {
               </Tab>
               <Tab eventKey="info" title="Info" className={classes.sightsTab}>
 
-                  <h3 className={classes.infoHeader}>Information</h3>
 
                   {/* <div className={classes.depthContainer}>
                       <h3>Max Depth: {siteDepth}m</h3>
@@ -298,7 +295,7 @@ const Details = (props) => {
             <div className={classes.weatherInnerContainer}>
 
               <div className={classes.weatherInnerTitleContainer}>
-                  <h3>Weather</h3>
+                  <h3 className={classes.weatherTitle}>Weather</h3>
               </div>
 
               {weatherContent.map(day => (
@@ -326,7 +323,7 @@ const Details = (props) => {
           <div className={classes.descriptionInnerContainer}>
 
           <div className={classes.descriptionInnerTitleContainer}>
-              <h3>Description</h3>
+              <h3 className={classes.weatherTitleContainer}>Description</h3>
           </div>
             
             <p  className={classes.description}>{siteDescription}</p>
@@ -334,15 +331,22 @@ const Details = (props) => {
           </div>
         </div>
 
-
-
-        
-
         <div className={classes.commentsContainer}>
-        <h3 className={classes.commentsHeader}><b>{selectedSite.comments.length} Comments</b></h3>
-            <Comments/>
-        </div>
+          <div className={classes.commentsInnerContainer}>
+            <div className={classes.commentsInnerTitleContainer}>
+                <h3 className={classes.commentsTitle}>Comments</h3>
+            </div>
+            
+             <div className={classes.commentsTotalTitleContainer}>
+              <h3 className={classes.commentsTotalTitle}>{selectedSite.comments.length} Comments</h3>
+            </div>
 
+            {/* <div className={classes.commentsComponentContainer}> */}
+                <Comments/>
+            {/* </div>  */}
+
+          </div>         
+        </div>
 
       </div>
     );
