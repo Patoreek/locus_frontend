@@ -29,6 +29,10 @@
     font-size: 16px;
 }
 
+.errorMessage {
+    color: red;
+}
+
 .formInput {
     width: 100%;
     display: inline-block;

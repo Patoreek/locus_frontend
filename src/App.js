@@ -26,6 +26,7 @@ import NewsView from './containers/FooterViews/NewsView/NewsView';
 import ContactView from './containers/FooterViews/ContactView/ContactView';
 import SitemapView from './containers/FooterViews/SitemapView/SitemapView';
 import TermsView from './containers/FooterViews/TermsView/TermsView';
+import PolicyView from './containers/FooterViews/PolicyView/PolicyView';
 
 
 
@@ -115,7 +116,7 @@ function App() {
         <Route path="/contact" component={ContactView}/>
         <Route path="/sitemap" component={SitemapView}/>
         <Route path="/terms" component={TermsView}/>
-
+        <Route path="/policy" component={PolicyView}/>
 
         <Footer/>
       

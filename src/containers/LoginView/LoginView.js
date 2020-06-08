@@ -15,6 +15,8 @@ const LoginView = () => {
     const [isAuth, setIsAuth] = useContext(AuthContext);
     const [account, setAccount] = useContext(AccountContext);
 
+    const [errMsg, setErrMsg] = useState("");
+
 
     let history = useHistory();
 
@@ -54,8 +56,9 @@ const LoginView = () => {
         .catch(err => {
             console.log('Caught.');
             console.log(err);
+            setErrMsg("Invalid Username and/or password.");
             setIsAuth(false);
-            history.push("/login");
+            // history.push("/login");
         });
 
 
@@ -68,6 +71,7 @@ const LoginView = () => {
             <Form className={classes.LoginForm}>
             <h1 className={classes.LoginHeader}>Log in</h1>
             <p className={classes.LoginSubheader}>Welcome Back! Login to access additional features.</p>
+            <p className={classes.errorMessage}>{errMsg}</p>
                 <Form.Group as={Row}
                     controlId="formHorizontalEmail"
                     className={classes.formGroup}>

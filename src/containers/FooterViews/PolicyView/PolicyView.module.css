@@ -1,0 +1,16 @@
+.policyPage {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    background-color: ghostwhite;
+}
+
+.policyContainer {
+    display: inline-block;
+    margin: 0 auto;
+    width: 70%;
+    height: 95vh;
+    background-color: white;
+    border-left: 2px solid grey;
+    border-right: 2px solid grey;
+}

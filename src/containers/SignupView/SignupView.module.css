@@ -26,8 +26,13 @@
 }
 
 .errorMessage {
+    display: inline-block;
+    margin: 0 auto;
+    text-align: left;
     color: red;
     list-style: none;
+    /* background-color: darkcyan; */
+    width: 80%;
 }
 
 .formInput {

@@ -33,11 +33,11 @@ const SignupView = () => {
 
         if (!isChecked) {
             // console.log("User hasn't ticked the checkbox");
-            errorMessage.push("User hasn't ticked checkbox");
+            errorMessage.push("You havent agreed to the Terms of Service");
             setIsError(true);
         }
 
-        if (username.length <= 6 || username.length >= 16) {
+        if (username.length <= 3 || username.length >= 16) {
             // console.log("User hasn't ticked the checkbox");
             errorMessage.push("Username must be longer than 6 characters and less than 16 characters");
             setIsError(true);
