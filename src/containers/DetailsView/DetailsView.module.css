@@ -54,7 +54,7 @@
 .siteNameContainer {
     /* display: inline-block; */
     float:left;
-    /* background-color: honeydew; */
+    /* background-color: honeydew;  */
     width: 60%;
     height: 40px;
     margin: 0 auto;
@@ -67,7 +67,7 @@
     /* display: inline-block; */
     /* margin: 0 auto; */
     float:right;
-    /* background-color: purple; */
+    /* background-color: purple;  */
     text-align: center;
     width: 40%;
     height: 60px;

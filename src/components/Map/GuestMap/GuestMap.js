@@ -164,16 +164,18 @@ const GuestMap = () => {
                     >
                         <div className={classes.siteContainer}>
                         <div className={classes.siteImageContainer} 
-                     onClick={() => moreDetailsHandler(selectedSite)}>
+                             onClick={() => moreDetailsHandler(selectedSite)}>
 
                     <img src={'http://localhost:8080/' + selectedSite.images[0]}
                         className={classes.siteImage}
                     />
                 </div>
 
-                <div className={classes.favButtonContainer}>
-                    {isAuth ? <FavouriteButton site={selectedSite}/> : null}
-                </div>
+                {isAuth && ( 
+                    <div className={classes.favButtonContainer}>
+                        <FavouriteButton site={selectedSite}/>
+                    </div>
+                )}
 
                 <div className={classes.siteRatingsContainer}>
                     <StarRating siteRatings = {selectedSite.ratings}

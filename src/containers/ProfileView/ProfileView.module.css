@@ -155,6 +155,7 @@ body {
     display: inline-block;
     margin: 0 auto;
     margin-top: 20px;
+    margin-bottom: 20px;
     /* display: inline-block;  */
     border: 2px solid #C0D6DF;
     border-radius: 0.5vw;

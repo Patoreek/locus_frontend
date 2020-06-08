@@ -1,5 +1,5 @@
 .SignUpContainer {
-    background-color: ghostwhite;
+    background-color: hsl(240, 100%, 99%);
     background-image: url('../../images/backgroundImages/bgImage007.jpg');
     background-position: center;
     background-size: cover;
@@ -13,16 +13,21 @@
     margin: 0 auto;
     margin-top: 100px;
     padding: 1vw 1vw;
-    border: 1px solid black;
+    border: 2px solid #313E50;
     border-radius: 10px;
     box-shadow: 5px 5px 10px ;
-    background-color: rgb(255, 255, 255, 1);
+    background-color: rgb(255, 255, 255, 0.75);
     display: inline-block;
 }
 
 .SignUpHeader {
     padding: 10px 0vw 20px 0vw;
     font-size: 42px;
+}
+
+.errorMessage {
+    color: red;
+    list-style: none;
 }
 
 .formInput {
@@ -37,6 +42,23 @@
     margin: 0 auto;
     margin-top: 1vw;
     margin-bottom: 1vw;
+}
+
+
+.checkBox {
+    /* display: inline-block; */
+    float:left;
+    margin: 0 auto;
+    /* background-color: cyan; */
+    padding-bottom: 10px;
+}
+
+.checkBoxText {
+    font-size: 14px;
+    /* background-color: crimson; */
+    width: 95%;
+    margin: 0 auto;
+    display: inline-block;
 }
 
 @media screen and (max-width: 800px) {

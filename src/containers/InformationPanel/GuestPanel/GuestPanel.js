@@ -69,9 +69,11 @@ const GuestPanel = () => {
                     />
                 </div>
 
-                <div className={classes.favButtonContainer}>
-                    {isAuth ? <FavouriteButton site={site}/> : null}
-                </div>
+                {isAuth && (
+                    <div className={classes.favButtonContainer}>
+                        <FavouriteButton site={site}/> 
+                    </div>
+                )}
 
                 <div className={classes.siteRatingsContainer}>
                     <StarRating siteRatings = {site.ratings}

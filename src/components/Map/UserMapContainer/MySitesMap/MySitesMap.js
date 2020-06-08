@@ -175,28 +175,31 @@ const MySitesMap = () => {
                         </div>
                     </div>
 
-                    <div className={classes.editButtonContainer}>
-                        <Button 
-                            variant="info"
-                            onClick={() =>{
-                                setSelectedSite(selectedSite);
-                                editSiteHandler();
-                            }}
-                            className={classes.editButton}>
-                            Edit
-                        </Button> 
-                    </div>
+                    <div className={classes.buttonsContainer}>
 
-                    <div className={classes.deleteButtonContainer}>
-                        <Button 
-                            variant="danger"
-                            onClick={() =>{
-                                setSelectedSite(selectedSite);
-                                showDeleteForm();
-                            }}
-                            className={classes.deleteButton}>
-                            Delete
-                        </Button> 
+                        <div className={classes.editButtonContainer}>
+                            <Button 
+                                variant="info"
+                                onClick={() =>{
+                                    setSelectedSite(selectedSite);
+                                    editSiteHandler();
+                                }}
+                                className={classes.editButton}>
+                                Edit
+                            </Button> 
+                        </div>
+
+                        <div className={classes.deleteButtonContainer}>
+                            <Button 
+                                variant="danger"
+                                onClick={() =>{
+                                    setSelectedSite(selectedSite);
+                                    showDeleteForm();
+                                }}
+                                className={classes.deleteButton}>
+                                Delete
+                            </Button> 
+                        </div>
                     </div>
             
                 </div>

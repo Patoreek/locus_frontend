@@ -1,5 +1,5 @@
 .NavBar {
-    /* background-color: white; */
+    /* background-color: #3C91E6; */
     background-color: #DBE9EE;
     height: 50px;
     width: 100%;
@@ -29,7 +29,6 @@
     /* margin: 0.7vw 1.9vw 0vw 0vw; */
     transition: .2s ease;
     font-size: 16px;
-
 }
  
 .listSpacer {
@@ -43,6 +42,7 @@
 
 .listLink {
     padding: 0vw 0.6vw;
+    
 }
 
 .listItemName {

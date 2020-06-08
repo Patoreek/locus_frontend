@@ -63,6 +63,10 @@ const Footer = () => {
                 <li className={classes.listItem}>
                    <a href="/sitemap"> Sitemap </a>
                 </li>
+
+                <li className={classes.listItem}>
+                   <a href="/policy"> Privacy Policy </a>
+                </li>
                 
                 <li className={classes.listItem}>
                    <a href="/terms"> Terms of Service </a>
@@ -71,6 +75,7 @@ const Footer = () => {
 
             <div className={classes.copyrightContainer}>
                 <p>© Copyright 2020 Locus™</p>
+                {/* <p>Designed and developed by Patrick Minda</p> */}
             </div>
         </footer>
     );

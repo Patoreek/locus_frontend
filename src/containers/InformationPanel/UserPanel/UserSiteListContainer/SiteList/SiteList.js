@@ -53,30 +53,32 @@ const SiteList = (props) => {
                     </div>
                 </div>
 
-                <div className={classes.editButtonContainer}>
-                    <Button 
-                        variant="info"
-                        onClick={() =>{
-                            setSelectedSite(site);
-                            editSiteHandler();
-                        }}
-                        className={classes.editButton}>
-                        Edit
-                    </Button> 
-                </div>
+                <div className={classes.buttonContainer}>
+                    <div className={classes.editButtonContainer}>
+                        <Button 
+                            variant="info"
+                            onClick={() =>{
+                                setSelectedSite(site);
+                                editSiteHandler();
+                            }}
+                            className={classes.editButton}>
+                            Edit
+                        </Button> 
+                    </div>
 
-                <div className={classes.deleteButtonContainer}>
-                    <Button 
-                        variant="danger"
-                        onClick={() =>{
-                            setSelectedSite(site);
-                            showDeleteForm();
-                        }}
-                        className={classes.deleteButton}>
-                        Delete
-                    </Button> 
+                    <div className={classes.deleteButtonContainer}>
+                        <Button 
+                            variant="danger"
+                            onClick={() =>{
+                                setSelectedSite(site);
+                                showDeleteForm();
+                            }}
+                            className={classes.deleteButton}>
+                            Delete
+                        </Button> 
+                    </div>
                 </div>
-            
+                
             </div>
         ))
             
