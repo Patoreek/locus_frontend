@@ -134,8 +134,21 @@
         transform: scale(2);
     }
 
-    .listItem {
-        margin: 10px 20px;
+    .footerList {
+        /* background-color: royalblue; */
+        text-align: center;
+        
     }
+
+    .listItem {
+        display: inline-block;
+        margin: 0 auto;
+        padding-right: 20px;
+        width: 100%;
+        /* background-color: rosybrown; */
+        
+    }
+
+
 
 }

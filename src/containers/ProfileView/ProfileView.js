@@ -78,7 +78,8 @@ const ProfileView = () => {
 
                     <div className={classes.topHalfContainer}>
 
-                        <div className={classes.profilePictureContainer}>
+                         <div className={classes.profilePictureContainer}>
+                            <div className={classes.overlayDiv}></div>
                             <img src={profilePic} className={classes.profilePicture}/> 
                         </div>
 

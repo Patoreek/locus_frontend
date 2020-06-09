@@ -24,6 +24,19 @@
     background-size: cover;
 }
 
+.overlayDiv {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50% ;
+    background-color: rgba(0, 0, 0, 0);
+    transition: 0.5s ease;
+}
+
+.overlayDiv:hover {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
 
 
 .profileNameContainer {
@@ -115,6 +128,12 @@
 .profileEdit {
     font-size: 16px;
     color: white;
+    transition: 0.2s ease;
+}
+
+.profileEdit:hover {
+    color: #576CD1;
+    text-decoration: none;
 }
 
 .profileBioContainer {
