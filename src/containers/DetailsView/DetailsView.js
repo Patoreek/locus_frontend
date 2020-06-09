@@ -11,6 +11,8 @@ import { Button,
          Tabs,
          Table } from 'react-bootstrap';
 
+import { useMediaQuery } from '../../CustomHooks/useMediaQuery';
+
 
 import StarRating from '../../components/StarRating/StarRating';
 import Comments from '../../components/Comments/Comments';
@@ -70,6 +72,8 @@ const Details = (props) => {
         weekday[6] = "Sat";
 
 
+    const isMobile = useMediaQuery('(max-width: 800px)');
+
     const goBackHandler = () => {
 
         setMoreDetails(false);
@@ -81,9 +85,41 @@ const Details = (props) => {
       setIndex(selectedIndex);
     };
 
-    const style = {
-      transform: "scale(1.5)"
+    let style;
+    let starRatingStyleContainer;
+
+    if (isMobile){
+       style = {
+        transform: "scale(0.75)"
+      }
+
+      starRatingStyleContainer = {
+        display:"inline-block",
+        float: "left",
+        //margin: "0 auto",
+        // backgroundColor: "orange",
+        marginBottom: "-10px",
+        height: "25px",
+        width:"50%"
+      }
+
+    } else {
+       style = {
+        transform: "scale(1.5)"
+      }
+
+      starRatingStyleContainer = {
+        display:"inline-block",
+        // float: "left",
+        margin: "0 auto",
+        // backgroundColor: "orange",
+        marginBottom: "-10px",
+        height: "25px",
+        width:"50%"
+      }
     }
+
+    
 
     const totalRatingStyle = {
       fontSize: "18px"
@@ -95,15 +131,6 @@ const Details = (props) => {
       paddingLeft: "0px",
       paddingTop: "-2px"
 
-    }
-
-    const starRatingStyleContainer = {
-      display:"inline-block",
-      margin: "0 auto",
-      // backgroundColor: "orange",
-      marginBottom: "-10px",
-      height: "25px",
-      width:"50%"
     }
 
     useEffect(() => {
@@ -239,7 +266,8 @@ const Details = (props) => {
                 id="uncontrolled-tab-example"
                 className={classes.tabsSection}>
               <Tab eventKey="features" title="Features" className={classes.sightsTab}>
-                  <Table striped bordered hover>
+                  <Table striped bordered hover
+                   className={classes.table}>
                       <thead>
                           <tr>
                           <th width={'30%'}>Type</th>
@@ -266,7 +294,8 @@ const Details = (props) => {
                       <h3>Max Depth: {siteDepth}m</h3>
                   </div> */}
 
-                  <Table striped bordered hover>
+                  <Table striped bordered hover
+                  className={classes.table}>
                       <tbody>
                           <tr>
                           <td width="30%">Max Depth</td>
@@ -297,7 +326,8 @@ const Details = (props) => {
               <div className={classes.weatherInnerTitleContainer}>
                   <h3 className={classes.weatherTitle}>Weather</h3>
               </div>
-
+              
+              <div className={classes.allWeatherDaysContainer}>
               {weatherContent.map(day => (
                 <div className={classes.weatherDayContainer}>
                   <div className={classes.weatherDayNameContainer}>
@@ -312,6 +342,7 @@ const Details = (props) => {
                   {/* <p>{day.weather}</p> */}
                 </div>
               ))}
+              </div>
 
             </div>
             
@@ -323,7 +354,7 @@ const Details = (props) => {
           <div className={classes.descriptionInnerContainer}>
 
           <div className={classes.descriptionInnerTitleContainer}>
-              <h3 className={classes.weatherTitleContainer}>Description</h3>
+              <h3 className={classes.descriptionTitle}>Description</h3>
           </div>
             
             <p  className={classes.description}>{siteDescription}</p>

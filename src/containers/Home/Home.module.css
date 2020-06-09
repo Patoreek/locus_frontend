@@ -70,7 +70,7 @@
     border-radius: 10px;
     right: 0;
     bottom: 0;
-    margin: 15vh;
+    margin: 50px;
     padding: 25px;
 
     box-shadow: 5px 5px 15px black;
@@ -113,6 +113,25 @@
 
     }
 
+    .latestNewsContainer {
+        overflow: scroll;
+        width: 90%;
+        height: 200px;
+        margin: 10px;
+   
+    
+    }
+    
+    .latestNewsHeader {
+        font-size: 14px;
+
+    }
+    
+    .latestNewsParagraph {
+        font-size: 12px;
+
+    }
+
 }
 
 @media screen and (min-width: 801px) and (max-width: 1280px) {
@@ -134,6 +153,24 @@
         width: 400px;
         height: 30px;
         font-size: 16px;
+
+    }
+
+    .latestNewsContainer {
+
+        width: 350px;
+        height: auto;
+   
+    
+    }
+    
+    .latestNewsHeader {
+        font-size: 18px;
+
+    }
+    
+    .latestNewsParagraph {
+        font-size: 14px;
 
     }
 

@@ -6,10 +6,12 @@ const NewsView = () => {
     return (
         <div className={classes.newsPage}>
 
-            <div className={classes.newsContainer}>
-                <div className={classes.coverPhotoContainer}>
-                    <h1 className={classes.newsHeader}>Locus News</h1>
-                </div>
+                <div className={classes.newsContainer}>
+
+                    <div className={classes.coverPhotoContainer}>
+                        <h1 className={classes.newsHeader}>Locus News</h1>
+                    </div>
+                
 
                 <div className={classes.postContainer}>
 

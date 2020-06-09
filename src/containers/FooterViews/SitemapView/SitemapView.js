@@ -5,9 +5,18 @@ import classes from './SitemapView.module.css';
 const SiteMapView = () => {
     return (
         <div className={classes.sitemapPage}>
-            <div className={classes.sitemapContainer}>
-                <h1> Sitemap</h1>
-                <p> Place Sitemap </p>
+            <div className={classes.sitemapPageContainer}>
+
+                <div className={classes.siteMapContainer}>
+                    <div className={classes.siteMapHeaderContainer}>
+                        <h1 className={classes.siteMapHeader}> Sitemap </h1>
+                    </div>
+
+                    <div className={classes.siteMapParagraphContainer}>
+                        <p className={classes.siteMapParagraph}> Place Sitemap </p>
+                    </div>
+                </div>
+
             </div>
         </div>
     );

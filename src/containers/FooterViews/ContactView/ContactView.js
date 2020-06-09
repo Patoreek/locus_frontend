@@ -13,6 +13,9 @@ const ContactView = () => {
     return (
         <div className={classes.contactPage}>
 
+            <div className={classes.contactPageContainer}>
+
+
             <div className={classes.contactContainer}>
 
                 <div className={classes.headerContainer}>
@@ -55,6 +58,7 @@ const ContactView = () => {
 
             </div>
         </div>
+    </div>
     );
 };
 

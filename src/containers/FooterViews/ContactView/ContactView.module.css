@@ -1,31 +1,46 @@
 .contactPage {
-    min-height: 60vh;
+    display: inline-block;
+    width: 100%;
     height: auto;
+    background-color: #576CD1;
+}
+
+.contactPageContainer {
+    display: inline-block;
+    margin: 0 auto;
+    width: 70%;
+    height: 95vh;
+    background-color: #DBE9EE;
+    border-left: 2px solid #C0D6DF;
+    border-right: 2px solid #C0D6DF;
+    padding: 25px 100px;
+    text-align: left;
 }
 
 .contactContainer {
-    display: inline-block;
     margin: 0 auto;
-    margin-top: 50px;
-    width: 45%;
+    width: 65%;
     height: auto;
-    /* background-color: lawngreen; */
-    border: 2px solid grey;
+    background-color: white;
+    border: 2px solid #C0D6DF;
     border-radius: 10px;
+    overflow: hidden;
+
 }
 
 
 .headerContainer {
     width: 100%;
     height: auto;
-    /* background-color: red; */
+    background-color: #313E50;
     text-align: left;
-    border-bottom: 2px solid grey;
+    border-bottom: 2px solid #C0D6DF;
 }
 
 .contactHeader {
     padding: 25px 0px 10px 25px;
     font-size: 24px;
+    color:white;
 }
 
 .descriptionContainer {
@@ -44,12 +59,13 @@
 .socialContainer {
     width: 100%;
     height: auto;
-    /* background-color: lightblue; */
+    /* background-color: lightblue;  */
+    text-align: center;
 }
 
 .fbIcon, .twitterIcon, .instaIcon {
-    margin: 2vh 25px;
-    transform: scale(2);
+    margin: 20px 40px;
+    transform: scale(3);
     transition: 0.2s ease;
 }
 
@@ -66,22 +82,22 @@
 }
 
 .fbIcon:hover, .twitterIcon:hover, .instaIcon:hover, .mailIcon:hover {
-    transform: scale(2.5);
+    transform: scale(3.5);
 }
 
 .mailContainer {
     width: 100%;
     /* background-color: limegreen; */
     display: inline-block;
-    margin: 0 auto;
-    padding: 2vh 0px;
+    text-align: center;
+    padding: 25px 0px;
 }
 
 .mailIcon {
     display: inline-block;
-    transform: scale(2);
+    transform: scale(3);
     margin: 0 auto;
-    margin-right: 25px;
+    margin-right: 50px;
     margin-left: 25px;
     color: #1985A1;
     transition: 0.2s ease;
@@ -101,10 +117,12 @@
 }
 
 .aboutUsMsg {
+    text-align: center;
     font-size: 16px;
 }
 
 .signUpMsg {
+    text-align: center;
     font-size: 16px;
 }
 
