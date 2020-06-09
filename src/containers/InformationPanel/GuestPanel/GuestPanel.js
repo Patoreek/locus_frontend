@@ -1,6 +1,6 @@
 import React, { useEffect, useContext} from 'react';
 
-import { Button } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 
 import { DiveSitesContext,
          DetailsContext,
@@ -12,6 +12,8 @@ import StarRating from '../../../components/StarRating/StarRating';
 import FavouriteButton from '../../../components/Buttons/FavouriteButton/FavouriteButton';
 import EllipsesButton from '../../../components/Buttons/EllipsesButton/EllipsesButton';
 import ToggleButtons from '../ToggleButtons/ToggleButtons';
+
+
 
 import classes from './GuestPanel.module.css';
 

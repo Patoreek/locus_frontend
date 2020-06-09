@@ -10,15 +10,16 @@ const PolicyView = () => {
                 <h1 className={classes.mainHeader}> Locus Private Policy</h1>
 
                 <h3 className={classes.header}> Terms </h3>
-                <p className={classes.paragraph}>LeafedOut (the “Company”) is committed to maintaining robust privacy 
+                <p className={classes.paragraph}>
+                    Locus (the “Company”) is committed to maintaining robust privacy 
                     protections for its users. Our Privacy Policy (“Privacy Policy”) is 
                     designed to help you understand how we collect, use and safeguard the 
                     information you provide to us and to assist you in making informed 
                     decisions when using our Service.
                     For purposes of this Agreement, “Service” refers to the Company’s service
-                    which can be accessed via our website at Leafedout.com [or through our 
-                    mobile application]. in which users can create user accounts and message
-                    other individuals in the legal cannabis community. The terms “we,” “us,”
+                    which can be accessed via our website at Locus.com [or through our 
+                    mobile application]. in which users can create user accounts and create
+                    and contribute to adding diving information. The terms “we,” “us,”
                     and “our” refer to the Company. “You” refers to you, as a user of 
                     Service. By accepting our Privacy Policy and Terms of Service,
                     you consent to our collection, storage, use and disclosure of your 
@@ -165,7 +166,7 @@ const PolicyView = () => {
                 <h3 className={classes.header}> Contact us </h3>
                 <p className={classes.paragraph}>
                     If you have any questions regarding this Privacy Policy or the practices
-                    of this Site, please contact us by sending an email to support@leafedout.com
+                    of this Site, please contact us by sending an email to locus@gmail.com
                 </p>
 
                 <hr/>

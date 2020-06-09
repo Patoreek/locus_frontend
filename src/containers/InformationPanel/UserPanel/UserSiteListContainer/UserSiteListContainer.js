@@ -8,6 +8,9 @@ import { AddModalContext,
          DeleteModalContext } from '../../../../context/UserContext';
 
 
+import Spinner from 'react-bootstrap/Spinner';
+
+
 import SiteList from './SiteList/SiteList';
 
 const UserSiteList = () => {
@@ -74,7 +77,7 @@ const UserSiteList = () => {
                 </div>
             </div>
             {/* {sites.map(site => { */}
-            {!listLoading ? <SiteList sites={sites}/> : <p>Not Loaded</p>}  
+            {!listLoading ? <SiteList sites={sites}/> : <Spinner animation="border" />}  
             {/* })} */}
         </div>
     );

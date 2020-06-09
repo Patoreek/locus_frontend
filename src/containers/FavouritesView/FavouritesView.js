@@ -10,6 +10,8 @@ import { DetailsContext } from '../../context/DiveSiteContext';
 
 import DetailsView from '../DetailsView/DetailsView';
 
+import Spinner from 'react-bootstrap/Spinner'
+
 import classes from './FavouritesView.module.css';
 
 
@@ -59,7 +61,7 @@ const FavouritesView = () => {
             )}
 
             {isLoading && (
-                <h1>Loading...</h1>
+                <Spinner animation="border" />
             )}
             
         </div>

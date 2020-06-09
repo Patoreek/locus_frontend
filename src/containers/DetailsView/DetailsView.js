@@ -11,6 +11,8 @@ import { Button,
          Tabs,
          Table } from 'react-bootstrap';
 
+import Spinner from 'react-bootstrap/Spinner';
+
 import { useMediaQuery } from '../../CustomHooks/useMediaQuery';
 
 
@@ -347,6 +349,23 @@ const Details = (props) => {
             </div>
             
           </div>
+        )}
+        {isLoading && (
+          <div className={classes.weatherContainer}>
+
+          <div className={classes.weatherInnerContainer}>
+
+            <div className={classes.weatherInnerTitleContainer}>
+                <h3 className={classes.weatherTitle}>Weather</h3>
+            </div>
+            
+            <div className={classes.allWeatherDaysContainer}>
+              <Spinner animation="border" />
+            </div>
+
+          </div>
+          
+        </div>
         )}
 
         <div className={classes.descriptionContainer}>

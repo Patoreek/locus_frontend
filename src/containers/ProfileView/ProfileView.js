@@ -5,6 +5,8 @@ import { SiteContext, DetailsContext } from '../../context/DiveSiteContext';
 
 import Details from '../DetailsView/DetailsView';
 
+import Spinner from 'react-bootstrap/Spinner';
+
 import classes from './ProfileView.module.css';
 
 const ProfileView = () => {
@@ -152,7 +154,7 @@ const ProfileView = () => {
                 </div>
             )}
             {isLoading && (
-                <h1> Loading...</h1>
+                <Spinner animation="border" />
             )}
         </div>
         )}

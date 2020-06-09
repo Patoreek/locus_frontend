@@ -3,6 +3,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import GuestPanel from './GuestPanel/GuestPanel';
 import UserPanel from './UserPanel/UserPanel';
 
+import Spinner from 'react-bootstrap/Spinner';
+
 import { AuthContext, 
          UserOnMapContext, 
          PanelSizeContext } from '../../context/AuthContext';
@@ -53,6 +55,9 @@ const InformationPanel = (props) => {
             )}
             {panelLoaded && !guestPanel && (
                 <UserPanel/>
+            )}
+            {!panelLoaded && (
+                <Spinner animation="border" />  
             )}
 
         </div>
