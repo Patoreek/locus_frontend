@@ -67,66 +67,86 @@ const ProfileView = () => {
 
 
     return (
-        <div>
+        <div className={classes.profilePage}>
         {!moreDetails && (
-        <div className={classes.profileContainer}>
+        <div className={classes.profilePageContainer}>
             {!isLoading && (
                 <div>
                     <div className={classes.coverPhotoContainer}>
+                       
+                    </div>
+
+                    <div className={classes.topHalfContainer}>
+
                         <div className={classes.profilePictureContainer}>
                             <img src={profilePic} className={classes.profilePicture}/> 
                         </div>
 
                         <div className={classes.profileNameContainer}>
-                            <p className={classes.profileName}>{firstName} {lastName}</p>
+                            <h3 className={classes.profileName}>{firstName} {lastName}</h3>
+                        </div>
+
+                        <div className={classes.profileLocationContainer}>
+                            <p className={classes.profileLocation}>{location}</p>
+                        </div>
+                        <div className={classes.profileSpanContainer}>
+                            <p className={classes.profileSpan}>|</p>
+                        </div>
+
+                        <div className={classes.profileLicenseContainer}>
+                            <p className={classes.profileLicense}>{licenseType}</p>
+                        </div>
+
+                        <div className={classes.profileEditContainer}>
+                            <a href="/editprofile" className={classes.profileEdit}>Edit profile</a>
                         </div>
                     </div>
 
-                    <div className={classes.profileLocationContainer}>
-                        <p className={classes.profileLocation}>{location}</p>
-                    </div>
-                    <div className={classes.profileSpanContainer}>
-                        <p className={classes.profileSpan}>|</p>
-                    </div>
 
-                    <div className={classes.profileLicenseContainer}>
-                        <p className={classes.profileLicense}>{licenseType}</p>
-                    </div>
-
-                    <div className={classes.profileEditContainer}>
-                        <a href="/editprofile">Edit profile</a>
-                    </div>
-
-                    <div className={classes.hrContainer}>
-                        <hr  className={classes.hr}/>
-                    </div>
+                   
+                
 
                         <div className={classes.profileBioContainer}>
-                            <h3 className={classes.profileBioHeader}>Bio</h3>
+                            <div className={classes.profileBioHeaderContainer}>
+                                <h3 className={classes.profileBioHeader}>Bio</h3>
+                            </div>
                             <p className={classes.profileBio}>{bio}</p>
                         </div>
 
-                        <div className={classes.profileFavContainer}>
                     
+                        <div className={classes.profileFavContainer}>
+
+                            <div className={classes.profileFavHeaderContainer}>
                                 <h3 className={classes.profileFavHeader}>{firstName}'s Favourites</h3>
+                            </div>
             
                             <div className={classes.favouritesContainer}>
                                 {favourites.map(favourite => (
                                     <div className={classes.favouriteContainer}>
-                                        <p className={classes.siteHeader}
-                                            onClick={() => siteLinkHandler(favourite.site)}>
-                            
-                                            {favourite.siteName}, {favourite.siteArea}
-                                        
-                                        </p>
-                                        {/* <p>{favourite.siteId}</p> */}
-                                        {/* <p>{favourite.siteDescription}</p> */}
-                                        <img src={'http://localhost:8080/' + favourite.siteImage} className={classes.favouritePicture}/> 
+
+                                        <div className={classes.siteHeaderContainer}>
+                                            <h3 className={classes.siteHeader}
+                                                onClick={() => siteLinkHandler(favourite.site)}>
+                                
+                                                {favourite.siteName}, {favourite.siteArea}
+                                            
+                                            </h3>
+                                        </div>
+
+                                        <div className={classes.siteImageContainer}>
+
+                                            <img src={'http://localhost:8080/' + favourite.siteImage} 
+                                                className={classes.siteImage}
+                                            />
+                                        </div>
+
+
+
                                     </div>
                                 ))}
                             </div>
     
-                        </div>
+                        </div> 
 
                 </div>
             )}
