@@ -3,8 +3,8 @@ import { useHistory } from 'react-router-dom';
 
 import { FaBars } from 'react-icons/fa';
 
-import classes from './Navbar.module.css';
-import logoSVG from '../../images/locusLogo.svg';
+import classes from './Navbar.module.scss';
+import { ReactComponent as LogoSVG } from '../../assets/logo/LocusLogo_white.svg';
 
 import SideDrawer from '../SideDrawer/SideDrawer';
 
@@ -67,46 +67,47 @@ const Navbar = () => {
         <div>
             <header>
                 <nav className={classes.NavBar}>
-                    <ul className={classes.uList}>
-                        <li className={classes.logoItem}>
-                            <a href="/"><img src = {logoSVG} className={classes.logo}/></a>
-                        </li>
-                        {/* <li className={classes.listItem}><a href="/">Home</a></li> */}
-                        {isAuth ?  <li className={classes.listSpacer}>|</li> : null}
-                            <li className={classes.listItem}><a href="/map" className={classes.listLink}>Map</a></li>
-                        {isAuth ?  <li className={classes.listSpacer}>|</li> : null}
+                    <div className={classes.navList}>
+                        <div className={classes.logoItem}>
+                            <a href="/"><LogoSVG className={classes.logo}/></a>
+                        </div>
+                        {/* {isAuth ?  <div className={classes.listSpacer}>|</div> : null}
+                            <div className={classes.listItem}><a href="/map" className={classes.listLink}>Map</a></div>
+                        {isAuth ?  <div className={classes.listSpacer}>|</div> : null}
                         
-                        {isAuth ? <li className={classes.listItem}><a href="/favourites" className={classes.listLink}>Favourites</a></li> : null }
-                        {isAuth ?  <li className={classes.listSpacer}>|</li> : null}
-                        {isAuth ? <li className={classes.listItem}><a href="/mySites" className={classes.listLink}>My Sites</a></li> : null }
-                        {isAuth ?  <li className={classes.listSpacer}>|</li> : null}
-                        {isAuth ? <li className={classes.listItem}><a href="/profile" className={classes.listLink}>Profile</a></li> : null }
-                        {isAuth ?  <li className={classes.listSpacer}>|</li> : null}
+                        {isAuth ? <div className={classes.listItem}><a href="/favourites" className={classes.listLink}>Favourites</a></div> : null }
+                        {isAuth ?  <div className={classes.listSpacer}>|</div> : null}
+                        {isAuth ? <div className={classes.listItem}><a href="/mySites" className={classes.listLink}>My Sites</a></div> : null }
+                        {isAuth ?  <div className={classes.listSpacer}>|</div> : null}
+                        {isAuth ? <div className={classes.listItem}><a href="/profile" className={classes.listLink}>Profile</a></div> : null }
+                        {isAuth ?  <div className={classes.listSpacer}>|</div> : null} */}
 
                         
-                        {isAuth ? <li className={classes.listItemRight}><a onClick={logoutHandler}>Logout</a></li> : null }
-                        {isAuth ?  <li className={classes.listSpacerRight}>|</li> : null}
-                        {isAuth ? <li className={classes.listItemName}>
+                        {/* {isAuth ? <div className={classes.listItemRight}><a onClick={logoutHandler}>Logout</a></div> : null }
+                        {isAuth ?  <div className={classes.listSpacerRight}>|</div> : null}
+                        {isAuth ? <div className={classes.listItemName}>
                             <p className={classes.name}>Welcome, <b>{account.username}!</b></p>
-                        </li> : null }
+                        </div> : null } */}
                            
-
-                        {!isAuth ? <li className={classes.listItemRight}><a href="/signup">Sign Up</a></li> : null } 
-                        {!isAuth ?  <li className={classes.listSpacerRight}>|</li> : null}
-                        {!isAuth ? <li className={classes.listItemRight}><a href="/login">Login</a></li> : null }
+                        <div className={classes.rightNav}>
+                            <div className={classes.mapLink}><a href="/map">Go to Map</a></div>
+                            {!isAuth ? <a href="/login"><div className={`${classes.btn} ${classes.btn__login}`}>Log in</div></a> : null }
+                            {!isAuth ? <a href="/signup"><div className={`${classes.btn} ${classes.btn__signup}`}>Sign Up</div></a> : null } 
+                        </div>
+                        
                             
          
                     
-                    </ul>
+                    </div>
                 </nav>
-                <nav className={classes.NavBarMobile}>
+                {/* <nav className={classes.NavBarMobile}>
                 <ul className={classes.uList}>
                         <li className={classes.listItem} onClick={sideDrawerHandler}><FaBars className={classes.toggleButton}/></li>
                         <li className={classes.logoItem}>
-                            <a href="/"><img src = {logoSVG} className={classes.logo}/></a>
+                            <a href="/"><LogoSVG/></a>
                         </li>
                 </ul>
-                </nav>
+                </nav> */}
             </header>
             
             <SideDrawer 
