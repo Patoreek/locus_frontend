@@ -7,4 +7,13 @@
 @import './sass/base/base';
 
 
+.app {
+position: relative;
+width: 100vw;
+overflow: hidden;
+float: right;
+transition: .3s ease;
+//background-color: #2A85DA;
+}
+
 

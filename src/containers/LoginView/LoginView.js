@@ -1,25 +1,36 @@
 import React, { useState, useContext } from 'react';
 import {useHistory} from 'react-router-dom';
 
-import classes from './LoginView.module.css';
+import classes from './LoginView.module.scss';
 
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import { AuthContext, AccountContext } from '../../context/AuthContext';
+import { AuthContext, AccountContext, AuthDrawerHandlerContext } from '../../context/AuthContext';
+
+import { ReactComponent as LogoSVG} from '../../assets/logo/LocusLogo_black.svg';
 
 
 const LoginView = () => {
+    
 
     const [inputEmail, setInputEmail] = useState("");
     const [inputPassword, setInputPassword] = useState("");
+    const [isChecked, setIsChecked] = useState(false);
 
     const [isAuth, setIsAuth] = useContext(AuthContext);
     const [account, setAccount] = useContext(AccountContext);
+    const authDrawerHandler = useContext(AuthDrawerHandlerContext);
+
+
 
     const [errMsg, setErrMsg] = useState("");
 
 
     let history = useHistory();
-
+    
+    const handleCheckbox = () => {
+        setIsChecked(!isChecked);
+        // console.log(isChecked);
+    }
 
     const loginHandler = (event) => {
         event.preventDefault();
@@ -67,47 +78,56 @@ const LoginView = () => {
     //console.log(isAuth);
 
     return (
-        <div className={classes.LoginContainer}>
-            <Form className={classes.LoginForm}>
-            <h1 className={classes.LoginHeader}>Log in</h1>
-            <p className={classes.LoginSubheader}>Welcome Back! Login to access additional features.</p>
-            <p className={classes.errorMessage}>{errMsg}</p>
-                <Form.Group as={Row}
-                    controlId="formHorizontalEmail"
-                    className={classes.formGroup}>
-                    
-                    <Form.Control
-                        type="email"
-                        placeholder="Email"
-                        onChange={e => setInputEmail(e.target.value)}
-                        className={classes.formInput}/>
-                    
-                </Form.Group>
+        <div className={classes.login}>
+            <div className={classes.login__logoContainer}>
+            <LogoSVG className={classes.logo}/>
+            <p className={classes.loginSubheader}>Welcome Back! Login to access additional features.</p>
+            </div>
+            <div className={classes.loginForm}>
+            <div className={classes.loginForm__headerContainer}>
+                <a href="#" className={classes.header}>Log in</a> 
+            </div>
+            <div className={classes.loginForm__signUpContainer}>
+                <span className={classes.signUp} onClick={() => authDrawerHandler('signup')}>Sign up</span>  
+            </div>  
 
-                <Form.Group as={Row} 
-                            controlId="formHorizontalPassword"
-                            className={classes.formGroup}>
-                    <Form.Control 
-                        type="password"
-                        placeholder="Password"
-                        onChange={e => setInputPassword(e.target.value)}
-                        className={classes.formInput}/>
-                </Form.Group>
+            <div className={classes.loginForm__email}>
+            <span>Email</span>
+                <input
+                    type="email"
+                    placeholder=""
+                    onChange={e => setInputEmail(e.target.value)}
+                    className={classes.input}
+                />
+            </div>
 
-                <Form.Group as={Row}
-                            className={classes.formGroup}>
-                  
-                    <Button type="submit"
-                            onClick={loginHandler}
-                            className={classes.formInput}>Log In</Button>
-                </Form.Group>
-                <Form.Group as={Row}
-                            className={classes.formGroup}>
-                    
-                    <a href='/signup'>Create an account</a>
-    
-                </Form.Group>
-            </Form>
+            <div className={classes.loginForm__password}>
+                <span>Password</span>
+                <input 
+                    type="password"
+                    placeholder=""
+                    onChange={e => setInputPassword(e.target.value)}
+                    className={classes.input}
+                />
+            </div>
+
+            <div className={classes.loginForm__btn}>
+                <button type="submit"
+                        onClick={loginHandler}
+                        className={classes.btn}>
+                            Log In
+                </button>
+            </div>
+            <div className={classes.rememberContainer}>
+            <input 
+                    type="checkbox"
+                    className={classes.checkBox} onClick={handleCheckbox} />
+                    <span className={classes.rememberContainer__text}> Remember Me </span>
+            </div>
+            <div className={classes.forgotPasswordContainer}>
+                    <span className={classes.forgotPasswordContainer__text}>Forgot password?</span>   {/* //? Change to a tag with a link */}
+            </div>
+        </div>
         </div>
     );
 };

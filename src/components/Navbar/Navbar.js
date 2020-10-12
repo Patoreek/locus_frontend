@@ -6,11 +6,12 @@ import { FaBars } from 'react-icons/fa';
 import classes from './Navbar.module.scss';
 import { ReactComponent as LogoSVG } from '../../assets/logo/LocusLogo_white.svg';
 
-import SideDrawer from '../SideDrawer/SideDrawer';
+import AuthDrawer from '../AuthDrawer/AuthDrawer';
 
 
 import { AuthContext,
-         AccountContext } from '../../context/AuthContext';
+         AccountContext,
+        AuthDrawerContext } from '../../context/AuthContext';
 
 
 const Navbar = () => {
@@ -19,14 +20,28 @@ const Navbar = () => {
 
     const [account, setAccount] = useContext(AccountContext);
 
-    const [toggleDrawer, setToggleDrawer] = useState(false);
+    const [authDrawer, setAuthDrawer] = useContext(AuthDrawerContext);
 
     let history = useHistory();
 
-    const sideDrawerHandler = () => {
-        console.log('Side Drawer Button Pressed!');
-        setToggleDrawer(!toggleDrawer);
+    const authDrawerHandler = (option) => {
+        if (option === "login") {
+            console.log('login screen will appear.');
+            setAuthDrawer({
+                open: true,
+                login: true,
+                signup: false
+            });
+        } else if (option === "signup") {
+            console.log('signup screen will appear.');
+            setAuthDrawer({
+                open: true,
+                login: false,
+                signup: true
+            });
+        }
     }
+
 
     const logoutHandler = () => {
         // setIsAuth(false);  
@@ -66,7 +81,7 @@ const Navbar = () => {
     return (
         <div>
             <header>
-                <nav className={classes.NavBar}>
+                <nav className={`${classes.NavBar} ${authDrawer.open ? classes.hide : null}`}>
                     <div className={classes.navList}>
                         <div className={classes.logoItem}>
                             <a href="/"><LogoSVG className={classes.logo}/></a>
@@ -91,8 +106,8 @@ const Navbar = () => {
                            
                         <div className={classes.rightNav}>
                             <div className={classes.mapLink}><a href="/map">Go to Map</a></div>
-                            {!isAuth ? <a href="/login"><div className={`${classes.btn} ${classes.btn__login}`}>Log in</div></a> : null }
-                            {!isAuth ? <a href="/signup"><div className={`${classes.btn} ${classes.btn__signup}`}>Sign Up</div></a> : null } 
+                            {!isAuth ? <div className={`${classes.btn} ${classes.btn__login}`} onClick={() => authDrawerHandler('login')}>Log in</div> : null }
+                            {!isAuth ? <div className={`${classes.btn} ${classes.btn__signup}`} onClick={() => authDrawerHandler('signup')}>Sign Up</div> : null } 
                         </div>
                         
                             
@@ -109,11 +124,9 @@ const Navbar = () => {
                 </ul>
                 </nav> */}
             </header>
-            
-            <SideDrawer 
-                toggleDrawer={toggleDrawer}
-                setToggleDrawer={setToggleDrawer}
-            />
+    
+
+            <AuthDrawer/>
         </div>
     );
 };

@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from 'react';
 import logo from './logo.svg';
-import './App.scss';
+import classes from './App.module.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
@@ -33,7 +33,8 @@ import PolicyView from './containers/FooterViews/PolicyView/PolicyView';
 import { UserProvider } from './context/UserContext';
 import { AuthContext,
          AccountContext,
-         LoadingContext } from './context/AuthContext';
+         LoadingContext,
+         AuthDrawerContext } from './context/AuthContext';
 import { DiveSiteProvider } from './context/DiveSiteContext';
 
 //import 'filepond/dist/filepond.min.css';
@@ -44,7 +45,7 @@ function App() {
   const [account, setAccount] = useContext(AccountContext);
   const [isLoading, setIsLoading] = useContext(LoadingContext);
 
-  //console.log('[App.js] isAuth = ' + isAuth);
+
 
   useEffect(() => {
     async function isLoggedIn() {
@@ -84,7 +85,7 @@ function App() {
   return (
     <BrowserRouter>
       {!isLoading && (
-      <div className="App">
+      <div className={classes.app}>
       <Navbar/>
       
       <Route path="/" exact component={HomeView}/>

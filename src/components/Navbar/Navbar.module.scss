@@ -9,6 +9,8 @@
     left: 0;
     z-index: 50;
     //background: orange;
+    transition: .3s ease;
+    opacity: 100%;
 
 
     .navList {
@@ -44,7 +46,7 @@
                 }
             }
 
-            a {
+         
                 &:hover {
                     text-decoration: none;
                 }
@@ -54,6 +56,8 @@
                     border-radius: 5px;
                     color: #eee;
                     font-size: 1.8rem;
+                    position: relative;
+                    z-index: 60;
 
                     &__login {
                         background: $login-nav-color;  
@@ -63,11 +67,15 @@
                         background: $signup-nav-color;  
                     }
                 }
-            }
+            
         }
 
        
     }
+}
+
+.hide {
+    opacity: 0%;
 }
 
 

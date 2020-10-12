@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
-import classes from './SignupView.module.css';
+import classes from './SignupView.module.scss';
+
+import { ReactComponent as LogoSVG } from '../../assets/logo/LocusLogo_black.svg';
 
 import { useHistory } from 'react-router-dom';
 
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { AuthDrawerHandlerContext} from '../../context/AuthContext';
+
 
 const SignupView = () => {
+
+
+    const authDrawerHandler = useContext(AuthDrawerHandlerContext);
 
     let history = useHistory();
 
@@ -124,88 +130,74 @@ const SignupView = () => {
         // console.log(isChecked);
     }
 
+    
+
 
     return (
-        <div className={classes.SignUpContainer}>
+        <div className={classes.signup}>
+             <div className={classes.signup__logoContainer}>
+            <LogoSVG className={classes.logo}/>
+            <p className={classes.loginSubheader}>Fill in the form below to create an account.</p>
+            </div>
             
-            <Form className={classes.SignUpForm}>
-            <h1 className={classes.SignUpHeader}>Sign up</h1>
+            <div className={classes.form}>
+            <div className={classes.form__headerContainer}>
+                <h1 className={classes.header}>Sign up</h1>
+            </div>
 
-            <ul>
-                {errMsg.map(msg => (
-                    // // console.log("IN loop");
-                    // // console.log(msg);
-                    <li className={classes.errorMessage}> {msg} </li>
-                ))}
-                {/* <li className={classes.errorMessage}> {errMsg[0]} </li>
-                <li className={classes.errorMessage}> {errMsg[1]} </li> */}
-            </ul>
+            <div className={classes.form__username}>
+                <span>Username</span>
+                <input
+                    type="text"
+                    onChange={e => setInputUsername(e.target.value)}
+                    className={classes.input}/>
+            </div>
+            
+            <div className={classes.form__email}>
+                <span>Email</span>
+                <input
+                    type="email"
+                    onChange={e => setInputEmail(e.target.value)}
+                    className={classes.input}/>
+            </div>
 
-                <Form.Group as={Row} 
-                            controlId="formHorizontalUsername"
-                            className={classes.formGroup}>
-                    <Form.Control
-                        type="text"
-                        placeholder="Username"
-                        onChange={e => setInputUsername(e.target.value)}
-                        className={classes.formInput}/>
-                </Form.Group>
+            <div className={classes.form__password}>
+                <span>Password</span>
+                <input 
+                    type="password"                   
+                    onChange={e => setInputPassword(e.target.value)}
+                    className={classes.input}/>
+            </div>
 
-                <Form.Group as={Row}
-                            controlId="formHorizontalEmail"
-                            className={classes.formGroup}>
-                    <Form.Control
-                        type="email"
-                        placeholder="Email"
-                        onChange={e => setInputEmail(e.target.value)}
-                        className={classes.formInput}/>
-                </Form.Group>
+            <div className={classes.form__passwordAgain}>
+                <span>Re-enter Password</span>
+                <input 
+                    type="password" 
+                    onChange={e => setInputConfirmPassword(e.target.value)}
+                    className={classes.input}/>
+            </div>
 
-                <Form.Group as={Row}
-                            controlId="formHorizontalPassword"
-                            className={classes.formGroup}>
-                    <Form.Control 
-                        type="password"
-                        placeholder="Password"
-                        onChange={e => setInputPassword(e.target.value)}
-                        className={classes.formInput}/>
-                </Form.Group>
-
-
-                <Form.Group as={Row} 
-                            controlId="formHorizontalPassword"
-                            className={classes.formGroup}>
-                    <Form.Control 
-                        type="password" 
-                        placeholder="Type password again"
-                        onChange={e => setInputConfirmPassword(e.target.value)}
-                        className={classes.formInput}/>
-                </Form.Group>
-
-                <Form.Group as={Row} 
-                            controlId="formHorizontalCheckbox"
-                            className={classes.formGroup}>
-                    <Form.Check 
-                        type="checkbox"
-                        className={classes.checkBox} onClick={handleCheckbox} />
+            <div className={classes.form__certifyContainer}>
+                <input 
+                    type="checkbox"
+                    className={classes.checkBox} onClick={handleCheckbox} />
 
                     <p className={classes.checkBoxText}> I cerify that I am 18 years of age or older, and agree to the Terms of Service and Privacy Policy </p>
-                </Form.Group>
+            </div>   
   
 
-                <Form.Group as={Row}
-                            className={classes.formGroup}>
-                    <Button type="submit" 
+            <div className={classes.form__btnContainer}>
+                    <button type="submit" 
                             onClick={signupHandler}
-                            className={classes.formInput}>Sign Up</Button>
-                </Form.Group>
+                            className={classes.btn}>Sign Up</button>
+            </div>
 
-                <Form.Group as={Row}
-                            className={classes.formGroup}>
+            <div className={classes.form__loginContainer}>
                     <p> Have an account already? </p>
-                    <a href='/login'>Login</a>
-                </Form.Group>
-            </Form>
+                    <span onClick={() => authDrawerHandler('login')}>Login</span>
+            </div>
+                
+            </div>
         </div>
     );
 };

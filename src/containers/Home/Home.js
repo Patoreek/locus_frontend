@@ -4,6 +4,7 @@ import {useHistory} from 'react-router-dom';
 import { useMediaQuery } from '../../CustomHooks/useMediaQuery';
 
 import { SearchCoordsContext } from '../../context/AuthContext';
+import { AuthDrawerContext } from '../../context/AuthContext';
 
 import PlacesAutocomplete, {
     geocodeByAddress,
@@ -30,6 +31,8 @@ const Home = () => {
     const [address, setAddress] = useState("");
 
     const [searchCoordinates, setSearchCoordinates] = useContext(SearchCoordsContext);
+    const [authDrawer, setAuthDrawer] = useContext(AuthDrawerContext);
+
 
     let history = useHistory();
 
@@ -50,65 +53,68 @@ const Home = () => {
 
     return (
         <div>
-        <div className={classes.home}>
-            <h1 className={classes.home__title}>Find your Atlantis</h1> 
-            {/* <p className={classes.homeDescription}> A description of what this website is trying to achieve</p> */}
-            <div className={classes.searchContainer}>
-            <PlacesAutocomplete value={address}
-                                onChange={setAddress}
-                                onSelect={handleSelect}
-                              
-            >
-            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-            <div className={classes.searchBar}>
-                {/* <p>Latitude: {searchCoordinates.lat}</p>
-                <p>Longitude: {searchCoordinates.lng}</p> */}
-                <div className={classes.searchBar__searchInputContainer}>
-                <h3 className={classes.locationText}>Location</h3>
-                <input {...getInputProps({placeholder: "Where do you want to dive?"})} className={classes.searchInput}/>
-                <div className={classes.dropdownContainer}>
-                    {loading ? <div> ...loading </div> : null}
-                    {suggestions.map(suggestion => {
+        <div className={`${classes.home} ${authDrawer.open ? classes.shrink : null}`}>
+            <div className={`${classes.content}`}>
+            <div className={classes.homeMainPage}>
+                <div className={authDrawer.open ? classes.groupedContent__disappear : classes.groupedContent__display}>
+                    <h1 className={classes.homeMainPage__title}>Find your Atlantis</h1> 
+                        {/* <p className={classes.homeDescription}> A description of what this website is trying to achieve</p> */}
+                        <div className={classes.searchContainer}>
+                        <PlacesAutocomplete value={address}
+                                            onChange={setAddress}
+                                            onSelect={handleSelect}
+                                        
+                        >
+                        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                        <div className={classes.searchBar}>
+                            {/* <p>Latitude: {searchCoordinates.lat}</p>
+                            <p>Longitude: {searchCoordinates.lng}</p> */}
+                            <div className={classes.searchBar__searchInputContainer}>
+                            <h3 className={classes.locationText}>Location</h3>
+                            <input {...getInputProps({placeholder: "Where do you want to dive?"})} className={classes.searchInput}/>
+                            <div className={classes.dropdownContainer}>
+                                {loading ? <div> ...loading </div> : null}
+                                {suggestions.map(suggestion => {
 
-                        if (isRowBased) {
-                            style = {
-                                backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
-                                color: "black",
-                                width: "275px",
-                                margin: "0 auto",
-                                padding: "1vw",
-                                fontSize: "10px"
-                            }
-                        } else {
-                            style = {
-                                backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
-                                color: "black",
-                                width: "500px",
-                                margin: "0 auto",
-                                padding: "1vw"
-                            }
-                        }
+                                    if (isRowBased) {
+                                        style = {
+                                            backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
+                                            color: "black",
+                                            width: "275px",
+                                            margin: "0 auto",
+                                            padding: "1vw",
+                                            fontSize: "10px"
+                                        }
+                                    } else {
+                                        style = {
+                                            backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
+                                            color: "black",
+                                            width: "500px",
+                                            margin: "0 auto",
+                                            padding: "1vw"
+                                        }
+                                    }
 
-                        return <div {...getSuggestionItemProps(suggestion, {style})}>
-                                    {suggestion.description}
+                                    return <div {...getSuggestionItemProps(suggestion, {style})}>
+                                                {suggestion.description}
+                                            </div>
+                                })}
+
+                            </div>
+                            </div>
+                            <div className={classes.searchBar__searchBtnContainer}>
+
+                                <div className={classes.searchBtn} onClick={() => handleSelect()}>
+                                
+                                    <span>Search</span>
                                 </div>
-                    })}
+                            </div>
+                        </div>
+                        )}
+                        </PlacesAutocomplete>
+                        </div>
 
-                </div>
-                </div>
-                <div className={classes.searchBar__searchBtnContainer}>
-
-                    <div className={classes.searchBtn} onClick={() => handleSelect()}>
-                    
-                         <span>Search</span>
-                    </div>
-                </div>
-            </div>
-            )}
-            </PlacesAutocomplete>
-            </div>
-
-            <div className={classes.pointsContainer}>
+                        <div className={classes.pointsContainer}>
                 {/* //TODO|||||||||| DIVE SITES ACROSS THE GLOBE ||||||||||||||||||||||| */}
                 <div className={classes.point}>
                     <div className={classes.point__icon}>
@@ -148,9 +154,12 @@ const Home = () => {
                     </div>
                 </div>
 
+
             </div>
-        </div>
-        <div className={classes.homeContent}>
+                </div>
+            </div>
+        
+            <div className={classes.homeContent}>
             <div className={classes.homeContent__1}>
                 <div className={classes.contentLeft}>
                     <div className={classes.contentLeft__titleContainer}>
@@ -178,6 +187,8 @@ const Home = () => {
                 </div>
             </div>
         </div>
+            </div>
+            </div>
         </div>
     );
 };

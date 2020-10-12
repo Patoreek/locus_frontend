@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
 import { FaFacebookSquare,
          FaTwitterSquare,
@@ -15,9 +15,14 @@ import { ReactComponent as InstagramSVG } from '../../assets/icons/instagram.svg
 
 import classes from './Footer.module.scss';
 
+import { AuthDrawerContext } from '../../context/AuthContext';
+
 const Footer = () => {
+
+    const [authDrawer, setAuthDrawer] = useContext(AuthDrawerContext);
+
     return (
-        <footer className={classes.footer}>
+        <footer className={`${classes.footer} ${authDrawer.open ? classes.hide : null}`}>
 
             <div className={classes.logoContainer}>
                 <LogoSVG className={classes.logo}/>

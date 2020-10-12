@@ -26,6 +26,13 @@ export const SearchCoordsContext = createContext();
 
 export const LocateButtonContext = createContext();
 
+//* V1.1 Updates
+
+export const AuthDrawerContext = createContext();
+
+export const AuthDrawerHandlerContext = createContext();
+
+
 
 
 export const AuthProvider = (props) => {
@@ -68,6 +75,31 @@ export const AuthProvider = (props) => {
       lng: null
     });
 
+    //* V1.1 Updates
+
+    const [authDrawer, setAuthDrawer] = useState({
+      open: true,
+      login: false,
+      signup: true
+    });
+
+    const authDrawerHandler = (option) => {
+      if (option === 'login') {
+        setAuthDrawer({
+          open: true,
+          login: true,
+          signup: false
+        });
+      } else if (option === 'signup') {
+        setAuthDrawer({
+          open: true,
+          login: false,
+          signup: true
+        });
+      }
+
+    }
+
     
 
     async function getFavourites(setIsLoading) {
@@ -106,9 +138,15 @@ export const AuthProvider = (props) => {
         <SearchCoordsContext.Provider value = {[searchCoordinates, setSearchCoordinates]}>
         <SearchBarContext.Provider value = {[searchBarStyle, setSearchBarStyle]}>
         <LocateButtonContext.Provider value = {[locateButtonStyle, setLocateButtonStyle]}>
-       
+        {/* //* V1.1 Updates */}
+        <AuthDrawerContext.Provider value = {[authDrawer, setAuthDrawer]}>
+        <AuthDrawerHandlerContext.Provider value = {authDrawerHandler}>
+        
         {props.children}
 
+        </AuthDrawerHandlerContext.Provider>
+        </AuthDrawerContext.Provider>
+        {/* //* END V1.1 Updates */}
         </LocateButtonContext.Provider>
         </SearchBarContext.Provider>
         </SearchCoordsContext.Provider>
