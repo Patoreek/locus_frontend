@@ -9,7 +9,7 @@ import { AuthContext,
          UserOnMapContext, 
          PanelSizeContext } from '../../context/AuthContext';
 
-import classes from './InformationPanel.module.css';
+import classes from './InformationPanel.module.scss';
 
 const InformationPanel = (props) => {
 
@@ -45,10 +45,7 @@ const InformationPanel = (props) => {
     },[]);
 
     return (
-        <div className={classes.infoPanelContainer} style={{ 
-            width: panelSize,
-            display: panelDisplay
-        }}>
+        <div className={classes.infoPanelContainer}>
 
             {panelLoaded && guestPanel && (
                 <GuestPanel/>

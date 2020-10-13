@@ -6,18 +6,19 @@ import { AuthContext } from '../../context/AuthContext';
 
 import { SiteContext } from '../../context/DiveSiteContext';
 
-import customClasses from './StarRating.module.css';
+import customClasses from './StarRating.module.scss';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
     '& > * + *': {
       marginTop: theme.spacing(1),
     },
     margin: '0 auto',
-    paddingTop: '1vh'
-  },
+    paddingTop: '1vh',
+    transform: 'translate(25%, 20%) scale(1.5)'
+  }
 }));
 
 
@@ -109,12 +110,12 @@ const ReviewStars = (props) => {
               
     }
 
-    
+  
 
   return (
-    <div className={classes.root}>
+    <div>
     {isAuth && (
-        <div style={props.starRatingStyleContainer}>
+        <div className={classes.root}>
 
             <Rating name="half-rating"
                   precision={0.5}
@@ -123,16 +124,17 @@ const ReviewStars = (props) => {
                     setValue(newValue);
                     submitRatingHandler(newValue);
                   }}
-                  style={props.style}
+                  className={customClasses.rating}
+               
             />
 
-          <div className={customClasses.totalRatingsContainer} style={props.totalRatingsContainerStyle}>
-            <p className={customClasses.totalRatings} style={props.totalRatingStyle}><b>({totalRatings})</b></p>
+          <div className={customClasses.totalRatingsContainer}>
+            <p className={customClasses.totalRatings}><b>({totalRatings})</b></p>
           </div>
         </div>
     )}
     {!isAuth && (
-       <div style={props.starRatingStyleContainer}>
+       <div>
         <Rating name="half-rating-read" defaultValue={rating} precision={0.5} style={props.style} readOnly />
       </div>
     )}

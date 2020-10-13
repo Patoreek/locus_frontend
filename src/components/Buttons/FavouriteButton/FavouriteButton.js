@@ -11,7 +11,7 @@ import { FavouritesContext,
 
 import { SiteContext } from '../../../context/DiveSiteContext';
 
-import classes from './FavouriteButton.module.css';
+import classes from './FavouriteButton.module.scss';
 
 
 const FavouriteButton = (props) => {

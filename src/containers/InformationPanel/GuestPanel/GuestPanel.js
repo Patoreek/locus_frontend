@@ -1,7 +1,5 @@
 import React, { useEffect, useContext} from 'react';
 
-import { Button, Spinner } from 'react-bootstrap';
-
 import { DiveSitesContext,
          DetailsContext,
          SiteContext } from '../../../context/DiveSiteContext';
@@ -15,7 +13,7 @@ import ToggleButtons from '../ToggleButtons/ToggleButtons';
 
 
 
-import classes from './GuestPanel.module.css';
+import classes from './GuestPanel.module.scss';
 
 const GuestPanel = () => {
 
@@ -39,69 +37,58 @@ const GuestPanel = () => {
         }
     }
 
-    const style = {
-        backgroundColor: "rgba(255, 255, 255, 0.75)",
-        padding: "0.5vw 1vw 0vw 1vw",
-        borderRight: "2px solid #DBE9EE",
-        borderTop: "2px solid #DBE9EE",
-        borderBottom: "2px solid #DBE9EE",
-        overflow: "hidden",
-        borderRadius: "6px 0px 5px 0px"
-    }
 
-    const totalRatingStyle = {
-        display:"none"
-    }
-
-    //const ellipsesButtonStyle = {
-    //    marginTop: "10px"
-    //}
 
     return (
-        <div>
+        <div className={classes.guestPanel}>
+            <div className={classes.topSection}>
+                <p>24 sites  · Location </p>
+                <h3>Dive sites in selected map area</h3> 
+            </div>
+
             {/* <ToggleButtons/> */}
-            {/* <h1 className={classes.panelHeader}>Divesites</h1> */}
         {diveSites.map(site => (
-            <div className={classes.siteContainer}>
-                <div className={classes.siteImageContainer} 
+            <div className={classes.site}>
+                <div className={classes.site__imageContainer} 
                      onClick={() => moreDetailsHandler(site)}>
 
                     <img src={'http://localhost:8080/' + site.images[0]}
-                        className={classes.siteImage}
+                        className={classes.image}
                     />
                 </div>
 
-                {isAuth && (
-                    <div className={classes.favButtonContainer}>
-                        <FavouriteButton site={site}/> 
-                    </div>
-                )}
-
-                <div className={classes.siteRatingsContainer}>
-                    <StarRating siteRatings = {site.ratings}
-                                style={style}
-                                totalRatingStyle={totalRatingStyle}/>
+                <div className={classes.site__diveTypeContainer}>
+                       <span> Shore Dive · Great for Scuba </span> 
                 </div>
 
 
-                <div className={classes.siteNameContainer}>
+                <div className={classes.site__nameContainer}>
                     <h5  className={classes.siteName}
                          onClick={() => moreDetailsHandler(site)}>
                              {site.name}, {site.area}
                     </h5>
-                    <div className={classes.ellipsesButtonContainer}>
-                        <EllipsesButton/>
-                    </div>
-                    
                 </div>
 
-                <div className={classes.siteDescriptionContainer}>
-                    <p className={classes.siteDescription}> {site.description} </p>
-                    <div className={classes.moreDetailsButtonContainer}>
-                    <Button onClick={() => moreDetailsHandler(site)}
-                            className={classes.moreDetailsButton}
-                            >More Details...</Button>
+                {isAuth && (
+                    <div className={classes.site__favButtonContainer}>
+                        <FavouriteButton site={site}/> 
                     </div>
+                )}
+
+            
+
+                <div className={classes.site__descriptionContainer}>
+                    <p className={classes.siteDescription}> {site.description} </p>
+                </div>
+
+                <div className={classes.site__ratingsContainer}>
+                    <StarRating siteRatings = {site.ratings}/>
+                </div>
+
+                <div className={classes.site__moreDetailsContainer}>
+                    <span onClick={() => moreDetailsHandler(site)}
+                            className={classes.moreDetailsButton}
+                            >More Details...</span>
                 </div>
             
             </div>

@@ -1,0 +1,14 @@
+@import '../../../sass/abstracts/variables';
+
+.favouriteIcon {
+    //color: #576CD1 !important;
+    color: $color-text-blue;
+    //width: 100%;
+    height: 100%;
+    width: 100%;
+    transition: 0.2s ease;
+    //background: orange;
+    &:hover {
+        transform: scale(1.2);
+    }
+}

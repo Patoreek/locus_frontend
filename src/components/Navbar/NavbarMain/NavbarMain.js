@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom';
 import classes from './NavbarMain.module.scss';
 
 import { ReactComponent as LogoSVG } from '../../../assets/logo/LocusLogo_black.svg';
+import { ReactComponent as ArrowSVG } from '../../../assets/icons/arrow-left.svg';
+
 
 import AuthDrawer from '../../AuthDrawer/AuthDrawer';
 import SearchBarMap from '../../SearchBarMap/SearchBarMap';
@@ -15,6 +17,8 @@ import { AuthContext,
         PanToContext } from '../../../context/AuthContext';
 
 import avatarPlaceholder from '../../../assets/images/avatar_placeholder.jpeg';
+
+
 
 
 const NavbarMain = () => {
@@ -148,8 +152,13 @@ const NavbarMain = () => {
                                 </div>
                             </div> 
                             )}
+                             {isAuth && ( 
+                                <div className={classes.arrowContainer}>
+                                 <ArrowSVG className={`${classes.arrow} ${dropdown ? classes.rotate : null}`}/>
+                                </div>
+                             )}
                             {isAuth && (
-                                 <div className={classes.avatar}>
+                                 <div className={classes.avatar} onClick={() => setDropdown(!dropdown)}>
                                      <img className={classes.avatar__image} src={avatarPlaceholder} alt="placeholder of users face."/>
                                  </div>
                             )}

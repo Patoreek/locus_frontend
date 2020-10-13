@@ -1,8 +1,10 @@
+@import '../../sass/abstracts/variables';
+
 .infoPanelContainer {
-    /* width:30vw; */
+    width:55vw;
     position: relative;
     height:97vh;
-    background-color: #F5EFFF;
+    background-color: $color-white-bg;
     border-right: 2px solid #C0D6DF;
     box-sizing: border-box;
     /* float:left; */

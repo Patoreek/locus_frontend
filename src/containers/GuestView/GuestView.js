@@ -98,7 +98,7 @@ const GuestView = () => {
                 <Map googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyA-9fLyV56TU5kt5qw3guZ4Vi3BXuDlNts&v=3.exp&libraries=geometry,drawing,places`}
                     loadingElement={<div style={{ 
                                             height:"97vh",
-                                            width: mapSize,
+                                            width: "45vw",
                                             display: "inline-block",
                                             transition: "1s ease",
                                             
@@ -106,14 +106,14 @@ const GuestView = () => {
                                     }}/>}
                     containerElement={<div style={{ 
                                             height: "97vh",
-                                            width: mapSize,
+                                            width: "45vw",
                                             display: "inline-block",                                            /*border: "2px solid purple",*/
                                             boxSizing: 'border-box',
                                             transition: "1s ease"
                                     }}/>}
                     mapElement={<div style={{ 
                                             height: "97vh",
-                                            width: mapSize,
+                                            width: "45vw",
                                             display: "inline-block" ,
                                             transition: "1s ease"
                                             /*border: "2px solid green"*/          
