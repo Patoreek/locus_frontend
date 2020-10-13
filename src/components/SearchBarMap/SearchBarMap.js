@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useContext} from 'react';
+import React, {useContext} from 'react';
 
 import { SearchBarContext } from '../../context/AuthContext';
 
@@ -14,7 +14,9 @@ import {
   } from "@reach/combobox";
   import "@reach/combobox/styles.css";
 
-  import classes from './SearchBarMap.module.css'
+  import classes from './SearchBarMap.module.css';
+
+  import Locate from '../Locate/Locate';
 
 
 const SearchBarMap = (props) => {
@@ -52,7 +54,7 @@ const SearchBarMap = (props) => {
                         const results = await getGeocode({address});
                         const {lat, lng} = await getLatLng(results[0]);
                         //console.log(lat,lng);
-                        panTo({lat, lng});
+                        //panTo({lat, lng});
 
                     } catch(error){
                         console.log(error);
@@ -82,6 +84,7 @@ const SearchBarMap = (props) => {
                 <ComboboxList/>
                 </ComboboxPopover>
             </Combobox>
+            <Locate panTo={panTo}/>
         </div>
     );
 };

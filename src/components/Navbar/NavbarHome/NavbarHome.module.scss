@@ -1,0 +1,105 @@
+@import '../../../sass/abstracts/variables';
+
+.NavBar {
+    /* background-color: #3C91E6; */
+    height: auto;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    //background: orange;
+    transition: .3s ease;
+    opacity: 100%;
+
+
+    .navList {
+        max-width: 1400px;
+        height: 100%;
+        padding: 1rem 2.5rem;
+
+        .logoItem {
+            float: left;
+            height: 100%; 
+
+            a {
+                .logo {
+                    height: 4rem;
+                }
+            }
+        }
+
+        .rightNav {
+            float: right;
+            display: flex;
+
+            .logout {
+                margin: 1rem 1rem;
+                padding: .5rem 0rem;
+                color: #eee;
+                font-size: 1.8rem;
+                transition: .2s ease;
+                &:hover {
+                    color: $color-text-red;
+                }
+            }
+
+            .usernameContainer {
+                margin: 1rem 1rem;
+                padding: .5rem 0rem;
+
+                .username {
+                    color: #eee;
+                    font-size: 1.8rem;
+                }
+            }
+
+            .mapLink {
+                margin: 1rem 1rem;
+                padding: .5rem 2.5rem;
+                a {
+                    color: #eee;
+                    font-size: 1.8rem;
+                    &:hover {
+                        color: rgb(170, 231, 255);
+                    }
+                   
+                }
+            }
+
+         
+                &:hover {
+                    text-decoration: none;
+                }
+                .btn {
+                    margin: 1rem 1rem;
+                    padding: .5rem 2.5rem;
+                    border-radius: 5px;
+                    color: #eee;
+                    font-size: 1.8rem;
+                    position: relative;
+                    z-index: 60;
+
+                    &__login {
+                        background: $login-nav-color;  
+                    }
+
+                    &__signup {
+                        background: $signup-nav-color;  
+                    }
+                }
+            
+        }
+
+       
+    }
+}
+
+.hide {
+    opacity: 0%;
+}
+
+
+
+
+

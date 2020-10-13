@@ -1,0 +1,21 @@
+.navbar {
+    background: orange;
+    .navList {
+        max-width: 1400px;
+        height: 100%;
+        padding: 1rem 2.5rem;
+        display: flex;
+        justify-content: space-between;
+
+        .logoItem {
+            float: left;
+            height: 100%; 
+
+            a {
+                .logo {
+                    height: 4rem;
+                }
+            }
+        }
+    }
+}

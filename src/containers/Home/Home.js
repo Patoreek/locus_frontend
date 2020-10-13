@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
 import {useHistory} from 'react-router-dom';
 import { useMediaQuery } from '../../CustomHooks/useMediaQuery';
 
 import { SearchCoordsContext } from '../../context/AuthContext';
-import { AuthDrawerContext } from '../../context/AuthContext';
+import { AuthDrawerContext, NavbarContext } from '../../context/AuthContext';
 
 import PlacesAutocomplete, {
     geocodeByAddress,
@@ -24,15 +24,21 @@ import homeImg4 from '../../assets/images/homeImg4.jpg';
 
 
 
-
-
 const Home = () => {
 
     const [address, setAddress] = useState("");
 
     const [searchCoordinates, setSearchCoordinates] = useContext(SearchCoordsContext);
     const [authDrawer, setAuthDrawer] = useContext(AuthDrawerContext);
+    const [navbar, setNavbar] = useContext(NavbarContext);
 
+    useEffect(() => {
+        setNavbar("home");
+
+        return function cleanup() {
+            setNavbar("main");
+        };
+    },[]);
 
     let history = useHistory();
 

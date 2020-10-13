@@ -94,8 +94,8 @@ const Map = (props) => {
                 ref={onMapLoad}
                 panTo={panTo}
                 >
-                <SearchBarMap panTo={panTo}/>
-                <Locate panTo={panTo}/>
+                {/* <SearchBarMap panTo={panTo}/>
+                <Locate panTo={panTo}/> */}
             {!guestMap && (
                 <div>
                     <div className={classes.overlayInfo}>

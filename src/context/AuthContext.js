@@ -32,6 +32,8 @@ export const AuthDrawerContext = createContext();
 
 export const AuthDrawerHandlerContext = createContext();
 
+export const NavbarContext = createContext();
+
 
 
 
@@ -77,10 +79,12 @@ export const AuthProvider = (props) => {
 
     //* V1.1 Updates
 
+
+  //TODO: CHANGE HERE TO TOGGLE AUTH DRAWER
     const [authDrawer, setAuthDrawer] = useState({
-      open: true,
-      login: false,
-      signup: true
+      open: false,
+      login: false, 
+      signup: false
     });
 
     const authDrawerHandler = (option) => {
@@ -92,13 +96,15 @@ export const AuthProvider = (props) => {
         });
       } else if (option === 'signup') {
         setAuthDrawer({
-          open: true,
+          open: true,             
           login: false,
           signup: true
         });
       }
 
     }
+
+    const [navbar, setNavbar] = useState("main");
 
     
 
@@ -141,9 +147,11 @@ export const AuthProvider = (props) => {
         {/* //* V1.1 Updates */}
         <AuthDrawerContext.Provider value = {[authDrawer, setAuthDrawer]}>
         <AuthDrawerHandlerContext.Provider value = {authDrawerHandler}>
+        <NavbarContext.Provider value = {[navbar, setNavbar]}>
         
         {props.children}
 
+        </NavbarContext.Provider>
         </AuthDrawerHandlerContext.Provider>
         </AuthDrawerContext.Provider>
         {/* //* END V1.1 Updates */}
