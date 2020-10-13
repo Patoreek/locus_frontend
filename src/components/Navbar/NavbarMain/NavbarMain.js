@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import classes from './NavbarMain.module.scss';
@@ -11,7 +11,11 @@ import SearchBarMap from '../../SearchBarMap/SearchBarMap';
 
 import { AuthContext,
          AccountContext,
-        AuthDrawerContext } from '../../../context/AuthContext';
+        AuthDrawerContext,
+        PanToContext } from '../../../context/AuthContext';
+
+import avatarPlaceholder from '../../../assets/images/avatar_placeholder.jpeg';
+
 
 const NavbarMain = () => {
     const [isAuth, setIsAuth] = useContext(AuthContext);
@@ -19,6 +23,11 @@ const NavbarMain = () => {
     const [account, setAccount] = useContext(AccountContext);
 
     const [authDrawer, setAuthDrawer] = useContext(AuthDrawerContext);
+
+    const panTo = useContext(PanToContext);
+
+    const [dropdown, setDropdown] = useState(true); //! Change to False
+
 
     let history = useHistory();
 
@@ -103,14 +112,51 @@ const NavbarMain = () => {
                         </div> : null } */}
 
                         <div className={classes.searchbarContainer}>
-                            {/* <SearchBarMap panTo={panTo}/> */}
+                            <SearchBarMap panTo={panTo}/>
                         </div>
                            
                         <div className={classes.rightNav}>
-                        {isAuth ? <div className={classes.logout}><a onClick={logoutHandler}>Logout</a></div> : null }
-                            {isAuth ? <div className={classes.usernameContainer}>
-                                <p className={classes.username}>Welcome, <b>{account.username}!</b></p>
-                            </div> : null }
+
+                            {/* IF LOGGED IN SHOW THIS */}
+                
+                            {isAuth && ( 
+                            <div className={classes.dropdownContainer}>
+                                <div className={classes.usernameContainer} onClick={() => setDropdown(!dropdown)}><span className={classes.username}>{account.username}</span></div>
+                                <div className={`${classes.dropdown}`}>
+                                    <div className={`${classes.dropdown__content} ${!dropdown ? classes.fade : null}`}>
+                                        <div className={classes.dropdown__email}>
+                                            <span className={classes.title}>Your account</span>
+                                            <span className={classes.email}>{account.email}</span>
+                                        </div>
+                                        <div className={classes.dropdown__diveReports}>
+                                            <a href="#">Dive Reports</a>
+                                        </div>
+                                        <div className={classes.dropdown__mySites}>
+                                            <a href="/mySites">My Sites</a>
+                                        </div>
+                                        <div className={classes.dropdown__favourites}>
+                                            <a href="/favourites">Favourites</a>
+                                        </div>
+                                        <div className={classes.dropdown__profile}>
+                                            <a href="/profile">Profile</a>
+                                        </div>
+                                        <div className={classes.dropdown__logout}>
+                                            <a onClick={logoutHandler}>Logout</a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div> 
+                            )}
+                            {isAuth && (
+                                 <div className={classes.avatar}>
+                                     <img className={classes.avatar__image} src={avatarPlaceholder} alt="placeholder of users face."/>
+                                 </div>
+                            )}
+
+
+                            {/* IF NOT LOGGED IN SHOW THIS */}
+
                             {!isAuth ? <div className={`${classes.btn} ${classes.btn__login}`} onClick={() => authDrawerHandler('login')}>Log in</div> : null }
                             {!isAuth ? <div className={`${classes.btn} ${classes.btn__signup}`} onClick={() => authDrawerHandler('signup')}>Sign Up</div> : null } 
                             

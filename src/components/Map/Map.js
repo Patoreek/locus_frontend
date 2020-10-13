@@ -7,7 +7,9 @@ import { GoogleMap,
 
 import { AuthContext, 
          UserOnMapContext,
-         SearchCoordsContext } from '../../context/AuthContext';
+         SearchCoordsContext,
+         OnMapLoadContext,
+         PanToContext } from '../../context/AuthContext';
 
 
 import UserMapContainer from './UserMapContainer/UserMapContainer';
@@ -24,7 +26,10 @@ const Map = (props) => {
 
     const [isAuth, setIsAuth] = useContext(AuthContext);
     const [isUserOnMap, setIsUserOnMap] = useContext(UserOnMapContext);  
-    const [searchCoordinates, setSearchCoordinates] = useContext(SearchCoordsContext);  
+    const [searchCoordinates, setSearchCoordinates] = useContext(SearchCoordsContext);
+    
+    const panTo = useContext(PanToContext);
+    const onMapLoad = useContext(OnMapLoadContext);
 
     const [guestMap, setGuestMap] = useState(true);
 
@@ -68,18 +73,18 @@ const Map = (props) => {
     },[]);
 
 
-    const mapRef = useRef();
-    const onMapLoad = useCallback((map) => {
-        //console.log('Map = ' + map);
-        mapRef.current = map;
-        //console.log("In onMapLoad");
-        //console.log(mapRef.current);
-    }, [],);
+    // const mapRef = useRef();
+    // const onMapLoad = useCallback((map) => {
+    //     //console.log('Map = ' + map);
+    //     mapRef.current = map;
+    //     //console.log("In onMapLoad");
+    //     //console.log(mapRef.current);
+    // }, [],);
 
-    const panTo = useCallback(({ lat, lng }) => {
-        mapRef.current.panTo({ lat, lng });
-        //mapRef.current.setZoom(14);
-      }, []);
+    // const panTo = useCallback(({ lat, lng }) => {
+    //     mapRef.current.panTo({ lat, lng });
+    //     //mapRef.current.setZoom(14);
+    //   }, []);
 
     
     return (

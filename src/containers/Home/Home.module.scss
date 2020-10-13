@@ -112,7 +112,7 @@
                         transition: .2s ease;
         
                         &:hover {
-                            background: #226bf3;
+                            background: $search-btn-color-hover;
                         }
         
                         &:hover span {

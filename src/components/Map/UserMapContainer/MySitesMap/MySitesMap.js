@@ -24,7 +24,6 @@ import { DiveSitesContext,
 import { useMediaQuery } from '../../../../CustomHooks/useMediaQuery';
 
 import { AuthContext,
-    SearchBarContext,
     MapSizeContext,
     PanelSizeContext,
     LocateButtonContext } from '../../../../context/AuthContext';
@@ -55,8 +54,6 @@ const MySitesMap = () => {
 
     const [ panelSize, setPanelSize ] = useContext(PanelSizeContext);
 
-    const [searchBarStyle, setSearchBarStyle] = useContext(SearchBarContext);
-
     const [locateButtonStyle, setLocateButtonStyle] = useContext(LocateButtonContext); 
 
     const loadDiveSites = useContext(LoadDiveSiteContext);
@@ -82,11 +79,7 @@ const MySitesMap = () => {
         if (isMobile) {
             setMapSize("100vw");
             setPanelSize("0vw");
-            setSearchBarStyle({
-                width: "70vw",
-                left: "10vw",
-                display: null
-            });
+            
             // setLocateButtonStyle({
             //     left: "80vw",
             //     display: null

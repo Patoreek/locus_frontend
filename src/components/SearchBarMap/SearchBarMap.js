@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 
-import { SearchBarContext } from '../../context/AuthContext';
+import { PanToContext } from '../../context/AuthContext';
 
 import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
 
@@ -14,16 +14,17 @@ import {
   } from "@reach/combobox";
   import "@reach/combobox/styles.css";
 
-  import classes from './SearchBarMap.module.css';
+  import classes from './SearchBarMap.module.scss';
 
   import Locate from '../Locate/Locate';
+
 
 
 const SearchBarMap = (props) => {
     //console.log('In searchBarMap');
     //console.log(props.panTo);
 
-    const [ searchBarStyle, setSearchBarStyle] = useContext(SearchBarContext);
+    const panTo = useContext(PanToContext);
 
     const {ready, 
            value, 
@@ -37,15 +38,10 @@ const SearchBarMap = (props) => {
                 }
             }
     );
-
-    const panTo = props.panTo;
     
 
     return (
-        <div className={classes.comboboxDiv} style={{
-            left: searchBarStyle.left,
-            display: searchBarStyle.display
-        }}>
+        <div className={classes.combobox}>
             <Combobox
                 onSelect={async (address) => {
                     setValue(address, false);
@@ -54,7 +50,7 @@ const SearchBarMap = (props) => {
                         const results = await getGeocode({address});
                         const {lat, lng} = await getLatLng(results[0]);
                         //console.log(lat,lng);
-                        //panTo({lat, lng});
+                        panTo({lat, lng});
 
                     } catch(error){
                         console.log(error);
@@ -64,17 +60,16 @@ const SearchBarMap = (props) => {
                 }}
                 
             >
+                <span className={classes.combobox__title}>Location</span>
                 <ComboboxInput 
                     value={value}
                     onChange={(e) => {
                         setValue(e.target.value)
                     }}
                     disabled={!ready}
-                    placeholder="Enter location"
-                    className={classes.comboboxInput}
-                    style = {{
-                        width: searchBarStyle.width
-                    }}
+                    placeholder="Where do you want to dive?"
+                    className={classes.combobox__input}
+                  
                 />
                 <ComboboxPopover>
                 <ComboboxList/>
@@ -83,8 +78,9 @@ const SearchBarMap = (props) => {
                     ))}
                 <ComboboxList/>
                 </ComboboxPopover>
+                <button className={classes.combobox__btn}> Search </button>
             </Combobox>
-            <Locate panTo={panTo}/>
+
         </div>
     );
 };

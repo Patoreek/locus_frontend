@@ -6,7 +6,6 @@ import Details from '../DetailsView/DetailsView';
 
 import { AuthContext,
          UserOnMapContext,
-         SearchBarContext,
          MapSizeContext,
          PanelSizeContext,
          LocateButtonContext } from '../../context/AuthContext';
@@ -29,8 +28,6 @@ const GuestView = () => {
 
         const [ panelSize, setPanelSize ] = useContext(PanelSizeContext);
 
-        const [searchBarStyle, setSearchBarStyle] = useContext(SearchBarContext);
-
         const [locateButtonStyle, setLocateButtonStyle] = useContext(LocateButtonContext); 
 
         const [coords, setCoords] = useContext(CoordsContext);
@@ -49,15 +46,7 @@ const GuestView = () => {
             if (isMobile) {
                 setMapSize("100vw");
                 setPanelSize("0vw");
-                setSearchBarStyle({
-                    width: "70vw",
-                    left: "10vw",
-                    display: null
-                });
-                // setLocateButtonStyle({
-                //     left: "80vw",
-                //     display: null
-                // })
+                
             }
             
             console.log('[GuestView] isAuth in IF = ' + isAuth);

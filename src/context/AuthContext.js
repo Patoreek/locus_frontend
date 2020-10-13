@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext } from 'react';
+import React, { useState, createContext, useRef, useCallback } from 'react';
 
 export const AuthContext = createContext();
 
@@ -20,8 +20,6 @@ export const PanelSizeContext = createContext();
 
 export const MapSizeContext = createContext();
 
-export const SearchBarContext = createContext();
-
 export const SearchCoordsContext = createContext();
 
 export const LocateButtonContext = createContext();
@@ -33,6 +31,14 @@ export const AuthDrawerContext = createContext();
 export const AuthDrawerHandlerContext = createContext();
 
 export const NavbarContext = createContext();
+
+//TODO: SEARCHBAR MAP FUNCTIONS AND REF
+
+export const MapRefContext = createContext();
+
+export const OnMapLoadContext = createContext();
+
+export const PanToContext = createContext();
 
 
 
@@ -61,11 +67,6 @@ export const AuthProvider = (props) => {
 
     const [mapSize, setMapSize] = useState("70vw"); // 70vw
 
-    const [searchBarStyle, setSearchBarStyle] = useState({
-      width: "30vw",
-      left: "50vw",
-      display: null
-    });
 
     const [locateButtonStyle, setLocateButtonStyle] = useState({
         left: "80vw",
@@ -106,6 +107,23 @@ export const AuthProvider = (props) => {
 
     const [navbar, setNavbar] = useState("main");
 
+
+    //TODO: SEARCH MAP REF AND OTHERS
+
+    const mapRef = useRef();
+    const onMapLoad = useCallback((map) => {
+        //console.log('Map = ' + map);
+        mapRef.current = map;
+        //console.log("In onMapLoad");
+        //console.log(mapRef.current);
+    }, [],);
+
+    const panTo = useCallback(({ lat, lng }) => {
+        mapRef.current.panTo({ lat, lng });
+        //mapRef.current.setZoom(14);
+      }, []);
+
+
     
 
     async function getFavourites(setIsLoading) {
@@ -142,21 +160,25 @@ export const AuthProvider = (props) => {
         <PanelSizeContext.Provider value = {[panelSize, setPanelSize]}>
         <GetFavouritesContext.Provider value = {getFavourites}>
         <SearchCoordsContext.Provider value = {[searchCoordinates, setSearchCoordinates]}>
-        <SearchBarContext.Provider value = {[searchBarStyle, setSearchBarStyle]}>
         <LocateButtonContext.Provider value = {[locateButtonStyle, setLocateButtonStyle]}>
         {/* //* V1.1 Updates */}
         <AuthDrawerContext.Provider value = {[authDrawer, setAuthDrawer]}>
         <AuthDrawerHandlerContext.Provider value = {authDrawerHandler}>
         <NavbarContext.Provider value = {[navbar, setNavbar]}>
+        <MapRefContext.Provider value = {mapRef}>
+        <OnMapLoadContext.Provider value = {onMapLoad}>
+        <PanToContext.Provider value = {panTo}>
         
         {props.children}
 
+        </PanToContext.Provider>
+        </OnMapLoadContext.Provider>
+        </MapRefContext.Provider>
         </NavbarContext.Provider>
         </AuthDrawerHandlerContext.Provider>
         </AuthDrawerContext.Provider>
         {/* //* END V1.1 Updates */}
         </LocateButtonContext.Provider>
-        </SearchBarContext.Provider>
         </SearchCoordsContext.Provider>
         </GetFavouritesContext.Provider>
         </PanelSizeContext.Provider>

@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
 
-import {Button, ToggleButtonGroup, ToggleButton} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 
-import { PanelSizeContext, MapSizeContext, SearchBarContext, LocateButtonContext } from '../../context/AuthContext';
+import { PanelSizeContext, MapSizeContext, LocateButtonContext } from '../../context/AuthContext';
 
 
 import classes from './MobToggleView.module.css';
@@ -11,7 +11,6 @@ const MobToggleView = () => {
 
     const [ panelSize, setPanelSize ] = useContext(PanelSizeContext);
     const [ mapSize, setMapSize ] = useContext(MapSizeContext);
-    const [ searchBarSize, setSearchBarSize ] = useContext(SearchBarContext);
     const [ locateButtonStyle, setLocateButtonStyle ] = useContext(LocateButtonContext);
     
 
@@ -28,11 +27,7 @@ const MobToggleView = () => {
             setMapSize("100vw");
             setPanelSize("0vw");
 
-            setSearchBarSize({
-                left: "10vw",
-                width: "70vw",
-                display: "block"
-            });
+            
             setLocateButtonStyle({
                 left: "75vw",
                 display: "block"
@@ -44,11 +39,7 @@ const MobToggleView = () => {
             setPanelSize("100vw");
             setMapSize("0vw");
 
-            setSearchBarSize({
-                left: "0",
-                width: "0",
-                display: "none"
-            });
+          
             setLocateButtonStyle({
                 left: "0",
                 display: "none"

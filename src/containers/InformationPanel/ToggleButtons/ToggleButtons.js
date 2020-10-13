@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 
 import {Button, ToggleButtonGroup, ToggleButton} from 'react-bootstrap';
 
-import { PanelSizeContext, MapSizeContext, SearchBarContext, LocateButtonContext } from '../../../context/AuthContext';
+import { PanelSizeContext, MapSizeContext, LocateButtonContext } from '../../../context/AuthContext';
 
 
 import classes from './ToggleButtons.module.css';
@@ -11,7 +11,6 @@ const ToggleButtons = () => {
 
     const [ panelSize, setPanelSize ] = useContext(PanelSizeContext);
     const [ mapSize, setMapSize ] = useContext(MapSizeContext);
-    const [ searchBarSize, setSearchBarSize ] = useContext(SearchBarContext);
     const [ locateButtonStyle, setLocateButtonStyle ] = useContext(LocateButtonContext);
     
 
@@ -28,11 +27,7 @@ const ToggleButtons = () => {
                 console.log('Both are active');
                 setPanelSize("50vw");
                 setMapSize("50vw");
-                setSearchBarSize({
-                    left: "65vw",
-                    width: "20vw",
-                    display: "block"
-                });
+               
                 setLocateButtonStyle({
                     left: "85vw",
                     display: "block"
@@ -42,12 +37,7 @@ const ToggleButtons = () => {
             } else {
                 console.log('Panel is active but Map is not');
                 setPanelSize("100vw");
-                setMapSize("0vw");
-                setSearchBarSize({
-                    left: "0",
-                    width: "0",
-                    display: "none"
-                });
+               
                 setLocateButtonStyle({
                     left: "0",
                     display: "none"
@@ -60,11 +50,7 @@ const ToggleButtons = () => {
                 console.log('Map is active but Panel is not');
                 setPanelSize("10vw");
                 setMapSize("90vw");
-                setSearchBarSize({
-                    left: "35vw",
-                    width: "40vw",
-                    display: "block"
-                });
+               
                 setLocateButtonStyle({
                     left: "75vw",
                     display: "block"
@@ -76,11 +62,7 @@ const ToggleButtons = () => {
                 console.log('None are active');
                 setPanelSize("30vw");
                 setMapSize("70vw");
-                setSearchBarSize({
-                    left: "50vw",
-                    width: "30vw",
-                    display: "block"
-                });
+                
                 setLocateButtonStyle({
                     left: "80vw",
                     display: "block"
