@@ -64,8 +64,14 @@
             grid-column: 2 / 3;
 
             .siteName {
-                font-size: 2rem;
-                color: $color-black;
+                a {
+                    font-size: 2rem;
+                    color: $color-black;
+
+                    &:hover {
+                        color: $color-text-blue;
+                    }
+                }
             }
             
         }

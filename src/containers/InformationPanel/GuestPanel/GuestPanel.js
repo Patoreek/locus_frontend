@@ -1,5 +1,8 @@
 import React, { useEffect, useContext} from 'react';
 
+import { useHistory } from "react-router-dom";
+
+
 import { DiveSitesContext,
          DetailsContext,
          SiteContext } from '../../../context/DiveSiteContext';
@@ -17,6 +20,8 @@ import classes from './GuestPanel.module.scss';
 
 const GuestPanel = () => {
 
+    let history = useHistory();
+
     const [diveSites, setDiveSites] = useContext(DiveSitesContext);
 
     const [moreDetails, setMoreDetails] = useContext(DetailsContext);
@@ -25,17 +30,7 @@ const GuestPanel = () => {
 
     const [isAuth, setIsAuth] = useContext(AuthContext);
 
-    const moreDetailsHandler = (site) => {
-        console.log('In more details');
-        if (!moreDetails){
-            setSelectedSite(site);
-            setMoreDetails(true);
-        }
-        if (moreDetails){
-            setMoreDetails(false);
-            // THEN OPEN NEW SITE THAT WAS SELECTED
-        }
-    }
+ 
 
 
 
@@ -49,12 +44,12 @@ const GuestPanel = () => {
             {/* <ToggleButtons/> */}
         {diveSites.map(site => (
             <div className={classes.site}>
-                <div className={classes.site__imageContainer} 
-                     onClick={() => moreDetailsHandler(site)}>
-
-                    <img src={'http://localhost:8080/' + site.images[0]}
-                        className={classes.image}
-                    />
+                <div className={classes.site__imageContainer}>
+                    <a href={"/divesite/" + site._id}>
+                        <img src={'http://localhost:8080/' + site.images[0]}
+                            className={classes.image}
+                        />
+                    </a>
                 </div>
 
                 <div className={classes.site__diveTypeContainer}>
@@ -63,9 +58,10 @@ const GuestPanel = () => {
 
 
                 <div className={classes.site__nameContainer}>
-                    <h5  className={classes.siteName}
-                         onClick={() => moreDetailsHandler(site)}>
+                    <h5  className={classes.siteName}>
+                        <a href={"/divesite/" + site._id}>
                              {site.name}, {site.area}
+                        </a>
                     </h5>
                 </div>
 
@@ -86,9 +82,9 @@ const GuestPanel = () => {
                 </div>
 
                 <div className={classes.site__moreDetailsContainer}>
-                    <span onClick={() => moreDetailsHandler(site)}
-                            className={classes.moreDetailsButton}
-                            >More Details...</span>
+                             <a href={"/divesite/" + site._id} className={classes.moreDetailsButton}>
+                                    More Details...
+                                </a>
                 </div>
             
             </div>

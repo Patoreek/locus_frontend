@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect, useContext } from 'react';
 
-import {Popover, OverlayTrigger, Button} from 'react-bootstrap';
 
 import {
     Marker,
@@ -21,16 +20,15 @@ import { DiveSitesContext,
 import shoreIconMarker from '../../../images/locationIcons/ShoreIconMarker.svg';
 import boatIconMarker from '../../../images/locationIcons/BoatIconMarker.svg';
 
-import WeatherContainer from '../../../containers/WeatherContainer/WeatherContainer';
-import PhotoContainer from './PhotosContainer/PhotoContainer';
 import StarRating from '../../StarRating/StarRating';
 import FavouriteButton from '../../Buttons/FavouriteButton/FavouriteButton';
-import EllipsesButton from '../../Buttons/EllipsesButton/EllipsesButton';
+
 
 
 import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerClusterer';
 
-import classes from './GuestMap.module.css';
+import classes from './GuestMap.module.scss';
+import './GuestMap.css';
 
 const GuestMap = () => {
 
@@ -81,39 +79,11 @@ const GuestMap = () => {
     
 
 
-    const moreDetailsHandler = () => {
-        setMoreDetails(true);
-    }
+    // const moreDetailsHandler = () => {
+    //     setMoreDetails(true);
 
-    // const commentHandler = () => {
-    //     console.log('Commenting on Site');
-        
     // }
 
-    const style = {
-        backgroundColor: "rgba(255, 255, 255, 0.75)",
-        padding: "0.5vw 1vw 0vw 1vw",
-        borderRight: "2px solid #DBE9EE",
-        borderTop: "2px solid #DBE9EE",
-        borderBottom: "2px solid #DBE9EE",
-        overflow: "hidden",
-        borderRadius: "6px 0px 5px 0px"
-    }
-
-    const totalRatingStyle = {
-        display:"none"
-    }
-
-
-    // const popover = (
-    //     <Popover id="popover-basic">
-    //       <Popover.Title as="h3">Popover right</Popover.Title>
-    //       <Popover.Content>
-    //        <Button> Share </Button>
-    //        <Button> Report </Button>
-    //       </Popover.Content>
-    //     </Popover>
-    //   );
 
     const onMarkerClustererClick = (markerClusterer) => {
         const clickedMarkers = markerClusterer.getMarkers();
@@ -162,51 +132,52 @@ const GuestMap = () => {
                             setSelectedSite(null);
                         } }
                     >
-                        <div className={classes.siteContainer}>
-                        <div className={classes.siteImageContainer} 
-                             onClick={() => moreDetailsHandler(selectedSite)}>
+                        <div className={classes.site}>
+                            <div className={classes.site__imageContainer}>
+                                <a href={"/divesite/" + selectedSite._id}>
+                                    <img src={'http://localhost:8080/' + selectedSite.images[0]}
+                                        className={classes.image}
+                                    />
+                                </a>
+                            </div>
 
-                    <img src={'http://localhost:8080/' + selectedSite.images[0]}
-                        className={classes.siteImage}
-                    />
-                </div>
+                            <div className={classes.site__diveTypeContainer}>
+                                <p className={classes.diveType}> Shore Dive · Great for Scuba </p>
+                            </div>
 
-                {isAuth && ( 
-                    <div className={classes.favButtonContainer}>
-                        <FavouriteButton site={selectedSite}/>
-                    </div>
-                )}
-
-                <div className={classes.siteRatingsContainer}>
-                    <StarRating siteRatings = {selectedSite.ratings}
-                                style={style}
-                                totalRatingStyle={totalRatingStyle}/>
-                </div>
-
-               
+                            {isAuth && ( 
+                                <div className={classes.site__favButtonContainer}>
+                                    <FavouriteButton site={selectedSite}/>
+                                </div>
+                            )}
 
 
-                <div className={classes.siteNameContainer}>
-                    <h5  className={classes.siteName}
-                         onClick={() => moreDetailsHandler(selectedSite)}>
-                             {selectedSite.name}, {selectedSite.area}
-                    </h5>
-                    <div className={classes.ellipsesButtonContainer}>
-                        <EllipsesButton/>
-                    </div>
-                    
-                </div>
+                            <div className={classes.site__nameContainer}>
+                                <h5  className={classes.name}>
+                                <a href={"/divesite/" + selectedSite._id}>
+                                        {selectedSite.name}, {selectedSite.area}
+                                </a>
+                                </h5>
+                                
+                            </div>
 
-                <div className={classes.siteDescriptionContainer}>
-                    <p className={classes.siteDescription}> {selectedSite.description} </p>
-                    <div className={classes.moreDetailsButtonContainer}>
-                    <Button onClick={() => moreDetailsHandler(selectedSite)}
-                            className={classes.moreDetailsButton}
-                            >More Details...</Button>
-                    </div>
-                </div>
+                            <div className={classes.site__descriptionContainer}>
+                                <p className={classes.description}> {selectedSite.description} </p>
+                            </div>
+
+                            <div className={classes.site__ratingsContainer}>
+                                <StarRating siteRatings = {selectedSite.ratings}/>
+                            </div>
+
+
+                            <div className={classes.site__moreDetailsContainer}>
+                                {/* <span onClick={() => moreDetailsHandler(selectedSite)} className={classes.moreDetails}> */}
+                                <a href={"/divesite/" + selectedSite._id} className={classes.moreDetails}>
+                                    More Details...
+                                </a>
+                            </div>
             
-            </div>
+                        </div>
                 </InfoWindow>
                 )}
                 </div>

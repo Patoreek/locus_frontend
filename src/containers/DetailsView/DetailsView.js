@@ -5,47 +5,42 @@ import { SiteContext,
 
 import { AuthContext } from '../../context/AuthContext';
 
-import { Button,
-         Carousel,
-         Tab,
-         Tabs,
-         Table } from 'react-bootstrap';
 
 import Spinner from 'react-bootstrap/Spinner';
 
-import { useMediaQuery } from '../../CustomHooks/useMediaQuery';
 
 
 import StarRating from '../../components/StarRating/StarRating';
 import Comments from '../../components/Comments/Comments';
 import FavouriteButton from '../../components/Buttons/FavouriteButton/FavouriteButton';
-import EllipsesButton from '../../components/Buttons/EllipsesButton/EllipsesButton'; 
 
 import shoreIcon from '../../images/locationIcons/ShoreIcon.svg';
 import boatIcon from '../../images/locationIcons/BoatIcon.svg';
 
 
 
-import classes from './DetailsView.module.css';
+import classes from './DetailsView.module.scss';
 
 const Details = (props) => {
+    const siteId = props.match.params.id;
+    console.log(siteId);
     
-    const [selectedSite, setSelectedSite] = useContext(SiteContext);
+    //const [selectedSite, setSelectedSite] = useContext(SiteContext);
     const [moreDetails, setMoreDetails] = useContext(DetailsContext);
     const [isAuth, setIsAuth] = useContext(AuthContext);
 
 
 
-    const [siteName, setSiteName] = useState(selectedSite.name);
-    const [siteArea, setSiteArea] = useState(selectedSite.area);
-    const [siteImages, setSiteImages] = useState(selectedSite.images);
-    const [siteVideos, setSiteVideos] = useState(selectedSite.videos);
-    const [siteType, setSiteType] = useState(selectedSite.siteType)
-    const [siteDescription, setSiteDescription] = useState(selectedSite.description);
-    const [siteDepth, setSiteDepth] = useState(selectedSite.depth);
-    const [siteVisibility, setSiteVisibility] = useState(selectedSite.visibility);
-    const [siteUnderwaterMap, setSiteUnderwaterMap] = useState(selectedSite.underwaterMap);
-    const [siteFeatures, setSiteFeatures] = useState(selectedSite.commonFeatures);
+    const [siteName, setSiteName] = useState();
+    const [siteArea, setSiteArea] = useState();
+    const [siteImages, setSiteImages] = useState();
+    const [siteVideos, setSiteVideos] = useState();
+    const [siteType, setSiteType] = useState()
+    const [siteDescription, setSiteDescription] = useState();
+    const [siteDepth, setSiteDepth] = useState();
+    const [siteVisibility, setSiteVisibility] = useState();
+    const [siteUnderwaterMap, setSiteUnderwaterMap] = useState();
+    const [siteFeatures, setSiteFeatures] = useState();
 
     const [siteComments, setSiteComments] = useState("");
     const [siteReview, setSiteReview] = useState("");
@@ -74,7 +69,7 @@ const Details = (props) => {
         weekday[6] = "Sat";
 
 
-    const isMobile = useMediaQuery('(max-width: 800px)');
+    // const isMobile = useMediaQuery('(max-width: 800px)');
 
     const goBackHandler = () => {
 
@@ -87,316 +82,91 @@ const Details = (props) => {
       setIndex(selectedIndex);
     };
 
-    let style;
-    let starRatingStyleContainer;
-
-    if (isMobile){
-       style = {
-        transform: "scale(0.75)"
-      }
-
-      starRatingStyleContainer = {
-        display:"inline-block",
-        float: "left",
-        //margin: "0 auto",
-        // backgroundColor: "orange",
-        marginBottom: "-10px",
-        height: "25px",
-        width:"50%"
-      }
-
-    } else {
-       style = {
-        transform: "scale(1.5)"
-      }
-
-      starRatingStyleContainer = {
-        display:"inline-block",
-        // float: "left",
-        margin: "0 auto",
-        // backgroundColor: "orange",
-        marginBottom: "-10px",
-        height: "25px",
-        width:"50%"
-      }
-    }
 
     
-
-    const totalRatingStyle = {
-      fontSize: "18px"
-    }
-
-    const totalRatingsContainerStyle = {
-      float: "right",
-      // backgroundColor: "aqua",
-      paddingLeft: "0px",
-      paddingTop: "-2px"
-
-    }
+    console.log('SITE ID -->' + siteId);
+    
 
     useEffect(() => {
-        const siteLat = selectedSite.latitude;
-        const siteLng = selectedSite.longitude
-        console.log(siteLat);
-        console.log(siteLng);
+        //const siteLat = selectedSite.latitude;
+        //const siteLng = selectedSite.longitude
+        //console.log(siteLat);
+        //console.log(siteLng);
 
-        async function getWeather() {
-            const response = await fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + siteLat + '&lon=' + siteLng + '&appid=bb55558b494d860741d920a7d21bda6b',{
-                method: 'GET'
+        async function getSite() {
+
+          try {
+            const response = await fetch('http://localhost:8080/diveSites/findSite/' + siteId,{
+              method: 'GET',
+              credentials: 'include',
             });
-            const data = await response.json();
-            setCurrentWeather(data.current);
-            setDailyWeather(data.daily);
-            setSiteWeather((data.current.temp - 273.15).toFixed(1));
-            setIconUrl("http://openweathermap.org/img/w/" + data.current.weather[0].icon + ".png");
-            
-            console.log(data);
+            const results = await response.json();
+            console.log(results);
+            const site = results.site;
 
-            let weatherArray = [];
-
-            data.daily.map(apiDay => {
-              const d = new Date(apiDay.dt * 1000);
-              const dayName =  weekday[d.getDay()];
-              console.log(dayName);
-
-              weatherArray = [...weatherArray, {
-                  day:dayName,
-                  temp:(apiDay.temp.day - 273.15).toFixed(1),
-                  weather: apiDay.weather[0].main,
-                  icon: "http://openweathermap.org/img/w/" + apiDay.weather[0].icon + ".png"
-              }]
-              
-             //console.log(weatherArray);
-
-            });
-
-            setWeatherContent(weatherArray);
-
-      
-            // setWeatherContent([...weatherContent, {
-            //   day:dayName,
-            //   temp:(apiDay.temp.day - 273.15).toFixed(1),
-            //   weather: apiDay.weather[0].main,
-            //   icon: "http://openweathermap.org/img/w/" + apiDay.weather[0].icon + ".png"
-            // }]
-            // );
-
+            setSiteName(site.name);
+            setSiteArea(site.area);
+            setSiteImages(site.images);
+            setSiteVideos(site.videos);
+            setSiteType(site.siteType);
+            setSiteDescription(site.description);
+            setSiteDepth(site.depth);
+            setSiteVisibility(site.visibility);
+            setSiteUnderwaterMap(site.underwaterMap);
+            setSiteFeatures(site.commonFeatures);
 
             setIsLoading(false);
-
-            //<div>
-              //  <img src={"http://openweathermap.org/img/w/" + apiDay.weather[0].icon + ".png"}/>
-              //  <p> Forecast Day {(apiDay.temp.day - 273.15).toFixed(1)}C. Is {apiDay.weather[0].main}</p>
-            //</div>
-
-            //const sites = data.site;
+    
+          } catch (error) {
+           console.log(error);
+           //setIsLoading(true);
+          }
         }
-        
 
-        getWeather();
+        getSite();
+  
     },[]);
 
-    // console.log('WEATHERCONTENT');
-    // console.log(weatherContent);
-    //console.log(weatherContent);
+    // // console.log('WEATHERCONTENT');
+    // // console.log(weatherContent);
+    // //console.log(weatherContent);
 
     return (
-      <div className={classes.detailsContainer}>
-        <div className={classes.backButtonContainer}>
-          <Button onClick={goBackHandler} className={classes.backButton}>Back</Button>
-        </div>
-
-        <Carousel activeIndex={index} onSelect={handleSelect} className={classes.carousel}>
-        {siteImages.map(image => (
-          <Carousel.Item>
-            <img
-              className={classes.carouselImage}
-              src={'http://localhost:8080/' + image}
-              alt="First slide"
-            />
-            {/* <Carousel.Caption>
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </Carousel.Caption> */}
-          </Carousel.Item>
-          ))}
-        
-        </Carousel>
-        <div className={classes.topHalfContainer}>
-          <div className={classes.siteNameContainer}>
-            <h2 className={classes.siteName}>
-              {siteName}, {siteArea}
-            </h2>
-          </div>
-
-          <div className={classes.reviewContainer}>
-            <StarRating 
-              style={style}
-              totalRatingStyle={totalRatingStyle}
-              totalRatingsContainerStyle={totalRatingsContainerStyle}
-              starRatingStyleContainer={starRatingStyleContainer}
-            />
-          </div>
-
-          <div className={classes.siteTypeContainer}>
-            {siteType === "1" && (
-              <div>
-                <p className={classes.siteType}> Shore Dive</p>
-              </div>
-            )} 
-            {siteType === "2" && (
-              <div>
-                <p className={classes.siteType}> Boat Dive</p>
-            </div>
-            )}
-          </div>
-
-        </div>
-        
-
-{/* 
-        <div className={classes.traitsContainer}>
-           Here some be some traits such as snorkel spot, plenty of fish, lots of coral,
-           easy diving spot, usually good visibility.
-        </div> */}
-
-        <div className={classes.sightsContainer}>
-
-        <div className={classes.sightsInnerContainer}>
-          <Tabs defaultActiveKey="features" 
-                id="uncontrolled-tab-example"
-                className={classes.tabsSection}>
-              <Tab eventKey="features" title="Features" className={classes.sightsTab}>
-                  <Table striped bordered hover
-                   className={classes.table}>
-                      <thead>
-                          <tr>
-                          <th width={'30%'}>Type</th>
-                          <th width={'70%'}>Name</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                      {siteFeatures.map(feature => (
-                          <tr>
-                          <td>{feature.featureType}</td>
-                          <td> {feature.name}</td>
-                          </tr>
-                      ))}
-                      </tbody>
-                      </Table>
+      <div className={classes.diveSite}>
+         <h3> Testing Header Tag</h3>
+          {!isLoading && (
+            <div>
+                <h3> isLoading is now turned OFF! Should be working...</h3>
 
 
+                <h3>Shellharbour, New South Wales, Australia</h3> {/* Should be a link to the map / google maps of the area?? */}
+                <h3>{siteName}, {siteArea}</h3>
+                <h3>Shellharbour, New South Wales, Australia</h3> {/* Should be a link to the map / google maps of the area?? */}
+                <h3>See all community photos</h3>
+                <h3> List of info with icons</h3>
+                <h3>Access: {siteType}</h3>
+                <h3>Depth: {siteDepth}m</h3>
+                <h3>Visibility: {siteVisibility}m</h3>
+                <h3>Experience Level: Open Water ...</h3>
+                <h3>Average Temperature: 18deg </h3>
+                <h3>Dive Environment: Reef Dive / Wreck Dive </h3>
 
-              </Tab>
-              <Tab eventKey="info" title="Info" className={classes.sightsTab}>
-
-
-                  {/* <div className={classes.depthContainer}>
-                      <h3>Max Depth: {siteDepth}m</h3>
-                  </div> */}
-
-                  <Table striped bordered hover
-                  className={classes.table}>
-                      <tbody>
-                          <tr>
-                          <td width="30%">Max Depth</td>
-                          <td width="70%"> {siteDepth}m</td>
-                          </tr>
-                      </tbody>
-                      </Table>
-              </Tab>
-              <Tab eventKey="uMap" title="Underwater Map" className={classes.sightsTab}>
-
-                  <h3  className={classes.uMapHeader}>Underwater Map</h3>
-                      <div className={classes.waterMapContainer}>
-                      {/* <p>{siteUnderwaterMap}</p> */}
-                      <p>To be added...</p> 
-                  </div>
-              </Tab>
-          </Tabs>
-        </div>
-            
-        </div> 
-
-        {!isLoading && (
-
-          <div className={classes.weatherContainer}>
-
-            <div className={classes.weatherInnerContainer}>
-
-              <div className={classes.weatherInnerTitleContainer}>
-                  <h3 className={classes.weatherTitle}>Weather</h3>
-              </div>
-              
-              <div className={classes.allWeatherDaysContainer}>
-              {weatherContent.map(day => (
-                <div className={classes.weatherDayContainer}>
-                  <div className={classes.weatherDayNameContainer}>
-                    <p>{day.day}</p>
-                  </div>
-                  <div className={classes.weatherDayIconContainer}>
-                    <img src={day.icon}/>
-                  </div>
-                  <div className={classes.weatherDayTempContainer}>
-                    <p>{day.temp}°C</p>
-                  </div>
-                  {/* <p>{day.weather}</p> */}
+                <h3>{siteDescription}</h3>
+                <div>
+                  Weather Container (PLACE THIS AND IMPLEMENT LATER)
                 </div>
-              ))}
-              </div>
 
-            </div>
-            
-          </div>
-        )}
-        {isLoading && (
-          <div className={classes.weatherContainer}>
+                <div>
+                  <h3>DIVE REPORTS (UNDER CONSTRUCTION)</h3>
+                </div>
+             
 
-          <div className={classes.weatherInnerContainer}>
-
-            <div className={classes.weatherInnerTitleContainer}>
-                <h3 className={classes.weatherTitle}>Weather</h3>
-            </div>
-            
-            <div className={classes.allWeatherDaysContainer}>
-              <Spinner animation="border" />
-            </div>
 
           </div>
-          
-        </div>
-        )}
-
-        <div className={classes.descriptionContainer}>
-
-          <div className={classes.descriptionInnerContainer}>
-
-          <div className={classes.descriptionInnerTitleContainer}>
-              <h3 className={classes.descriptionTitle}>Description</h3>
-          </div>
-            
-            <p  className={classes.description}>{siteDescription}</p>
-
-          </div>
-        </div>
-
-        <div className={classes.commentsContainer}>
-          <div className={classes.commentsInnerContainer}>
-            <div className={classes.commentsInnerTitleContainer}>
-                <h3 className={classes.commentsTitle}>Comments</h3>
-            </div>
-            
-             <div className={classes.commentsTotalTitleContainer}>
-              <h3 className={classes.commentsTotalTitle}>{selectedSite.comments.length} Comments</h3>
-            </div>
-
-            {/* <div className={classes.commentsComponentContainer}> */}
-                <Comments/>
-            {/* </div>  */}
-
-          </div>         
-        </div>
+          )}
+          {isLoading && (
+            <h3> isLoading is still TRUE...</h3>
+          )}
 
       </div>
     );

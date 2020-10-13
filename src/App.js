@@ -107,7 +107,7 @@ function App() {
       
         <DiveSiteProvider>
             <Route path="/map" exact component={GuestView}/>
-            <Route path="/details" component={DetailsView}/>
+            <Route path="/divesite/:id" component={DetailsView}/>
             <Route path="/viewprofile/:profileId" component={ViewProfileView}/>
         </DiveSiteProvider>
 

@@ -30,7 +30,7 @@ const NavbarMain = () => {
 
     const panTo = useContext(PanToContext);
 
-    const [dropdown, setDropdown] = useState(true); //! Change to False
+    const [dropdown, setDropdown] = useState(false); //! Change to False
 
 
     let history = useHistory();
