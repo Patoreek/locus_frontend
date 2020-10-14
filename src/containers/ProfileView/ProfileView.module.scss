@@ -1,0 +1,230 @@
+ @import '../../sass/abstracts/variables';
+
+ .profilePage {
+    //background: orange;
+    background: $color-white-bg;
+    max-width: 1400px;
+    padding: 5rem;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-rows: max-content 1fr;
+    grid-template-columns: 1fr 1fr;
+ 
+    .profile {
+        grid-row: 1 / 2;
+        grid-column: 1 / -1;
+
+        display: flex;
+        border-bottom: 1px solid $color-lines;
+
+        .profileLeft {
+            //background: yellow;
+            &__pictureContainer {
+                width: 22rem;
+                height: 22rem;
+                border-radius: 5px;
+                overflow: hidden; 
+
+                .picture {
+                    width: 100% ;
+                    height: 100%;
+                    object-fit: cover;
+                }
+    
+            }
+        }
+
+        .profileRight {
+            padding-left: 3rem;
+        //background: red;
+        display: flex;
+        flex-direction: column;
+
+            &__nameContainer {
+                
+                .name {
+                    font-size: 3.5rem;
+                }
+            }
+    
+            &__bioContainer {
+                width: 70%;
+    
+                .bio {
+                    font-size: 1.6rem;
+                    color: $color-text-darkergrey;
+                }
+            }
+    
+            &__locationContainer {
+                display: flex;
+                align-items: baseline;
+
+                .icon {
+                    width: 3rem;
+                    height: 3rem;
+                    fill: red;
+                }
+    
+                .location {
+                    padding-left: 1rem;
+                    font-size: 1.6rem;
+                    color: $color-text-darkergrey;
+                }
+               
+            }
+    
+            &__experienceContainer {
+                display: flex;
+                align-items: baseline;
+
+                .icon {
+                    width: 3rem;
+                    height: 3rem;
+                    //fill: green !important;
+                }
+    
+                .experience {
+                    padding-left: 1rem;
+                    font-size: 1.6rem;
+                    color: $color-text-darkergrey;
+                }
+                
+            }
+    
+            &__editContainer {
+                transform: translateY(-3.5rem);
+                align-self: flex-end;
+                
+                .edit {
+                    font-size: 1.4rem;
+                }
+            }
+    
+        }
+
+    
+    }
+
+    .reportsContainer {
+        grid-row: 2 / 3;
+        grid-column: 1 / 2;
+
+        padding-top: 2rem;
+        padding-right: 2rem;
+        
+        h3 {
+            font-size: 2rem;
+        }
+        .report {
+            background: #ffffb1;
+            height: 40rem;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            h3 {
+                transform: rotate(-10deg);
+                font-size: 6rem;
+                color: rgb(255, 115, 0);
+                
+            }
+        }
+    }
+
+    .favouritesContainer {
+        grid-row: 2 / 3;
+        grid-column: 2 / 3;
+
+        padding-top: 2rem;
+
+
+        .header {
+            font-size: 2rem;
+        }
+
+        .favourites {
+
+            .favouriteContainer {
+                display: grid;
+                grid-template-rows: repeat(4, max-content);
+                grid-template-columns: max-content 1fr 5rem;
+                padding: 1rem 0rem;
+
+                border-bottom: 1px solid $color-lines;
+
+                &__pointContainer, &__nameContainer, &__descriptionContainer, &__ratingContainer {
+                    padding-left: 1rem;
+                }
+
+                &__imageContainer {
+                    grid-row: 1 / -1;
+                    grid-column: 1 / 2;
+                    
+                    .image {
+                        // width: 200px;
+                        // height: 150px;
+                        width: 25rem;
+                    }
+                }
+
+                &__pointContainer {
+                    grid-row: 1 / 2;
+                    grid-column: 2 / 3;
+
+                    .point {
+                        font-size: 1.4rem;
+                    }
+        
+                }
+
+                &__nameContainer {
+                    grid-row: 2 / 3;
+                    grid-column: 2 / 3;
+
+                    .name {
+                        font-size: 2rem;
+                    }
+                }
+
+                &__descriptionContainer {
+                    grid-row: 3 / 4;
+                    grid-column: 2 / 3;
+
+                    .description {
+                        font-size: 1.2rem;
+                    }
+                }
+
+                &__ratingContainer {
+                    grid-row: 4 / 5;
+                    grid-column: 2 / 3;
+                }
+
+                &__moreContainer {
+                    grid-row: 4 / 5;
+                    grid-column: 3 / 4;
+                    display: flex;
+                    align-items: center;
+
+                    .more {
+                        font-size: 1.4rem;
+                        color: $color-black;
+                        position: relative;
+                        z-index: 25;
+                        &:hover {
+                            color: $color-text-blue;
+                            text-decoration: underline;
+                        }
+                       
+                    }
+        
+                }
+
+            }
+        }
+    }
+
+}
