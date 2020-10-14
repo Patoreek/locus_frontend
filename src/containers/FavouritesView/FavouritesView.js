@@ -6,13 +6,9 @@ import { AuthContext,
 
 import FavouritesList from './FavouritesList/FavouritesList';
 
-import { DetailsContext } from '../../context/DiveSiteContext';
-
-import DetailsView from '../DetailsView/DetailsView';
-
 import Spinner from 'react-bootstrap/Spinner'
 
-import classes from './FavouritesView.module.css';
+import classes from './FavouritesView.module.scss';
 
 
 
@@ -21,9 +17,6 @@ const FavouritesView = () => {
     const [isAuth, setIsAuth] = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(true);
     const [favourites, setFavourites] = useContext(FavouritesContext);
-
-    const [moreDetails, setMoreDetails] = useContext(DetailsContext);
-
 
     const getFavourites = useContext(GetFavouritesContext);
 
@@ -45,17 +38,14 @@ const FavouritesView = () => {
         <div className={classes.favouritesPage}>
             {!isLoading && (
                 <div className={classes.favouritesContainer}>  
-                
-                {!moreDetails && (
+        
                     <FavouritesList
                     favourites={favourites}
                     setIsLoading={setIsLoading}
                     // getFavs = {getFavourites}
                     />
-                )}
-                {moreDetails && (
-                    <DetailsView/>
-                )}
+                
+              
                 
             </div>
             )}

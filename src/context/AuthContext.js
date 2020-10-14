@@ -134,7 +134,8 @@ export const AuthProvider = (props) => {
             credentials: 'include',
           });
           const favourites = await response.json();
-          console.log(favourites);
+          console.log('FAVOURITES CONSOLE LOG');
+          console.log(favourites.favSites);
           setFavourites(favourites.favSites);
           if (setIsLoading != null){
               setIsLoading(false);

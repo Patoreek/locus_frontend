@@ -1,4 +1,6 @@
 @import '../../../sass/abstracts/variables';
+
+
 .navbar {
     background: $color-nav-bg;
     border-bottom: 1px solid $color-lines;    
@@ -11,12 +13,13 @@
         display: grid;
         grid-template-rows: 1fr;
         grid-template-columns: max-content 1fr max-content;
-        grid-gap: 15rem;
+        //grid-gap: 10rem;
 
         .logoItem {
             float: left;
             height: 100%; 
             width: 100%;
+            margin-right: 5rem;
 
             a {
                 .logo {
@@ -25,14 +28,48 @@
             }
         }
 
+        .iconContainer {
+            position: relative;
+            z-index: 50;
+            background: orange;
+        &__icon {
+            
+        }
+    }
+
         .searchbarContainer {
 
         }
 
+            
+        
+
+          
+
+     
+
         .rightNav {
-            display: flex;
+           display: flex;
             //background: red;
             padding: 0rem 2rem;
+            align-items: center;
+
+          
+       
+                .mapSVG {
+                    fill: $color-text-blue;
+                    height: 3rem;
+                    width: 3rem;
+                    margin-right: 2rem;
+    
+                    &:hover {
+                        fill: $search-btn-color;
+                    }
+                }
+            
+            
+
+
             .dropdownContainer {
 
                 position: relative;

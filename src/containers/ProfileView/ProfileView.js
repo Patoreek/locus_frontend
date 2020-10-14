@@ -143,7 +143,7 @@ const ProfileView = () => {
                                     </div>
                                     <div className={classes.favouriteContainer__ratingContainer}>
                                         <div className={classes.rating}>
-                                            <StarRating/>
+                                            <StarRating site={favourite}/>
                                         </div>
                                     </div>
                                     <div className={classes.favouriteContainer__moreContainer}>

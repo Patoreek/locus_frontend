@@ -5,6 +5,8 @@ import classes from './NavbarMain.module.scss';
 
 import { ReactComponent as LogoSVG } from '../../../assets/logo/LocusLogo_black.svg';
 import { ReactComponent as ArrowSVG } from '../../../assets/icons/arrow-left.svg';
+import { ReactComponent as MapSVG } from '../../../assets/icons/map.svg';
+
 
 
 import AuthDrawer from '../../AuthDrawer/AuthDrawer';
@@ -117,12 +119,23 @@ const NavbarMain = () => {
 
                         <div className={classes.searchbarContainer}>
                             <SearchBarMap panTo={panTo}/>
+                          
                         </div>
+
+                      
+                        
+                          
+                        
                            
                         <div className={classes.rightNav}>
 
                             {/* IF LOGGED IN SHOW THIS */}
-                
+                            <div classes={classes.rightNav__map}>
+                                <a href="/map">
+                                    <MapSVG className={classes.mapSVG}/>
+                                </a>
+                            </div>
+
                             {isAuth && ( 
                             <div className={classes.dropdownContainer}>
                                 <div className={classes.usernameContainer} onClick={() => setDropdown(!dropdown)}><span className={classes.username}>{account.username}</span></div>
