@@ -1,6 +1,8 @@
 
 import React, { useState, useEffect, useContext } from 'react';
 
+import './UserMapContainer.css';
+
 import {
     Marker,
     InfoWindow

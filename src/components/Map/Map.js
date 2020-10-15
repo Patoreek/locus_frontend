@@ -102,12 +102,9 @@ const Map = (props) => {
                 {/* <SearchBarMap panTo={panTo}/>
                 <Locate panTo={panTo}/> */}
             {!guestMap && (
-                <div>
-                    <div className={classes.overlayInfo}>
-                        <p className={classes.overlayText}> Press anywhere on the map to add a Dive Site. To edit an existing site, press on a marker </p>
-                    </div>
+     
                     <UserMapContainer/>
-                </div>
+           
             )}
     
     

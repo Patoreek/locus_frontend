@@ -128,24 +128,7 @@ const UserView = () => {
             />
             )}
 
-            <Modal  show={showAddModal} 
-                    onHide={handleClose}
-                    dialogClassName={classes.AddModal}
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title className={classes.AddModalHeader}>Add Dive Site</Modal.Title>
-                </Modal.Header>
-                <Modal.Body className={classes.AddModalBody}>
-                    <CreateSiteForm/>
-                </Modal.Body>
-                <Modal.Footer className={classes.AddModalFooter}>
-                    <Button variant="secondary"
-                            onClick={handleClose}
-                            className={classes.CloseAddModalButton}>
-                        Close
-                    </Button>
-                </Modal.Footer>
-            </Modal>        
+              
 
         </div>
         

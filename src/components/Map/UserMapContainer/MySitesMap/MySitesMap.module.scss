@@ -1,0 +1,130 @@
+@import '../../../../sass/abstracts/variables';
+
+.site {
+    background: $color-white-bg;
+    display: grid;
+    grid-template-rows: repeat(3, max-content) 8rem max-content;
+    grid-template-columns: repeat(3, 1fr) 3rem;
+    height: 100%;
+    //background: plum;
+
+    &__diveTypeContainer, &__nameContainer,  &__descriptionContainer, &__ratingsContainer {
+        margin-left: 1rem;
+    }
+    &__favButtonContainer{
+        transform: translateX(-1rem);
+    }
+    &__descriptionContainer, &__moreDetailsContainer {
+        padding-right: 1rem;
+    }
+
+    &__imageContainer {
+        grid-row: 1 / 2;
+        grid-column: 1 / -1;
+        overflow: hidden;
+
+        .image {
+            width: 100%;
+            height: 20rem;
+            transition: .5s ease;
+
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+    }
+
+    &__diveTypeContainer {
+        grid-row: 2 / 3;
+        grid-column: 1 / span 3;
+        margin-top: .5rem;
+        .diveType {
+            padding-top: 1rem;
+            font-size: 1.2rem;
+
+        }
+    }
+
+    &__editContainer {
+        grid-row: 2 / span 2;
+        grid-column: 4 / 5;
+       
+
+        //background: orange;
+
+        display: flex;
+        align-items: center;
+    
+        .edit {
+            width: 2.5rem;
+            height: 2.5rem;
+            overflow: visible;
+        }
+
+        .edit g path{
+            transition: .2s ease;
+            fill: $color-text-grey;
+        }
+
+        .edit:hover g path {
+            transform: scale(1.05);
+            fill: $color-text-darkergrey;
+        }
+    }
+
+    &__nameContainer {
+        grid-row: 3 / 4;
+        grid-column: 1 / span 4;
+        border-bottom: 1px solid $color-lines;
+        margin-right: 1rem;
+        .name {
+            a {
+                font-size: 1.6rem;
+                color: $color-black;
+
+                &:hover {
+                    color: $color-text-blue;
+                }
+            }
+
+        }
+    }
+
+    &__descriptionContainer {
+        grid-row: 4 / 5;
+        grid-column: 1 / -1;
+        //background: pink;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-top: 1rem;
+        .description {
+            word-break: break-all; 
+            font-size: 1.2rem;
+        }
+    }
+
+    &__ratingsContainer {
+        grid-row: 5 / 6;
+        grid-column: 1 / span 2;
+
+    }
+
+    &__moreDetailsContainer {
+        grid-row: 5 / 6;
+        grid-column: 3 / span 2;
+
+        display: flex;
+        justify-content: flex-end;
+        align-items: center; 
+        .moreDetails {
+            position: relative;
+            z-index: 15;
+            font-size: 1.2rem;
+            
+            &:hover {
+                color: $color-text-blue;
+                text-decoration: underline;
+            }
+        }
+    }
+}

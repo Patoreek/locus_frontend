@@ -49,7 +49,10 @@
             }
     
             &__bioContainer {
+                margin-bottom: 2rem;
                 width: 70%;
+                height: 7rem;
+                overflow: hidden;
     
                 .bio {
                     font-size: 1.6rem;

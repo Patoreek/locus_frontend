@@ -65,7 +65,7 @@ const DeleteContainer = (props) => {
     const cancelDeleteHandler = (event) => {
         event.preventDefault();
         console.log('Canceled Delete');
-        props.close();
+        setShowDeleteModal(false);
 
     }
 

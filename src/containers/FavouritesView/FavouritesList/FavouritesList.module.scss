@@ -43,6 +43,11 @@
                     width: 25rem;
                     height: 18rem;
                     object-fit: cover;
+                    transition: .5s ease;
+
+                    &:hover {
+                        transform: scale(1.2);
+                    }
                 }
             }
 

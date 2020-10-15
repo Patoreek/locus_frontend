@@ -39,7 +39,7 @@ const FavouritesList = (props) => {
     
     return (
         <div className={classes.favouritesList}>
-            <h1 className={classes.favouritesList__header}>{account.username}'s Favourites</h1> 
+            <h1 className={classes.favouritesList__header}>{account.username}'s Favourites ({favourites.length})</h1> 
             <div className={classes.favourites}>
                             {favourites.map(favourite => (
                                 <div className={classes.favouriteContainer}>

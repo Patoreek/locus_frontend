@@ -1,5 +1,9 @@
 @import '../../../../../sass/abstracts/variables';
 
+.site:not(:last-child) {
+    border-bottom: 1px solid $color-lines;
+}
+
 .site {
     padding: 3rem 0rem; //? Might need to change this
     //background: orange;

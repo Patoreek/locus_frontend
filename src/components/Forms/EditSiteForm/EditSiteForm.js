@@ -13,7 +13,12 @@ import "filepond/dist/filepond.min.css";
 import classes from './EditSiteForm.module.css';
 
 import { SiteContext, LoadDiveSiteContext } from '../../../context/DiveSiteContext';
-import { EditModalContext } from '../../../context/UserContext';
+import { EditModalContext, DeleteModalContext } from '../../../context/UserContext';
+
+import CommonFeatures from './CommonFeatures/CommonFeatures';
+import ImageUpload from '../../ImageUpload/ImageUpload';
+
+import DeleteContainer from '../DeleteContainer/DeleteContainer';
 
 
 
@@ -23,6 +28,8 @@ const EditSiteForm = (props) => {
 
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
     const [showEditModal, setShowEditModal] = useContext(EditModalContext);
+    const [showDeleteModal, setShowDeleteModal] = useContext(DeleteModalContext);
+
 
     const loadDiveSites = useContext(LoadDiveSiteContext)
 
@@ -83,72 +90,83 @@ const EditSiteForm = (props) => {
 
     return (
         <div className={classes.form}>
-            <Form>
-                <Form.Row className={classes.formRow}>
-                    <Col>
-                    <h3 className={classes.headers}>Name</h3>
-                    <Form.Control placeholder="Name of Dive Site"
-                                  value={siteName}
-                                  onChange={e => setSiteName(e.target.value)} />
-                    </Col>
-                    <Col>
-                    <h3 className={classes.headers}>Area</h3>
-                    <Form.Control placeholder="Area / Suburb"
-                                  value={siteArea}
-                                  onChange={e => setSiteArea(e.target.value)} />
-                    </Col>
+            {/* IF showDeleteModal is false then show edit modal */}
+            {!showDeleteModal && (
+                <div>
+                    <Form>
+                    <span onClick={() => setShowDeleteModal(true)}> Delete this dive site</span>
+                    <Form.Row className={classes.formRow}>
+                        <Col>
+                        <h3 className={classes.headers}>Name</h3>
+                        <Form.Control placeholder="Name of Dive Site"
+                                    value={siteName}
+                                    onChange={e => setSiteName(e.target.value)} />
+                        </Col>
+                        <Col>
+                        <h3 className={classes.headers}>Area</h3>
+                        <Form.Control placeholder="Area / Suburb"
+                                    value={siteArea}
+                                    onChange={e => setSiteArea(e.target.value)} />
+                        </Col>
+                    </Form.Row>
+                        <h3 className={classes.headers}>Description</h3>
+                        <Form.Control as="textarea"
+                                    rows="10"
+                                    value={siteDescription}
+                                    placeholder="Description of site"
+                                    onChange={e => setSiteDescription(e.target.value)} />
+                    <Form.Row className={classes.formRow}>
+                        <Col>
+                        <h3 className={classes.headers}>Max Depth</h3>
+                        <Form.Control placeholder="Max Depth of Site"
+                                    value={siteDepth}
+                                    onChange={e => setSiteDepth(e.target.value)} 
+                                    className={classes.depthInput}/>
+                        </Col>
+                    </Form.Row>
+                        
+        
+                    <Form.Row  className={classes.formRow}>
+                    <h3 className={classes.diveTypeHeader}>Dive Type</h3>
+                    <Form.Check 
+                                type="radio" 
+                                aria-label="shore" 
+                                label="Shore Dive" 
+                                name="siteType" 
+                                value={siteType} 
+                                onChange={e => setSiteType("1")}
+                                checked={siteType == 1}
+                                className={classes.radioButton}
+                    />
+                    <Form.Check  
+                                type="radio" 
+                                aria-label="boat" 
+                                label="Boat Dive" 
+                                name="siteType" 
+                                value={siteType} 
+                                onChange={e => setSiteType("2")}
+                                checked={siteType == 2}
+                                className={classes.radioButton}
+                    />
                 </Form.Row>
-                    <h3 className={classes.headers}>Description</h3>
-                    <Form.Control as="textarea"
-                                  rows="10"
-                                  value={siteDescription}
-                                  placeholder="Description of site"
-                                  onChange={e => setSiteDescription(e.target.value)} />
+                
                 <Form.Row className={classes.formRow}>
-                    <Col>
-                    <h3 className={classes.headers}>Max Depth</h3>
-                    <Form.Control placeholder="Max Depth of Site"
-                                  value={siteDepth}
-                                  onChange={e => setSiteDepth(e.target.value)} 
-                                  className={classes.depthInput}/>
-                    </Col>
+                    <Button variant="primary" 
+                            type="submit"
+                            onClick={(e) => handleEditSiteSubmit(e)}
+                            className={classes.editButton}>
+                        Edit
+                    </Button>
                 </Form.Row>
-                    
-    
-                <Form.Row  className={classes.formRow}>
-                <h3 className={classes.diveTypeHeader}>Dive Type</h3>
-                <Form.Check 
-                            type="radio" 
-                            aria-label="shore" 
-                            label="Shore Dive" 
-                            name="siteType" 
-                            value={siteType} 
-                            onChange={e => setSiteType("1")}
-                            checked={siteType == 1}
-                            className={classes.radioButton}
-                />
-                <Form.Check  
-                            type="radio" 
-                            aria-label="boat" 
-                            label="Boat Dive" 
-                            name="siteType" 
-                            value={siteType} 
-                            onChange={e => setSiteType("2")}
-                            checked={siteType == 2}
-                            className={classes.radioButton}
-                />
-            </Form.Row>
-            
-            <Form.Row className={classes.formRow}>
-                <Button variant="primary" 
-                        type="submit"
-                        onClick={(e) => handleEditSiteSubmit(e)}
-                        className={classes.editButton}>
-                    Edit
-                </Button>
-            </Form.Row>
-        </Form>
-
+            </Form>
+                    <CommonFeatures/>
+                    <ImageUpload/>
+                </div>
+            )}
+            {showDeleteModal && ( 
+                <DeleteContainer/>
+            )}
+             {/* ELSE showDeleteModal is true then show delete modal */}
         </div>
     );
 };

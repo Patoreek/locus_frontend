@@ -1,6 +1,9 @@
 import React, { useState, useContext } from 'react';
 
-import { FormContext } from '../../../context/UserContext';
+import { EditModalContext,
+        AddModalContext,
+        DeleteModalContext
+        } from '../../../context/UserContext';
 import { SiteContext } from '../../../context/DiveSiteContext';
 
 import CreateSiteForm from '../../../components/Forms/CreateSiteForm/CreateSiteForm';
@@ -12,9 +15,11 @@ import ToggleButtons from '../ToggleButtons/ToggleButtons';
 
 const UserPanel = () => {
 
-    //const [ showForm, toggleShowForm ] = useContext(FormContext);
-
     const [ selectedSite, setSelectedSite ] = useContext(SiteContext);
+
+    const [ showEditModal, setShowEditModal ] = useContext(EditModalContext);
+    const [ showAddModal, setShowAddModal ] = useContext(AddModalContext);
+    const [ showDeleteModal, setShowDeleteModal ] = useContext(DeleteModalContext);
     // console.log(selectedSite);
     let form;
     
@@ -23,7 +28,10 @@ const UserPanel = () => {
     return (
         <div>
                 {/* <ToggleButtons/> */}
-                <UserSiteListContainer/>
+                {!showEditModal && !showAddModal && !showDeleteModal ? <UserSiteListContainer/> : null }
+                {showEditModal ? <EditSiteForm/> : null}
+                {showAddModal ? <CreateSiteForm/> : null}
+                {/* //TODO: ADD FORMS HERE WITH LOGIC */}
         </div>
     );
 };

@@ -68,7 +68,7 @@ const UserSiteList = () => {
             <div className={classes.listContainer}>
                             
                 <div className={classes.listContainer__header}>
-                    <h3 className={classes.header}> {account.username}'s Sites  ·   8 sites</h3>
+                    <h3 className={classes.header}> {account.username}'s Sites  ·   {sites.length} sites</h3>
                 </div>
             
                 <SiteList sites={sites}/>
