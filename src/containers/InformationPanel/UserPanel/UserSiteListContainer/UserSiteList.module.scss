@@ -1,0 +1,11 @@
+@import '../../../../sass/abstracts/variables';
+
+.listContainer {
+    padding: 2rem 1.5rem 2rem 1.5rem;
+    &__header {
+        font-size: 2.5rem;
+        border-bottom: 1px solid $color-lines;
+        padding-bottom: .5rem;
+
+    }
+}

@@ -88,7 +88,8 @@ const NavbarMain = () => {
 
     // console.log('[NavBar accountID]' + account.id);
     // console.log('[NavBar accountName]' + account.username);
-
+    console.log('[ NavBar ] Account Info Below');
+    console.log(account);
 
 
     return (

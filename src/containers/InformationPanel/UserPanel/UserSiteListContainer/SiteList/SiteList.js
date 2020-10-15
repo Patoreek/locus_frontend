@@ -4,9 +4,11 @@ import { EditModalContext,
          DeleteModalContext } from '../../../../../context/UserContext';
 import { SiteContext } from '../../../../../context/DiveSiteContext';
 
-import { Button } from 'react-bootstrap';
+import StarRating from '../../../../../components/StarRating/StarRating';
 
-import classes from './SiteList.module.css';
+import { ReactComponent as EditSVG } from '../../../../../assets/icons/edit.svg';
+
+import classes from './SiteList.module.scss';
 
 
 
@@ -33,53 +35,56 @@ const SiteList = (props) => {
     console.log(sites);
     return (
         sites.map(site => (
-            <div className={classes.siteContainer}>
-                <div className={classes.siteImageContainer}>
 
+
+            <div className={classes.site}>
+                <div className={classes.site__imageContainer}>
+                    <a href={"/divesite/" + site._id}>
                     <img src={'http://localhost:8080/' + site.images[0]}
-                        className={classes.siteImage}
+                        className={classes.image}
                     />
+                    </a>
                 </div>
 
-                <div className={classes.siteNameContainer}>
+                <div className={classes.site__diveTypeContainer}>
+                       <span> Shore Dive · Great for Scuba </span> 
+                </div>
+
+
+                <div className={classes.site__nameContainer}>
                     <h5  className={classes.siteName}>
+                        <a href={"/divesite/" + site._id}>
                              {site.name}, {site.area}
+                        </a>
                     </h5>
                 </div>
 
-                <div className={classes.siteDescriptionContainer}>
-                    <p className={classes.siteDescription}> {site.description} </p>
-                    <div className={classes.moreDetailsButtonContainer}>
-                    </div>
-                </div>
-
-                <div className={classes.buttonContainer}>
-                    <div className={classes.editButtonContainer}>
-                        <Button 
-                            variant="info"
-                            onClick={() =>{
-                                setSelectedSite(site);
-                                editSiteHandler();
-                            }}
-                            className={classes.editButton}>
-                            Edit
-                        </Button> 
-                    </div>
-
-                    <div className={classes.deleteButtonContainer}>
-                        <Button 
-                            variant="danger"
-                            onClick={() =>{
-                                setSelectedSite(site);
-                                showDeleteForm();
-                            }}
-                            className={classes.deleteButton}>
-                            Delete
-                        </Button> 
-                    </div>
-                </div>
                 
+                <div className={classes.site__editContainer}>
+                    <EditSVG className={classes.edit} onClick={() => {
+                         setSelectedSite(site);
+                        editSiteHandler();
+                    }}/>
+                </div>
+
+            
+
+                <div className={classes.site__descriptionContainer}>
+                    <p className={classes.siteDescription}> {site.description} </p>
+                </div>
+
+                <div className={classes.site__ratingsContainer}>
+                    <StarRating siteRatings = {site.ratings}/>
+                </div>
+
+                <div className={classes.site__moreDetailsContainer}>
+                             <a href={"/divesite/" + site._id} className={classes.moreDetailsButton}>
+                                    More Details...
+                                </a>
+                </div>
+            
             </div>
+
         ))
             
 

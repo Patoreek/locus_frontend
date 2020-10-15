@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 
-import classes from './UserSiteList.module.css';
+import classes from './UserSiteList.module.scss';
 
 import { AccountContext } from '../../../../context/AuthContext';
 import { AddModalContext,
@@ -64,21 +64,18 @@ const UserSiteList = () => {
     return (
        
         <div>
-            <div className={classes.topContainer}>
-                <div className={classes.headerContainer}>
-                    <h1 className={classes.header}> {account.username}'s Sites</h1>
+            {!listLoading && (
+            <div className={classes.listContainer}>
+                            
+                <div className={classes.listContainer__header}>
+                    <h3 className={classes.header}> {account.username}'s Sites  ·   8 sites</h3>
                 </div>
-                <div className={classes.paragraphContainer}>
-                    <p className={classes.paragraph}> 
-                        These are your divesites that you have added. You may add a site by clicking
-                        on the map. To edit and delete, either press the buttons in the panel section
-                        or click on the markers to show options.
-                    </p>
-                </div>
+            
+                <SiteList sites={sites}/>
             </div>
-            {/* {sites.map(site => { */}
-            {!listLoading ? <SiteList sites={sites}/> : <Spinner animation="border" />}  
-            {/* })} */}
+            )}
+         
+ 
         </div>
     );
 };
