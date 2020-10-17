@@ -1,16 +1,18 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import classes from './NavbarMain.module.scss';
 
 import { ReactComponent as LogoSVG } from '../../../assets/logo/LocusLogo_black.svg';
-import { ReactComponent as ArrowSVG } from '../../../assets/icons/arrow-left.svg';
+import { ReactComponent as ArrowSVG } from '../../../assets/icons/arrow-down.svg';
 import { ReactComponent as MapSVG } from '../../../assets/icons/map.svg';
 
 
 
 import AuthDrawer from '../../AuthDrawer/AuthDrawer';
 import SearchBarMap from '../../SearchBarMap/SearchBarMap';
+import Searchbar from '../../Searchbar/Searchbar';
+
 
 
 import { AuthContext,
@@ -29,13 +31,70 @@ const NavbarMain = () => {
     const [account, setAccount] = useContext(AccountContext);
 
     const [authDrawer, setAuthDrawer] = useContext(AuthDrawerContext);
+    
+    
 
     const panTo = useContext(PanToContext);
 
     const [dropdown, setDropdown] = useState(false); //! Change to False
 
 
+    const [navbar, setNavbar] = useState('map');
+
+    const [userPicture, setUserPicture] = useState(null);
+    const [firstName, setFirstName] = useState(null);
+
+
     let history = useHistory();
+
+    useEffect(()=> {
+        const url = window.location.pathname;
+        if (url.includes("map") || url.includes("mySites")){
+            console.log('[SearchbarMap] Page is on a MAP!');
+            setNavbar('map');
+        } else {
+            console.log('[SearchbarMap] Page is NOT on a MAP!');
+            setNavbar('main');
+        }
+
+        const getProfile = () => {
+    
+            return fetch('http://localhost:8080/user/getProfile',{
+                method: 'GET',
+                credentials: 'include',
+            })
+            .then(res => {
+                return res.json();
+            })
+            .then(resData => {
+                console.log('resData!!!!!!');
+                console.log(resData);
+
+                if (resData.firstName) {
+                    setFirstName(resData.firstName);
+                }
+                if (resData.profilePic) {
+                    setUserPicture(resData.profilePic);
+                }
+                
+                
+                
+            })
+            .catch(err => {
+                console.log('Caught. Could not retrieve user info');
+                console.log(err);
+                // history.push("/login");
+            });
+    
+    
+        }
+
+        getProfile();
+
+
+
+
+    }, []);
 
     const authDrawerHandler = (option) => {
         if (option === "login") {
@@ -119,7 +178,10 @@ const NavbarMain = () => {
                         </div> : null } */}
 
                         <div className={classes.searchbarContainer}>
-                            <SearchBarMap panTo={panTo}/>
+                            
+                            {navbar === "map" ? <SearchBarMap panTo={panTo}/> : null}
+                            {navbar === "main" ? <Searchbar/> : null}
+                            
                           
                         </div>
 
@@ -139,7 +201,11 @@ const NavbarMain = () => {
 
                             {isAuth && ( 
                             <div className={classes.dropdownContainer}>
-                                <div className={classes.usernameContainer} onClick={() => setDropdown(!dropdown)}><span className={classes.username}>{account.username}</span></div>
+                                <div className={classes.usernameContainer} onClick={() => setDropdown(!dropdown)}>
+                                    <span className={classes.username}>
+                                        {firstName ? firstName : account.username}
+                                    </span>
+                                </div>
                                 <div className={`${classes.dropdown}`}>
                                     <div className={`${classes.dropdown__content} ${!dropdown ? classes.fade : null}`}>
                                         <div className={classes.dropdown__email}>
@@ -173,7 +239,8 @@ const NavbarMain = () => {
                              )}
                             {isAuth && (
                                  <div className={classes.avatar} onClick={() => setDropdown(!dropdown)}>
-                                     <img className={classes.avatar__image} src={avatarPlaceholder} alt="placeholder of users face."/>
+                                    {!userPicture ? <img className={classes.avatar__image} src={avatarPlaceholder} alt="placeholder of users face."/> : null}
+                                    {userPicture ? <img className={classes.avatar__image} src={'http://localhost:8080/' + userPicture} alt="placeholder of users face."/> : null}
                                  </div>
                             )}
 

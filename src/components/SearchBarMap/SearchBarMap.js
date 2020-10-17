@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 
 import { PanToContext } from '../../context/AuthContext';
-
+import { LocationNameContext } from '../../context/DiveSiteContext';
 import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
 
 import {
@@ -21,10 +21,12 @@ import {
 
 
 const SearchBarMap = (props) => {
-    //console.log('In searchBarMap');
-    //console.log(props.panTo);
+
+
 
     const panTo = useContext(PanToContext);
+
+    const [locationName, setLocationName] = useContext(LocationNameContext); 
 
     const {ready, 
            value, 
@@ -45,12 +47,17 @@ const SearchBarMap = (props) => {
             <Combobox
                 onSelect={async (address) => {
                     setValue(address, false);
+                    console.log('[searchbarmap]');
+                    setLocationName(address);
+
                     clearSuggestions();
                     try {
                         const results = await getGeocode({address});
                         const {lat, lng} = await getLatLng(results[0]);
+                       // console.log(results);
                         //console.log(lat,lng);
                         panTo({lat, lng});
+                        
 
                     } catch(error){
                         console.log(error);

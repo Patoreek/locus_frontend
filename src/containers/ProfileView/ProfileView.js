@@ -73,7 +73,7 @@ const ProfileView = () => {
             getProfile();
         }, []);
 
-
+        
     return (
         <div>
             {!isLoading && (
@@ -126,16 +126,19 @@ const ProfileView = () => {
                                 <div className={classes.favouriteContainer}>
 
                                     <div className={classes.favouriteContainer__imageContainer}>
-
-                                        <img src={'http://localhost:8080/' + favourite.siteImage} 
-                                        className={classes.image}
-                                        />
+                                        <a href={"/divesite/" + favourite.site._id}>
+                                            <img src={'http://localhost:8080/' + favourite.siteImage} 
+                                            className={classes.image}
+                                            />
+                                        </a>
                                     </div>
                                     <div className={classes.favouriteContainer__pointContainer}>
                                         <span className={classes.point}>Shore Dive · Great for Scuba</span>
                                     </div>
                                     <div className={classes.favouriteContainer__nameContainer}>
-                                        <span className={classes.name}>{favourite.siteName}, {favourite.siteArea}</span>
+                                        <a href={"/divesite/" + favourite.site._id}>
+                                            <span className={classes.name}>{favourite.siteName}, {favourite.siteArea}</span>
+                                        </a>
                                     </div>
                                     
                                     <div className={classes.favouriteContainer__descriptionContainer}>
@@ -143,11 +146,11 @@ const ProfileView = () => {
                                     </div>
                                     <div className={classes.favouriteContainer__ratingContainer}>
                                         <div className={classes.rating}>
-                                            <StarRating site={favourite}/>
+                                            <StarRating siteRatings = {favourite.site.ratings}/>
                                         </div>
                                     </div>
                                     <div className={classes.favouriteContainer__moreContainer}>
-                                        <a href="#" className={classes.more}>More...</a>
+                                        <a href={"/divesite/" + favourite.site._id} className={classes.more}>More...</a>
                                     </div>
                                 </div>
                             ))}

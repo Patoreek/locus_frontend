@@ -39,22 +39,25 @@ const FavouritesList = (props) => {
     
     return (
         <div className={classes.favouritesList}>
-            <h1 className={classes.favouritesList__header}>{account.username}'s Favourites ({favourites.length})</h1> 
+            <h1 className={classes.favouritesList__header}>{account.username}'s Favourites · {favourites.length} Dive sites</h1> 
             <div className={classes.favourites}>
                             {favourites.map(favourite => (
                                 <div className={classes.favouriteContainer}>
 
                                     <div className={classes.favouriteContainer__imageContainer}>
-
-                                        <img src={'http://localhost:8080/' + favourite.images[0]} 
-                                        className={classes.image}
-                                        />
+                                        <a href={"/divesite/" + favourite._id}>
+                                            <img src={'http://localhost:8080/' + favourite.images[0]} 
+                                            className={classes.image}
+                                            />
+                                        </a>
                                     </div>
                                     <div className={classes.favouriteContainer__pointContainer}>
                                         <span className={classes.point}>Shore Dive · Great for Scuba</span>
                                     </div>
                                     <div className={classes.favouriteContainer__nameContainer}>
-                                        <span className={classes.name}>{favourite.name}, {favourite.area}</span>
+                                        <a href={"/divesite/" + favourite._id}>
+                                            <span className={classes.name}>{favourite.name}, {favourite.area}</span>
+                                        </a>
                                     </div>
                                     
                                     <div className={classes.favouriteContainer__descriptionContainer}>
@@ -62,12 +65,12 @@ const FavouritesList = (props) => {
                                     </div>
                                     <div className={classes.favouriteContainer__ratingContainer}>
                                         <div className={classes.rating}>
-                                             <StarRating site={favourite}/>
+                                             <StarRating siteRatings = {favourite.ratings}/>
                                             
                                         </div>
                                     </div>
                                     <div className={classes.favouriteContainer__moreContainer}>
-                                        <a href="#" className={classes.more}>More...</a>
+                                        <a href={"/divesite/" + favourite._id} className={classes.more}>More...</a>
                                     </div>
                                 </div>
                             ))}

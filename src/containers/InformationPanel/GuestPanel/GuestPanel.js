@@ -5,7 +5,8 @@ import { useHistory } from "react-router-dom";
 
 import { DiveSitesContext,
          DetailsContext,
-         SiteContext } from '../../../context/DiveSiteContext';
+         SiteContext,
+         LocationNameContext } from '../../../context/DiveSiteContext';
 
 import {AuthContext} from '../../../context/AuthContext';
 
@@ -28,16 +29,16 @@ const GuestPanel = () => {
 
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
 
-    const [isAuth, setIsAuth] = useContext(AuthContext);
+    const [locationName, setLocationName] = useContext(LocationNameContext);
 
- 
+    const [isAuth, setIsAuth] = useContext(AuthContext);
 
 
 
     return (
         <div className={classes.guestPanel}>
             <div className={classes.topSection}>
-                <p>24 sites  · Location </p>
+                <p>24 sites  · Location {locationName} </p>
                 <h3>Dive sites in selected map area</h3> 
             </div>
 

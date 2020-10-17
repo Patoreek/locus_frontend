@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom';
 import classes from './LoginView.module.scss';
 
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import { AuthContext, AccountContext, AuthDrawerHandlerContext } from '../../context/AuthContext';
+import { AuthContext, AccountContext, AuthDrawerHandlerContext, AuthDrawerContext } from '../../context/AuthContext';
 
 import { ReactComponent as LogoSVG} from '../../assets/logo/LocusLogo_black.svg';
 
@@ -19,6 +19,8 @@ const LoginView = () => {
     const [isAuth, setIsAuth] = useContext(AuthContext);
     const [account, setAccount] = useContext(AccountContext);
     const authDrawerHandler = useContext(AuthDrawerHandlerContext);
+    const [authDrawer, setAuthDrawer] = useContext(AuthDrawerContext);
+
 
 
 
@@ -53,15 +55,16 @@ const LoginView = () => {
             return res.json();
         })
         .then(resData => {
-           
+            console.log('resData!!!!!!');
             console.log(resData);
             setIsAuth(true);
                 setAccount({
                     id: resData._id,
                     username: resData.username,
                     email: resData.email
-                }) 
-                history.push("/map");
+                });
+                setAuthDrawer(false);
+                //history.push("/map");
             
         })
         .catch(err => {

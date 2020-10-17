@@ -134,8 +134,8 @@ const ReviewStars = (props) => {
         </div>
     )}
     {!isAuth && (
-       <div>
-        <Rating name="half-rating-read" defaultValue={rating} precision={0.5} style={props.style} readOnly />
+       <div className={classes.root}>
+        <Rating name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
       </div>
     )}
     </div>

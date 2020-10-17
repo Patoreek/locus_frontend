@@ -1,16 +1,9 @@
 import React, {useState, useContext} from 'react';
 
-import {
-    Form,
-    Col,
-    Row,
-    Button
-} from 'react-bootstrap';
-
 import { FilePond } from 'react-filepond';
 import "filepond/dist/filepond.min.css";
 
-import classes from './EditSiteForm.module.css';
+import classes from './EditSiteForm.module.scss';
 
 import { SiteContext, LoadDiveSiteContext } from '../../../context/DiveSiteContext';
 import { EditModalContext, DeleteModalContext } from '../../../context/UserContext';
@@ -89,47 +82,49 @@ const EditSiteForm = (props) => {
     }
 
     return (
-        <div className={classes.form}>
+        <div>
             {/* IF showDeleteModal is false then show edit modal */}
             {!showDeleteModal && (
-                <div>
-                    <Form>
-                    <span onClick={() => setShowDeleteModal(true)}> Delete this dive site</span>
-                    <Form.Row className={classes.formRow}>
-                        <Col>
-                        <h3 className={classes.headers}>Name</h3>
-                        <Form.Control placeholder="Name of Dive Site"
-                                    value={siteName}
-                                    onChange={e => setSiteName(e.target.value)} />
-                        </Col>
-                        <Col>
-                        <h3 className={classes.headers}>Area</h3>
-                        <Form.Control placeholder="Area / Suburb"
-                                    value={siteArea}
-                                    onChange={e => setSiteArea(e.target.value)} />
-                        </Col>
-                    </Form.Row>
-                        <h3 className={classes.headers}>Description</h3>
-                        <Form.Control as="textarea"
+                <div className={classes.form}>
+                    <div className={classes.form__headerContainer}>
+                        <h3 className={classes.header}>Edit a Dive site</h3>
+                    </div>
+                    <div className={classes.form__deleteContainer}>
+                        <span className={classes.delete} onClick={() => setShowDeleteModal(true)}> Delete this dive site</span>
+                    </div>
+                    {/* //! HERE */}
+                    <div className={classes.form__nameContainer}>
+                        <input  className={`${classes.input} ${classes.input__name}`}
+                                placeholder="Name of Dive Site"
+                                value={siteName}
+                                onChange={e => setSiteName(e.target.value)} />
+                    </div>
+                    
+                    <div className={classes.form__areaContainer}>
+                        <input className={`${classes.input} ${classes.input__area}`}
+                                placeholder="Area / Suburb"
+                                value={siteArea}
+                                onChange={e => setSiteArea(e.target.value)} />
+                    </div>
+
+                    <div className={classes.form__uploadContainer}>
+                        <ImageUpload/>
+                    </div>
+
+                    <div className={classes.form__descriptionContainer}>
+                        <textarea className={`${classes.input} ${classes.input__description}`}
                                     rows="10"
                                     value={siteDescription}
-                                    placeholder="Description of site"
+                                    placeholder="Description"
                                     onChange={e => setSiteDescription(e.target.value)} />
-                    <Form.Row className={classes.formRow}>
-                        <Col>
-                        <h3 className={classes.headers}>Max Depth</h3>
-                        <Form.Control placeholder="Max Depth of Site"
-                                    value={siteDepth}
-                                    onChange={e => setSiteDepth(e.target.value)} 
-                                    className={classes.depthInput}/>
-                        </Col>
-                    </Form.Row>
-                        
-        
-                    <Form.Row  className={classes.formRow}>
-                    <h3 className={classes.diveTypeHeader}>Dive Type</h3>
-                    <Form.Check 
-                                type="radio" 
+                    </div>
+                  
+                    <div className={classes.form__section1}>
+                        <div className={classes.accessContainer}>
+                            <span className={classes.accessContainer__title}>Access from:</span> {/* Dive Type */}
+                            <span className={classes.accessContainer__input}>Shore</span>
+                        </div>
+                            {/* <input type="radio" 
                                 aria-label="shore" 
                                 label="Shore Dive" 
                                 name="siteType" 
@@ -137,9 +132,9 @@ const EditSiteForm = (props) => {
                                 onChange={e => setSiteType("1")}
                                 checked={siteType == 1}
                                 className={classes.radioButton}
-                    />
-                    <Form.Check  
-                                type="radio" 
+                        />
+                        <span>Boat</span>
+                        <input type="radio" 
                                 aria-label="boat" 
                                 label="Boat Dive" 
                                 name="siteType" 
@@ -147,22 +142,92 @@ const EditSiteForm = (props) => {
                                 onChange={e => setSiteType("2")}
                                 checked={siteType == 2}
                                 className={classes.radioButton}
-                    />
-                </Form.Row>
+                        /> */}
+                        <div className={classes.diveTypeContainer}>
+                            <span className={classes.diveTypeContainer__title}>Dive Type:</span> {/* NEW Definition of Dive Type */}
+                            <span className={classes.diveTypeContainer__input}>Reef</span>
+                        </div>
+
+                        <div className={classes.maxDepthContainer}>
+                            <span className={classes.maxDepthContainer__title}>Max Depth</span>
+                            <input   className={`${classes.input} ${classes.input__maxDepth}`}
+                                    placeholder="Max Depth of Site"
+                                    value={siteDepth}
+                                    onChange={e => setSiteDepth(e.target.value)} />
+                        </div>
+                        
+                        <div className={classes.avgDepthContainer}>
+                            <span className={classes.avgDepthContainer__title}>Avg Depth</span>
+                            <input   className={`${classes.input} ${classes.input__avgDepth}`}
+                                    placeholder="Max Depth of Site"
+                                    //value={siteDepth}
+                                    //onChange={e => setSiteDepth(e.target.value)} 
+                                    />
+                        </div>
+                        
+                    </div>
+
+                    <div className={classes.form__section2}>
+                        <div className={classes.temperatureContainer}>
+                            <span className={classes.temperatureContainer__title}>Temperature (C)</span>
+                                <input className={`${classes.input} ${classes.input__minTemp}`}
+                                    placeholder="Average Minimum Temperature"
+                                // value={}
+                                // onChange={e => setSiteArea(e.target.value)} 
+                                />
+                                <input className={`${classes.input} ${classes.input__maxTemp}`}
+                                    placeholder="Average Maximum Temperature"
+                                // value={}
+                                // onChange={e => setSiteArea(e.target.value)} 
+                                />
+                        </div>
+                        
+                        <div className={classes.visibilityContainer}>
+                        <span className={classes.visibilityContainer__title}>Visibility (m)</span>
+                            <input className={`${classes.input} ${classes.input__minVis}`}
+                                placeholder="Average Minimum Visibility"
+                               // value={}
+                               // onChange={e => setSiteArea(e.target.value)} 
+                            />
+                            <input className={`${classes.input} ${classes.input__maxVis}`}
+                                placeholder="Average Maximum Visibility"
+                               // value={}
+                               // onChange={e => setSiteArea(e.target.value)} 
+                            />
+                        </div>
+                    </div>
+
+                    <div className={classes.form__section3}>
+                        <span className={classes.header}>Diver Experience</span>
+                        <input className={`${classes.input} ${classes.input__experience}`}
+                                placeholder="Advanced Open Water Diver"
+                               // value={}
+                               // onChange={e => setSiteArea(e.target.value)} 
+                            />
+                    </div>
                 
-                <Form.Row className={classes.formRow}>
-                    <Button variant="primary" 
-                            type="submit"
-                            onClick={(e) => handleEditSiteSubmit(e)}
-                            className={classes.editButton}>
-                        Edit
-                    </Button>
-                </Form.Row>
-            </Form>
-                    <CommonFeatures/>
-                    <ImageUpload/>
-                </div>
+                    <div className={classes.form__commonFeaturesContainer}>
+                        <CommonFeatures/>
+                    </div>
+
+                    <div className={classes.form__cancelBtnContainer}>
+                        <button className={classes.cancelBtn}>Cancel</button>
+                    </div>
+
+                    <div className={classes.form__editBtnContainer}>
+                        <input
+                                placeholder="Edit"
+                                type="submit"
+                                onClick={(e) => handleEditSiteSubmit(e)}
+                                className={classes.editBtn}/>
+                    </div>
+
+                  </div>
             )}
+
+                    
+                    
+              
             {showDeleteModal && ( 
                 <DeleteContainer/>
             )}

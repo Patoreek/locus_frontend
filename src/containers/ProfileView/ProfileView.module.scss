@@ -62,12 +62,15 @@
     
             &__locationContainer {
                 display: flex;
-                align-items: baseline;
+                align-items: center;
+                margin-bottom: 1.8rem;
 
                 .icon {
                     width: 3rem;
                     height: 3rem;
-                    fill: red;
+                    path {
+                        fill: $color-text-darkergrey;
+                    }
                 }
     
                 .location {
@@ -80,12 +83,16 @@
     
             &__experienceContainer {
                 display: flex;
-                align-items: baseline;
+                align-items: center;
+
 
                 .icon {
                     width: 3rem;
                     height: 3rem;
                     //fill: green !important;
+                    path {
+                        fill: $color-text-darkergrey;
+                    }
                 }
     
                 .experience {

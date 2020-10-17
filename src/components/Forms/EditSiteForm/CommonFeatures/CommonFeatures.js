@@ -8,7 +8,7 @@ import { Form,
 
 import { SiteContext } from '../../../../context/DiveSiteContext';
 
-import classes from './CommonFeatures.module.css';
+import classes from './CommonFeatures.module.scss';
 
 const CommonFeatures = () => {
 
@@ -129,16 +129,6 @@ const CommonFeatures = () => {
                     <td><Button variant="danger" onClick={() => handleRemoveFeature(feature)}> - </Button></td>
                 </tr>
             ))}
-            {/* <tr>
-            <td>Animal</td>
-            <td colSpan="2">Cuttlefish</td>
-            <td><Button variant="danger" onClick={handleRemoveFeature}> - </Button></td>
-            </tr>
-            <tr>
-            <td>Animal</td>
-            <td colSpan="2">Grey Nurse Shark</td>
-            <td><Button variant="danger"> - </Button></td>
-            </tr> */}
         </tbody>
         </Table>
         </div>

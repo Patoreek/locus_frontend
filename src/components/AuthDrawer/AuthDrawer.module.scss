@@ -12,6 +12,7 @@
 
     color: $color-white;
     opacity: 0;
+    border-right: 1px solid $color-lines;
 }
 
 .closeArrow {
@@ -35,6 +36,7 @@
 
 .close {
    width: 0vw;
+   //opacity: 0%;
 }
 
 .overlay {

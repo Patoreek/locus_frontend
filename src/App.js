@@ -86,7 +86,9 @@ function App() {
     <BrowserRouter>
       {!isLoading && (
       <div className={classes.app}>
-      <Navbar/>
+      <DiveSiteProvider>
+        <Navbar/>
+      </DiveSiteProvider>
       
       <Route path="/" exact component={HomeView}/>
 

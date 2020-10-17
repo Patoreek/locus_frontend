@@ -4,7 +4,7 @@ import {
     Button
 } from 'react-bootstrap';
 
-import classes from './DeleteContainer.module.css';
+import classes from './DeleteContainer.module.scss';
 
 //import { FormContext } from '../../../context/UserContext';
 import { SiteContext,

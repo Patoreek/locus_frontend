@@ -149,7 +149,7 @@ const Details = (props) => {
                 {/* <h3> isLoading is now turned OFF! Should be working...</h3> */}
 
                 <div className={classes.divesite__locationTop}>
-                  <a href="#">Shellharbour, New South Wales, Australia</a> {/* Should be a link to the map / google maps of the area?? */}
+                  <a target="_blank" href="http://www.google.com/search?q=Shellharbour%2C+New+South+Wales%2C+Australia">Shellharbour, New South Wales, Australia</a> {/* Should be a link to the map / google maps of the area?? */}
                 </div>
                 
                 <div className={classes.divesite__imageGridContainer}>
@@ -173,7 +173,7 @@ const Details = (props) => {
                 {/* USE FLEXBOX COLUMN */}
                 <div className={classes.divesite__nameContainer}>
                     <h3 className={classes.name}>{siteName}, {siteArea}</h3>
-                    <a href="#">Shellharbour, New South Wales, Australia</a> {/* Should be a link to the map / google maps of the area?? */}
+                    <a target="_blank" href="http://www.google.com/search?q=Shellharbour%2C+New+South+Wales%2C+Australia"> Shellharbour, New South Wales, Australia</a> {/* Should be a link to the map / google maps of the area?? */}
                     <div className={classes.ratingsContainer}>
                       <div className={classes.ratingsContainer__rating}>
                       <StarRating site={selectedSite}/>

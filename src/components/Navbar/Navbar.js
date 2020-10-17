@@ -15,6 +15,7 @@ const Navbar = () => {
 
     const [navbar, setNavbar] = useContext(NavbarContext);
 
+
     return (
         <div>
             {navbar === "home" ? <NavbarHome/> : null}

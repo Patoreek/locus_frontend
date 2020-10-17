@@ -157,6 +157,9 @@
 
                 width: 6rem;
                 height: 6rem;
+                path {
+                    fill: $color-text-blue;
+                }
                
             }
 
@@ -171,7 +174,7 @@
 
                 span {
                     font-size: 1.6rem;
-                    color: $color-text-grey;
+                    color: $color-text-darkergrey;
                 }
             }
 
