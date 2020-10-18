@@ -232,17 +232,18 @@ const NavbarMain = () => {
                                 </div>
                             </div> 
                             )}
-                             {isAuth && ( 
-                                <div className={classes.arrowContainer}>
-                                 <ArrowSVG className={`${classes.arrow} ${dropdown ? classes.rotate : null}`}/>
-                                </div>
-                             )}
+                           
                             {isAuth && (
                                  <div className={classes.avatar} onClick={() => setDropdown(!dropdown)}>
                                     {!userPicture ? <img className={classes.avatar__image} src={avatarPlaceholder} alt="placeholder of users face."/> : null}
                                     {userPicture ? <img className={classes.avatar__image} src={'http://localhost:8080/' + userPicture} alt="placeholder of users face."/> : null}
                                  </div>
                             )}
+                              {isAuth && ( 
+                                <div className={classes.arrowContainer}>
+                                 <ArrowSVG className={`${classes.arrow} ${dropdown ? classes.rotate : null}`}/>
+                                </div>
+                             )}
 
 
                             {/* IF NOT LOGGED IN SHOW THIS */}

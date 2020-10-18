@@ -103,11 +103,14 @@ const NavbarHome = () => {
                         </div> : null } */}
                            
                         <div className={classes.rightNav}>
-                        {isAuth ? <div className={classes.logout}><a onClick={logoutHandler}>Logout</a></div> : null }
+                       
+                         
+                            <div className={classes.mapLink}><a href="/map">Go to Map</a></div>
                             {isAuth ? <div className={classes.usernameContainer}>
                                 <p className={classes.username}>Welcome, <b>{account.username}!</b></p>
                             </div> : null }
-                            <div className={classes.mapLink}><a href="/map">Go to Map</a></div>
+                            {isAuth ? <div className={classes.logout}><a onClick={logoutHandler}>Logout</a></div> : null }
+
                             {!isAuth ? <div className={`${classes.btn} ${classes.btn__login}`} onClick={() => authDrawerHandler('login')}>Log in</div> : null }
                             {!isAuth ? <div className={`${classes.btn} ${classes.btn__signup}`} onClick={() => authDrawerHandler('signup')}>Sign Up</div> : null } 
                             

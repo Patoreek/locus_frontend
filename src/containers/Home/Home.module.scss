@@ -215,9 +215,12 @@
                 box-shadow: 2px 4px 4px rgba($color-black, .4);
                 outline: none;
                 transition: .2s ease;
+                
     
                 &__map {
                     background: $login-nav-color;  
+                    text-align: center;
+                    text-decoration: none;
                 }
     
                 &__signUp {

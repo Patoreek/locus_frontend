@@ -2,13 +2,14 @@
 
 .favouriteIcon {
     //color: #576CD1 !important;
-    color: $color-text-blue;
+    color: $color-text-red;
     //width: 100%;
     height: 100%;
     width: 100%;
     transition: 0.2s ease;
     //background: orange;
     &:hover {
-        transform: scale(1.2);
+        transform: scale(1.1);
+        color: $color-text-red-hover;
     }
 }

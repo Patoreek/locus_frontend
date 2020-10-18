@@ -18,10 +18,13 @@ import Searchbar from '../../components/Searchbar/Searchbar';
 
 
 
+
+
 const Home = () => {
 
     const [authDrawer, setAuthDrawer] = useContext(AuthDrawerContext);
     const [navbar, setNavbar] = useContext(NavbarContext);
+    //const [authDrawer, setAuthDrawer] = useContext(AuthDrawerContext);
 
     useEffect(() => {
         setNavbar("home");
@@ -30,6 +33,14 @@ const Home = () => {
             setNavbar("main");
         };
     },[]);
+
+    const signupHandler = () => {
+            setAuthDrawer({
+                open: true,
+                login: false,
+                signup: true
+            });
+    }
 
 
     //console.log(isRowBased);
@@ -110,12 +121,12 @@ const Home = () => {
                 <img className={`${classes.image} ${classes.image__3}`} src={homeImg3} alt="birds eye view of beach"/>
                 <div className={classes.mapContainer}>
                     <p className={classes.mapContainer__text}>Press the button below to go to the map or scroll up and type in a location that you want to dive. Explore around the area to discover the dive sites.</p>
-                    <button className={`${classes.btn} ${classes.btn__map}`}>Go To Map</button>
+                    <a href="/map" className={`${classes.btn} ${classes.btn__map}`}>Go To Map</a>
                 </div>
                 <img className={`${classes.image} ${classes.image__4}`} src={homeImg4} alt="turtle gliding through the water"/>
                 <div className={classes.signUpContainer}>
                     <p className={classes.signUpContainer__text}>Come join our community of  marine enthusiasts and adventurers that help provide information to others. You can request to add a dive site and be able to add dive reports for others to see and hear your experience.</p>
-                    <button className={`${classes.btn} ${classes.btn__signUp}`}>Sign up</button>
+                    <button className={`${classes.btn} ${classes.btn__signUp}`} onClick={signupHandler}>Sign up</button>
                 </div>
             </div>
         </div>

@@ -105,7 +105,7 @@
                     transform: translate(-5.5rem, 1.8rem);                    
                     &__content {
                         height: 100%;
-                        width: 140%;
+                        width: 110%;
                         background: $color-nav-bg;
                         transition: .3s ease;
                         opacity: 100%;
@@ -126,6 +126,7 @@
                         flex-direction: column;
                         border-bottom: 1px solid $color-lines;
                         padding-bottom: .5rem;
+                        padding-left: 1rem;
 
                         .title {
                             font-size: 1.2rem;
@@ -141,15 +142,22 @@
                     }
 
                     &__diveReports, &__mySites, &__favourites, &__profile, &__logout {
-                        padding: .5rem 0rem;
+                        padding: .5rem 1rem;
+
+                        &:hover, &:hover a {
+                            background: $color-nav-bg-hover;
+                            color: $color-black;
+
+                        }
                         
                         a {
                             font-size: 1.4rem;
                             color: $color-text-darkergrey;
                             
                             &:hover {
-                                color: $color-text-blue;
+                                //color: $color-text-blue;
                                 text-decoration: none;
+                                
                             }
                         }
                     }
@@ -167,11 +175,29 @@
                 color: $color-text-blue;
                 text-decoration: none;
             }
-          
+        
+            
+
+
+            .avatar {
+                background: green;
+                border-radius:100px;
+                overflow: hidden;
+                width: 5.5rem;
+                height: 5.5rem;
+                border: 2px solid $color-lines;
+                margin-left: 1rem;
+
+                &__image {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
             .arrowContainer {
                 display: flex;
                 align-items: center;
-                margin-right: 2rem;
+                margin-left: 1rem;
                 .arrow {
                     height: 1.5rem;
                     width: 1.5rem;
@@ -183,22 +209,6 @@
                 }
                 .rotate {
                     transform: rotate(-180deg);
-                }
-            }
-            
-
-
-            .avatar {
-                background: green;
-                border-radius:100px;
-                overflow: hidden;
-                width: 5.5rem;
-                height: 5.5rem;
-                border: 2px solid $color-text-grey;
-
-                &__image {
-                    width: 100%;
-                    height: 100%;
                 }
             }
 

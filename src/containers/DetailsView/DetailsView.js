@@ -62,10 +62,19 @@ const Details = (props) => {
 
     const [weatherContent, setWeatherContent] = useState();
 
+    const [firstImage, setFirstImage] = useState();
+    const [secondImage, setSecondImage] = useState();
+    const [thirdImage, setThirdImage] = useState();
+    const [fourthImage, setFourthImage] = useState();
+    const [fifthImage, setFifthImage] = useState();
+    //const [tempImage, setTempImage] = useState();
+
+
 
     const [isLoading, setIsLoading] = useState(true);
 
     const [key, setKey] = useState('features');
+
 
 
     const weekday = new Array(7);
@@ -125,6 +134,13 @@ const Details = (props) => {
             setSiteFeatures(site.commonFeatures);
             setSelectedSite(site);
 
+            setFirstImage(site.images[0]);
+            setSecondImage(site.images[0]);
+            setThirdImage(site.images[1]);
+            setFourthImage(site.images[2]);
+            setFifthImage(site.images[1]);
+           
+
             setIsLoading(false);
     
           } catch (error) {
@@ -137,6 +153,34 @@ const Details = (props) => {
   
     },[]);
 
+
+    const imageHandler = (image) => {
+      console.log(image);
+      const tempImage = firstImage;
+      switch(image) {
+        case 1:
+    
+          break;
+        case 2:
+          setFirstImage(secondImage);
+          setSecondImage(tempImage);
+          break;
+        case 3:
+          setFirstImage(thirdImage);
+          setThirdImage(tempImage);
+          break;
+        case 4:
+          setFirstImage(fourthImage);
+          setFourthImage(tempImage);
+          break;
+        case 5:
+          setFirstImage(fifthImage);
+          setFifthImage(tempImage);
+          break;
+        default:
+          // code block
+      }
+    }
     // // console.log('WEATHERCONTENT');
     // // console.log(weatherContent);
     // //console.log(weatherContent);
@@ -153,20 +197,35 @@ const Details = (props) => {
                 </div>
                 
                 <div className={classes.divesite__imageGridContainer}>
-                  <div className={`${classes.image} ${classes.image__1}`}>
-                    <img className={classes.image} src={'http://localhost:8080/' + siteImages[0]}/>
+                  <div className={`${classes.image} ${classes.image__1}`} onClick={() => {
+                    // setTempImage(firstImage);
+                    imageHandler(1);
+                  }}>
+                    <img className={classes.image} src={'http://localhost:8080/' + firstImage}/>
                   </div>
-                  <div className={`${classes.image} ${classes.image__2}`}>
-                    <img className={classes.image} src={'http://localhost:8080/' + siteImages[1]}/>
+                  <div className={`${classes.image} ${classes.image__2}`} onClick={() => {
+                    // setTempImage(firstImage);
+                    imageHandler(2);
+                  }}>
+                    <img className={classes.image} src={'http://localhost:8080/' + secondImage}/>
                   </div>
-                  <div className={`${classes.image} ${classes.image__3}`}>
-                    <img className={classes.image} src={'http://localhost:8080/' + siteImages[2]}/>
+                  <div className={`${classes.image} ${classes.image__3}`} onClick={() => {
+                    // setTempImage(firstImage);
+                    imageHandler(3);
+                  }}>
+                    <img className={classes.image} src={'http://localhost:8080/' + thirdImage}/>
                   </div>
-                  <div className={`${classes.image} ${classes.image__4}`}>
-                    <img className={classes.image} src={'http://localhost:8080/' + siteImages[0]}/>
+                  <div className={`${classes.image} ${classes.image__4}`} onClick={() => {
+                    // setTempImage(firstImage);
+                    imageHandler(4);
+                  }}>
+                    <img className={classes.image} src={'http://localhost:8080/' + fourthImage}/>
                   </div>
-                  <div className={`${classes.image} ${classes.image__5}`}>
-                    <img className={classes.image} src={'http://localhost:8080/' + siteImages[1]}/>
+                  <div className={`${classes.image} ${classes.image__5}`} onClick={() => {
+                    // setTempImage(firstImage);
+                    imageHandler(5);
+                  }}>
+                    <img className={classes.image} src={'http://localhost:8080/' + fifthImage}/>
                   </div>
                 </div>
 

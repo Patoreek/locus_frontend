@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
 import classes from './Searchbar.module.scss';
 
@@ -20,9 +20,22 @@ const Searchbar = () => {
 
     const [searchCoordinates, setSearchCoordinates] = useContext(SearchCoordsContext);
 
+    const [navbar, setNavbar] = useState('map');
 
     let history = useHistory();
     let style;
+
+
+    useEffect(()=> {
+        const url = window.location.pathname;
+        if (url.includes("map") || url.includes("mySites")){
+            console.log('[SearchbarMap] Page is on a MAP!');
+            setNavbar('map');
+        } else {
+            console.log('[SearchbarMap] Page is NOT on a MAP!');
+            setNavbar('main');
+        }
+    },[]);
 
     const handleSelect = async (value) => {
         const results = await geocodeByAddress(value);
@@ -40,12 +53,12 @@ const Searchbar = () => {
                                         
                         >
                         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                        <div className={classes.searchBar}>
+                        <div className={`${classes.searchBar} ${navbar == "map" ? classes.searchBar__mainbar : null} `} >
                             {/* <p>Latitude: {searchCoordinates.lat}</p>
                             <p>Longitude: {searchCoordinates.lng}</p> */}
-                            <div className={classes.searchBar__searchInputContainer}>
+                            <div className={`${classes.searchBar__searchInputContainer} ${navbar == "map" ? classes.searchBar__searchInputContainerMain : null}`}>
                             <h3 className={classes.locationText}>Location</h3>
-                            <input {...getInputProps({placeholder: "Where do you want to dive?"})} className={classes.searchInput}/>
+                            <input {...getInputProps({placeholder: "Where do you want to dive?"})} className={`${classes.searchInput} ${navbar == "map" ? classes.searchInput__main : null}`}/>
                             <div className={classes.dropdownContainer}>
                                 {loading ? <div> ...loading </div> : null}
                                 {suggestions.map(suggestion => {

@@ -12,7 +12,14 @@
     width: 60%;
     margin: 0 auto;
 
+    &__mainbar {
+        width: 80%;
+    }
 
+    &__searchInputContainerMain {
+        padding: 0rem 1.5rem;
+
+    }
 
  &__searchInputContainer {
      grid-row: 2 / 3;
@@ -33,6 +40,14 @@
          border:none;
          outline: none;
          font-size: 1.6rem;
+
+         &__main {
+             font-size: 1.4rem;
+
+             &::placeholder {
+                font-size: 1.4rem !important;
+            }
+         }
 
          &::placeholder {
              font-size: 1.6rem;

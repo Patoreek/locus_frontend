@@ -4,7 +4,7 @@
     width: 100vw;
     height: auto;
     background: $color-footer-bg;
-    border-top: 1px solid $color-footer-text;
+    border-top: 1px solid rgba($color-lines, .4);
     display: grid;
     grid-template-rows: repeat(3, max-content);
     grid-template-columns: 30rem 1fr 30rem;
