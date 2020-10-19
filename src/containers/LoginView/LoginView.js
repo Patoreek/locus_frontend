@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom';
 import classes from './LoginView.module.scss';
 
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import { AuthContext, AccountContext, AuthDrawerHandlerContext, AuthDrawerContext } from '../../context/AuthContext';
+import { AuthContext, AccountContext, AuthDrawerHandlerContext, AuthDrawerContext, SignUpSuccessContext } from '../../context/AuthContext';
 
 import { ReactComponent as LogoSVG} from '../../assets/logo/LocusLogo_black.svg';
 
@@ -20,6 +20,8 @@ const LoginView = () => {
     const [account, setAccount] = useContext(AccountContext);
     const authDrawerHandler = useContext(AuthDrawerHandlerContext);
     const [authDrawer, setAuthDrawer] = useContext(AuthDrawerContext);
+    const [signUpSuccess, setSignUpSuccess] = useContext(SignUpSuccessContext);
+
 
 
 
@@ -55,15 +57,17 @@ const LoginView = () => {
             return res.json();
         })
         .then(resData => {
-            console.log('resData!!!!!!');
+            //console.log('resData!!!!!!');
             console.log(resData);
             setIsAuth(true);
                 setAccount({
                     id: resData._id,
                     username: resData.username,
+                    firstName: resData.firstName,
                     email: resData.email
                 });
                 setAuthDrawer(false);
+                localStorage.setItem("email", resData.email);
                 //history.push("/map");
             
         })
@@ -85,6 +89,7 @@ const LoginView = () => {
             <div className={classes.login__logoContainer}>
             <LogoSVG className={classes.logo}/>
             <p className={classes.loginSubheader}>Welcome Back! Login to access additional features.</p>
+            {signUpSuccess ? <p className={classes.signUpSuccess}>Signed up successfully! Please Log in.</p> : null}
             </div>
             <div className={classes.loginForm}>
             <div className={classes.loginForm__headerContainer}>
@@ -99,6 +104,7 @@ const LoginView = () => {
                 <input
                     type="email"
                     placeholder=""
+                    value={localStorage.email ? localStorage.email : null}
                     onChange={e => setInputEmail(e.target.value)}
                     className={classes.input}
                 />
@@ -112,6 +118,7 @@ const LoginView = () => {
                     onChange={e => setInputPassword(e.target.value)}
                     className={classes.input}
                 />
+                <p className={classes.errMsg}>{errMsg}</p>
             </div>
 
             <div className={classes.loginForm__btn}>
@@ -128,7 +135,7 @@ const LoginView = () => {
                     <span className={classes.rememberContainer__text}> Remember Me </span>
             </div>
             <div className={classes.forgotPasswordContainer}>
-                    <span className={classes.forgotPasswordContainer__text}>Forgot password?</span>   {/* //? Change to a tag with a link */}
+                    <span className={classes.forgotPasswordContainer__text} onClick={() => authDrawerHandler('forgotPw')}>Forgot password?</span>   {/* //? Change to a tag with a link */}
             </div>
         </div>
         </div>

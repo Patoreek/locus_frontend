@@ -27,6 +27,12 @@
             color: $color-text-darkgrey;
             text-align: center;
         }
+
+        .signUpSuccess {
+            font-size: 1.6rem;
+            color: $color-text-green;
+            text-align: center;
+        }
     }
   
     .loginForm {
@@ -115,6 +121,12 @@
                 position: relative;
                 outline: none;
             }
+
+            .errMsg {
+                color: $color-text-red;
+                font-size: 1.6rem;
+                padding: 1rem 0rem 0rem 0rem;
+            }
         }
 
          &__btn {
@@ -131,6 +143,7 @@
                 font-size: 1.6rem;
                 color: $color-white;
                 font-weight: 700;
+                outline: none;
             }
         }
 

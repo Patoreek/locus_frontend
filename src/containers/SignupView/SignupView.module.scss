@@ -32,7 +32,7 @@
     .form {
 
         display: grid;
-        grid-template-rows: repeat(8, max-content);
+        grid-template-rows: repeat(11, max-content);
         grid-template-columns: 1fr;
         grid-gap: 2rem;
         margin-top: 2.5rem;
@@ -59,7 +59,7 @@
 
         
 
-        &__username, &__email, &__password, &__passwordAgain {
+        &__username, &__email, &__password, &__passwordAgain, &__firstName, &__lastName {
            
             position: relative;
             z-index: 52;
@@ -89,6 +89,16 @@
                 outline: none;
             }
 
+            .errorBorderColor {
+                transition: .3s ease;
+                border: 2px solid $color-text-red;
+            }
+
+            .errorTextColor {
+                transition: .3s ease;
+                color: $color-text-red;
+            }
+
         }
 
         &__username {
@@ -96,24 +106,33 @@
             grid-column: 1 / -1;
         }
 
-        &__email {
+        &__firstName {
             grid-row: 3 / 4;
             grid-column: 1 / -1;
         }
-
-        &__password {
+        &_lastName {
             grid-row: 4 / 5;
             grid-column: 1 / -1;
         }
 
-        &__passwordAgain {
+        &__email {
             grid-row: 5 / 6;
+            grid-column: 1 / -1;
+        }
+
+        &__password {
+            grid-row: 6 / 7;
+            grid-column: 1 / -1;
+        }
+
+        &__passwordAgain {
+            grid-row: 7 / 8;
             grid-column: 1 / -1;
 
         }
 
         &__certifyContainer {
-            grid-row: 6 / 7;
+            grid-row: 8 / 9;
             grid-column: 1 / -1;
             
             display: flex;
@@ -129,10 +148,25 @@
                 font-size: 1.4rem;
                 margin-left: 1.5rem;
             }
+
+            .errorBorderColor {
+                transition: .3s ease;
+                border: 2px solid $color-text-red;
+            }
+        }
+
+        &__errorContainer {
+            grid-row: 9 / 10;
+            grid-column: 1 / -1;
+            
+            .errMsg {
+                color: $color-text-red;
+                font-size: 1.4rem;
+            }
         }
 
         &__btnContainer {
-            grid-row: 7 / 8;
+            grid-row: 10 / 11;
             grid-column: 1 / -1;
     
             .btn {
@@ -145,12 +179,13 @@
                 font-size: 1.6rem;
                 color: $color-white;
                 font-weight: 700;
+                outline: none;
             }
             
         }
 
         &__loginContainer {
-            grid-row: 8 / 9;
+            grid-row: 11 / 12;
             grid-column: 1 / -1;
             text-align: center;
             padding: 1rem 0rem;

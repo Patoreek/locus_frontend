@@ -63,6 +63,7 @@ const NavbarHome = () => {
         .then(res => {
             console.log(res);
             setIsAuth(false);
+           // localStorage.removeItem('email');
             history.push('/'); //REDIRECT TO HOME
         })
         .catch(err => {
@@ -107,7 +108,7 @@ const NavbarHome = () => {
                          
                             <div className={classes.mapLink}><a href="/map">Go to Map</a></div>
                             {isAuth ? <div className={classes.usernameContainer}>
-                                <p className={classes.username}>Welcome, <b>{account.username}!</b></p>
+                                <p className={classes.username}>Welcome, <b>{account.firstName ? account.firstName : account.username}!</b></p>
                             </div> : null }
                             {isAuth ? <div className={classes.logout}><a onClick={logoutHandler}>Logout</a></div> : null }
 

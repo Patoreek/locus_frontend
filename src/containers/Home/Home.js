@@ -38,7 +38,8 @@ const Home = () => {
             setAuthDrawer({
                 open: true,
                 login: false,
-                signup: true
+                signup: true,
+                forgotPw: false
             });
     }
 

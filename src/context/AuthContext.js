@@ -32,6 +32,9 @@ export const AuthDrawerHandlerContext = createContext();
 
 export const NavbarContext = createContext();
 
+export const SignUpSuccessContext = createContext();
+
+
 //TODO: SEARCHBAR MAP FUNCTIONS AND REF
 
 export const MapRefContext = createContext();
@@ -52,6 +55,8 @@ export const AuthProvider = (props) => {
     const [account, setAccount] = useState({
         id: null,
         username: null,
+        firstName: null,
+        lastName: null,
         email: null
     });
 
@@ -85,7 +90,8 @@ export const AuthProvider = (props) => {
     const [authDrawer, setAuthDrawer] = useState({
       open: false,
       login: false, 
-      signup: false
+      signup: false,
+      forgotPW: false
     });
 
     const authDrawerHandler = (option) => {
@@ -93,19 +99,30 @@ export const AuthProvider = (props) => {
         setAuthDrawer({
           open: true,
           login: true,
-          signup: false
+          signup: false,
+          forgotPW: false,
         });
       } else if (option === 'signup') {
         setAuthDrawer({
           open: true,             
           login: false,
-          signup: true
+          signup: true,
+          forgotPW: false,
+        });
+      }  else if (option === 'forgotPw') {
+        setAuthDrawer({
+          open: true,             
+          login: false,
+          signup: false,
+          forgotPw: true,
         });
       }
-
     }
 
     const [navbar, setNavbar] = useState("main");
+
+    const [signUpSuccess, setSignUpSuccess] = useState(null);
+
 
 
     //TODO: SEARCH MAP REF AND OTHERS
@@ -169,9 +186,11 @@ export const AuthProvider = (props) => {
         <MapRefContext.Provider value = {mapRef}>
         <OnMapLoadContext.Provider value = {onMapLoad}>
         <PanToContext.Provider value = {panTo}>
+        <SignUpSuccessContext.Provider value = {[signUpSuccess, setSignUpSuccess]}>
         
         {props.children}
 
+        </SignUpSuccessContext.Provider>
         </PanToContext.Provider>
         </OnMapLoadContext.Provider>
         </MapRefContext.Provider>
