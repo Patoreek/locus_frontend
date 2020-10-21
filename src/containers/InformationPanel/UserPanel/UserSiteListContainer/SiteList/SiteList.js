@@ -74,7 +74,7 @@ const SiteList = (props) => {
                 </div>
 
                 <div className={classes.site__ratingsContainer}>
-                    <StarRating siteRatings = {site.ratings}/>
+                    <StarRating siteRatings={site.ratings} site={site._id}/>
                 </div>
 
                 <div className={classes.site__moreDetailsContainer}>

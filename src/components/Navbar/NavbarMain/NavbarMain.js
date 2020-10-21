@@ -43,6 +43,7 @@ const NavbarMain = () => {
 
     const [userPicture, setUserPicture] = useState(null);
     const [firstName, setFirstName] = useState(null);
+    const [accountRole, setAccountRole] = useState('user');
 
 
     let history = useHistory();
@@ -69,12 +70,17 @@ const NavbarMain = () => {
             .then(resData => {
                 console.log('resData!!!!!!');
                 console.log(resData);
+                console.log('ACCOUNT ROLE BELOW!!');
+                console.log(account.role);
 
                 if (resData.firstName) {
                     setFirstName(resData.firstName);
                 }
                 if (resData.profilePic) {
                     setUserPicture(resData.profilePic);
+                }
+                if (resData.role) {
+                    setAccountRole(resData.role);
                 }
                 
                 
@@ -206,7 +212,7 @@ const NavbarMain = () => {
                                         {firstName ? firstName : account.username}
                                     </span>
                                 </div>
-                                <div className={`${classes.dropdown}`}>
+                                <div className={`${classes.dropdown} ${!dropdown ? classes.close : null}`}>
                                     <div className={`${classes.dropdown__content} ${!dropdown ? classes.fade : null}`}>
                                         <div className={classes.dropdown__email}>
                                             <span className={classes.title}>Your account</span>
@@ -216,7 +222,8 @@ const NavbarMain = () => {
                                             <a href="#">Dive Reports</a>
                                         </div>
                                         <div className={classes.dropdown__mySites}>
-                                            <a href="/mySites">My Sites</a>
+                                        { accountRole == "admin" ?<a href="/mySites">My Sites</a> : null }
+                                        { accountRole == "user" ?<a href="/addRequest">Add a Dive site</a> : null }
                                         </div>
                                         <div className={classes.dropdown__favourites}>
                                             <a href="/favourites">Favourites</a>

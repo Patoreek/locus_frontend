@@ -79,7 +79,7 @@ const GuestPanel = () => {
                 </div>
 
                 <div className={classes.site__ratingsContainer}>
-                    <StarRating siteRatings = {site.ratings}/>
+                    <StarRating site={site}/>
                 </div>
 
                 <div className={classes.site__moreDetailsContainer}>

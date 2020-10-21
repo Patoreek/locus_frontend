@@ -62,14 +62,14 @@ const FavouriteButton = (props) => {
             console.log('UpdatedFav');
             console.log(data.updatedFav);
             setFavourites(data.updatedFav);
-            setFavButton(true);
+            setFavButton(false);
             if (setIsLoading !== null){
                 getFavourites(setIsLoading);
             } else {
                 getFavourites();
             }
         } else {
-            setFavButton(false);
+            setFavButton(true);
         }          
     }
     
@@ -155,6 +155,8 @@ const FavouriteButton = (props) => {
             // </Button>
         );
     }
+
+    
 
     return (
         <div>

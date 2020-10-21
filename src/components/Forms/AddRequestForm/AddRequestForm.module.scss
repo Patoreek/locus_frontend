@@ -73,22 +73,6 @@
         }
     }
 
-    &__deleteContainer {
-        grid-row: 1 / 2;
-        grid-column: 2 / 3;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        .delete {
-            font-size: 1.4rem;
-            color: $color-text-red;
-
-            &:hover {
-                text-decoration: underline;
-            }
-        }
-    }
-
     &__backBtnContainer {
         grid-row: 1 / 2;
         grid-column: 2 / 3;
@@ -124,18 +108,13 @@
         
     }
 
-    &__uploadContainer {
+    &__descriptionContainer {
         grid-row: 4 / 5;
         grid-column: 1 / -1;
     }
 
-    &__descriptionContainer {
-        grid-row: 5 / 6;
-        grid-column: 1 / -1;
-    }
-
     &__section1 {
-        grid-row: 6 / 7;
+        grid-row: 5 / 6;
         grid-column: 1 / -1;
 
         display: grid;
@@ -222,7 +201,7 @@
     }
 
     &__section2 {
-        grid-row: 7 / 8;
+        grid-row: 6 / 7;
         grid-column: 1 / -1;
 
         display: grid;
@@ -254,7 +233,7 @@
     }
 
     &__section3 {
-        grid-row: 8 / 9;
+        grid-row: 7 / 8;
         grid-column: 1 / -1;
         display: flex;
         align-items: center;
@@ -268,7 +247,7 @@
     }
 
     &__section4 {
-        grid-row: 9 / 10;
+        grid-row: 8 / 9;
         grid-column: 1 / -1;
         display: flex;
         align-items: center;
@@ -282,7 +261,7 @@
     }
 
     &__cancelBtnContainer {
-        grid-row: 10 / 11;
+        grid-row: 9 / 10;
         grid-column: 1 / 2;
 
         display: flex;
@@ -300,21 +279,21 @@
         
     }
 
-    &__editBtnContainer {
-        grid-row: 10 / 11;
+    &__addBtnContainer {
+        grid-row: 9 / 10;
         grid-column: 2 / 3;
 
         display: flex;
         justify-content: flex-start;
 
-        .editBtn {    
+        .addBtn {    
             padding: 1rem 2rem;
             font-size: 1.6rem;
             border: none;
-            background: $color-btn-primary;
+            background: $color-btn-add;
             border-radius: 5px;
             border: 1px solid $color-lines;
-            color: $color-white;
+            color: $color-black;
 
         }
         

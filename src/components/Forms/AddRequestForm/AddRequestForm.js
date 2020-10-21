@@ -1,117 +1,150 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext } from 'react';
 
-import { FilePond } from 'react-filepond';
-import "filepond/dist/filepond.min.css";
+import { CoordsContext,
+         LoadDiveSiteContext } from '../../../context/DiveSiteContext';
+import { AccountContext } from '../../../context/AuthContext';
 
-import classes from './EditSiteForm.module.scss';
+import { AddRequestContext } from '../../../context/UserContext';
 
-import { SiteContext, LoadDiveSiteContext } from '../../../context/DiveSiteContext';
-import { EditModalContext, DeleteModalContext } from '../../../context/UserContext';
+// import ImageUpload from '../../ImageUpload/ImageUpload';
 
-import CommonFeatures from './CommonFeatures/CommonFeatures';
-import ImageUpload from '../../ImageUpload/ImageUpload';
 
-import DeleteContainer from '../DeleteContainer/DeleteContainer';
 
+import classes from './AddRequestForm.module.scss';
 
 
 
 
-const EditSiteForm = (props) => {
 
-    const [selectedSite, setSelectedSite] = useContext(SiteContext);
-    const [showEditModal, setShowEditModal] = useContext(EditModalContext);
-    const [showDeleteModal, setShowDeleteModal] = useContext(DeleteModalContext);
+const AddRequestForm = (props) => {
 
-
+    const [coords, setCoords] = useContext(CoordsContext);
+    const [account, setAccount] = useContext(AccountContext);
     const loadDiveSites = useContext(LoadDiveSiteContext);
+    const [ showAddRequestModal, setShowAddRequestModal ] = useContext(AddRequestContext);
+   
 
 
-    const [name, setName] = useState(selectedSite.name);
-    const [area, setArea] = useState(selectedSite.area);
-    const [country, setCountry] = useState(selectedSite.country);
-    const [description, setDescription] = useState(selectedSite.description);
-    const [experience, setExperience] = useState(selectedSite.experience);
-    const [siteType, setSiteType] = useState(selectedSite.siteType);
-    const [latitude, setLatitude] = useState(selectedSite.latitude);
-    const [longitude, setLongitude] = useState(selectedSite.longitude);
-    const [access, setAccess] = useState(selectedSite.access);
-    const [maxDepth, setMaxDepth] = useState(selectedSite.maxDepth);
-    const [avgDepth, setAvgDepth] = useState(selectedSite.avgDepth);
-    const [minTemp, setMinTemp] = useState(selectedSite.minTemp);
-    const [maxTemp, setMaxTemp] = useState(selectedSite.maxTemp);
-    const [minVis, setMinVis] = useState(selectedSite.minVis);
-    const [maxVis, setMaxVis] = useState(selectedSite.maxVis);
-    const [suitable, setSuitable] = useState(selectedSite.suitable);
-
-    const [commonFeatures, setCommonFeatures] = useState(selectedSite.commonFeatures);
-
-    console.log(commonFeatures);
-
-
-    const editDiveSite = () => {
-        return fetch('http://localhost:8080/diveSites/editDiveSite/' + selectedSite._id,{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                diveSite: {
-                    id: selectedSite._id,
-                    name: name,
-                    area: area,
-                    country: country,
-                    latitude: latitude,
-                    longitude: longitude,
-                    description: description,
-                    siteType: siteType,
-                    access: access,
-                    avgDepth: avgDepth,
-                    maxDepth: maxDepth,
-                    minTemp: minTemp,
-                    maxTemp: maxTemp,
-                    minVis: minVis,
-                    maxVis: maxVis,
-                    suitable: suitable,
-                    experience: experience
-          
-                }
-            })
-            
-        })
-        .then(res => {
-            return res.json();
-        })
-        .then(result => {
-            console.log(result);
-            setShowEditModal(false);
-            loadDiveSites();
-        })
-        .catch(err => {
-            console.log(err);
-        });
+    const [name, setName] = useState("");
+    const [area, setArea] = useState("");
+    const [country, setCountry] = useState("");
+    const [description, setDescription] = useState("");
+    const [experience, setExperience] = useState();
+    const [siteType, setSiteType] = useState("reef");
+    const [access, setAccess] = useState("rocks");
+    const [maxDepth, setMaxDepth] = useState();
+    const [avgDepth, setAvgDepth] = useState();
+    const [minTemp, setMinTemp] = useState();
+    const [maxTemp, setMaxTemp] = useState();
+    const [minVis, setMinVis] = useState();
+    const [maxVis, setMaxVis] = useState();
+    const [suitable, setSuitable] = useState('greatSnorkel');
     
+
+    const coordsLat = coords.lat;
+    const coordsLng = coords.lng;
+
+    const createDiveSite = () => {
+
+
+        // return fetch('http://localhost:8080/diveSites/createSite',{
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         diveSite: {
+        //             userId: account.id,
+        //             name: name,
+        //             area: area,
+        //             country: country,
+        //             latitude: coordsLat,
+        //             longitude: coordsLng,
+        //             description: description,
+        //             siteType: siteType,
+        //             access: access,
+        //             avgDepth: avgDepth,
+        //             maxDepth: maxDepth,
+        //             minTemp: minTemp,
+        //             maxTemp: maxTemp,
+        //             minVis: minVis,
+        //             maxVis: maxVis,
+        //             suitable: suitable,
+        //             experience: experience
+        //         }
+        //     })
+        // })
+        // .then(res => {
+        //     return res.json();
+        // })
+        // .then(result => {
+        //     console.log(result);
+        //     setShowAddRequestModal(false);
+        //     loadDiveSites();
+        // })
+        // .catch(err => {
+        //     console.log(err);
+        // });
+        
     }
-    
-    const handleEditSiteSubmit = (event) => {
+
+
+    const handleSubmit = (event) => {
         event.preventDefault();
- 
-        console.log('handleEditSiteSubmit');
-        editDiveSite();
+        // const name = name;
+        // const area = area;
+        // const description = description;
+        // const latitude = coordsLat;
+        // const longitude = coordsLng;
+        // const userId = account.id;
+
+        // const country = country;
+        
+
+        // const experience = experience;
+        // const siteType = siteType;
+        // const access = access;
+        // const maxDepth = maxDepth;
+        // const avgDepth = avgDepth;
+        // const minTemp = minTemp;
+        // const maxTemp = maxTemp;
+        // const minVis = minVis;
+        // const maxVis = maxVis;
+        // const suitable = suitable;
+
+
+        console.log('Name:' + name);
+        console.log('Area:' + area);
+        console.log('Country:' + country);
+        console.log('Description:' + description);
+        console.log('Site Type:' + siteType);
+        console.log('Access:' + access);
+        console.log('Max Depth:' + maxDepth);
+        console.log('Avg Depth:' + avgDepth);
+        console.log('Min Temp:' + minTemp);
+        console.log('Max Temp:' + maxTemp);
+        console.log('Min Vis:' + minVis);
+        console.log('Max Vis:' + maxVis);
+        console.log('suitablility:' + suitable);
+
+     
+
+
+       createDiveSite();
+       // name, area, description, type, latitude, longitude, userId, loadDiveSites, setShowAddModal
     }
+   
 
     return (
         <div>
             {/* IF showDeleteModal is false then show edit modal */}
-            {!showDeleteModal && (
                 <div className={classes.form}>
+                    <div className={classes.form__backBtnContainer}>
+                        <span className={classes.backBtn} onClick={() => setShowAddRequestModal(false)}>Back</span>
+                    </div>
                     <div className={classes.form__headerContainer}>
-                        <h3 className={classes.header}>Edit a Dive site</h3>
+                        <h3 className={classes.header}>Request to add a dive site</h3>
                     </div>
-                    <div className={classes.form__deleteContainer}>
-                        <span className={classes.delete} onClick={() => setShowDeleteModal(true)}> Delete this dive site</span>
-                    </div>
-                    {/* //! HERE */}
                     <div className={classes.form__nameContainer}>
                         <input  className={`${classes.input} ${classes.input__name}`}
                                 placeholder="Name of Dive Site"
@@ -132,10 +165,6 @@ const EditSiteForm = (props) => {
                                 onChange={e => setCountry(e.target.value)} />
                     </div>
                   
-
-                    <div className={classes.form__uploadContainer}>
-                        <ImageUpload/>
-                    </div>
 
                     <div className={classes.form__descriptionContainer}>
                         <textarea className={`${classes.input} ${classes.input__description}`}
@@ -252,31 +281,21 @@ const EditSiteForm = (props) => {
                             </select>
                         </div>
 
-
                     <div className={classes.form__cancelBtnContainer}>
                         <button className={classes.cancelBtn}>Cancel</button>
                     </div>
 
-                    <div className={classes.form__editBtnContainer}>
+                    <div className={classes.form__addBtnContainer}>
                         <input
-                                placeholder="Edit"
+                                placeholder="Add"
                                 type="submit"
-                                onClick={(e) => handleEditSiteSubmit(e)}
-                                className={classes.editBtn}/>
+                                onClick={(e) => handleSubmit(e)}
+                                className={classes.addBtn}/>
                     </div>
 
                   </div>
-            )}
-
-                    
-                    
-              
-            {showDeleteModal && ( 
-                <DeleteContainer/>
-            )}
-             {/* ELSE showDeleteModal is true then show delete modal */}
         </div>
     );
 };
 
-export default EditSiteForm;
+export default AddRequestForm;

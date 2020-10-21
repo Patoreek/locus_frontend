@@ -38,7 +38,12 @@ const ReviewStars = (props) => {
 
     const [value, setValue] = useState(2.5);
 
+    const [siteId, setSiteId] = useState("");
+
+
     useEffect(()=> {
+        console.log('[StarRating] siteId in useEffect = ' + props.siteId);
+        setSiteId(props.siteId);
         async function checkRating() {
             try {
                 const response = await fetch('http://localhost:8080/diveSites/getRating',{
@@ -48,7 +53,7 @@ const ReviewStars = (props) => {
                     },
                     credentials: 'include',
                     body: JSON.stringify({
-                        selectedSiteId: selectedSite._id
+                        selectedSiteId: props.site._id
                     })
                 });
                 const data = await response.json();
@@ -56,60 +61,44 @@ const ReviewStars = (props) => {
                 //console.log(data.fixedAverageRating);
                 setRating(data.fixedAverageRating);
                 setTotalRatings(data.totalRatings);
-
-                //setFavButton(false);
-                //const sites = data;
             } catch(err) {
                 console.log(err);
             }
         }
-        if(!props.siteRatings){
           checkRating();
-        } else {
-          let numOfRatings = 0;
-          let totalRatingNum = 0;
 
-          for (let i = 0; i < props.siteRatings.length; i++) {
-            //console.log('RAING NUMBER => ' + i);
-             //console.log(props.siteRatings[i]);
-             numOfRatings++;
-             totalRatingNum = totalRatingNum + props.siteRatings[i].rating;
-          }
 
-          const avgRating = totalRatingNum / numOfRatings;
-        
-          const fixedAvgRating = (Math.round(avgRating * 2) / 2).toFixed(1);
 
-          setRating(fixedAvgRating);
-          setTotalRatings(numOfRatings);
-
-        }
     
-    },[])
+    },[]);
+
+    // const submitRatingHandler = (newValue, siteId) => {
+    //     console.log('Value: ' + newValue);
+    //     console.log('Submitting Rating');
+    //     console.log('[StarRating] siteId in submitRatingHandler = ' + props.siteId);
+    //     console.log('[StarRating] siteId in submitRatingHandler = ' + siteId);
 
 
-
-    async function submitRatingHandler(newValue) {
-        console.log('Value: ' + newValue);
-        console.log(selectedSite._id);
-        console.log('Submitting Rating');
-
-        const response = await fetch('http://localhost:8080/diveSites/addRating',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include',
-            body: JSON.stringify({
-                selectedSiteId: selectedSite._id,
-                ratingValue: newValue
-            })
-        });
-        const data = await response.json();
-        console.log(data.message);
+    //     // const response = await fetch('http://localhost:8080/diveSites/addRating',{
+    //     //     method: 'POST',
+    //     //     headers: {
+    //     //         'Content-Type': 'application/json'
+    //     //     },
+    //     //     credentials: 'include',
+    //     //     body: JSON.stringify({
+    //     //         selectedSiteId: siteId,
+    //     //         ratingValue: newValue
+    //     //     })
+    //     // });
+    //     // const data = await response.json();
+    //     // console.log(data.message);
               
-    }
+    // }
 
+
+    console.log(siteId);
+    const submitRating = () => {
+    }
   
 
   return (
@@ -122,7 +111,8 @@ const ReviewStars = (props) => {
                   value={rating}
                   onChange={(event, newValue) => {
                     setValue(newValue);
-                    submitRatingHandler(newValue);
+                    submitRating();
+                    //submitRatingHandler(newValue, siteId);
                   }}
                   className={customClasses.rating}
                

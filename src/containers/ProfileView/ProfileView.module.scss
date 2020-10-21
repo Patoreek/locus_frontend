@@ -85,13 +85,18 @@
                 display: flex;
                 align-items: center;
 
+                .iconPin {
+                    width: 3rem;
+                    height: 3rem;
+                }
 
                 .icon {
                     width: 3rem;
                     height: 3rem;
                     //fill: green !important;
                     path {
-                        fill: $color-text-darkergrey;
+                        //fill: $color-text-darkergrey;
+                        fill: #4D4D4D;
                     }
                 }
     

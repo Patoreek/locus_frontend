@@ -64,7 +64,8 @@ const LoginView = () => {
                     id: resData._id,
                     username: resData.username,
                     firstName: resData.firstName,
-                    email: resData.email
+                    email: resData.email,
+                    role: resData.role
                 });
                 setAuthDrawer(false);
                 localStorage.setItem("email", resData.email);
@@ -104,7 +105,7 @@ const LoginView = () => {
                 <input
                     type="email"
                     placeholder=""
-                    value={localStorage.email ? localStorage.email : null}
+                    //value={localStorage.email ? localStorage.email : null}
                     onChange={e => setInputEmail(e.target.value)}
                     className={classes.input}
                 />

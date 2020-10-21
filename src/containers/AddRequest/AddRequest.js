@@ -9,19 +9,17 @@ import { AuthContext,
          LoadingContext, 
          MapSizeContext } from '../../context/AuthContext';
 
-import { AddModalContext,
-         EditModalContext,
-         DeleteModalContext } from '../../context/UserContext';
+import { AddRequestContext, SiteListContext } from '../../context/UserContext';
 
 
 import { useHistory} from 'react-router-dom';
 
 import Map from '../../components/Map/Map';
 import MobToggleView from '../../components/MobToggleView/MobToggleView';
-import classes from './UserView.module.css';
+import classes from './AddRequest.module.scss';
 
 
-const UserView = (props) => {
+const AddRequest = (props) => {
   
         const [coords, setCoords] = useContext(CoordsContext);
         const [selectedSite, setSelectedSite] = useContext(SiteContext);
@@ -32,23 +30,25 @@ const UserView = (props) => {
 
         const [userViewLoaded, setUserViewLoaded] = useState(false);
 
-        const [showAddModal, setShowAddModal] = useContext(AddModalContext);
+     
+        const [showAddRequestModal, setShowAddRequestModal] = useContext(AddRequestContext);
+        const [showSiteList, setShowSiteList] = useContext(SiteListContext);
 
-        const [showEditModal, setShowEditModal] = useContext(EditModalContext);
-        const [showDeleteModal, setShowDeleteModal] = useContext(DeleteModalContext);
 
-        const handleClose = () => setShowAddModal(false);
-        const handleShow = () => setShowAddModal(true);
+
+        // const handleClose = () => setShowAddModal(false);
+        // const handleShow = () => setShowAddModal(true);
 
         let history = useHistory();
         
 
         useEffect(() => {
-
+            console.log('In add request.');
+            setShowSiteList(false);
     
             // if (!isLoading){
-                console.log('[UserView] isBusy in IF = ' + isLoading);
-                console.log('[UserView] isAuth in IF = ' + isAuth);
+                // console.log('[UserView] isBusy in IF = ' + isLoading);
+                // console.log('[UserView] isAuth in IF = ' + isAuth);
                 if (!isAuth){
                     history.replace('/login');
                 }
@@ -56,6 +56,8 @@ const UserView = (props) => {
 
                 return () => {
                     setUserViewLoaded(false);
+                    setShowSiteList(true);
+
                 }
            // }
         }, [])
@@ -64,38 +66,16 @@ const UserView = (props) => {
         const onMapClick = (event) => {
           
             console.log('CLICKED!');
-        //console.log(addRequest);
-                if (showEditModal) {
-                    setShowEditModal(false);
-                }
-                else if (showDeleteModal){
-                    setShowDeleteModal(false);
-                } else if (selectedSite !== null){
-                    setSelectedSite(null);
-                } else {
-                    setCoords({
-                        lat: event.latLng.lat(),
-                        lng: event.latLng.lng()
-                    });
-                    handleShow();
-                }
-            
-               
-                
-                if (showAddModal) {
-                        setShowAddModal(true);
-                        setSelectedSite(null);
-                       
-                } 
-                console.log('[AdminView OnMapClick Selected Site] ' + selectedSite);
+            setShowAddRequestModal(true);
+
 
 
         } 
 
 
     return (
-        <div className={classes.userViewPage}>
-            <MobToggleView/>
+        <div className={classes.addRequest}>
+           <MobToggleView/>
             {userViewLoaded && (
                 <InformationPanel/>
             )}
@@ -128,6 +108,7 @@ const UserView = (props) => {
             />
             )}
 
+
               
 
         </div>
@@ -135,4 +116,4 @@ const UserView = (props) => {
     );
 };
 
-export default UserView;
+export default AddRequest;

@@ -5,10 +5,11 @@ import classes from './UserSiteList.module.scss';
 import { AccountContext } from '../../../../context/AuthContext';
 import { AddModalContext,
          EditModalContext,
-         DeleteModalContext } from '../../../../context/UserContext';
+         DeleteModalContext,
+         AddRequestContext,
+        SiteListContext } from '../../../../context/UserContext';
 
 
-import Spinner from 'react-bootstrap/Spinner';
 
 
 import SiteList from './SiteList/SiteList';
@@ -24,6 +25,10 @@ const UserSiteList = () => {
     const [showEditModal, setShowEditModal] = useContext(EditModalContext);
     const [showAddModal, setShowAddModal] = useContext(AddModalContext);
     const [showDeleteModal, setShowDeleteModal] = useContext(DeleteModalContext);
+    const [ showAddRequestModal, setShowAddRequestModal ] = useContext(AddRequestContext);
+    const [ showSiteList, setShowSiteList ] = useContext(SiteListContext);
+
+
 
 
     useEffect(() => {
@@ -53,6 +58,7 @@ const UserSiteList = () => {
         
     }, [showAddModal,showDeleteModal,showEditModal]);
 
+
  
 
     // if (!listLoading) {
@@ -64,14 +70,18 @@ const UserSiteList = () => {
     return (
        
         <div>
-            {!listLoading && (
+            {showSiteList && !listLoading  && (
             <div className={classes.listContainer}>
-                            
                 <div className={classes.listContainer__header}>
                     <h3 className={classes.header}> {account.username}'s Sites  ·   {sites.length} sites</h3>
                 </div>
-            
+                
                 <SiteList sites={sites}/>
+            </div>
+            )}
+            {!showSiteList && !listLoading  && !showAddRequestModal && (
+            <div className={classes.listContainer}>
+                <p>Press on the map blah bla blha</p>
             </div>
             )}
          

@@ -2,11 +2,13 @@ import React, { useState, useContext } from 'react';
 
 import { EditModalContext,
         AddModalContext,
-        DeleteModalContext
+        DeleteModalContext,
+        AddRequestContext
         } from '../../../context/UserContext';
 import { SiteContext } from '../../../context/DiveSiteContext';
 
 import CreateSiteForm from '../../../components/Forms/CreateSiteForm/CreateSiteForm';
+import AddRequestForm from '../../../components/Forms/AddRequestForm/AddRequestForm';
 import EditSiteForm from '../../../components/Forms/EditSiteForm/EditSiteForm';
 import DeleteContainer from '../../../components/Forms/DeleteContainer/DeleteContainer';
 import UserSiteListContainer from './UserSiteListContainer/UserSiteListContainer';
@@ -20,17 +22,21 @@ const UserPanel = () => {
     const [ showEditModal, setShowEditModal ] = useContext(EditModalContext);
     const [ showAddModal, setShowAddModal ] = useContext(AddModalContext);
     const [ showDeleteModal, setShowDeleteModal ] = useContext(DeleteModalContext);
+    const [ showAddRequestModal, setShowAddRequestModal ] = useContext(AddRequestContext);
+
     // console.log(selectedSite);
     let form;
-    
 
 
     return (
         <div>
                 {/* <ToggleButtons/> */}
-                {!showEditModal && !showAddModal && !showDeleteModal ? <UserSiteListContainer/> : null }
+                {!showEditModal && !showAddModal && !showDeleteModal && !showAddRequestModal ? <UserSiteListContainer/> : null }
                 {showEditModal ? <EditSiteForm/> : null}
                 {showAddModal ? <CreateSiteForm/> : null}
+                {showAddRequestModal ? <AddRequestForm/> : null }
+
+
                 {/* //TODO: ADD FORMS HERE WITH LOGIC */}
         </div>
     );

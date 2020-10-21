@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { AuthContext, LoadingContext } from '../../context/AuthContext';
 import { SiteContext, DetailsContext } from '../../context/DiveSiteContext';
 
-import { ReactComponent as PinSVG } from '../../assets/icons/pin.svg';
+import { ReactComponent as PinSVG } from '../../assets/icons/location_grey.svg';
 import { ReactComponent as XpSVG } from '../../assets/icons/experience.svg';
 
 import Details from '../DetailsView/DetailsView';
@@ -95,7 +95,7 @@ const ProfileView = () => {
                             </div>
 
                             <div className={classes.profileRight__locationContainer}>
-                                <PinSVG className={classes.icon}/>
+                                <PinSVG className={classes.iconPin}/>
                                 <p className={classes.location}>{location}</p> {/* Change this to City, Country */}
                             </div>
 
