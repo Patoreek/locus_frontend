@@ -13,7 +13,7 @@ import { Form,
 
 import { AccountContext } from '../../context/AuthContext';
 
-import classes from './EditProfileView.module.css';
+import classes from './EditProfileView.module.scss';
 
 
 
@@ -21,10 +21,12 @@ const EditProfileView = () => {
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [bio, setBio] = useState("");
-    const [location, setLocation] = useState("");
-    const [licenseType, setLicenseType] = useState("");
     const [profilePic, setProfilePic] = useState("");
+    const [bio, setBio] = useState("");
+    const [city, setCity] = useState("");
+    const [country, setCountry] = useState("");
+    const [experience, setExperience] = useState("");
+    const [success, setSuccess] = useState(null);
 
     const [account, setAccount] = useContext(AccountContext);
 
@@ -44,8 +46,9 @@ const EditProfileView = () => {
                         setLastName(profile.lastName);
                         setProfilePic(profile.profilePic);
                         setBio(profile.bio);
-                        setLocation(profile.location);
-                        setLicenseType(profile.licenseType);
+                        setCity(profile.city);
+                        setCountry(profile.country);
+                        setExperience(profile.experience);
                     } catch (error) {
                     console.log(error);
                     //setIsLoading(null);
@@ -62,13 +65,11 @@ const EditProfileView = () => {
     const editProfileHandler = () => {
         console.log('First Name: ' + firstName);
         console.log('Last Name: ' + lastName);
-        console.log('Profile Picture: ' + profilePic);
+        //console.log('Profile Picture: ' + profilePic);
         console.log('Bio: ' + bio);
-        console.log('Location: ' + location);
-        console.log('License Type: ' + licenseType);
-
-
-
+        console.log('city: ' + city);
+        console.log('country: ' + country);
+        console.log('experience: ' + bio);
 
         return fetch('http://localhost:8080/user/editProfile',{
         method: 'POST',
@@ -80,74 +81,64 @@ const EditProfileView = () => {
                 firstName: firstName,
                 lastName: lastName,
                 bio: bio,
-                location: location,
-                licenseType: licenseType 
-        })
+                city: city,
+                country: country,
+                experience: experience,
+                })
         })
         .then(res => {
             return res.json();
+            
         })
         .then(result => {
             console.log(result);
-            
+            setSuccess('true');
         })
         .catch(err => {
             console.log(err);
+            setSuccess('false');
+
         });
         
     }
 
     return (
         <div>
-            <div className={classes.editProfileContainer}>
-            
-            <Form className={classes.formContainer}>
-                    <h1 className={classes.formHeader}>Edit Profile</h1>
-                    <Form.Row className={classes.formRow}>
-                        <Col className={classes.formCol}>
-                        <Form.Label className={classes.label}>First Name</Form.Label>
-                        <Form.Control placeholder="First Name" 
-                                    onChange={e => setFirstName(e.target.value)}
-                                    value={firstName}
-                                    className={classes.formInput} />
-                        </Col>
-                        <Col className={classes.formCol}>
-                        <Form.Label className={classes.label}>Last Name</Form.Label>
-                        <Form.Control placeholder="Last Name"
-                                    onChange={e => setLastName(e.target.value)}
-                                    value={lastName}
-                                    className={classes.formInput} />
-                        </Col>
-                    </Form.Row>
-                    <Form.Row className={classes.formRow}>
-                        <Col className={classes.formCol}>
-                            <Form.Label className={classes.label}>Bio</Form.Label>
-                                <Form.Control as="textarea"
-                                            rows="10"
-                                            placeholder="Bio"
-                                            onChange={e => setBio(e.target.value)}
-                                            value={bio}
-                                            className={classes.formTextArea} />
-                        </Col>
-                    </Form.Row>
-                    <Form.Row className={classes.formRow}>
-                        <Col className={classes.formCol}>
-                        <Form.Label className={classes.label}>Location</Form.Label>
-                            <Form.Control placeholder="Where are you from?"
-                                        onChange={e => setLocation(e.target.value)} 
-                                        value={location}
-                                        className={classes.formInput}/>
-                        </Col>
-                        <Col className={classes.formCol}>
-                        <Form.Label className={classes.label}>License Type</Form.Label>
-                            <Form.Control placeholder="License Type"
-                                        onChange={e => setLicenseType(e.target.value)}
-                                        value={licenseType}
-                                        className={classes.formInput} />
-                        </Col>
-                    </Form.Row>
-                        <Form.Label className={classes.labelImages}>Upload Images</Form.Label>
-                        <FilePond 
+            {/* IF showDeleteModal is false then show edit modal */}
+                <div className={classes.form}>
+                    <div className={classes.form__backBtnContainer}>
+                        <span className={classes.backBtn} onClick={cancelHandler}>Back to Profile</span>
+                    </div>
+                    <div className={classes.form__headerContainer}>
+                        <h3 className={classes.header}>Edit Profile</h3>
+                    </div>
+                    <div className={classes.form__firstNameContainer}>
+                        <input  className={`${classes.input} ${classes.input__firstName}`}
+                                placeholder="First name"
+                                value={firstName}
+                                onChange={e => setFirstName(e.target.value)} />
+                    </div>
+                    
+                    <div className={classes.form__lastNameContainer}>
+                        <input className={`${classes.input} ${classes.input__lastName}`}
+                                placeholder="Area / Suburb"
+                                value={lastName}
+                                onChange={e => setLastName(e.target.value)} />
+                    </div>
+                    <div className={classes.form__cityContainer}>
+                        <input className={`${classes.input} ${classes.input__city}`}
+                                placeholder="City"
+                                value={city}
+                                onChange={e => setCity(e.target.value)} />
+                    </div>
+                    <div className={classes.form__countryContainer}>
+                        <input className={`${classes.input} ${classes.input__country}`}
+                                placeholder="Country"
+                                value={country}
+                                onChange={e => setCountry(e.target.value)} />
+                    </div>
+                    <div className={classes.form__uploadContainer}>
+                    <FilePond 
                             className={classes.filePond}
                             allowMultiple={false}
                             name={"profilePicture"}
@@ -160,22 +151,46 @@ const EditProfileView = () => {
                                 }
                             }
                         />
+                    </div>
+                  
+
+                    <div className={classes.form__bioContainer}>
+                        <textarea className={`${classes.input} ${classes.input__bio}`}
+                                    rows="10"
+                                    value={bio}
+                                    placeholder="Bio"
+                                    onChange={e => setBio(e.target.value)} />
+                    </div>
+
+
+                    <div className={classes.form__experienceContainer}>
+                        <input className={`${classes.input} ${classes.input__experience}`}
+                                placeholder="Experience"
+                                value={experience}
+                                onChange={e => setExperience(e.target.value)} />
+                    </div>
                 
-                <Button variant="primary"
-                        type="submit"
-                        className={classes.editButton}
-                        onClick={(e) => editProfileHandler(e)}>
-                    Edit
-                </Button>
+        
+                    <div className={classes.form__cancelBtnContainer}>
+                        <button className={classes.cancelBtn} onClick={cancelHandler}>Cancel</button>
+                    </div>
 
-                <Button variant="secondary"
-                        className={classes.cancelButton}
-                        onClick={cancelHandler}>
-                    Cancel
-                </Button>
-            </Form>
+                    <div className={classes.form__editBtnContainer}>
+                        <input
+                                placeholder="Edit"
+                                type="submit"
+                                onClick={(e) => editProfileHandler(e)}
+                                className={classes.editBtn}/>
+                                
+                    </div>
 
-            </div>
+                    <div className={classes.form__messageContainer}>
+                        {success === 'true' ? <p className={classes.successMsg}>Changes saved successfully</p> : null }
+                        {success === 'false' ? <p className={classes.errorMsg}>Whoops! Something went wrong!</p> : null }
+                                
+                    </div>
+
+                  </div>
         </div>
     );
 };

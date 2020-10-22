@@ -23,7 +23,7 @@ const AddRequestForm = (props) => {
     const loadDiveSites = useContext(LoadDiveSiteContext);
     const [ showAddRequestModal, setShowAddRequestModal ] = useContext(AddRequestContext);
    
-    const [showSuccessfulRequest, setShowSuccessfulRequest ] = useState(false);
+    const [showSuccessfulRequest, setShowSuccessfulRequest ] = useState(true); //! change to FALSE
 
 
     const [name, setName] = useState("");
@@ -294,10 +294,10 @@ const AddRequestForm = (props) => {
             {showSuccessfulRequest && (
                 <div className={classes.successfulContainer}>
 
-                    <h3>You have successfully sent a request.</h3>
-                    <h4>We will contact you once we review your request.</h4>
+                    <h3 className={classes.successfulContainer__header}>You have successfully sent a request.</h3>
+                    <h4 className={classes.successfulContainer__subheader}>We will contact you once we review your request.</h4>
 
-                    <span> Back to map</span>
+                    <a href="/map" className={classes.successfulContainer__backBtn}> Back to map</a>
                 </div>
             )}
         </div>

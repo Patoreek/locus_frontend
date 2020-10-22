@@ -18,6 +18,7 @@ import ProfileView from './containers/ProfileView/ProfileView';
 import ViewProfileView from './containers/ViewProfileView/ViewProfileView';
 import EditProfileView from './containers/EditProfileView/EditProfileView';
 import AddRequest from './containers/AddRequest/AddRequest';
+import ChangePassword from './containers/ChangePassword/ChangePassword';
 
 
 import HomeView from './containers/Home/Home';
@@ -102,6 +103,7 @@ function App() {
           <UserProvider>
             <Route path="/mySites" exact component={UserView}/>
             <Route path="/addRequest" component={AddRequest}/>
+            <Route path="/changePassword" component={ChangePassword}/>
             
             <Route path="/favourites" exact component={FavouritesView}/>
             <Route path="/profile" exact component={ProfileView}/>

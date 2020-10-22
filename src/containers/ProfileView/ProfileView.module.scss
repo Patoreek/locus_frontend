@@ -111,8 +111,14 @@
             &__editContainer {
                 transform: translateY(-3.5rem);
                 align-self: flex-end;
+                display: flex;
                 
                 .edit {
+                    font-size: 1.4rem;
+                    padding-right: 2rem;
+                }
+
+                .changePw {
                     font-size: 1.4rem;
                 }
             }

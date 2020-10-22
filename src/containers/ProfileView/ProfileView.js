@@ -27,8 +27,9 @@ const ProfileView = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [bio, setBio] = useState("");
-    const [location, setLocation] = useState("");
-    const [licenseType, setLicenseType] = useState("");
+    const [city, setCity] = useState("");
+    const [country, setCountry] = useState("");
+    const [experience, setExperience] = useState("");
     const [profilePic, setProfilePic] = useState("");
 
     const [favourites, setFavourites] = useState([]);
@@ -60,8 +61,9 @@ const ProfileView = () => {
                             setLastName(profile.lastName);
                             setProfilePic('http://localhost:8080/' + profile.profilePic);
                             setBio(profile.bio);
-                            setLocation(profile.location);
-                            setLicenseType(profile.licenseType);
+                            setCity(profile.city);
+                            setCountry(profile.country);
+                            setExperience(profile.experience);
                             setFavourites(profile.favouritesData);
 
                             setIsLoading(false);
@@ -96,16 +98,17 @@ const ProfileView = () => {
 
                             <div className={classes.profileRight__locationContainer}>
                                 <PinSVG className={classes.iconPin}/>
-                                <p className={classes.location}>{location}</p> {/* Change this to City, Country */}
+                                <p className={classes.location}>{city}, {country}</p> {/* Change this to City, Country */}
                             </div>
 
                             <div className={classes.profileRight__experienceContainer}>
                                 <XpSVG className={classes.icon}/>
-                                <p className={classes.experience}>{licenseType}</p>
+                                <p className={classes.experience}>{experience}</p>
                             </div>
 
                             <div className={classes.profileRight__editContainer}>
                                 <a href="/editprofile" className={classes.edit}>Edit profile</a>
+                                <a href="/changePassword" className={classes.changePw}>Change Password</a>
                             </div>
                         </div>
 
