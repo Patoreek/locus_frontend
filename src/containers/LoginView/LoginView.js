@@ -57,20 +57,25 @@ const LoginView = () => {
             return res.json();
         })
         .then(resData => {
-            //console.log('resData!!!!!!');
+            console.log('resData!!!!!!');
             console.log(resData);
             setIsAuth(true);
                 setAccount({
                     id: resData._id,
                     username: resData.username,
                     firstName: resData.firstName,
+                    lastName: resData.lastName,
                     email: resData.email,
                     role: resData.role
                 });
                 setAuthDrawer(false);
-                localStorage.setItem("email", resData.email);
+                //localStorage.setItem("email", resData.email);
                 //history.push("/map");
             
+        }).then(res => {
+            console.log('LOGGING IN... Account Context is....');
+            console.log(account);
+
         })
         .catch(err => {
             console.log('Caught.');

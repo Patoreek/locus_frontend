@@ -64,6 +64,10 @@ const AddRequest = (props) => {
         
 
         const onMapClick = (event) => {
+            setCoords({
+                lat: event.latLng.lat(),
+                lng: event.latLng.lng()
+            });
           
             console.log('CLICKED!');
             setShowAddRequestModal(true);

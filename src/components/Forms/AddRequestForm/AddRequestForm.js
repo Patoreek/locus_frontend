@@ -23,6 +23,7 @@ const AddRequestForm = (props) => {
     const loadDiveSites = useContext(LoadDiveSiteContext);
     const [ showAddRequestModal, setShowAddRequestModal ] = useContext(AddRequestContext);
    
+    const [showSuccessfulRequest, setShowSuccessfulRequest ] = useState(false);
 
 
     const [name, setName] = useState("");
@@ -44,93 +45,85 @@ const AddRequestForm = (props) => {
     const coordsLat = coords.lat;
     const coordsLng = coords.lng;
 
-    const createDiveSite = () => {
+ 
 
 
-        // return fetch('http://localhost:8080/diveSites/createSite',{
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         diveSite: {
-        //             userId: account.id,
-        //             name: name,
-        //             area: area,
-        //             country: country,
-        //             latitude: coordsLat,
-        //             longitude: coordsLng,
-        //             description: description,
-        //             siteType: siteType,
-        //             access: access,
-        //             avgDepth: avgDepth,
-        //             maxDepth: maxDepth,
-        //             minTemp: minTemp,
-        //             maxTemp: maxTemp,
-        //             minVis: minVis,
-        //             maxVis: maxVis,
-        //             suitable: suitable,
-        //             experience: experience
-        //         }
-        //     })
-        // })
-        // .then(res => {
-        //     return res.json();
-        // })
-        // .then(result => {
-        //     console.log(result);
-        //     setShowAddRequestModal(false);
-        //     loadDiveSites();
-        // })
-        // .catch(err => {
-        //     console.log(err);
-        // });
-        
+    const requestAddDiveSite = () => {
+
+     
+
+
+        return fetch('http://localhost:8080/diveSites/addRequestSite',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                diveSite: {
+                    userId: account.id,
+                    userFirstName: account.firstName,
+                    userLastName: account.lastName,
+                    name: name,
+                    area: area,
+                    country: country,
+                    latitude: coordsLat,
+                    longitude: coordsLng,
+                    description: description,
+                    siteType: siteType,
+                    access: access,
+                    avgDepth: avgDepth,
+                    maxDepth: maxDepth,
+                    minTemp: minTemp,
+                    maxTemp: maxTemp,
+                    minVis: minVis,
+                    maxVis: maxVis,
+                    suitable: suitable,
+                    experience: experience
+                }
+            })
+        })
+        .then(res => {
+            return res.json();
+        })
+        .then(result => {
+            console.log(result);
+            if (result.success) {
+                setShowSuccessfulRequest(true);
+            }
+            // setShowAddRequestModal(false);
+            // loadDiveSites();
+        })
+        .catch(err => {
+            console.log(err);
+        });
+
     }
 
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // const name = name;
-        // const area = area;
-        // const description = description;
-        // const latitude = coordsLat;
-        // const longitude = coordsLng;
-        // const userId = account.id;
+        console.log('Submitting Request to add a dive site form...');
 
-        // const country = country;
-        
+        // console.log('Name:' + name);
+        // console.log('Area:' + area);
+        // console.log('Country:' + country);
+        // console.log('Description:' + description);
+        // console.log('Site Type:' + siteType);
+        // console.log('Access:' + access);
+        // console.log('Max Depth:' + maxDepth);
+        // console.log('Avg Depth:' + avgDepth);
+        // console.log('Min Temp:' + minTemp);
+        // console.log('Max Temp:' + maxTemp);
+        // console.log('Min Vis:' + minVis);
+        // console.log('Max Vis:' + maxVis);
+        // console.log('suitablility:' + suitable);
 
-        // const experience = experience;
-        // const siteType = siteType;
-        // const access = access;
-        // const maxDepth = maxDepth;
-        // const avgDepth = avgDepth;
-        // const minTemp = minTemp;
-        // const maxTemp = maxTemp;
-        // const minVis = minVis;
-        // const maxVis = maxVis;
-        // const suitable = suitable;
+        // console.log('latitude: ' + coordsLat);
+        // console.log('longitude: ' + coordsLng);
 
 
-        console.log('Name:' + name);
-        console.log('Area:' + area);
-        console.log('Country:' + country);
-        console.log('Description:' + description);
-        console.log('Site Type:' + siteType);
-        console.log('Access:' + access);
-        console.log('Max Depth:' + maxDepth);
-        console.log('Avg Depth:' + avgDepth);
-        console.log('Min Temp:' + minTemp);
-        console.log('Max Temp:' + maxTemp);
-        console.log('Min Vis:' + minVis);
-        console.log('Max Vis:' + maxVis);
-        console.log('suitablility:' + suitable);
 
-     
-
-
-       createDiveSite();
+       requestAddDiveSite();
        // name, area, description, type, latitude, longitude, userId, loadDiveSites, setShowAddModal
     }
    
@@ -138,6 +131,8 @@ const AddRequestForm = (props) => {
     return (
         <div>
             {/* IF showDeleteModal is false then show edit modal */}
+            {!showSuccessfulRequest && (
+
                 <div className={classes.form}>
                     <div className={classes.form__backBtnContainer}>
                         <span className={classes.backBtn} onClick={() => setShowAddRequestModal(false)}>Back</span>
@@ -294,6 +289,17 @@ const AddRequestForm = (props) => {
                     </div>
 
                   </div>
+            )}
+
+            {showSuccessfulRequest && (
+                <div className={classes.successfulContainer}>
+
+                    <h3>You have successfully sent a request.</h3>
+                    <h4>We will contact you once we review your request.</h4>
+
+                    <span> Back to map</span>
+                </div>
+            )}
         </div>
     );
 };

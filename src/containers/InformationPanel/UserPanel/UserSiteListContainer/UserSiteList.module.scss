@@ -9,3 +9,18 @@
 
     }
 }
+
+.addRequestContainer {
+    padding: 5rem;
+
+    &__header {
+        font-size: 2.25rem;
+        font-weight: 700;
+    }
+
+    &__instructions {
+        padding-top: 2rem;
+        font-size: 1.8rem;
+        color: $color-black;
+    }
+}

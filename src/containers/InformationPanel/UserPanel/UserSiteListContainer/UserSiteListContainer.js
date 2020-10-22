@@ -80,8 +80,11 @@ const UserSiteList = () => {
             </div>
             )}
             {!showSiteList && !listLoading  && !showAddRequestModal && (
-            <div className={classes.listContainer}>
-                <p>Press on the map blah bla blha</p>
+            <div className={classes.addRequestContainer}>
+                <h3 className={classes.addRequestContainer__header}>Request to add a Dive Site</h3>
+                <p className={classes.addRequestContainer__instructions}>
+                To request to add a dive site, simply press on the map at the location. A form will appear and fill out the details. 
+                Submit your request and we will review it before adding it to the database.</p>
             </div>
             )}
          
