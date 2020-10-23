@@ -4,7 +4,8 @@ import classes from './Searchbar.module.scss';
 
 import {useHistory} from 'react-router-dom';
 import { useMediaQuery } from '../../CustomHooks/useMediaQuery';
-import { SearchCoordsContext } from '../../context/AuthContext';
+import { SearchCoordsContext, LocationNameContext } from '../../context/AuthContext';
+
 
 
 
@@ -19,6 +20,8 @@ const Searchbar = () => {
     const [address, setAddress] = useState("");
 
     const [searchCoordinates, setSearchCoordinates] = useContext(SearchCoordsContext);
+    const [locationName, setLocationName] = useContext(LocationNameContext);
+
 
     const [navbar, setNavbar] = useState('map');
 
@@ -40,6 +43,7 @@ const Searchbar = () => {
     const handleSelect = async (value) => {
         const results = await geocodeByAddress(value);
         const latLng = await getLatLng(results[0]);
+        setLocationName(value);
         setAddress(value);
         setSearchCoordinates(latLng);
         history.push("/map");
@@ -48,7 +52,8 @@ const Searchbar = () => {
     const isRowBased = useMediaQuery('(max-width: 800px)');
     return (
         <PlacesAutocomplete value={address}
-                                            onChange={setAddress}
+                                           onChange={setAddress}
+                                           
                                             onSelect={handleSelect}
                                         
                         >

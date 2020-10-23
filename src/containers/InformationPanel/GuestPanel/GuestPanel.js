@@ -5,10 +5,9 @@ import { useHistory } from "react-router-dom";
 
 import { DiveSitesContext,
          DetailsContext,
-         SiteContext,
-         LocationNameContext } from '../../../context/DiveSiteContext';
+         SiteContext } from '../../../context/DiveSiteContext';
 
-import {AuthContext} from '../../../context/AuthContext';
+import {AuthContext, LocationNameContext} from '../../../context/AuthContext';
 
 import StarRating from '../../../components/StarRating/StarRating';
 import FavouriteButton from '../../../components/Buttons/FavouriteButton/FavouriteButton';
@@ -34,11 +33,11 @@ const GuestPanel = () => {
     const [isAuth, setIsAuth] = useContext(AuthContext);
 
 
-
+    console.log('[GuestPanel] locationName = ' + locationName);
     return (
         <div className={classes.guestPanel}>
             <div className={classes.topSection}>
-                <p>24 sites  · Location {locationName} </p>
+                <p>24 sites  · {locationName ? locationName : 'In this area'} </p>
                 <h3>Dive sites in selected map area</h3> 
             </div>
 

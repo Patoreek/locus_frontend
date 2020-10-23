@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
 import classes from './SignupView.module.scss';
 
@@ -44,7 +44,10 @@ const SignupView = () => {
 
     const [isError, setIsError] = useState(false);
 
-
+    const validateEmail = (email) => {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
 
     const signupHandler = (event) => {
         event.preventDefault();
@@ -61,34 +64,34 @@ const SignupView = () => {
         setEmailErr(false);
         setPasswordErr(false);
         setPassword2Err(false);
+        setIsError(true);
 
         let errorMessage = [];
 
-        if (!isChecked) {
-         
+        if (isChecked) {
+            setIsError(false);
+        } else {
             errorMessage.push("You havent agreed to the Terms of Service");
-            setIsError(true);
         }
 
-        if (username.length <= 3 || username.length >= 16) {   
-            errorMessage.push("Username must be longer than 6 characters and less than 16 characters");
+        if (username.length >= 3 && username.length <= 16) {   
+            setIsError(false);
+        } else {
+            errorMessage.push("Username must be longer than 3 characters and less than 16 characters");
             setUsernameErr(true);
-            setIsError(true);
-            console.log('username too long or too short');
         } 
 
         // Firstname and Lastname must be > 1 character and must not have numbers or symbols
 
         var letters = /^[a-zA-Z]+$/;
 
-        if(!firstName.match(letters)){
-
+        if(firstName.match(letters)){
+            setIsError(false);
+        } else {
             if(firstName == "") {
-              
                 errorMessage.push("Please add your first name.");
                 setFirstnameErr(true);
             } else {
-              
                 errorMessage.push("There are numbers or symbols in your first name.");
                 setFirstnameErr(true);
             } 
@@ -97,69 +100,69 @@ const SignupView = () => {
         if (firstName.length <= 1) {
             errorMessage.push("Your first name is too short.");
             setFirstnameErr(true);
+           
+        } else {
+            setIsError(false);
         }
 
          if (lastName.length <= 2) {
             errorMessage.push("Your last name is too short.");
             setLastnameErr(true);
+        } else {
+            setIsError(false);
         }
 
 
-        if(!lastName.match(letters)){
-
+        if(lastName.match(letters)){
+            setIsError(false);
+        } else {
             if(lastName == "") {
-               
                 errorMessage.push("Please add your last name.");
-                setLastnameErr(true);
+                setLastnameErr(true);        
             } else {
-                
                 errorMessage.push("There are numbers or symbols in your last name.");
                 setLastnameErr(true);
             } 
         }
 
-        // if(new RegExp(/^[a-zA-Z()]+$/.test(firstName))) {
-        //     console.log('There are non letters in the firstname!!!');
-        //     errorMessage.push("There are numbers or symbols in your first name.");
-        //     setFirstnameErr(true);
-        // }
-        //  if(new RegExp(/^[a-zA-Z()]+$/.test(lastName))) {
-        //     console.log('There are non letters in the lastname!!!');
-        //     errorMessage.push("There are numbers or symbols in your last name.");
-        //     setLastnameErr(true);
-        // }
-
-        if (email.length <= 6) {
+        if (validateEmail(email)) {
+            setIsError(false);
+        } else {
             errorMessage.push("Invalid email");
             setEmailErr(true);
-            setIsError(true);
-        } 
+        }
 
-        if (password.length < 8) {
+        if (email.length >= 6) {
+            setIsError(false);
+        }  else {
+            errorMessage.push("Email too short");
+            setEmailErr(true);
+        }
+
+        if (password.length >= 8) {
+            setIsError(false);
+        } else {
             errorMessage.push("Password not long enough");
             setPasswordErr(true);
-            setIsError(true);
         } 
 
-        if (confirmPassword.length < 8) {
+        if (confirmPassword.length >= 8) {
+            setIsError(false);
+        } else {
             errorMessage.push("Confirm Password not long enough");
             setPassword2Err(true);
-            setIsError(true);
         } 
-        if (confirmPassword !== password) {
+        if (confirmPassword == password) {
+            setIsError(false);
+        } else {
             errorMessage.push("Passwords do not match");
             setPassword2Err(true);
             setPasswordErr(true);
-            setIsError(true);
         } 
-
         setErrMsg(errorMessage);
 
-        if (errMsg !== ""){
-            setIsError(false);
-        }
-
         if (!isError) {
+            console.log('All Fields look good... fetching from API...');
 
             return fetch('http://localhost:8080/signup',{
                 method: 'POST',
@@ -175,45 +178,41 @@ const SignupView = () => {
                         password: password,
                         confirmPassword: confirmPassword
                     }
+                    })
                 })
-            })
-            .then(res => {
-                return res.json();
-            })
-            .then(resData => {
-               
-                console.log(resData);
-
-                if (!resData.success) {
-                    errorMessage.push(resData.message);
-                    setIsError(true);
-                } else {
-                    setSuccess(true);
-                    setSignUpSuccess(true);
-                    // errorMessage.push("Sign up successful");
-                    authDrawerHandler('login');
+                .then(res => {
+                    return res.json();
+                })
+                .then(resData => {
+                    console.log(resData);
+                    if (!resData.success) {
+                        errorMessage.push(resData.message);
+                        setIsError(true);
+                    } else {
+                        setSuccess(true);
+                        setSignUpSuccess(true);
+                        // errorMessage.push("Sign up successful");
+                        authDrawerHandler('login');
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                });
                 }
-
-                
-                
-                
-            })
-            .catch(err => {
-             
-                console.log(err);
-
-            });
-    
-        }
-
-        
-
     }
+
+
+    // useEffect(() => {
+    //     console.log('in Use Effect.... IsError = ' + isError);
+    // }, [isError])
+
+
 
     const handleCheckbox = () => {
         setIsChecked(!isChecked);
         // console.log(isChecked);
     }
+
 
     
 

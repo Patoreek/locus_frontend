@@ -91,9 +91,9 @@ function App() {
       <div className={classes.app}>
       <DiveSiteProvider>
         <Navbar/>
+        <Route path="/" exact component={HomeView}/>
       </DiveSiteProvider>
       
-      <Route path="/" exact component={HomeView}/>
 
       <Route path="/login" component={LoginView}/>
 

@@ -34,6 +34,9 @@ export const NavbarContext = createContext();
 
 export const SignUpSuccessContext = createContext();
 
+export const LocationNameContext = createContext();
+
+
 
 //TODO: SEARCHBAR MAP FUNCTIONS AND REF
 
@@ -42,6 +45,9 @@ export const MapRefContext = createContext();
 export const OnMapLoadContext = createContext();
 
 export const PanToContext = createContext();
+
+
+
 
 
 
@@ -124,6 +130,9 @@ export const AuthProvider = (props) => {
 
     const [signUpSuccess, setSignUpSuccess] = useState(null);
 
+    const [locationName, setLocationName] = useState();
+
+
 
 
     //TODO: SEARCH MAP REF AND OTHERS
@@ -188,9 +197,11 @@ export const AuthProvider = (props) => {
         <OnMapLoadContext.Provider value = {onMapLoad}>
         <PanToContext.Provider value = {panTo}>
         <SignUpSuccessContext.Provider value = {[signUpSuccess, setSignUpSuccess]}>
+        <LocationNameContext.Provider value = {[locationName, setLocationName]}>
         
         {props.children}
-
+        
+        </LocationNameContext.Provider>
         </SignUpSuccessContext.Provider>
         </PanToContext.Provider>
         </OnMapLoadContext.Provider>

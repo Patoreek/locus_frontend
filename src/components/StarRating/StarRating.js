@@ -96,7 +96,7 @@ const ReviewStars = (props) => {
     // }
 
 
-    console.log(siteId);
+    //console.log(siteId);
     const submitRating = () => {
     }
   

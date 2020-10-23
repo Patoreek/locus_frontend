@@ -1,7 +1,6 @@
 import React, {useContext} from 'react';
 
-import { PanToContext } from '../../context/AuthContext';
-import { LocationNameContext } from '../../context/DiveSiteContext';
+import { PanToContext, LocationNameContext } from '../../context/AuthContext';
 import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
 
 import {

@@ -5,7 +5,10 @@ export const DiveSitesContext = createContext();
 export const CoordsContext = createContext();
 export const LoadDiveSiteContext = createContext();
 export const DetailsContext = createContext();
-export const LocationNameContext = createContext();
+
+
+
+
 
 
 
@@ -47,11 +50,10 @@ export const DiveSiteProvider = (props) => {
         <CoordsContext.Provider value = {[coords, setCoords]}>
         <LoadDiveSiteContext.Provider value = {loadDiveSites} >
         <DetailsContext.Provider value = {[moreDetails, setMoreDetails]}>
-        <LocationNameContext.Provider value = {[locationName, setLocationName]}>
         
         {props.children}
         
-        </LocationNameContext.Provider>
+   
         </DetailsContext.Provider>  
         </LoadDiveSiteContext.Provider>        
         </CoordsContext.Provider>
