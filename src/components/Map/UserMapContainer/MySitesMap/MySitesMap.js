@@ -14,7 +14,8 @@ import { Modal,
 
 
 import { EditModalContext,
-         DeleteModalContext } from '../../../../context/UserContext';
+         DeleteModalContext,
+         AddModalContext } from '../../../../context/UserContext';
 
 import { DiveSitesContext,
          SiteContext,
@@ -64,6 +65,8 @@ const MySitesMap = () => {
     const [isAuth, setIsAuth] = useContext(AuthContext);
 
     const [showEditModal, setShowEditModal] = useContext(EditModalContext);
+    const [showAddModal, setShowAddModal] = useContext(AddModalContext);
+
 
 
     const [showDeleteModal, setShowDeleteModal] = useContext(DeleteModalContext);
@@ -148,6 +151,7 @@ const MySitesMap = () => {
                          
                             <div className={classes.site__editContainer}>
                                 <EditSVG className={classes.edit} onClick={() => {
+                                    setShowAddModal(false);
                                     editSiteHandler();
                                 }}/>
                             </div>

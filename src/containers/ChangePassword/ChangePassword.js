@@ -82,18 +82,18 @@ const ChangePassword = () => {
                 <h3 className={classes.header}> Change Password</h3>
                     <div className={classes.grid}>
                         <div className={classes.grid__input1}>
-                            <span>Enter Password</span>
                             <input type="password" className={classes.input} onChange={e => setPassword(e.target.value)}/>
+                            <span>Enter Password</span>
                         </div>
                     
                         <div className={classes.grid__input2}>
-                            <span>Enter New Password</span>
                             <input type="password" className={classes.input} onChange={e => setNewPassword(e.target.value)}/>
+                            <span>Enter New Password</span>
                         </div>
                         
                         <div className={classes.grid__input3}>
-                            <span>Enter New Password Again</span>
                             <input type="password" className={classes.input} onChange={e => setNewPassword2(e.target.value)}/>
+                            <span>Enter New Password Again</span>
                         </div>
                     
                         <div className={classes.grid__cancel}>

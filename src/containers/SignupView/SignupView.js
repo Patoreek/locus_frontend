@@ -77,7 +77,7 @@ const SignupView = () => {
         if (username.length >= 3 && username.length <= 16) {   
             setIsError(false);
         } else {
-            errorMessage.push("Username must be longer than 3 characters and less than 16 characters");
+            errorMessage.push("Username must be longer than 3s characters and less than 16 characters");
             setUsernameErr(true);
         } 
 
@@ -230,51 +230,51 @@ const SignupView = () => {
             </div>
 
             <div className={classes.form__username}>
-                <span className={usernameErr ? classes.errorTextColor : null}>Username</span>
                 <input
                     type="text"
                     onChange={e => setInputUsername(e.target.value)}
                     className={`${classes.input} ${usernameErr ? classes.errorBorderColor : null}`}/>
+                <span className={usernameErr ? classes.errorTextColor : null}>Username</span>
             </div>
 
             <div className={classes.form__firstName}>
-                <span className={firstnameErr ? classes.errorTextColor : null}>First Name</span>
                 <input
                     type="text"
                     onChange={e => setInputFirstName(e.target.value)}
                     className={`${classes.input} ${firstnameErr ? classes.errorBorderColor : null}`}/>
+                <span className={firstnameErr ? classes.errorTextColor : null}>First Name</span>
             </div>
 
             <div className={classes.form__lastName}>
-                <span className={lastnameErr ? classes.errorTextColor : null}>Last Name</span>
                 <input
                     type="text"
                     onChange={e => setInputLastName(e.target.value)}
                     className={`${classes.input} ${lastnameErr ? classes.errorBorderColor : null}`}/>
+                <span className={lastnameErr ? classes.errorTextColor : null}>Last Name</span>
             </div>
             
             <div className={classes.form__email}>
-                <span className={emailErr ? classes.errorTextColor : null}>Email</span>
                 <input
                     type="email"
                     onChange={e => setInputEmail(e.target.value)}
                     className={`${classes.input} ${emailErr ? classes.errorBorderColor : null}`}/>
+                <span className={emailErr ? classes.errorTextColor : null}>Email</span>
             </div>
 
             <div className={classes.form__password}>
-                <span className={passwordErr ? classes.errorTextColor : null}>Password</span>
                 <input 
                     type="password"                   
                     onChange={e => setInputPassword(e.target.value)}
                     className={`${classes.input} ${passwordErr ? classes.errorBorderColor : null}`}/>
+                <span className={passwordErr ? classes.errorTextColor : null}>Password</span>
             </div>
 
             <div className={classes.form__passwordAgain}>
-                <span className={password2Err ? classes.errorTextColor : null}>Re-enter Password</span>
                 <input 
                     type="password" 
                     onChange={e => setInputConfirmPassword(e.target.value)}
                     className={`${classes.input} ${password2Err ? classes.errorBorderColor : null}`}/>
+                <span className={password2Err ? classes.errorTextColor : null}>Re-enter Password</span>
             </div>
 
             <div className={classes.form__certifyContainer}>

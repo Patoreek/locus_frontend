@@ -108,6 +108,7 @@
                 z-index: 55;
                 padding: 0rem .7rem;
                 font-weight: 700;
+                transition: .3s ease;
             }
 
  
@@ -120,12 +121,48 @@
                 font-size: 1.6rem;
                 position: relative;
                 outline: none;
+                transition: .3s ease;
+
             }
 
             .errMsg {
                 color: $color-text-red;
                 font-size: 1.6rem;
                 padding: 1rem 0rem 0rem 0rem;
+            }
+
+            &:hover .input {
+                border: 2px solid $color-lines-hover;
+            }
+            &:hover span {
+                color: $color-lines-hover;
+            }
+    
+            textarea {
+                height: 15rem;
+            }
+    
+            select {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                background: transparent;
+            }
+    
+            textarea:focus ~ span {
+                //color: $color-lines-focus;
+                color: $color-text-blue;
+            }
+    
+            .input, textarea  {
+                &:focus {
+                    //border: 2px solid $color-lines-focus;
+                    border: 2px solid $color-text-blue;
+    
+                }
+            }
+            .input:focus + span, textarea:focus + span {
+                //color: $color-lines-focus;
+                color: $color-text-blue;
             }
         }
 

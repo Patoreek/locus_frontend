@@ -70,7 +70,7 @@ const LoginView = () => {
                 });
                 setAuthDrawer(false);
                 //localStorage.setItem("email", resData.email);
-                //history.push("/map");
+                history.push("/map");
             
         }).then(res => {
             console.log('LOGGING IN... Account Context is....');
@@ -106,24 +106,24 @@ const LoginView = () => {
             </div>  
 
             <div className={classes.loginForm__email}>
-            <span>Email</span>
                 <input
                     type="email"
                     placeholder=""
                     //value={localStorage.email ? localStorage.email : null}
                     onChange={e => setInputEmail(e.target.value)}
                     className={classes.input}
-                />
+                    />
+                <span>Email</span>
             </div>
 
             <div className={classes.loginForm__password}>
-                <span>Password</span>
                 <input 
                     type="password"
                     placeholder=""
                     onChange={e => setInputPassword(e.target.value)}
                     className={classes.input}
-                />
+                    />
+                <span>Password</span>
                 <p className={classes.errMsg}>{errMsg}</p>
             </div>
 

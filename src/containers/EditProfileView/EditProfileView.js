@@ -28,6 +28,17 @@ const EditProfileView = () => {
     const [experience, setExperience] = useState("");
     const [success, setSuccess] = useState(null);
 
+    //TODO: ERROR Variables.
+    const [isError, setIsError] = useState(null);
+    const [errMsg, setErrMsg] = useState([]);
+    const [firstnameErr, setFirstnameErr] = useState(false);
+    const [lastnameErr, setLastnameErr] = useState(false);
+    const [cityErr, setCityErr] = useState(false);
+    const [countryErr, setCountryErr] = useState(false);
+    const [experienceErr, setExperienceErr] = useState(false);
+    const [bioErr, setBioErr] = useState(false);
+
+
     const [account, setAccount] = useContext(AccountContext);
 
     let history = useHistory();
@@ -63,43 +74,136 @@ const EditProfileView = () => {
     }
 
     const editProfileHandler = () => {
-        console.log('First Name: ' + firstName);
-        console.log('Last Name: ' + lastName);
-        //console.log('Profile Picture: ' + profilePic);
-        console.log('Bio: ' + bio);
-        console.log('city: ' + city);
-        console.log('country: ' + country);
-        console.log('experience: ' + bio);
+        setFirstnameErr(false);
+        setLastnameErr(false);
+        setCityErr(false);
+        setCountryErr(false);
+        setExperienceErr(false);
+        setIsError(false);
 
-        return fetch('http://localhost:8080/user/editProfile',{
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        credentials: 'include',
-        body: JSON.stringify({
-                firstName: firstName,
-                lastName: lastName,
-                bio: bio,
-                city: city,
-                country: country,
-                experience: experience,
-                })
-        })
-        .then(res => {
-            return res.json();
-            
-        })
-        .then(result => {
-            console.log(result);
-            setSuccess('true');
-        })
-        .catch(err => {
-            console.log(err);
-            setSuccess('false');
+        var letters = /^[a-zA-Z]+$/;
 
-        });
-        
+        let errorMessage = [];
+
+        if(!firstName.match(letters)){
+            if(firstName == "") {
+                errorMessage.push("Please add your first name.");
+                setFirstnameErr(true);
+                setIsError(true);
+            } else {
+                errorMessage.push("There are numbers or symbols in your first name.");
+                setFirstnameErr(true);
+                setIsError(true);
+            } 
+        }
+
+        if (firstName.length <= 1) {
+            errorMessage.push("Your first name is too short.");
+            setFirstnameErr(true);
+            setIsError(true);
+           
+        } 
+
+         if (lastName.length <= 2) {
+            errorMessage.push("Your last name is too short.");
+            setLastnameErr(true);
+            setIsError(true);
+        } 
+
+
+        if(!lastName.match(letters)){
+            if(lastName == "") {
+                errorMessage.push("Please add your last name.");
+                setLastnameErr(true); 
+                setIsError(true);       
+            } else {
+                errorMessage.push("There are numbers or symbols in your last name.");
+                setLastnameErr(true);
+                setIsError(true);
+            } 
+        }
+
+        if (bio.length > 255){
+            errorMessage.push("Bio is too long.");
+            setBioErr(true);
+            setIsError(true);
+        }
+
+        if(!city.match(letters)){
+            if(city == "") {
+                errorMessage.push("Please add a city.");
+                setCityErr(true);     
+                setIsError(true);   
+            } else {
+                errorMessage.push("There are numbers or symbols in the city.");
+                setCityErr(true);
+                setIsError(true);
+            } 
+        }
+
+        if(!country.match(letters)){
+            if(country == "") {
+                errorMessage.push("Please add a country.");
+                setCountryErr(true);  
+                setIsError(true);      
+            } else {
+                errorMessage.push("There are numbers or symbols in the country.");
+                setCountryErr(true);
+                setIsError(true);
+            } 
+        }
+
+        if (experience == null || experience == ""){
+            errorMessage.push("Please choose your experience from the selection.");
+            setExperienceErr(true);
+            setIsError(true);
+        }
+
+        setErrMsg(errorMessage);
+        console.log(errorMessage);
+        console.log(isError);
+
+        //! STATE HAS TO CHANGE BEFORE IT CHECKS THIS SO IT WORKS ON ONE CLICK;
+        //? SOLUTION IMPLEMENTED ??? DOUBLE CHECK THIS
+        //* if (!isError) {
+        if (isError == false || (isError != null && !isError )) {
+            return fetch('http://localhost:8080/user/editProfile',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                    firstName: firstName,
+                    lastName: lastName,
+                    bio: bio,
+                    city: city,
+                    country: country,
+                    experience: experience,
+                    })
+            })
+            .then(res => {
+                return res.json();
+                
+            })
+            .then(result => {
+                console.log(result);
+                    if (!result.success) {
+                        errorMessage.push(result.message);
+                        setIsError(true);
+                    } else {
+                        setSuccess(true);
+                        setTimeout(() => {
+                            history.push('/profile');
+                          }, 1500);
+                    }
+            })
+            .catch(err => {
+                console.log(err);
+                setSuccess('false');
+
+            });
+        }
     }
 
     return (
@@ -117,6 +221,7 @@ const EditProfileView = () => {
                                 placeholder="First name"
                                 value={firstName}
                                 onChange={e => setFirstName(e.target.value)} />
+                        <span>First Name</span>
                     </div>
                     
                     <div className={classes.form__lastNameContainer}>
@@ -124,22 +229,25 @@ const EditProfileView = () => {
                                 placeholder="Area / Suburb"
                                 value={lastName}
                                 onChange={e => setLastName(e.target.value)} />
+                        <span>Last Name</span>
                     </div>
                     <div className={classes.form__cityContainer}>
                         <input className={`${classes.input} ${classes.input__city}`}
                                 placeholder="City"
                                 value={city}
                                 onChange={e => setCity(e.target.value)} />
+                        <span>City</span>
                     </div>
                     <div className={classes.form__countryContainer}>
                         <input className={`${classes.input} ${classes.input__country}`}
                                 placeholder="Country"
                                 value={country}
                                 onChange={e => setCountry(e.target.value)} />
+                        <span>Country</span>
                     </div>
                     <div className={classes.form__uploadContainer}>
                     <FilePond 
-                            className={classes.filePond}
+                            className={`${classes.input} ${classes.input__upload}`}
                             allowMultiple={false}
                             name={"profilePicture"}
                             server={
@@ -160,6 +268,7 @@ const EditProfileView = () => {
                                     value={bio}
                                     placeholder="Bio"
                                     onChange={e => setBio(e.target.value)} />
+                        <span>Bio</span>
                     </div>
 
 
@@ -168,6 +277,7 @@ const EditProfileView = () => {
                                 placeholder="Experience"
                                 value={experience}
                                 onChange={e => setExperience(e.target.value)} />
+                        <span>Experience</span>
                     </div>
                 
         
@@ -185,8 +295,9 @@ const EditProfileView = () => {
                     </div>
 
                     <div className={classes.form__messageContainer}>
-                        {success === 'true' ? <p className={classes.successMsg}>Changes saved successfully</p> : null }
-                        {success === 'false' ? <p className={classes.errorMsg}>Whoops! Something went wrong!</p> : null }
+                        {!isError && isError != null ? <p className={classes.successMsg}>Changes saved successfully</p> : null }
+                        {errMsg.length > 1 ? <p className={classes.errorMsg}>Whoops! Something went wrong!</p> : null }
+                        {errMsg.map(message => <p className={classes.errorMsg}>{message}</p>)}
                                 
                     </div>
 

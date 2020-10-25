@@ -7,7 +7,8 @@ import { SiteContext,
          CoordsContext } from '../../context/DiveSiteContext';
 import { AuthContext, 
          LoadingContext, 
-         MapSizeContext } from '../../context/AuthContext';
+         MapSizeContext,
+            AccountContext } from '../../context/AuthContext';
 
 import { AddModalContext,
          EditModalContext,
@@ -26,6 +27,8 @@ const UserView = (props) => {
         const [coords, setCoords] = useContext(CoordsContext);
         const [selectedSite, setSelectedSite] = useContext(SiteContext);
         const [ mapSize, setMapSize ] = useContext(MapSizeContext);
+        const [ account, setAccount ] = useContext(AccountContext);
+
 
         const [isAuth, setIsAuth] = useContext(AuthContext);
         const [isLoading, setIsLoading] = useContext(LoadingContext);
