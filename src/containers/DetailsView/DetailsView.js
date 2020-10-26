@@ -42,25 +42,25 @@ const Details = (props) => {
 
     const [siteName, setSiteName] = useState();
     const [siteArea, setSiteArea] = useState();
+    const [siteCountry, setSiteCountry] = useState();
     const [siteImages, setSiteImages] = useState();
-    const [siteVideos, setSiteVideos] = useState();
-    const [siteType, setSiteType] = useState()
+    const [siteType, setSiteType] = useState();
+    const [siteAccess, setSiteAccess] = useState();
     const [siteDescription, setSiteDescription] = useState();
-    const [siteDepth, setSiteDepth] = useState();
-    const [siteVisibility, setSiteVisibility] = useState();
-    const [siteUnderwaterMap, setSiteUnderwaterMap] = useState();
-    const [siteFeatures, setSiteFeatures] = useState();
+    const [siteAvgDepth, setSiteAvgDepth] = useState();
+    const [siteMaxDepth, setSiteMaxDepth] = useState();
+    const [siteMinTemp, setSiteMinTemp] = useState();
+    const [siteMaxTemp, setSiteMaxTemp] = useState();
+    const [siteMinVis, setSiteMinVis] = useState();
+    const [siteMaxVis, setSiteMaxVis] = useState();
+    const [siteSuitable, setSiteSuitable] = useState();
+    const [siteExperience, setSiteExperience] = useState();
 
-    const [siteComments, setSiteComments] = useState("");
-    const [siteReview, setSiteReview] = useState("");
+    const [siteLatitude, setSiteLatitude] = useState();
+    const [siteLongitude, setSiteLongitude] = useState();
 
-    const [currentWeather, setCurrentWeather] = useState(null);
-    const [dailyWeather, setDailyWeather] = useState(null);
-    const [siteWeather, setSiteWeather] = useState();
-    const [iconUrl, setIconUrl] = useState("");
-
-
-    const [weatherContent, setWeatherContent] = useState();
+    //const [siteComments, setSiteComments] = useState("");
+    //const [siteReview, setSiteReview] = useState("");
 
     const [firstImage, setFirstImage] = useState();
     const [secondImage, setSecondImage] = useState();
@@ -124,14 +124,26 @@ const Details = (props) => {
 
             setSiteName(site.name);
             setSiteArea(site.area);
+            setSiteCountry(site.country);
             setSiteImages(site.images);
-            setSiteVideos(site.videos);
             setSiteType(site.siteType);
+            setSiteAccess(site.access);
             setSiteDescription(site.description);
-            setSiteDepth(site.depth);
-            setSiteVisibility(site.visibility);
-            setSiteUnderwaterMap(site.underwaterMap);
-            setSiteFeatures(site.commonFeatures);
+            setSiteAvgDepth(site.avgDepth);
+            setSiteMaxDepth(site.maxDepth);
+            setSiteMinTemp(site.minTemp);
+            setSiteMaxTemp(site.maxTemp);
+            setSiteMinVis(site.minVis);
+            setSiteMaxVis(site.maxVis);
+            setSiteSuitable(site.suitable);
+            setSiteExperience(site.experience);
+
+            setSiteLongitude(site.longitude);
+            setSiteLatitude(site.latitude);
+
+            setSiteLatitude(site.latitude);
+            setSiteLongitude(site.longitude);
+
             setSelectedSite(site);
 
             setFirstImage(site.images[0]);
@@ -193,7 +205,7 @@ const Details = (props) => {
                 {/* <h3> isLoading is now turned OFF! Should be working...</h3> */}
 
                 <div className={classes.divesite__locationTop}>
-                  <a target="_blank" href="http://www.google.com/search?q=Shellharbour%2C+New+South+Wales%2C+Australia">Shellharbour, New South Wales, Australia</a> {/* Should be a link to the map / google maps of the area?? */}
+                  <a target="_blank" href={"http://www.google.com/search?q=" + siteName + "%2C+" + siteArea + "%2C+" + siteCountry}>{siteName}, {siteArea}, {siteCountry}</a> {/* Should be a link to the map / google maps of the area?? */}
                 </div>
                 
                 <div className={classes.divesite__imageGridContainer}>
@@ -231,8 +243,11 @@ const Details = (props) => {
 
                 {/* USE FLEXBOX COLUMN */}
                 <div className={classes.divesite__nameContainer}>
-                    <h3 className={classes.name}>{siteName}, {siteArea}</h3>
-                    <a target="_blank" href="http://www.google.com/search?q=Shellharbour%2C+New+South+Wales%2C+Australia"> Shellharbour, New South Wales, Australia</a> {/* Should be a link to the map / google maps of the area?? */}
+                    <h3 className={classes.name}>{siteName}</h3>
+                    <h3 className={classes.name}>{siteArea}, {siteCountry}</h3>
+                    <a target="_blank" href={"http://www.google.com/search?q=" + siteName + "%2C+" + siteArea + "%2C+" + siteCountry}>{siteName}, {siteArea}, {siteCountry}</a> {/* Should be a link to the map / google maps of the area?? */}
+                    <br/>
+                    <a target="_blank" href={"https://maps.google.com/?q=" + siteLatitude + "," + siteLongitude}>Google Maps</a>
                     <div className={classes.ratingsContainer}>
                       <div className={classes.ratingsContainer__rating}>
                       <StarRating site={selectedSite}/>
@@ -248,39 +263,39 @@ const Details = (props) => {
                     <div className={classes.point}> 
                       <ShoreSVG className={classes.point__icon}/> 
                       <div className={classes.point__text}>                         
-                        <span>{siteType == 1 ? "Shore Dive" : "Boat Dive"}</span>
+                        <span>Access from {siteAccess}</span>
                       </div>
                     </div>
                     <div className={classes.point}>
                       <ReefSVG className={classes.point__icon}/>
                       <div className={classes.point__text}>            
-                        <span>Reef Dive</span>
+                        <span>{siteType} Dive</span>
                       </div>
                     </div>
                     <div className={classes.point}>
                       <DepthSVG className={classes.point__icon}/>   
                       <div className={classes.point__text}>         
-                        <span>Max Depth: {siteDepth}m</span>
-                        <span>Average Depth: {siteDepth}m</span>
+                        <span>Max Depth: {siteMaxDepth}m</span>
+                        <span>Average Depth: {siteAvgDepth}m</span>
                       </div>
                     </div>
                     <div className={classes.point}>
                       <XpSVG className={classes.point__icon}/>  
                       <div className={classes.point__text}>          
-                        <span>Open Water Scuba Diver</span>
-                        <span>Great for Snorkelling</span>
+                        <span>{siteExperience}</span>
+                        <span>{siteSuitable}</span>
                       </div>
                     </div>
                     <div className={classes.point}>
                       <TemperatureSVG className={classes.point__icon}/>  
                       <div className={classes.point__text}>
-                        <span>18°C - 24°C</span>   
+                        <span>{siteMinTemp}°C - {siteMaxTemp}°C</span>   
                       </div>       
                     </div>
                     <div className={classes.point}>
                       <VisibilitySVG className={classes.point__icon}/> 
                       <div className={classes.point__text}>           
-                        <span>7 - {siteVisibility}m</span>
+                        <span>{siteMinVis} - {siteMaxVis}m</span>
                       </div>
                     </div>
                   

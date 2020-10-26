@@ -32,7 +32,7 @@ const UserPanel = () => {
         <div>
                 {/* <ToggleButtons/> */}
                 {!showEditModal && !showAddModal && !showDeleteModal && !showAddRequestModal ? <UserSiteListContainer/> : null }
-                {showEditModal ? <EditSiteForm/> : null}
+                {showEditModal && selectedSite != null ? <EditSiteForm/> : null}
                 {showAddModal ? <CreateSiteForm/> : null}
                 {showAddRequestModal ? <AddRequestForm/> : null }
 

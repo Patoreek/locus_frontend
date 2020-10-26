@@ -11,7 +11,9 @@ import { SiteContext,
          DiveSitesContext,
          LoadDiveSiteContext } from '../../../context/DiveSiteContext';
 
-import { DeleteModalContext } from '../../../context/UserContext';
+import { DeleteModalContext, EditModalContext, AddRequestContext, AddModalContext } from '../../../context/UserContext';
+
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -24,14 +26,13 @@ const DeleteContainer = (props) => {
     const [diveSites, setDiveSites] = useContext(DiveSitesContext);
     const loadDiveSites = useContext(LoadDiveSiteContext);
     
-    const [showDeleteModal, setShowDeleteModal] = useContext(DeleteModalContext);
+    const [ showEditModal, setShowEditModal ] = useContext(EditModalContext);
+    const [ showAddModal, setShowAddModal ] = useContext(AddModalContext);
+    const [ showDeleteModal, setShowDeleteModal ] = useContext(DeleteModalContext);
+    const [ showAddRequestModal, setShowAddRequestModal ] = useContext(AddRequestContext);
 
-
+    let history = useHistory();
     
-
-    
-
-
     const deleteSiteHandler = (event) => {
         event.preventDefault();
         console.log('Delete Confirmed');
@@ -51,8 +52,11 @@ const DeleteContainer = (props) => {
         })
         .then(resData => {
               console.log('[resData] = ' + resData.message);
+              setShowEditModal(false);
+              setShowAddModal(false);
               setShowDeleteModal(false);
-              loadDiveSites();
+              setShowAddRequestModal(false);
+              history.push('/mySites');
         })
         .catch(err => {
             console.log(err);

@@ -46,8 +46,6 @@ const EditSiteForm = (props) => {
 
     const [commonFeatures, setCommonFeatures] = useState(selectedSite.commonFeatures);
 
-    console.log(commonFeatures);
-
 
     const editDiveSite = () => {
         return fetch('http://localhost:8080/diveSites/editDiveSite/' + selectedSite._id,{
@@ -106,6 +104,8 @@ const EditSiteForm = (props) => {
             {!showDeleteModal && (
               <div className={classes.form}>
               <div className={classes.form__backBtnContainer}>
+                  <span className={classes.deleteBtn} onClick={() => setShowDeleteModal(true)}>Delete</span>
+
                   <span className={classes.backBtn} onClick={() => setShowEditModal(false)}>Back</span>
               </div>
               <div className={classes.form__headerContainer}>
@@ -147,19 +147,19 @@ const EditSiteForm = (props) => {
               <div className={classes.form__section1}>
                   <div className={classes.accessContainer}>
                       <select value={access} onChange={e => setAccess(e.target.value)} className={`${classes.input} ${classes.accessContainer__input}`}>
-                          <option value="rocks">Rocks</option>
-                          <option value="boat">Boat</option>
-                          <option value="beach">Beach</option>
+                          <option value="Rocks">Rocks</option>
+                          <option value="Boat">Boat</option>
+                          <option value="Beach">Beach</option>
                       </select>
                       <span>Access</span>
                   </div>
                   
                   <div className={classes.siteTypeContainer}>
                       <select value={siteType} onChange={e => setSiteType(e.target.value)} className={`${classes.input} ${classes.siteTypeContainer__input}`}>
-                          <option value="reef">Reef</option>
-                          <option value="wreck">Wreck</option>
-                          <option value="cave">Cave</option>
-                          <option value="deep">Deep</option>
+                          <option value="Reef">Reef</option>
+                          <option value="Wreck">Wreck</option>
+                          <option value="Cave">Cave</option>
+                          <option value="Deep">Deep</option>
                       </select>
                       <span>Site Type</span>
                

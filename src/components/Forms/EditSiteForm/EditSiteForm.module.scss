@@ -111,10 +111,27 @@
             left: 0px;
             padding: 0rem 0rem;
             transition: .2s ease;
+            color: $color-text-grey;
 
             &:hover {
                 text-decoration: underline;
                 color: $color-text-blue;
+            }
+        }
+
+        .deleteBtn {
+            font-size: 1.6rem;
+            position: relative;
+            top: 0px;
+            left: 0px;
+            padding: 0rem 0rem;
+            transition: .2s ease;
+            color: $color-text-red;
+            margin-right: 2rem;
+
+            &:hover {
+                filter: brightness(125%);
+                text-decoration: underline;
             }
         }
     }   
