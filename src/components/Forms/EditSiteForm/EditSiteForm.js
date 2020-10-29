@@ -133,6 +133,21 @@ const EditSiteForm = (props) => {
                           onChange={e => setCountry(e.target.value)} />
                    <span>Country</span>
               </div>
+              <div className={classes.form__uploadContainer}>
+                    <FilePond 
+                            className={`${classes.input} ${classes.input__upload}`}
+                            allowMultiple={false}
+                            name={"profilePicture"}
+                            server={
+                                {
+                                    url: "http://localhost:8080/diveSites/uploadImages/" + selectedSite._id,
+                                    process:{
+                                        withCredentials: true
+                                    }
+                                }
+                            }
+                        />
+                </div>
             
 
               <div className={classes.form__descriptionContainer}>

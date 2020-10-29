@@ -3,7 +3,7 @@
 .form {
     padding:5rem 5rem;
     display: grid;
-    grid-template-rows: repeat(9, max-content);
+    grid-template-rows: repeat(12, max-content);
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 2rem;
 
@@ -215,13 +215,18 @@
         
     }
 
-    &__descriptionContainer {
+    &__uploadContainer {
         grid-row: 4 / 5;
         grid-column: 1 / -1;
     }
 
-    &__section1 {
+    &__descriptionContainer {
         grid-row: 5 / 6;
+        grid-column: 1 / -1;
+    }
+
+    &__section1 {
+        grid-row: 7 / 8;
         grid-column: 1 / -1;
 
         display: grid;
@@ -331,7 +336,7 @@
     }
 
     &__section2 {
-        grid-row: 6 / 7;
+        grid-row: 8 / 9;
         grid-column: 1 / -1;
 
         display: grid;
@@ -385,7 +390,7 @@
     }
 
     &__section3 {
-        grid-row: 7 / 8;
+        grid-row: 9 / 10;
         grid-column: 1 / -1;
 
         .experienceContainer {
@@ -398,7 +403,7 @@
     }
 
     &__section4 {
-        grid-row: 8 / 9;
+        grid-row: 10 / 11;
         grid-column: 1 / -1;
 
         .suitableContainer {
@@ -410,7 +415,7 @@
     }
 
     &__cancelBtnContainer {
-        grid-row: 9 / 10;
+        grid-row: 11 / 12;
         grid-column: 1 / 2;
 
         display: flex;
@@ -435,7 +440,7 @@
     }
 
     &__editBtnContainer {
-        grid-row: 9 / 10;
+        grid-row: 11 / 12;
         grid-column: 2 / 3;
 
         display: flex;
@@ -461,7 +466,7 @@
 
 
     &__messageContainer {
-        grid-row: 10 / 11;
+        grid-row: 12 / 13;
         grid-column: 1 / -1;
         display: flex;
         flex-direction: column;

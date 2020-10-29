@@ -45,7 +45,7 @@ const Details = (props) => {
     const [siteName, setSiteName] = useState();
     const [siteArea, setSiteArea] = useState();
     const [siteCountry, setSiteCountry] = useState();
-    const [siteImages, setSiteImages] = useState();
+    const [siteImages, setSiteImages] = useState([]);
     const [siteType, setSiteType] = useState();
     const [siteAccess, setSiteAccess] = useState();
     const [siteDescription, setSiteDescription] = useState();
@@ -63,13 +63,9 @@ const Details = (props) => {
 
     //const [siteComments, setSiteComments] = useState("");
     //const [siteReview, setSiteReview] = useState("");
-
-    const [firstImage, setFirstImage] = useState();
-    const [secondImage, setSecondImage] = useState();
-    const [thirdImage, setThirdImage] = useState();
-    const [fourthImage, setFourthImage] = useState();
-    const [fifthImage, setFifthImage] = useState();
     //const [tempImage, setTempImage] = useState();
+
+    const [mainImage, setMainImage] = useState();
 
 
 
@@ -147,15 +143,9 @@ const Details = (props) => {
             setSiteLongitude(site.longitude);
 
             setSelectedSite(site);
-
-            setFirstImage(site.images[0]);
-            setSecondImage(site.images[0]);
-            setThirdImage(site.images[1]);
-            setFourthImage(site.images[2]);
-            setFifthImage(site.images[1]);
-           
-
             setIsLoading(false);
+
+            setMainImage(site.images[0]);
     
           } catch (error) {
            console.log(error);
@@ -169,31 +159,7 @@ const Details = (props) => {
 
 
     const imageHandler = (image) => {
-      console.log(image);
-      const tempImage = firstImage;
-      switch(image) {
-        case 1:
-    
-          break;
-        case 2:
-          setFirstImage(secondImage);
-          setSecondImage(tempImage);
-          break;
-        case 3:
-          setFirstImage(thirdImage);
-          setThirdImage(tempImage);
-          break;
-        case 4:
-          setFirstImage(fourthImage);
-          setFourthImage(tempImage);
-          break;
-        case 5:
-          setFirstImage(fifthImage);
-          setFifthImage(tempImage);
-          break;
-        default:
-          // code block
-      }
+        setMainImage(image);
     }
     // // console.log('WEATHERCONTENT');
     // // console.log(weatherContent);
@@ -210,38 +176,33 @@ const Details = (props) => {
                   <a target="_blank" href={"http://www.google.com/search?q=" + siteName + "%2C+" + siteArea + "%2C+" + siteCountry}>{siteName}, {siteArea}, {siteCountry}</a> {/* Should be a link to the map / google maps of the area?? */}
                 </div>
                 
+
+                //TODO: IMAGE GRID CONTAINER //////////////////
                 <div className={classes.divesite__imageGridContainer}>
-                  <div className={`${classes.image} ${classes.image__1}`} onClick={() => {
-                    // setTempImage(firstImage);
-                    imageHandler(1);
-                  }}>
-                    <img className={classes.image} src={'http://localhost:8080/' + firstImage}/>
+                  <div className={`${classes.image} ${classes.image__1}`}>
+                    <img className={classes.image} src={'http://localhost:8080/' + mainImage}/>
                   </div>
-                  <div className={`${classes.image} ${classes.image__2}`} onClick={() => {
-                    // setTempImage(firstImage);
-                    imageHandler(2);
-                  }}>
-                    <img className={classes.image} src={'http://localhost:8080/' + secondImage}/>
+
+                  <div className={classes.rightContainer}>
+
+                    {siteImages.map(image => (
+                        <div className={classes.imageContainer} onClick={() => {
+                          // setTempImage(firstImage);
+                          imageHandler(image);
+                        }}>
+                          <img className={classes.image} src={'http://localhost:8080/' + image}/>
+                        </div>
+                    ))}
+
+
+
+
+
                   </div>
-                  <div className={`${classes.image} ${classes.image__3}`} onClick={() => {
-                    // setTempImage(firstImage);
-                    imageHandler(3);
-                  }}>
-                    <img className={classes.image} src={'http://localhost:8080/' + thirdImage}/>
-                  </div>
-                  <div className={`${classes.image} ${classes.image__4}`} onClick={() => {
-                    // setTempImage(firstImage);
-                    imageHandler(4);
-                  }}>
-                    <img className={classes.image} src={'http://localhost:8080/' + fourthImage}/>
-                  </div>
-                  <div className={`${classes.image} ${classes.image__5}`} onClick={() => {
-                    // setTempImage(firstImage);
-                    imageHandler(5);
-                  }}>
-                    <img className={classes.image} src={'http://localhost:8080/' + fifthImage}/>
-                  </div>
+
                 </div>
+
+                //TODO: END IMAGE GRID CONTAINER //////////////////
 
                 {/* USE FLEXBOX COLUMN */}
                 <div className={classes.divesite__nameContainer}>

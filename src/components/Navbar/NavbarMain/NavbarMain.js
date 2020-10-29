@@ -165,23 +165,7 @@ const NavbarMain = () => {
                         <div className={classes.logoItem}>
                             <a href="/"><LogoSVG className={classes.logo}/></a>
                         </div>
-                        {/* {isAuth ?  <div className={classes.listSpacer}>|</div> : null}
-                            <div className={classes.listItem}><a href="/map" className={classes.listLink}>Map</a></div>
-                        {isAuth ?  <div className={classes.listSpacer}>|</div> : null}
-                        
-                        {isAuth ? <div className={classes.listItem}><a href="/favourites" className={classes.listLink}>Favourites</a></div> : null }
-                        {isAuth ?  <div className={classes.listSpacer}>|</div> : null}
-                        {isAuth ? <div className={classes.listItem}><a href="/mySites" className={classes.listLink}>My Sites</a></div> : null }
-                        {isAuth ?  <div className={classes.listSpacer}>|</div> : null}
-                        {isAuth ? <div className={classes.listItem}><a href="/profile" className={classes.listLink}>Profile</a></div> : null }
-                        {isAuth ?  <div className={classes.listSpacer}>|</div> : null} */}
-
-                        
-                        {/* {isAuth ? <div className={classes.listItemRight}><a onClick={logoutHandler}>Logout</a></div> : null }
-                        {isAuth ?  <div className={classes.listSpacerRight}>|</div> : null}
-                        {isAuth ? <div className={classes.listItemName}>
-                            <p className={classes.name}>Welcome, <b>{account.username}!</b></p>
-                        </div> : null } */}
+                      
 
                         <div className={classes.searchbarContainer}>
                             
