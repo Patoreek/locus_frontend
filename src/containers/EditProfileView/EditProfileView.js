@@ -218,7 +218,7 @@ const EditProfileView = () => {
                     </div>
                     <div className={classes.form__firstNameContainer}>
                         <input  className={`${classes.input} ${classes.input__firstName}`}
-                                placeholder="First name"
+                                //placeholder="First name"
                                 value={firstName}
                                 onChange={e => setFirstName(e.target.value)} />
                         <span>First Name</span>
@@ -226,21 +226,21 @@ const EditProfileView = () => {
                     
                     <div className={classes.form__lastNameContainer}>
                         <input className={`${classes.input} ${classes.input__lastName}`}
-                                placeholder="Area / Suburb"
+                                //placeholder="Area / Suburb"
                                 value={lastName}
                                 onChange={e => setLastName(e.target.value)} />
                         <span>Last Name</span>
                     </div>
                     <div className={classes.form__cityContainer}>
                         <input className={`${classes.input} ${classes.input__city}`}
-                                placeholder="City"
+                                //placeholder="City"
                                 value={city}
                                 onChange={e => setCity(e.target.value)} />
                         <span>City</span>
                     </div>
                     <div className={classes.form__countryContainer}>
                         <input className={`${classes.input} ${classes.input__country}`}
-                                placeholder="Country"
+                                //placeholder="Country"
                                 value={country}
                                 onChange={e => setCountry(e.target.value)} />
                         <span>Country</span>
@@ -266,7 +266,7 @@ const EditProfileView = () => {
                         <textarea className={`${classes.input} ${classes.input__bio}`}
                                     rows="10"
                                     value={bio}
-                                    placeholder="Bio"
+                                    //placeholder="Bio"
                                     onChange={e => setBio(e.target.value)} />
                         <span>Bio</span>
                     </div>
@@ -274,7 +274,7 @@ const EditProfileView = () => {
 
                     <div className={classes.form__experienceContainer}>
                         <input className={`${classes.input} ${classes.input__experience}`}
-                                placeholder="Experience"
+                                //placeholder="Experience"
                                 value={experience}
                                 onChange={e => setExperience(e.target.value)} />
                         <span>Experience</span>
@@ -287,8 +287,9 @@ const EditProfileView = () => {
 
                     <div className={classes.form__editBtnContainer}>
                         <input
-                                placeholder="Edit"
+                                //placeholder="Edit"
                                 type="submit"
+                                value="Edit"
                                 onClick={(e) => editProfileHandler(e)}
                                 className={classes.editBtn}/>
                                 

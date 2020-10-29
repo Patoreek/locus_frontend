@@ -423,7 +423,13 @@
             background: $color-input-bg;
             border-radius: 5px;
             border: 1px solid $color-lines;
-            //color: $color-white;
+            transition: .3s ease;
+            box-shadow: 0px 0px 0px rgba($color-black, .5);
+
+            &:hover {
+                transform: translate(0px, -3px);
+                box-shadow: 0px 3px 7px rgba($color-black, .3);
+            }
         }
         
     }
@@ -443,9 +449,14 @@
             border-radius: 5px;
             border: 1px solid $color-lines;
             color: $color-white;
+            transition: .3s ease;
+            box-shadow: 0px 0px 0px rgba($color-black, .5);
 
+            &:hover {
+                transform: translate(0px, -3px);
+                box-shadow: 0px 3px 7px rgba($color-black, .3);
+            }
         }
-        
     }
 
 

@@ -42,7 +42,7 @@ const SignupView = () => {
 
     const [success, setSuccess] = useState(null);
 
-    const [isError, setIsError] = useState(false);
+    const [isError, setIsError] = useState(true);
 
     const validateEmail = (email) => {
         const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -72,6 +72,7 @@ const SignupView = () => {
             setIsError(false);
         } else {
             errorMessage.push("You havent agreed to the Terms of Service");
+
         }
 
         if (username.length >= 3 && username.length <= 16) {   
@@ -161,7 +162,7 @@ const SignupView = () => {
         } 
         setErrMsg(errorMessage);
 
-        if (!isError) {
+        if (errMsg.length === 0) {
             console.log('All Fields look good... fetching from API...');
 
             return fetch('http://localhost:8080/signup',{

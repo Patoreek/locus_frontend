@@ -56,13 +56,14 @@ const DeleteContainer = (props) => {
               setShowAddModal(false);
               setShowDeleteModal(false);
               setShowAddRequestModal(false);
+              loadDiveSites();
+              setSelectedSite(null);
               history.push('/mySites');
         })
         .catch(err => {
             console.log(err);
             // this.setState({ postsLoading: false });
         });
-        setSelectedSite(null);
         //setShowForm(null);
     }
 

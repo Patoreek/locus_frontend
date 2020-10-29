@@ -142,7 +142,7 @@ const GuestMap = () => {
                             </div>
 
                             <div className={classes.site__diveTypeContainer}>
-                                <p className={classes.diveType}> Shore Dive · Great for Scuba </p>
+                                <p className={classes.diveType}> {selectedSite.siteType} Dive · {selectedSite.suitable} </p>
                             </div>
 
                             {isAuth && ( 
@@ -155,7 +155,9 @@ const GuestMap = () => {
                             <div className={classes.site__nameContainer}>
                                 <h5  className={classes.name}>
                                 <a href={"/divesite/" + selectedSite._id}>
-                                        {selectedSite.name}, {selectedSite.area}
+                                        <span>{selectedSite.name}</span>
+                                        <br/>
+                                        <span>{selectedSite.area}, {selectedSite.country}</span>
                                 </a>
                                 </h5>
                                 

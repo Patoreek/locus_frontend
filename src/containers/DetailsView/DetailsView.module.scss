@@ -88,6 +88,7 @@
     &__nameContainer {
         grid-row: 3 / 4;
         grid-column: 1 / 2;
+       
 
         .name {
             font-size: 3.5rem;
@@ -103,6 +104,13 @@
             &:hover {
                 color: $color-text-darkergrey;
             }
+
+           .googleMapSVG {
+               transform: translateY(-5px);
+               margin-left: 2rem;
+               width: 3rem;
+               height: 3rem;
+           }
         }
 
         .ratingsContainer {

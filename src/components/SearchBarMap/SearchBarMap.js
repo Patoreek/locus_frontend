@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 
-import { PanToContext, LocationNameContext } from '../../context/AuthContext';
+import { PanToContext, LocationNameContext, SearchValueContext } from '../../context/AuthContext';
 import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
 
 import {
@@ -26,6 +26,7 @@ const SearchBarMap = (props) => {
     const panTo = useContext(PanToContext);
 
     const [locationName, setLocationName] = useContext(LocationNameContext); 
+    const [searchValue, setSearchValue] = useContext(SearchValueContext);
 
     const {ready, 
            value, 
@@ -48,7 +49,7 @@ const SearchBarMap = (props) => {
                     setValue(address, false);
                     console.log('[searchbarmap]');
                     setLocationName(address);
-
+                    setSearchValue(address);
                     clearSuggestions();
                     try {
                         const results = await getGeocode({address});
@@ -68,9 +69,10 @@ const SearchBarMap = (props) => {
             >
                 <span className={classes.combobox__title}>Location</span>
                 <ComboboxInput 
-                    value={value}
+                    value={searchValue}
                     onChange={(e) => {
                         setValue(e.target.value)
+                        setSearchValue(e.target.value);
                     }}
                     disabled={!ready}
                     placeholder="Where do you want to dive?"
@@ -78,9 +80,9 @@ const SearchBarMap = (props) => {
                   
                 />
                 <ComboboxPopover>
-                <ComboboxList/>
+                <ComboboxList className={classes.combobox__dropdown}/>
                     {status === "OK" && data.map(({id, description}) => (
-                        <ComboboxOption key={id} value={description} />
+                        <ComboboxOption key={id} value={description}  className={classes.suggestion}/>
                     ))}
                 <ComboboxList/>
                 </ComboboxPopover>

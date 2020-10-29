@@ -25,6 +25,8 @@ import { ReactComponent as DepthSVG } from '../../assets/icons/depth.svg';
 import { ReactComponent as XpSVG } from '../../assets/icons/experience.svg';
 import { ReactComponent as TemperatureSVG } from '../../assets/icons/temperature.svg';
 import { ReactComponent as VisibilitySVG } from '../../assets/icons/visibility.svg';
+import { ReactComponent as GoogleMapSVG } from '../../assets/icons/google-map-icon.svg';
+
 
 
 
@@ -246,8 +248,7 @@ const Details = (props) => {
                     <h3 className={classes.name}>{siteName}</h3>
                     <h3 className={classes.name}>{siteArea}, {siteCountry}</h3>
                     <a target="_blank" href={"http://www.google.com/search?q=" + siteName + "%2C+" + siteArea + "%2C+" + siteCountry}>{siteName}, {siteArea}, {siteCountry}</a> {/* Should be a link to the map / google maps of the area?? */}
-                    <br/>
-                    <a target="_blank" href={"https://maps.google.com/?q=" + siteLatitude + "," + siteLongitude}>Google Maps</a>
+                    <a target="_blank" href={"https://maps.google.com/?q=" + siteLatitude + "," + siteLongitude}><GoogleMapSVG className={classes.googleMapSVG}/></a>
                     <div className={classes.ratingsContainer}>
                       <div className={classes.ratingsContainer__rating}>
                       <StarRating site={selectedSite}/>

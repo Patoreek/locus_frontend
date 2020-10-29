@@ -483,12 +483,12 @@ const AddRequestForm = (props) => {
                                     value={maxVis}
                                     onChange={e => setMaxVis(e.target.value)} 
                                     />
+                                <span>Maximum Visibility</span>
                             </div>
                         </div>
                     </div>
                     
 
-                            <span>Maximum Visibility</span>
                     <div className={classes.form__section3}>
                         <div className={classes.experienceContainer}>
                             <input className={`${classes.input} ${classes.input__experience}`}
@@ -513,7 +513,7 @@ const AddRequestForm = (props) => {
                     </div>
 
                     <div className={classes.form__cancelBtnContainer}>
-                        <button className={classes.cancelBtn}>Cancel</button>
+                        <button className={classes.cancelBtn} onClick={() => setShowAddRequestModal(false)}>Cancel</button>
                     </div>
 
                     <div className={classes.form__addBtnContainer}>

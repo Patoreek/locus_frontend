@@ -4,7 +4,7 @@ import classes from './Searchbar.module.scss';
 
 import {useHistory} from 'react-router-dom';
 import { useMediaQuery } from '../../CustomHooks/useMediaQuery';
-import { SearchCoordsContext, LocationNameContext } from '../../context/AuthContext';
+import { SearchCoordsContext, LocationNameContext, SearchValueContext } from '../../context/AuthContext';
 
 
 
@@ -21,6 +21,7 @@ const Searchbar = () => {
 
     const [searchCoordinates, setSearchCoordinates] = useContext(SearchCoordsContext);
     const [locationName, setLocationName] = useContext(LocationNameContext);
+    const [searchValue, setSearchValue] = useContext(SearchValueContext);
 
 
     const [navbar, setNavbar] = useState('map');
@@ -46,10 +47,10 @@ const Searchbar = () => {
         setLocationName(value);
         setAddress(value);
         setSearchCoordinates(latLng);
+        setSearchValue(value);
         history.push("/map");
 
     }
-    const isRowBased = useMediaQuery('(max-width: 800px)');
     return (
         <PlacesAutocomplete value={address}
                                            onChange={setAddress}
@@ -58,36 +59,29 @@ const Searchbar = () => {
                                         
                         >
                         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                        <div className={`${classes.searchBar} ${navbar == "map" ? classes.searchBar__mainbar : null} `} >
-                            {/* <p>Latitude: {searchCoordinates.lat}</p>
-                            <p>Longitude: {searchCoordinates.lng}</p> */}
-                            <div className={`${classes.searchBar__searchInputContainer} ${navbar == "map" ? classes.searchBar__searchInputContainerMain : null}`}>
+                        <div className={`${classes.searchBar} ${navbar == "main" ? classes.searchBar__mainbar : null} `} >
+                
+                            <div className={`${classes.searchBar__searchInputContainer} ${navbar == "main" ? classes.searchBar__searchInputContainerMain : null}`}>
                             <h3 className={classes.locationText}>Location</h3>
-                            <input {...getInputProps({placeholder: "Where do you want to dive?"})} className={`${classes.searchInput} ${navbar == "map" ? classes.searchInput__main : null}`}/>
+                            <input {...getInputProps({placeholder: "Where do you want to dive?"})} className={`${classes.searchInput} ${navbar == "main" ? classes.searchInput__main : null}`} value={searchValue} onClick={() => setSearchValue(null)}/>
                             <div className={classes.dropdownContainer}>
                                 {loading ? <div> ...loading </div> : null}
                                 {suggestions.map(suggestion => {
 
-                                    if (isRowBased) {
-                                        style = {
-                                            backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
-                                            color: "black",
-                                            width: "275px",
-                                            margin: "0 auto",
-                                            padding: "1vw",
-                                            fontSize: "10px"
-                                        }
-                                    } else {
-                                        style = {
-                                            backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
-                                            color: "black",
-                                            width: "500px",
-                                            margin: "0 auto",
-                                            padding: "1vw"
-                                        }
-                                    }
+                                  
+                                        // style = {
+                                        //     backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
+                                        //     color: "black",
+                                        //     background:
+                                        //     width: "40rem",
+                                        //     margin: "0 auto",
+                                        //     padding: "1rem",
+                                        //     fontSize: "1.4rem"
+                                        // }
+                                  
 
-                                    return <div {...getSuggestionItemProps(suggestion, {style})}>
+                                    // return <div {...getSuggestionItemProps(suggestion, {style})}>
+                                    return <div {...getSuggestionItemProps(suggestion)} className={classes.suggestions}>
                                                 {suggestion.description}
                                             </div>
                                 })}

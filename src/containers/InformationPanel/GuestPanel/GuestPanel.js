@@ -53,7 +53,7 @@ const GuestPanel = () => {
                 </div>
 
                 <div className={classes.site__diveTypeContainer}>
-                       <span> Shore Dive · Great for Scuba </span> 
+                       <span> {site.siteType} Dive · {site.suitable}</span> 
                 </div>
 
 

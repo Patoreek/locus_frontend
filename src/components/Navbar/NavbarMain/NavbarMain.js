@@ -5,7 +5,7 @@ import classes from './NavbarMain.module.scss';
 
 import { ReactComponent as LogoSVG } from '../../../assets/logo/LocusLogo_black.svg';
 import { ReactComponent as ArrowSVG } from '../../../assets/icons/arrow-down.svg';
-import { ReactComponent as MapSVG } from '../../../assets/icons/map.svg';
+import { ReactComponent as EarthSVG } from '../../../assets/icons/earth.svg';
 
 
 
@@ -199,19 +199,24 @@ const NavbarMain = () => {
                         <div className={classes.rightNav}>
 
                             {/* IF LOGGED IN SHOW THIS */}
-                            <div classes={classes.rightNav__map}>
-                                <a href="/map">
-                                    <MapSVG className={classes.mapSVG}/>
-                                </a>
-                            </div>
+                            <div className={classes.mapLink}>
+                                <a href="/map"><EarthSVG className={classes.earthSVG}/></a>
+                            </div>  
 
                             {isAuth && ( 
-                            <div className={classes.dropdownContainer}>
-                                <div className={classes.usernameContainer} onClick={() => setDropdown(!dropdown)}>
+                            <div className={classes.dropdownContainer} onClick={() => setDropdown(!dropdown)}>
+                                <div className={classes.usernameContainer}>
                                     <span className={classes.username}>
                                         {firstName ? firstName : account.username}
                                     </span>
                                 </div>
+                                <div className={classes.avatar}>
+                                            {!userPicture ? <img className={classes.avatar__image} src={avatarPlaceholder} alt="placeholder of users face."/> : null}
+                                            {userPicture ? <img className={classes.avatar__image} src={'http://localhost:8080/' + userPicture} alt="placeholder of users face."/> : null}
+                                </div>
+                            </div> 
+                            )}
+                            {isAuth && (
                                 <div className={`${classes.dropdown} ${!dropdown ? classes.close : null}`}>
                                     <div className={`${classes.dropdown__content} ${!dropdown ? classes.fade : null}`}>
                                         <div className={classes.dropdown__email}>
@@ -235,28 +240,14 @@ const NavbarMain = () => {
                                             <a onClick={logoutHandler}>Logout</a>
                                         </div>
                                     </div>
-                                    
-                                </div>
-                            </div> 
+                                
+                            </div>
                             )}
-                           
-                            {isAuth && (
-                                 <div className={classes.avatar} onClick={() => setDropdown(!dropdown)}>
-                                    {!userPicture ? <img className={classes.avatar__image} src={avatarPlaceholder} alt="placeholder of users face."/> : null}
-                                    {userPicture ? <img className={classes.avatar__image} src={'http://localhost:8080/' + userPicture} alt="placeholder of users face."/> : null}
-                                 </div>
-                            )}
-                              {isAuth && ( 
-                                <div className={classes.arrowContainer}>
-                                 <ArrowSVG className={`${classes.arrow} ${dropdown ? classes.rotate : null}`}/>
-                                </div>
-                             )}
-
-
+                        
                             {/* IF NOT LOGGED IN SHOW THIS */}
 
-                            {!isAuth ? <div className={`${classes.btn} ${classes.btn__login}`} onClick={() => authDrawerHandler('login')}>Log in</div> : null }
-                            {!isAuth ? <div className={`${classes.btn} ${classes.btn__signup}`} onClick={() => authDrawerHandler('signup')}>Sign Up</div> : null } 
+                            {!isAuth ? <div className={`${classes.btn} ${classes.btn__login}`} onClick={() => authDrawerHandler('login')}><span>Log in</span></div> : null }
+                            {!isAuth ? <div className={`${classes.btn} ${classes.btn__signup}`} onClick={() => authDrawerHandler('signup')}><span>Sign Up</span></div> : null } 
                             
                         </div>
                         
