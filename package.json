@@ -12,6 +12,7 @@
     "axios": "^0.19.2",
     "baseui": "^9.72.0",
     "bootstrap": "^4.5.0",
+    "date-fns": "^2.16.1",
     "filepond": "^4.13.5",
     "node-sass": "^4.14.1",
     "nodemailer": "^6.4.14",

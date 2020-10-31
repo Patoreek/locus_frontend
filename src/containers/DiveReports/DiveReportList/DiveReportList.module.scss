@@ -1,0 +1,114 @@
+@import '../../../sass/abstracts/variables';
+
+.diveReportList {
+    padding: 2rem;
+
+    &__titleContainer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+        padding-bottom: 1rem;
+        border-bottom: 2px solid $color-lines;
+        //background:orange;
+
+        .title {
+            font-size: 1.8rem;
+        }
+
+        .addBtn {
+            fill: $color-text-green;
+            width: 2.5rem;
+            height: 2.5rem;
+            transition: .3s ease;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    &__reportContainer {
+        display: grid;
+        grid-template-rows: repeat(2, max-content);
+        grid-template-columns: 1fr repeat(2, max-content);
+        padding: 2rem 0rem;
+
+        &:not(:last-child) {
+            border-bottom: 1px solid $color-lines;
+        }
+
+
+
+
+        .locationContainer {
+            grid-row: 1 / 2;
+            grid-column: 1 / 2;
+
+            .location {
+
+            }
+
+        }
+        .dateContainer {
+            grid-row: 2 / 3;
+            grid-column: 1 / 2;
+
+            .date {
+                
+            }
+        }
+
+        .editSVG {
+            grid-row: 1 / -1;
+            grid-column: 2 / 3;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0rem 0rem 0rem 1rem;
+            position: relative;
+            z-index: 25;
+
+            .icon {
+                width: 2.5rem;
+                height: 2.5rem;
+                margin-right: 2rem;
+
+                transition: .3s ease;
+
+                &:hover {
+                    transform: scale(1.05);
+                }
+
+                g path {
+                    fill: $color-text-green;
+                }
+            }
+        }
+
+        .deleteSVG {
+            grid-row: 1 / -1;
+            grid-column: 3 / 4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0rem 0rem 0rem 1rem;
+
+            .icon {
+                fill: $color-text-red;
+                width: 2.5rem;
+                height: 2.5rem;
+
+                transition: .3s ease;
+
+                &:hover {
+                    transform: scale(1.05);
+                }
+            }
+        }
+    }
+
+
+
+}

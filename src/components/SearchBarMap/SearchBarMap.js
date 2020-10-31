@@ -47,7 +47,7 @@ const SearchBarMap = (props) => {
             <Combobox
                 onSelect={async (address) => {
                     setValue(address, false);
-                    console.log('[searchbarmap]');
+                   // console.log('[searchbarmap]');
                     setLocationName(address);
                     setSearchValue(address);
                     clearSuggestions();

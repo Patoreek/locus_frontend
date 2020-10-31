@@ -1,0 +1,66 @@
+@import '../../../sass/abstracts/variables';
+
+.deleteContainer {
+   // background: orange;
+    padding: 0rem 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__areYouSure {
+        font-size: 1.8rem;
+        font-weight: 500;
+        padding: 0.5rem 0rem;
+    }
+
+    &__location {
+        font-size: 2.5rem;
+        font-weight: 700;
+        padding: 0.5rem 0rem;
+    }
+
+    &__on {
+        font-size: 1.8rem;
+        font-weight: 500;
+        padding: 0.5rem 0rem;
+    }
+
+
+    &__date {
+        font-size: 2.5rem;
+        font-weight: 700;
+        padding: 0.5rem 0rem;
+    }
+
+    &__buttonsContainer {
+        display: flex;
+        width: 40%;
+        justify-content: space-between;
+        padding: 2rem 0rem;
+
+        .cancel, .delete {
+            padding: 1rem 2rem;
+            font-size: 1.6rem;
+            border: none;
+            border-radius: 5px;
+            border: 1px solid $color-lines;
+            transition: .3s ease;
+            box-shadow: 0px 0px 0px rgba($color-black, .5);
+            outline: none;
+
+            &:hover {
+                transform: translate(0px, -3px);
+                box-shadow: 0px 3px 7px rgba($color-black, .3);
+            }
+        }
+
+        .cancel {
+            background: $color-input-bg;
+        }
+
+        .delete {
+            background: $color-btn-delete;
+            color: $color-white;
+        }
+    }
+}

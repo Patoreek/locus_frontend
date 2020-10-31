@@ -3,7 +3,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { SiteContext,
          DetailsContext } from '../../context/DiveSiteContext';
 
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext, AuthDrawerContext} from '../../context/AuthContext';
 
 
 import Spinner from 'react-bootstrap/Spinner';
@@ -39,6 +39,8 @@ const Details = (props) => {
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
     const [moreDetails, setMoreDetails] = useContext(DetailsContext);
     const [isAuth, setIsAuth] = useContext(AuthContext);
+    const [authDrawer, setAuthDrawer] = useContext(AuthDrawerContext);
+
 
 
 
@@ -177,7 +179,7 @@ const Details = (props) => {
                 </div>
                 
 
-                //TODO: IMAGE GRID CONTAINER //////////////////
+                {/* //TODO: IMAGE GRID CONTAINER ////////////////// */}
                 <div className={classes.divesite__imageGridContainer}>
                   <div className={`${classes.image} ${classes.image__1}`}>
                     <img className={classes.image} src={'http://localhost:8080/' + mainImage}/>
@@ -202,7 +204,7 @@ const Details = (props) => {
 
                 </div>
 
-                //TODO: END IMAGE GRID CONTAINER //////////////////
+                {/* //TODO: END IMAGE GRID CONTAINER ////////////////// */}
 
                 {/* USE FLEXBOX COLUMN */}
                 <div className={classes.divesite__nameContainer}>
@@ -278,8 +280,18 @@ const Details = (props) => {
                 {/* //! DIVE REPORTS SECTION WILL GO HERE  */}
                 <div className={classes.divesite__reportsContainer}>
                   <h4>Dive Reports (999+)</h4>
-                  <div className={classes.underConstruction}>
-                    <span> (UNDER CONSTRUCTION) </span> 
+                  <div className={classes.noReports}>
+                      <h3>There are currently no dive reports for this location.</h3>
+                      {isAuth ? 
+                        <a href="#">Add a Dive Report</a> : 
+                        <span onClick={() =>  
+                              setAuthDrawer({
+                                  open: true,
+                                  login: true,
+                                  signup: false
+                              })}>Log in
+                        </span>
+                      }
                   </div>
                 </div>
              

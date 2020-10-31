@@ -56,7 +56,7 @@ const ProfileView = () => {
                                 credentials: 'include',
                             });
                             const profile = await response.json();
-                            console.log(profile);
+                            //console.log(profile);
                             setFirstName(profile.firstName);
                             setLastName(profile.lastName);
                             setProfilePic('http://localhost:8080/' + profile.profilePic);

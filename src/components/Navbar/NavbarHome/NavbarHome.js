@@ -162,7 +162,7 @@ const NavbarHome = () => {
                                                 <span className={classes.email}>{account.email}</span>
                                             </div>
                                             <div className={classes.dropdown__diveReports}>
-                                                <a href="#">Dive Reports</a>
+                                                <a href="/profile/diveReports">Dive Reports</a>
                                             </div>
                                             <div className={classes.dropdown__mySites}>
                                             { accountRole == "admin" ?<a href="/mySites">My Sites</a> : null }

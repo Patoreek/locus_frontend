@@ -166,7 +166,7 @@ const EditProfileView = () => {
         //! STATE HAS TO CHANGE BEFORE IT CHECKS THIS SO IT WORKS ON ONE CLICK;
         //? SOLUTION IMPLEMENTED ??? DOUBLE CHECK THIS
         //* if (!isError) {
-        if (isError == false || (isError != null && !isError )) {
+        //if (isError == false || (isError != null && !isError )) {
             return fetch('http://localhost:8080/user/editProfile',{
             method: 'POST',
             headers: {
@@ -203,7 +203,7 @@ const EditProfileView = () => {
                 setSuccess('false');
 
             });
-        }
+        //}
     }
 
     return (

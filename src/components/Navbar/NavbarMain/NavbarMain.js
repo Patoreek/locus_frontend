@@ -51,10 +51,10 @@ const NavbarMain = () => {
     useEffect(()=> {
         const url = window.location.pathname;
         if (url.includes("map") || url.includes("mySites")){
-            console.log('[SearchbarMap] Page is on a MAP!');
+           // console.log('[SearchbarMap] Page is on a MAP!');
             setNavbar('map');
         } else {
-            console.log('[SearchbarMap] Page is NOT on a MAP!');
+           // console.log('[SearchbarMap] Page is NOT on a MAP!');
             setNavbar('main');
         }
 
@@ -68,10 +68,10 @@ const NavbarMain = () => {
                 return res.json();
             })
             .then(resData => {
-                console.log('resData!!!!!!');
-                console.log(resData);
-                console.log('ACCOUNT ROLE BELOW!!');
-                console.log(account.role);
+              //  console.log('resData!!!!!!');
+              //  console.log(resData);
+             //   console.log('ACCOUNT ROLE BELOW!!');
+              //  console.log(account.role);
 
                 if (resData.firstName) {
                     setFirstName(resData.firstName);
@@ -104,14 +104,14 @@ const NavbarMain = () => {
 
     const authDrawerHandler = (option) => {
         if (option === "login") {
-            console.log('login screen will appear.');
+           // console.log('login screen will appear.');
             setAuthDrawer({
                 open: true,
                 login: true,
                 signup: false
             });
         } else if (option === "signup") {
-            console.log('signup screen will appear.');
+           // console.log('signup screen will appear.');
             setAuthDrawer({
                 open: true,
                 login: false,
@@ -153,8 +153,8 @@ const NavbarMain = () => {
 
     // console.log('[NavBar accountID]' + account.id);
     // console.log('[NavBar accountName]' + account.username);
-    console.log('[ NavBar ] Account Info Below');
-    console.log(account);
+   // console.log('[ NavBar ] Account Info Below');
+    //console.log(account);
 
 
     return (
@@ -208,7 +208,7 @@ const NavbarMain = () => {
                                             <span className={classes.email}>{account.email}</span>
                                         </div>
                                         <div className={classes.dropdown__diveReports}>
-                                            <a href="#">Dive Reports</a>
+                                            <a href="/profile/diveReports">Dive Reports</a>
                                         </div>
                                         <div className={classes.dropdown__mySites}>
                                         { accountRole == "admin" ?<a href="/mySites">My Sites</a> : null }

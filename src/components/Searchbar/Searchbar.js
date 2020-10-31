@@ -33,10 +33,10 @@ const Searchbar = () => {
     useEffect(()=> {
         const url = window.location.pathname;
         if (url.includes("map") || url.includes("mySites")){
-            console.log('[SearchbarMap] Page is on a MAP!');
+          //  console.log('[SearchbarMap] Page is on a MAP!');
             setNavbar('map');
         } else {
-            console.log('[SearchbarMap] Page is NOT on a MAP!');
+         //   console.log('[SearchbarMap] Page is NOT on a MAP!');
             setNavbar('main');
         }
     },[]);

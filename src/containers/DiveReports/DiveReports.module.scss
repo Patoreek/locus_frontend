@@ -1,0 +1,23 @@
+@import '../../sass/abstracts/variables';
+
+.diveReports {
+    //background: pink;
+    width: 100%;
+    height: calc(100vh - 6rem); //* Make this the height of all containers
+    display: flex;
+
+    &__left {
+        background: $color-white;
+        flex-basis: 35vw;
+        border-right: 1px solid $color-lines;
+    }
+
+    &__right {
+        background: $color-white-pure;
+        flex-basis: 65vw;
+        height: 100%;
+        overflow: scroll;
+        padding: 5rem 0rem;
+
+    }
+}
