@@ -288,7 +288,7 @@ const Details = (props) => {
                 </div>
 
                 <div className={classes.divesite__rightContainer}>
-                  <a href="#" className={classes.photoLink}>See all community photos</a>
+                  <a href={"/communityphotos/" + siteId} className={classes.photoLink}>See all community photos</a>
                   <div className={classes.weatherContainer}>
                     Weather Container (PLACE THIS AND IMPLEMENT LATER)
                   </div>

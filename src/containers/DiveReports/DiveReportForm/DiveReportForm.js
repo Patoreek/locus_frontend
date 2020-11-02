@@ -6,6 +6,7 @@ import { SiteContext } from '../../../context/DiveSiteContext';
 
 import { ReactComponent as BackSVG} from '../../../assets/icons/arrow-left.svg';
 
+
 const DiveReportForm = (props) => {
 
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
@@ -242,6 +243,7 @@ const DiveReportForm = (props) => {
                                     onChange={e => setReport(e.target.value)} />
                         <span>Report</span>
                     </div>
+
 
 
                     <div className={classes.form__cancelBtnContainer}>

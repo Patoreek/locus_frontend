@@ -273,7 +273,7 @@ const EditProfileView = () => {
 
 
                     <div className={classes.form__experienceContainer}>
-                        <select  value={experience} onChange={e => setExperience(e.target.value)}  className={classes.input}>
+                          <select  value={experience} onChange={e => setExperience(e.target.value)}  className={classes.input}>
                                 <option value="Snorkeller">Snorkeller</option>
                                 <option value="Free Diver">Free Diver</option>
                                 <option value="Open Water Diver">Open Water Diver</option>

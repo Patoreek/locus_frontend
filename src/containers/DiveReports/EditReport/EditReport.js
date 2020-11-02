@@ -6,6 +6,9 @@ import { SiteContext } from '../../../context/DiveSiteContext';
 
 import { ReactComponent as BackSVG} from '../../../assets/icons/arrow-left.svg';
 
+import { FilePond } from 'react-filepond';
+import "filepond/dist/filepond.min.css";
+
 const EditReport = (props) => {
 
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
@@ -249,6 +252,22 @@ const EditReport = (props) => {
                                     //placeholder="report"
                                     onChange={e => setReport(e.target.value)} />
                         <span>Report</span>
+                    </div>
+
+                    <div className={classes.form__uploadContainer}>
+                    <FilePond 
+                            className={`${classes.input} ${classes.input__upload}`}
+                            allowMultiple={false}
+                            name={"profilePicture"}
+                            server={
+                                    {
+                                        url: "http://localhost:8080/user/diveReports/uploadImagesForReport/" + reportId,
+                                        process:{
+                                            withCredentials: true
+                                        }
+                                    }
+                                }
+                            />
                     </div>
 
 

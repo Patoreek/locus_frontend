@@ -57,6 +57,19 @@ const DisplayReport = (props) => {
                                       <p>{report.report}</p>
                                   </div>
                             </div>
+                            {report.images.length > 0 && (
+                                <div className={classes.report__imagesContainer}>
+                                    <div className={classes.container}>
+                                        <div className={classes.imageSlideshow}>
+                                            {report.images.map(image => (
+                                            <div className={classes.imgContainer}>
+                                                <img src={'http://localhost:8080/' + image}/>
+                                            </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                                )}
                         </div>
     );
 };

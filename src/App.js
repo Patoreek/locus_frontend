@@ -20,6 +20,8 @@ import EditProfileView from './containers/EditProfileView/EditProfileView';
 import AddRequest from './containers/AddRequest/AddRequest';
 import ChangePassword from './containers/ChangePassword/ChangePassword';
 import DiveReports from './containers/DiveReports/DiveReports';
+import CommunityPhotos from './containers/CommunityPhotos/CommunityPhotos';
+
 
 
 import HomeView from './containers/Home/Home';
@@ -118,6 +120,7 @@ function App() {
         <DiveSiteProvider>
             <Route path="/map" exact component={GuestView}/>
             <Route path="/divesite/:id" component={DetailsView}/>
+            <Route path="/communityphotos/:siteId" component={CommunityPhotos}/>
             <Route path="/viewprofile/:userId" component={ViewProfileView}/>
         </DiveSiteProvider>
 
