@@ -1,0 +1,146 @@
+@import '../../sass/abstracts/variables';
+
+.report {
+    background: $color-white-pure;
+    //background: pink;
+    padding: 1.5rem;
+    margin: 2rem 0rem;
+    border-radius: 5px;
+    box-shadow: 0px 5px 8px rgba($color-black, .25);
+
+    display: grid;
+    grid-template-rows: repeat(3, max-content);
+    grid-template-columns: 1fr;
+
+    &__topContainer {
+        grid-row: 1 / 2;
+        grid-column: 1 / -1;
+
+        display: flex;
+        align-items: flex-end;
+
+        padding: 1rem;
+        border-bottom: 1px solid $color-lines;
+
+
+        .profilePic {
+            border-radius: 50%;
+            overflow: hidden;
+            
+            img {
+                width: 4.5rem;
+                height: 4.5rem;
+
+            }
+        }
+
+        .name {
+            margin-left: 2rem;
+
+            span {
+                font-size: 2rem;
+                font-weight: 500;
+            }
+        }
+    }
+
+    &__infoContainer {
+        grid-row: 2 / 3;
+        grid-column: 1 / -1;
+        padding: 1rem;
+
+        display: grid;
+        grid-template-rows: repeat(2, max-content);
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 2rem;
+        border-bottom: 1px solid $color-lines;
+
+
+        .date {
+            display: flex;
+            align-items: center;
+            .icon {
+                
+                width: 2.5rem;
+                height: 2.5rem;
+                fill: $color-text-grey;
+            }
+
+            span {
+                font-size: 1.4rem;
+                color: $color-text-darkgrey;
+                margin-left: 1rem;}
+
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            .icon {
+                
+                width: 2.5rem;
+                height: 2.5rem;
+                fill: $color-text-grey;
+            }
+
+            a {
+                font-size: 1.4rem;
+                color: $color-text-darkgrey;
+                margin-left: 1rem;
+
+            }
+        }
+
+        .visibility {
+            display: flex;
+            align-items: center;
+            .icon {
+                
+                width: 2.5rem;
+                height: 2.5rem;
+
+                g path {
+                    fill: $color-text-grey;
+                }
+            }
+
+            span {
+                font-size: 1.4rem;
+                color: $color-text-darkgrey;
+                margin-left: 1rem;
+
+            }
+        }
+
+        .duration {
+            display: flex;
+            align-items: center;
+            .icon {
+                
+                width: 2.5rem;
+                height: 2.5rem;
+                fill: $color-text-grey;
+            }
+
+            span {
+                font-size: 1.4rem;
+                color: $color-text-darkgrey;
+                margin-left: 1rem;}
+
+        }
+    }
+
+    &__reportContainer {
+        grid-row: 3 / 4;
+        grid-column: 1 / -1;
+
+        padding: 1rem;
+
+
+        .reportContent {
+            p {
+                font-size: 1.6rem;
+            }
+        }
+    }
+}

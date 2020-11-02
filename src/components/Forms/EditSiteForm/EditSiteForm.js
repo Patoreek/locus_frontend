@@ -162,19 +162,23 @@ const EditSiteForm = (props) => {
               <div className={classes.form__section1}>
                   <div className={classes.accessContainer}>
                       <select value={access} onChange={e => setAccess(e.target.value)} className={`${classes.input} ${classes.accessContainer__input}`}>
-                          <option value="Rocks">Rocks</option>
-                          <option value="Boat">Boat</option>
-                          <option value="Beach">Beach</option>
+                            <option value="beach">Beach</option>
+                            <option value="boat">Boat</option>
+                            <option value="dock">Dock</option>
+                            <option value="rocks">Rocks</option>
                       </select>
                       <span>Access</span>
                   </div>
                   
                   <div className={classes.siteTypeContainer}>
                       <select value={siteType} onChange={e => setSiteType(e.target.value)} className={`${classes.input} ${classes.siteTypeContainer__input}`}>
-                          <option value="Reef">Reef</option>
-                          <option value="Wreck">Wreck</option>
-                          <option value="Cave">Cave</option>
-                          <option value="Deep">Deep</option>
+                            <option value="reef">Reef</option>
+                            <option value="wreck">Wreck</option>
+                            <option value="cave">Cave</option>
+                            <option value="deep">Deep</option>
+                            <option value="drift">Drift</option>
+                            <option value="wall">Wall</option>
+                            <option value="ice">Ice</option>
                       </select>
                       <span>Site Type</span>
                
@@ -246,11 +250,22 @@ const EditSiteForm = (props) => {
 
               <div className={classes.form__section3}>
                   <div className={classes.experienceContainer}>
-                        <input className={`${classes.input} ${classes.input__experience}`}
-                          // placeholder="Advanced Open Water Diver"
-                          value={experience}
-                          onChange={e => setExperience(e.target.value)} 
-                          />
+                  <select  value={experience} onChange={e => setExperience(e.target.value)}  className={classes.input}>
+                                <option value="Snorkeller">Snorkeller</option>
+                                <option value="Free Diver">Free Diver</option>
+                                <option value="Open Water Diver">Open Water Diver</option>
+                                <option value="Advanced Open Water Diver">Advanced Open Water Diver</option>
+                                <option value="Rescue Diver">Rescue Diver</option>
+                                <option value="Master Scuba Diver">Master Scuba Diver</option>
+                                <option value="Enriched Air Diver">Enriched Air Diver</option>
+                                <option value="Equipment Specialist Diver">Equipment Specialist Diver</option>
+                                <option value="Deep Diver">Deep Diver</option>
+                                <option value="Wreck Diver">Wreck Diver</option>
+                                <option value="Sidemount Diver">Sidemount Diver</option>
+                                <option value="PADI Instructor">PADI Instructor</option>
+                                <option value="Divemaster">Divemaster</option>
+
+                            </select>
                         <span>Diver Experience</span>
                   </div>
                   
@@ -259,9 +274,14 @@ const EditSiteForm = (props) => {
               <div className={classes.form__section4}>
                   <div className={classes.suitableContainer}>
                       <select value={suitable} onChange={e => setSuitable(e.target.value)}  className={classes.input}>
-                          <option value="greatSnorkel">Great for snorkelling</option>
-                          <option value="greatScuba">Great for scuba</option>
-                          <option value="greatFreedive">Great for free diving</option>
+                      <option value="Great location for kids">Great location for kids</option>
+                                <option value="Great for Snorkelling">Great for Snorkelling</option>
+                                <option value="Great for Scuba">Great for Scuba</option>
+                                <option value="Experienced Divers only">Experienced Divers only</option>
+                                <option value="Great for Free diving">Great for Free Diving</option>
+                                <option value="Calm Waters">Calm waters</option>
+                                <option value="Restaurants closeby">Restaurants closeby</option>
+                                <option value="Easy to get to">Easy to get to</option>
                       </select>
                       <span>Suitable for</span> {/* Dive Type */}
                   </div>

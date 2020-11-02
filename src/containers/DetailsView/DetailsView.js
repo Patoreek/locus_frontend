@@ -6,10 +6,7 @@ import { SiteContext,
 import { AuthContext, AuthDrawerContext} from '../../context/AuthContext';
 
 
-import Spinner from 'react-bootstrap/Spinner';
-
-
-
+import DisplayReport from '../../components/DisplayReport/DisplayReport';
 import StarRating from '../../components/StarRating/StarRating';
 import Comments from '../../components/Comments/Comments';
 import FavouriteButton from '../../components/Buttons/FavouriteButton/FavouriteButton';
@@ -24,8 +21,8 @@ import { ReactComponent as ReefSVG } from '../../assets/icons/reef.svg';
 import { ReactComponent as DepthSVG } from '../../assets/icons/depth.svg';
 import { ReactComponent as XpSVG } from '../../assets/icons/experience.svg';
 import { ReactComponent as TemperatureSVG } from '../../assets/icons/temperature.svg';
-import { ReactComponent as VisibilitySVG } from '../../assets/icons/visibility.svg';
 import { ReactComponent as GoogleMapSVG } from '../../assets/icons/google-map-icon.svg';
+import { ReactComponent as VisibilitySVG } from '../../assets/icons/visibility.svg';
 
 
 
@@ -34,7 +31,7 @@ import classes from './DetailsView.module.scss';
 
 const Details = (props) => {
     const siteId = props.match.params.id;
-    console.log(siteId);
+   // console.log(siteId);
     
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
     const [moreDetails, setMoreDetails] = useContext(DetailsContext);
@@ -66,6 +63,7 @@ const Details = (props) => {
     //const [siteComments, setSiteComments] = useState("");
     //const [siteReview, setSiteReview] = useState("");
     //const [tempImage, setTempImage] = useState();
+    const [reports, setReports] = useState([]);
 
     const [mainImage, setMainImage] = useState();
 
@@ -102,7 +100,7 @@ const Details = (props) => {
 
 
     
-    console.log('SITE ID -->' + siteId);
+   // console.log('SITE ID -->' + siteId);
     
 
     useEffect(() => {
@@ -155,6 +153,26 @@ const Details = (props) => {
           }
         }
 
+        async function getReportsForSite() {
+
+          try {
+            const response = await fetch('http://localhost:8080/user/diveReports/getReportsForSite/' + siteId,{
+              method: 'GET',
+              credentials: 'include',
+            });
+            const results = await response.json();
+            console.log(results);
+            //const reports = results.reportsData;
+            setReports(results.reportsData);
+    
+          } catch (error) {
+           console.log(error);
+           //setIsLoading(true);
+          }
+        }
+
+        getReportsForSite();
+
         getSite();
   
     },[]);
@@ -166,7 +184,7 @@ const Details = (props) => {
     // // console.log('WEATHERCONTENT');
     // // console.log(weatherContent);
     // //console.log(weatherContent);
-    console.log(siteImages);
+    //console.log(siteImages);
 
     return (
       <div>
@@ -278,12 +296,24 @@ const Details = (props) => {
 
           
                 {/* //! DIVE REPORTS SECTION WILL GO HERE  */}
-                <div className={classes.divesite__reportsContainer}>
-                  <h4>Dive Reports (999+)</h4>
+                {reports != [] && (
+                    <div className={classes.divesite__reportsContainer}>
+                      <h4>Dive Reports ({reports.length})</h4>
+                      {reports.map(report => (
+                        <DisplayReport report={report}/>
+                      ))}
+
+                    </div>
+                )}
+
+                
+                {reports.length == 0 && (
+                  <div className={classes.divesite__reportsContainer}>
+                  <h4>Dive Reports (0)</h4>
                   <div className={classes.noReports}>
                       <h3>There are currently no dive reports for this location.</h3>
                       {isAuth ? 
-                        <a href="#">Add a Dive Report</a> : 
+                        <a href="/profile/diveReports">Add a Dive Report</a> : 
                         <span onClick={() =>  
                               setAuthDrawer({
                                   open: true,
@@ -293,7 +323,8 @@ const Details = (props) => {
                         </span>
                       }
                   </div>
-                </div>
+                  </div>
+                )}
              
 
 

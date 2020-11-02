@@ -273,10 +273,22 @@ const EditProfileView = () => {
 
 
                     <div className={classes.form__experienceContainer}>
-                        <input className={`${classes.input} ${classes.input__experience}`}
-                                //placeholder="Experience"
-                                value={experience}
-                                onChange={e => setExperience(e.target.value)} />
+                        <select  value={experience} onChange={e => setExperience(e.target.value)}  className={classes.input}>
+                                <option value="Snorkeller">Snorkeller</option>
+                                <option value="Free Diver">Free Diver</option>
+                                <option value="Open Water Diver">Open Water Diver</option>
+                                <option value="Advanced Open Water Diver">Advanced Open Water Diver</option>
+                                <option value="Rescue Diver">Rescue Diver</option>
+                                <option value="Master Scuba Diver">Master Scuba Diver</option>
+                                <option value="Enriched Air Diver">Enriched Air Diver</option>
+                                <option value="Equipment Specialist Diver">Equipment Specialist Diver</option>
+                                <option value="Deep Diver">Deep Diver</option>
+                                <option value="Wreck Diver">Wreck Diver</option>
+                                <option value="Sidemount Diver">Sidemount Diver</option>
+                                <option value="PADI Instructor">PADI Instructor</option>
+                                <option value="Divemaster">Divemaster</option>
+
+                            </select>
                         <span>Experience</span>
                     </div>
                 

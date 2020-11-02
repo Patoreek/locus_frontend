@@ -1,6 +1,6 @@
 import React, {useEffect, useContext, useState} from 'react';
 import { useHistory } from 'react-router-dom';
-import { AuthContext, LoadingContext } from '../../context/AuthContext';
+import { AuthContext, LoadingContext, AuthDrawerContext, AccountContext } from '../../context/AuthContext';
 import { SiteContext, DetailsContext } from '../../context/DiveSiteContext';
 
 import { ReactComponent as PinSVG } from '../../assets/icons/location_grey.svg';
@@ -12,6 +12,7 @@ import Spinner from 'react-bootstrap/Spinner';
 
 import StarRating from '../../components/StarRating/StarRating';
 import FavouriteButton from '../../components/Buttons/FavouriteButton/FavouriteButton';
+import DisplayReport from '../../components/DisplayReport/DisplayReport';
 
 import classes from './ProfileView.module.scss';
 
@@ -19,11 +20,13 @@ const ProfileView = () => {
 
     const [isAuth, setIsAuth] = useContext(AuthContext);
     const [ selectedSite, setSelectedSite ] = useContext(SiteContext);
+    const [ authDrawer, setAuthDrawer ] = useContext(AuthDrawerContext);
+    const [account, setAccount] = useContext(AccountContext);
+
     //const [moreDetails, setMoreDetails] = useContext(DetailsContext);
 
 
     const [isLoading, setIsLoading] = useState(true);
-
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [bio, setBio] = useState("");
@@ -33,6 +36,8 @@ const ProfileView = () => {
     const [profilePic, setProfilePic] = useState("");
 
     const [favourites, setFavourites] = useState([]);
+
+    const [reports, setReports] = useState([]);
 
     let history = useHistory();
 
@@ -49,14 +54,14 @@ const ProfileView = () => {
     
         useEffect(() => {
             async function getProfile() {
-    
+                    console.log('getting profile...');
                         try {
                             const response = await fetch('http://localhost:8080/user/getProfile',{
                                 method: 'GET',
                                 credentials: 'include',
                             });
                             const profile = await response.json();
-                            //console.log(profile);
+                            console.log(profile);
                             setFirstName(profile.firstName);
                             setLastName(profile.lastName);
                             setProfilePic('http://localhost:8080/' + profile.profilePic);
@@ -65,13 +70,33 @@ const ProfileView = () => {
                             setCountry(profile.country);
                             setExperience(profile.experience);
                             setFavourites(profile.favouritesData);
-
                             setIsLoading(false);
                         } catch (error) {
                         console.log(error);
                         setIsLoading(null);
                         }
             }
+
+            async function getReports() {
+    
+                try {
+                    const response = await fetch('http://localhost:8080/user/diveReports/getReportsForUser/' + account.id,{
+                        method: 'GET',
+                        credentials: 'include',
+                    });
+                    const reports = await response.json();
+                    console.log('GOT REPORTS...');
+                    console.log(reports);
+                    setReports(reports.reportsData);
+                 
+                } catch (error) {
+                console.log(error);
+                setIsLoading(null);
+                }
+            }
+            
+            
+            getReports();
             getProfile();
         }, []);
 
@@ -115,12 +140,34 @@ const ProfileView = () => {
                         
                     </div>
 
-                    <div className={classes.reportsContainer}>
-                        <h3>Dive Reports (999+)</h3>
-                        <div className={classes.report}>
-                            <h3> Under Construction</h3>
-                        </div>
-                    </div>
+                    
+                        {reports != [] && (
+                            <div className={classes.reportsContainer}>
+                                <h4>Dive Reports ({reports.length})</h4>
+                                {reports.map(report => (
+                                    <DisplayReport report={report}/>
+                                ))}
+                            </div>
+                        )}    
+                         {reports.length == 0 && (
+                            <div className={classes.reportsContainer}>
+                                <h4>Dive Reports (0)</h4>
+                                    <div className={classes.noReports}>
+                                        <h3>There are currently no dive reports for this location.</h3>
+                                        {isAuth ? 
+                                            <a href="#">Add a Dive Report</a> : 
+                                            <span onClick={() =>  
+                                                setAuthDrawer({
+                                                    open: true,
+                                                    login: true,
+                                                    signup: false
+                                                })}>Log in
+                                            </span>
+                                        }
+                                    </div>
+                            </div>
+                        )}
+               
                     
                     <div className={classes.favouritesContainer}>
                         <h3 className={classes.header}>{firstName}'s Favourites</h3>
@@ -149,7 +196,7 @@ const ProfileView = () => {
                                     </div>
                                     <div className={classes.favouriteContainer__ratingContainer}>
                                         <div className={classes.rating}>
-                                            <StarRating siteRatings = {favourite.site.ratings}/>
+                                            {/* <StarRating siteRatings = {favourite.site.ratings}/> */}
                                         </div>
                                     </div>
                                     <div className={classes.favouriteContainer__moreContainer}>
