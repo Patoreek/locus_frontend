@@ -1,161 +1,230 @@
 import React, {useEffect, useContext, useState} from 'react';
 import { useHistory } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext, LoadingContext, AuthDrawerContext, AccountContext } from '../../context/AuthContext';
+import { SiteContext, DetailsContext } from '../../context/DiveSiteContext';
 
-import classes from './ViewProfileView.module.css';
+import { ReactComponent as PinSVG } from '../../assets/icons/location_grey.svg';
+import { ReactComponent as XpSVG } from '../../assets/icons/experience.svg';
+
+import Details from '../DetailsView/DetailsView';
+
+import Spinner from 'react-bootstrap/Spinner';
+
+import StarRating from '../../components/StarRating/StarRating';
+import FavouriteButton from '../../components/Buttons/FavouriteButton/FavouriteButton';
+import DisplayReport from '../../components/DisplayReport/DisplayReport';
+
+import classes from './ViewProfileView.module.scss';
 
 const ViewProfileView = (props) => {
 
     const [isAuth, setIsAuth] = useContext(AuthContext);
-    const [isLoading, setIsLoading] = useState(true);
+    const [ selectedSite, setSelectedSite ] = useContext(SiteContext);
+    const [ authDrawer, setAuthDrawer ] = useContext(AuthDrawerContext);
+    const [account, setAccount] = useContext(AccountContext);
 
+    //const [moreDetails, setMoreDetails] = useContext(DetailsContext);
+
+
+    const [isLoading, setIsLoading] = useState(true);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [bio, setBio] = useState("");
-    const [location, setLocation] = useState("");
-    const [licenseType, setLicenseType] = useState("");
+    const [city, setCity] = useState("");
+    const [country, setCountry] = useState("");
+    const [experience, setExperience] = useState("");
     const [profilePic, setProfilePic] = useState("");
+
     const [favourites, setFavourites] = useState([]);
+
+    const [reports, setReports] = useState([]);
 
     let history = useHistory();
 
-    const siteLinkHandler = (site) => {
-        console.log('Site Name Pressed!');
-        console.log(site);
-        // setSelectedSite(site);
-        // setMoreDetails(!moreDetails);
-    }
+        if (!isAuth){
+            history.replace('/login');
+        }
+
+        // const siteLinkHandler = (site) => {
+        //     console.log('Site Name Pressed!');
+        //     console.log(site);
+        //     setSelectedSite(site);
+        //     setMoreDetails(!moreDetails);
+        // }
     
         useEffect(() => {
-            async function getProfile() {
-                const userId = props.match.params.profileId;
-                        try {
-                            const response = await fetch('http://localhost:8080/user/viewProfile',{
-                                method: 'POST',
-                                credentials: 'include',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify({
-                                    userId: userId
-                                })
-                            });
-                            const profile = await response.json();
-                            console.log(profile);
-                            setFirstName(profile.firstName);
-                            setLastName(profile.lastName);
-                            setProfilePic('http://localhost:8080/' + profile.profilePic);
-                            setBio(profile.bio);
-                            setLocation(profile.location);
-                            setLicenseType(profile.licenseType);
-                            setFavourites(profile.favouritesData);
+            const userId = props.match.params.userId;
 
-                            setIsLoading(false);
-                        } catch (error) {
-                        console.log(error);
-                        setIsLoading(null);
-                        }
+            return fetch('http://localhost:8080/user/viewProfile',{
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userId: userId
+                })
+            })
+            .then(res => {
+                return res.json();
+            })
+            .then(profile => {
+               console.log(profile);
+               setFirstName(profile.firstName);
+               setLastName(profile.lastName);
+               setProfilePic('http://localhost:8080/' + profile.profilePic);
+               setBio(profile.bio);
+               setCity(profile.city);
+               setCountry(profile.country);
+               setExperience(profile.experience);
+               setFavourites(profile.favouritesData);
+               setIsLoading(false);
+                
+            })
+            .catch(err => {
+                console.log('Caught.');
+                console.log(err);
+                // history.push("/login");
+            });
+            
+
+            async function getReports() {
+    
+                try {
+                    const response = await fetch('http://localhost:8080/user/diveReports/getReportsForUser/' + userId,{
+                        method: 'GET',
+                        credentials: 'include',
+                    });
+                    const reports = await response.json();
+                    console.log('GOT REPORTS...');
+                    console.log(reports);
+                    setReports(reports.reportsData);
+                 
+                } catch (error) {
+                console.log(error);
+                setIsLoading(null);
+                }
             }
-            getProfile();
+            
+            
+            getReports();
         }, []);
 
-
-        return (
-            <div className={classes.profilePage}>
-            {/* {!moreDetails && ( */}
-                <div className={classes.profilePageContainer}>
-                {!isLoading && (
-                    <div>
-                    <div className={classes.coverPhotoContainer}>
-                       
-                    </div>
-
-                    <div className={classes.topHalfContainer}>
-
-                        <div className={classes.profilePictureContainer}>
-                            <div className={classes.overlayDiv}></div>
-                            <img src={profilePic} className={classes.profilePicture}/> 
-                        </div>
-
-                        <div className={classes.profileNameContainer}>
-                            <h3 className={classes.profileName}>{firstName} {lastName}</h3>
-                        </div>
-
-                        <div className={classes.profileLocationContainer}>
-                            <p className={classes.profileLocation}>{location}</p>
-                        </div>
-                        <div className={classes.profileSpanContainer}>
-                            <p className={classes.profileSpan}>|</p>
-                        </div>
-
-                        <div className={classes.profileLicenseContainer}>
-                            <p className={classes.profileLicense}>{licenseType}</p>
-                        </div>
-
-                       
-                    </div>
-
-
-                   
-                
-
-                        <div className={classes.profileBioContainer}>
-                            <div className={classes.profileBioHeaderContainer}>
-                                <h3 className={classes.profileBioHeader}>Bio</h3>
+        
+    return (
+        <div>
+            {!isLoading && (
+                <div className={classes.profilePage}>
+                    <div className={classes.profile}>
+                        <div className={classes.profileLeft}>
+                            <div className={classes.profileLeft__pictureContainer}>
+                                <img src={profilePic} className={classes.picture}/> 
                             </div>
-                            <p className={classes.profileBio}>{bio}</p>
                         </div>
+
+                        <div className={classes.profileRight}>
+                            <div className={classes.profileRight__nameContainer}>
+                                <h3 className={classes.name}>{firstName} {lastName}</h3>
+                            </div>
+
+                            <div className={classes.profileRight__bioContainer}>   
+                                <p className={classes.bio}>{bio}</p>
+                            </div>
+
+                            <div className={classes.profileRight__locationContainer}>
+                                <PinSVG className={classes.iconPin}/>
+                                <p className={classes.location}>{city}, {country}</p> {/* Change this to City, Country */}
+                            </div>
+
+                            <div className={classes.profileRight__experienceContainer}>
+                                <XpSVG className={classes.icon}/>
+                                <p className={classes.experience}>{experience}</p>
+                            </div>
+
+                        
+                        </div>
+
+                        
+                    </div>
 
                     
-                        <div className={classes.profileFavContainer}>
-
-                            <div className={classes.profileFavHeaderContainer}>
-                                <h3 className={classes.profileFavHeader}>{firstName}'s Favourites</h3>
-                            </div>
-            
-                            <div className={classes.favouritesContainer}>
-                                {favourites.map(favourite => (
-                                    <div className={classes.favouriteContainer}>
-
-                                        <div className={classes.siteHeaderContainer}>
-                                            <h3 className={classes.siteHeader}
-                                                onClick={() => siteLinkHandler(favourite.site)}>
-                                
-                                                {favourite.siteName}, {favourite.siteArea}
-                                            
-                                            </h3>
-                                        </div>
-
-                                        <div className={classes.siteImageContainer}>
-
-                                            <img src={'http://localhost:8080/' + favourite.siteImage} 
-                                                className={classes.siteImage}
-                                            />
-                                        </div>
-
-
-
-                                    </div>
+                        {reports != [] && (
+                            <div className={classes.reportsContainer}>
+                                <h4>Dive Reports ({reports.length})</h4>
+                                {reports.map(report => (
+                                    <DisplayReport report={report}/>
                                 ))}
                             </div>
-    
-                        </div> 
+                        )}    
+                         {reports.length == 0 && (
+                            <div className={classes.reportsContainer}>
+                                <h4>Dive Reports (0)</h4>
+                                    <div className={classes.noReports}>
+                                        <h3>There are currently no dive reports for this location.</h3>
+                                        {isAuth ? 
+                                            <a href="#">Add a Dive Report</a> : 
+                                            <span onClick={() =>  
+                                                setAuthDrawer({
+                                                    open: true,
+                                                    login: true,
+                                                    signup: false
+                                                })}>Log in
+                                            </span>
+                                        }
+                                    </div>
+                            </div>
+                        )}
+               
+                    
+                    <div className={classes.favouritesContainer}>
+                        <h3 className={classes.header}>{firstName}'s Favourites</h3>
+                        <div className={classes.favourites}>
+                            {favourites.map(favourite => (
+                                <div className={classes.favouriteContainer}>
+
+                                    <div className={classes.favouriteContainer__imageContainer}>
+                                        <a href={"/divesite/" + favourite.site._id}>
+                                            <img src={'http://localhost:8080/' + favourite.siteImage} 
+                                            className={classes.image}
+                                            />
+                                        </a>
+                                    </div>
+                                    <div className={classes.favouriteContainer__pointContainer}>
+                                        <span className={classes.point}>Shore Dive · Great for Scuba</span>
+                                    </div>
+                                    <div className={classes.favouriteContainer__nameContainer}>
+                                        <a href={"/divesite/" + favourite.site._id}>
+                                            <span className={classes.name}>{favourite.siteName}, {favourite.siteArea}</span>
+                                        </a>
+                                    </div>
+                                    
+                                    <div className={classes.favouriteContainer__descriptionContainer}>
+                                        <span className={classes.description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+                                    </div>
+                                    <div className={classes.favouriteContainer__ratingContainer}>
+                                        <div className={classes.rating}>
+                                            {/* <StarRating siteRatings = {favourite.site.ratings}/> */}
+                                        </div>
+                                    </div>
+                                    <div className={classes.favouriteContainer__moreContainer}>
+                                        <a href={"/divesite/" + favourite.site._id} className={classes.more}>More...</a>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        
+                    </div> 
 
                 </div>
-                )}
-                {isLoading && (
-                    <h1> Loading...</h1>
-                )}
-            </div>
-            {/* {moreDetails && (
-            <Details/>
-            )} */}
-            </div>
-    
-                
-                
-    
-        );
+            )}
+            
+        </div>
+
+            
+            
+
+    );
 };
 
 export default ViewProfileView;

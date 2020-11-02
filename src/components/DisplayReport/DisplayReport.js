@@ -34,7 +34,7 @@ const DisplayReport = (props) => {
                                       <img src={'http://localhost:8080/' + report.userId.profilePic}/>
                                   </div>
                                   <div className={classes.name}>
-                                      <span>{report.userId.firstName} {report.userId.lastName}</span>
+                                      <a href={"/viewprofile/" + report.userId._id}>{report.userId.firstName} {report.userId.lastName}</a>
                                   </div>
                             </div>
                             <div className={classes.report__infoContainer}>
