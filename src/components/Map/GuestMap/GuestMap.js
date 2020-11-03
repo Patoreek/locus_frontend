@@ -8,11 +8,12 @@ import {
 } from 'react-google-maps';
 
 import { AuthContext,
-         FavButtonContext } from '../../../context/AuthContext';
+         FavButtonContext,
+         MapRefContext } from '../../../context/AuthContext';
 
 import { DiveSitesContext,
          SiteContext,
-         LoadDiveSiteContext,
+         LoadDiveSiteInBoundsContext,
          DetailsContext } from '../../../context/DiveSiteContext';
 
     
@@ -30,7 +31,7 @@ import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerC
 import classes from './GuestMap.module.scss';
 import './GuestMap.css';
 
-const GuestMap = () => {
+const GuestMap = (props) => {
 
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
 
@@ -45,36 +46,16 @@ const GuestMap = () => {
     // const [favButton, setFavButton] = useState(true);
     const [favButton, setFavButton] = useContext(FavButtonContext);
 
-    const loadDiveSites = useContext(LoadDiveSiteContext);
+    const loadDiveSitesInBounds = useContext(LoadDiveSiteInBoundsContext);
 
     const [isLoading, setIsLoading] = useState(true);
 
     
 
-
-
-
-
-    useEffect(() => {
-       
-        loadDiveSites()
-        .then(done => {
-            console.log(done);
-            if (done) {
-                console.log('IT IS DONE!');
-                setIsLoading(false);
-                console.log(diveSites);
-            }
-        })
-        .catch(err => {
-            console.log(err);
-            setIsLoading(false);
-        });
-
-    }, []);
-
-    
-    
+    // useEffect(() => {
+    //     console.log(diveSites);
+    // }, [diveSites]);
+        
 
     
 
@@ -95,7 +76,7 @@ const GuestMap = () => {
 
     return (
         <div>
-            {!isLoading && (
+            {/* {!isLoading && ( */}
                 <div>
                 <MarkerClusterer
                     onClick={onMarkerClustererClick}
@@ -104,12 +85,12 @@ const GuestMap = () => {
                     maxZoom={11}
                     defaultZoomOnClick
                 >
-                { diveSites.map(site => (
+                { diveSites.map(site => ( 
                     <Marker 
                     key={site._id}
                     position={{
-                        lat: parseFloat(site.latitude),
-                        lng: parseFloat(site.longitude)
+                        lat: site.latitude,
+                        lng: site.longitude
                     }}
                     onClick={() =>{
                         setSelectedSite(site);
@@ -183,7 +164,7 @@ const GuestMap = () => {
                 </InfoWindow>
                 )}
                 </div>
-            )}
+            {/* )} */}
         </div>
     );
 };

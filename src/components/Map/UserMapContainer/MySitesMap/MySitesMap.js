@@ -77,9 +77,9 @@ const MySitesMap = () => {
 
 
 
-    useEffect(() => {
-        loadDiveSites();
-    }, []); //remove diveSites for performance
+    // useEffect(() => {
+    //     loadDiveSites();
+    // }, []); //remove diveSites for performance
 
     const editSiteHandler = () => {
         //console.log('[Selected Site]' + selectedSite);

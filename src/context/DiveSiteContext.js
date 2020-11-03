@@ -5,6 +5,7 @@ export const DiveSitesContext = createContext();
 export const CoordsContext = createContext();
 export const LoadDiveSiteContext = createContext();
 export const DetailsContext = createContext();
+export const LoadDiveSiteInBoundsContext = createContext();
 
 
 
@@ -42,6 +43,41 @@ export const DiveSiteProvider = (props) => {
             // ...
     }
 
+    async function loadDiveSitesInBounds(mapBounds) {
+        // You can await here
+        console.log('loadDiveSitesInBounds');
+        console.log(mapBounds);
+        const swLat = mapBounds.Ya.i;
+        const swLng = mapBounds.Sa.i;
+        const neLat = mapBounds.Ya.j;
+        const neLng = mapBounds.Sa.j;
+
+        return fetch('http://localhost:8080/diveSites/loadDiveSitesInBounds',{
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                swLat: swLat,
+                swLng: swLng,
+                neLat: neLat,
+                neLng: neLng,
+            })
+        })
+        .then(res => {
+            return res.json();
+        })
+        .then(result => {
+            console.log(result.sites);
+            setDiveSites(result.sites);
+        })
+        .catch(err => {
+            console.log('Caught.');
+            console.log(err);  
+        });
+}
+
 
     return (
         
@@ -50,10 +86,11 @@ export const DiveSiteProvider = (props) => {
         <CoordsContext.Provider value = {[coords, setCoords]}>
         <LoadDiveSiteContext.Provider value = {loadDiveSites} >
         <DetailsContext.Provider value = {[moreDetails, setMoreDetails]}>
-        
+        <LoadDiveSiteInBoundsContext.Provider value = {loadDiveSitesInBounds}>
+
         {props.children}
-        
    
+        </LoadDiveSiteInBoundsContext.Provider>  
         </DetailsContext.Provider>  
         </LoadDiveSiteContext.Provider>        
         </CoordsContext.Provider>
