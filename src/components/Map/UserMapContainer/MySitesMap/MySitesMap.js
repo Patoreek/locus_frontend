@@ -278,7 +278,7 @@ const MySitesMap = () => {
 
 
                             <div className={classes.shop__nameContainer}>
-                                <a href={"/ENTER_ROUTE_HERE/" + selectedShop._id} className={classes.name}>
+                                <a href={"/diveShops/" + selectedShop._id} className={classes.name}>
                                         <span>{selectedShop.name}</span>
                                         <br/>
                                 </a>

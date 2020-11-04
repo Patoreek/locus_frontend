@@ -6,6 +6,8 @@ import classes from './DiveShopsView.module.scss';
 import AddDiveShop from '../../components/DiveShops/AddDiveShop/AddDiveShop';
 import EditDiveShop from '../../components/DiveShops/EditDiveShop/EditDiveShop';
 import DeleteDiveShop from '../../components/DiveShops/DeleteDiveShop/DeleteDiveShop';
+import DiveShopUserList from '../../containers/DiveShopsView/DiveShopUserList/DiveShopUserList';
+
 
 
 import { 
@@ -24,14 +26,19 @@ const DiveShopsView = () => {
 
 
     return (
-        <div>
-            <h1>Dive Shops View</h1>
+        <div className={classes.diveShopsView}>
+          
             {!addDiveShopModal && !editDiveShopModal && !deleteDiveShopModal && (
                 <div className={classes.diveShopsHome}>
                     <span onClick={() => setDiveShopAdmin(false)} className={classes.backBtn}>Back</span>
-                    <button onClick={() => setAddDiveShopModal(true)}>Add Shop</button>
+                    <h1>Dive Shops View</h1>
+                    <p className={classes.instructions}>This is the admin section for Dive shops. Simply press anywhere on the map to add a new dive shop. To edit the site, simple press on the marker.
+                       Inside the edit form, there is a link to delete the shop if needed.</p>
+
+                    <DiveShopUserList/>
+                    {/* <button onClick={() => setAddDiveShopModal(true)}>Add Shop</button>
                     <button onClick={() => setEditDiveShopModal(true)}>Edit Shop</button>
-                    <button onClick={() => setDeleteDiveShopModal(true)}>Delete Shop</button>
+                    <button onClick={() => setDeleteDiveShopModal(true)}>Delete Shop</button> */}
                 </div>
             )}
 

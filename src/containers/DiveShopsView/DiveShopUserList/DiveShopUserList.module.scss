@@ -1,0 +1,197 @@
+@import '../../../sass/abstracts/variables';
+
+.shop:not(:last-child) {
+    border-bottom: 1px solid $color-lines;
+}
+
+.shop {
+    padding: 3rem 0rem; //? Might need to change this
+    //background: orange;
+    display: grid;
+    grid-template-rows: repeat(5, max-content);
+    grid-template-columns:max-content 1fr 1fr;
+
+
+    &__imageContainer {
+        grid-row: 1 / -1;
+        grid-column: 1 / 2;
+        border: 1px solid $image-border-color-infoPanel;
+        border-radius: 3px;
+        overflow: hidden;
+        margin-right: 1rem;
+
+        width: 20rem;
+        height: 20rem;
+        
+        .image {
+            width: 100%;
+            height: 100%;
+            transition: .7s ease;
+
+            &:hover {
+                transform: scale(1.2);
+            }
+            
+        }
+    }
+
+    &__nameContainer {
+        grid-row: 1 / 2;
+        grid-column: 2 / -1;
+        display: flex;
+        align-items: center;
+
+
+        .shopName {
+            a {
+                font-size: 2.5rem;
+                color: $color-black;
+
+                &:hover {
+                    color: $color-text-blue;
+                }
+            }
+        }
+        
+    }
+
+    &__editContainer {
+        grid-row: 1 / 2;
+        grid-column: 3 / 4;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        .edit {
+            transition: .2s ease;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        
+          g path { 
+            fill: $color-text-darkgrey;
+          }
+        }
+    }
+
+    &__addressContainer {
+        grid-row: 2 / 3;
+        grid-column: 2 / -1;
+
+        display: flex;
+        align-items: center;
+
+        a {
+            font-size: 1.6rem;
+            margin-left: 1rem;
+            
+        }
+
+
+    }
+
+    &__phoneContainer {
+        grid-row: 3 / 4;
+        grid-column: 2 / 3;
+
+        display: flex;
+        align-items: center;
+
+        a {
+            font-size: 1.6rem;
+            margin-left: 1rem;
+            
+        }
+    }
+
+    &__emailContainer {
+        grid-row: 3 / 4;
+        grid-column: 3 / 4;
+
+        display: flex;
+        align-items: center;
+
+        a {
+            font-size: 1.6rem;
+            margin-left: 1rem;
+            
+        }
+    }
+
+    &__websiteContainer {
+        grid-row: 4 / 5;
+        grid-column: 2 / -1;
+
+        display: flex;
+        align-items: center;
+
+        a {
+            font-size: 1.6rem;
+            margin-left: 1rem;
+            
+        }
+    }
+
+    .socialsContainer {
+        grid-row: 5 / 6;
+        grid-column: 2 / -1;
+
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-evenly;
+        padding: 1rem;
+
+    }
+
+    .icon {
+        width: 2rem;
+        height: 2rem;
+    
+        &__location, &__phone, &__email, &__website {
+            fill: $color-text-blue-hover;
+        }
+    
+        &__phone{
+            
+        }
+    
+        &__email {
+            
+        }
+    
+        &__website {
+            
+        }
+    
+        &__facebook {
+            g path {
+                fill: #3b5998 !important;
+            }
+            transition: .2s ease;;
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    
+        &__instagram {
+            g path {
+                fill: #DD2A7B !important;
+            }
+            transition: .2s ease;;
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    
+        &__twitter {
+            g path {
+                fill: #00acee !important;
+            }
+            transition: .2s ease;;
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+}

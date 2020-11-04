@@ -1,5 +1,14 @@
 @import '../../sass/abstracts/variables';
 
+.diveShopsView  {
+    padding: 2.5rem 5rem;
+}
+
+.instructions {
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
 .backBtn {
     font-size: 1.6rem;
     color: $color-text-grey;
