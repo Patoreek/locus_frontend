@@ -7,6 +7,13 @@ export const LoadDiveSiteContext = createContext();
 export const DetailsContext = createContext();
 export const LoadDiveSiteInBoundsContext = createContext();
 
+export const DiveShopsContext = createContext();
+export const LoadDiveShopsInBoundsContext = createContext();
+export const ShopContext = createContext();
+
+
+
+
 
 
 
@@ -22,6 +29,11 @@ export const DiveSiteProvider = (props) => {
     const [moreDetails, setMoreDetails] = useState(false);
 
     const [diveSites, setDiveSites] = useState([]);
+
+    const [diveShops, setDiveShops] = useState([]);
+
+    const [ selectedShop, setSelectedShop ] = useState(null);
+
 
     const [coords, setCoords] = useState({
         lat: '',
@@ -76,7 +88,42 @@ export const DiveSiteProvider = (props) => {
             console.log('Caught.');
             console.log(err);  
         });
-}
+    }
+
+    async function loadDiveShopsInBounds(mapBounds) {
+        // You can await here
+        console.log('loadDiveShopsInBounds');
+        console.log(mapBounds);
+        const swLat = mapBounds.Ya.i;
+        const swLng = mapBounds.Sa.i;
+        const neLat = mapBounds.Ya.j;
+        const neLng = mapBounds.Sa.j;
+
+        return fetch('http://localhost:8080/diveShops/loadDiveShopsInBounds',{
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                swLat: swLat,
+                swLng: swLng,
+                neLat: neLat,
+                neLng: neLng,
+            })
+        })
+        .then(res => {
+            return res.json();
+        })
+        .then(result => {
+            console.log(result.shops);
+            setDiveShops(result.shops);
+        })
+        .catch(err => {
+            console.log('Caught.');
+            console.log(err);  
+        });
+    }
 
 
     return (
@@ -87,9 +134,15 @@ export const DiveSiteProvider = (props) => {
         <LoadDiveSiteContext.Provider value = {loadDiveSites} >
         <DetailsContext.Provider value = {[moreDetails, setMoreDetails]}>
         <LoadDiveSiteInBoundsContext.Provider value = {loadDiveSitesInBounds}>
+        <LoadDiveShopsInBoundsContext.Provider value = {loadDiveShopsInBounds}>
+        <DiveShopsContext.Provider value = { [diveShops, setDiveShops] }>
+        <ShopContext.Provider value = { [selectedShop, setSelectedShop] }>
 
-        {props.children}
-   
+            {props.children}
+
+        </ShopContext.Provider>  
+        </DiveShopsContext.Provider>  
+        </LoadDiveShopsInBoundsContext.Provider>  
         </LoadDiveSiteInBoundsContext.Provider>  
         </DetailsContext.Provider>  
         </LoadDiveSiteContext.Provider>        

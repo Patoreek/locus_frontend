@@ -1,0 +1,12 @@
+@import '../../sass/abstracts/variables';
+
+.backBtn {
+    font-size: 1.6rem;
+    color: $color-text-grey;
+    transition: .3s ease;
+
+    &:hover {
+        text-decoration: underline;
+        color: $color-text-blue;
+    }
+}

@@ -4,8 +4,7 @@ import { GoogleMap,
     withScriptjs,
     withGoogleMap } from "react-google-maps";
 
-    import { fitBounds } from 'google-map-react';
-    import LatLng from 'google-map-react';
+
 
 
 import { AuthContext, 
@@ -15,7 +14,7 @@ import { AuthContext,
          PanToContext,
          MapRefContext } from '../../context/AuthContext';
 
-         import { LoadDiveSiteInBoundsContext, loadDiveSitesInBoundsContext } from '../../context/DiveSiteContext';
+         import { LoadDiveSiteInBoundsContext, LoadDiveShopsInBoundsContext } from '../../context/DiveSiteContext';
 
 import UserMapContainer from './UserMapContainer/UserMapContainer';
 import GuestMap from './GuestMap/GuestMap';
@@ -34,6 +33,7 @@ const Map = (props) => {
     const [searchCoordinates, setSearchCoordinates] = useContext(SearchCoordsContext);
     const mapRef = useContext(MapRefContext);
     const loadDiveSitesInBounds = useContext(LoadDiveSiteInBoundsContext);
+    const loadDiveShopsInBounds = useContext(LoadDiveShopsInBoundsContext);
 
     
     const panTo = useContext(PanToContext);
@@ -43,9 +43,6 @@ const Map = (props) => {
 
     const [isLoading, setIsLoading] = useState(true);
 
-//    console.log('SEARCH COORDINATES');
-//    console.log(searchCoordinates.lat);
-//    console.log(searchCoordinates.lng);
     const [latitude, setLatitude] = useState(null);
     const [longitude, setLongitude ] = useState(null);
 
@@ -55,8 +52,7 @@ const Map = (props) => {
 
 
     useEffect(() => {
-        //console.log('[Map] isAuth = ' + isAuth);
-        //console.log('[Map] isUserOnMap = ' + isUserOnMap);
+       
         setBounds(new window.google.maps.LatLngBounds());
         if (isAuth){
             if(isUserOnMap){
@@ -129,6 +125,7 @@ const Map = (props) => {
       
             // here goes an ajax call
             loadDiveSitesInBounds(mapBounds);
+            loadDiveShopsInBounds(mapBounds);
         }, 1000);
       }
 
@@ -145,14 +142,12 @@ const Map = (props) => {
                 ref={onMapLoad}
                 panTo={panTo}
                 onBoundsChanged={onBoundsChanged}
-                
                 >
                 {/* <SearchBarMap panTo={panTo}/>
                 <Locate panTo={panTo}/> */}
             {!guestMap && (
-     
                     <UserMapContainer/>
-           
+
             )}
     
     

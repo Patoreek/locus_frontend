@@ -7,12 +7,15 @@ import { AddModalContext,
          EditModalContext,
          DeleteModalContext,
          AddRequestContext,
-        SiteListContext } from '../../../../context/UserContext';
+        SiteListContext,
+        DiveShopAdminContext } from '../../../../context/UserContext';
 
 
 
 
 import SiteList from './SiteList/SiteList';
+
+import DiveShopsView from '../../../DiveShopsView/DiveShopsView';
 
 const UserSiteList = () => {
 
@@ -21,6 +24,7 @@ const UserSiteList = () => {
     const [sites, setSites] = useState(null);
 
     const [listLoading, setListLoading] = useState(true);
+    
 
     const [showEditModal, setShowEditModal] = useContext(EditModalContext);
     const [showAddModal, setShowAddModal] = useContext(AddModalContext);
@@ -29,12 +33,15 @@ const UserSiteList = () => {
     const [ showSiteList, setShowSiteList ] = useContext(SiteListContext);
 
 
+    const [diveShopAdmin, setDiveShopAdmin] = useContext(DiveShopAdminContext);
+
+
 
 
     useEffect(() => {
         async function loadMyDiveSites() {
             
-            console.log('[UserSiteList] Account = ' + account.id);
+           // console.log('[UserSiteList] Account = ' + account.id);
             // You can await here
             try {
                 const response = await fetch('http://localhost:8080/diveSites/mySites/' + account.id,{
@@ -54,7 +61,7 @@ const UserSiteList = () => {
        
 
         loadMyDiveSites();
-        console.log('[UserSiteList]' + sites);
+        //console.log('[UserSiteList]' + sites);
         
     }, [showAddModal,showDeleteModal,showEditModal]);
 
@@ -68,8 +75,8 @@ const UserSiteList = () => {
     // }
     
 
-    console.log('[UserList] account');
-    console.log(account);
+   // console.log('[UserList] account');
+    //console.log(account);
     return (
        
         <div>
@@ -82,7 +89,7 @@ const UserSiteList = () => {
                 <SiteList sites={sites}/>
             </div>
             )}
-            {!showSiteList && !listLoading  && !showAddRequestModal && account.email != "patrick.minda@hotmail.com" && (
+            {!showSiteList && !listLoading  && !showAddRequestModal && !diveShopAdmin && account.email != "patrick.minda@hotmail.com" && (
             <div className={classes.addRequestContainer}>
                 <h3 className={classes.addRequestContainer__header}>Request to add a Dive Site</h3>
                 <p className={classes.addRequestContainer__instructions}>
@@ -90,13 +97,19 @@ const UserSiteList = () => {
                 Submit your request and we will review it before adding it to the database.</p>
             </div>
             )}
-            {!showSiteList && !listLoading  && !showAddRequestModal && account.email === "patrick.minda@hotmail.com" && (
+            {!showSiteList && !listLoading  && !showAddRequestModal && !diveShopAdmin && account.email === "patrick.minda@hotmail.com" && (
                  <div className={classes.addRequestContainer}>
                  <h3 className={classes.addRequestContainer__header}>My Sites · Add & Edit Sites</h3>
                  <p className={classes.addRequestContainer__instructions}>
                  To add a dive site, simply press on the map at the location. A form will appear and fill out the details. 
                 </p>
+                <div className={classes.diveShopBtnContainer}>
+                    <button onClick={() => setDiveShopAdmin(true)} className={classes.diveShopBtn}> See Dive shops</button>
+                </div>
              </div>
+            )}
+            {diveShopAdmin && (
+                <DiveShopsView/>
             )}
          
  

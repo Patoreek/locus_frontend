@@ -24,3 +24,34 @@
         color: $color-black;
     }
 }
+
+.diveShopBtnContainer {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+    
+    .diveShopBtn {
+        padding: 1.5rem 3rem;
+        font-size: 1.6rem;
+        font-weight: 500;
+        border: 1px solid $color-white;
+        background: $color-btn-primary;
+        color: $color-white;
+        border-radius: 5px;
+        transition: .3s ease;
+        box-shadow: 0px 0px 5px rgba($color-black, .25);
+    
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 5px 5px rgba($color-black, .25);
+    
+        }
+    
+        &:active {
+            transform: translateY(-2px);
+            box-shadow: 0px 3px 5px rgba($color-black, .25);
+    
+    
+        }
+    }
+}

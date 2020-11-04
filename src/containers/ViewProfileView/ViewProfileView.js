@@ -6,10 +6,6 @@ import { SiteContext, DetailsContext } from '../../context/DiveSiteContext';
 import { ReactComponent as PinSVG } from '../../assets/icons/location_grey.svg';
 import { ReactComponent as XpSVG } from '../../assets/icons/experience.svg';
 
-import Details from '../DetailsView/DetailsView';
-
-import Spinner from 'react-bootstrap/Spinner';
-
 import StarRating from '../../components/StarRating/StarRating';
 import FavouriteButton from '../../components/Buttons/FavouriteButton/FavouriteButton';
 import DisplayReport from '../../components/DisplayReport/DisplayReport';
@@ -40,17 +36,6 @@ const ViewProfileView = (props) => {
     const [reports, setReports] = useState([]);
 
     let history = useHistory();
-
-        if (!isAuth){
-            history.replace('/login');
-        }
-
-        // const siteLinkHandler = (site) => {
-        //     console.log('Site Name Pressed!');
-        //     console.log(site);
-        //     setSelectedSite(site);
-        //     setMoreDetails(!moreDetails);
-        // }
     
         useEffect(() => {
             const userId = props.match.params.userId;

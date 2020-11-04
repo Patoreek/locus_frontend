@@ -8,11 +8,15 @@ import { SiteContext,
 import { AuthContext, 
          LoadingContext, 
          MapSizeContext,
-            AccountContext } from '../../context/AuthContext';
+         AccountContext } from '../../context/AuthContext';
 
 import { AddModalContext,
          EditModalContext,
-         DeleteModalContext } from '../../context/UserContext';
+         DeleteModalContext,
+         DiveShopAdminContext,
+         AddDiveShopModalContext,
+         EditDiveShopModalContext,
+         DeleteDiveShopModalContext, } from '../../context/UserContext';
 
 
 import { useHistory} from 'react-router-dom';
@@ -39,6 +43,13 @@ const UserView = (props) => {
 
         const [showEditModal, setShowEditModal] = useContext(EditModalContext);
         const [showDeleteModal, setShowDeleteModal] = useContext(DeleteModalContext);
+
+        const [diveShopAdmin, setDiveShopAdmin] = useContext(DiveShopAdminContext);
+
+        const [addDiveShopModal, setAddDiveShopModal] = useContext(AddDiveShopModalContext);
+        const [editDiveShopModal, setEditDiveShopModal] = useContext(EditDiveShopModalContext);
+        const [deleteDiveShopModal, setDeleteDiveShopModal] = useContext(DeleteDiveShopModalContext);
+
 
         const handleClose = () => setShowAddModal(false);
         const handleShow = () => setShowAddModal(true);
@@ -67,30 +78,45 @@ const UserView = (props) => {
         const onMapClick = (event) => {
           
             console.log('CLICKED!');
+            console.log(diveShopAdmin);
         //console.log(addRequest);
-                if (showEditModal) {
-                    setShowEditModal(false);
-                }
-                else if (showDeleteModal){
-                    setShowDeleteModal(false);
-                } else if (selectedSite !== null){
-                    setSelectedSite(null);
-                } else {
+        
+                if (diveShopAdmin){
+                    //console.log('using the map for dive shop admin use');
                     setCoords({
                         lat: event.latLng.lat(),
                         lng: event.latLng.lng()
                     });
-                    handleShow();
-                }
-            
-               
-                
-                if (showAddModal) {
-                        setShowAddModal(true);
-                        setSelectedSite(null);
-                       
+                    setAddDiveShopModal(true);
+                    //setShowEditDiveShopModal(true);
+                   // setShowDeleteDiveShopModal(true);
                 } 
-                console.log('[AdminView OnMapClick Selected Site] ' + selectedSite);
+                else {
+                    if (showEditModal) {
+                        setShowEditModal(false);
+                    }
+                    else if (showDeleteModal){
+                        setShowDeleteModal(false);
+                    } else if (selectedSite !== null){
+                        setSelectedSite(null);
+                    } else {
+                        setCoords({
+                            lat: event.latLng.lat(),
+                            lng: event.latLng.lng()
+                        });
+                        handleShow();
+                    }        
+                    if (showAddModal) {
+                            setShowAddModal(true);
+                            setSelectedSite(null);
+                           
+                    } 
+                }
+                    
+               
+                    
+                
+                // console.log('[AdminView OnMapClick Selected Site] ' + selectedSite);
 
 
         } 

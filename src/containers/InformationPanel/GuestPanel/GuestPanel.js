@@ -37,7 +37,7 @@ const GuestPanel = () => {
     return (
         <div className={classes.guestPanel}>
             <div className={classes.topSection}>
-                <p>24 sites  · {locationName ? locationName : 'In this area'} </p>
+                <p>{diveSites.length} sites  · {locationName ? locationName : 'In current view'} </p>
                 <h3>Dive sites in selected map area</h3> 
             </div>
 
