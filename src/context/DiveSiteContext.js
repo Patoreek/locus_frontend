@@ -59,9 +59,9 @@ export const DiveSiteProvider = (props) => {
         // You can await here
         console.log('loadDiveSitesInBounds');
         console.log(mapBounds);
-        const swLat = mapBounds.Ya.i;
+        const swLat = mapBounds.Wa.i;
         const swLng = mapBounds.Sa.i;
-        const neLat = mapBounds.Ya.j;
+        const neLat = mapBounds.Wa.j;
         const neLng = mapBounds.Sa.j;
 
         return fetch('http://localhost:8080/diveSites/loadDiveSitesInBounds',{
@@ -94,9 +94,9 @@ export const DiveSiteProvider = (props) => {
         // You can await here
         console.log('loadDiveShopsInBounds');
         console.log(mapBounds);
-        const swLat = mapBounds.Ya.i;
+        const swLat = mapBounds.Wa.i;
         const swLng = mapBounds.Sa.i;
-        const neLat = mapBounds.Ya.j;
+        const neLat = mapBounds.Wa.j;
         const neLng = mapBounds.Sa.j;
 
         return fetch('http://localhost:8080/diveShops/loadDiveShopsInBounds',{

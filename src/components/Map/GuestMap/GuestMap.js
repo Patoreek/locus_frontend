@@ -14,15 +14,28 @@ import { AuthContext,
 import { DiveSitesContext,
          SiteContext,
          LoadDiveSiteInBoundsContext,
-         DetailsContext } from '../../../context/DiveSiteContext';
+         DetailsContext,
+         ShopContext,
+         DiveShopsContext } from '../../../context/DiveSiteContext';
 
     
 
 import markerSVG from '../../../assets/icons/location_blue.svg';
+import markerShopSVG from '../../../assets/icons/location_orange.svg';
+
 
 
 import StarRating from '../../StarRating/StarRating';
 import FavouriteButton from '../../Buttons/FavouriteButton/FavouriteButton';
+
+
+import {ReactComponent as PhoneSVG} from '../../../assets/icons/phone.svg';
+import {ReactComponent as EmailSVG} from '../../../assets/icons/email.svg';
+import {ReactComponent as LocationSVG} from '../../../assets/icons/location-marker.svg';
+import {ReactComponent as WebsiteSVG} from '../../../assets/icons/global.svg';
+import {ReactComponent as FacebookSVG} from '../../../assets/icons/facebook.svg';
+import {ReactComponent as InstagramSVG} from '../../../assets/icons/instagram.svg';
+import {ReactComponent as TwitterSVG} from '../../../assets/icons/twitter.svg';
 
 
 
@@ -35,9 +48,15 @@ const GuestMap = (props) => {
 
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
 
+    const [selectedShop, setSelectedShop] = useContext(ShopContext);
+
     const [moreDetails, setMoreDetails] = useContext(DetailsContext);
 
     const [diveSites, setDiveSites] = useContext(DiveSitesContext);
+
+    const [diveShops, setDiveShops] = useContext(DiveShopsContext);
+
+
 
     //const [moreDetails, setMoreDetails] = useContext(DetailsContext);
 
@@ -103,6 +122,34 @@ const GuestMap = (props) => {
                 ))}
                 </MarkerClusterer>
 
+                <MarkerClusterer
+                    onClick={onMarkerClustererClick}
+                    averageCenter
+                    gridSize={20}
+                    maxZoom={11}
+                    defaultZoomOnClick
+                >
+
+                {diveShops.map(shop => (
+                    <Marker 
+                    key={shop._id}
+                    position={{
+                        lat: parseFloat(shop.latitude),
+                        lng: parseFloat(shop.longitude)
+                    }}
+                    onClick={() =>{
+                        console.log(shop);
+                        setSelectedShop(shop);
+                    }}
+                    icon={{
+                    url: markerShopSVG,
+                    scaledSize: new window.google.maps.Size(42, 42)
+                    }}
+                    />
+                ))}
+            
+                </MarkerClusterer>
+
                 {selectedSite && ( /* OVERLAYVIEW is needed here for custom CSS and window properties*/
                     <InfoWindow
                         position={{
@@ -163,6 +210,107 @@ const GuestMap = (props) => {
                         </div>
                 </InfoWindow>
                 )}
+
+                {selectedShop && ( /* OVERLAYVIEW is needed here for custom CSS and window properties*/
+                <InfoWindow
+                    position={{
+                        lat: parseFloat(selectedShop.latitude),
+                        lng: parseFloat(selectedShop.longitude)
+                    }}
+                    onCloseClick={() => {
+                        setSelectedShop(null);
+                        setSelectedSite(null);
+                    } }
+                >       
+ 
+                    <div className={classes.shop}>
+                            <div className={classes.shop__imageContainer}>
+                                <a href={"/diveshop/" + selectedShop._id}>
+                                    <img src={'http://localhost:8080/' + selectedShop.logo}
+                                        className={classes.image}
+                                    />
+                                </a>
+                            </div>
+                         
+                            {/* <div className={classes.shop__editContainer}>
+                                <EditSVG className={classes.edit} onClick={() => {
+                                    setShowAddModal(false);
+                                    setEditDiveShopModal(true);
+                                }}/>
+                            </div> */}
+
+
+                            <div className={classes.shop__nameContainer}>
+                                <a href={"/diveshop/" + selectedShop._id} className={classes.name}>
+                                        <span>{selectedShop.name}</span>
+                                        <br/>
+                                </a>
+                            </div>
+
+                            <div className={classes.shop__addressContainer}>
+                                 {/* Marker Icon */}
+                                 <LocationSVG className={`${classes.icon} ${classes.icon__location}`}/>
+                                <a href={"https://www.google.com/search?q=" + selectedShop.address}
+                                    target="_blank"
+                                    rel="noopener noreferrer">
+                                    {selectedShop.address}
+                                    </a>        
+                            </div>
+
+                            <div className={classes.shop__phoneContainer}>
+                                {/* Phone Icon */}
+                                <PhoneSVG className={`${classes.icon} ${classes.icon__phone}`}/>
+                                <a href={"tel:" + selectedShop.phone}>{selectedShop.phone}</a>        
+                            </div>
+
+
+                            <div className={classes.shop__emailContainer}>
+                                 {/* Email Icon */}
+                                <EmailSVG className={`${classes.icon} ${classes.icon__email}`}/>
+                                <a href={"mailto:" + selectedShop.email}>{selectedShop.email}</a>        
+                            </div>
+
+                            <div className={classes.shop__websiteContainer}>
+                                 {/* Global Icon */}
+                                <WebsiteSVG className={`${classes.icon} ${classes.icon__website}`}/>
+                                <a  href={selectedShop.website}
+                                    target="_blank"
+                                    rel="noopener noreferrer">
+                                    {selectedShop.website}
+                                    </a>        
+                            </div>
+
+                            <div className={classes.socialsContainer}>
+                                <div className={classes.socialsContainer__facebookContainer}>
+                                    <a  href={selectedShop.facebook}
+                                    target="_blank"
+                                    rel="noopener noreferrer">
+                                        <FacebookSVG className={`${classes.icon} ${classes.icon__facebook}`}/>
+                                    </a>
+                                </div>
+                                <div className={classes.socialsContainer__instagramContainer}>
+                                    <a  href={selectedShop.instagram}
+                                    target="_blank"
+                                    rel="noopener noreferrer">
+                                        <InstagramSVG className={`${classes.icon} ${classes.icon__instagram}`}/>
+                                    </a>
+                                </div>
+                                <div className={classes.socialsContainer__twitterContainer}>
+                                    <a  href={selectedShop.twitter}
+                                    target="_blank"
+                                    rel="noopener noreferrer">
+                                        <TwitterSVG className={`${classes.icon} ${classes.icon__twitter}`}/>
+                                    </a>
+                                </div>
+                            </div>
+
+            
+                    </div>
+                   
+                </InfoWindow>
+            )}
+
+
                 </div>
             {/* )} */}
         </div>

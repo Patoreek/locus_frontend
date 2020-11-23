@@ -133,7 +133,7 @@ const MySitesMap = () => {
                     defaultZoomOnClick
                 >
             { diveSites.map(site => (
-                <Marker 
+                <Marker
                 key={site._id}
                 position={{
                     lat: parseFloat(site.latitude),
@@ -157,6 +157,7 @@ const MySitesMap = () => {
                     gridSize={20}
                     maxZoom={11}
                     defaultZoomOnClick
+                    styles={[{ textColor: 'white', height: 53, url: markerShopSVG, width: 53 }]}
             >
 
                 {diveShops.map(shop => (
@@ -278,7 +279,7 @@ const MySitesMap = () => {
 
 
                             <div className={classes.shop__nameContainer}>
-                                <a href={"/diveShops/" + selectedShop._id} className={classes.name}>
+                                <a href={"/diveshop/" + selectedShop._id} className={classes.name}>
                                         <span>{selectedShop.name}</span>
                                         <br/>
                                 </a>

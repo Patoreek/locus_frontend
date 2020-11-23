@@ -13,7 +13,7 @@ import {ReactComponent as LocationSVG} from '../../../assets/icons/location-mark
 import {ReactComponent as WebsiteSVG} from '../../../assets/icons/global.svg';
 import {ReactComponent as FacebookSVG} from '../../../assets/icons/facebook.svg';
 import {ReactComponent as InstagramSVG} from '../../../assets/icons/instagram.svg';
-import {ReactComponent as TwitterSVG} from '../../../assets/icons/twitter.svg'
+import {ReactComponent as TwitterSVG} from '../../../assets/icons/twitter.svg';
 
 const DiveShopUserList = () => {
 

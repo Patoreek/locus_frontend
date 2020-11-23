@@ -21,6 +21,7 @@ const PreviewReport = (props) => {
     const [visibility, setVisibility] = useState("");
     const [duration, setDuration] = useState("");
     const [report, setReport] = useState("");
+    const [images, setImages] = useState("");
 
 
 
@@ -45,6 +46,7 @@ const PreviewReport = (props) => {
         setVisibility(props.currentReport.visibility);
         setDuration(props.currentReport.duration);
         setReport(props.currentReport.report);
+        setImages(props.currentReport.images);
         //setIsLoading(false);
     }, [props.currentReport]);
 
@@ -84,6 +86,19 @@ const PreviewReport = (props) => {
                 <div className={classes.previewReport__reportContainer}>
                     <p>{report}</p>
                 </div>
+                {images.length > 0 && (
+                <div className={classes.previewReport__imagesContainer}>
+                    <div className={classes.container}>
+                        <div className={classes.imageSlideshow}>
+                            {images.map(image => (
+                            <div className={classes.imgContainer}>
+                                <img src={'http://localhost:8080/' + image}/>
+                            </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+                )}
             </div>
             )}
         </div>

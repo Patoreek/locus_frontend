@@ -24,6 +24,14 @@ import { ReactComponent as TemperatureSVG } from '../../assets/icons/temperature
 import { ReactComponent as GoogleMapSVG } from '../../assets/icons/google-map-icon.svg';
 import { ReactComponent as VisibilitySVG } from '../../assets/icons/visibility.svg';
 
+import {ReactComponent as PhoneSVG} from '../../assets/icons/phone.svg';
+import {ReactComponent as EmailSVG} from '../../assets/icons/email.svg';
+import {ReactComponent as LocationSVG} from '../../assets/icons/location-marker.svg';
+import {ReactComponent as WebsiteSVG} from '../../assets/icons/global.svg';
+import {ReactComponent as FacebookSVG} from '../../assets/icons/facebook.svg';
+import {ReactComponent as InstagramSVG} from '../../assets/icons/instagram.svg';
+import {ReactComponent as TwitterSVG} from '../../assets/icons/twitter.svg';
+
 
 
 
@@ -66,6 +74,8 @@ const Details = (props) => {
     const [reports, setReports] = useState([]);
 
     const [mainImage, setMainImage] = useState();
+
+    const [shops, setShops] = useState([]);
 
 
 
@@ -170,6 +180,25 @@ const Details = (props) => {
            //setIsLoading(true);
           }
         }
+
+        async function getAssociatedShops() {
+
+          try {
+            const response = await fetch('http://localhost:8080/diveSites/getAssociatedShops/' + siteId,{
+              method: 'GET',
+              credentials: 'include',
+            });
+            const shops = await response.json();
+            console.log(shops);
+            setShops(shops.shops);
+    
+          } catch (error) {
+           console.log(error);
+           //setIsLoading(true);
+          }
+        }
+
+        getAssociatedShops();
 
         getReportsForSite();
 
@@ -292,6 +321,95 @@ const Details = (props) => {
                   <div className={classes.weatherContainer}>
                     Weather Container (PLACE THIS AND IMPLEMENT LATER)
                   </div>
+                  
+                  <div className={classes.shopContainer}>
+                      <h3> Dive Shops that dive at {siteName}</h3>
+                      {shops.map(shop => (
+                         <div className={classes.shop}>
+                         <div className={classes.shop__imageContainer}>
+                             <a href={"/diveshop/" + shop._id}>
+                             <img src={'http://localhost:8080/' + shop.logo}
+                                 className={classes.image}
+                             />
+                             </a>
+                         </div>
+     
+                         <div className={classes.shop__nameContainer}>
+                             <h5  className={classes.shopName}>
+                                 <a href={"/diveshop/" + shop._id}>
+                                     {shop.name}
+                                 </a>
+                             </h5>
+                         </div>
+     
+                         <div className={classes.shop__addressContainer}>
+                                 <LocationSVG className={`${classes.icon} ${classes.icon__location}`}/>
+                                 <a  href={"https://www.google.com/search?q=" + shop.address}
+                                     target="_blank"
+                                     rel="noopener noreferrer"
+                                     className={classes.address}>
+                                         {shop.address}
+                                 </a>
+                         </div>
+     
+                         <div className={classes.shop__phoneContainer}>
+                                 <PhoneSVG className={`${classes.icon} ${classes.icon__phone}`}/>
+                                 <a  href={"tel:" + shop.phone}
+                                     className={classes.phone}>
+                                         {shop.phone}
+                                 </a>
+                         </div>
+     
+     
+                         <div className={classes.shop__emailContainer}>
+                                 <EmailSVG className={`${classes.icon} ${classes.icon__email}`}/>
+                                 <a  href={"mailto:" + shop.email}
+                                     className={classes.email}>
+                                         {shop.email}
+                                 </a>
+                         </div>
+     
+                         <div className={classes.shop__websiteContainer}>
+                         <WebsiteSVG className={`${classes.icon} ${classes.icon__website}`}/>
+     
+                                 <a  href={shop.website}
+                                     target="_blank"
+                                     rel="noopener noreferrer"
+                                     className={classes.website}>
+                                         {shop.website}
+                                 </a>
+                         </div>
+     
+                         <div className={classes.socialsContainer}>
+                                     <div className={classes.socialsContainer__facebookContainer}>
+                                         <a  href={shop.facebook}
+                                         target="_blank"
+                                         rel="noopener noreferrer">
+                                             <FacebookSVG className={`${classes.icon} ${classes.icon__facebook}`}/>
+                                         </a>
+                                     </div>
+                                     <div className={classes.socialsContainer__instagramContainer}>
+                                         <a  href={shop.instagram}
+                                         target="_blank"
+                                         rel="noopener noreferrer">
+                                             <InstagramSVG className={`${classes.icon} ${classes.icon__instagram}`}/>
+                                         </a>
+                                     </div>
+                                     <div className={classes.socialsContainer__twitterContainer}>
+                                         <a  href={shop.twitter}
+                                         target="_blank"
+                                         rel="noopener noreferrer">
+                                             <TwitterSVG className={`${classes.icon} ${classes.icon__twitter}`}/>
+                                         </a>
+                                     </div>
+                                 </div>
+                         
+                     
+                     </div>
+     
+                      ))}
+                  </div>
+
                 </div>
 
           

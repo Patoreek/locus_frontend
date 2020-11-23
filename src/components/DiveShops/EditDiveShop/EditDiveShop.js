@@ -4,6 +4,11 @@ import classes from './EditDiveShop.module.scss';
 import { FilePond } from 'react-filepond';
 import "filepond/dist/filepond.min.css";
 
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
+
+
+
 
 import { 
     EditDiveShopModalContext,
@@ -18,21 +23,6 @@ import {
 
 const EditDiveShop = () => {
 
-    //* Name
-    //* Suburb (Area)
-    //* Country
-    //* Logo Only Added in edit mode (currently commented out...)
-    //* Banner  Only Added in edit mode (currently commented out...)
-    //* Address
-    //* Phone
-    //* Email
-    //* Website
-    //* Facebook
-    //* Twitter 
-    //* Instagram
-    //? TradingHours
-    //* Associated Dive Sites
-
     const [name, setName] = useState("");
     const [area, setArea] = useState(""); //? THIS IS ALSO REFERED AS SUBURB
     const [country, setCountry] = useState("");
@@ -46,12 +36,16 @@ const EditDiveShop = () => {
     const [tradingHours, setTradingHours] = useState([]);
     const [associatedDiveSites, setAssociatedDiveSites] = useState([]);
 
+    const [diveSiteList, setDiveSiteList] = useState([]);
+
+    const [isLoading, setIsLoading] = useState(true);
+
     const [editDiveShopModal, setEditDiveShopModal] = useContext(EditDiveShopModalContext);
     const [deleteDiveShopModal, setDeleteDiveShopModal] = useContext(DeleteDiveShopModalContext);
 
     const [selectedShop, setSelectedShop] = useContext(ShopContext);
 
-
+    const animatedComponents = makeAnimated();
 
     useEffect(() => {
 
@@ -68,7 +62,38 @@ const EditDiveShop = () => {
         setTradingHours(selectedShop.TradingHours);
         setAssociatedDiveSites(selectedShop.associatedDiveSites);
 
+        async function getSites() {
+            try {
+                const response = await fetch('http://localhost:8080/diveSites/getSites',{
+                    method: 'GET',
+                    credentials: 'include',
+                });
+                const sites = await response.json();
+                //console.log(sites);
+               
+                let sitesArray = [];
+
+                sites.site.map(site => {
+                    sitesArray.push({
+                        value: site._id,
+                        label: site.name + ", " + site.area
+                    });
+                });
+                console.log('CONVERTED ARRAY');
+                console.log(sitesArray);
+
+                // setDiveSiteList(sites.site);
+                setDiveSiteList(sitesArray);
+                setIsLoading(false);
+            } catch (error) {
+            console.log(error);
+            setIsLoading(null);
+            }
+        }
+        getSites();
+
     }, []);
+
 
 
     const handleSubmit = () => {
@@ -93,7 +118,7 @@ const EditDiveShop = () => {
                     twitter: twitter,
                     instagram: instagram,
                     tradingHours: tradingHours,
-                    //associatedDiveSites: associatedDiveSites,
+                    associatedDiveSites: associatedDiveSites,
                 }
             })
         })
@@ -112,6 +137,20 @@ const EditDiveShop = () => {
     const deleteHandler = () => {
         setEditDiveShopModal(false);
         setDeleteDiveShopModal(true);
+    }
+
+    const diveSitesHandler = (e) => {
+        console.log(e);
+        let valueArray = [];
+
+        e.map(obj => {
+            valueArray.push(obj.value);
+        });
+
+        console.log(valueArray);
+
+
+        setAssociatedDiveSites(valueArray);
     }
 
     return (
@@ -239,24 +278,23 @@ const EditDiveShop = () => {
                     </div>
 
                     {/*//! This should be a multi select input && Gather all sites with a 150km radius?? */}
-                    <div className={classes.form__associatedSitesContainer}>
-                            <select value={associatedDiveSites} onChange={e => setAssociatedDiveSites(e.target.value)} className={`${classes.input} ${classes.input__associatedDiveSites}`}>
-                                <option value="reef">Bare Island, La Perouse, Sydney, Australia</option>
-                                <option value="wreck">Gordons Bay, Clovelly Beach, Sydney, Australia</option>
-                                <option value="cave">Oak Park, Cronulla, Sydney, Australia</option>
-                                <option value="deep">Shelly Beach, Manly, Sydney, Australia</option>
-                            </select>
+                    {!isLoading && (
+                        <div className={classes.form__associatedSitesContainer}>
+                            <Select
+                                closeMenuOnSelect={false}
+                                components={animatedComponents}
+                                //defaultValue={[colourOptions[4], colourOptions[5]]}
+                                //value={colourOptions.find(obj => obj.value === selectedValue)}
+                                isMulti
+                                options={diveSiteList}
+                                onChange={diveSitesHandler}
+                            />
+                            
                             <span>Associated Dive Sites</span>
-                    </div>
+                        </div>
+                    )}
                     
-                  
-                    
-                        
-                        
-                    
-                        
-                      
-                  
+
                     <div className={classes.form__cancelBtnContainer}>
                         <button className={classes.cancelBtn} onClick={() => setEditDiveShopModal(false)}>Cancel</button>
                     </div>

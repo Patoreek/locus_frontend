@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import classes from './AddDiveShop.module.scss';
 
 import { 
@@ -8,6 +8,9 @@ import {
 import { 
     CoordsContext,
 } from '../../../context/DiveSiteContext';
+
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
 
 const AddDiveShop = () => {
 
@@ -38,10 +41,50 @@ const AddDiveShop = () => {
     const [instagram, setInstagram] = useState();
     const [tradingHours, setTradingHours] = useState([]);
     const [associatedDiveSites, setAssociatedDiveSites] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const [diveSiteList, setDiveSiteList] = useState([]);
+
 
     const [addDiveShopModal, setAddDiveShopModal] = useContext(AddDiveShopModalContext);
 
     const [coords, setCoords] = useContext(CoordsContext);
+
+    const animatedComponents = makeAnimated();
+
+    useEffect(() => {
+
+        async function getSites() {
+            try {
+                const response = await fetch('http://localhost:8080/diveSites/getSites',{
+                    method: 'GET',
+                    credentials: 'include',
+                });
+                const sites = await response.json();
+                //console.log(sites);
+               
+                let sitesArray = [];
+
+                sites.site.map(site => {
+                    sitesArray.push({
+                        value: site._id,
+                        label: site.name + ", " + site.area
+                    });
+                });
+                console.log('CONVERTED ARRAY');
+                console.log(sitesArray);
+
+                // setDiveSiteList(sites.site);
+                setDiveSiteList(sitesArray);
+                setIsLoading(false);
+            } catch (error) {
+            console.log(error);
+            setIsLoading(null);
+            }
+        }
+        getSites();
+
+    }, []);
 
 
     const handleSubmit = () => {
@@ -67,7 +110,7 @@ const AddDiveShop = () => {
                     twitter: twitter,
                     instagram: instagram,
                     tradingHours: tradingHours,
-                    //associatedDiveSites: associatedDiveSites,
+                    associatedDiveSites: associatedDiveSites,
                 }
             })
         })
@@ -81,6 +124,20 @@ const AddDiveShop = () => {
         .catch(err => {
             console.log(err);
         });
+    }
+
+    const diveSitesHandler = (e) => {
+        console.log(e);
+        let valueArray = [];
+
+        e.map(obj => {
+            valueArray.push(obj.value);
+        });
+
+        console.log(valueArray);
+
+
+        setAssociatedDiveSites(valueArray);
     }
 
     return (
@@ -204,15 +261,21 @@ const AddDiveShop = () => {
                     </div>
 
                     {/*//! This should be a multi select input && Gather all sites with a 150km radius?? */}
-                    <div className={classes.form__associatedSitesContainer}>
-                            <select value={associatedDiveSites} onChange={e => setAssociatedDiveSites(e.target.value)} className={`${classes.input} ${classes.input__associatedDiveSites}`}>
-                                <option value="reef">Bare Island, La Perouse, Sydney, Australia</option>
-                                <option value="wreck">Gordons Bay, Clovelly Beach, Sydney, Australia</option>
-                                <option value="cave">Oak Park, Cronulla, Sydney, Australia</option>
-                                <option value="deep">Shelly Beach, Manly, Sydney, Australia</option>
-                            </select>
+                    {!isLoading && (
+                        <div className={classes.form__associatedSitesContainer}>
+                            <Select
+                                closeMenuOnSelect={false}
+                                components={animatedComponents}
+                                //defaultValue={[colourOptions[4], colourOptions[5]]}
+                                //value={colourOptions.find(obj => obj.value === selectedValue)}
+                                isMulti
+                                options={diveSiteList}
+                                onChange={diveSitesHandler}
+                            />
+                            
                             <span>Associated Dive Sites</span>
-                    </div>
+                        </div>
+                    )}
                     
                   
                     

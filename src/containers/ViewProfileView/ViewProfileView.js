@@ -40,38 +40,40 @@ const ViewProfileView = (props) => {
         useEffect(() => {
             const userId = props.match.params.userId;
 
-            return fetch('http://localhost:8080/user/viewProfile',{
-                method: 'POST',
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    userId: userId
+            const getProfile = () => {
+                return fetch('http://localhost:8080/user/viewProfile',{
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        userId: userId
+                    })
                 })
-            })
-            .then(res => {
-                return res.json();
-            })
-            .then(profile => {
-               console.log(profile);
-               setFirstName(profile.firstName);
-               setLastName(profile.lastName);
-               setProfilePic('http://localhost:8080/' + profile.profilePic);
-               setBio(profile.bio);
-               setCity(profile.city);
-               setCountry(profile.country);
-               setExperience(profile.experience);
-               setFavourites(profile.favouritesData);
-               setIsLoading(false);
-                
-            })
-            .catch(err => {
-                console.log('Caught.');
-                console.log(err);
-                // history.push("/login");
-            });
-            
+                .then(res => {
+                    return res.json();
+                })
+                .then(profile => {
+                   console.log(profile);
+                   setFirstName(profile.firstName);
+                   setLastName(profile.lastName);
+                   setProfilePic('http://localhost:8080/' + profile.profilePic);
+                   setBio(profile.bio);
+                   setCity(profile.city);
+                   setCountry(profile.country);
+                   setExperience(profile.experience);
+                   setFavourites(profile.favouritesData);
+                   setIsLoading(false);
+                    
+                })
+                .catch(err => {
+                    console.log('Caught.');
+                    console.log(err);
+                    // history.push("/login");
+                });
+
+            }
 
             async function getReports() {
     
@@ -87,13 +89,21 @@ const ViewProfileView = (props) => {
                  
                 } catch (error) {
                 console.log(error);
+                console.log("Did not get reports for this user...");
                 setIsLoading(null);
                 }
             }
-            
-            
+
+            getProfile();
             getReports();
+            
+
+            
+            
+          
         }, []);
+
+        
 
         
     return (
@@ -145,17 +155,8 @@ const ViewProfileView = (props) => {
                             <div className={classes.reportsContainer}>
                                 <h4>Dive Reports (0)</h4>
                                     <div className={classes.noReports}>
-                                        <h3>There are currently no dive reports for this location.</h3>
-                                        {isAuth ? 
-                                            <a href="#">Add a Dive Report</a> : 
-                                            <span onClick={() =>  
-                                                setAuthDrawer({
-                                                    open: true,
-                                                    login: true,
-                                                    signup: false
-                                                })}>Log in
-                                            </span>
-                                        }
+                                        <h3>This user has not posted any dive reports yet...</h3>
+                         <p className={classes.subHeader_noReports}>Visit {firstName} later to see if he has added any new dive reports!</p>
                                     </div>
                             </div>
                         )}
