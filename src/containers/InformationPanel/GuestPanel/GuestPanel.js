@@ -10,22 +10,11 @@ import { DiveSitesContext,
          ShopContext } from '../../../context/DiveSiteContext';
 
 import {AuthContext, LocationNameContext} from '../../../context/AuthContext';
-
-import StarRating from '../../../components/StarRating/StarRating';
-import FavouriteButton from '../../../components/Buttons/FavouriteButton/FavouriteButton';
-import EllipsesButton from '../../../components/Buttons/EllipsesButton/EllipsesButton';
 import ToggleButtons from '../ToggleButtons/ToggleButtons';
 
-import {ReactComponent as EditSVG} from '../../../assets/icons/edit.svg';
-import {ReactComponent as PhoneSVG} from '../../../assets/icons/phone.svg';
-import {ReactComponent as EmailSVG} from '../../../assets/icons/email.svg';
-import {ReactComponent as LocationSVG} from '../../../assets/icons/location-marker.svg';
-import {ReactComponent as WebsiteSVG} from '../../../assets/icons/global.svg';
-import {ReactComponent as FacebookSVG} from '../../../assets/icons/facebook.svg';
-import {ReactComponent as InstagramSVG} from '../../../assets/icons/instagram.svg';
-import {ReactComponent as TwitterSVG} from '../../../assets/icons/twitter.svg';
 
-
+import DivesiteListingPanel from '../../../components/Divesite/DivesiteListingPanel/DivesiteListingPanel';
+import DiveshopListingPanel from '../../../components/Diveshop/DiveshopListingPanel/DiveshopListingPanel';
 
 import classes from './GuestPanel.module.scss';
 
@@ -75,52 +64,9 @@ const GuestPanel = () => {
         {list == 'DiveSites' && (
         <div>
             {diveSites.map(site => (
-                <div className={classes.site}>
-                    <div className={classes.site__imageContainer}>
-                        <a href={"/divesite/" + site._id}>
-                            <img src={'http://localhost:8080/' + site.images[0]}
-                                className={classes.image}
-                            />
-                        </a>
-                    </div>
-
-                    <div className={classes.site__diveTypeContainer}>
-                        <span> {site.siteType} Dive · {site.suitable}</span> 
-                    </div>
-
-
-                    <div className={classes.site__nameContainer}>
-                        <h5  className={classes.siteName}>
-                            <a href={"/divesite/" + site._id}>
-                                {site.name}, {site.area}
-                            </a>
-                        </h5>
-                    </div>
-
-                    {isAuth && (
-                        <div className={classes.site__favButtonContainer}>
-                            <FavouriteButton site={site}/> 
-                        </div>
-                    )}
-
+                <DivesiteListingPanel site={site}/>
                 
-
-                    <div className={classes.site__descriptionContainer}>
-                        <p className={classes.siteDescription}> {site.description} </p>
-                    </div>
-
-                    <div className={classes.site__ratingsContainer}>
-                        <StarRating site={site}/>
-                    </div>
-
-                    <div className={classes.site__moreDetailsContainer}>
-                                <a href={"/divesite/" + site._id} className={classes.moreDetailsButton}>
-                                        More Details...
-                                    </a>
-                    </div>
-                
-                </div>
-            ))}
+           ))}
         </div>
         )}
 
@@ -128,93 +74,7 @@ const GuestPanel = () => {
         <div>
             {diveShops.map(shop => (
 
-                <div className={classes.shop}>
-                    <div className={classes.shop__imageContainer}>
-                        <a href={"/diveshop/" + shop._id}>
-                        <img src={'http://localhost:8080/' + shop.logo}
-                            className={classes.image}
-                        />
-                        </a>
-                    </div>
-
-                    <div className={classes.shop__nameContainer}>
-                        <h5  className={classes.shopName}>
-                            <a href={"/diveshop/" + shop._id}>
-                                {shop.name}
-                            </a>
-                        </h5>
-                    </div>
-
-                    <div className={classes.shop__editContainer}>
-                        <EditSVG className={classes.edit} onClick={() => {
-                            setSelectedShop(shop);
-                        }}/>
-                    </div>
-
-                    <div className={classes.shop__addressContainer}>
-                            <LocationSVG className={`${classes.icon} ${classes.icon__location}`}/>
-                            <a  href={"https://www.google.com/search?q=" + shop.address}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={classes.address}>
-                                    {shop.address}
-                            </a>
-                    </div>
-
-                    <div className={classes.shop__phoneContainer}>
-                            <PhoneSVG className={`${classes.icon} ${classes.icon__phone}`}/>
-                            <a  href={"tel:" + shop.phone}
-                                className={classes.phone}>
-                                    {shop.phone}
-                            </a>
-                    </div>
-
-
-                    <div className={classes.shop__emailContainer}>
-                            <EmailSVG className={`${classes.icon} ${classes.icon__email}`}/>
-                            <a  href={"mailto:" + shop.email}
-                                className={classes.email}>
-                                    {shop.email}
-                            </a>
-                    </div>
-
-                    <div className={classes.shop__websiteContainer}>
-                    <WebsiteSVG className={`${classes.icon} ${classes.icon__website}`}/>
-
-                            <a  href={shop.website}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={classes.website}>
-                                    {shop.website}
-                            </a>
-                    </div>
-
-                    <div className={classes.socialsContainer}>
-                                <div className={classes.socialsContainer__facebookContainer}>
-                                    <a  href={shop.facebook}
-                                    target="_blank"
-                                    rel="noopener noreferrer">
-                                        <FacebookSVG className={`${classes.icon} ${classes.icon__facebook}`}/>
-                                    </a>
-                                </div>
-                                <div className={classes.socialsContainer__instagramContainer}>
-                                    <a  href={shop.instagram}
-                                    target="_blank"
-                                    rel="noopener noreferrer">
-                                        <InstagramSVG className={`${classes.icon} ${classes.icon__instagram}`}/>
-                                    </a>
-                                </div>
-                                <div className={classes.socialsContainer__twitterContainer}>
-                                    <a  href={shop.twitter}
-                                    target="_blank"
-                                    rel="noopener noreferrer">
-                                        <TwitterSVG className={`${classes.icon} ${classes.icon__twitter}`}/>
-                                    </a>
-                                </div>
-                            </div>
-                    
-                
-                </div>
+                <DiveshopListingPanel shop={shop}/>
 
             ))}
         </div>

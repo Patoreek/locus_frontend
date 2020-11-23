@@ -1,6 +1,6 @@
 import React from 'react';
 
-import classes from './NewsView.module.css';
+import classes from './NewsView.module.scss';
 
 const NewsView = () => {
     return (

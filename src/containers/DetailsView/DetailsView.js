@@ -33,6 +33,9 @@ import {ReactComponent as InstagramSVG} from '../../assets/icons/instagram.svg';
 import {ReactComponent as TwitterSVG} from '../../assets/icons/twitter.svg';
 
 
+import DivesiteListing from '../../components/Divesite/DivesiteListing/DivesiteListing';
+
+
 
 
 import classes from './DetailsView.module.scss';
@@ -76,6 +79,8 @@ const Details = (props) => {
     const [mainImage, setMainImage] = useState();
 
     const [shops, setShops] = useState([]);
+
+    const [nearbySites, setNearbySites] = useState([]);
 
 
 
@@ -127,7 +132,7 @@ const Details = (props) => {
               credentials: 'include',
             });
             const results = await response.json();
-            console.log(results);
+            //console.log(results);
             const site = results.site;
 
             setSiteName(site.name);
@@ -151,7 +156,7 @@ const Details = (props) => {
 
             setSiteLatitude(site.latitude);
             setSiteLongitude(site.longitude);
-
+            getNearbyDiveSites(site.latitude, site.longitude);
             setSelectedSite(site);
             setIsLoading(false);
 
@@ -171,7 +176,7 @@ const Details = (props) => {
               credentials: 'include',
             });
             const results = await response.json();
-            console.log(results);
+            //console.log(results);
             //const reports = results.reportsData;
             setReports(results.reportsData);
     
@@ -189,7 +194,7 @@ const Details = (props) => {
               credentials: 'include',
             });
             const shops = await response.json();
-            console.log(shops);
+            //console.log(shops);
             setShops(shops.shops);
     
           } catch (error) {
@@ -198,10 +203,47 @@ const Details = (props) => {
           }
         }
 
+        async function getNearbyDiveSites(lat, lng) {
+          // You can await here
+          console.log('getNearbyDiveSites');
+          console.log(lat);
+          console.log(lng);
+
+          // const swLat = mapBounds.Wa.i;
+          // const swLng = mapBounds.Sa.i;
+          // const neLat = mapBounds.Wa.j;
+          // const neLng = mapBounds.Sa.j;
+  
+          return fetch('http://localhost:8080/diveSites/findNearbyDiveSites',{
+              method: 'POST',
+              credentials: 'include',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                  lat: lat,
+                  lng, lng,
+                  // swLat: swLat,
+                  // swLng: swLng,
+                  // neLat: neLat,
+                  // neLng: neLng,
+              })
+          })
+          .then(res => {
+              return res.json();
+          })
+          .then(result => {
+              console.log(result.sites);
+              setNearbySites(result.sites);
+              
+          })
+          .catch(err => {
+              console.log('Caught.');
+              console.log(err);  
+          });
+      }
         getAssociatedShops();
-
         getReportsForSite();
-
         getSite();
   
     },[]);
@@ -254,68 +296,107 @@ const Details = (props) => {
                 {/* //TODO: END IMAGE GRID CONTAINER ////////////////// */}
 
                 {/* USE FLEXBOX COLUMN */}
-                <div className={classes.divesite__nameContainer}>
-                    <h3 className={classes.name}>{siteName}</h3>
-                    <h3 className={classes.name}>{siteArea}, {siteCountry}</h3>
-                    <a target="_blank" href={"http://www.google.com/search?q=" + siteName + "%2C+" + siteArea + "%2C+" + siteCountry}>{siteName}, {siteArea}, {siteCountry}</a> {/* Should be a link to the map / google maps of the area?? */}
-                    <a target="_blank" href={"https://maps.google.com/?q=" + siteLatitude + "," + siteLongitude}><GoogleMapSVG className={classes.googleMapSVG}/></a>
-                    <div className={classes.ratingsContainer}>
-                      <div className={classes.ratingsContainer__rating}>
-                      <StarRating site={selectedSite}/>
-                      </div>
-                      <div className={classes.ratingsContainer__favBtn}>
-                        <FavouriteButton site={selectedSite}/>
-                      </div>
+                <div className={classes.leftContainer}>
+
+                    <div className={classes.leftContainer__nameContainer}>
+                        <h3 className={classes.name}>{siteName}</h3>
+                        <h3 className={classes.name}>{siteArea}, {siteCountry}</h3>
+                        <a target="_blank" href={"http://www.google.com/search?q=" + siteName + "%2C+" + siteArea + "%2C+" + siteCountry}>{siteName}, {siteArea}, {siteCountry}</a> {/* Should be a link to the map / google maps of the area?? */}
+                        <a target="_blank" href={"https://maps.google.com/?q=" + siteLatitude + "," + siteLongitude}><GoogleMapSVG className={classes.googleMapSVG}/></a>
+                        <div className={classes.ratingsContainer}>
+                          <div className={classes.ratingsContainer__rating}>
+                          <StarRating site={selectedSite}/>
+                          </div>
+                          <div className={classes.ratingsContainer__favBtn}>
+                            <FavouriteButton site={selectedSite}/>
+                          </div>
+                        </div>
                     </div>
-                </div>
 
 
-                <div className={classes.divesite__points}>
-                    <div className={classes.point}> 
-                      <ShoreSVG className={classes.point__icon}/> 
-                      <div className={classes.point__text}>                         
-                        <span>Access from {siteAccess}</span>
+                    <div className={classes.leftContainer__points}>
+                        <div className={classes.point}> 
+                          <ShoreSVG className={classes.point__icon}/> 
+                          <div className={classes.point__text}>                         
+                            <span>Access from {siteAccess}</span>
+                          </div>
+                        </div>
+                        <div className={classes.point}>
+                          <ReefSVG className={classes.point__icon}/>
+                          <div className={classes.point__text}>            
+                            <span>{siteType} Dive</span>
+                          </div>
+                        </div>
+                        <div className={classes.point}>
+                          <DepthSVG className={classes.point__icon}/>   
+                          <div className={classes.point__text}>         
+                            <span>Max Depth: {siteMaxDepth}m</span>
+                            <span>Average Depth: {siteAvgDepth}m</span>
+                          </div>
+                        </div>
+                        <div className={classes.point}>
+                          <XpSVG className={classes.point__icon}/>  
+                          <div className={classes.point__text}>          
+                            <span>{siteExperience}</span>
+                            <span>{siteSuitable}</span>
+                          </div>
+                        </div>
+                        <div className={classes.point}>
+                          <TemperatureSVG className={classes.point__icon}/>  
+                          <div className={classes.point__text}>
+                            <span>{siteMinTemp}°C - {siteMaxTemp}°C</span>   
+                          </div>       
+                        </div>
+                        <div className={classes.point}>
+                          <VisibilitySVG className={classes.point__icon}/> 
+                          <div className={classes.point__text}>           
+                            <span>{siteMinVis} - {siteMaxVis}m</span>
+                          </div>
+                        </div>
+                      
+                    </div>
+
+                    <div className={classes.leftContainer__descriptionContainer}>
+                      <p>{siteDescription}</p>
+                    </div>
+
+                    {/* //! DIVE REPORTS SECTION WILL GO HERE  */}
+                    {reports != [] && (
+                      <div className={classes.leftContainer__reportsContainer}>
+                        <h4>Dive Reports ({reports.length})</h4>
+                        {reports.map(report => (
+                          <DisplayReport report={report}/>
+                        ))}
+
                       </div>
-                    </div>
-                    <div className={classes.point}>
-                      <ReefSVG className={classes.point__icon}/>
-                      <div className={classes.point__text}>            
-                        <span>{siteType} Dive</span>
-                      </div>
-                    </div>
-                    <div className={classes.point}>
-                      <DepthSVG className={classes.point__icon}/>   
-                      <div className={classes.point__text}>         
-                        <span>Max Depth: {siteMaxDepth}m</span>
-                        <span>Average Depth: {siteAvgDepth}m</span>
-                      </div>
-                    </div>
-                    <div className={classes.point}>
-                      <XpSVG className={classes.point__icon}/>  
-                      <div className={classes.point__text}>          
-                        <span>{siteExperience}</span>
-                        <span>{siteSuitable}</span>
-                      </div>
-                    </div>
-                    <div className={classes.point}>
-                      <TemperatureSVG className={classes.point__icon}/>  
-                      <div className={classes.point__text}>
-                        <span>{siteMinTemp}°C - {siteMaxTemp}°C</span>   
-                      </div>       
-                    </div>
-                    <div className={classes.point}>
-                      <VisibilitySVG className={classes.point__icon}/> 
-                      <div className={classes.point__text}>           
-                        <span>{siteMinVis} - {siteMaxVis}m</span>
-                      </div>
-                    </div>
+                  )}
+
                   
+                  {reports.length == 0 && (
+                    <div className={classes.leftContainer__reportsContainer}>
+                    <h4>Dive Reports (0)</h4>
+                    <div className={classes.noReports}>
+                        <h3>There are currently no dive reports for this location.</h3>
+                        {isAuth ? 
+                          <a href="/profile/diveReports">Add a Dive Report</a> : 
+                          <span onClick={() =>  
+                                setAuthDrawer({
+                                    open: true,
+                                    login: true,
+                                    signup: false
+                                })}>Log in
+                          </span>
+                        }
+                    </div>
+                    </div>
+                  )}
+
+
+
                 </div>
 
-                <div className={classes.divesite__descriptionContainer}>
-                  <p>{siteDescription}</p>
-                </div>
 
+               
                 <div className={classes.divesite__rightContainer}>
                   <a href={"/communityphotos/" + siteId} className={classes.photoLink}>See all community photos</a>
                   <div className={classes.weatherContainer}>
@@ -410,39 +491,18 @@ const Details = (props) => {
                       ))}
                   </div>
 
+
+                  <div className={classes.nearbyDiveSites}>
+                    <h3> Dive Sites that are near {siteName}</h3>
+                    {nearbySites.map(site => (
+                        <DivesiteListing site={site}/>
+                    ))}
+
+                  </div>
                 </div>
 
           
-                {/* //! DIVE REPORTS SECTION WILL GO HERE  */}
-                {reports != [] && (
-                    <div className={classes.divesite__reportsContainer}>
-                      <h4>Dive Reports ({reports.length})</h4>
-                      {reports.map(report => (
-                        <DisplayReport report={report}/>
-                      ))}
-
-                    </div>
-                )}
-
-                
-                {reports.length == 0 && (
-                  <div className={classes.divesite__reportsContainer}>
-                  <h4>Dive Reports (0)</h4>
-                  <div className={classes.noReports}>
-                      <h3>There are currently no dive reports for this location.</h3>
-                      {isAuth ? 
-                        <a href="/profile/diveReports">Add a Dive Report</a> : 
-                        <span onClick={() =>  
-                              setAuthDrawer({
-                                  open: true,
-                                  login: true,
-                                  signup: false
-                              })}>Log in
-                        </span>
-                      }
-                  </div>
-                  </div>
-                )}
+              
              
 
 

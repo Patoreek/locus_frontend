@@ -35,11 +35,9 @@ const AuthDrawer = () => {
         <div>
         <div className={attachedClasses.join(' ')}>
             <CloseSVG className={classes.closeArrow} onClick={() => overlayHandler()}/>
-            {/* <LoginView/> */}
             {authDrawer.login ? <LoginView/> : null}
              {authDrawer.signup ? <SignupView/> : null}
              {authDrawer.forgotPw ? <ForgotPassword/> : null}
-            {/* <SignupView/> */}
         </div>
         <div className={`${classes.overlay} ${authDrawer.open ? classes.show : null}`} onClick={() => overlayHandler()}></div>
         </div>

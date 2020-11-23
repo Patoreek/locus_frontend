@@ -1,0 +1,362 @@
+@import '../../../../../sass/abstracts/variables';
+
+
+
+.diveShop {
+    //max-width: 1400px;
+    min-height: calc(100vh - 6rem);
+    margin: 0 auto;
+    //@extend: lightgreen;
+
+    .banner {
+        width: 100%;
+        height: 30rem;
+        //background: orange;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+   .mainGrid {
+       margin: 0 auto;
+       max-width: 1400px;
+       padding: 0rem 15rem 10rem 15rem;
+
+       display: grid;
+       grid-template-rows: max-content max-content;
+       grid-template-columns: 1fr;
+
+       &__topContainer {
+            //background: pink;
+            margin-bottom: -6rem;
+            display: flex;
+
+
+            .imageContainer {
+                grid-row: 1 / -1;
+                grid-column: 1 / 2;
+                //background: lawngreen;
+
+                
+
+                border-radius: 50%;
+                overflow: hidden;
+                transform: translateY(-7rem);
+                width: 20rem;
+                height: 20rem;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+
+                }
+            }
+
+            .shopInfo {
+                margin: 1rem 0rem 0rem 1rem;
+                display: grid;
+                grid-template-rows: repeat(3, max-content);
+                grid-template-columns:1fr;
+                grid-gap: 1rem;
+                .nameContainer {
+                    grid-row: 1 / 2;
+                    grid-column: 2 / 3;
+    
+                    h2 {
+                        font-size: 3rem;
+                        font-weight: 600;
+                    }
+                }
+    
+                .addressContainer {
+                    grid-row: 2 / 3;
+                    grid-column: 2 / 3;
+
+                    display: flex;
+                    align-items: center;
+    
+                    a {
+                        margin-left: 1rem;
+                        font-size: 1.6rem;
+                        font-weight: 500;
+                        color: $color-black;
+
+                        &:hover {
+                            text-decoration: underline;
+                            color: $color-text-blue;
+                        }
+                    }
+                }
+    
+                .websiteContainer {
+                    grid-row: 3 / 4;
+                    grid-column: 2 / 3;
+                    display: flex;
+                    align-items: center;
+    
+                    a {
+                        margin-left: 1rem;
+                        font-size: 1.6rem;
+                        font-weight: 500;
+                        color: $color-black;
+
+                        &:hover {
+                            text-decoration: underline;
+                            color: $color-text-blue;
+                        }
+                    }
+                }
+            }
+       }
+
+       &__bottomContainer {
+            display: grid;
+            grid-template-rows: max-content;
+            grid-template-columns: 1fr .6fr;
+
+            border-top: 1px solid $color-lines;
+
+            .leftGrid {
+                grid-row: 1 / -1;
+                grid-column: 1 / 2;
+                padding: 1rem;
+
+                &__diveSites {
+                    background: $color-white-pure;
+                    padding: 1.5rem 2.5rem;
+                    box-shadow: 2px 2px 10px rgba($color-black, .25);
+                    border-radius: 10px;
+                    overflow: hidden;
+
+                    h3 {
+                        font-size: 2rem;
+                        font-weight: 500;
+                    }
+
+                    .site:not(:last-child) {
+                        border-bottom: 1px solid $color-lines;
+                    }
+                    .site {
+                        padding: 3rem 0rem; //? Might need to change this
+                        //background: orange;
+                        display: grid;
+                        grid-template-rows: max-content max-content 11rem max-content;
+                        grid-template-columns: max-content 1fr 3rem;
+                
+                
+                        &__imageContainer {
+                            grid-row: 1 / -1;
+                            grid-column: 1 / 2;
+                            border: 1px solid $image-border-color-infoPanel;
+                            border-radius: 3px;
+                            overflow: hidden;
+                            margin-right: 1rem;
+                
+                            width: 30rem;
+                            
+                            .image {
+                                width: 100%;
+                                height: 100%;
+                                transition: .7s ease;
+                
+                                &:hover {
+                                    transform: scale(1.2);
+                                }
+                                
+                            }
+                        }
+                        
+                        &__diveTypeContainer {
+                            grid-row: 1 / 2;
+                            grid-column: 2 / 3;
+                
+                            span {
+                                font-size: 1.4rem;
+                                color: $color-text-darkgrey;
+                                font-weight: 500;
+                            }
+                        }
+                        &__nameContainer {
+                            grid-row: 2 / 3;
+                            grid-column: 2 / 3;
+                
+                            .siteName {
+                                a {
+                                    font-size: 2rem;
+                                    color: $color-black;
+                
+                                    &:hover {
+                                        color: $color-text-blue;
+                                    }
+                                }
+                            }
+                            
+                        }
+                        &__favButtonContainer {
+                            grid-row: 1 / span 2;
+                            grid-column: 3 / 4;
+                        }
+                        &__descriptionContainer {
+                            grid-row: 3 / 4;
+                            grid-column: 2 / span 2;
+                            overflow: hidden;
+                
+                            .siteDescription {
+                                text-overflow: ellipsis;
+                                font-size: 1.4rem;
+                                color: $color-black;
+                            }
+                            
+                        }
+                        &__ratingsContainer {
+                            grid-row: 4 / 5;
+                            grid-column: 2 / 3;
+                            
+                        }
+                        &__moreDetailsContainer {
+                            grid-row: 4 / 5;
+                            grid-column: 2 / span 2;
+                
+                            display: flex;
+                            align-items: center;
+                            padding-right: 2rem;
+                            justify-content: flex-end;
+                
+                            .moreDetailsButton {
+                                font-size: 1.4rem;
+                                color: $color-black;
+                                position: relative;
+                                z-index: 15;
+                
+                                &:hover {
+                                    text-decoration: underline;
+                                    color: $color-text-blue;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .rightGrid {
+                grid-row: 1 / -1;
+                grid-column: 2 / 3;
+                padding: 1rem;
+
+                &__contactInfo {
+                    background: $color-white-pure;
+                    padding: 1.5rem 2.5rem;
+                    box-shadow: 2px 2px 10px rgba($color-black, .25);
+                    border-radius: 10px;
+                    overflow: hidden;
+
+                    .titleContainer {
+                        border-bottom: 1px solid $color-lines;
+                        h5 {
+                            font-size: 2rem;
+                            font-weight: 600;
+                        }
+                    }
+
+                    .phoneContainer {
+                        padding: 2.5rem 0rem 1rem 0rem;
+                        display: flex;
+                        align-items: center;
+
+                        a {
+                            font-size: 1.6rem;
+                            font-weight: 500;
+                            margin-left: 1rem;
+                        }
+
+                    }
+
+                    .emailContainer {
+                        padding: 1rem 0rem;
+                        display: flex;
+                        align-items: center;
+
+                        a {
+                            font-size: 1.6rem;
+                            font-weight: 500;
+                            margin-left: 1rem;
+                        }
+                    }
+
+                    .socialsContainer {
+                        grid-row: 6 / 7;
+                        grid-column: 1 / -1;
+                
+                        display: flex;
+                        justify-content: space-evenly;
+                        padding: 1rem;
+                
+                    }
+                }
+            }
+
+       
+       }
+       
+
+
+
+   }
+}
+
+.icon {
+    width: 3rem;
+    height: 3rem;
+
+    &__facebook, &__instagram, &__twitter {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    &__location, &__phone, &__email, &__website {
+        fill: $color-text-blue-hover;
+    }
+
+    &__phone{
+    }
+
+    &__email {
+        
+    }
+
+    &__website {
+        
+    }
+
+    &__facebook {
+        g path {
+            fill: #3b5998 !important;
+        }
+        transition: .2s ease;;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+
+    &__instagram {
+        g path {
+            fill: #DD2A7B !important;
+        }
+        transition: .2s ease;;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+
+    &__twitter {
+        g path {
+            fill: #00acee !important;
+        }
+        transition: .2s ease;;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}

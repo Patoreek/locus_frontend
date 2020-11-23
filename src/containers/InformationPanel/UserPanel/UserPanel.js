@@ -11,7 +11,7 @@ import CreateSiteForm from '../../../components/Forms/CreateSiteForm/CreateSiteF
 import AddRequestForm from '../../../components/Forms/AddRequestForm/AddRequestForm';
 import EditSiteForm from '../../../components/Forms/EditSiteForm/EditSiteForm';
 import DeleteContainer from '../../../components/Forms/DeleteContainer/DeleteContainer';
-import UserSiteListContainer from './UserSiteListContainer/UserSiteListContainer';
+import MySitesHome from './MySitesHome/MySitesHome';
 
 import ToggleButtons from '../ToggleButtons/ToggleButtons';
 
@@ -31,7 +31,7 @@ const UserPanel = () => {
     return (
         <div>
                 {/* <ToggleButtons/> */}
-                {!showEditModal && !showAddModal && !showDeleteModal && !showAddRequestModal ? <UserSiteListContainer/> : null }
+                {!showEditModal && !showAddModal && !showDeleteModal && !showAddRequestModal ? <MySitesHome/> : null }
                 {showEditModal && selectedSite != null ? <EditSiteForm/> : null}
                 {showAddModal ? <CreateSiteForm/> : null}
                 {showAddRequestModal ? <AddRequestForm/> : null }

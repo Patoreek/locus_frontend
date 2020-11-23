@@ -14,6 +14,8 @@ import StarRating from '../../components/StarRating/StarRating';
 import FavouriteButton from '../../components/Buttons/FavouriteButton/FavouriteButton';
 import DisplayReport from '../../components/DisplayReport/DisplayReport';
 
+import DivesiteListing from '../../components/Divesite/DivesiteListing/DivesiteListing';
+
 import classes from './ProfileView.module.scss';
 
 const ProfileView = () => {
@@ -173,36 +175,8 @@ const ProfileView = () => {
                         <h3 className={classes.header}>{firstName}'s Favourites</h3>
                         <div className={classes.favourites}>
                             {favourites.map(favourite => (
-                                <div className={classes.favouriteContainer}>
-
-                                    <div className={classes.favouriteContainer__imageContainer}>
-                                        <a href={"/divesite/" + favourite.site._id}>
-                                            <img src={'http://localhost:8080/' + favourite.siteImage} 
-                                            className={classes.image}
-                                            />
-                                        </a>
-                                    </div>
-                                    <div className={classes.favouriteContainer__pointContainer}>
-                                        <span className={classes.point}>Shore Dive · Great for Scuba</span>
-                                    </div>
-                                    <div className={classes.favouriteContainer__nameContainer}>
-                                        <a href={"/divesite/" + favourite.site._id}>
-                                            <span className={classes.name}>{favourite.siteName}, {favourite.siteArea}</span>
-                                        </a>
-                                    </div>
-                                    
-                                    <div className={classes.favouriteContainer__descriptionContainer}>
-                                        <span className={classes.description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
-                                    </div>
-                                    <div className={classes.favouriteContainer__ratingContainer}>
-                                        <div className={classes.rating}>
-                                            {/* <StarRating siteRatings = {favourite.site.ratings}/> */}
-                                        </div>
-                                    </div>
-                                    <div className={classes.favouriteContainer__moreContainer}>
-                                        <a href={"/divesite/" + favourite.site._id} className={classes.more}>More...</a>
-                                    </div>
-                                </div>
+                                <DivesiteListing site={favourite}/>
+                                
                             ))}
                         </div>
 

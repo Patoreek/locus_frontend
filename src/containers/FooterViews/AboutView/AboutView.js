@@ -1,6 +1,6 @@
 import React from 'react';
 
-import classes from './AboutView.module.css';
+import classes from './AboutView.module.scss';
 
 const AboutView = () => {
     return (

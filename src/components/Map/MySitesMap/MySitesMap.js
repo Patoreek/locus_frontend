@@ -1,32 +1,55 @@
 
 import React, { useState, useEffect, useContext } from 'react';
 
-
 import {
     Marker,
     InfoWindow
 } from 'react-google-maps';
 
-import { AuthContext,
-         FavButtonContext,
-         MapRefContext } from '../../../context/AuthContext';
+import { Modal, 
+         Button,
+         Tabs,
+         Tab } from 'react-bootstrap';
+
+
+
+import { EditModalContext,
+         DeleteModalContext,
+         AddModalContext,
+         EditDiveShopModalContext,
+         DiveShopAdminContext } from '../../../context/UserContext';
 
 import { DiveSitesContext,
+         DiveShopsContext,
          SiteContext,
-         LoadDiveSiteInBoundsContext,
-         DetailsContext,
+         CoordsContext,
          ShopContext,
-         DiveShopsContext } from '../../../context/DiveSiteContext';
+         LoadDiveSiteContext, } from '../../../context/DiveSiteContext';
 
-    
+
+import { AuthContext,
+    MapSizeContext,
+    PanelSizeContext,
+    LocateButtonContext } from '../../../context/AuthContext';
+
+
+import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerClusterer';
+
+import FavouriteButton from '../../Buttons/FavouriteButton/FavouriteButton';
+import StarRating from '../../StarRating/StarRating';
+
+import { ReactComponent as EditSVG } from '../../../assets/icons/edit.svg'; 
 
 import markerSVG from '../../../assets/icons/location_blue.svg';
 import markerShopSVG from '../../../assets/icons/location_orange.svg';
 
 
 
-import StarRating from '../../StarRating/StarRating';
-import FavouriteButton from '../../Buttons/FavouriteButton/FavouriteButton';
+
+import EditSiteForm from '../../Forms/EditSiteForm/EditSiteForm';
+import DeleteContainer from '../../Forms/DeleteContainer/DeleteContainer';
+import ImageUpload from '../../ImageUpload/ImageUpload';
+import CommonFeatures from '../../Forms/EditSiteForm/CommonFeatures/CommonFeatures';
 
 
 import {ReactComponent as PhoneSVG} from '../../../assets/icons/phone.svg';
@@ -39,67 +62,101 @@ import {ReactComponent as TwitterSVG} from '../../../assets/icons/twitter.svg';
 
 
 
-import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerClusterer';
 
-import classes from './GuestMap.module.scss';
-import './GuestMap.css';
 
-const GuestMap = (props) => {
+import classes from './MySitesMap.module.scss';
+
+const MySitesMap = () => {
 
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
-    const [selectedShop, setSelectedShop] = useContext(ShopContext);
-    const [moreDetails, setMoreDetails] = useContext(DetailsContext);
     const [diveSites, setDiveSites] = useContext(DiveSitesContext);
-    const [diveShops, setDiveShops] = useContext(DiveShopsContext);
+    const [coords, setCoords] = useContext(CoordsContext);
+
+    const [ mapSize, setMapSize ] = useContext(MapSizeContext);
+
+    const [ panelSize, setPanelSize ] = useContext(PanelSizeContext);
+
+    const [locateButtonStyle, setLocateButtonStyle] = useContext(LocateButtonContext); 
+
+    const loadDiveSites = useContext(LoadDiveSiteContext);
+
     const [isAuth, setIsAuth] = useContext(AuthContext);
-    const [favButton, setFavButton] = useContext(FavButtonContext);
-    const loadDiveSitesInBounds = useContext(LoadDiveSiteInBoundsContext);
-    const [isLoading, setIsLoading] = useState(true);
+
+    const [showEditModal, setShowEditModal] = useContext(EditModalContext);
+    const [showAddModal, setShowAddModal] = useContext(AddModalContext);
+
+
+
+    const [showDeleteModal, setShowDeleteModal] = useContext(DeleteModalContext);
+    const handleDeleteClose = () => setShowDeleteModal(false);
+    const handleDeleteShow = () => setShowDeleteModal(true);
+
+
+    const [diveShops, setDiveShops] = useContext(DiveShopsContext);
+    const [selectedShop, setSelectedShop] = useContext(ShopContext);
+    const [editDiveShopModal, setEditDiveShopModal] = useContext(EditDiveShopModalContext);
+    const [diveShopAdmin, setDiveShopAdmin] = useContext(DiveShopAdminContext);
+
+
+
+
+
+
+    // useEffect(() => {
+    //     loadDiveSites();
+    // }, []); //remove diveSites for performance
+
+    const editSiteHandler = () => {
+        //console.log('[Selected Site]' + selectedSite);
+            setShowDeleteModal(false);
+            setShowEditModal(true);
+    }
 
 
     const onMarkerClustererClick = (markerClusterer) => {
         const clickedMarkers = markerClusterer.getMarkers();
         //console.log(`Current clicked markers length: ${clickedMarkers.length}`)
         //console.log(clickedMarkers);
-    }
+      }
 
-    
+
 
     return (
         <div>
-                <div>
-                <MarkerClusterer
+             <MarkerClusterer
                     onClick={onMarkerClustererClick}
                     averageCenter
                     gridSize={20}
                     maxZoom={11}
                     defaultZoomOnClick
                 >
-                { diveSites.map(site => ( 
-                    <Marker 
-                    key={site._id}
-                    position={{
-                        lat: site.latitude,
-                        lng: site.longitude
-                    }}
-                    onClick={() =>{
-                        setSelectedSite(site);
-                    }}
-                    icon={{
-                    url: markerSVG,
-                    scaledSize: new window.google.maps.Size(42, 42)
-                    }}
-                    />
-                ))}
-                </MarkerClusterer>
+            { diveSites.map(site => (
+                <Marker
+                key={site._id}
+                position={{
+                    lat: parseFloat(site.latitude),
+                    lng: parseFloat(site.longitude)
+                }}
+                onClick={() =>{
+                    setSelectedSite(site);
+                }}
+                icon={{
+                   url: markerSVG,
+                   scaledSize: new window.google.maps.Size(42, 42)
+                }}
+                />
+            ))}
 
-                <MarkerClusterer
+            </MarkerClusterer>
+
+            <MarkerClusterer
                     onClick={onMarkerClustererClick}
                     averageCenter
                     gridSize={20}
                     maxZoom={11}
                     defaultZoomOnClick
-                >
+                    styles={[{ textColor: 'white', height: 53, url: markerShopSVG, width: 53 }]}
+            >
 
                 {diveShops.map(shop => (
                     <Marker 
@@ -111,6 +168,8 @@ const GuestMap = (props) => {
                     onClick={() =>{
                         console.log(shop);
                         setSelectedShop(shop);
+                        setDiveShopAdmin(true);
+                        setEditDiveShopModal(true);
                     }}
                     icon={{
                     url: markerShopSVG,
@@ -119,19 +178,22 @@ const GuestMap = (props) => {
                     />
                 ))}
             
-                </MarkerClusterer>
+            </MarkerClusterer>
 
-                {selectedSite && ( /* OVERLAYVIEW is needed here for custom CSS and window properties*/
-                    <InfoWindow
-                        position={{
-                            lat: parseFloat(selectedSite.latitude),
-                            lng: parseFloat(selectedSite.longitude)
-                        }}
-                        onCloseClick={() => {
-                            setSelectedSite(null);
-                        } }
-                    >
-                        <div className={classes.site}>
+            {selectedSite && ( /* OVERLAYVIEW is needed here for custom CSS and window properties*/
+                <InfoWindow
+                    position={{
+                        lat: parseFloat(selectedSite.latitude),
+                        lng: parseFloat(selectedSite.longitude)
+                    }}
+                    onCloseClick={() => {
+                        setShowEditModal(false);
+                        //setSelectedShop(null);
+                        setSelectedSite(null);
+                    } }
+                >       
+ 
+                    <div className={classes.site}>
                             <div className={classes.site__imageContainer}>
                                 <a href={"/divesite/" + selectedSite._id}>
                                     <img src={'http://localhost:8080/' + selectedSite.images[0]}
@@ -141,22 +203,22 @@ const GuestMap = (props) => {
                             </div>
 
                             <div className={classes.site__diveTypeContainer}>
-                                <p className={classes.diveType}> {selectedSite.siteType} Dive · {selectedSite.suitable} </p>
+                                <p className={classes.diveType}> Shore Dive · Great for Scuba </p>
                             </div>
 
-                            {isAuth && ( 
-                                <div className={classes.site__favButtonContainer}>
-                                    <FavouriteButton site={selectedSite}/>
-                                </div>
-                            )}
+                         
+                            <div className={classes.site__editContainer}>
+                                <EditSVG className={classes.edit} onClick={() => {
+                                    setShowAddModal(false);
+                                    editSiteHandler();
+                                }}/>
+                            </div>
 
 
                             <div className={classes.site__nameContainer}>
                                 <h5  className={classes.name}>
                                 <a href={"/divesite/" + selectedSite._id}>
-                                        <span>{selectedSite.name}</span>
-                                        <br/>
-                                        <span>{selectedSite.area}, {selectedSite.country}</span>
+                                        {selectedSite.name}, {selectedSite.area}
                                 </a>
                                 </h5>
                                 
@@ -178,17 +240,20 @@ const GuestMap = (props) => {
                                 </a>
                             </div>
             
-                        </div>
+                    </div>
+                   
                 </InfoWindow>
-                )}
+            )}
 
-                {selectedShop && ( /* OVERLAYVIEW is needed here for custom CSS and window properties*/
+            {selectedShop && ( /* OVERLAYVIEW is needed here for custom CSS and window properties*/
                 <InfoWindow
                     position={{
                         lat: parseFloat(selectedShop.latitude),
                         lng: parseFloat(selectedShop.longitude)
                     }}
                     onCloseClick={() => {
+                        setShowEditModal(false);
+                        setEditDiveShopModal(false);
                         setSelectedShop(null);
                         setSelectedSite(null);
                     } }
@@ -202,7 +267,15 @@ const GuestMap = (props) => {
                                     />
                                 </a>
                             </div>
-                        
+                         
+                            {/* <div className={classes.shop__editContainer}>
+                                <EditSVG className={classes.edit} onClick={() => {
+                                    setShowAddModal(false);
+                                    setEditDiveShopModal(true);
+                                }}/>
+                            </div> */}
+
+
                             <div className={classes.shop__nameContainer}>
                                 <a href={"/diveshop/" + selectedShop._id} className={classes.name}>
                                         <span>{selectedShop.name}</span>
@@ -266,19 +339,20 @@ const GuestMap = (props) => {
                                     </a>
                                 </div>
                             </div>
+
+            
                     </div>
                    
                 </InfoWindow>
-            )}
+            )}  
 
-
-                </div>
-        
+            //! Make SelectedShop
+            
         </div>
     );
 };
 
-export default GuestMap;
+export default MySitesMap;
 
 
 

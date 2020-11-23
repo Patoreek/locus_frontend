@@ -1,6 +1,6 @@
 import React from 'react';
 
-import classes from './SitemapView.module.css';
+import classes from './SitemapView.module.scss';
 
 const SiteMapView = () => {
     return (

@@ -16,12 +16,10 @@ import { AuthContext,
 
          import { LoadDiveSiteInBoundsContext, LoadDiveShopsInBoundsContext } from '../../context/DiveSiteContext';
 
-import UserMapContainer from './UserMapContainer/UserMapContainer';
+import MySitesMap from './MySitesMap/MySitesMap';
 import GuestMap from './GuestMap/GuestMap';
 import SearchBarMap from '../SearchBarMap/SearchBarMap';
 import Locate from '../Locate/Locate';
-
-import classes from './Map.module.css';
 
 
 
@@ -74,26 +72,8 @@ const Map = (props) => {
             setLongitude(151.209290);
             setIsLoading(false);
         }
-        
-        //console.log(latitude);
-        //console.log(longitude);
-
-
     },[]);
 
-
-    // const mapRef = useRef();
-    // const onMapLoad = useCallback((map) => {
-    //     //console.log('Map = ' + map);
-    //     mapRef.current = map;
-    //     //console.log("In onMapLoad");
-    //     //console.log(mapRef.current);
-    // }, [],);
-
-    // const panTo = useCallback(({ lat, lng }) => {
-    //     mapRef.current.panTo({ lat, lng });
-    //     //mapRef.current.setZoom(14);
-    //   }, []);
 
     let timer;
 
@@ -114,16 +94,11 @@ const Map = (props) => {
 
         //const mapBounds = mapRef.current.getBounds().contains({lat: testLat, lng: testLng});
         const mapBounds = mapRef.current.getBounds();
-        //console.log(mapBounds);
-
-        //console.log(bounds);
-       // console.log(mapBounds);
-
-        //? LAT (UP & DOWN), LNG (LEFT TO RIGHT)
-        //? TO DETERMINE THE BOUNDS
-        //TODO: CREATE CHECK FUNCTION THAT CHECKS IF SITE IS IN THE BOUNDS. THIS FUNCTION SHOULD BE DONE WHEN GETTING DIVE SITES.
+        
+            //? LAT (UP & DOWN), LNG (LEFT TO RIGHT)
+            //? TO DETERMINE THE BOUNDS
+            //TODO: CREATE CHECK FUNCTION THAT CHECKS IF SITE IS IN THE BOUNDS. THIS FUNCTION SHOULD BE DONE WHEN GETTING DIVE SITES.
       
-            // here goes an ajax call
             loadDiveSitesInBounds(mapBounds);
             loadDiveShopsInBounds(mapBounds);
         }, 1000);
@@ -146,7 +121,7 @@ const Map = (props) => {
                 {/* <SearchBarMap panTo={panTo}/>
                 <Locate panTo={panTo}/> */}
             {!guestMap && (
-                    <UserMapContainer/>
+                    <MySitesMap/>
 
             )}
     
@@ -158,10 +133,6 @@ const Map = (props) => {
             </GoogleMap>
             )}
             
-            {/* {isLoading && (
-                <div><h1>Loading...</h1></div>
-            )} */}
-
             </div>
        
     );

@@ -7,7 +7,7 @@ import { FaFacebookSquare,
 
 import { IoIosMail } from "react-icons/io";
 
-import classes from './ContactView.module.css';
+import classes from './ContactView.module.scss';
 
 const ContactView = () => {
     return (

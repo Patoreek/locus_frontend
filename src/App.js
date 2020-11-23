@@ -27,13 +27,8 @@ import DiveShopView from './containers/DiveShopsView/DiveShopView/DiveShopView';
 
 import HomeView from './containers/Home/Home';
 
-import AboutView from './containers/FooterViews/AboutView/AboutView';
-import AdvertiseView from './containers/FooterViews/AdvertiseView/AdvertiseView';
-import NewsView from './containers/FooterViews/NewsView/NewsView';
-import ContactView from './containers/FooterViews/ContactView/ContactView';
-import SitemapView from './containers/FooterViews/SitemapView/SitemapView';
-import TermsView from './containers/FooterViews/TermsView/TermsView';
-import PolicyView from './containers/FooterViews/PolicyView/PolicyView';
+import FooterView from './containers/FooterViews/FooterView';
+
 
 
 
@@ -113,26 +108,22 @@ function App() {
             <Route path="/profile" exact component={ProfileView}/>
             <Route path="/profile/diveReports" exact component={DiveReports}/>
             <Route path="/editprofile" exact component={EditProfileView}/>
-          </UserProvider>
-        </DiveSiteProvider>
-  
-
-      
-        <DiveSiteProvider>
+    
             <Route path="/map" exact component={GuestView}/>
             <Route path="/divesite/:id" component={DetailsView}/>
             <Route path="/diveshop/:id" component={DiveShopView}/>
             <Route path="/communityphotos/:siteId" component={CommunityPhotos}/>
             <Route path="/viewprofile/:userId" component={ViewProfileView}/>
+            </UserProvider>
         </DiveSiteProvider>
 
-        <Route path="/about" component={AboutView}/>
-        <Route path="/advertise" component={AdvertiseView}/>
-        <Route path="/news" component={NewsView}/>
-        <Route path="/contact" component={ContactView}/>
-        <Route path="/sitemap" component={SitemapView}/>
-        <Route path="/terms" component={TermsView}/>
-        <Route path="/policy" component={PolicyView}/>
+        <Route path="/about" component={() => <FooterView page="about"/>}/>
+        <Route path="/advertise" component={() => <FooterView page="advertise"/>}/>
+        <Route path="/news" component={() => <FooterView page="news"/>}/>
+        <Route path="/contact" component={() => <FooterView page="contact"/>}/>
+        <Route path="/sitemap" component={() => <FooterView page="sitemap"/>}/>
+        <Route path="/terms" component={() => <FooterView page="terms"/>}/>
+        <Route path="/policy" component={() => <FooterView page="policy"/>}/>
 
         <Footer/>
       

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import classes from './TermsView.module.css';
+import classes from './TermsView.module.scss';
 
 
 const TermsView = () => {

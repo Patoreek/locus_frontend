@@ -1,6 +1,6 @@
 import React from 'react';
 
-import classes from './PolicyView.module.css';
+import classes from './PolicyView.module.scss';
 
 
 const PolicyView = () => {
