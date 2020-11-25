@@ -12,13 +12,7 @@ import { AuthContext,
 
 import { CoordsContext, DetailsContext } from '../../context/DiveSiteContext';
 
-import MobToggleView from '../../components/MobToggleView/MobToggleView';
-
 import { useMediaQuery } from '../../CustomHooks/useMediaQuery';
-
-
-
-import classes from './GuestView.module.css';
 
 const GuestView = () => {
 
@@ -82,11 +76,8 @@ const GuestView = () => {
 
 
     return (
-        <div className={classes.guestView} style={style}>
+        <div style={style}>
 
-            {!moreDetails && (
-                <MobToggleView/>
-            )}
 
             {guestViewLoaded && !moreDetails && (
                     <InformationPanel/>

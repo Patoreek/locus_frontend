@@ -15,7 +15,6 @@ import { AddRequestContext, SiteListContext } from '../../context/UserContext';
 import { useHistory} from 'react-router-dom';
 
 import Map from '../../components/Map/Map';
-import MobToggleView from '../../components/MobToggleView/MobToggleView';
 import classes from './AddRequest.module.scss';
 
 
@@ -79,7 +78,6 @@ const AddRequest = (props) => {
 
     return (
         <div className={classes.addRequest}>
-           <MobToggleView/>
             {userViewLoaded && (
                 <InformationPanel/>
             )}

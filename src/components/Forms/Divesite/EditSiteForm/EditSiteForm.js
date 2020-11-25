@@ -5,11 +5,11 @@ import "filepond/dist/filepond.min.css";
 
 import classes from './EditSiteForm.module.scss';
 
-import { SiteContext, LoadDiveSiteContext } from '../../../context/DiveSiteContext';
-import { EditModalContext, DeleteModalContext } from '../../../context/UserContext';
+import { SiteContext, LoadDiveSiteContext } from '../../../../context/DiveSiteContext';
+import { EditModalContext, DeleteModalContext } from '../../../../context/UserContext';
 
 import CommonFeatures from './CommonFeatures/CommonFeatures';
-import ImageUpload from '../../ImageUpload/ImageUpload';
+import ImageUpload from '../../../ImageUpload/ImageUpload';
 
 import DeleteContainer from '../DeleteContainer/DeleteContainer';
 

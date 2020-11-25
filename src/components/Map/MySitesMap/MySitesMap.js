@@ -46,10 +46,10 @@ import markerShopSVG from '../../../assets/icons/location_orange.svg';
 
 
 
-import EditSiteForm from '../../Forms/EditSiteForm/EditSiteForm';
-import DeleteContainer from '../../Forms/DeleteContainer/DeleteContainer';
-import ImageUpload from '../../ImageUpload/ImageUpload';
-import CommonFeatures from '../../Forms/EditSiteForm/CommonFeatures/CommonFeatures';
+// import EditSiteForm from '../../Forms/EditSiteForm/EditSiteForm';
+// import DeleteContainer from '../../Forms/Divesite/DeleteContainer/DeleteContainer';
+// import ImageUpload from '../../ImageUpload/ImageUpload';
+// import CommonFeatures from '../../Forms/EditSiteForm/CommonFeatures/CommonFeatures';
 
 
 import {ReactComponent as PhoneSVG} from '../../../assets/icons/phone.svg';

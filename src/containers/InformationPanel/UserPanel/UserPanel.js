@@ -7,13 +7,11 @@ import { EditModalContext,
         } from '../../../context/UserContext';
 import { SiteContext } from '../../../context/DiveSiteContext';
 
-import CreateSiteForm from '../../../components/Forms/CreateSiteForm/CreateSiteForm';
-import AddRequestForm from '../../../components/Forms/AddRequestForm/AddRequestForm';
-import EditSiteForm from '../../../components/Forms/EditSiteForm/EditSiteForm';
-import DeleteContainer from '../../../components/Forms/DeleteContainer/DeleteContainer';
+import CreateSiteForm from '../../../components/Forms/Divesite/CreateSiteForm/CreateSiteForm';
+import AddRequestForm from '../../../components/Forms/Divesite/AddRequestForm/AddRequestForm';
+import EditSiteForm from '../../../components/Forms/Divesite/EditSiteForm/EditSiteForm';
 import MySitesHome from './MySitesHome/MySitesHome';
 
-import ToggleButtons from '../ToggleButtons/ToggleButtons';
 
 const UserPanel = () => {
 

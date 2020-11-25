@@ -34,6 +34,9 @@ import {ReactComponent as TwitterSVG} from '../../assets/icons/twitter.svg';
 
 
 import DivesiteListing from '../../components/Divesite/DivesiteListing/DivesiteListing';
+import WeatherContainer from '../WeatherContainer/WeatherContainer';
+import CommPhotoPreview from './CommPhotoPreview/CommPhotoPreview';
+
 
 
 
@@ -398,9 +401,12 @@ const Details = (props) => {
 
                
                 <div className={classes.divesite__rightContainer}>
+                  <div className={classes.commPhotosContainer}>
                   <a href={"/communityphotos/" + siteId} className={classes.photoLink}>See all community photos</a>
+                  <CommPhotoPreview siteId={siteId}/>
+                  </div>
                   <div className={classes.weatherContainer}>
-                    Weather Container (PLACE THIS AND IMPLEMENT LATER)
+                    <WeatherContainer site={selectedSite}/>
                   </div>
                   
                   <div className={classes.shopContainer}>

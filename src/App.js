@@ -21,7 +21,7 @@ import AddRequest from './containers/AddRequest/AddRequest';
 import ChangePassword from './containers/ChangePassword/ChangePassword';
 import DiveReports from './containers/DiveReports/DiveReports';
 import CommunityPhotos from './containers/CommunityPhotos/CommunityPhotos';
-import DiveShopView from './containers/DiveShopsView/DiveShopView/DiveShopView';
+import DiveShopView from './containers/DiveShopView/DiveShopView';
 
 
 

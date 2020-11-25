@@ -6,7 +6,7 @@ import { Form,
          Button,
          Table } from 'react-bootstrap';
 
-import { SiteContext } from '../../../../context/DiveSiteContext';
+import { SiteContext } from '../../../../../context/DiveSiteContext';
 
 import classes from './CommonFeatures.module.scss';
 

@@ -1,10 +1,7 @@
 import React, {useState, useEffect} from 'react';
-
-import { format } from 'date-fns';
-
 import classes from './CommunityPhotos.module.scss';
 
-import { ReactComponent as CloseSVG } from '../../assets/icons/close.svg';
+import DisplayImage from '../../components/DisplayImage/DisplayImage';
 
 const CommunityPhotos = (props) => {
     const siteId = props.match.params.siteId;
@@ -107,20 +104,7 @@ const CommunityPhotos = (props) => {
         setPreviewImage(image);
         setShowPreview(true);
     }
-
-    const dateHandler = (reportDate) => {
-
-        let convertedDate = new Date(reportDate);
-        convertedDate = format(convertedDate, 'dd/MM/yyyy');
-
-        return (
-            <span className={classes.date}>{convertedDate}</span>
-        )
-    }
-
-    
  
-
     return (
         <div className={classes.communityPhotos}>
             {!isLoading ? 
@@ -162,29 +146,8 @@ const CommunityPhotos = (props) => {
             
 
             {showPreview && (
-                <div className={classes.showPreview}>
-                <div className={classes.previewOverlay} onClick={() => setShowPreview(false)}>
-                </div>
-                     <div className={classes.imageContainer}>
-                        <CloseSVG className={classes.closeSVG} onClick={() => setShowPreview(false)}/>
-                        <img src={'http://localhost:8080/' + previewImage.image}/>
-                        <div className={classes.textContainer}>
-                            <div className={classes.textContainer__nameContainer}>
-                            <span>Uploaded by </span><a href={"/viewprofile/" + previewImage.userId} className={classes.name}>
-                                     {previewImage.userFirstName} {previewImage.userLastName}
-                                </a>
-                            </div>
-                            <div className={classes.textContainer__locationContainer}>
-                                <a href={"/divesite/" + previewImage.siteId} className={classes.location}>
-                                    {previewImage.siteName}, {previewImage.siteArea}, {previewImage.siteCountry}
-                                </a>
-                            </div>
-                            <div className={classes.textContainer__dateContainer}>
-                                {dateHandler(previewImage.reportDate)}
-                            </div>
-                        </div>
-                     </div>
-                </div>
+                <DisplayImage image={previewImage} setEnlargeImage={setShowPreview}/>
+               
             )}
         </div>
     );

@@ -1,12 +1,12 @@
 import React, {useState, useContext } from 'react';
 
 import { CoordsContext,
-         LoadDiveSiteContext } from '../../../context/DiveSiteContext';
-import { AccountContext } from '../../../context/AuthContext';
+         LoadDiveSiteContext } from '../../../../context/DiveSiteContext';
+import { AccountContext } from '../../../../context/AuthContext';
 
-import { AddModalContext } from '../../../context/UserContext';
+import { AddModalContext } from '../../../../context/UserContext';
 
-import ImageUpload from '../../ImageUpload/ImageUpload';
+import ImageUpload from '../../../ImageUpload/ImageUpload';
 
 
 

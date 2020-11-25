@@ -10,15 +10,9 @@ import { AddModalContext,
         SiteListContext,
         DiveShopAdminContext } from '../../../../context/UserContext';
 
-
-
-
-import SiteList from './SiteList/SiteList';
-
 import DiveShopsView from '../DiveShopsView/DiveShopsView';
 import DiveSitesView from '../DiveSitesView/DiveSitesView';
 
-import DivesiteListingPanel from '../../../../components/Divesite/DivesiteListingPanel/DivesiteListingPanel';
 
 const UserSiteList = () => {
 

@@ -22,7 +22,6 @@ import { AddModalContext,
 import { useHistory} from 'react-router-dom';
 
 import Map from '../../components/Map/Map';
-import MobToggleView from '../../components/MobToggleView/MobToggleView';
 import classes from './UserView.module.css';
 
 
@@ -124,7 +123,6 @@ const UserView = (props) => {
 
     return (
         <div className={classes.userViewPage}>
-            <MobToggleView/>
             {userViewLoaded && (
                 <InformationPanel/>
             )}

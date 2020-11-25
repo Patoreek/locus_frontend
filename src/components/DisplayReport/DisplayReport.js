@@ -9,8 +9,13 @@ import { ReactComponent as DateSVG } from '../../assets/icons/calendar.svg';
 import { ReactComponent as LocationSVG } from '../../assets/icons/location_lightgrey.svg';
 import { ReactComponent as DurationSVG } from '../../assets/icons/time.svg';
 
+import DisplayImage from '../DisplayImage/DisplayImage';
+
 const DisplayReport = (props) => {
     const [report, setReport] = useState(props.report);
+
+    const [selectedImage, setSelectedImage] = useState();
+    const [enlargeImage, setEnlargeImage] = useState(false);
 
 
     const dateHandler = (createdAt) => {
@@ -25,7 +30,35 @@ const DisplayReport = (props) => {
           </div>
         );
   
-      }
+    }
+
+
+
+    const imageHandler = (report, i) => {
+        console.log(report);
+        const image = report.images[i]
+        const userId = report.userId._id;
+        const firstName = report.userId.firstName;
+        const lastName = report.userId.lastName;
+        const siteId = report.siteId._id;
+        const siteName = report.siteId.name;
+        const siteArea = report.siteId.area;
+        const siteCountry = report.siteId.country;
+        const date = report.createdAt;
+
+        setSelectedImage({
+            image: image,
+            userId: userId,
+            userFirstName: firstName,
+            userLastName: lastName,
+            siteId: siteId,
+            siteName: siteName,
+            siteArea: siteArea,
+            siteCountry: siteCountry,
+            reportDate: date,
+        })
+        setEnlargeImage(true);
+    }
 
     return (
         <div className={classes.report}>
@@ -61,16 +94,20 @@ const DisplayReport = (props) => {
                                 <div className={classes.report__imagesContainer}>
                                     <div className={classes.container}>
                                         <div className={classes.imageSlideshow}>
-                                            {report.images.map(image => (
+                                            {report.images.map((image, i) => (
                                             <div className={classes.imgContainer}>
-                                                <img src={'http://localhost:8080/' + image}/>
+                                                <img src={'http://localhost:8080/' + image} onClick={() => imageHandler(report, i)}/>
                                             </div>
                                             ))}
                                         </div>
                                     </div>
                                 </div>
-                                )}
-                        </div>
+                            )}
+
+                            {enlargeImage && (
+                                <DisplayImage image={selectedImage} setEnlargeImage={setEnlargeImage}/>
+                            )}
+        </div>
     );
 };
 

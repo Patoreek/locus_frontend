@@ -288,23 +288,42 @@
         grid-row: 3 /  -1;
         grid-column: 2 / 3;
         //background: yellow;
+        display: grid;
+        grid-template-rows: repeat(4, max-content);
+        grid-template-columns: 1fr;
+        padding: 1rem;
+       .commPhotosContainer {
+           grid-row: 1 / 2;
+           grid-column: 1 / -1;
 
-        .photoLink {
-            color: $color-text-grey;
-            font-size: 1.6rem;
-            text-decoration: underline;
-            
-            &:hover {
-                color: $color-text-blue;
-            }
-        }
+           position: relative;
+           
+           //background: pink;
+
+           .photoLink {
+               color: $color-text-grey;
+               font-size: 1.6rem;
+               text-decoration: underline;
+               
+               &:hover {
+                   color: $color-text-blue;
+               }
+           }
+       }
 
         .weatherContainer {
+            grid-row: 2 / 3;
+            grid-column: 1 / -1;
+
             background: rgba(253, 255, 127, .4);
             height: 60vh;
         }
 
         .shopContainer {
+            grid-row: 3 / 4;
+            grid-column: 1 / -1;
+
+
             .shop:not(:last-child) {
                 border-bottom: 1px solid $color-lines;
             }
@@ -503,6 +522,9 @@
         }
 
         .nearbyDiveSites {
+
+            grid-row: 4 / 5;
+            grid-column: 1 / -1;
 
             .nearbySite {
                 display: grid;

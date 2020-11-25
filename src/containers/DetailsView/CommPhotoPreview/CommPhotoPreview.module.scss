@@ -1,0 +1,29 @@
+.commPhotoPreview {
+    position: relative;
+    //background: orange;
+    width: 100%;
+    padding: 0rem 0.25rem;
+    height: 17rem;
+
+    .sliderContainer {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        //background: red;
+        overflow: scroll;
+        .slider {
+            display: flex;
+        }
+
+        .imageContainer {
+            margin: 0.5rem 0.25rem;
+    
+            &__image {
+                height: 15rem;
+                object-fit: cover;
+            }
+        }
+    }
+
+}

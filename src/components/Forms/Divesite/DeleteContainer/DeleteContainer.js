@@ -9,9 +9,9 @@ import classes from './DeleteContainer.module.scss';
 //import { FormContext } from '../../../context/UserContext';
 import { SiteContext,
          DiveSitesContext,
-         LoadDiveSiteContext } from '../../../context/DiveSiteContext';
+         LoadDiveSiteContext } from '../../../../context/DiveSiteContext';
 
-import { DeleteModalContext, EditModalContext, AddRequestContext, AddModalContext } from '../../../context/UserContext';
+import { DeleteModalContext, EditModalContext, AddRequestContext, AddModalContext } from '../../../../context/UserContext';
 
 import { useHistory } from 'react-router-dom';
 
