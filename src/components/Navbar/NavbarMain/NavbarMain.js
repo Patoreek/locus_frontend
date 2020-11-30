@@ -3,8 +3,8 @@ import { useHistory } from 'react-router-dom';
 
 import classes from './NavbarMain.module.scss';
 
-import { ReactComponent as LogoSVG } from '../../../assets/logo/LocusLogo_black.svg';
 import { ReactComponent as GlobeSVG } from '../../../assets/icons/globe.svg';
+import { ReactComponent as LogoSVG } from '../../../assets/logo/LocusLogo_black.svg';
 import { ReactComponent as ReportSVG } from '../../../assets/icons/report.svg';
 import { ReactComponent as AddSVG } from '../../../assets/icons/add.svg';
 
@@ -259,50 +259,6 @@ const NavbarMain = () => {
                                 </div>
                             )}
 
-
-
-
-                            {/* {isAuth && ( 
-                            <div className={classes.dropdownContainer} onClick={() => setDropdown(!dropdown)}>
-                                <div className={classes.usernameContainer}>
-                                    <span className={classes.username}>
-                                        {firstName ? firstName : account.username}
-                                    </span>
-                                </div>
-                                <div className={classes.avatar}>
-                                            {!userPicture ? <img className={classes.avatar__image} src={avatarPlaceholder} alt="placeholder of users face."/> : null}
-                                            {userPicture ? <img className={classes.avatar__image} src={'http://localhost:8080/' + userPicture} alt="placeholder of users face."/> : null}
-                                </div>
-                            </div> 
-                            )}
-                            {isAuth && (
-                                <div className={`${classes.dropdown} ${!dropdown ? classes.close : null}`}>
-                                    <div className={`${classes.dropdown__content} ${!dropdown ? classes.fade : null}`}>
-                                        <div className={classes.dropdown__email}>
-                                            <span className={classes.title}>Your account</span>
-                                            <span className={classes.email}>{account.email}</span>
-                                        </div>
-                                        <div className={classes.dropdown__diveReports}>
-                                            <a href="/profile/diveReports">Dive Reports</a>
-                                        </div>
-                                        <div className={classes.dropdown__mySites}>
-                                        { accountRole == "admin" ?<a href="/mySites">My Sites</a> : null }
-                                        { accountRole == "user" ?<a href="/addRequest">Add a Dive site</a> : null }
-                                        </div>
-                                        <div className={classes.dropdown__favourites}>
-                                            <a href="/favourites">Favourites</a>
-                                        </div>
-                                        <div className={classes.dropdown__profile}>
-                                            <a href="/profile">Profile</a>
-                                        </div>
-                                        <div className={classes.dropdown__logout}>
-                                            <a onClick={logoutHandler}>Logout</a>
-                                        </div>
-                                    </div>
-                                
-                            </div>
-                            )}
-                         */}
                             {/* IF NOT LOGGED IN SHOW THIS */}
 
                             {!isAuth ? <div className={`${classes.btn} ${classes.btn__login}`} onClick={() => authDrawerHandler('login')}><span>Log in</span></div> : null }

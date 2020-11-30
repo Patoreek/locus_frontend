@@ -86,6 +86,12 @@
                     height: 4.35rem;
                     border-radius: 50%;
                     border: 2px solid $nav-list-icon-color;
+                    transition: .3s ease;
+
+                    &:hover {
+                        border: 2px solid $nav-list-icon-color-hover;
+                        transform: scale(1.05);
+                     }
                     
                 }
             }
@@ -105,7 +111,7 @@
                     background: $color-nav-bg;
                     transition: .3s ease;
                     opacity: 100%;
-                    padding: 1rem 2rem;
+                    padding: 1rem 1rem;
                     border: 1px solid $color-lines;
                     border-radius: 10px;
                     position: relative;

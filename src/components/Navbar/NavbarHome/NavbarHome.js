@@ -6,6 +6,17 @@ import { ReactComponent as LogoSVG } from '../../../assets/logo/LocusLogo_white.
 import { ReactComponent as EarthSVG } from '../../../assets/icons/earth.svg';
 import { ReactComponent as GlobeSVG } from '../../../assets/icons/globe.svg';
 
+import { ReactComponent as ReportSVG } from '../../../assets/icons/report.svg';
+import { ReactComponent as AddSVG } from '../../../assets/icons/add.svg';
+
+import { ReactComponent as ProfileSVG } from '../../../assets/icons/profile.svg';
+import { ReactComponent as EditProfileSVG } from '../../../assets/icons/edit_profile.svg';
+import { ReactComponent as LogoutSVG } from '../../../assets/icons/logout.svg';
+
+
+import { MdFavoriteBorder } from 'react-icons/md';
+
+
 
 import avatarPlaceholder from '../../../assets/images/avatar_placeholder.jpeg';
 
@@ -30,6 +41,8 @@ const NavbarHome = () => {
     const [dropdown, setDropdown] = useState(false); //! Change to False
     const [userPicture, setUserPicture] = useState(null);
     const [firstName, setFirstName] = useState(null);
+    const [lastName, setLastName] = useState(null);
+
     const [accountRole, setAccountRole] = useState('user');
 
     let history = useHistory();
@@ -52,6 +65,9 @@ const NavbarHome = () => {
 
                 if (resData.firstName) {
                     setFirstName(resData.firstName);
+                }
+                if (resData.lastName) {
+                    setLastName(resData.lastName);
                 }
                 if (resData.profilePic) {
                     setUserPicture(resData.profilePic);
@@ -137,55 +153,75 @@ const NavbarHome = () => {
                         </div>
                            
                         <div className={classes.rightNav}>
-                                {/* IF LOGGED IN SHOW THIS */}
-                                <div className={classes.mapLink}>
-                                    <a href="/map"><GlobeSVG className={classes.globeSVG}/></a>
-                                </div>  
 
-                                {isAuth && ( 
-                                <div className={classes.dropdownContainer} onClick={() => setDropdown(!dropdown)}>
-                                    <div className={classes.usernameContainer}>
-                                        <span className={classes.username}>
-                                            {firstName ? firstName : account.username}
-                                        </span>
-                                    </div>
-                                    <div className={classes.avatar}>
-                                                {!userPicture ? <img className={classes.avatar__image} src={avatarPlaceholder} alt="placeholder of users face."/> : null}
-                                                {userPicture ? <img className={classes.avatar__image} src={'http://localhost:8080/' + userPicture} alt="placeholder of users face."/> : null}
-                                    </div>
-                                </div> 
-                                )}
-                                {isAuth && (
-                                    <div className={`${classes.dropdown} ${!dropdown ? classes.close : null}`}>
-                                        <div className={`${classes.dropdown__content} ${!dropdown ? classes.fade : null}`}>
-                                            <div className={classes.dropdown__email}>
-                                                <span className={classes.title}>Your account</span>
-                                                <span className={classes.email}>{account.email}</span>
-                                            </div>
-                                            <div className={classes.dropdown__diveReports}>
-                                                <a href="/profile/diveReports">Dive Reports</a>
-                                            </div>
-                                            <div className={classes.dropdown__mySites}>
-                                            { accountRole == "admin" ?<a href="/mySites">My Sites</a> : null }
-                                            { accountRole == "user" ?<a href="/addRequest">Add a Dive site</a> : null }
-                                            </div>
-                                            <div className={classes.dropdown__favourites}>
-                                                <a href="/favourites">Favourites</a>
-                                            </div>
-                                            <div className={classes.dropdown__profile}>
-                                                <a href="/profile">Profile</a>
-                                            </div>
-                                            <div className={classes.dropdown__logout}>
-                                                <a onClick={logoutHandler}>Logout</a>
-                                            </div>
+                            {/* IF LOGGED IN SHOW THIS */}
+                            <div className={classes.mapLink}>
+                                <a href="/map"><GlobeSVG className={classes.globeSVG}/></a>
+                            </div>  
+
+                            {isAuth && ( 
+                                <div className={classes.favouritesLink}>
+                                    <a href="/favourites"><MdFavoriteBorder className={classes.favouriteSVG}/></a>
+                                </div>
+                            )}
+
+                            {isAuth && ( 
+                                <div className={classes.diveReportsLink}>
+                                    <a href="/profile/diveReports"><ReportSVG className={classes.reportSVG}/></a>
+                                </div>
+                            )}
+                            {/* //! HERE GOES THE PROFILE AVATAR & THE DROPDOWN WITH VIEW & EDIT PROFILE AND ALSO THE LOGOUT BTN */}
+                            {isAuth && ( 
+                                <div className={classes.avatar} onClick={() => setDropdown(!dropdown)}>
+                                                {!userPicture ? <img className={classes.avatarImage} src={avatarPlaceholder} alt="placeholder of users face."/> : null}
+                                                {userPicture ? <img className={classes.avatarImage} src={'http://localhost:8080/' + userPicture} alt="placeholder of users face."/> : null}
+                                </div>
+                            )}
+
+                            {isAuth && (
+                                <div className={`${classes.dropdown} ${!dropdown ? classes.close : null}`}>
+                                    <div className={`${classes.dropdown__content} ${!dropdown ? classes.fade : null}`}>
+                                        <div className={classes.dropdown__avatar}>
+                                                {!userPicture ? <img className={classes.avatarImage} src={avatarPlaceholder} alt="placeholder of users face."/> : null}
+                                                {userPicture ? <img className={classes.avatarImage} src={'http://localhost:8080/' + userPicture} alt="placeholder of users face."/> : null}
                                         </div>
-                                    
-                                </div>
-                                )}
-                                {/* IF NOT LOGGED IN SHOW THIS */}
-                                {!isAuth ? <div className={`${classes.btn} ${classes.btn__login}`} onClick={() => authDrawerHandler('login')}><span>Log in</span></div> : null }
-                            {!isAuth ? <div className={`${classes.btn} ${classes.btn__signup}`} onClick={() => authDrawerHandler('signup')}><span>Sign Up</span></div> : null } 
-                                </div>
+                                        <div className={classes.dropdown__name}>
+                                            <span className={classes.title}>{firstName} {lastName}</span>
+                                        </div>
+                                        <div className={classes.dropdown__email}>
+                                            <span className={classes.email}>{account.email}</span>
+                                        </div>
+                                        <a  href="/profile" className={classes.dropdown__viewProfile}>
+                                            <ProfileSVG className={classes.icon}/>
+                                            <span>View Profile</span>
+                                        </a>
+                                        <a href="/editprofile" className={classes.dropdown__editProfile}>
+                                            <EditProfileSVG className={classes.icon}/>
+                                            <span>Edit Profile</span>
+                                        </a>
+                                        <div className={classes.dropdown__separator}/>
+                                        <a onClick={logoutHandler} className={classes.dropdown__logout}>
+                                            <LogoutSVG className={classes.icon}/>
+                                            <span>Logout</span>
+                                        </a>
+                                    </div>
+                                
+                            </div>
+                            )}
+
+{isAuth && ( 
+    <div className={classes.addSitesLink}>
+                { accountRole == "admin" ?<a href="/mySites"><AddSVG className={classes.addSVG}/></a> : null }
+                { accountRole == "user" ?<a href="/addRequest"><AddSVG className={classes.addSVG}/></a> : null }
+    </div>
+)}
+
+{/* IF NOT LOGGED IN SHOW THIS */}
+
+{!isAuth ? <div className={`${classes.btn} ${classes.btn__login}`} onClick={() => authDrawerHandler('login')}><span>Log in</span></div> : null }
+{!isAuth ? <div className={`${classes.btn} ${classes.btn__signup}`} onClick={() => authDrawerHandler('signup')}><span>Sign Up</span></div> : null } 
+
+</div>
                         
                
                             
