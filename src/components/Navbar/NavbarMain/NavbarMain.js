@@ -4,8 +4,18 @@ import { useHistory } from 'react-router-dom';
 import classes from './NavbarMain.module.scss';
 
 import { ReactComponent as LogoSVG } from '../../../assets/logo/LocusLogo_black.svg';
-import { ReactComponent as ArrowSVG } from '../../../assets/icons/arrow-down.svg';
-import { ReactComponent as EarthSVG } from '../../../assets/icons/earth.svg';
+import { ReactComponent as GlobeSVG } from '../../../assets/icons/globe.svg';
+import { ReactComponent as ReportSVG } from '../../../assets/icons/report.svg';
+import { ReactComponent as AddSVG } from '../../../assets/icons/add.svg';
+
+import { ReactComponent as ProfileSVG } from '../../../assets/icons/profile.svg';
+import { ReactComponent as EditProfileSVG } from '../../../assets/icons/edit_profile.svg';
+import { ReactComponent as LogoutSVG } from '../../../assets/icons/logout.svg';
+
+
+import { MdFavoriteBorder } from 'react-icons/md';
+
+
 
 
 
@@ -43,6 +53,8 @@ const NavbarMain = () => {
 
     const [userPicture, setUserPicture] = useState(null);
     const [firstName, setFirstName] = useState(null);
+    const [lastName, setLastName] = useState(null);
+
     const [accountRole, setAccountRole] = useState('user');
 
 
@@ -75,6 +87,9 @@ const NavbarMain = () => {
 
                 if (resData.firstName) {
                     setFirstName(resData.firstName);
+                }
+                if (resData.lastName) {
+                    setLastName(resData.lastName);
                 }
                 if (resData.profilePic) {
                     setUserPicture(resData.profilePic);
@@ -184,10 +199,70 @@ const NavbarMain = () => {
 
                             {/* IF LOGGED IN SHOW THIS */}
                             <div className={classes.mapLink}>
-                                <a href="/map"><EarthSVG className={classes.earthSVG}/></a>
+                                <a href="/map"><GlobeSVG className={classes.globeSVG}/></a>
                             </div>  
 
                             {isAuth && ( 
+                                <div className={classes.favouritesLink}>
+                                    <a href="/favourites"><MdFavoriteBorder className={classes.favouriteSVG}/></a>
+                                </div>
+                            )}
+
+                            {isAuth && ( 
+                                <div className={classes.diveReportsLink}>
+                                    <a href="/profile/diveReports"><ReportSVG className={classes.reportSVG}/></a>
+                                </div>
+                            )}
+                            {/* //! HERE GOES THE PROFILE AVATAR & THE DROPDOWN WITH VIEW & EDIT PROFILE AND ALSO THE LOGOUT BTN */}
+                            {isAuth && ( 
+                                <div className={classes.avatar} onClick={() => setDropdown(!dropdown)}>
+                                                {!userPicture ? <img className={classes.avatarImage} src={avatarPlaceholder} alt="placeholder of users face."/> : null}
+                                                {userPicture ? <img className={classes.avatarImage} src={'http://localhost:8080/' + userPicture} alt="placeholder of users face."/> : null}
+                                </div>
+                            )}
+
+                            {isAuth && (
+                                <div className={`${classes.dropdown} ${!dropdown ? classes.close : null}`}>
+                                    <div className={`${classes.dropdown__content} ${!dropdown ? classes.fade : null}`}>
+                                        <div className={classes.dropdown__avatar}>
+                                                {!userPicture ? <img className={classes.avatarImage} src={avatarPlaceholder} alt="placeholder of users face."/> : null}
+                                                {userPicture ? <img className={classes.avatarImage} src={'http://localhost:8080/' + userPicture} alt="placeholder of users face."/> : null}
+                                        </div>
+                                        <div className={classes.dropdown__name}>
+                                            <span className={classes.title}>{firstName} {lastName}</span>
+                                        </div>
+                                        <div className={classes.dropdown__email}>
+                                            <span className={classes.email}>{account.email}</span>
+                                        </div>
+                                        <a  href="/profile" className={classes.dropdown__viewProfile}>
+                                            <ProfileSVG className={classes.icon}/>
+                                            <span>View Profile</span>
+                                        </a>
+                                        <a href="/editprofile" className={classes.dropdown__editProfile}>
+                                            <EditProfileSVG className={classes.icon}/>
+                                            <span>Edit Profile</span>
+                                        </a>
+                                        <div className={classes.dropdown__separator}/>
+                                        <a onClick={logoutHandler} className={classes.dropdown__logout}>
+                                            <LogoutSVG className={classes.icon}/>
+                                            <span>Logout</span>
+                                        </a>
+                                    </div>
+                                
+                            </div>
+                            )}
+
+                            {isAuth && ( 
+                                <div className={classes.addSitesLink}>
+                                            { accountRole == "admin" ?<a href="/mySites"><AddSVG className={classes.addSVG}/></a> : null }
+                                            { accountRole == "user" ?<a href="/addRequest"><AddSVG className={classes.addSVG}/></a> : null }
+                                </div>
+                            )}
+
+
+
+
+                            {/* {isAuth && ( 
                             <div className={classes.dropdownContainer} onClick={() => setDropdown(!dropdown)}>
                                 <div className={classes.usernameContainer}>
                                     <span className={classes.username}>
@@ -227,7 +302,7 @@ const NavbarMain = () => {
                                 
                             </div>
                             )}
-                        
+                         */}
                             {/* IF NOT LOGGED IN SHOW THIS */}
 
                             {!isAuth ? <div className={`${classes.btn} ${classes.btn__login}`} onClick={() => authDrawerHandler('login')}><span>Log in</span></div> : null }

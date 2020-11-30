@@ -66,7 +66,6 @@ const NavbarHome = () => {
             .catch(err => {
                 console.log('Caught. Could not retrieve user info');
                 console.log(err);
-                // history.push("/login");
             });    
         }
 

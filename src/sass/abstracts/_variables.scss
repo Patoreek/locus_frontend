@@ -9,32 +9,52 @@ $color-black: #0a0a0a;
 //$color-black-infoWindow-bg: rgb(21, 11, 56);
 $color-black-infoWindow-bg: #eeeeee;
 
-$login-nav-color: linear-gradient(to bottom, #1792d7, #057BBE);  
-$signup-nav-color: linear-gradient(to bottom, #CD800D, #C26900);  //! NOT IN USE ATM
-$login-color-drawer-btn: linear-gradient(to bottom, #35ADF0, #1393DB);  
-$search-btn-color: #2A85DA;
-$search-btn-color-hover: #226bf3;
-$color-footer-bg: linear-gradient(to bottom, #2F4267, #2A3551);
-$color-footer-text: #9C9C9C;
 
-//$nav-blue-bg: linear-gradient(to right, #2F7FF6, #1F62C7);
-$nav-blue-bg: linear-gradient(259deg, rgba(47,127,246,1) 0%, rgba(34,107,243,1) 50%, rgba(47,127,246,1) 100%);
-
-$link-nav-hover: #E9EAEC;
-
-
-
-
-
-
-
-
-
+//* NAVIGATION
 
 $color-nav-bg: #F5F5F5;
 $color-nav-bg-hover: #eeeeee;
 
+$login-nav-color-solid: #057BBE;
+$login-nav-color: linear-gradient(to bottom, #1792d7, #057BBE);  
+$signup-nav-color: linear-gradient(to bottom, #CD800D, #C26900);  //! NOT IN USE ATM
+$nav-blue-bg: linear-gradient(259deg, rgba(47,127,246,1) 0%, rgba(34,107,243,1) 50%, rgba(47,127,246,1) 100%); //! REMOVE THIS???
+$link-nav-hover: #E9EAEC;
 
+$nav-list-icon-color: #2D7AC0;
+$nav-list-icon-color-hover: #1a81e0;
+
+
+
+//*SEARCH
+$search-btn-color: #2A85DA;
+$search-btn-color-hover: #226bf3;
+
+
+//*LOGIN & SIGNUP FORMS
+$login-color-drawer-btn: linear-gradient(to bottom, #35ADF0, #1393DB);  
+
+
+//* FOOTER
+$color-footer-bg: linear-gradient(to bottom, #2F4267, #2A3551);
+$color-footer-text: #9C9C9C;
+
+
+
+//* BUTTON COLORS
+$color-btn-primary: linear-gradient(to bottom, #0863CE, #0870EA);
+$color-btn-cancel: #F4F4F4;
+$color-btn-add: linear-gradient(to bottom, #0ead23, #1aaa2d);
+$color-btn-delete: linear-gradient(to bottom, #DC0101, #CD2626);
+
+
+
+
+
+
+
+
+//* TEXT COLORS
 $color-link-grey: #C1B6B6;
 $color-text-grey: #B1B1B1;
 $color-text-darkgrey: #A8A8A8;
@@ -46,17 +66,12 @@ $color-text-blue: #0769C3;
 $color-text-blue-hover: #1263fa;
 $color-text-green: #08DC5D;
 
+
+//* LINE & BORDER COLORS
 $color-lines: #D7D7D7;
 $color-lines-hover: #b6b6b6;
 $color-lines-focus: #666666;
-
-
-
-$color-btn-primary: linear-gradient(to bottom, #0863CE, #0870EA);
-$color-btn-cancel: #F4F4F4;
-$color-btn-add: linear-gradient(to bottom, #0ead23, #1aaa2d);
-$color-btn-delete: linear-gradient(to bottom, #DC0101, #CD2626);
-
-
 $image-border-color-infoPanel: #A8A8A8;
+
+
 //* FONTS

@@ -6,6 +6,7 @@ import {useHistory} from 'react-router-dom';
 import { useMediaQuery } from '../../CustomHooks/useMediaQuery';
 import { SearchCoordsContext, LocationNameContext, SearchValueContext } from '../../context/AuthContext';
 
+import {ReactComponent as SearchSVG} from '../../assets/icons/magnifying-glass.svg';
 
 
 
@@ -92,7 +93,7 @@ const Searchbar = () => {
 
                                 <div className={classes.searchBtn} onClick={() => handleSelect()}>
                                 
-                                    <span>Search</span>
+                                    <SearchSVG className={classes.searchSVG}/>
                                 </div>
                             </div>
                         </div>

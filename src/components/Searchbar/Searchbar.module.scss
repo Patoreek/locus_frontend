@@ -103,6 +103,7 @@
          background: #2A85DA;
          display: flex;
          align-items: center;
+         justify-content: center;
          height: 100%;
          padding: 1rem 2.5rem;
          transition: .2s ease;
@@ -116,12 +117,13 @@
              transform: scale(1.05);
          }
 
-         span {
-             text-transform: uppercase;
-             color: white;
-             font-size: 1.6rem;
-             transition: .2s ease;
-         }
+         .searchSVG {
+            height: 2.5rem;
+            width: 2.5rem;
+            g path {
+                fill: $color-white;
+            }
+        }
      }
 
  }

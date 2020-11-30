@@ -60,14 +60,15 @@ export const AuthProvider = (props) => {
     const [isAuth, setIsAuth] = useState(false);
 
 
-    const [account, setAccount] = useState({
-        id: null,
-        username: '',
-        firstName: '',
-        lastName: '',
-        email: '',
-        role: ''
-    });
+    // const [account, setAccount] = useState({
+    //     id: null,
+    //     username: '',
+    //     firstName: '',
+    //     lastName: '',
+    //     email: '',
+    //     role: ''
+    // });
+    const [account, setAccount] = useState(null);
 
     const [ isLoading, setIsLoading ] = useState(true);
 

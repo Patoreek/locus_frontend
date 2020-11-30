@@ -60,17 +60,20 @@ const LoginView = () => {
             console.log('resData!!!!!!');
             console.log(resData);
             setIsAuth(true);
-                setAccount({
-                    id: resData._id,
-                    username: resData.username,
-                    firstName: resData.firstName,
-                    lastName: resData.lastName,
-                    email: resData.email,
-                    role: resData.role
-                });
-                setAuthDrawer(false);
-                //localStorage.setItem("email", resData.email);
-                history.push("/map");
+            // setAccount({
+            //     id: resData._id,
+            //     username: resData.username,
+            //     firstName: resData.firstName,
+            //     lastName: resData.lastName,
+            //     email: resData.email,
+            //     role: resData.role
+            // });
+            setAccount(resData);
+            
+            setAuthDrawer(false);
+            console.log(account);
+            //localStorage.setItem("email", resData.email);
+            //history.push("/map");
             
         }).then(res => {
             console.log('LOGGING IN... Account Context is....');

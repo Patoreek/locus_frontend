@@ -88,4 +88,13 @@
     
 }
 
+.searchSVG {
+    height: 100%;
+    width: 100%;
+    padding: 1.5rem;
+    g path {
+        fill: $color-white;
+    }
+}
+
 

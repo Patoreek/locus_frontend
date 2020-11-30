@@ -13,10 +13,13 @@ import {
   } from "@reach/combobox";
   import "@reach/combobox/styles.css";
 
-  import classes from './SearchBarMap.module.scss';
+import classes from './SearchBarMap.module.scss';
 
-  import Locate from '../Locate/Locate';
+import Locate from '../Locate/Locate';
 
+import {ReactComponent as SearchSVG} from '../../assets/icons/magnifying-glass.svg';
+
+  
 
 
 const SearchBarMap = (props) => {
@@ -86,7 +89,7 @@ const SearchBarMap = (props) => {
                     ))}
                 <ComboboxList/>
                 </ComboboxPopover>
-                <button className={classes.combobox__btn}> Search </button>
+                <button className={classes.combobox__btn}><SearchSVG className={classes.searchSVG}/></button>
             </Combobox>
 
         </div>
