@@ -5,7 +5,7 @@ import classes from './DiveShopView.module.scss';
 
 import {ReactComponent as PhoneSVG} from '../../assets/icons/phone.svg';
 import {ReactComponent as EmailSVG} from '../../assets/icons/email.svg';
-import {ReactComponent as LocationSVG} from '../../assets/icons/location-marker.svg';
+import {ReactComponent as LocationSVG} from '../../assets/icons/location_lightgrey.svg';
 import {ReactComponent as WebsiteSVG} from '../../assets/icons/global.svg';
 import {ReactComponent as FacebookSVG} from '../../assets/icons/facebook.svg';
 import {ReactComponent as InstagramSVG} from '../../assets/icons/instagram.svg';

@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom';
 import classes from './NavbarHome.module.scss';
 import { ReactComponent as LogoSVG } from '../../../assets/logo/LocusLogo_white.svg';
 import { ReactComponent as EarthSVG } from '../../../assets/icons/earth.svg';
+import { ReactComponent as GlobeSVG } from '../../../assets/icons/globe.svg';
+
 
 import avatarPlaceholder from '../../../assets/images/avatar_placeholder.jpeg';
 
@@ -138,7 +140,7 @@ const NavbarHome = () => {
                         <div className={classes.rightNav}>
                                 {/* IF LOGGED IN SHOW THIS */}
                                 <div className={classes.mapLink}>
-                                    <a href="/map"><EarthSVG className={classes.earthSVG}/></a>
+                                    <a href="/map"><GlobeSVG className={classes.globeSVG}/></a>
                                 </div>  
 
                                 {isAuth && ( 

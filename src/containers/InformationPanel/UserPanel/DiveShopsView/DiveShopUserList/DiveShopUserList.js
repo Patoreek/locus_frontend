@@ -6,16 +6,6 @@ import { DiveShopsContext, ShopContext } from '../../../../../context/DiveSiteCo
 import { AccountContext } from '../../../../../context/AuthContext';
 import { EditDiveShopModalContext } from '../../../../../context/UserContext';
 
-import {ReactComponent as EditSVG} from '../../../../../assets/icons/edit.svg';
-import {ReactComponent as PhoneSVG} from '../../../../../assets/icons/phone.svg';
-import {ReactComponent as EmailSVG} from '../../../../../assets/icons/email.svg';
-import {ReactComponent as LocationSVG} from '../../../../../assets/icons/location-marker.svg';
-import {ReactComponent as WebsiteSVG} from '../../../../../assets/icons/global.svg';
-import {ReactComponent as FacebookSVG} from '../../../../../assets/icons/facebook.svg';
-import {ReactComponent as InstagramSVG} from '../../../../../assets/icons/instagram.svg';
-import {ReactComponent as TwitterSVG} from '../../../../../assets/icons/twitter.svg';
-
-
 import DiveshopListingPanel from '../../../../../components/Diveshop/DiveshopListingPanel/DiveshopListingPanel';
 
 const DiveShopUserList = () => {
