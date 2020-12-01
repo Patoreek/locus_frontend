@@ -110,15 +110,98 @@
     .homeContent {
         width: 100vw;
         height: auto;
-        background: url('../../assets/images/home_content_bg.png');
+        //background: url('../../assets/images/home_content_bg.png');
         background-size: cover;
         padding: 5rem;
+        position: relative;
+        overflow: hidden;
+
+        &__background {
+
+
+            .wave1 {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                z-index: 5;
+            }
+
+            .wave2 {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                z-index: 4;
+               
+            }
+            .wave3 {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                z-index: 3;
+            }
+
+            .bubble {
+                position: absolute;
+
+                &__1 {
+                    bottom: 0;
+                    left: 0;
+                    z-index: 6;
+                    transform: translate(-25%, 25%);
+                    width: 30rem; 
+                    height: 30rem;
+                    opacity: 75%;
+
+                }
+
+                &__2 {
+                    bottom: 20rem;
+                    left: 20rem;
+                    z-index: 6;
+                    width: 10rem; 
+                    height: 10rem;
+                    opacity: 60%;
+                }
+
+                &__3 {
+                    bottom: 35rem;
+                    left: 15rem;
+                    z-index: 6;
+                    width: 7.5rem; 
+                    height: 7.5rem;
+                    opacity: 45%;
+                }
+
+                &__4 {
+                    bottom: 20rem;
+                    right: 0;
+                    z-index: 6;
+                    transform: translate(50%, 25%);
+                    width: 30rem; 
+                    height: 30rem;
+                    opacity: 75%;
+                }
+
+                &__5 {
+                    bottom: 45rem;
+                    right: 15rem;
+                    z-index: 6;
+                    //transform: translate(50%, 25%);
+                    width: 10rem; 
+                    height: 10rem;
+                    opacity: 50%;
+                }
+            }
+
+        }
     
         &__1 {
             width: 100%;
             height: 100vh;
             display: flex;
             color: $color-black;
+            position: relative;
+            z-index: 30;
         
             .contentLeft {
                 width: 50%;
@@ -175,6 +258,8 @@
             grid-gap: 5rem;
             grid-template-rows: repeat(2, 1fr);
             grid-template-columns: repeat(2, 1fr);
+            position: relative;
+            z-index: 20;
     
             .mapContainer {
     

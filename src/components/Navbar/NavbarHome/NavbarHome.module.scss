@@ -281,12 +281,7 @@
                  transition: .5s ease;
                  height: 0rem;
              }
- 
-             .dropdownContainer:hover + .arrowContainer .arrow {
-                 fill: $color-text-blue;
-                 color: $color-text-blue;
-                 text-decoration: none;
-             }
+
      
                 
              .btn {
@@ -314,9 +309,9 @@
                  }
                  
                 &__login {
-                     box-shadow:0px 0px 0px 2px $login-nav-color-solid inset;
+                     box-shadow:0px 0px 0px 2px $color-white inset;
                      span {
-                         color: $login-nav-color-solid;
+                         color: $color-white;
                      }
                 }
   

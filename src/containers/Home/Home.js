@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from 'react';
 
 import { AuthDrawerContext, NavbarContext } from '../../context/AuthContext';
 
-
 import classes from './Home.module.scss';
 
 import {ReactComponent as GlobeSVG} from '../../assets/icons/globe.svg';
@@ -16,6 +15,14 @@ import homeImg4 from '../../assets/images/homeImg4.jpg';
 
 import Searchbar from '../../components/Searchbar/Searchbar';
 
+import {ReactComponent as Wave1SVG} from '../../assets/images/Wave1.svg';
+import {ReactComponent as Wave2SVG} from '../../assets/images/Wave2.svg';
+import {ReactComponent as Wave3SVG} from '../../assets/images/Wave3.svg';
+import {ReactComponent as BubbleSVG} from '../../assets/images/Bubble.svg';
+
+
+
+
 
 
 
@@ -26,11 +33,26 @@ const Home = () => {
     const [navbar, setNavbar] = useContext(NavbarContext);
     //const [authDrawer, setAuthDrawer] = useContext(AuthDrawerContext);
 
+    const [offsetY, setOffsetY] = useState(0);
+    const handleYScroll = () => setOffsetY(window.pageYOffset);
+
+    const [offsetX, setOffsetX] = useState(0);
+    const handleXScroll = () => setOffsetX(window.pageXOffset);
+
+
     useEffect(() => {
         setNavbar("home");
 
+
+        window.addEventListener("scroll",handleYScroll);
+        window.addEventListener("scroll",handleXScroll);
+
+
         return function cleanup() {
             setNavbar("main");
+            window.removeEventListener("scroll", handleYScroll);
+            window.removeEventListener("scroll", handleXScroll);
+
         };
     },[]);
 
@@ -102,35 +124,53 @@ const Home = () => {
             </div>
                 </div>
             </div>
-        
+
+
+            
+            
             <div className={classes.homeContent}>
-            <div className={classes.homeContent__1}>
-                <div className={classes.contentLeft}>
-                    <div className={classes.contentLeft__titleContainer}>
-                        <h3>Snorkel, scuba or free dive, theres locations all around the world waiting to be explored.</h3>
+                <div className={classes.homeContent__background}>
+                    <Wave1SVG className={classes.wave1}/>
+                    <Wave2SVG className={classes.wave2}/>
+                    <Wave3SVG className={classes.wave3}/>
+                    <BubbleSVG className={`${classes.bubble} ${classes.bubble__1}`}/>
+                    <BubbleSVG className={`${classes.bubble} ${classes.bubble__2}`}/>
+                    <BubbleSVG className={`${classes.bubble} ${classes.bubble__3}`}/>
+                    <BubbleSVG className={`${classes.bubble} ${classes.bubble__4}`}/>
+                    <BubbleSVG className={`${classes.bubble} ${classes.bubble__5}`}/>
+
+                </div>
+               
+                <div className={classes.homeContent__1}>
+                    <div className={classes.contentLeft}>
+                        <div className={classes.contentLeft__titleContainer}>
+                            <h3>Snorkel, scuba or free dive, theres locations all around the world waiting to be explored.</h3>
+                        </div>
+                        <div className={classes.contentLeft__textContainer}>
+                            <p>Locus is a dive site location service for many locations across the globe. We provide information on theses sites to help find the most suitable site for you. With sites being added frequently, you will always find a new place to explore.</p>
+                        </div>
                     </div>
-                    <div className={classes.contentLeft__textContainer}>
-                        <p>Locus is a dive site location service for many locations across the globe. We provide information on theses sites to help find the most suitable site for you. With sites being added frequently, you will always find a new place to explore.</p>
+                    <div className={classes.contentRight}>
+                        <img className={`${classes.image} ${classes.image__1}`} src={homeImg1} alt="man in diving gear"/>
+                        <img className={`${classes.image} ${classes.image__2}`} src={homeImg2} alt="women snorkelling"/>
                     </div>
                 </div>
-                <div className={classes.contentRight}>
-                <img className={`${classes.image} ${classes.image__1}`} src={homeImg1} alt="man in diving gear"/>
-                <img className={`${classes.image} ${classes.image__2}`} src={homeImg2} alt="women snorkelling"/>
+
+                <div className={classes.homeContent__2}>
+                    <img className={`${classes.image} ${classes.image__3}`} src={homeImg3} alt="birds eye view of beach"/>
+                    <div className={classes.mapContainer}>
+                        <p className={classes.mapContainer__text}>Press the button below to go to the map or scroll up and type in a location that you want to dive. Explore around the area to discover the dive sites.</p>
+                        <a href="/map" className={`${classes.btn} ${classes.btn__map}`}>Go To Map</a>
+                    </div>
+                    <img className={`${classes.image} ${classes.image__4}`} src={homeImg4} alt="turtle gliding through the water"/>
+                    <div className={classes.signUpContainer}>
+                        <p className={classes.signUpContainer__text}>Come join our community of  marine enthusiasts and adventurers that help provide information to others. You can request to add a dive site and be able to add dive reports for others to see and hear your experience.</p>
+                        <button className={`${classes.btn} ${classes.btn__signUp}`} onClick={signupHandler}>Sign up</button>
+                    </div>
                 </div>
+
             </div>
-            <div className={classes.homeContent__2}>
-                <img className={`${classes.image} ${classes.image__3}`} src={homeImg3} alt="birds eye view of beach"/>
-                <div className={classes.mapContainer}>
-                    <p className={classes.mapContainer__text}>Press the button below to go to the map or scroll up and type in a location that you want to dive. Explore around the area to discover the dive sites.</p>
-                    <a href="/map" className={`${classes.btn} ${classes.btn__map}`}>Go To Map</a>
-                </div>
-                <img className={`${classes.image} ${classes.image__4}`} src={homeImg4} alt="turtle gliding through the water"/>
-                <div className={classes.signUpContainer}>
-                    <p className={classes.signUpContainer__text}>Come join our community of  marine enthusiasts and adventurers that help provide information to others. You can request to add a dive site and be able to add dive reports for others to see and hear your experience.</p>
-                    <button className={`${classes.btn} ${classes.btn__signUp}`} onClick={signupHandler}>Sign up</button>
-                </div>
-            </div>
-        </div>
+
             </div>
             </div>
         </div>
