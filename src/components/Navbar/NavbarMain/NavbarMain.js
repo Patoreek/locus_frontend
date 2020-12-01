@@ -232,7 +232,7 @@ const NavbarMain = () => {
                                             <span className={classes.title}>{firstName} {lastName}</span>
                                         </div>
                                         <div className={classes.dropdown__email}>
-                                            <span className={classes.email}>{account.email}</span>
+                                            <span className={classes.email}>{account.email ? account.email : "New account"}</span>
                                         </div>
                                         <a  href="/profile" className={classes.dropdown__viewProfile}>
                                             <ProfileSVG className={classes.icon}/>

@@ -21,6 +21,8 @@ import {ReactComponent as Wave3SVG} from '../../assets/images/Wave3.svg';
 import {ReactComponent as BubbleSVG} from '../../assets/images/Bubble.svg';
 
 
+import {ReactComponent as SearchSVG} from '../../assets/icons/magnifying-glass.svg';
+import {ReactComponent as DiverSVG} from '../../assets/icons/diver.svg';
 
 
 
@@ -35,9 +37,7 @@ const Home = () => {
 
     const [offsetY, setOffsetY] = useState(0);
     const handleYScroll = () => setOffsetY(window.pageYOffset);
-
-    const [offsetX, setOffsetX] = useState(0);
-    const handleXScroll = () => setOffsetX(window.pageXOffset);
+    console.log(offsetY);
 
 
     useEffect(() => {
@@ -45,13 +45,13 @@ const Home = () => {
 
 
         window.addEventListener("scroll",handleYScroll);
-        window.addEventListener("scroll",handleXScroll);
+        // window.addEventListener("scroll",handleXScroll);
 
 
         return function cleanup() {
             setNavbar("main");
             window.removeEventListener("scroll", handleYScroll);
-            window.removeEventListener("scroll", handleXScroll);
+            // window.removeEventListener("scroll", handleXScroll);
 
         };
     },[]);
@@ -130,14 +130,14 @@ const Home = () => {
             
             <div className={classes.homeContent}>
                 <div className={classes.homeContent__background}>
-                    <Wave1SVG className={classes.wave1}/>
-                    <Wave2SVG className={classes.wave2}/>
-                    <Wave3SVG className={classes.wave3}/>
-                    <BubbleSVG className={`${classes.bubble} ${classes.bubble__1}`}/>
-                    <BubbleSVG className={`${classes.bubble} ${classes.bubble__2}`}/>
-                    <BubbleSVG className={`${classes.bubble} ${classes.bubble__3}`}/>
-                    <BubbleSVG className={`${classes.bubble} ${classes.bubble__4}`}/>
-                    <BubbleSVG className={`${classes.bubble} ${classes.bubble__5}`}/>
+                    <Wave1SVG className={classes.wave1} style={{ transform: `translateX(-${offsetY * 2.0}px)`}}/>
+                    <Wave2SVG className={classes.wave2} style={{ transform: `translateX(-${offsetY * 1.9}px)`}}/>
+                    <Wave3SVG className={classes.wave3} style={{ transform: `translateX(${offsetY * 1.7}px)`}}/>
+                    <BubbleSVG className={`${classes.bubble} ${classes.bubble__1}`} style={{ transform: `translate(-25%,-${offsetY * 0.9}px)`}}/>  //? CHANGE THESE TO rem ???
+                    <BubbleSVG className={`${classes.bubble} ${classes.bubble__2}`} style={{ transform: `translateY(-${offsetY * 1.4}px)`}}/>       //! Not Responsive. Only works currently on 13inch screen
+                    <BubbleSVG className={`${classes.bubble} ${classes.bubble__3}`} style={{ transform: `translateY(-${offsetY * 0.5}px)`}}/>
+                    <BubbleSVG className={`${classes.bubble} ${classes.bubble__4}`} style={{ transform: `translate(50%,-${offsetY * 0.4}px)`}}/>
+                    <BubbleSVG className={`${classes.bubble} ${classes.bubble__5}`} style={{ transform: `translateY(-${offsetY * 0.7}px)`}}/>
 
                 </div>
                
@@ -160,12 +160,12 @@ const Home = () => {
                     <img className={`${classes.image} ${classes.image__3}`} src={homeImg3} alt="birds eye view of beach"/>
                     <div className={classes.mapContainer}>
                         <p className={classes.mapContainer__text}>Press the button below to go to the map or scroll up and type in a location that you want to dive. Explore around the area to discover the dive sites.</p>
-                        <a href="/map" className={`${classes.btn} ${classes.btn__map}`}>Go To Map</a>
+                        <a href="/map" className={`${classes.btn} ${classes.btn__map}`}><SearchSVG className={classes.searchSVG}/>Start Searching!</a>
                     </div>
                     <img className={`${classes.image} ${classes.image__4}`} src={homeImg4} alt="turtle gliding through the water"/>
                     <div className={classes.signUpContainer}>
                         <p className={classes.signUpContainer__text}>Come join our community of  marine enthusiasts and adventurers that help provide information to others. You can request to add a dive site and be able to add dive reports for others to see and hear your experience.</p>
-                        <button className={`${classes.btn} ${classes.btn__signUp}`} onClick={signupHandler}>Sign up</button>
+                        <button className={`${classes.btn} ${classes.btn__signUp}`} onClick={signupHandler}><DiverSVG className={classes.diverSVG}/>Sign up now!</button>
                     </div>
                 </div>
 

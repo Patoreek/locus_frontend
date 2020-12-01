@@ -122,20 +122,23 @@
             .wave1 {
                 position: absolute;
                 bottom: 0;
-                left: 0;
+                left: 655px;
                 z-index: 5;
+                //opacity: 0%;
             }
 
             .wave2 {
                 position: absolute;
-                bottom: 0;
-                left: 0;
+                bottom: 0px;
+                left: 800px;
                 z-index: 4;
+                //opacity: 0%;
+
                
             }
             .wave3 {
                 position: absolute;
-                bottom: 0;
+                bottom: 25px;
                 right: 0;
                 z-index: 3;
             }
@@ -144,10 +147,10 @@
                 position: absolute;
 
                 &__1 {
-                    bottom: 0;
+                    bottom: -950px;
                     left: 0;
                     z-index: 6;
-                    transform: translate(-25%, 25%);
+                   
                     width: 30rem; 
                     height: 30rem;
                     opacity: 75%;
@@ -155,8 +158,8 @@
                 }
 
                 &__2 {
-                    bottom: 20rem;
-                    left: 20rem;
+                    bottom: calc(20rem - 1500px);
+                    left: 30rem;
                     z-index: 6;
                     width: 10rem; 
                     height: 10rem;
@@ -164,8 +167,8 @@
                 }
 
                 &__3 {
-                    bottom: 35rem;
-                    left: 15rem;
+                    bottom: calc(35rem - 900px);
+                    left: 20rem;
                     z-index: 6;
                     width: 7.5rem; 
                     height: 7.5rem;
@@ -173,17 +176,16 @@
                 }
 
                 &__4 {
-                    bottom: 20rem;
+                    bottom: calc(20rem - 400px);
                     right: 0;
                     z-index: 6;
-                    transform: translate(50%, 25%);
                     width: 30rem; 
                     height: 30rem;
                     opacity: 75%;
                 }
 
                 &__5 {
-                    bottom: 45rem;
+                    bottom: calc(45rem - 800px);
                     right: 15rem;
                     z-index: 6;
                     //transform: translate(50%, 25%);
@@ -302,6 +304,7 @@
                 border-radius: 5px;
                 color: white;
                 font-size: 2rem;
+                font-weight: 500;
                 box-shadow: 2px 4px 4px rgba($color-black, .4);
                 outline: none;
                 transition: .2s ease;
@@ -326,6 +329,21 @@
                     box-shadow: 2px 3px 5px rgba($color-black, .35);
     
                 }
+
+                .searchSVG {
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    margin-right: 2rem;
+                }
+
+                .diverSVG {
+                    width: 4.5rem;
+                    height: 4.5rem;
+                    margin-right: 2rem;
+                }
+
+
+
             }
     
             .image {
