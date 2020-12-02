@@ -1,7 +1,6 @@
  @import '../../sass/abstracts/variables';
 
  .profilePage {
-    //background: orange;
     background: $color-white-bg;
     max-width: 1400px;
     padding: 5rem;
@@ -19,7 +18,6 @@
         border-bottom: 1px solid $color-lines;
 
         .profileLeft {
-            //background: yellow;
             &__pictureContainer {
                 width: 22rem;
                 height: 22rem;
@@ -37,9 +35,8 @@
 
         .profileRight {
             padding-left: 3rem;
-        //background: red;
-        display: flex;
-        flex-direction: column;
+            display: flex;
+            flex-direction: column;
 
             &__nameContainer {
                 

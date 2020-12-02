@@ -56,7 +56,7 @@ const GuestPanel = () => {
             <div className={classes.topSection}>
                 <p>{diveSites.length} sites  · {locationName ? locationName : 'In current view'} </p>
                 <h3>Dive sites in selected map area</h3>
-                <span onClick={() => setList('DiveSites')}>See Dive Sites</span>
+                <span onClick={() => setList('DiveSites')}>See Dive Sites</span><span className={classes.seeLinkSpacer}>·</span>
                 <span onClick={() => setList('DiveShops')}>See Dive Shops</span>
             </div>
 

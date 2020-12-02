@@ -1,14 +1,19 @@
 @import '../../../sass/abstracts/variables';
 
-.site:not(:last-child) {
-    border-bottom: 1px solid $color-lines;
-}
+// .site:not(:last-child) {
+//     border-bottom: 1px solid $color-lines;
+// }
 .site {
     padding: 3rem 0rem; //? Might need to change this
     //background: orange;
     display: grid;
     grid-template-rows: max-content max-content 11rem max-content;
     grid-template-columns: max-content 1fr 3rem;
+    background: $color-white-pure;
+    margin: 0.75rem 0rem;
+    padding: 1rem;
+    border-radius: 7px;
+    box-shadow: 2px 2px 5px rgba($color-black, .25);
 
 
     &__imageContainer {

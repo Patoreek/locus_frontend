@@ -115,6 +115,7 @@ const ReviewStars = (props) => {
                     //submitRatingHandler(newValue, siteId);
                   }}
                   className={customClasses.rating}
+                  size="small"
                
             />
 

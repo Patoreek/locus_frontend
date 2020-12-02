@@ -10,7 +10,7 @@ import StarRating from '../../components/StarRating/StarRating';
 import FavouriteButton from '../../components/Buttons/FavouriteButton/FavouriteButton';
 import DisplayReport from '../../components/DisplayReport/DisplayReport';
 
-import DivesiteListing from '../../components/Divesite/DivesiteListing/DivesiteListing';
+import DivesiteListingPanel from '../../components/Divesite/DivesiteListingPanel/DivesiteListingPanel';
 
 import classes from './ViewProfileView.module.scss';
 
@@ -168,7 +168,7 @@ const ViewProfileView = (props) => {
                         <h3 className={classes.header}>{firstName}'s Favourites</h3>
                         <div className={classes.favourites}>
                             {favourites.map(favourite => (
-                                <DivesiteListing site={favourite}/>
+                                <DivesiteListingPanel site={favourite.site}/>
 
                            ))}
                         </div>

@@ -18,7 +18,7 @@ import FavouriteButton from '../../../components/Buttons/FavouriteButton/Favouri
 
 import EllipsesButton from '../../../components/Buttons/EllipsesButton/EllipsesButton';
 
-import DivesiteListing from '../../../components/Divesite/DivesiteListing/DivesiteListing';
+import DivesiteListingPanel from '../../../components/Divesite/DivesiteListingPanel/DivesiteListingPanel';
 
 
 const FavouritesList = (props) => {
@@ -43,7 +43,7 @@ const FavouritesList = (props) => {
             <h1 className={classes.favouritesList__header}>{account.username}'s Favourites · {favourites.length} Dive sites</h1> 
             <div className={classes.favourites}>
                             {favourites.map(favourite => (
-                                <DivesiteListing site={favourite}/>
+                                <DivesiteListingPanel site={favourite}/>
                             ))}
             </div>
         </div>
