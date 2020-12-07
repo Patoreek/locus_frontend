@@ -24,7 +24,7 @@
         border: 1px solid $image-border-color-infoPanel;
         border-radius: 3px;
         overflow: hidden;
-        margin-right: 1rem;
+        margin-right: 2rem;
 
         width: 20rem;
         height: 20rem;
@@ -32,7 +32,7 @@
         .image {
             width: 100%;
             height: 100%;
-            transition: .7s ease;
+            transition: .5s ease;
 
             &:hover {
                 transform: scale(1.2);
@@ -50,8 +50,10 @@
 
         .shopName {
             a {
-                font-size: 2.5rem;
                 color: $color-black;
+                font-size: 2.5rem;
+                transition: .2s ease;
+
 
                 &:hover {
                     color: $color-text-blue;
@@ -91,6 +93,13 @@
         a {
             font-size: 1.6rem;
             margin-left: 1rem;
+
+            color: $color-text-grey;
+            transition: .2s ease;
+
+            &:hover {
+                color: $color-text-blue;
+            }
             
         }
 
@@ -99,7 +108,7 @@
 
     &__phoneContainer {
         grid-row: 3 / 4;
-        grid-column: 2 / 3;
+        grid-column: 2 / -1;
 
         display: flex;
         align-items: center;
@@ -107,25 +116,18 @@
         a {
             font-size: 1.6rem;
             margin-left: 1rem;
+
+            color: $color-text-grey;
+            transition: .2s ease;
+
+            &:hover {
+                color: $color-text-blue;
+            }
             
         }
     }
 
     &__emailContainer {
-        grid-row: 3 / 4;
-        grid-column: 3 / 4;
-
-        display: flex;
-        align-items: center;
-
-        a {
-            font-size: 1.6rem;
-            margin-left: 1rem;
-            
-        }
-    }
-
-    &__websiteContainer {
         grid-row: 4 / 5;
         grid-column: 2 / -1;
 
@@ -135,25 +137,54 @@
         a {
             font-size: 1.6rem;
             margin-left: 1rem;
+
+            color: $color-text-grey;
+            transition: .2s ease;
+
+            &:hover {
+                color: $color-text-blue;
+            }
             
         }
     }
 
-    .socialsContainer {
+    &__websiteContainer {
         grid-row: 5 / 6;
         grid-column: 2 / -1;
 
         display: flex;
-        align-items: flex-end;
-        justify-content: space-evenly;
-        padding: 1rem;
+        align-items: center;
 
+        a {
+            font-size: 1.6rem;
+            margin-left: 1rem;
+            
+            color: $color-text-grey;
+            transition: .2s ease;
+
+            &:hover {
+                color: $color-text-blue;
+            }
+        }
     }
+
+    // .socialsContainer {
+    //     grid-row: 5 / 6;
+    //     grid-column: 2 / -1;
+
+    //     display: flex;
+    //     align-items: flex-end;
+    //     justify-content: space-evenly;
+    //     padding: 1rem;
+
+    // }
 
     .icon {
         width: 2rem;
         height: 2rem;
-    
+        g path {
+            fill: $color-text-grey;
+        }
         &__location, &__phone, &__email, &__website {
             fill: $color-text-blue-hover;
         }
@@ -170,34 +201,34 @@
             
         }
     
-        &__facebook {
-            g path {
-                fill: #3b5998 !important;
-            }
-            transition: .2s ease;;
-            &:hover {
-                transform: scale(1.2);
-            }
-        }
+        // &__facebook {
+        //     g path {
+        //         fill: #3b5998 !important;
+        //     }
+        //     transition: .2s ease;;
+        //     &:hover {
+        //         transform: scale(1.2);
+        //     }
+        // }
     
-        &__instagram {
-            g path {
-                fill: #DD2A7B !important;
-            }
-            transition: .2s ease;;
-            &:hover {
-                transform: scale(1.2);
-            }
-        }
+        // &__instagram {
+        //     g path {
+        //         fill: #DD2A7B !important;
+        //     }
+        //     transition: .2s ease;;
+        //     &:hover {
+        //         transform: scale(1.2);
+        //     }
+        // }
     
-        &__twitter {
-            g path {
-                fill: #00acee !important;
-            }
-            transition: .2s ease;;
-            &:hover {
-                transform: scale(1.2);
-            }
-        }
+        // &__twitter {
+        //     g path {
+        //         fill: #00acee !important;
+        //     }
+        //     transition: .2s ease;;
+        //     &:hover {
+        //         transform: scale(1.2);
+        //     }
+        // }
     }
 }

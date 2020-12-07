@@ -43,7 +43,7 @@ const DivesiteListingPanel = (props) => {
         </div>
 
         <div className={classes.shop__nameContainer}>
-            <h5  className={classes.shopName}>
+            <h5 className={classes.shopName}>
                 <a href={"/diveshop/" + shop._id}>
                     {shop.name}
                 </a>
@@ -97,7 +97,7 @@ const DivesiteListingPanel = (props) => {
                 </a>
         </div>
 
-        <div className={classes.socialsContainer}>
+        {/* <div className={classes.socialsContainer}>
                     <div className={classes.socialsContainer__facebookContainer}>
                         <a  href={shop.facebook}
                         target="_blank"
@@ -119,7 +119,7 @@ const DivesiteListingPanel = (props) => {
                             <TwitterSVG className={`${classes.icon} ${classes.icon__twitter}`}/>
                         </a>
                     </div>
-                </div>
+                </div> */}
         
     
     </div>

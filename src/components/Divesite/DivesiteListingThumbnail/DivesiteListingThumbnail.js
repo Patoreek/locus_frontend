@@ -1,0 +1,31 @@
+import React from 'react';
+
+import classes from './DivesiteListingThumbnail.module.scss';
+
+// import StarRating from '../../StarRating/StarRating';
+
+const DivesiteListingThumbnail = (props) => {
+
+    const site = props.site;
+
+
+    return (
+        <div className={classes.thumbnail}>
+            <div className={classes.thumbnail__name}>
+                <a href={"/divesite/" + site._id}>
+                    {site.name}
+                </a>
+            </div>
+            <div className={classes.thumbnail__image}>
+            <a href={"/divesite/" + site._id}>
+                <img src={'http://localhost:8080/' + site.images[0]}
+                    className={classes.image}
+                />
+            </a>
+            </div>
+            {/* <StarRating site={site}/> */}
+        </div>
+    );
+};
+
+export default DivesiteListingThumbnail;

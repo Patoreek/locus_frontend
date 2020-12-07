@@ -11,6 +11,8 @@ import FavouriteButton from '../../components/Buttons/FavouriteButton/FavouriteB
 import DisplayReport from '../../components/DisplayReport/DisplayReport';
 
 import DivesiteListingPanel from '../../components/Divesite/DivesiteListingPanel/DivesiteListingPanel';
+import DivesiteListingThumbnail from '../../components/Divesite/DivesiteListingThumbnail/DivesiteListingThumbnail';
+
 
 import classes from './ViewProfileView.module.scss';
 
@@ -141,6 +143,16 @@ const ViewProfileView = (props) => {
                         
                         </div>
 
+                        
+                    </div>
+
+                    <h4 className={classes.divedAtHeader}>Dives site that {firstName} has dived at</h4>
+                    <div className={classes.divedAtContainer}>
+                        <div className={classes.sliderContainer}>
+                            {reports.map(report => (
+                                <DivesiteListingThumbnail site={report.siteId}/>
+                            ))}
+                        </div>
                         
                     </div>
 
