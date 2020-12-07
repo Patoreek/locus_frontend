@@ -66,12 +66,16 @@ const DisplayReport = (props) => {
                                   <div className={classes.profilePic}>
                                       <img src={'http://localhost:8080/' + report.userId.profilePic}/>
                                   </div>
-                                  <div className={classes.name}>
-                                      <a href={"/viewprofile/" + report.userId._id}>{report.userId.firstName} {report.userId.lastName}</a>
-                                  </div>
+                                    <div className={classes.nameContainer}>
+                                        <div className={classes.nameContainer__name}>
+                                            <a href={"/viewprofile/" + report.userId._id}>{report.userId.firstName} {report.userId.lastName}</a>
+                                        </div>
+                                        <div className={classes.nameContainer__date}>
+                                            {dateHandler(report.createdAt)}
+                                        </div>
+                                    </div>
                             </div>
                             <div className={classes.report__infoContainer}>
-                                  {dateHandler(report.createdAt)}
                                   <div className={classes.location}>
                                       <LocationSVG className={classes.icon}/>
                                       <a href={"/divesite/" + report.siteId._id}>{report.siteId.name}, {report.siteId.area}, {report.siteId.country}</a>

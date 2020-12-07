@@ -28,18 +28,43 @@
             overflow: hidden;
             
             img {
-                width: 4.5rem;
-                height: 4.5rem;
+                // width: 4.5rem;
+                // height: 4.5rem;
+                width: 5.25rem;
+                height: 5.25rem;
 
             }
         }
 
-        .name {
+        .nameContainer {
             margin-left: 2rem;
+            
+            &__name{ 
+                padding-bottom: .25rem;
+                a {
+                    font-size: 2.2rem;
+                    font-weight: 500;
+                }
+            }
 
-            a {
-                font-size: 2rem;
-                font-weight: 500;
+            &__date {
+                .date {
+                    display: flex;
+                    align-items: center;
+                    .icon {
+                        
+                        width: 2rem;
+                        height: 2rem;
+                        fill: $color-text-grey;
+                    }
+        
+                    span {
+                        font-size: 1.4rem;
+                        color: $color-text-darkgrey;
+                        margin-left: 1rem;
+                    }
+        
+                }
             }
         }
     }
@@ -56,24 +81,12 @@
         border-bottom: 1px solid $color-lines;
 
 
-        .date {
-            display: flex;
-            align-items: center;
-            .icon {
-                
-                width: 2.5rem;
-                height: 2.5rem;
-                fill: $color-text-grey;
-            }
-
-            span {
-                font-size: 1.4rem;
-                color: $color-text-darkgrey;
-                margin-left: 1rem;}
-
-        }
+       
 
         .location {
+            grid-row: 1 / 2;
+            grid-column: 1 / -1;
+
             display: flex;
             align-items: center;
             .icon {
@@ -84,14 +97,25 @@
             }
 
             a {
-                font-size: 1.4rem;
-                color: $color-text-darkgrey;
+                font-size: 2rem;
+                font-weight: 500;
+                color: $color-text-darkergrey;
                 margin-left: 1rem;
+                text-decoration: none;
+                transition: .2s ease;
+
+                &:hover {
+                    color: $color-text-blue;
+                }
 
             }
         }
 
         .visibility {
+
+            grid-row: 2 / 3;
+            grid-column: 1 / 2;
+
             display: flex;
             align-items: center;
             .icon {
@@ -113,6 +137,9 @@
         }
 
         .duration {
+            grid-row: 2 / 3;
+            grid-column: 2 / 3;
+
             display: flex;
             align-items: center;
             .icon {
