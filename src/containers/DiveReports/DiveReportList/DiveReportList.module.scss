@@ -32,11 +32,22 @@
         display: grid;
         grid-template-rows: repeat(2, max-content);
         grid-template-columns: 1fr repeat(2, max-content);
-        padding: 2rem 0rem;
-
-        &:not(:last-child) {
-            border-bottom: 1px solid $color-lines;
+        padding: 1.5rem 2rem;
+        background: $color-white-pure;
+        border-radius: 1rem;
+        margin: .5rem 0rem;
+        box-shadow: 2px 2px 5px rgba($color-black, .25);
+        border: 1px solid rgba($color-lines, .5);
+        transition: .3s ease;
+        &:hover {
+           // transform: translateY(-.2rem);
+           transform: scale(1.01);
+           //border: 1px solid rgba($login-nav-color-solid, .45)
         }
+
+        // &:not(:last-child) {
+            
+        // }
 
 
 
@@ -46,7 +57,8 @@
             grid-column: 1 / 2;
 
             .location {
-
+                font-size: 2rem;
+                font-weight: 500;
             }
 
         }
@@ -55,7 +67,7 @@
             grid-column: 1 / 2;
 
             .date {
-                
+                font-size: 1.4rem;
             }
         }
 
@@ -74,15 +86,18 @@
                 width: 2.5rem;
                 height: 2.5rem;
                 margin-right: 2rem;
-
+                
                 transition: .3s ease;
-
+                
                 &:hover {
                     transform: scale(1.05);
+                    g path {
+                        fill: $color-text-green;
+                    }
                 }
-
+                
                 g path {
-                    fill: $color-text-green;
+                    fill: $color-text-grey;
                 }
             }
         }
@@ -96,13 +111,13 @@
             padding: 0rem 0rem 0rem 1rem;
 
             .icon {
-                fill: $color-text-red;
                 width: 2.5rem;
                 height: 2.5rem;
-
+                fill: $color-text-grey;
                 transition: .3s ease;
-
+                
                 &:hover {
+                    fill: $color-text-red;
                     transform: scale(1.05);
                 }
             }

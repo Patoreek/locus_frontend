@@ -125,7 +125,7 @@ const DiveReports = () => {
                 <EditReport currentReport={currentReport} setShowEdit={setShowEdit}/>
             )}
             {!isLoading && showPreview && (
-                <PreviewReport currentReport={currentReport} setShowPreview={setShowPreview}/>
+                <PreviewReport currentReport={currentReport} setShowPreview={setShowPreview} setShowEdit={setShowEdit} setShowDelete={setShowDelete}/>
             )}
              {!isLoading && showDelete && (
                 <DeleteReport currentReport={currentReport} setShowDelete={setShowDelete}/>

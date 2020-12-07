@@ -5,11 +5,16 @@ import { format } from 'date-fns';
 import classes from './PreviewReport.module.scss';
 
 import { ReactComponent as BackBtnSVG } from '../../../assets/icons/arrow-left.svg';
-import { ReactComponent as VisibilitySVG } from '../../../assets/icons/binoculars.svg';
-import { ReactComponent as DurationSVG } from '../../../assets/icons/time.svg';
-import { ReactComponent as DateSVG } from '../../../assets/icons/calendar.svg';
+// import { ReactComponent as VisibilitySVG } from '../../../assets/icons/binoculars.svg';
+// import { ReactComponent as DurationSVG } from '../../../assets/icons/time.svg';
+// import { ReactComponent as DateSVG } from '../../../assets/icons/calendar.svg';
+import { ReactComponent as EditSVG } from '../../../assets/icons/edit.svg';
+import { ReactComponent as DeleteSVG } from '../../../assets/icons/delete.svg';
 
 
+
+
+import DisplayReport from '../../../components/DisplayReport/DisplayReport';
 
 const PreviewReport = (props) => {
     //console.log(props.reportId);
@@ -54,6 +59,18 @@ const PreviewReport = (props) => {
         props.setShowPreview(false);
     }
 
+    const editHandler = () => {
+        props.setShowPreview(false);
+        props.setShowDelete(false);
+        props.setShowEdit(true);
+    }
+
+    const deleteHandler = () => {
+        props.setShowPreview(false);
+        props.setShowEdit(false);
+        props.setShowDelete(true);
+    }
+
   
 
 
@@ -68,7 +85,20 @@ const PreviewReport = (props) => {
                 <div className={classes.previewReport__backBtn}>
                     <BackBtnSVG className={classes.backBtnSVG} onClick={backHandler}/>
                 </div>
-                <div className={classes.previewReport__nameContainer}>    
+                <div className={classes.previewReport__optionsContainer}>
+                    <div className={`${classes.btn} ${classes.btn__edit}`} onClick={editHandler}>
+                        <EditSVG className={classes.icon}/>
+                        <span>Edit</span>
+                    </div>
+                    <div className={`${classes.btn} ${classes.btn__delete}`} onClick={deleteHandler}>
+                        <DeleteSVG className={classes.icon}/>
+                        <span>Delete</span>
+                    </div>
+                </div>
+                <div className={classes.previewReport__reportContainer}>
+                    <DisplayReport report={props.currentReport}/>
+                </div>
+                {/* <div className={classes.previewReport__nameContainer}>    
                     <h2>{locationName}, {locationArea}, {locationCountry}</h2>
                 </div>
                 <div className={classes.previewReport__dateContainer}>
@@ -98,7 +128,7 @@ const PreviewReport = (props) => {
                         </div>
                     </div>
                 </div>
-                )}
+                )} */}
             </div>
             )}
         </div>
