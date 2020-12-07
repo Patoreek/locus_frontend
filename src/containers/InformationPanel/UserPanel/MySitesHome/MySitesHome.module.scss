@@ -10,6 +10,73 @@
     }
 }
 
+.mySitesHome {
+    padding: 2rem;
+
+    &__header {
+        font-size: 2rem;
+        font-weight: 500;
+        padding-bottom: .5rem;
+        border-bottom: 1px solid $color-lines;
+    }
+
+    &__diveSiteText {
+        font-size: 1.6rem;
+    }
+
+    &__diveShopText {
+        font-size: 1.6rem;
+
+    }
+
+    &__stepsContainer {
+        padding: 2.5rem 0rem;
+        display: flex;
+        justify-content: space-around;
+        .step {
+            position: relative;
+            background: linear-gradient(0deg, rgba(12,63,191,1) 0%, rgba(67,120,255,1) 100%);
+            box-shadow: 2px 2px 5px rgba($color-black, .45);
+            border-radius: 1rem;
+            padding: 1.5rem 0rem;
+            color: $color-white-pure;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 20rem;
+            transition: .3s ease;
+
+            &:hover {
+                transform: scale(1.05);
+                box-shadow: 2px 4px 7px rgba($color-black, .25);
+
+            }
+
+            &__number {
+                font-size: 2rem;
+                font-weight: 700;
+                position: absolute;
+                top: .25rem;
+                left: 1rem;
+            }
+
+            &__icon {
+
+            }
+
+            &__text {
+                width: 80%;
+                text-align: center;
+                padding-top: 1rem;
+                font-size: 1.2rem;  
+                font-weight: 500;
+
+            }
+        }
+    }
+}
+
 .addRequestContainer {
     padding: 5rem;
 

@@ -13,6 +13,11 @@ import { AddModalContext,
 import DiveShopsView from '../DiveShopsView/DiveShopsView';
 import DiveSitesView from '../DiveSitesView/DiveSitesView';
 
+import { ReactComponent as ClickSVG } from '../../../../assets/icons/click.svg';
+import { ReactComponent as FillFormSVG } from '../../../../assets/icons/fill_form.svg';
+import { ReactComponent as SubmitTickSVG } from '../../../../assets/icons/submit_tick.svg';
+
+
 
 const UserSiteList = () => {
 
@@ -106,9 +111,37 @@ const UserSiteList = () => {
         <div>
             
 
+            {/* //* WHAT IS DISPLAYED INITIALLY TO ADMIN */}
+            {!listLoading  && !showAddRequestModal && !diveShopAdmin && account.email != "patrick.minda@hotmail.com" && (
+                <div className={classes.mySitesHome}>
+                    <h3 className={classes.mySitesHome__header}>Add a Dive Site</h3>
+                    <p className={classes.mySitesHome__diveSiteText}> To avoid duplicates dive sites being added, we will review the dive site you wish to add and check whether the dive site is already in the system and check if 
+                        the dive site a valid dive location. 
+                    </p>
+                    <div className={classes.mySitesHome__stepsContainer}>
+                        <div className={classes.step}>
+                            <span className={classes.step__number}>1</span>
+                            <ClickSVG className={classes.step__icon}/>
+                            <span className={classes.step__text}>Click location on the map</span>
+                        </div>
+                        <div className={classes.step}>
+                            <span className={classes.step__number}>2</span>
+                            <FillFormSVG className={classes.step__icon}/>
+                            <span className={classes.step__text}>Fill in the form</span>
+                        </div>
+                        <div className={classes.step}>
+                            <span className={classes.step__number}>3</span>
+                            <SubmitTickSVG className={classes.step__icon}/>
+                            <span className={classes.step__text}>Submit, you're done!</span>
+                        </div>
+                    </div>
 
+                    <p className={classes.mySitesHome__diveShopText}>If you are interested in adding a dive shop, please email email@email.com your shop details.</p>
+                
+                </div>
+            )}
 
-            {/* //* WHAT IS DISPLAYED INITIALLY */}
+            {/* //* WHAT IS DISPLAYED INITIALLY TO ADMIN */}
             {!listLoading  && !showAddRequestModal && !diveShopAdmin && account.email === "patrick.minda@hotmail.com" && (
                 <div className={classes.addRequestContainer}>
                     <h3 className={classes.addRequestContainer__header}>My Sites · Add & Edit Sites</h3>
@@ -124,11 +157,6 @@ const UserSiteList = () => {
             {!listLoading && !diveShopAdmin && account.email === "patrick.minda@hotmail.com" && (
                 <DiveSitesView sites={sites}/>
             )}
-         
-
-               
-          
-
             
             {diveShopAdmin && (
                 <DiveShopsView shops={shops}/>
