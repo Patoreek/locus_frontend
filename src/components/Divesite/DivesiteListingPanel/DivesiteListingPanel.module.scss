@@ -14,6 +14,7 @@
     padding: 1rem;
     border-radius: 7px;
     box-shadow: 2px 2px 5px rgba($color-black, .25);
+    
 
 
     &__imageContainer {
@@ -45,7 +46,9 @@
         span {
             font-size: 1.4rem;
             color: $color-text-darkgrey;
-            font-weight: 500;
+            font-family: $font-3-style;
+            font-weight: $font-med;
+
         }
     }
     &__nameContainer {
@@ -55,6 +58,8 @@
         .siteName {
             a {
                 font-size: 2rem;
+                font-family: $font-1-style;
+                font-weight: $font-bold;
                 color: $color-black;
 
                 &:hover {
@@ -81,7 +86,9 @@
 
         .siteDescription {
             text-overflow: ellipsis;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
+            font-family: $font-3-style;
+            font-weight: $font-normal;
             color: $color-black;
         }
         
@@ -102,9 +109,11 @@
 
         .moreDetailsButton {
             font-size: 1.4rem;
-            color: $color-black;
             position: relative;
             z-index: 15;
+            font-family: $font-3-style;
+            font-weight: $font-normal;
+            color: $color-text-darkergrey;
 
             &:hover {
                 text-decoration: underline;

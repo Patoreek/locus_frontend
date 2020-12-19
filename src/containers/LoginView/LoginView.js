@@ -102,7 +102,7 @@ const LoginView = () => {
             </div>
             <div className={classes.loginForm}>
             <div className={classes.loginForm__headerContainer}>
-                <a href="#" className={classes.header}>Log in</a> 
+                <h3 className={classes.header}>Log in</h3> 
             </div>
             <div className={classes.loginForm__signUpContainer}>
                 <span className={classes.signUp} onClick={() => authDrawerHandler('signup')}>Sign up</span>  

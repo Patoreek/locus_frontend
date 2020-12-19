@@ -40,7 +40,7 @@ const FavouritesList = (props) => {
     
     return (
         <div className={classes.favouritesList}>
-            <h1 className={classes.favouritesList__header}>{account.username}'s Favourites · {favourites.length} Dive sites</h1> 
+            <h1 className={classes.favouritesList__header}>Favourites · {favourites.length} Dive sites</h1> {/* {account.username}'s  */}
             <div className={classes.favourites}>
                             {favourites.map(favourite => (
                                 <DivesiteListingPanel site={favourite}/>

@@ -14,18 +14,29 @@
     padding: 2rem;
 
     &__header {
-        font-size: 2rem;
+        font-size: 2.5rem;
         font-weight: 500;
         padding-bottom: .5rem;
         border-bottom: 1px solid $color-lines;
+
+        font-family: $font-1-style;
+        font-weight: $font-bold;
+        color: $color-black;
     }
 
     &__diveSiteText {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
+
+        font-family: $font-3-style;
+        font-weight: $font-normal;
+        color: $color-black;
     }
 
     &__diveShopText {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
+        font-family: $font-3-style;
+        font-weight: $font-normal;
+        color: $color-black;
 
     }
 
@@ -69,8 +80,10 @@
                 width: 80%;
                 text-align: center;
                 padding-top: 1rem;
-                font-size: 1.2rem;  
+                font-size: 1.4rem;  
                 font-weight: 500;
+                font-family: $font-1-style;
+                font-weight: $font-med;
 
             }
         }

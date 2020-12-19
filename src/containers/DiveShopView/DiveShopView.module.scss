@@ -67,7 +67,8 @@
     
                     h2 {
                         font-size: 3rem;
-                        font-weight: 600;
+                        font-family: $font-1-style;
+                        font-weight: $font-bold;
                     }
                 }
     
@@ -77,12 +78,14 @@
 
                     display: flex;
                     align-items: center;
+                    margin-left: -.5rem;
     
                     a {
                         margin-left: 1rem;
                         font-size: 1.6rem;
-                        font-weight: 500;
-                        color: $color-black;
+                        font-family: $font-3-style;
+                        font-weight: $font-med;
+                        color: $color-text-darkgrey;
 
                         &:hover {
                             text-decoration: underline;
@@ -96,12 +99,15 @@
                     grid-column: 2 / 3;
                     display: flex;
                     align-items: center;
+                    margin-left: -.5rem;
+
     
                     a {
                         margin-left: 1rem;
                         font-size: 1.6rem;
-                        font-weight: 500;
-                        color: $color-black;
+                        font-family: $font-3-style;
+                        font-weight: $font-med;
+                        color: $color-text-darkgrey;
 
                         &:hover {
                             text-decoration: underline;
@@ -115,7 +121,7 @@
        &__bottomContainer {
             display: grid;
             grid-template-rows: max-content;
-            grid-template-columns: 1fr .6fr;
+            grid-template-columns: 1fr .5fr;
 
             border-top: 1px solid $color-lines;
 
@@ -133,111 +139,11 @@
 
                     h3 {
                         font-size: 2rem;
-                        font-weight: 500;
+                        font-family: $font-1-style;
+                        font-weight: $font-med;
+                        color: $color-black;
                     }
 
-                    .site:not(:last-child) {
-                        border-bottom: 1px solid $color-lines;
-                    }
-                    .site {
-                        padding: 3rem 0rem; //? Might need to change this
-                        //background: orange;
-                        display: grid;
-                        grid-template-rows: max-content max-content 11rem max-content;
-                        grid-template-columns: max-content 1fr 3rem;
-                
-                
-                        &__imageContainer {
-                            grid-row: 1 / -1;
-                            grid-column: 1 / 2;
-                            border: 1px solid $image-border-color-infoPanel;
-                            border-radius: 3px;
-                            overflow: hidden;
-                            margin-right: 1rem;
-                
-                            width: 30rem;
-                            
-                            .image {
-                                width: 100%;
-                                height: 100%;
-                                transition: .7s ease;
-                
-                                &:hover {
-                                    transform: scale(1.2);
-                                }
-                                
-                            }
-                        }
-                        
-                        &__diveTypeContainer {
-                            grid-row: 1 / 2;
-                            grid-column: 2 / 3;
-                
-                            span {
-                                font-size: 1.4rem;
-                                color: $color-text-darkgrey;
-                                font-weight: 500;
-                            }
-                        }
-                        &__nameContainer {
-                            grid-row: 2 / 3;
-                            grid-column: 2 / 3;
-                
-                            .siteName {
-                                a {
-                                    font-size: 2rem;
-                                    color: $color-black;
-                
-                                    &:hover {
-                                        color: $color-text-blue;
-                                    }
-                                }
-                            }
-                            
-                        }
-                        &__favButtonContainer {
-                            grid-row: 1 / span 2;
-                            grid-column: 3 / 4;
-                        }
-                        &__descriptionContainer {
-                            grid-row: 3 / 4;
-                            grid-column: 2 / span 2;
-                            overflow: hidden;
-                
-                            .siteDescription {
-                                text-overflow: ellipsis;
-                                font-size: 1.4rem;
-                                color: $color-black;
-                            }
-                            
-                        }
-                        &__ratingsContainer {
-                            grid-row: 4 / 5;
-                            grid-column: 2 / 3;
-                            
-                        }
-                        &__moreDetailsContainer {
-                            grid-row: 4 / 5;
-                            grid-column: 2 / span 2;
-                
-                            display: flex;
-                            align-items: center;
-                            padding-right: 2rem;
-                            justify-content: flex-end;
-                
-                            .moreDetailsButton {
-                                font-size: 1.4rem;
-                                color: $color-black;
-                                position: relative;
-                                z-index: 15;
-                
-                                &:hover {
-                                    text-decoration: underline;
-                                    color: $color-text-blue;
-                                }
-                            }
-                        }
-                    }
                 }
             }
             .rightGrid {
@@ -256,7 +162,10 @@
                         border-bottom: 1px solid $color-lines;
                         h5 {
                             font-size: 2rem;
-                            font-weight: 600;
+                            font-family: $font-1-style;
+                            font-weight: $font-med;
+                            color: $color-black;
+
                         }
                     }
 
@@ -267,8 +176,14 @@
 
                         a {
                             font-size: 1.6rem;
-                            font-weight: 500;
                             margin-left: 1rem;
+                            font-family: $font-3-style;
+                            font-weight: $font-med;
+                            color: $color-text-darkergrey;
+
+                            &:hover {
+                                color: $color-text-blue-hover;
+                            }
                         }
 
                     }
@@ -280,8 +195,14 @@
 
                         a {
                             font-size: 1.6rem;
-                            font-weight: 500;
                             margin-left: 1rem;
+                            font-family: $font-3-style;
+                            font-weight: $font-med;
+                            color: $color-text-darkergrey;
+
+                            &:hover {
+                                color: $color-text-blue-hover;
+                            }
                         }
                     }
 
@@ -310,13 +231,18 @@
     width: 3rem;
     height: 3rem;
 
+    g path, path {
+        fill: $color-text-darkergrey;
+    }
+
     &__facebook, &__instagram, &__twitter {
         width: 2rem;
         height: 2rem;
     }
 
     &__location, &__phone, &__email, &__website {
-        fill: $color-text-blue-hover;
+
+    
     }
 
     &__phone{
@@ -359,4 +285,12 @@
             transform: scale(1.1);
         }
     }
+}
+
+.spinnerContainer {
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    margin-top: 0rem;
 }

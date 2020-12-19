@@ -7,6 +7,7 @@ const CommunityPhotos = (props) => {
     const siteId = props.match.params.siteId;
 
     const [communityImages, setCommunityImages] = useState([]);
+    const [site, setSite] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     const [leftColImages, setLeftColImages] = useState([]);
@@ -32,6 +33,7 @@ const CommunityPhotos = (props) => {
               });
               const results = await response.json();
               console.log(results);
+              setSite(results.site);
               setCommunityImages(results.communityImages);
               setIsLoading(false);
 
@@ -107,11 +109,29 @@ const CommunityPhotos = (props) => {
  
     return (
         <div className={classes.communityPhotos}>
+            {!isLoading && (
+                <div className={classes.communityPhotos__locationHeaderContainer}>
+                    <h1>{site.name}, {site.area}, {site.country}</h1>
+                </div>
+            )}
             {!isLoading ? 
-                <h1>Community Photos ({communityImages.length > 100 ? "100+" : communityImages.length})</h1> 
+                <h2 className={classes.communityPhotos__pageHeaderContainer}>Community Photos ({communityImages.length > 100 ? "100+" : communityImages.length})</h2> 
                         :  
-                <h1>Community Photos (err)</h1>
+                <h2 className={classes.communityPhotos__pageHeaderContainer}>Community Photos (err)</h2>
             }
+             {!isLoading && (
+                <div className={classes.communityPhotos__googleLinks}>
+                    <span>
+                        <a target="_blank" href={"http://www.google.com/search?q=" + site.name}>{site.name}</a> 
+                        ·
+                        <a target="_blank" href={"http://www.google.com/search?q=" + site.area}>{site.area}</a> 
+                        ·
+                        <a target="_blank" href={"http://www.google.com/search?q=" + site.country}>{site.country}</a> 
+                    </span>
+                </div>
+            )}
+         
+
             {!isLoading && (
                 <div className={classes.grid}>
                     <div className={classes.grid__left}>

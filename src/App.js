@@ -94,9 +94,9 @@ function App() {
       </DiveSiteProvider>
       
 
-      <Route path="/login" component={LoginView}/>
+      {/* <Route path="/login" component={LoginView}/> */}
 
-      <Route path="/signup" exact component={SignupView}/>
+      {/* <Route path="/signup" exact component={SignupView}/> */}
 
         <DiveSiteProvider>
           <UserProvider>

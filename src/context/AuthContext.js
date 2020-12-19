@@ -51,6 +51,12 @@ export const SearchValueContext = createContext();
 
 
 
+//* GLOBAL LOADER
+export const GlobalLoaderContext = createContext();
+
+
+
+
 
 
 
@@ -137,6 +143,12 @@ export const AuthProvider = (props) => {
 
     const [searchValue, setSearchValue] = useState();
 
+    const [globalLoader, setGlobalLoader] = useState({ //* TRUE = is currently loading || FALSE = is done loading
+          divesites: false,
+          diveshops: false,
+    });
+
+
 
 
     //TODO: SEARCH MAP REF AND OTHERS
@@ -203,9 +215,11 @@ export const AuthProvider = (props) => {
         <SignUpSuccessContext.Provider value = {[signUpSuccess, setSignUpSuccess]}>
         <LocationNameContext.Provider value = {[locationName, setLocationName]}>
         <SearchValueContext.Provider value = {[searchValue, setSearchValue]}>
+        <GlobalLoaderContext.Provider value = {[globalLoader, setGlobalLoader]}>
         
         {props.children}
         
+        </GlobalLoaderContext.Provider>
         </SearchValueContext.Provider>
         </LocationNameContext.Provider>
         </SignUpSuccessContext.Provider>

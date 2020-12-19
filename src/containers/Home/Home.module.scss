@@ -24,29 +24,33 @@
         background-size: cover;
         height: 100vh;
         width: 100vw;
-        padding: 10rem 5rem;
+        padding: 12.5rem 5rem 7.5rem 5rem;
+        display: grid;
         
             &__title {
                grid-row: 1 / 2;
                grid-column: 1 / -1;
-                font-size: 6rem;
+                font-size: 5rem;
                 letter-spacing: 3px;
                 text-shadow: 5px 5px 10px black;
                 text-align: center;
+
+                font-family: $font-1-style;
+                font-weight: $font-bold;
+                color: $color-white-pure;
+                text-transform: uppercase;
             }
         
             
-           .searchContainer {
+           &__searchContainer {
             grid-row: 2 / 3;
             grid-column: 1 / -1;
                padding: 4rem 0rem;
                margin: 0 auto;
-    
-           
            }
             
         
-            .pointsContainer {
+            &__pointsContainer {
                 grid-row: 3 / 4;
                 grid-column: 1 / -1;
                // background: orange;
@@ -55,7 +59,7 @@
                 margin-top: 5rem;
                 .point {
                     //background: navy;
-                    width: 28rem;
+                    width: 32rem;
                     display: grid;
                     grid-template-rows: repeat(3, max-content);
                     grid-template-columns: 1fr;
@@ -90,8 +94,10 @@
         
                         h4 {
                             text-align: center;
-                            font-size: 1.8rem;
+                            font-size: 2rem;
                             text-transform: uppercase;
+                            font-family: $font-2-style;
+                            font-weight: $font-bold;
                         }
                      
                     }
@@ -99,7 +105,12 @@
                     &__description {
                         p {
                             text-align: center;
-                            font-size: 1.4rem;
+                            font-size: 1.5rem;
+                            font-family: $font-3-style;
+                            font-weight: $font-light;
+                   
+
+
                         }
                     }
                 }
@@ -209,8 +220,13 @@
                 width: 50%;
                 &__titleContainer {
                     width: 80%;
+
                     h3 {
                         font-size: 3.5rem;
+                        font-family: $font-2-style;
+                        font-weight: $font-bold;
+                        text-transform: uppercase;
+                    
                     }
                 }
         
@@ -219,6 +235,9 @@
                     width: 80%;
                     p {
                         font-size: 2rem;
+                        font-family: $font-3-style;
+                        font-weight: $font-normal;
+                        color: $color-text-darkergrey;
                     }
         
                 }
@@ -277,6 +296,10 @@
                     font-size: 1.8rem;
                     width: 90%;
                     hyphens: auto;
+                    font-family: $font-3-style;
+                    font-weight: $font-normal;
+                    color: $color-white-pure;
+                    padding-top: 5rem;
                 }
             }
     
@@ -293,6 +316,10 @@
                     font-size: 1.8rem;
                     width: 90%;
                     hyphens: auto;
+                    font-family: $font-3-style;
+                    font-weight: $font-normal;
+                    color: $color-white-pure;
+                    padding-top: 5rem;
                 }
             }
     
@@ -302,12 +329,16 @@
                 align-self:  center;
                 border: none;
                 border-radius: 5px;
-                color: white;
                 font-size: 2rem;
                 font-weight: 500;
                 box-shadow: 2px 4px 4px rgba($color-black, .4);
                 outline: none;
                 transition: .2s ease;
+
+                font-family: $font-3-style;
+                font-weight: $font-bold;
+                text-transform: uppercase;
+                color: $color-white-pure;
                 
     
                 &__map {
@@ -321,11 +352,11 @@
                 }
     
                 &:hover {
-                    transform: translate(8px, -5px) scale(1.05);
+                    transform: translate(8px, -5px) scale(1.01);
                     box-shadow: 3px 5px 4px rgba($color-black, .2);
                 }
                 &:active {
-                    transform: translate(6px, -1px) scale(1.05);
+                    transform: translate(6px, -1px) scale(1.01);
                     box-shadow: 2px 3px 5px rgba($color-black, .35);
     
                 }
@@ -338,7 +369,7 @@
 
                 .diverSVG {
                     width: 4.5rem;
-                    height: 4.5rem;
+                    height: 2.5rem;
                     margin-right: 2rem;
                 }
 

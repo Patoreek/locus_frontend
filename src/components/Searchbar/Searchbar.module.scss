@@ -33,8 +33,10 @@
          grid-row: 1 / 2;
          grid-column: 1 / 2;
          font-size: 1.4rem;
-         font-weight: 700;
          margin-bottom: .3rem;
+         font-family: $font-1-style;
+         font-weight: $font-bold;
+         color: $color-black;
 
      }
 
@@ -47,6 +49,8 @@
          outline: none;
          font-size: 1.4rem;
          width: 55.4rem;
+         font-family: $font-3-style;
+         font-weight: $font-normal;
          &__main {
              font-size: 1.4rem;
              width: 46rem;
@@ -54,7 +58,9 @@
 
              &::placeholder {
                 font-size: 1.4rem !important;
-                color: $color-text-grey;
+                color: $color-text-darkgrey;
+                font-family: $font-3-style;
+                font-weight: $font-normal;
             }
          }
 
@@ -118,8 +124,8 @@
          }
 
          .searchSVG {
-            height: 2.5rem;
-            width: 2.5rem;
+            height: 2rem;
+            width: 2rem;
             g path {
                 fill: $color-white;
             }

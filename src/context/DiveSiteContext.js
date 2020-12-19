@@ -1,5 +1,8 @@
 import React, { useState, createContext } from 'react';
 
+import Geocode from "react-geocode";
+
+
 export const SiteContext = createContext();
 export const DiveSitesContext = createContext();
 export const CoordsContext = createContext();
@@ -11,7 +14,7 @@ export const DiveShopsContext = createContext();
 export const LoadDiveShopsInBoundsContext = createContext();
 export const ShopContext = createContext();
 
-
+export const GeoAreaContext = createContext();
 
 
 
@@ -33,6 +36,11 @@ export const DiveSiteProvider = (props) => {
     const [diveShops, setDiveShops] = useState([]);
 
     const [ selectedShop, setSelectedShop ] = useState(null);
+    
+    const [geoArea, setGeoArea] = useState({
+        area: "",
+        state: "",
+    });
 
 
     const [coords, setCoords] = useState({
@@ -55,14 +63,18 @@ export const DiveSiteProvider = (props) => {
             // ...
     }
 
-    async function loadDiveSitesInBounds(mapBounds) {
+    async function loadDiveSitesInBounds(mapBounds, setGlobalLoader) {
         // You can await here
         console.log('loadDiveSitesInBounds');
         console.log(mapBounds);
+        // const swLat = mapBounds.Wa.i;
+        // const swLng = mapBounds.Sa.i;
+        // const neLat = mapBounds.Wa.j;
+        // const neLng = mapBounds.Sa.j;
         const swLat = mapBounds.Wa.i;
-        const swLng = mapBounds.Sa.i;
+        const swLng = mapBounds.Ra.i;
         const neLat = mapBounds.Wa.j;
-        const neLng = mapBounds.Sa.j;
+        const neLng = mapBounds.Ra.j;
 
         return fetch('http://localhost:8080/diveSites/loadDiveSitesInBounds',{
             method: 'POST',
@@ -81,8 +93,65 @@ export const DiveSiteProvider = (props) => {
             return res.json();
         })
         .then(result => {
-            console.log(result.sites);
+            //console.log(result.sites);
             setDiveSites(result.sites);
+            setGlobalLoader(prevState => ({
+                ...prevState,
+                divesites: false
+            }));
+
+
+            //*GET LOCATION NAME
+
+
+            if ((swLng - neLng > 180) || 
+                (neLng - swLng > 180))
+            {
+                swLng += 360;
+                swLng %= 360;
+                neLng += 360;
+                neLng %= 360;
+            }
+
+            const centerLat = (swLat + neLat)/2;
+            const centerLng = (swLng + neLng)/2;
+
+            //* USE THIS FOR COMMUNITY PHOTOS SECTION
+            
+            let areaName = "";
+            let stateName = "";
+
+            Geocode.setApiKey("AIzaSyAWZiRAil_IM3HX-FzHeZetG7zJpQB3B4Q");
+
+            Geocode.fromLatLng(centerLat, centerLng).then(
+                response => {
+                    //console.log(response);
+                        if (response.results != []){
+                            if (response.results[0].address_components.length > 2) {
+                                areaName = response.results[0].address_components[2].long_name;
+                                stateName = response.results[0].address_components[4].long_name;
+                                setGeoArea({
+                                    area: areaName,
+                                    state: stateName,
+                                });
+                            }
+                        }
+
+                        // console.log(areaName);
+                        // console.log(stateName);
+                    
+                },
+                error => {
+                console.error(error);
+                }
+            );
+
+
+
+
+
+
+       
         })
         .catch(err => {
             console.log('Caught.');
@@ -90,14 +159,20 @@ export const DiveSiteProvider = (props) => {
         });
     }
 
-    async function loadDiveShopsInBounds(mapBounds) {
+    async function loadDiveShopsInBounds(mapBounds, setGlobalLoader) {
         // You can await here
         console.log('loadDiveShopsInBounds');
         console.log(mapBounds);
+        // const swLat = mapBounds.Wa.i;
+        // const swLng = mapBounds.Sa.i;
+        // const neLat = mapBounds.Wa.j;
+        // const neLng = mapBounds.Sa.j;
+
         const swLat = mapBounds.Wa.i;
-        const swLng = mapBounds.Sa.i;
+        const swLng = mapBounds.Ra.i;
         const neLat = mapBounds.Wa.j;
-        const neLng = mapBounds.Sa.j;
+        const neLng = mapBounds.Ra.j;
+
 
         return fetch('http://localhost:8080/diveShops/loadDiveShopsInBounds',{
             method: 'POST',
@@ -118,6 +193,10 @@ export const DiveSiteProvider = (props) => {
         .then(result => {
             console.log(result.shops);
             setDiveShops(result.shops);
+            setGlobalLoader(prevState => ({
+                ...prevState,
+                diveshops: false
+            }));
         })
         .catch(err => {
             console.log('Caught.');
@@ -137,9 +216,11 @@ export const DiveSiteProvider = (props) => {
         <LoadDiveShopsInBoundsContext.Provider value = {loadDiveShopsInBounds}>
         <DiveShopsContext.Provider value = { [diveShops, setDiveShops] }>
         <ShopContext.Provider value = { [selectedShop, setSelectedShop] }>
+        <GeoAreaContext.Provider value = { [geoArea, setGeoArea] }>
 
             {props.children}
 
+        </GeoAreaContext.Provider>  
         </ShopContext.Provider>  
         </DiveShopsContext.Provider>  
         </LoadDiveShopsInBoundsContext.Provider>  

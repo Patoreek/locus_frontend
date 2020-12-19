@@ -66,21 +66,36 @@ const CommPhotoPreview = (props) => {
         setEnlargeImage(true);
     }
 
+    console.log(images);
+
+
+
     return (
         <div className={classes.commPhotoPreview}>
-            <div className={classes.sliderContainer}>
-            <div className={classes.slider}>
-            {images.map(image => (
-                <div className={classes.imageContainer}>
-                    <img src={'http://localhost:8080/' + image.image} className={classes.imageContainer__image} onClick={() => imageHandler(image)}/>
-                </div>
-            ))}
-            </div>
-            </div>
 
-            {enlargeImage && (
-                <DisplayImage image={selectedImage} setEnlargeImage={setEnlargeImage}/>
-            )}
+          {!images == [] && (
+            <div>
+              <div className={classes.sliderContainer}>
+              <div className={classes.slider}>
+              {images.map(image => (
+                  <div className={classes.imageContainer}>
+                      <img src={'http://localhost:8080/' + image.image} className={classes.imageContainer__image} onClick={() => imageHandler(image)}/>
+                  </div>
+              ))}
+              </div>
+              </div>
+
+              {enlargeImage && (
+                  <DisplayImage image={selectedImage} setEnlargeImage={setEnlargeImage}/>
+              )}
+            </div>
+          )}
+         {images.length <= 0 && (
+            <div className={classes.noCommPhotos}>
+              <h3 className={classes.noCommPhotos__header}> No Community Photos</h3>
+              <p className={classes.noCommPhotos__text}> To add photos for this dive site, add a new dive report with images and they will automatically appear in the appropriate dive sites images.</p>
+            </div>
+         )}
 
 
         </div>

@@ -6,7 +6,7 @@ import { AuthContext,
 
 import FavouritesList from './FavouritesList/FavouritesList';
 
-import Spinner from 'react-bootstrap/Spinner'
+import Spinner from '../../components/Spinner/Spinner';
 
 import classes from './FavouritesView.module.scss';
 
@@ -51,7 +51,9 @@ const FavouritesView = () => {
             )}
 
             {isLoading && (
-                <Spinner animation="border" />
+                <div className={classes.spinnerContainer}>
+                    <Spinner />
+                </div>
             )}
             
         </div>

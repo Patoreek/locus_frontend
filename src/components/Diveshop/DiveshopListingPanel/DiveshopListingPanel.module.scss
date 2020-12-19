@@ -50,9 +50,11 @@
 
         .shopName {
             a {
-                color: $color-black;
                 font-size: 2.5rem;
                 transition: .2s ease;
+                font-family: $font-1-style;
+                font-weight: $font-bold;
+                color: $color-black;
 
 
                 &:hover {
@@ -93,7 +95,8 @@
         a {
             font-size: 1.6rem;
             margin-left: 1rem;
-
+            font-family: $font-3-style;
+            font-weight: $font-normal;
             color: $color-text-grey;
             transition: .2s ease;
 
@@ -116,8 +119,10 @@
         a {
             font-size: 1.6rem;
             margin-left: 1rem;
-
+            font-family: $font-3-style;
+            font-weight: $font-normal;
             color: $color-text-grey;
+
             transition: .2s ease;
 
             &:hover {
@@ -137,8 +142,10 @@
         a {
             font-size: 1.6rem;
             margin-left: 1rem;
-
+            font-family: $font-3-style;
+            font-weight: $font-normal;
             color: $color-text-grey;
+
             transition: .2s ease;
 
             &:hover {
@@ -158,8 +165,10 @@
         a {
             font-size: 1.6rem;
             margin-left: 1rem;
-            
+            font-family: $font-3-style;
+            font-weight: $font-normal;
             color: $color-text-grey;
+
             transition: .2s ease;
 
             &:hover {
@@ -182,7 +191,7 @@
     .icon {
         width: 2rem;
         height: 2rem;
-        g path {
+        g path, path {
             fill: $color-text-grey;
         }
         &__location, &__phone, &__email, &__website {

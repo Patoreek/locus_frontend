@@ -31,7 +31,7 @@ import DiveshopListingPanel from '../../components/Diveshop/DiveshopListingPanel
 import WeatherContainer from '../../components/WeatherContainer/WeatherContainer';
 import CommPhotoPreview from './CommPhotoPreview/CommPhotoPreview';
 
-
+import Spinner from '../../components/Spinner/Spinner';
 
 
 
@@ -302,7 +302,7 @@ const Details = (props) => {
                         <a target="_blank" href={"https://maps.google.com/?q=" + siteLatitude + "," + siteLongitude}><GoogleMapSVG className={classes.googleMapSVG}/></a>
                         <div className={classes.ratingsContainer}>
                           <div className={classes.ratingsContainer__rating}>
-                          <StarRating site={selectedSite}/>
+                          {/* <StarRating site={selectedSite}/> */}
                           </div>
                           <div className={classes.ratingsContainer__favBtn}>
                             <FavouriteButton site={selectedSite}/>
@@ -428,7 +428,9 @@ const Details = (props) => {
           </div>
           )}
           {isLoading && (
-            <h3> isLoading is still TRUE...</h3>
+            <div className={classes.spinnerContainer}>
+              <Spinner/>
+            </div>
           )}
 
       </div>

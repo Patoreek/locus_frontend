@@ -30,7 +30,8 @@ import { DiveSitesContext,
 import { AuthContext,
     MapSizeContext,
     PanelSizeContext,
-    LocateButtonContext } from '../../../context/AuthContext';
+    LocateButtonContext,
+    AccountContext } from '../../../context/AuthContext';
 
 
 import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerClusterer';
@@ -85,7 +86,7 @@ const MySitesMap = () => {
     const [showEditModal, setShowEditModal] = useContext(EditModalContext);
     const [showAddModal, setShowAddModal] = useContext(AddModalContext);
 
-
+    const [account, setAccount] = useContext(AccountContext);
 
     const [showDeleteModal, setShowDeleteModal] = useContext(DeleteModalContext);
     const handleDeleteClose = () => setShowDeleteModal(false);
@@ -119,6 +120,8 @@ const MySitesMap = () => {
         //console.log(clickedMarkers);
       }
 
+
+      console.log(account);
 
 
     return (
@@ -208,10 +211,12 @@ const MySitesMap = () => {
 
                          
                             <div className={classes.site__editContainer}>
-                                <EditSVG className={classes.edit} onClick={() => {
-                                    setShowAddModal(false);
-                                    editSiteHandler();
-                                }}/>
+                                {account.email == "patrick.minda@hotmail.com" && (
+                                    <EditSVG className={classes.edit} onClick={() => {
+                                        setShowAddModal(false);
+                                        editSiteHandler();
+                                    }}/>
+                                )}
                             </div>
 
 
@@ -316,7 +321,7 @@ const MySitesMap = () => {
                                     </a>        
                             </div>
 
-                            <div className={classes.socialsContainer}>
+                            {/* <div className={classes.socialsContainer}>
                                 <div className={classes.socialsContainer__facebookContainer}>
                                     <a  href={selectedShop.facebook}
                                     target="_blank"
@@ -338,7 +343,7 @@ const MySitesMap = () => {
                                         <TwitterSVG className={`${classes.icon} ${classes.icon__twitter}`}/>
                                     </a>
                                 </div>
-                            </div>
+                            </div> */}
 
             
                     </div>

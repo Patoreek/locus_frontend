@@ -35,9 +35,7 @@ const UserSiteList = () => {
     const [ showAddRequestModal, setShowAddRequestModal ] = useContext(AddRequestContext);
     const [ showSiteList, setShowSiteList ] = useContext(SiteListContext);
     
-    
-    const [diveShopAdmin, setDiveShopAdmin] = useContext(DiveShopAdminContext);
-    
+    const [diveShopAdmin, setDiveShopAdmin] = useContext(DiveShopAdminContext);    
     const [diveSitesLoaded, setDiveSitesLoaded] = useState(false);
     const [diveShopsLoaded, setDiveShopsLoaded] = useState(false);
     const [listLoading, setListLoading] = useState(true);

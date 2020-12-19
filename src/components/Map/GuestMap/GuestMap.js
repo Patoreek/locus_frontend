@@ -31,7 +31,7 @@ import FavouriteButton from '../../Buttons/FavouriteButton/FavouriteButton';
 
 import {ReactComponent as PhoneSVG} from '../../../assets/icons/phone.svg';
 import {ReactComponent as EmailSVG} from '../../../assets/icons/email.svg';
-import {ReactComponent as LocationSVG} from '../../../assets/icons/location_lightgrey.svg';
+import {ReactComponent as LocationSVG} from '../../../assets/icons/location.svg';
 import {ReactComponent as WebsiteSVG} from '../../../assets/icons/global.svg';
 import {ReactComponent as FacebookSVG} from '../../../assets/icons/facebook.svg';
 import {ReactComponent as InstagramSVG} from '../../../assets/icons/instagram.svg';
@@ -154,9 +154,7 @@ const GuestMap = (props) => {
                             <div className={classes.site__nameContainer}>
                                 <h5  className={classes.name}>
                                 <a href={"/divesite/" + selectedSite._id}>
-                                        <span>{selectedSite.name}</span>
-                                        <br/>
-                                        <span>{selectedSite.area}, {selectedSite.country}</span>
+                                        <span>{selectedSite.name} · {selectedSite.area}, {selectedSite.country}</span>
                                 </a>
                                 </h5>
                                 
@@ -167,7 +165,7 @@ const GuestMap = (props) => {
                             </div>
 
                             <div className={classes.site__ratingsContainer}>
-                                <StarRating siteRatings = {selectedSite.ratings}/>
+                                {/* <StarRating siteRatings = {selectedSite.ratings}/> */}
                             </div>
 
 
@@ -243,7 +241,7 @@ const GuestMap = (props) => {
                                     </a>        
                             </div>
 
-                            <div className={classes.socialsContainer}>
+                            {/* <div className={classes.socialsContainer}>
                                 <div className={classes.socialsContainer__facebookContainer}>
                                     <a  href={selectedShop.facebook}
                                     target="_blank"
@@ -265,7 +263,7 @@ const GuestMap = (props) => {
                                         <TwitterSVG className={`${classes.icon} ${classes.icon__twitter}`}/>
                                     </a>
                                 </div>
-                            </div>
+                            </div> */}
                     </div>
                    
                 </InfoWindow>

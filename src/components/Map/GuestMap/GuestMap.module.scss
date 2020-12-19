@@ -41,6 +41,9 @@
         .diveType {
             padding-top: 1rem;
             font-size: 1.2rem;
+            font-family: $font-3-style;
+            font-weight: $font-normal;
+            color: $color-text-darkergrey;
 
         }
     }
@@ -54,11 +57,15 @@
     &__nameContainer {
         grid-row: 3 / 4;
         grid-column: 1 / span 3;
-        border-bottom: 1px solid $color-lines;
+        //background: orange;
         .name {
+            width: 100%;
             a {
                 font-size: 1.6rem;
                 color: $color-black;
+                font-family: $font-1-style;
+                font-weight: $font-bold;
+
 
                 &:hover {
                     color: $color-text-blue;
@@ -75,9 +82,13 @@
         overflow: hidden;
         text-overflow: ellipsis;
         padding-top: 1rem;
+        border-top: 1px solid $color-lines;
+
         .description {
             word-break: break-all; 
-            font-size: 1.2rem;
+            font-size: 1.4rem;
+            font-family: $font-3-style;
+            font-weight: $font-normal;
         }
     }
 
@@ -98,7 +109,9 @@
             position: relative;
             z-index: 15;
             font-size: 1.2rem;
-            
+            font-family: $font-3-style;
+            font-weight: $font-normal;
+            padding: 1rem;
             &:hover {
                 color: $color-text-blue;
                 text-decoration: underline;
@@ -119,11 +132,12 @@
     &__imageContainer {
         grid-row: 1 / 2;
         grid-column: 1 / -1;
-        //background:rgb(41, 40, 40);
+        //background:rgba(44, 127, 204, .25);
+        background: $color-white;
         height: 17.5rem;
         display: flex;
         justify-content: center;
-        padding: 1rem 0rem;
+        padding: 0rem 0rem;
 
         border-bottom: 1px solid $color-lines;
 
@@ -132,7 +146,8 @@
             justify-content: center;
             .image {
                 height: 100%;
-                max-width: 100%;
+                width: 100%;
+                object-fit: cover;
                 //margin: 0 auto;
                 //width: 100%;
             }
@@ -152,8 +167,10 @@
         .name {
             font-size: 1.8rem;
             font-weight: 700;
-            color: $color-text-blue;
+            color: $color-black;
             transition: .2s ease;
+            font-family: $font-1-style;
+            font-weight: $font-bold;
             
             &:hover {
                 color: $color-text-blue-hover;
@@ -173,9 +190,14 @@
             margin-left: 1rem;
             font-size: 1.4rem;
             font-weight: 500;
-            color: $color-text-blue;
             transition: .2s ease;
             text-decoration: none;
+            color: $color-text-darkergrey;
+            font-family: $font-3-style;
+            font-weight: $font-normal;
+
+
+
             &:hover {
                 color: $color-text-blue-hover;
             }
@@ -185,7 +207,7 @@
 
     &__phoneContainer {
         grid-row: 4 / 5;
-        grid-column: 1 / 2;
+        grid-column: 1 / -1;
         display: flex;
         align-items: center;
         padding: 0.5rem 1rem;
@@ -194,9 +216,11 @@
             margin-left: 1rem;
             font-size: 1.4rem;
             font-weight: 500;
-            color: $color-text-blue;
             transition: .2s ease;
             text-decoration: none;
+            color: $color-text-darkergrey;
+            font-family: $font-3-style;
+            font-weight: $font-normal;
             &:hover {
                 color: $color-text-blue-hover;
             }
@@ -206,28 +230,6 @@
  
 
     &__emailContainer {
-        grid-row: 4 / 5;
-        grid-column: 2 / 3;
-
-        display: flex;
-        align-items: center;
-        padding: 0.5rem 1rem;
-        
-        a {
-            margin-left: 1rem;
-            font-size: 1.4rem;
-            font-weight: 500;
-            color: $color-text-blue;
-            transition: .2s ease;
-            text-decoration: none;
-            &:hover {
-                color: $color-text-blue-hover;
-            }
-
-        }
-    }
-
-    &__websiteContainer {
         grid-row: 5 / 6;
         grid-column: 1 / -1;
 
@@ -239,9 +241,11 @@
             margin-left: 1rem;
             font-size: 1.4rem;
             font-weight: 500;
-            color: $color-text-blue;
             transition: .2s ease;
             text-decoration: none;
+            color: $color-text-darkergrey;
+            font-family: $font-3-style;
+            font-weight: $font-normal;
             &:hover {
                 color: $color-text-blue-hover;
             }
@@ -249,15 +253,39 @@
         }
     }
 
-    .socialsContainer {
+    &__websiteContainer {
         grid-row: 6 / 7;
         grid-column: 1 / -1;
 
         display: flex;
-        justify-content: space-evenly;
-        padding: 1rem;
+        align-items: center;
+        padding: 0.5rem 1rem 2rem 1rem;
+        
+        a {
+            margin-left: 1rem;
+            font-size: 1.4rem;
+            font-weight: 500;
+            transition: .2s ease;
+            text-decoration: none;
+            color: $color-text-darkergrey;
+            font-family: $font-3-style;
+            font-weight: $font-normal;
+            &:hover {
+                color: $color-text-blue-hover;
+            }
 
+        }
     }
+
+    // .socialsContainer {
+    //     grid-row: 6 / 7;
+    //     grid-column: 1 / -1;
+
+    //     display: flex;
+    //     justify-content: space-evenly;
+    //     padding: 1rem;
+
+    // }
 
 
 }
@@ -267,7 +295,10 @@
     height: 2rem;
 
     &__location, &__phone, &__email, &__website {
-        fill: $color-text-blue-hover;
+
+        g path, path {
+            fill: $color-text-darkergrey;
+        }
     }
 
     &__phone{

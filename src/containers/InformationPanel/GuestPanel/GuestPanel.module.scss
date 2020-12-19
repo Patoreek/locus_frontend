@@ -6,17 +6,29 @@
         border-bottom: 1px solid $color-lines;
         padding-bottom: 1rem;
         //padding-left: 1.5rem;
-        p {
-            font-size: 1.6rem;
+        &__totalSites {
+            font-size: 1.8rem;
+
+            font-family: $font-3-style;
+            font-weight: $font-med;
+            color: $color-text-darkergrey;
+
         }
 
-        h3 {
-            font-size: 2rem;
+        &__mapAreaText {
+            font-size: 2.2rem;
+
+            font-family: $font-1-style;
+            font-weight: $font-bold;
+            color: $color-black;
+            padding-bottom: 1rem;
         }
 
-        span { 
+        &__link { 
             font-size: 1.6rem;
             color: $color-text-darkgrey;
+            font-family: $font-3-style;
+            font-weight: $font-normal;
 
             &:hover {
                 text-decoration: underline;
@@ -24,12 +36,37 @@
             }
         }
 
-        .seeLinkSpacer {
+        &__linkActive {
+            font-weight: $font-med;
+        }
+
+        &__seeLinkSpacer {
             padding: 0rem 1rem;
+            font-size: 2.5rem;
+            color: $color-text-darkgrey;
+
         }
     }
 
     .noResults {
         
     }
+
+    .loadingContainer {
+        margin-top: 5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        //background: red;
+        width: 100%;
+
+        &__text {
+            font-size: 1.6rem;
+            color: $color-black;
+            font-family: $font-3-style;
+            font-weight: $font-med;
+        }
+    }
 }
+

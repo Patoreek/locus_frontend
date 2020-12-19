@@ -88,7 +88,7 @@ const DivesiteListingPanel = (props) => {
                     </div>
 
                     <div className={classes.site__ratingsContainer}>
-                        <StarRating site={site}/>
+                        {/* <StarRating site={site}/> */}
                     </div>
 
                     <div className={classes.site__moreDetailsContainer}>

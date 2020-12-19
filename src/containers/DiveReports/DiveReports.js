@@ -8,6 +8,7 @@ import PreviewReport from './PreviewReport/PreviewReport';
 import EditReport from './EditReport/EditReport';
 import DeleteReport from './DeleteReport/DeleteReport';
 
+import Spinner from '../../components/Spinner/Spinner';
 
 
 
@@ -52,6 +53,7 @@ const DiveReports = () => {
     }, []);
 
     const findReport = (id, handlerType) => {
+        setIsLoading(true);
         return fetch('http://localhost:8080/user/diveReports/findReport',{
             method: 'POST',
             credentials: 'include',
@@ -69,6 +71,8 @@ const DiveReports = () => {
         .then(resData => {
             console.log(resData);
             setCurrentReport(resData.report);
+            setIsLoading(false);
+
 
             if (handlerType == "preview"){
                 setShowPreview(true);
@@ -131,8 +135,11 @@ const DiveReports = () => {
                 <DeleteReport currentReport={currentReport} setShowDelete={setShowDelete}/>
             )}
                 {/* <DiveReportForm/> */}
-
-
+            {isLoading && (
+                <div className={classes.spinnerContainer}>
+                    <Spinner/>
+                </div>
+            )}
 
             </div>
         </div>

@@ -26,12 +26,16 @@
             font-size: 1.6rem;
             color: $color-text-darkgrey;
             text-align: center;
+            font-family: $font-3-style;
+            font-weight: $font-normal;
         }
 
         .signUpSuccess {
             font-size: 1.6rem;
             color: $color-text-green;
             text-align: center;
+            font-family: $font-3-style;
+            font-weight: $font-normal;
         }
     }
   
@@ -60,6 +64,8 @@
                 font-weight: 700;
                 margin-left: 1rem;
                 margin-bottom: 1.5rem;
+                font-family: $font-1-style;
+                font-weight: $font-bold;
                
             }
         }
@@ -77,6 +83,8 @@
                 color: $color-text-blue;
                 font-size: 1.4rem;
                 margin-bottom: 1.5rem;
+                font-family: $font-1-style;
+                font-weight: $font-normal;
 
                 &:hover {
                     text-decoration: underline;
@@ -109,6 +117,8 @@
                 padding: 0rem .7rem;
                 font-weight: 700;
                 transition: .3s ease;
+                font-family: $font-3-style;
+                font-weight: $font-bold;
             }
 
  
@@ -122,6 +132,8 @@
                 position: relative;
                 outline: none;
                 transition: .3s ease;
+                font-family: $font-3-style;
+                font-weight: $font-normal;
 
             }
 
@@ -129,6 +141,8 @@
                 color: $color-text-red;
                 font-size: 1.6rem;
                 padding: 1rem 0rem 0rem 0rem;
+                font-family: $font-3-style;
+                font-weight: $font-normal;
             }
 
             &:hover .input {
@@ -184,6 +198,9 @@
                 transition: .3s ease;
                 box-shadow: 0px 0px 0px rgba($color-black, .5);
 
+                font-family: $font-1-style;
+                font-weight: $font-med;
+
                 &:hover {
                     transform: translate(0px, -3px);
                     box-shadow: 0px 3px 7px rgba($color-black, .3);
@@ -202,6 +219,8 @@
                 font-size: 1.4rem;
                 color: $color-text-grey;
                 margin-left: 1rem;
+                font-family: $font-3-style;
+                font-weight: $font-normal;
             }
 
             input[type=checkbox] {
@@ -252,6 +271,8 @@
                 font-size: 1.4rem;
                 color: $color-text-red;
                 transition: .2s ease;
+                font-family: $font-3-style;
+                font-weight: $font-normal;
 
                 &:hover {
                     text-decoration: underline;

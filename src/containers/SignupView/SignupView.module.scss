@@ -26,6 +26,8 @@
         .loginSubheader {
             font-size: 1.6rem;
             color: $color-text-darkgrey;
+            font-family: $font-3-style;
+            font-weight: $font-normal;
         }
     }
  
@@ -53,6 +55,9 @@
                 font-weight: 700;
                 margin-left: 1rem;
                 margin-bottom: 1.5rem;
+
+                font-family: $font-1-style;
+                font-weight: $font-bold;
                
             }
         }
@@ -76,6 +81,8 @@
                 padding: 0rem .7rem;
                 font-weight: 700;
                 transition: .3s ease;
+                font-family: $font-3-style;
+                font-weight: $font-bold;
 
             }
 
@@ -90,6 +97,8 @@
                 position: relative;
                 outline: none;
                 transition: .3s ease;
+                font-family: $font-3-style;
+                font-weight: $font-normal;
 
             }
 
@@ -112,6 +121,8 @@
     
             textarea {
                 height: 15rem;
+                font-family: $font-3-style;
+                font-weight: $font-normal;
             }
     
             select {
@@ -227,6 +238,9 @@
             p {
                 font-size: 1.4rem;
                 margin-left: 1.5rem;
+                font-family: $font-3-style;
+                font-weight: $font-normal;
+                color: $color-black;
             }
 
         }
@@ -238,6 +252,8 @@
             .errMsg {
                 color: $color-text-red;
                 font-size: 1.4rem;
+                font-family: $font-3-style;
+                font-weight: $font-normal;
             }
         }
 
@@ -258,6 +274,8 @@
                 outline: none;
                 transition: .3s ease;
                 box-shadow: 0px 0px 0px rgba($color-black, .5);
+                font-family: $font-1-style;
+                font-weight: $font-bold;
 
                 &:hover {
                     transform: translate(0px, -3px);
@@ -273,9 +291,13 @@
             text-align: center;
             padding: 1rem 0rem;
             font-size: 1.6rem;
+            font-family: $font-3-style;
+            font-weight: $font-normal;
 
             span {
                 color: $color-text-blue;
+                font-family: $font-3-style;
+                font-weight: $font-med;
 
                 &:hover {
                     text-decoration: underline;

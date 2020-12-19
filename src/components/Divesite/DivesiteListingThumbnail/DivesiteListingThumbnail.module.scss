@@ -19,8 +19,10 @@
 
         a {
             font-size: 1.8rem;
-            color: $color-black-pure;
             font-weight: 500;
+            font-family: $font-1-style;
+            font-weight: $font-med;
+            color: $color-black;
 
             &:hover {
                 color: $color-text-blue-hover;

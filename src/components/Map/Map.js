@@ -12,7 +12,9 @@ import { AuthContext,
          SearchCoordsContext,
          OnMapLoadContext,
          PanToContext,
-         MapRefContext } from '../../context/AuthContext';
+         MapRefContext,
+         GlobalLoaderContext,
+         LocationNameContext } from '../../context/AuthContext';
 
          import { LoadDiveSiteInBoundsContext, LoadDiveShopsInBoundsContext } from '../../context/DiveSiteContext';
 
@@ -32,8 +34,10 @@ const Map = (props) => {
     const mapRef = useContext(MapRefContext);
     const loadDiveSitesInBounds = useContext(LoadDiveSiteInBoundsContext);
     const loadDiveShopsInBounds = useContext(LoadDiveShopsInBoundsContext);
+    const [globalLoader, setGlobalLoader] = useContext(GlobalLoaderContext);  
 
-    
+    const [locationName, setLocationName] = useContext(LocationNameContext);
+
     const panTo = useContext(PanToContext);
     const onMapLoad = useContext(OnMapLoadContext);
 
@@ -78,6 +82,14 @@ const Map = (props) => {
     let timer;
 
     const onBoundsChanged = () => {
+
+        // Global Loading Begins for divesites
+        setGlobalLoader({
+            divesites: true,
+            diveshops: true,
+        });
+
+
         clearTimeout(timer);
         timer = setTimeout(function() {
         console.log("handleBoundsChanged")
@@ -94,13 +106,16 @@ const Map = (props) => {
 
         //const mapBounds = mapRef.current.getBounds().contains({lat: testLat, lng: testLng});
         const mapBounds = mapRef.current.getBounds();
+
+            if (locationName){
+                setLocationName("");
+            }
         
             //? LAT (UP & DOWN), LNG (LEFT TO RIGHT)
             //? TO DETERMINE THE BOUNDS
             //TODO: CREATE CHECK FUNCTION THAT CHECKS IF SITE IS IN THE BOUNDS. THIS FUNCTION SHOULD BE DONE WHEN GETTING DIVE SITES.
-      
-            loadDiveSitesInBounds(mapBounds);
-            loadDiveShopsInBounds(mapBounds);
+            loadDiveSitesInBounds(mapBounds, setGlobalLoader);
+            loadDiveShopsInBounds(mapBounds, setGlobalLoader);
         }, 1000);
       }
 

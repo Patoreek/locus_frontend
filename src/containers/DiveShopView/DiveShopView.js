@@ -5,11 +5,15 @@ import classes from './DiveShopView.module.scss';
 
 import {ReactComponent as PhoneSVG} from '../../assets/icons/phone.svg';
 import {ReactComponent as EmailSVG} from '../../assets/icons/email.svg';
-import {ReactComponent as LocationSVG} from '../../assets/icons/location_lightgrey.svg';
+import {ReactComponent as LocationSVG} from '../../assets/icons/location.svg';
 import {ReactComponent as WebsiteSVG} from '../../assets/icons/global.svg';
 import {ReactComponent as FacebookSVG} from '../../assets/icons/facebook.svg';
 import {ReactComponent as InstagramSVG} from '../../assets/icons/instagram.svg';
 import {ReactComponent as TwitterSVG} from '../../assets/icons/twitter.svg';
+
+import DivesiteListingPanel from '../../components/Divesite/DivesiteListingPanel/DivesiteListingPanel';
+import Spinner from '../../components/Spinner/Spinner';
+
 
 const DiveShopView = (props) => {
 
@@ -78,125 +82,98 @@ const DiveShopView = (props) => {
     
 
     return (
-        <div className={classes.diveShop}>
-                <div className={classes.banner}>
-                    <img src={"http://localhost:8080/" + banner} width="550px" height="250px" />
-                </div>
-                <div className={classes.mainGrid}>
-                    <div className={classes.mainGrid__topContainer}>
-                        <div className={classes.imageContainer}>
-                            <img src={"http://localhost:8080/" + logo}/>
-                        </div>
-                        <div className={classes.shopInfo}>
-                            <div className={classes.nameContainer}>
-                                <h2>{name}</h2>
-                            </div>
-                            <div className={classes.addressContainer}>
-                                <LocationSVG className={`${classes.icon} ${classes.icon__location}`}/>
-                                <a href={"https://www.google.com/search?q=" + address}
-                                target="_blank"
-                                rel="noopener noreferrer">{address}</a>
-                            </div>
-                            <div className={classes.websiteContainer}>
-                                <WebsiteSVG className={`${classes.icon} ${classes.icon__website}`}/>
-                                <a href={website}
-                                target="_blank"
-                                rel="noopener noreferrer">{website}</a>
-                            </div>
-                        </div>
-
+        <div>
+        {!isLoading && (
+            <div className={classes.diveShop}>
+                    <div className={classes.banner}>
+                        <img src={"http://localhost:8080/" + banner} width="550px" height="250px" />
                     </div>
-                    <div className={classes.mainGrid__bottomContainer}>
-                        <div className={classes.leftGrid}>
-                            <div className={classes.leftGrid__diveSites}>
-                                    <h3> Sites that {name} dive at</h3>
-                                    {diveSites.map(site => (
-                                        <div className={classes.site}>
-                                            <div className={classes.site__imageContainer}>
-                                                <a href={"/divesite/" + site._id}>
-                                                    <img src={'http://localhost:8080/' + site.images[0]}
-                                                        className={classes.image}
-                                                    />
-                                                </a>
-                                            </div>
-
-                                            <div className={classes.site__diveTypeContainer}>
-                                                <span> {site.siteType} Dive · {site.suitable}</span> 
-                                            </div>
-
-
-                                            <div className={classes.site__nameContainer}>
-                                                <h5  className={classes.siteName}>
-                                                    <a href={"/divesite/" + site._id}>
-                                                        {site.name}, {site.area}
-                                                    </a>
-                                                </h5>
-                                            </div>
-                                        
-
-                                            <div className={classes.site__descriptionContainer}>
-                                                <p className={classes.siteDescription}> {site.description} </p>
-                                            </div>
-
-                                            <div className={classes.site__ratingsContainer}>
-                                                {/* <StarRating site={site}/> */}
-                                            </div>
-
-                                            <div className={classes.site__moreDetailsContainer}>
-                                                        <a href={"/divesite/" + site._id} className={classes.moreDetailsButton}>
-                                                                More Details...
-                                                            </a>
-                                            </div>
-                                        
-                                        </div>
-                                    ))}
+                    <div className={classes.mainGrid}>
+                        <div className={classes.mainGrid__topContainer}>
+                            <div className={classes.imageContainer}>
+                                <img src={"http://localhost:8080/" + logo}/>
+                            </div>
+                            <div className={classes.shopInfo}>
+                                <div className={classes.nameContainer}>
+                                    <h2>{name}</h2>
+                                </div>
+                                <div className={classes.addressContainer}>
+                                    <LocationSVG className={`${classes.icon} ${classes.icon__location}`}/>
+                                    <a href={"https://www.google.com/search?q=" + address}
+                                    target="_blank"
+                                    rel="noopener noreferrer">{address}</a>
+                                </div>
+                                <div className={classes.websiteContainer}>
+                                    <WebsiteSVG className={`${classes.icon} ${classes.icon__website}`}/>
+                                    <a href={website}
+                                    target="_blank"
+                                    rel="noopener noreferrer">{website}</a>
+                                </div>
+                            </div>
+    
+                        </div>
+                        <div className={classes.mainGrid__bottomContainer}>
+                            <div className={classes.leftGrid}>
+                                <div className={classes.leftGrid__diveSites}>
+                                        <h3> Sites that {name} dive at</h3>
+                                        {diveSites.map(site => (
+                                            <DivesiteListingPanel site={site}/>
+                                        ))}
+                                </div>
+                            </div>
+                            <div className={classes.rightGrid}>
+                                <div className={classes.rightGrid__contactInfo}>
+                                    <div className={classes.titleContainer}>
+                                        <h5>Contact Information</h5>
+                                    </div>
+                                    <div className={classes.phoneContainer}>
+                                        <PhoneSVG className={`${classes.icon} ${classes.icon__phone}`}/>
+                                        <a href={"tel:" + phone}>{phone}</a>
+                                    </div>
+                                    <div className={classes.emailContainer}>
+                                        <EmailSVG className={`${classes.icon} ${classes.icon__email}`}/>
+                                        <a href={"mailto:" + email}>{email}</a>
+                                    </div>
+                                    <div className={classes.socialsContainer}>
+                                    <div className={classes.socialsContainer__facebookContainer}>
+                                        <a  href={facebook}
+                                        target="_blank"
+                                        rel="noopener noreferrer">
+                                            <FacebookSVG className={`${classes.icon} ${classes.icon__facebook}`}/>
+                                        </a>
+                                    </div>
+                                    <div className={classes.socialsContainer__instagramContainer}>
+                                        <a  href={instagram}
+                                        target="_blank"
+                                        rel="noopener noreferrer">
+                                            <InstagramSVG className={`${classes.icon} ${classes.icon__instagram}`}/>
+                                        </a>
+                                    </div>
+                                    <div className={classes.socialsContainer__twitterContainer}>
+                                        <a  href={twitter}
+                                        target="_blank"
+                                        rel="noopener noreferrer">
+                                            <TwitterSVG className={`${classes.icon} ${classes.icon__twitter}`}/>
+                                        </a>
+                                    </div>
+                                </div>
+                                </div>
                             </div>
                         </div>
-                        <div className={classes.rightGrid}>
-                            <div className={classes.rightGrid__contactInfo}>
-                                <div className={classes.titleContainer}>
-                                    <h5>Contact Information</h5>
-                                </div>
-                                <div className={classes.phoneContainer}>
-                                    <PhoneSVG className={`${classes.icon} ${classes.icon__phone}`}/>
-                                    <a href={"tel:" + phone}>{phone}</a>
-                                </div>
-                                <div className={classes.emailContainer}>
-                                    <EmailSVG className={`${classes.icon} ${classes.icon__email}`}/>
-                                    <a href={"mailto:" + email}>{email}</a>
-                                </div>
-                                <div className={classes.socialsContainer}>
-                                <div className={classes.socialsContainer__facebookContainer}>
-                                    <a  href={facebook}
-                                    target="_blank"
-                                    rel="noopener noreferrer">
-                                        <FacebookSVG className={`${classes.icon} ${classes.icon__facebook}`}/>
-                                    </a>
-                                </div>
-                                <div className={classes.socialsContainer__instagramContainer}>
-                                    <a  href={instagram}
-                                    target="_blank"
-                                    rel="noopener noreferrer">
-                                        <InstagramSVG className={`${classes.icon} ${classes.icon__instagram}`}/>
-                                    </a>
-                                </div>
-                                <div className={classes.socialsContainer__twitterContainer}>
-                                    <a  href={twitter}
-                                    target="_blank"
-                                    rel="noopener noreferrer">
-                                        <TwitterSVG className={`${classes.icon} ${classes.icon__twitter}`}/>
-                                    </a>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
+    
                     </div>
-
-                </div>
-               
-              
-                
-
+                   
+                  
+                    
+    
+            </div>
+        
+        )}
+         {isLoading && (
+            <div className={classes.spinnerContainer}>
+              <Spinner/>
+            </div>
+          )}
         </div>
     );
 };

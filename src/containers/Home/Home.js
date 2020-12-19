@@ -74,60 +74,55 @@ const Home = () => {
             <div className={`${classes.content}`}>
             <div className={classes.homeMainPage}>
                 <div className={authDrawer.open ? classes.groupedContent__disappear : classes.groupedContent__display}>
-                    <h1 className={classes.homeMainPage__title}>Find your Atlantis</h1> 
+                    <h1 className={classes.homeMainPage__title}>Explore Dive Sites</h1> 
                         {/* <p className={classes.homeDescription}> A description of what this website is trying to achieve</p> */}
-                        <div className={classes.searchContainer}>
+                        <div className={classes.homeMainPage__searchContainer}>
                             <Searchbar/>
                         </div>
 
-                        <div className={classes.pointsContainer}>
-                {/* //TODO|||||||||| DIVE SITES ACROSS THE GLOBE ||||||||||||||||||||||| */}
-                <div className={classes.point}>
-                    <div className={classes.point__icon}>
-                        <GlobeSVG className={classes.icon}/>
-                    </div>
-                    <div className={classes.point__title}>
-                    <h4>Dive sites across the globe</h4>
-                    </div>
-                    <div className={classes.point__description}>
-                    <p>Find dive sites anywhere in the world. With new dive sites added and updated through the community.</p>
-                    </div>
-                </div>
+                        <div className={classes.homeMainPage__pointsContainer}>
+                                {/* //TODO|||||||||| DIVE SITES ACROSS THE GLOBE ||||||||||||||||||||||| */}
+                                <div className={classes.point}>
+                                    <div className={classes.point__icon}>
+                                        <GlobeSVG className={classes.icon}/>
+                                    </div>
+                                    <div className={classes.point__title}>
+                                    <h4>Dive sites across the globe</h4>
+                                    </div>
+                                    <div className={classes.point__description}>
+                                    <p>Find dive sites anywhere in the world. With new dive sites added and updated through the community.</p>
+                                    </div>
+                                </div>
 
-                 {/* //TODO|||||||||| SNORKEL, FREEDIVE OR SCUBA ||||||||||||||||||||||| */}
-                 <div className={classes.point}>
-                    <div className={classes.point__icon}>
-                        <SnorkelSVG className={classes.icon}/>
-                    </div>
-                    <div className={classes.point__title}>
-                    <h4>Snorkel, Free dive or Scuba</h4>
-                    </div>
-                    <div className={classes.point__description}>
-                    <p>No matter what skill you are, there is a dive site for you. Either for a casual snorkel or a deep wreck dive, there is a location for everyone!</p>
-                    </div>
-                </div>
+                                {/* //TODO|||||||||| SNORKEL, FREEDIVE OR SCUBA ||||||||||||||||||||||| */}
+                                <div className={classes.point}>
+                                    <div className={classes.point__icon}>
+                                        <SnorkelSVG className={classes.icon}/>
+                                    </div>
+                                    <div className={classes.point__title}>
+                                    <h4>Snorkel, Free dive or Scuba</h4>
+                                    </div>
+                                    <div className={classes.point__description}>
+                                    <p>No matter what skill you are, there is a dive site for you. Either for a casual snorkel or a deep wreck dive, there is a location for everyone!</p>
+                                    </div>
+                                </div>
 
-                 {/* //TODO|||||||||| DIVE REPORTS ||||||||||||||||||||||| */}
-                 <div className={classes.point}>
-                    <div className={classes.point__icon}>
-                        <BinocularsSVG className={classes.icon}/>
-                    </div>
-                    <div className={classes.point__title}>
-                    <h4>Dive Reports</h4>
-                    </div>
-                    <div className={classes.point__description}>
-                    <p>Keep logs of your dives for yourself and others to see. Explore certain dive sites reports to get real experiences of peoples dives.</p>
-                    </div>
-                </div>
-
-
-            </div>
+                                {/* //TODO|||||||||| DIVE REPORTS ||||||||||||||||||||||| */}
+                                <div className={classes.point}>
+                                    <div className={classes.point__icon}>
+                                        <BinocularsSVG className={classes.icon}/>
+                                    </div>
+                                    <div className={classes.point__title}>
+                                    <h4>Dive Reports</h4>
+                                    </div>
+                                    <div className={classes.point__description}>
+                                    <p>Keep logs of your dives for yourself and others to see. Explore certain dive sites reports to get real experiences of peoples dives.</p>
+                                    </div>
+                                </div>
+                        </div>
                 </div>
             </div>
 
-
-            
-            
             <div className={classes.homeContent}>
                 <div className={classes.homeContent__background}>
                     <Wave1SVG className={classes.wave1} style={{ transform: `translateX(-${offsetY * 2.0}px)`}}/>

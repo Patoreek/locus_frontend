@@ -2,14 +2,17 @@ import React, { useState, useContext, useEffect} from 'react';
 
 import { useHistory } from "react-router-dom";
 
+import Spinner from '../../../components/Spinner/Spinner';
+
 
 import { DiveSitesContext,
          DetailsContext,
          SiteContext,
          DiveShopsContext,
-         ShopContext } from '../../../context/DiveSiteContext';
+         ShopContext,
+         GeoAreaContext } from '../../../context/DiveSiteContext';
 
-import {AuthContext, LocationNameContext} from '../../../context/AuthContext';
+import {AuthContext, LocationNameContext, GlobalLoaderContext} from '../../../context/AuthContext';
 import ToggleButtons from '../ToggleButtons/ToggleButtons';
 
 
@@ -38,6 +41,10 @@ const GuestPanel = () => {
 
     const [list, setList] = useState("DiveSites");
 
+    const [globalLoader, setGlobalLoader] = useContext(GlobalLoaderContext);
+
+    const [geoArea, setGeoArea] = useContext(GeoAreaContext);
+
 
     useEffect(() => {    
         if (diveSites.length >= 1) {
@@ -50,41 +57,66 @@ const GuestPanel = () => {
     },[diveSites, diveShops]);
 
 
-    console.log('[GuestPanel] locationName = ' + locationName);
+    //console.log('[GuestPanel] locationName = ' + locationName);
     return (
         <div className={classes.guestPanel}>
             <div className={classes.topSection}>
-                <p>{diveSites.length} sites  · {locationName ? locationName : 'In current view'} </p>
-                <h3>Dive sites in selected map area</h3>
-                <span onClick={() => setList('DiveSites')}>See Dive Sites</span><span className={classes.seeLinkSpacer}>·</span>
-                <span onClick={() => setList('DiveShops')}>See Dive Shops</span>
+                <p className={classes.topSection__totalSites}>
+                    {diveSites.length} sites  · {locationName ? locationName : null} 
+                    {!locationName && !globalLoader.diveshops && !globalLoader.divesites ? geoArea.area + ", " + geoArea.state : null}
+                </p>
+                <h3 className={classes.topSection__mapAreaText}>
+                    Dive sites {locationName ? locationName : null} 
+                    {!locationName && !globalLoader.diveshops && !globalLoader.divesites ? "near " + geoArea.area + ", " + geoArea.state : null}
+                </h3>
+                <span className={`${classes.topSection__link} ${list == "DiveSites" ? classes.topSection__linkActive : null}`} onClick={() => setList('DiveSites')}>({diveSites.length}) Dive Sites</span>
+                <span className={classes.topSection__seeLinkSpacer}>·</span>
+                <span className={`${classes.topSection__link} ${list == "DiveShops" ? classes.topSection__linkActive : null}`} onClick={() => setList('DiveShops')}>({diveShops.length}) See Dive Shops</span>
             </div>
 
             {/* <ToggleButtons/> */}
-        {list == 'DiveSites' && (
-        <div>
-            {diveSites.map(site => (
-                <DivesiteListingPanel site={site}/>
+            {!globalLoader.divesites && (
+                <div>
+                    {list == 'DiveSites' && (
+                    <div>
+                        {diveSites.map(site => (
+                            <DivesiteListingPanel site={site}/>
+                            
+                    ))}
+                    </div>
+                    )}
+                </div>
+            )}
+            {!globalLoader.diveshops && (
+                <div>
+                        {list == 'DiveShops' && (
+                    <div>
+                        {diveShops.map(shop => (
+
+                            <DiveshopListingPanel shop={shop}/>
+
+                        ))}
+                    </div>
+                    )}
+
+                    {list == null && (
+                        <div className={classes.noResults}> 
+                            <h1>There are no Dive Sites or Dive Shops in this area.</h1>
+                        </div>
+                    )}
+                </div>
+            )}
                 
-           ))}
-        </div>
-        )}
+                
+            
 
-        {list == 'DiveShops' && (
-        <div>
-            {diveShops.map(shop => (
+            {globalLoader.divesites && globalLoader.diveshops && (
+                <div className={classes.loadingContainer}>
+                <p className={classes.loadingContainer__text}>Searching...</p>
+                <Spinner/>
+                </div>
+            )}
 
-                <DiveshopListingPanel shop={shop}/>
-
-            ))}
-        </div>
-        )}
-
-        {list == null && (
-            <div className={classes.noResults}> 
-                <h1>There are no Dive Sites or Dive Shops in this area.</h1>
-            </div>
-        )}
 
         </div>
     );

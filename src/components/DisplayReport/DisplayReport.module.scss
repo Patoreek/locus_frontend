@@ -43,7 +43,9 @@
                 padding-bottom: .25rem;
                 a {
                     font-size: 2.2rem;
-                    font-weight: 500;
+                    font-family: $font-1-style;
+                    font-weight: $font-med;
+                    color: $color-black;
                 }
             }
 
@@ -62,6 +64,8 @@
                         font-size: 1.4rem;
                         color: $color-text-darkgrey;
                         margin-left: 1rem;
+                        font-family: $font-3-style;
+                        font-weight: $font-med;
                     }
         
                 }
@@ -93,19 +97,23 @@
                 
                 width: 2.5rem;
                 height: 2.5rem;
-                fill: $color-text-grey;
+                g path , path {
+                    fill: $color-text-grey;
+                }
             }
 
             a {
-                font-size: 2rem;
+                font-size: 1.8rem;
                 font-weight: 500;
                 color: $color-text-darkergrey;
                 margin-left: 1rem;
                 text-decoration: none;
                 transition: .2s ease;
+                font-family: $font-3-style;
+                font-weight: $font-med;
 
                 &:hover {
-                    color: $color-text-blue;
+                    color: $color-text-blue-hover;
                 }
 
             }
@@ -129,9 +137,11 @@
             }
 
             span {
-                font-size: 1.4rem;
+                font-size: 1.6rem;
                 color: $color-text-darkgrey;
                 margin-left: 1rem;
+                font-family: $font-3-style;
+                font-weight: $font-med;
 
             }
         }
@@ -150,9 +160,12 @@
             }
 
             span {
-                font-size: 1.4rem;
+                font-size: 1.6rem;
                 color: $color-text-darkgrey;
-                margin-left: 1rem;}
+                margin-left: 1rem;
+                font-family: $font-3-style;
+                font-weight: $font-med;
+            }
 
         }
     }
@@ -167,6 +180,9 @@
         .reportContent {
             p {
                 font-size: 1.6rem;
+                font-family: $font-3-style;
+                font-weight: $font-normal;
+                color: $color-black;
             }
         }
     }

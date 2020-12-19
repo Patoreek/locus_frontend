@@ -6,7 +6,7 @@ import classes from './DisplayReport.module.scss';
 
 import { ReactComponent as VisibilitySVG } from '../../assets/icons/visibility.svg';
 import { ReactComponent as DateSVG } from '../../assets/icons/calendar.svg';
-import { ReactComponent as LocationSVG } from '../../assets/icons/location_lightgrey.svg';
+import { ReactComponent as LocationSVG } from '../../assets/icons/location.svg';
 import { ReactComponent as DurationSVG } from '../../assets/icons/time.svg';
 
 import DisplayImage from '../DisplayImage/DisplayImage';
