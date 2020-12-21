@@ -113,7 +113,7 @@ function App() {
             <Route path="/divesite/:id" component={DetailsView}/>
             <Route path="/diveshop/:id" component={DiveShopView}/>
             <Route path="/communityphotos/:siteId" component={CommunityPhotos}/>
-            <Route path="/viewprofile/:userId" component={ViewProfileView}/>
+            <Route path="/profile/:userId" component={ProfileView}/>
             </UserProvider>
         </DiveSiteProvider>
 

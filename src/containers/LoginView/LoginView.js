@@ -72,6 +72,7 @@ const LoginView = () => {
             
             setAuthDrawer(false);
             console.log(account);
+            //window.location.reload();
             //localStorage.setItem("email", resData.email);
             //history.push("/map");
             

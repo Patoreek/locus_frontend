@@ -5,6 +5,10 @@ import { SiteContext, DetailsContext } from '../../context/DiveSiteContext';
 
 import { ReactComponent as PinSVG } from '../../assets/icons/location_default.svg';
 import { ReactComponent as XpSVG } from '../../assets/icons/userXP.svg';
+import { ReactComponent as CloseSVG } from '../../assets/icons/close.svg';
+
+import { useParams } from "react-router";
+
 
 import Details from '../DetailsView/DetailsView';
 
@@ -18,6 +22,10 @@ import DivesiteListingPanel from '../../components/Divesite/DivesiteListingPanel
 import DivesiteListingThumbnail from '../../components/Divesite/DivesiteListingThumbnail/DivesiteListingThumbnail';
 
 import avatarPlaceholder from '../../assets/images/avatar_placeholder.jpeg';
+
+import EditProfile from '../../containers/EditProfile/EditProfile';
+import ChangePassword from '../../containers/ChangePassword/ChangePassword';
+
 
 
 import classes from './ProfileView.module.scss';
@@ -46,6 +54,13 @@ const ProfileView = () => {
 
     const [reports, setReports] = useState([]);
 
+
+    const [editModal, setEditModal] = useState(false);
+    const [changePWModal, setChangePWModal] = useState(false);
+
+    let { userId } = useParams();
+
+
     let history = useHistory();
 
         if (!isAuth){
@@ -60,6 +75,45 @@ const ProfileView = () => {
         // }
     
         useEffect(() => {
+
+            const getProfileOther = (id) => {
+                return fetch('http://localhost:8080/user/viewProfile',{
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        userId: id
+                    })
+                })
+                .then(res => {
+                    return res.json();
+                })
+                .then(profile => {
+                    console.log(profile);
+                    setFirstName(profile.firstName);
+                    setLastName(profile.lastName);
+                    if (profile.profilePic){
+                        setProfilePic('http://localhost:8080/' + profile.profilePic);
+                    } else {
+                        setProfilePic(avatarPlaceholder);
+                    }
+                    setBio(profile.bio);
+                    setCity(profile.city);
+                    setCountry(profile.country);
+                    setExperience(profile.experience);
+                    setFavourites(profile.favouritesData);
+                    setIsLoading(false);
+                    
+                })
+                .catch(err => {
+                    console.log('Caught.');
+                    console.log(err);
+                    // history.push("/login");
+                });
+
+            }
 
 
             async function getProfile() {
@@ -91,10 +145,10 @@ const ProfileView = () => {
                         }
             }
 
-            async function getReports() {
+            async function getReports(id) {
     
                 try {
-                    const response = await fetch('http://localhost:8080/user/diveReports/getReportsForUser/' + account.id,{
+                    const response = await fetch('http://localhost:8080/user/diveReports/getReportsForUser/' + id,{
                         method: 'GET',
                         credentials: 'include',
                     });
@@ -109,14 +163,46 @@ const ProfileView = () => {
                 }
             }
             
+            if (userId) {
+                getProfileOther(userId);
+                getReports(userId);
+            } else {
+                getReports(account.id);
+                getProfile(account.id);
+            }
             
-            getReports();
-            getProfile();
+           
         }, []);
 
         
+    const closeModal = () => {
+        setEditModal(false);
+        setChangePWModal(false);
+    }
+
     return (
         <div>
+            {editModal && (
+                <div className={classes.modalOverlay} onClick={closeModal}></div>
+            )}
+            {changePWModal && (
+                <div className={classes.modalOverlay} onClick={closeModal}></div>
+            )}
+            {editModal && (
+                <div className={classes.editModal}>
+                    <CloseSVG className={classes.editModal__close} onClick={closeModal}/>
+                    <EditProfile closeModal={closeModal}/>
+                </div>
+            )}
+
+            {changePWModal && (
+                <div className={classes.changePWModal}>
+                    <CloseSVG className={classes.editModal__close} onClick={closeModal}/>
+                    <ChangePassword closeModal={closeModal}/>
+                </div>
+            )}
+
+
             {!isLoading && (
                 <div className={classes.profilePage}>
                     <div className={classes.profile}>
@@ -148,11 +234,19 @@ const ProfileView = () => {
                                 </div>
                                 <p className={classes.experience}>{experience ? experience : "Experience"}</p>
                             </div>
+                            
+                            {!userId && (
+                                <div className={classes.profileRight__editContainer}>
+                                    <span className={classes.edit} onClick={() => setEditModal(true)}>
+                                        Edit profile
+                                    </span>
+                                    <span className={classes.changePw} onClick={() => setChangePWModal(true)}>
+                                        Change Password
+                                    </span>
+                                </div>
+                            )}
 
-                            <div className={classes.profileRight__editContainer}>
-                                <a href="/editprofile" className={classes.edit}>Edit profile</a>
-                                <a href="/changePassword" className={classes.changePw}>Change Password</a>
-                            </div>
+                           
                         </div>
 
                         

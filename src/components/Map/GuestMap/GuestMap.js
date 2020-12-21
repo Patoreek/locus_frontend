@@ -31,7 +31,7 @@ import FavouriteButton from '../../Buttons/FavouriteButton/FavouriteButton';
 
 import {ReactComponent as PhoneSVG} from '../../../assets/icons/phone.svg';
 import {ReactComponent as EmailSVG} from '../../../assets/icons/email.svg';
-import {ReactComponent as LocationSVG} from '../../../assets/icons/location.svg';
+import {ReactComponent as LocationSVG} from '../../../assets/icons/location_default.svg';
 import {ReactComponent as WebsiteSVG} from '../../../assets/icons/global.svg';
 import {ReactComponent as FacebookSVG} from '../../../assets/icons/facebook.svg';
 import {ReactComponent as InstagramSVG} from '../../../assets/icons/instagram.svg';
@@ -167,15 +167,6 @@ const GuestMap = (props) => {
                             <div className={classes.site__ratingsContainer}>
                                 {/* <StarRating siteRatings = {selectedSite.ratings}/> */}
                             </div>
-
-
-                            <div className={classes.site__moreDetailsContainer}>
-                                {/* <span onClick={() => moreDetailsHandler(selectedSite)} className={classes.moreDetails}> */}
-                                <a href={"/divesite/" + selectedSite._id} className={classes.moreDetails}>
-                                    More Details...
-                                </a>
-                            </div>
-            
                         </div>
                 </InfoWindow>
                 )}

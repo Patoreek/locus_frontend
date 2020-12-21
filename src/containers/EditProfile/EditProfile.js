@@ -13,11 +13,11 @@ import { Form,
 
 import { AccountContext } from '../../context/AuthContext';
 
-import classes from './EditProfileView.module.scss';
+import classes from './EditProfile.module.scss';
 
 
 
-const EditProfileView = () => {
+const EditProfile = (props) => {
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -211,7 +211,7 @@ const EditProfileView = () => {
             {/* IF showDeleteModal is false then show edit modal */}
                 <div className={classes.form}>
                     <div className={classes.form__backBtnContainer}>
-                        <span className={classes.backBtn} onClick={cancelHandler}>Back to Profile</span>
+                        {/* <span className={classes.backBtn} onClick={cancelHandler}>Back to Profile</span> */}
                     </div>
                     <div className={classes.form__headerContainer}>
                         <h3 className={classes.header}>Edit Profile</h3>
@@ -294,7 +294,7 @@ const EditProfileView = () => {
                 
         
                     <div className={classes.form__cancelBtnContainer}>
-                        <button className={classes.cancelBtn} onClick={cancelHandler}>Cancel</button>
+                        <button className={classes.cancelBtn} onClick={props.closeModal}>Cancel</button>
                     </div>
 
                     <div className={classes.form__editBtnContainer}>
@@ -319,4 +319,4 @@ const EditProfileView = () => {
     );
 };
 
-export default EditProfileView;
+export default EditProfile;

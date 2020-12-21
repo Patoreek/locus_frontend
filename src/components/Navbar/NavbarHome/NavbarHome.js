@@ -42,10 +42,13 @@ const NavbarHome = () => {
     const [userPicture, setUserPicture] = useState(null);
     const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState(null);
+    const [email, setEmail] = useState(null);
+
 
     const [accountRole, setAccountRole] = useState('user');
 
     let history = useHistory();
+
 
     useEffect(()=> {
         const getProfile = () => {
@@ -61,8 +64,8 @@ const NavbarHome = () => {
                 console.log('resData!!!!!!');
                 console.log(resData);
                 console.log('ACCOUNT ROLE BELOW!!');
-                console.log(account.role);
-
+                //console.log(account.role);
+    
                 if (resData.firstName) {
                     setFirstName(resData.firstName);
                 }
@@ -75,6 +78,9 @@ const NavbarHome = () => {
                 if (resData.role) {
                     setAccountRole(resData.role);
                 }
+                if (resData.email) {
+                    setEmail(resData.email);
+                }
                 
                 
                 
@@ -84,9 +90,8 @@ const NavbarHome = () => {
                 console.log(err);
             });    
         }
-
         getProfile();
-    }, []);
+    }, [isAuth]);
 
     const authDrawerHandler = (option) => {
         if (option === "login") {
@@ -129,6 +134,7 @@ const NavbarHome = () => {
         .then(res => {
             console.log(res);
             setIsAuth(false);
+            setAccount(null);
            // localStorage.removeItem('email');
             history.push('/'); //REDIRECT TO HOME
         })
@@ -189,7 +195,7 @@ const NavbarHome = () => {
                                             <span className={classes.title}>{firstName} {lastName}</span>
                                         </div>
                                         <div className={classes.dropdown__email}>
-                                            <span className={classes.email}>{account.email}</span>
+                                            <span className={classes.email}>{email}</span>
                                         </div>
                                         <a  href="/profile" className={classes.dropdown__viewProfile}>
                                             <ProfileSVG className={classes.icon}/>

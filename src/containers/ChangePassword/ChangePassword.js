@@ -3,7 +3,7 @@ import classes from './ChangePassword.module.scss';
 
 import { useHistory } from 'react-router-dom';
 
-const ChangePassword = () => {
+const ChangePassword = (props) => {
 
     let history = useHistory();
 
@@ -97,7 +97,7 @@ const ChangePassword = () => {
                         </div>
                     
                         <div className={classes.grid__cancel}>
-                            <button className={classes.cancel} onClick={cancelHandler}> Cancel </button>
+                            <button className={classes.cancel} onClick={props.closeModal}> Cancel </button>
                         </div>
                         <div className={classes.grid__change}>
                         <button className={classes.change} onClick={changeHandler}> Change </button>

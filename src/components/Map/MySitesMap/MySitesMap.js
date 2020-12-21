@@ -55,7 +55,7 @@ import markerShopSVG from '../../../assets/icons/location_orange.svg';
 
 import {ReactComponent as PhoneSVG} from '../../../assets/icons/phone.svg';
 import {ReactComponent as EmailSVG} from '../../../assets/icons/email.svg';
-import {ReactComponent as LocationSVG} from '../../../assets/icons/location_lightgrey.svg';
+import {ReactComponent as LocationSVG} from '../../../assets/icons/location_default.svg';
 import {ReactComponent as WebsiteSVG} from '../../../assets/icons/global.svg';
 import {ReactComponent as FacebookSVG} from '../../../assets/icons/facebook.svg';
 import {ReactComponent as InstagramSVG} from '../../../assets/icons/instagram.svg';
@@ -233,18 +233,9 @@ const MySitesMap = () => {
                                 <p className={classes.description}> {selectedSite.description} </p>
                             </div>
 
-                            <div className={classes.site__ratingsContainer}>
+                            {/* <div className={classes.site__ratingsContainer}>
                                 <StarRating siteRatings = {selectedSite.ratings}/>
-                            </div>
-
-
-                            <div className={classes.site__moreDetailsContainer}>
-                                {/* <span onClick={() => moreDetailsHandler(selectedSite)} className={classes.moreDetails}> */}
-                                <a href={"/divesite/" + selectedSite._id} className={classes.moreDetails}>
-                                    More Details...
-                                </a>
-                            </div>
-            
+                            </div>             */}
                     </div>
                    
                 </InfoWindow>

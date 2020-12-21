@@ -3,10 +3,10 @@
 .site {
     background: $color-white-bg;
     display: grid;
-    grid-template-rows: repeat(3, max-content) 8rem max-content;
+    grid-template-rows: repeat(3, max-content) 11rem;
     grid-template-columns: repeat(3, 1fr) 3rem;
     height: 100%;
-    //background: plum;
+    padding-bottom: 1rem;
 
     &__diveTypeContainer, &__nameContainer,  &__descriptionContainer, &__ratingsContainer {
         padding-left: 1rem;
@@ -83,12 +83,17 @@
         text-overflow: ellipsis;
         padding-top: 1rem;
         border-top: 1px solid $color-lines;
+        
 
         .description {
             word-break: break-all; 
             font-size: 1.4rem;
             font-family: $font-3-style;
             font-weight: $font-normal;
+            overflow:hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical; 
         }
     }
 
