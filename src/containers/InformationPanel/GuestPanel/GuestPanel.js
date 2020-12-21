@@ -63,7 +63,7 @@ const GuestPanel = () => {
             <div className={classes.topSection}>
                 <p className={classes.topSection__totalSites}>
                     {diveSites.length} sites  · {locationName ? locationName : null} 
-                    {!locationName && !globalLoader.diveshops && !globalLoader.divesites ? geoArea.area + ", " + geoArea.state : null}
+                    {!locationName && !globalLoader.diveshops && !globalLoader.divesites ? geoArea.area + " · " + geoArea.state : null}
                 </p>
                 <h3 className={classes.topSection__mapAreaText}>
                     Dive sites {locationName ? locationName : null} 

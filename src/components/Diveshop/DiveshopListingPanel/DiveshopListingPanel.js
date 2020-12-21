@@ -34,8 +34,9 @@ const DivesiteListingPanel = (props) => {
 
     return (
         <div className={classes.shop}>
+        <a href={"/diveshop/" + shop._id} className={classes.shop__link} target="_blank" rel="noopener noreferrer"></a>
         <div className={classes.shop__imageContainer}>
-            <a href={"/diveshop/" + shop._id}>
+            <a href={"/diveshop/" + shop._id} target="_blank" rel="noopener noreferrer">
             <img src={'http://localhost:8080/' + shop.logo}
                 className={classes.image}
             />
@@ -44,7 +45,7 @@ const DivesiteListingPanel = (props) => {
 
         <div className={classes.shop__nameContainer}>
             <h5 className={classes.shopName}>
-                <a href={"/diveshop/" + shop._id}>
+                <a href={"/diveshop/" + shop._id} target="_blank" rel="noopener noreferrer">
                     {shop.name}
                 </a>
             </h5>

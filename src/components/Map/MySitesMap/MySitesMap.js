@@ -351,7 +351,6 @@ const MySitesMap = () => {
                 </InfoWindow>
             )}  
 
-            //! Make SelectedShop
             
         </div>
     );

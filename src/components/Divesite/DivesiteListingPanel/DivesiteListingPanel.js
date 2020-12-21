@@ -44,8 +44,10 @@ const DivesiteListingPanel = (props) => {
 
     return (
         <div className={classes.site}>
+                    <a href={"/divesite/" + site._id} className={classes.site__link} target="_blank" rel="noopener noreferrer">
+                    </a>
                     <div className={classes.site__imageContainer}>
-                        <a href={"/divesite/" + site._id}>
+                        <a href={"/divesite/" + site._id} target="_blank" rel="noopener noreferrer">
                             <img src={'http://localhost:8080/' + site.images[0]}
                                 className={classes.image}
                             />
@@ -59,7 +61,7 @@ const DivesiteListingPanel = (props) => {
 
                     <div className={classes.site__nameContainer}>
                         <h5  className={classes.siteName}>
-                            <a href={"/divesite/" + site._id}>
+                            <a href={"/divesite/" + site._id} target="_blank" rel="noopener noreferrer">
                                 {site.name}, {site.area}
                             </a>
                         </h5>
@@ -91,13 +93,12 @@ const DivesiteListingPanel = (props) => {
                         {/* <StarRating site={site}/> */}
                     </div>
 
-                    <div className={classes.site__moreDetailsContainer}>
+                    {/* <div className={classes.site__moreDetailsContainer}>
                                 <a href={"/divesite/" + site._id} className={classes.moreDetailsButton}>
                                         More Details...
                                     </a>
-                    </div>
-                
-                </div>
+                    </div> */}
+        </div>
            
     );
 };

@@ -3,8 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { AuthContext, LoadingContext, AuthDrawerContext, AccountContext } from '../../context/AuthContext';
 import { SiteContext, DetailsContext } from '../../context/DiveSiteContext';
 
-import { ReactComponent as PinSVG } from '../../assets/icons/location.svg';
-import { ReactComponent as XpSVG } from '../../assets/icons/experience.svg';
+import { ReactComponent as PinSVG } from '../../assets/icons/location_default.svg';
+import { ReactComponent as XpSVG } from '../../assets/icons/userXP.svg';
 
 import Details from '../DetailsView/DetailsView';
 
