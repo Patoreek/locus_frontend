@@ -8,7 +8,7 @@
     .navList {
        // max-width: 1400px;
         height: 100%;
-        padding: 0.5rem 1rem;
+        padding: 0rem 1rem;
         // display: flex;
         // justify-content: space-between;
         display: grid;
@@ -30,7 +30,11 @@
         }
 
         .searchbarContainer {
-            margin: 0 auto;
+            //margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+
         }
 
     
@@ -211,6 +215,7 @@
                     display: flex;
                     align-items: center;
                     text-decoration: none;
+                    transition: .2s ease;
                     
                     span {
                         font-size: 1.4rem;

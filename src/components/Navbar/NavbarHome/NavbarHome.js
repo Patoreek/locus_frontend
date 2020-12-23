@@ -173,7 +173,7 @@ const NavbarHome = () => {
 
                             {isAuth && ( 
                                 <div className={classes.diveReportsLink}>
-                                    <a href="/profile/diveReports"><ReportSVG className={classes.reportSVG}/></a>
+                                    <a href="/diveReports"><ReportSVG className={classes.reportSVG}/></a>
                                 </div>
                             )}
                             {/* //! HERE GOES THE PROFILE AVATAR & THE DROPDOWN WITH VIEW & EDIT PROFILE AND ALSO THE LOGOUT BTN */}

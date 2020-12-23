@@ -28,6 +28,9 @@ import { ReactComponent as VisibilitySVG } from '../../assets/icons/visibility.s
 import DivesiteListingPanel from '../../components/Divesite/DivesiteListingPanel/DivesiteListingPanel';
 import DiveshopListingPanel from '../../components/Diveshop/DiveshopListingPanel/DiveshopListingPanel';
 
+import DisplayImage from '../../components/DisplayImage/DisplayImage';
+
+
 import WeatherContainer from '../../components/WeatherContainer/WeatherContainer';
 import CommPhotoPreview from './CommPhotoPreview/CommPhotoPreview';
 
@@ -48,9 +51,11 @@ const Details = (props) => {
 
 
 
-
+    const [site, setSite] = useState(null);
     const [siteName, setSiteName] = useState();
-    const [siteArea, setSiteArea] = useState();
+    const [siteSuburb, setSiteSuburb] = useState();
+    const [siteCity, setSiteCity] = useState();
+    const [siteState, setSiteState] = useState();
     const [siteCountry, setSiteCountry] = useState();
     const [siteImages, setSiteImages] = useState([]);
     const [siteType, setSiteType] = useState();
@@ -79,6 +84,7 @@ const Details = (props) => {
 
     const [nearbySites, setNearbySites] = useState([]);
 
+    const [enlargeImage, setEnlargeImage] = useState(false);
 
 
     const [isLoading, setIsLoading] = useState(true);
@@ -131,9 +137,11 @@ const Details = (props) => {
             const results = await response.json();
             //console.log(results);
             const site = results.site;
-
+            setSite(site);
             setSiteName(site.name);
-            setSiteArea(site.area);
+            setSiteSuburb(site.suburb);
+            setSiteCity(site.city);
+            setSiteState(site.state);
             setSiteCountry(site.country);
             setSiteImages(site.images);
             setSiteType(site.siteType);
@@ -157,8 +165,7 @@ const Details = (props) => {
             setSelectedSite(site);
             setIsLoading(false);
 
-            setMainImage(site.images[0]);
-    
+            setMainImage(site.images[0]);    
           } catch (error) {
            console.log(error);
            //setIsLoading(true);
@@ -245,6 +252,14 @@ const Details = (props) => {
   
     },[]);
 
+    useEffect(() => {
+      if (!siteName || !siteSuburb){
+        document.title = "Locus - Divesite";
+      } else {
+        document.title = "Locus - " + siteName + " · " + siteSuburb;
+      }
+    }, [isLoading]);
+
 
     const imageHandler = (image) => {
         setMainImage(image);
@@ -260,14 +275,18 @@ const Details = (props) => {
             <div className={classes.divesite}>
                 {/* <h3> isLoading is now turned OFF! Should be working...</h3> */}
 
+                {enlargeImage && (
+                  <DisplayImage image={mainImage} site={site} suburb={site.suburb} setEnlargeImage={setEnlargeImage}/>
+                )}
+
                 <div className={classes.divesite__locationTop}>
-                  <a target="_blank" href={"http://www.google.com/search?q=" + siteName + "%2C+" + siteArea + "%2C+" + siteCountry}>{siteName}, {siteArea}, {siteCountry}</a> {/* Should be a link to the map / google maps of the area?? */}
+                  <a target="_blank" href={"http://www.google.com/search?q=" + siteName + "%2C+" + siteSuburb + "%2C+" + siteCountry}>{siteName} · {siteSuburb} · {siteCity} · {siteCountry}</a> {/* Should be a link to the map / google maps of the area?? */}
                 </div>
                 
 
                 {/* //TODO: IMAGE GRID CONTAINER ////////////////// */}
                 <div className={classes.divesite__imageGridContainer}>
-                  <div className={`${classes.image} ${classes.image__1}`}>
+                  <div className={`${classes.image} ${classes.image__1}`} onClick={() => setEnlargeImage(true)}>
                     <img className={classes.image} src={'http://localhost:8080/' + mainImage}/>
                   </div>
 
@@ -291,14 +310,9 @@ const Details = (props) => {
                 </div>
 
                 {/* //TODO: END IMAGE GRID CONTAINER ////////////////// */}
-
-                {/* USE FLEXBOX COLUMN */}
-                <div className={classes.leftContainer}>
-
-                    <div className={classes.leftContainer__nameContainer}>
-                        <h3 className={classes.name}>{siteName}</h3>
-                        <h3 className={classes.name}>{siteArea}, {siteCountry}</h3>
-                        <a target="_blank" href={"http://www.google.com/search?q=" + siteName + "%2C+" + siteArea + "%2C+" + siteCountry}>{siteName}, {siteArea}, {siteCountry}</a> {/* Should be a link to the map / google maps of the area?? */}
+                <div className={classes.nameContainer}>
+                        <h3 className={classes.name}>{siteName} · {siteSuburb} · {siteCity} · {siteCountry}</h3>
+                        <a target="_blank" href={"http://www.google.com/search?q=" + siteName + "%2C+" + siteSuburb + "%2C+" + siteCity + "%2C+"+ siteCountry}>{siteName}, {siteSuburb}, {siteCity}, {siteCountry}</a> {/* Should be a link to the map / google maps of the area?? */}
                         <a target="_blank" href={"https://maps.google.com/?q=" + siteLatitude + "," + siteLongitude}><GoogleMapSVG className={classes.googleMapSVG}/></a>
                         <div className={classes.ratingsContainer}>
                           <div className={classes.ratingsContainer__rating}>
@@ -308,9 +322,10 @@ const Details = (props) => {
                             <FavouriteButton site={selectedSite}/>
                           </div>
                         </div>
-                    </div>
+                </div>
 
-
+                {/* USE FLEXBOX COLUMN */}
+                <div className={classes.leftContainer}>
                     <div className={classes.leftContainer__points}>
                         <div className={classes.point}> 
                           <ShoreSVG className={classes.point__icon}/> 

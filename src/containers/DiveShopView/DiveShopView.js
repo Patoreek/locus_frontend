@@ -79,6 +79,14 @@ const DiveShopView = (props) => {
 
     }, []);
 
+    useEffect(() => {
+        if (!name){
+          document.title = "Locus - Shop";
+        } else {
+          document.title = "Locus - Shop - " + name;
+        }
+      }, [isLoading]);
+
     
 
     return (

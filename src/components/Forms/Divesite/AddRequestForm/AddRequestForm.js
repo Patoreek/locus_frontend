@@ -27,7 +27,9 @@ const AddRequestForm = (props) => {
 
 
     const [name, setName] = useState(null);
-    const [area, setArea] = useState(null);
+    const [suburb, setSuburb] = useState(null);
+    const [city, setCity] = useState(null);
+    const [state, setState] = useState(null);
     const [country, setCountry] = useState(null);
     const [description, setDescription] = useState(null);
     const [experience, setExperience] = useState(null);
@@ -48,7 +50,9 @@ const AddRequestForm = (props) => {
     //TODO: // ERROR STATE VARIABLES
 
     const [nameErr, setNameErr] = useState(false);
-    const [areaErr, setAreaErr] = useState(false);
+    const [suburbErr, setSuburbErr] = useState(false);
+    const [cityErr, setCityErr] = useState(null);
+    const [stateErr, setStateErr] = useState(null);
     const [countryErr, setCountryErr] = useState(false);
     //const [descriptionErr, setDescriptionErr] = useState(false);
     const [experienceErr, setExperienceErr] = useState(false);
@@ -96,22 +100,22 @@ const AddRequestForm = (props) => {
         }
 
         
-        if (area) {
-            if(!area.match(letters)){
-                errorMessage.push("There are numbers or symbols in the area.");
-                setAreaErr(true);
+        if (suburb) {
+            if(!suburb.match(letters)){
+                errorMessage.push("There are numbers or symbols in the suburb.");
+                setSuburbErr(true);
                 setIsError(true);
             }
-            if (area.length <= 4) {
-                errorMessage.push("The area is too short.");
-                setAreaErr(true);
+            if (suburb.length <= 4) {
+                errorMessage.push("The suburb is too short.");
+                setSuburbErr(true);
                 setIsError(true);
                
             }
         }
-        if(area == null) {
-            errorMessage.push("Please add an area.");
-            setAreaErr(true);
+        if(suburb == null) {
+            errorMessage.push("Please add an suburb.");
+            setSuburbErr(true);
             setIsError(true);
         } 
 
@@ -292,7 +296,9 @@ const AddRequestForm = (props) => {
                         userFirstName: account.firstName,
                         userLastName: account.lastName,
                         name: name,
-                        area: area,
+                        suburb: suburb,
+                        city: city,
+                        state: state,
                         country: country,
                         latitude: coordsLat,
                         longitude: coordsLng,
@@ -335,7 +341,9 @@ const AddRequestForm = (props) => {
         console.log('Submitting Request to add a dive site form...');
 
         setNameErr(false);
-        setAreaErr(false);
+        setSuburbErr(false);
+        setCityErr(false);
+        setStateErr(false);
         setCountryErr(false);
         //setDescriptionErr(false);
         setExperienceErr(false);
@@ -377,13 +385,30 @@ const AddRequestForm = (props) => {
                         <span className={classes.label}>Name</span>
                     </div>
                     
-                    <div className={classes.form__areaContainer}>
-                        <input className={`${classes.input} ${classes.input__area}`}
-                                //placeholder="Area / Suburb"
-                                value={area}
-                                onChange={e => setArea(e.target.value)} />
-                        <span>Area</span>
+                    <div className={classes.form__suburbContainer}>
+                        <input className={`${classes.input} ${classes.input__suburb}`}
+                                //placeholder="suburb / Suburb"
+                                value={suburb}
+                                onChange={e => setSuburb(e.target.value)} />
+                        <span>Suburb</span>
                     </div>
+
+                    <div className={classes.form__cityContainer}>
+                        <input className={`${classes.input} ${classes.input__city}`}
+                                //placeholder="city / city"
+                                value={city}
+                                onChange={e => setCity(e.target.value)} />
+                        <span>City</span>
+                    </div>
+
+                    <div className={classes.form__stateContainer}>
+                        <input className={`${classes.input} ${classes.input__state}`}
+                                //placeholder="state / state"
+                                value={state}
+                                onChange={e => setState(e.target.value)} />
+                        <span>State</span>
+                    </div>
+                    
                     <div className={classes.form__countryContainer}>
                         <input className={`${classes.input} ${classes.input__country}`}
                                 //placeholder="Country"

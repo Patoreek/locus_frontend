@@ -174,6 +174,14 @@ const ProfileView = () => {
            
         }, []);
 
+    useEffect(() => {
+        if (!firstName || !lastName){
+            document.title = "Locus - Profile";
+        } else {
+            document.title = "Locus - Profile - " + firstName + " " + lastName;
+        }
+    }, [isLoading]);
+
         
     const closeModal = () => {
         setEditModal(false);
@@ -281,7 +289,7 @@ const ProfileView = () => {
                                 <h4>Dive Reports (0)</h4>
                                     <div className={classes.noReports}>
                                         <h3>There are currently no dive reports from {firstName}.</h3>
-                                        {account._id == profileID ? <a href="/profile/diveReports">Add a Dive Report</a> : null }
+                                        {!userId ? <a href="/diveReports">Add a Dive Report</a> : null }
                                             {/* <span onClick={() =>  
                                                 setAuthDrawer({
                                                     open: true,
@@ -304,6 +312,7 @@ const ProfileView = () => {
                             {favourites.length <= 0 && (
                                 <div className={classes.noFavourites}>
                                     <h3>{firstName} has not added any favourites.</h3>
+                                    {!userId ? <a href="/favourites">Go to favourites</a> : null }
                                 </div>
                             )}
                         </div>

@@ -343,93 +343,6 @@
 
         .favourites {
 
-            // .favouriteContainer {
-            //     display: grid;
-            //     grid-template-rows: repeat(4, max-content);
-            //     grid-template-columns: max-content 1fr 5rem;
-            //     padding: 1rem 0rem;
-
-            //     border-bottom: 1px solid $color-lines;
-
-            //     &__pointContainer, &__nameContainer, &__descriptionContainer, &__ratingContainer {
-            //         padding-left: 1rem;
-            //     }
-
-            //     &__imageContainer {
-            //         grid-row: 1 / -1;
-            //         grid-column: 1 / 2;
-            //         border-radius: 5px;
-            //         overflow: hidden;
-                    
-            //         .image {
-            //             // width: 200px;
-            //             // height: 150px;
-            //             width: 25rem;
-            //             height: 100%;
-            //             object-fit: cover;
-            //             transition: .5s ease;
-
-            //             &:hover {
-            //                 transform: scale(1.2);
-            //             }
-            //         }
-            //     }
-
-            //     &__pointContainer {
-            //         grid-row: 1 / 2;
-            //         grid-column: 2 / 3;
-
-            //         .point {
-            //             font-size: 1.4rem;
-            //         }
-        
-            //     }
-
-            //     &__nameContainer {
-            //         grid-row: 2 / 3;
-            //         grid-column: 2 / 3;
-
-            //         .name {
-            //             font-size: 2rem;
-            //         }
-            //     }
-
-            //     &__descriptionContainer {
-            //         grid-row: 3 / 4;
-            //         grid-column: 2 / 3;
-
-            //         .description {
-            //             font-size: 1.2rem;
-            //         }
-            //     }
-
-            //     &__ratingContainer {
-            //         grid-row: 4 / 5;
-            //         grid-column: 2 / 3;
-            //     }
-
-            //     &__moreContainer {
-            //         grid-row: 4 / 5;
-            //         grid-column: 3 / 4;
-            //         display: flex;
-            //         align-items: center;
-
-            //         .more {
-            //             font-size: 1.4rem;
-            //             color: $color-black;
-            //             position: relative;
-            //             z-index: 25;
-                        
-            //             &:hover {
-            //                 color: $color-text-blue;
-            //                 text-decoration: underline;
-            //             }
-                       
-            //         }
-        
-            //     }
-
-            // }
 
             .noFavourites {
                 width: 100%;
@@ -438,14 +351,37 @@
                 box-shadow: 2px 2px 5px rgba($color-black, .25);
                 border-radius: 1rem;
                 display: flex;
+                flex-direction: column;
                 justify-content: center;
                 align-items: center;
 
+                font-family: $font-1-style;
+                font-weight: $font-med;
+                color: $color-black;
+
                 h3 {
                     font-size: 2rem;
-                    font-family: $font-1-style;
-                    font-weight: $font-med;
+                    margin-bottom: 2rem;
                 }
+
+                a, span {
+                    color: $color-white;
+                    background: $color-btn-primary;
+                    padding: 1.2rem 3.5rem;
+                    border-radius: 7px;
+                    font-size: 1.4rem;
+                    font-weight: 600;
+                    text-decoration: none;
+                    transition: .3s ease;
+                    box-shadow: 0px 0px 0px rgba($color-black, .25);
+    
+                    &:hover {
+                        transform: translateY(-3px);
+                        box-shadow: 0px 4px 10px rgba($color-black, .25);
+    
+                    }
+                }
+    
             }
         }
 

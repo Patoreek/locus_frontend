@@ -154,7 +154,7 @@ const GuestMap = (props) => {
                             <div className={classes.site__nameContainer}>
                                 <h5  className={classes.name}>
                                 <a href={"/divesite/" + selectedSite._id}>
-                                        <span>{selectedSite.name} · {selectedSite.area}, {selectedSite.country}</span>
+                                        <span>{selectedSite.name} · {selectedSite.suburb}</span>
                                 </a>
                                 </h5>
                                 

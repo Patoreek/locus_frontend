@@ -16,7 +16,7 @@ import SignupView from './containers/SignupView/SignupView';
 import FavouritesView from './containers/FavouritesView/FavouritesView';
 import ProfileView from './containers/ProfileView/ProfileView';
 import ViewProfileView from './containers/ViewProfileView/ViewProfileView';
-import EditProfileView from './containers/EditProfileView/EditProfileView';
+import EditProfile from './containers/EditProfile/EditProfile';
 import AddRequest from './containers/AddRequest/AddRequest';
 import ChangePassword from './containers/ChangePassword/ChangePassword';
 import DiveReports from './containers/DiveReports/DiveReports';
@@ -106,8 +106,8 @@ function App() {
             
             <Route path="/favourites" exact component={FavouritesView}/>
             <Route path="/profile" exact component={ProfileView}/>
-            <Route path="/profile/diveReports" exact component={DiveReports}/>
-            <Route path="/editprofile" exact component={EditProfileView}/>
+            <Route path="/diveReports" exact component={DiveReports}/>
+            <Route path="/editprofile" exact component={EditProfile}/>
     
             <Route path="/map" exact component={GuestView}/>
             <Route path="/divesite/:id" component={DetailsView}/>

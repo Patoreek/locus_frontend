@@ -223,7 +223,7 @@ const MySitesMap = () => {
                             <div className={classes.site__nameContainer}>
                                 <h5  className={classes.name}>
                                 <a href={"/divesite/" + selectedSite._id}>
-                                        {selectedSite.name}, {selectedSite.area}
+                                        {selectedSite.name}, {selectedSite.suburb}
                                 </a>
                                 </h5>
                                 

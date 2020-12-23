@@ -2,12 +2,14 @@ import React, {useState, useEffect} from 'react';
 import classes from './CommunityPhotos.module.scss';
 
 import DisplayImage from '../../components/DisplayImage/DisplayImage';
+import Spinner from '../../components/Spinner/Spinner';
+
 
 const CommunityPhotos = (props) => {
     const siteId = props.match.params.siteId;
 
     const [communityImages, setCommunityImages] = useState([]);
-    const [site, setSite] = useState(null);
+    const [site, setSite] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
     const [leftColImages, setLeftColImages] = useState([]);
@@ -47,7 +49,7 @@ const CommunityPhotos = (props) => {
                             userLastName: image.userLastName,
                             siteId: image.siteId,
                             siteName: image.siteName,
-                            siteArea: image.siteArea,
+                            siteSuburb: image.siteSuburb,
                             siteCountry: image.siteCountry,
                             reportDate: image.reportDate,
                         });
@@ -59,7 +61,7 @@ const CommunityPhotos = (props) => {
                             userLastName: image.userLastName,
                             siteId: image.siteId,
                             siteName: image.siteName,
-                            siteArea: image.siteArea,
+                            siteSuburb: image.siteSuburb,
                             siteCountry: image.siteCountry,
                             reportDate: image.reportDate,
                         });
@@ -71,7 +73,7 @@ const CommunityPhotos = (props) => {
                             userLastName: image.userLastName,
                             siteId: image.siteId,
                             siteName: image.siteName,
-                            siteArea: image.siteArea,
+                            siteSuburb: image.siteSuburb,
                             siteCountry: image.siteCountry,
                             reportDate: image.reportDate,
                         });
@@ -102,8 +104,18 @@ const CommunityPhotos = (props) => {
 
     },[]);
 
+    useEffect(() => {
+        if (!site){
+          document.title = "Locus - Photos";
+        } else {
+          document.title = "Locus - Photos - " + site.name + " · " + site.area;
+        }
+      }, [isLoading]);
+
     const previewImageHandler = (image) => {
         setPreviewImage(image);
+        console.log('handler....');
+        console.log(image);
         setShowPreview(true);
     }
  
@@ -111,20 +123,24 @@ const CommunityPhotos = (props) => {
         <div className={classes.communityPhotos}>
             {!isLoading && (
                 <div className={classes.communityPhotos__locationHeaderContainer}>
-                    <h1>{site.name}, {site.area}, {site.country}</h1>
+                    <h1>{site.name} · {site.suburb} · {site.city} · {site.state} · {site.country}</h1>
                 </div>
             )}
             {!isLoading ? 
                 <h2 className={classes.communityPhotos__pageHeaderContainer}>Community Photos ({communityImages.length > 100 ? "100+" : communityImages.length})</h2> 
                         :  
-                <h2 className={classes.communityPhotos__pageHeaderContainer}>Community Photos (err)</h2>
+                <h2 className={classes.communityPhotos__pageHeaderContainer}>Community Photos (0)</h2>
             }
              {!isLoading && (
                 <div className={classes.communityPhotos__googleLinks}>
                     <span>
                         <a target="_blank" href={"http://www.google.com/search?q=" + site.name}>{site.name}</a> 
                         ·
-                        <a target="_blank" href={"http://www.google.com/search?q=" + site.area}>{site.area}</a> 
+                        <a target="_blank" href={"http://www.google.com/search?q=" + site.suburb}>{site.suburb}</a> 
+                        ·
+                        <a target="_blank" href={"http://www.google.com/search?q=" + site.city}>{site.city}</a> 
+                        ·
+                        <a target="_blank" href={"http://www.google.com/search?q=" + site.state}>{site.state}</a> 
                         ·
                         <a target="_blank" href={"http://www.google.com/search?q=" + site.country}>{site.country}</a> 
                     </span>
@@ -163,6 +179,12 @@ const CommunityPhotos = (props) => {
                     </div>
                 </div>
             )}
+
+            {isLoading && (
+                <div className={classes.spinnerContainer}>
+                <Spinner/>
+                </div>
+          )}
             
 
             {showPreview && (

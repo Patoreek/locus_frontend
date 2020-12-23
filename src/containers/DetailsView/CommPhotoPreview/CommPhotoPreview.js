@@ -37,7 +37,7 @@ const CommPhotoPreview = (props) => {
                             userLastName: image.userLastName,
                             siteId: image.siteId,
                             siteName: image.siteName,
-                            siteArea: image.siteArea,
+                            siteSuburb: image.siteSuburb,
                             siteCountry: image.siteCountry,
                             reportDate: image.reportDate,
                     })
@@ -62,6 +62,7 @@ const CommPhotoPreview = (props) => {
     }, []);
 
     const imageHandler = (image) => {
+      console.log(image);
         setSelectedImage(image);
         setEnlargeImage(true);
     }
@@ -76,13 +77,11 @@ const CommPhotoPreview = (props) => {
           {!images == [] && (
             <div>
               <div className={classes.sliderContainer}>
-              <div className={classes.slider}>
               {images.map(image => (
                   <div className={classes.imageContainer}>
                       <img src={'http://localhost:8080/' + image.image} className={classes.imageContainer__image} onClick={() => imageHandler(image)}/>
                   </div>
               ))}
-              </div>
               </div>
 
               {enlargeImage && (

@@ -67,11 +67,17 @@ const DiveReportList = (props) => {
     return (
         <div className={classes.diveReportList}>
             <div className={classes.diveReportList__titleContainer}>
-                <h2 className={classes.title}>Dive Reports</h2>
-                <AddSVG className={classes.addBtn} onClick={addHandler}/>
+                <h2 className={classes.title}>Dive Reports · ({props.diveReports.length > 0 ? props.diveReports.length : "0"})</h2>
+                {/* <AddSVG className={classes.addBtn} onClick={addHandler}/> */}
             </div>
             
                 <div>
+                    <div className={classes.diveReportList__addContainer} onClick={addHandler}>
+                        <span className={classes.addReportText}>Add a new report</span>
+                        <div className={classes.addSVG}>
+                        <AddSVG className={classes.addBtn} onClick={addHandler}/>
+                        </div>
+                    </div>
                     {props.diveReports.map(report => (
                             <div className={classes.diveReportList__reportContainer}>
                                 <div className={classes.locationContainer} onClick={() => previewHandler(report._id)}>

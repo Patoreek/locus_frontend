@@ -27,7 +27,9 @@ const CreateSiteForm = (props) => {
 
 
     const [name, setName] = useState("");
-    const [area, setArea] = useState("");
+    const [suburb, setSuburb] = useState(null);
+    const [city, setCity] = useState(null);
+    const [state, setState] = useState(null);
     const [country, setCountry] = useState("");
     const [description, setDescription] = useState("");
     const [experience, setExperience] = useState();
@@ -57,7 +59,9 @@ const CreateSiteForm = (props) => {
                 diveSite: {
                     userId: account.id,
                     name: name,
-                    area: area,
+                    suburb: suburb,
+                    city: city,
+                    state: state,
                     country: country,
                     latitude: coordsLat,
                     longitude: coordsLng,
@@ -114,7 +118,7 @@ const CreateSiteForm = (props) => {
 
 
         console.log('Name:' + name);
-        console.log('Area:' + area);
+        console.log('Area:' + suburb);
         console.log('Country:' + country);
         console.log('Description:' + description);
         console.log('Site Type:' + siteType);
@@ -153,13 +157,30 @@ const CreateSiteForm = (props) => {
                         <span className={classes.label}>Name</span>
                     </div>
                     
-                    <div className={classes.form__areaContainer}>
-                        <input className={`${classes.input} ${classes.input__area}`}
-                                //placeholder="Area / Suburb"
-                                value={area}
-                                onChange={e => setArea(e.target.value)} />
-                        <span>Area</span>
+                    <div className={classes.form__suburbContainer}>
+                        <input className={`${classes.input} ${classes.input__suburb}`}
+                                //placeholder="suburb / Suburb"
+                                value={suburb}
+                                onChange={e => setSuburb(e.target.value)} />
+                        <span>Suburb</span>
                     </div>
+
+                    <div className={classes.form__cityContainer}>
+                        <input className={`${classes.input} ${classes.input__city}`}
+                                //placeholder="city / city"
+                                value={city}
+                                onChange={e => setCity(e.target.value)} />
+                        <span>City</span>
+                    </div>
+
+                    <div className={classes.form__stateContainer}>
+                        <input className={`${classes.input} ${classes.input__state}`}
+                                //placeholder="state / state"
+                                value={state}
+                                onChange={e => setState(e.target.value)} />
+                        <span>State</span>
+                    </div>
+
                     <div className={classes.form__countryContainer}>
                         <input className={`${classes.input} ${classes.input__country}`}
                                 //placeholder="Country"

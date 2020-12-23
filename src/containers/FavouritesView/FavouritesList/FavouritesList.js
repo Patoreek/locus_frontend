@@ -20,6 +20,9 @@ import EllipsesButton from '../../../components/Buttons/EllipsesButton/EllipsesB
 
 import DivesiteListingPanel from '../../../components/Divesite/DivesiteListingPanel/DivesiteListingPanel';
 
+//import {ReactComponent as HeartSVG} from '../../../assets/icons/heart_outline.svg';
+import { MdFavoriteBorder } from 'react-icons/md';
+
 
 const FavouritesList = (props) => {
 
@@ -41,11 +44,21 @@ const FavouritesList = (props) => {
     return (
         <div className={classes.favouritesList}>
             <h1 className={classes.favouritesList__header}>Favourites · {favourites.length} Dive sites</h1> {/* {account.username}'s  */}
+             {favourites.length <= 0 && (
+                <div className={classes.noFavourites}>
+                    <h3 className={classes.noFavourites__title}>No Favourites!</h3>
+                    <p className={classes.noFavourites__text}>Visit a dive site and press the <MdFavoriteBorder className={classes.noFavourites__icon}/> to add the site to your favourites</p>
+                    <a href="/map" className={classes.noFavourites__btn}>Explore now!</a>
+                </div>
+            )}
+            {favourites.length > 0 && (
             <div className={classes.favourites}>
                             {favourites.map(favourite => (
                                 <DivesiteListingPanel site={favourite}/>
                             ))}
             </div>
+            )}
+
         </div>
     );
 };

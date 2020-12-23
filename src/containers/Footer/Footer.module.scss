@@ -9,6 +9,7 @@
     grid-template-rows: repeat(3, max-content);
     grid-template-columns: 30rem 1fr 30rem;
     padding: 2rem 5rem;
+    transform: translateY(-.4rem);
 
     .logoContainer {
         grid-row: 1 / 2;

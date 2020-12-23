@@ -37,6 +37,8 @@ const GuestView = () => {
         //setIsAuth(false);
         useEffect(() => {
 
+            document.title = "Locus - Map";
+
             if (isMobile) {
                 setMapSize("100vw");
                 setPanelSize("0vw");

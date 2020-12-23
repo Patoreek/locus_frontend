@@ -12,7 +12,7 @@ import { AuthContext,
 import { AddRequestContext, SiteListContext } from '../../context/UserContext';
 
 
-import { useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import Map from '../../components/Map/Map';
 import classes from './AddRequest.module.scss';
@@ -44,6 +44,9 @@ const AddRequest = (props) => {
         useEffect(() => {
             console.log('In add request.');
             setShowSiteList(false);
+
+            document.title = "Locus - Add Site Request";
+           
     
             // if (!isLoading){
                 // console.log('[UserView] isBusy in IF = ' + isLoading);
@@ -59,7 +62,7 @@ const AddRequest = (props) => {
 
                 }
            // }
-        }, [])
+        }, []);
         
 
         const onMapClick = (event) => {

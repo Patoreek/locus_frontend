@@ -6,7 +6,7 @@ import classes from './DisplayReport.module.scss';
 
 import { ReactComponent as VisibilitySVG } from '../../assets/icons/visibility.svg';
 import { ReactComponent as DateSVG } from '../../assets/icons/calendar.svg';
-import { ReactComponent as LocationSVG } from '../../assets/icons/location.svg';
+import { ReactComponent as LocationSVG } from '../../assets/icons/location_default.svg';
 import { ReactComponent as DurationSVG } from '../../assets/icons/time.svg';
 
 import DisplayImage from '../DisplayImage/DisplayImage';
@@ -26,7 +26,7 @@ const DisplayReport = (props) => {
         return  (
           <div className={classes.date}>
             <DateSVG className={classes.icon}/>
-            <span>Dived on: {convertedDate}</span> 
+            <span>{convertedDate}</span> 
           </div>
         );
   
@@ -42,7 +42,7 @@ const DisplayReport = (props) => {
         const lastName = report.userId.lastName;
         const siteId = report.siteId._id;
         const siteName = report.siteId.name;
-        const siteArea = report.siteId.area;
+        const siteSuburb = report.siteId.suburb;
         const siteCountry = report.siteId.country;
         const date = report.createdAt;
 
@@ -53,7 +53,7 @@ const DisplayReport = (props) => {
             userLastName: lastName,
             siteId: siteId,
             siteName: siteName,
-            siteArea: siteArea,
+            siteSuburb: siteSuburb,
             siteCountry: siteCountry,
             reportDate: date,
         })
@@ -78,7 +78,7 @@ const DisplayReport = (props) => {
                             <div className={classes.report__infoContainer}>
                                   <div className={classes.location}>
                                       <LocationSVG className={classes.icon}/>
-                                      <a href={"/divesite/" + report.siteId._id}>{report.siteId.name}, {report.siteId.area}, {report.siteId.country}</a>
+                                      <a href={"/divesite/" + report.siteId._id}>{report.siteId.name}, {report.siteId.suburb}, {report.siteId.country}</a>
                                   </div>
                                   <div className={classes.visibility}>
                                       <VisibilitySVG className={classes.icon}/>

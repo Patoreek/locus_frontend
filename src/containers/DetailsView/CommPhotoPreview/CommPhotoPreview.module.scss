@@ -6,26 +6,37 @@
     width: 100%;
     padding: 0rem 0.25rem;
     height: 17rem;
+    overflow-y: hidden;
+    overflow-x: scroll;
 
     .sliderContainer {
         position: absolute;
-        width: 100%;
+        //width: 100%;
         top: 0;
         left: 0;
         //background: red;
         overflow: scroll;
-        .slider {
-            display: flex;
-        }
+        display: flex;
+        
 
         .imageContainer {
             margin: 0.5rem 0.25rem;
-    
+            border-radius: 1rem;
+            overflow: hidden;        
             &__image {
+                width: 25rem;
                 height: 15rem;
                 object-fit: cover;
+                transition: .4s ease;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
             }
         }
+        
+
+        
     }
 
     .noCommPhotos {

@@ -14,7 +14,9 @@
 position: relative;
 width: 100vw;
 overflow: hidden;
-float: right;
+//float: right;
+display: flex;
+flex-direction: column;
 transition: .3s ease;
 //background-color: #2A85DA;
 }

@@ -14,7 +14,7 @@
     background: $color-white-pure;
     margin: 0.75rem 0rem;
     padding: 1rem;
-    border-radius: 7px;
+    border-radius: 1rem;
     box-shadow: 2px 2px 5px rgba($color-black, .25);
     position:relative;
 
@@ -36,8 +36,8 @@
     &__imageContainer {
         grid-row: 1 / -1;
         grid-column: 1 / 2;
-        border: 1px solid $image-border-color-infoPanel;
-        border-radius: 3px;
+        border: 1px solid $color-lines;
+        border-radius: 1rem;
         overflow: hidden;
         margin-right: 2rem;
 

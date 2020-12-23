@@ -47,10 +47,14 @@ const DiveReports = () => {
             //setIsLoading(null);
             }
         }
-      
+
+        document.title = "Locus - Dive Reports";
+
         getReports();
 
     }, []);
+
+    
 
     const findReport = (id, handlerType) => {
         setIsLoading(true);

@@ -30,12 +30,14 @@ const FavouritesView = () => {
 
 
     useEffect(() => {
-        
+            document.title = "Locus - Favourites";
           getFavourites(setIsLoading);
-    },[])
+    },[]);
+
 
     return (
         <div className={classes.favouritesPage}>
+
             {!isLoading && (
                 <div className={classes.favouritesContainer}>  
         

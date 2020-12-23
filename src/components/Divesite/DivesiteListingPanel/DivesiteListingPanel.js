@@ -62,7 +62,7 @@ const DivesiteListingPanel = (props) => {
                     <div className={classes.site__nameContainer}>
                         <h5  className={classes.siteName}>
                             <a href={"/divesite/" + site._id} target="_blank" rel="noopener noreferrer">
-                                {site.name}, {site.area}
+                                {site.name}, {site.suburb}
                             </a>
                         </h5>
                     </div>

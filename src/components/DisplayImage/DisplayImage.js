@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './DisplayImage.module.scss';
 
 import { ReactComponent as CloseSVG } from '../../assets/icons/close.svg';
@@ -9,6 +9,13 @@ import { format } from 'date-fns';
 const DisplayImage = (props) => {
 
     const image = props.image;
+    const site  = props.site;
+    const suburb = props.suburb;
+
+    useEffect(() => {
+        console.log(site);
+
+    }, []);
 
     const dateHandler = (reportDate) => {
 
@@ -26,20 +33,23 @@ const DisplayImage = (props) => {
                 </div>
                      <div className={classes.imageContainer}>
                         <CloseSVG className={classes.closeSVG} onClick={() => props.setEnlargeImage(false)}/>
-                        <img src={'http://localhost:8080/' + image.image}/>
+                        <img src={image.image ? 'http://localhost:8080/' + image.image : 'http://localhost:8080/' + image}/>
                         <div className={classes.textContainer}>
-                            <div className={classes.textContainer__nameContainer}>
-                            <span>Uploaded by </span><a href={"/viewprofile/" + image.userId} className={classes.name}>
-                                     {image.userFirstName} {image.userLastName}
-                                </a>
-                            </div>
+                                {image.userId && (
+                                    <div className={classes.textContainer__nameContainer}>
+                                        <span>Uploaded by </span>
+                                            <a href={"/viewprofile/" + image.userId} className={classes.name}> 
+                                                {image.userFirstName} {image.userLastName}
+                                            </a>
+                                    </div>
+                                )} 
                             <div className={classes.textContainer__locationContainer}>
                                 <a href={"/divesite/" + image.siteId} className={classes.location}>
-                                    {image.siteName}, {image.siteArea}, {image.siteCountry}
+                                    {image.siteName ? image.siteName : site.name}, {image.siteSuburb ? image.siteSuburb : site.siteSuburb} {suburb ? suburb : null}, {image.siteCountry ? image.siteCountry : site.country}
                                 </a>
                             </div>
                             <div className={classes.textContainer__dateContainer}>
-                                {dateHandler(image.reportDate)}
+                                {image.reportDate ? dateHandler(image.reportDate) : null}
                             </div>
                         </div>
                      </div>

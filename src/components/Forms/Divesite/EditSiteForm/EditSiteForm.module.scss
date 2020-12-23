@@ -137,8 +137,9 @@
     }   
 
     &__nameContainer, 
-    &__areaContainer, 
+    &__suburbContainer, 
     &__cityContainer,
+    &__stateContainer,
     &__countryContainer, 
     &__descriptionContainer, 
     .accessContainer, 
@@ -204,24 +205,37 @@
         
     }
 
-    &__areaContainer {
+    &__suburbContainer {
         grid-row: 3 / 4;
         grid-column: 1 / 2;
         
     }
+
+    &__cityContainer {
+        grid-row: 3 / 4;
+        grid-column: 2 / 3;
+        
+    }
+
+    &__stateContainer {
+        grid-row: 4 / 5;
+        grid-column: 1 / 2;
+        
+    }
+
     &__countryContainer {
-        grid-row: 3/ 4;
+        grid-row: 4 / 5;
         grid-column: 2 / 3;
         
     }
 
     &__uploadContainer {
-        grid-row: 4 / 5;
+        grid-row: 5 / 6;
         grid-column: 1 / -1;
     }
 
     &__descriptionContainer {
-        grid-row: 5 / 6;
+        grid-row: 6 / 7;
         grid-column: 1 / -1;
     }
 

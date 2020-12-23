@@ -44,7 +44,9 @@ $color-footer-text: #9C9C9C;
 //* BUTTON COLORS
 $color-btn-primary: linear-gradient(to bottom, #0863CE, #0870EA);
 $color-btn-cancel: #F4F4F4;
-$color-btn-add: linear-gradient(to bottom, #0ead23, #1aaa2d);
+//$color-btn-add: linear-gradient(to bottom, #0ead23, #1aaa2d);
+$color-btn-add: linear-gradient(to bottom, rgba(#2be043, .75), rgba(#15d12e, .75));
+
 $color-btn-delete: linear-gradient(to bottom, #DC0101, #CD2626);
 
 
