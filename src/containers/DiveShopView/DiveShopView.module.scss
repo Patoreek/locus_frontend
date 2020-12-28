@@ -10,21 +10,22 @@
 
     .banner {
         width: 100%;
-        height: 30rem;
+        height: 40rem;
         //background: orange;
 
         img {
             width: 100%;
             height: 100%;
+            object-position: center;
             object-fit: cover;
         }
     }
+
 
    .mainGrid {
        margin: 0 auto;
        max-width: 1400px;
        padding: 0rem 15rem 10rem 15rem;
-
        display: grid;
        grid-template-rows: max-content max-content;
        grid-template-columns: 1fr;
@@ -41,12 +42,13 @@
                 //background: lawngreen;
 
                 
-
+                background: white;
                 border-radius: 50%;
                 overflow: hidden;
                 transform: translateY(-7rem);
                 width: 20rem;
                 height: 20rem;
+                border: 2px solid rgba($color-lines, .3);
 
                 img {
                     width: 100%;
@@ -134,7 +136,7 @@
                     background: $color-white-pure;
                     padding: 1.5rem 2.5rem;
                     box-shadow: 2px 2px 10px rgba($color-black, .25);
-                    border-radius: 10px;
+                    border-radius: 1rem;
                     overflow: hidden;
 
                     h3 {
@@ -150,12 +152,18 @@
                 grid-row: 1 / -1;
                 grid-column: 2 / 3;
                 padding: 1rem;
-
+                display: grid;
+                grid-template-rows: max-content max-content;
+                grid-template-columns: 1fr;
+            
                 &__contactInfo {
+                    grid-row: 1 / 2;
+                    grid-column: 1 / -1;
+
                     background: $color-white-pure;
                     padding: 1.5rem 2.5rem;
                     box-shadow: 2px 2px 10px rgba($color-black, .25);
-                    border-radius: 10px;
+                    border-radius: 1rem;
                     overflow: hidden;
 
                     .titleContainer {
@@ -215,6 +223,28 @@
                         padding: 1rem;
                 
                     }
+                }
+
+                &__mapHeader {
+                    grid-row: 2 / 3;
+                    grid-column: 1 / -1;
+                    margin-top: 2rem;
+                    padding-left: 1rem;
+                    font-size: 1.8rem;
+                    font-family: $font-1-style;
+                    font-weight: $font-med;
+                    color: $color-black;
+                }
+
+                &__map {
+                    margin-top: 1rem;
+                    grid-row: 3 / 4;
+                    grid-column: 1 / -1;
+                    background: orange;
+                    height: 30rem;
+                    box-shadow: 2px 2px 10px rgba($color-black, .25);
+                    border-radius: 1rem;
+                    overflow: hidden;
                 }
             }
 

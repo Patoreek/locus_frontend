@@ -1,0 +1,41 @@
+@import "../../../sass/abstracts/variables";
+
+.policy {
+    padding: 3rem 0rem;
+
+    .header {
+        font-size: 2.5rem;
+        font-family: $font-1-style;
+        font-weight: $font-bold;
+        color: $color-black;
+        padding-bottom: 1rem;
+    }
+
+    .paragraph {
+        font-size: 1.8rem;
+        font-family: $font-3-style;
+        font-weight: $font-normal;
+        color: $color-text-darkergrey;
+    }
+
+    &__header {
+        .mainHeader {
+            font-size: 3.5rem;
+            font-family: $font-1-style;
+            font-weight: $font-bold;
+            color: $color-black;
+        }
+    }
+
+    &__terms, 
+    &__collect, 
+    &__share, 
+    &__protect, 
+    &__rights, 
+    &__website, 
+    &__changes, 
+    &__contact {
+        padding: 1rem 0rem; 
+    }
+
+}

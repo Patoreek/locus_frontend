@@ -47,7 +47,7 @@
 
         }
 
-        &__area {
+        &__suburb {
             
         }
 
@@ -119,7 +119,7 @@
     }   
 
     &__nameContainer, 
-    &__areaContainer, 
+    &__suburbContainer, 
     &__cityContainer,
     &__countryContainer, 
     &__addressContainer, 
@@ -177,7 +177,7 @@
         
     }
 
-    &__areaContainer {
+    &__suburbContainer {
         grid-row: 3 / 4;
         grid-column: 1 / 2;
         

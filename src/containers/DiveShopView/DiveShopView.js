@@ -5,7 +5,7 @@ import classes from './DiveShopView.module.scss';
 
 import {ReactComponent as PhoneSVG} from '../../assets/icons/phone.svg';
 import {ReactComponent as EmailSVG} from '../../assets/icons/email.svg';
-import {ReactComponent as LocationSVG} from '../../assets/icons/location.svg';
+import {ReactComponent as LocationSVG} from '../../assets/icons/location_default.svg';
 import {ReactComponent as WebsiteSVG} from '../../assets/icons/global.svg';
 import {ReactComponent as FacebookSVG} from '../../assets/icons/facebook.svg';
 import {ReactComponent as InstagramSVG} from '../../assets/icons/instagram.svg';
@@ -14,12 +14,16 @@ import {ReactComponent as TwitterSVG} from '../../assets/icons/twitter.svg';
 import DivesiteListingPanel from '../../components/Divesite/DivesiteListingPanel/DivesiteListingPanel';
 import Spinner from '../../components/Spinner/Spinner';
 
+import DisplayImage from '../../components/DisplayImage/DisplayImage';
+import GoogleMapLocation from '../../components/LocationMap/GoogleMapLocation';
+
 
 const DiveShopView = (props) => {
 
     const shopId = props.match.params.id;
 
     //TODO: ADD STATE, SET STATE FROM API, RENDER TO DOM
+    const [shop, setShop] = useState();
     const [name, setName] = useState();
     const [area, setArea] = useState();
     const [country, setCountry] = useState();
@@ -35,6 +39,11 @@ const DiveShopView = (props) => {
     const [diveSites, setDiveSites] = useState([]);
 
     const [isLoading, setIsLoading] = useState(true);
+
+    const [englargeBanner, setEnlargeBanner] = useState(false);
+    const [englargeLogo, setEnlargeLogo] = useState(false);
+
+    
     //? associated dive sites
     //? trading hours
 
@@ -53,7 +62,7 @@ const DiveShopView = (props) => {
             //   const site = results.site;
   
               const shop = results.shop;
-              
+              setShop(shop);
               setName(shop.name);
               setArea(shop.area);
               setCountry(shop.country);
@@ -93,12 +102,14 @@ const DiveShopView = (props) => {
         <div>
         {!isLoading && (
             <div className={classes.diveShop}>
-                    <div className={classes.banner}>
-                        <img src={"http://localhost:8080/" + banner} width="550px" height="250px" />
+                    {englargeBanner ? <DisplayImage banner={banner} shop={shop} setEnlargeImage={setEnlargeBanner}/> : null }
+                    {englargeLogo ? <DisplayImage logo={logo} shop={shop} setEnlargeImage={setEnlargeLogo}/> : null }
+                    <div className={classes.banner} onClick={() => setEnlargeBanner(true)}>
+                        <img src={"http://localhost:8080/" + banner} />
                     </div>
                     <div className={classes.mainGrid}>
                         <div className={classes.mainGrid__topContainer}>
-                            <div className={classes.imageContainer}>
+                            <div className={classes.imageContainer} onClick={() => setEnlargeLogo(true)}>
                                 <img src={"http://localhost:8080/" + logo}/>
                             </div>
                             <div className={classes.shopInfo}>
@@ -136,35 +147,48 @@ const DiveShopView = (props) => {
                                     </div>
                                     <div className={classes.phoneContainer}>
                                         <PhoneSVG className={`${classes.icon} ${classes.icon__phone}`}/>
-                                        <a href={"tel:" + phone}>{phone}</a>
+                                        <a href={"tel:" + phone}>{phone ? phone : 'N/A'}</a>
                                     </div>
                                     <div className={classes.emailContainer}>
                                         <EmailSVG className={`${classes.icon} ${classes.icon__email}`}/>
-                                        <a href={"mailto:" + email}>{email}</a>
+                                        <a href={"mailto:" + email}>{email ? email : 'N/A'}</a>
                                     </div>
                                     <div className={classes.socialsContainer}>
-                                    <div className={classes.socialsContainer__facebookContainer}>
-                                        <a  href={facebook}
-                                        target="_blank"
-                                        rel="noopener noreferrer">
-                                            <FacebookSVG className={`${classes.icon} ${classes.icon__facebook}`}/>
-                                        </a>
-                                    </div>
+                                    {facebook  && (
+                                        <div className={classes.socialsContainer__facebookContainer}>
+                                            <a href={'https://www.facebook.com'+ facebook}
+                                            target="_blank"
+                                            rel="noopener noreferrer">
+                                                <FacebookSVG className={`${classes.icon} ${classes.icon__facebook}`}/>
+                                            </a>
+                                        </div>
+                                    )}
+                                    {instagram  && (
                                     <div className={classes.socialsContainer__instagramContainer}>
-                                        <a  href={instagram}
+                                        <a  href={'https://www.instagram.com'+ instagram}
                                         target="_blank"
                                         rel="noopener noreferrer">
                                             <InstagramSVG className={`${classes.icon} ${classes.icon__instagram}`}/>
                                         </a>
                                     </div>
+                                     )}
+                                    {twitter  && (
                                     <div className={classes.socialsContainer__twitterContainer}>
-                                        <a  href={twitter}
+                                        <a href={'https://www.twitter.com'+ twitter}
                                         target="_blank"
                                         rel="noopener noreferrer">
                                             <TwitterSVG className={`${classes.icon} ${classes.icon__twitter}`}/>
                                         </a>
                                     </div>
+                                    )}
                                 </div>
+                                </div>
+                            
+                                <div className={classes.rightGrid__mapHeader}>
+                                    <h3>Find us here</h3>
+                                </div>
+                                <div className={classes.rightGrid__map}>
+                                    <GoogleMapLocation location={shop}/>
                                 </div>
                             </div>
                         </div>

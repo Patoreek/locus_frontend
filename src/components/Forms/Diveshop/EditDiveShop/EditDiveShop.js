@@ -24,7 +24,7 @@ import {
 const EditDiveShop = () => {
 
     const [name, setName] = useState("");
-    const [area, setArea] = useState(""); //? THIS IS ALSO REFERED AS SUBURB
+    const [suburb, setSuburb] = useState(""); //? THIS IS ALSO REFERED AS SUBURB
     const [country, setCountry] = useState("");
     const [address, setAddress] = useState("");
     const [phone, setPhone] = useState();
@@ -50,7 +50,7 @@ const EditDiveShop = () => {
     useEffect(() => {
 
         setName(selectedShop.name);
-        setArea(selectedShop.area);
+        setSuburb(selectedShop.suburb);
         setCountry(selectedShop.country);
         setAddress(selectedShop.address);
         setPhone(selectedShop.phone);
@@ -58,8 +58,8 @@ const EditDiveShop = () => {
         setWebsite(selectedShop.website);
         setFacebook(selectedShop.facebook);
         setTwitter(selectedShop.twitter);
-        setInstagram(selectedShop.Instagram);
-        setTradingHours(selectedShop.TradingHours);
+        setInstagram(selectedShop.instagram);
+        setTradingHours(selectedShop.tradingHours);
         setAssociatedDiveSites(selectedShop.associatedDiveSites);
 
         async function getSites() {
@@ -76,7 +76,7 @@ const EditDiveShop = () => {
                 sites.site.map(site => {
                     sitesArray.push({
                         value: site._id,
-                        label: site.name + ", " + site.area
+                        label: site.name + ", " + site.suburb
                     });
                 });
                 console.log('CONVERTED ARRAY');
@@ -108,7 +108,7 @@ const EditDiveShop = () => {
                 diveShop: {
                     _id: selectedShop._id,
                     name: name,
-                    area: area,
+                    suburb: suburb,
                     country: country,
                     address: address,
                     phone: phone,
@@ -126,7 +126,8 @@ const EditDiveShop = () => {
             return res.json();
         })
         .then(result => {
-            console.log(result);
+            console.log(result);            
+            window.location.reload();
             
         })
         .catch(err => {
@@ -170,12 +171,12 @@ const EditDiveShop = () => {
                         <span className={classes.label}>Name</span>
                     </div>
                     
-                    <div className={classes.form__areaContainer}>
-                        <input className={`${classes.input} ${classes.input__area}`}
-                                //placeholder="Area / Suburb"
-                                value={area}
-                                onChange={e => setArea(e.target.value)} />
-                        <span>Area</span>
+                    <div className={classes.form__suburbContainer}>
+                        <input className={`${classes.input} ${classes.input__suburb}`}
+                                //placeholder="suburb / Suburb"
+                                value={suburb}
+                                onChange={e => setSuburb(e.target.value)} />
+                        <span>Suburb</span>
                     </div>
                     <div className={classes.form__countryContainer}>
                         <input className={`${classes.input} ${classes.input__country}`}

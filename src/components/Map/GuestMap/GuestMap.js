@@ -72,7 +72,7 @@ const GuestMap = (props) => {
                     onClick={onMarkerClustererClick}
                     averageCenter
                     gridSize={20}
-                    maxZoom={11}
+                    maxZoom={10}
                     defaultZoomOnClick
                 >
                 { diveSites.map(site => ( 
@@ -97,7 +97,7 @@ const GuestMap = (props) => {
                     onClick={onMarkerClustererClick}
                     averageCenter
                     gridSize={20}
-                    maxZoom={11}
+                    maxZoom={10}
                     defaultZoomOnClick
                 >
 
@@ -205,21 +205,25 @@ const GuestMap = (props) => {
                                 <a href={"https://www.google.com/search?q=" + selectedShop.address}
                                     target="_blank"
                                     rel="noopener noreferrer">
-                                    {selectedShop.address}
+                                    {selectedShop.address ? selectedShop.address : 'N/A'}
                                     </a>        
                             </div>
 
                             <div className={classes.shop__phoneContainer}>
                                 {/* Phone Icon */}
                                 <PhoneSVG className={`${classes.icon} ${classes.icon__phone}`}/>
-                                <a href={"tel:" + selectedShop.phone}>{selectedShop.phone}</a>        
+                                <a href={"tel:" + selectedShop.phone}>
+                                {selectedShop.phone ? selectedShop.phone : 'N/A'}
+                                </a>        
                             </div>
 
 
                             <div className={classes.shop__emailContainer}>
                                  {/* Email Icon */}
                                 <EmailSVG className={`${classes.icon} ${classes.icon__email}`}/>
-                                <a href={"mailto:" + selectedShop.email}>{selectedShop.email}</a>        
+                                <a href={"mailto:" + selectedShop.email}>
+                                    {selectedShop.email ? selectedShop.email : 'N/A'}
+                                </a>        
                             </div>
 
                             <div className={classes.shop__websiteContainer}>
@@ -228,8 +232,11 @@ const GuestMap = (props) => {
                                 <a  href={selectedShop.website}
                                     target="_blank"
                                     rel="noopener noreferrer">
-                                    {selectedShop.website}
-                                    </a>        
+                                    {selectedShop.website ? selectedShop.website.replace(/^https?\:\/\//i, "") : null}
+                                    
+                                    {!selectedShop.website ? 'N/A' : null}
+
+                                </a>        
                             </div>
 
                             {/* <div className={classes.socialsContainer}>

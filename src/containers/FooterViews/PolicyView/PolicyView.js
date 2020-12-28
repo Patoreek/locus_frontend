@@ -5,10 +5,11 @@ import classes from './PolicyView.module.scss';
 
 const PolicyView = () => {
     return (
-        <div className={classes.policyPage}>
-            <div className={classes.policyContainer}>
+        <div className={classes.policy}>
+            <div className={classes.policy__header}>
                 <h1 className={classes.mainHeader}> Locus Private Policy</h1>
-
+            </div>
+            <div className={classes.policy__terms}>
                 <h3 className={classes.header}> Terms </h3>
                 <p className={classes.paragraph}>
                     Locus (the “Company”) is committed to maintaining robust privacy 
@@ -25,9 +26,9 @@ const PolicyView = () => {
                     you consent to our collection, storage, use and disclosure of your 
                     personal information as described in this Privacy Policy.
                 </p>
-
-                <hr/>
-
+            </div>
+            <hr/>
+            <div className={classes.policy__collect}>
                 <h3 className={classes.header}>Information we collect</h3>
                 <p className={classes.paragraph}>We collect “Non-Personal Information” and “Personal Information.” Non-Personal 
                     Information includes information that cannot be used to personally identify you,
@@ -63,9 +64,9 @@ const PolicyView = () => {
                      registering, you are authorizing us to collect, store and use your email address
                       in accordance with this Privacy Policy.
                 </p>
-
-                <hr/>
-                
+            </div>
+            <hr/>
+            <div className={classes.policy__share}>
                 <h3 className={classes.header}>How we use and share infomration </h3>
                 <p className={classes.paragraph}>
                 Personal Information:                   
@@ -99,9 +100,9 @@ const PolicyView = () => {
                 the new information practices. We suggest that you check the Site periodically if you
                 are concerned about how your information is used.
                 </p>
-
-                <hr/>
-
+            </div>
+            <hr/>
+            <div className={classes.policy__protect}>
                 <h3 className={classes.header}>How we protect information</h3>
                 <p className={classes.paragraph}>
                 We implement security measures designed to protect your information from unauthorized 
@@ -114,9 +115,9 @@ const PolicyView = () => {
                 breach of such firewalls and secure server software. By using our Service, you acknowledge
                 that you understand and agree to assume these risks.  
                 </p>
-
+            </div>
                 <hr/>
-
+            <div className={classes.policy__rights}>
                 <h3 className={classes.header}> Your Rights regarding the use of your personal information </h3>
                 <p className={classes.paragraph}>
                     You have the right at any time to prevent us from contacting you for 
@@ -130,9 +131,9 @@ const PolicyView = () => {
                     continue to send you administrative emails including, for example, periodic 
                     updates to our Privacy Policy.      
                 </p>
-
-                <hr/>
-
+            </div>
+            <hr/>
+            <div className={classes.policy__websites}>
                 <h3 className={classes.header}> Links to other websites</h3>
                 <p className={classes.paragraph}>
                 As part of the Service, we may provide links to or compatibility with other
@@ -147,9 +148,9 @@ const PolicyView = () => {
                 application. We encourage our users to read the privacy statements of other
                 websites before proceeding to use them.
                 </p>
-
-                <hr/>
-
+            </div>
+            <hr/>
+            <div className={classes.policy__changes}>
                 <h3 className={classes.header}> Changes to our privacy policy </h3>
                 <p className={classes.paragraph}>
                 The Company reserves the right to change this policy and our Terms of Service
@@ -160,23 +161,18 @@ const PolicyView = () => {
                 will take effect immediately. You should periodically check the Site and this privacy
                 page for updates.   
                 </p>
-
-                <hr/>
-
+            </div>
+            <hr/>
+            <div className={classes.policy__contact}>
                 <h3 className={classes.header}> Contact us </h3>
                 <p className={classes.paragraph}>
                     If you have any questions regarding this Privacy Policy or the practices
                     of this Site, please contact us by sending an email to locus@gmail.com
                 </p>
-
-                <hr/>
-
-                <div className={classes.updatedContainer}>
-                    <p className={classes.paragraph}>Last Updated: This Privacy Policy was last updated on 01/05/2020</p>
-                </div>
-
-
-
+            </div>
+            <hr/>
+            <div className={classes.policy__update}> 
+                <p className={classes.paragraph}>Last Updated: This Privacy Policy was last updated on 01/05/2020</p>
             </div>
         </div>
     );

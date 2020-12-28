@@ -81,7 +81,7 @@ const DiveReportList = (props) => {
                     {props.diveReports.map(report => (
                             <div className={classes.diveReportList__reportContainer}>
                                 <div className={classes.locationContainer} onClick={() => previewHandler(report._id)}>
-                                    <h3 className={classes.location}>{report.siteId.name}, {report.siteId.area}</h3>
+                                    <h3 className={classes.location}>{report.siteId.name}, {report.siteId.suburb}</h3>
                                 </div>
                                 <div className={classes.dateContainer} onClick={() => previewHandler(report._id)}>
                                     <span className={classes.date}>{dateHandler(report.createdAt)}</span>

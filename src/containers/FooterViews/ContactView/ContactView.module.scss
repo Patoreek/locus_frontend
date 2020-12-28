@@ -1,0 +1,114 @@
+@import "../../../sass/abstracts/variables";
+
+.contact {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 0rem;
+    &__header {
+        padding: 1rem 0rem;
+
+        .header {
+            font-size: 2.5rem;
+            font-family: $font-1-style;
+            font-weight: $font-bold;
+            color: $color-black;
+
+        }
+    }
+
+    &__content {
+        .content {
+            font-size: 1.8rem;
+            font-family: $font-3-style;
+            font-weight: $font-normal;
+            color: $color-text-darkergrey;
+            padding-bottom: 2rem;
+
+        }
+    }
+
+    &__socials {
+        display: flex;
+        //background:orange;
+        justify-content: space-evenly;
+
+        a {
+
+            .fbIcon, .twitterIcon, .instaIcon {
+                width: 5.5rem;
+                height: 5.5rem; 
+                transition: .2s ease;
+
+                &:hover {
+                    transform: scale(1.05);
+                }
+            }
+            .fbIcon { 
+                fill: #3b5998 !important;
+    
+            }
+
+            .twitterIcon {
+                fill: #00acee !important;
+
+                
+            }
+
+            .instaIcon {
+                fill: #DD2A7B !important;
+
+            }
+        }
+
+    }
+
+    &__email {
+        //background: orange;
+        padding: 3rem 0rem;
+        a {
+            display: flex;
+            align-items: center;
+
+            &:hover {
+                .email {
+                    color: $color-text-blue-hover;
+                }
+                .mailIcon {
+                    transform: scale(1.05);
+                }
+            }
+            .mailIcon {
+                width: 5.5rem;
+                height: 5.5rem; 
+                transition: .2s ease;
+            }
+
+            .email {
+                transform: translateY(.5rem);
+                padding-left: 1.5rem;
+                font-size: 1.8rem;
+                font-family: $font-3-style;
+                font-weight: $font-normal;
+                color: $color-text-darkergrey;
+                transition: .2s ease;
+
+            }
+        }
+    }
+
+    &__about, &__signup, &__explore {
+        padding: .5rem 0rem;
+
+        .text {
+            font-size: 1.8rem;
+            font-family: $font-3-style;
+            font-weight: $font-normal;
+            color: $color-text-darkergrey;
+
+            a {
+
+            }
+        }
+
+    }
+}

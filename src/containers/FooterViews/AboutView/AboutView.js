@@ -4,16 +4,14 @@ import classes from './AboutView.module.scss';
 
 const AboutView = () => {
     return (
-        <div className={classes.aboutUsPage}>
-            <div className={classes.aboutUsPageContainer}>
-                
-                <div className={classes.aboutUsContainer}>
-                    <div className={classes.aboutUsHeaderContainer}>
-                        <h3 className={classes.aboutUsHeader}> About Us</h3>
+            <div className={classes.aboutUsPage}>
+                <div className={classes.aboutUs}>
+                    <div className={classes.aboutUs__header}>
+                        <h3 className={classes.header}> About Us</h3>
                     </div>
 
-                    <div className={classes.aboutUsParagraphContainer}>
-                        <p className={classes.aboutUsParagraph}> 
+                    <div className={classes.aboutUs__text}>
+                        <p className={classes.text}> 
                         describe Locus...
                         Curabitur tempor ex quis tempus dictum. Sed sit amet fermentum tellus. 
                         Phasellus a leo ac justo convallis molestie at sed nisi. Orci varius
@@ -32,13 +30,13 @@ const AboutView = () => {
                     </div>
                 </div>
 
-                <div className={classes.missionContainer}>
-                    <div className={classes.missionHeaderContainer}>
-                        <h3 className={classes.missionHeader}> Mission Statement</h3>
+                <div className={classes.mission}>
+                    <div className={classes.mission__header}>
+                        <h3 className={classes.header}> Mission Statement</h3>
                     </div>
 
-                    <div className={classes.missionParagraphContainer}>
-                        <p className={classes.missionParagraph}> 
+                    <div className={classes.mission__text}>
+                        <p className={classes.text}> 
                         Statement goes here...
                         Curabitur tempor ex quis tempus dictum. Sed sit amet fermentum tellus. 
                         Phasellus a leo ac justo convallis molestie at sed nisi. Orci varius
@@ -57,13 +55,13 @@ const AboutView = () => {
                     </div>
                 </div>
 
-                <div className={classes.overviewContainer}>
-                    <div className={classes.overviewHeaderContainer}>
-                        <h3 className={classes.overviewHeader}>General Overview</h3>
+                <div className={classes.overview}>
+                    <div className={classes.overview__header}>
+                        <h3 className={classes.header}>General Overview</h3>
                     </div>
 
-                    <div className={classes.overviewParagraphContainer}>
-                        <p className={classes.overviewParagraph}> 
+                    <div className={classes.overview__text}>
+                        <p className={classes.text}> 
                         Overview goes here...
                         Curabitur tempor ex quis tempus dictum. Sed sit amet fermentum tellus. 
                         Phasellus a leo ac justo convallis molestie at sed nisi. Orci varius
@@ -82,13 +80,13 @@ const AboutView = () => {
                     </div>
                 </div>
 
-                <div className={classes.guideContainer}>
-                    <div className={classes.guideHeaderContainer}>
-                        <h3 className={classes.guideHeader}>User Guide</h3>
+                <div className={classes.guide}>
+                    <div className={classes.guide__header}>
+                        <h3 className={classes.header}>User Guide</h3>
                     </div>
 
-                    <div className={classes.guideParagraphContainer}>
-                        <p className={classes.guideParagraph}>
+                    <div className={classes.guide__text}>
+                        <p className={classes.text}>
                         User guide goes here...
                         Curabitur tempor ex quis tempus dictum. Sed sit amet fermentum tellus. 
                         Phasellus a leo ac justo convallis molestie at sed nisi. Orci varius
@@ -109,7 +107,6 @@ const AboutView = () => {
 
             
             </div>
-        </div>
     );
 };
 

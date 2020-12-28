@@ -19,6 +19,9 @@ import ToggleButtons from '../ToggleButtons/ToggleButtons';
 import DivesiteListingPanel from '../../../components/Divesite/DivesiteListingPanel/DivesiteListingPanel';
 import DiveshopListingPanel from '../../../components/Diveshop/DiveshopListingPanel/DiveshopListingPanel';
 
+import { ReactComponent as OrangeMarkerSVG } from '../../../assets/icons/location_orange.svg';
+import { ReactComponent as BlueMarkerSVG } from '../../../assets/icons/location_blue.svg';
+
 import classes from './GuestPanel.module.scss';
 
 const GuestPanel = () => {
@@ -61,6 +64,14 @@ const GuestPanel = () => {
     return (
         <div className={classes.guestPanel}>
             <div className={classes.topSection}>
+                <div className={classes.topSection__legend}>
+                    
+                        <span>Dive Site</span>
+                        <BlueMarkerSVG className={classes.marker}/>
+                        <span>Dive Shop</span>
+                        <OrangeMarkerSVG className={classes.marker}/>
+                   
+                </div>
                 <p className={classes.topSection__totalSites}>
                     {diveSites.length} sites  · {locationName ? locationName : null} 
                     {!locationName && !globalLoader.diveshops && !globalLoader.divesites ? geoArea.area + " · " + geoArea.state : null}

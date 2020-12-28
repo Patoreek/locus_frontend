@@ -154,18 +154,15 @@
                 height: 100%;
                 width: 100%;
                 object-fit: cover;
-                //transform: scale(1.1);
-                //margin: 0 auto;
-                //width: 100%;
+                transition: .2s ease;
+                
+                &:hover {
+                    transform: scale(1.1);
+                }
             }
         }
     }
 
-    // &__editContainer {
-    //     .edit {
-
-    //     }
-    // }
 
     &__nameContainer {
         grid-row: 2 / 3;
@@ -192,6 +189,8 @@
         display: flex;
         align-items: center;
         padding: 0rem 1rem;
+        overflow: hidden;
+
         
         a {
             margin-left: 1rem;
@@ -203,7 +202,9 @@
             font-family: $font-3-style;
             font-weight: $font-normal;
 
-
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
 
             &:hover {
                 color: $color-text-blue-hover;
@@ -218,6 +219,9 @@
         display: flex;
         align-items: center;
         padding: 0.5rem 1rem;
+        overflow: hidden;
+
+        
         
         a {
             margin-left: 1rem;
@@ -228,6 +232,10 @@
             color: $color-text-darkergrey;
             font-family: $font-3-style;
             font-weight: $font-normal;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             &:hover {
                 color: $color-text-blue-hover;
             }
@@ -243,6 +251,8 @@
         display: flex;
         align-items: center;
         padding: 0.5rem 1rem;
+        overflow: hidden;
+
         
         a {
             margin-left: 1rem;
@@ -253,6 +263,10 @@
             color: $color-text-darkergrey;
             font-family: $font-3-style;
             font-weight: $font-normal;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             &:hover {
                 color: $color-text-blue-hover;
             }
@@ -267,6 +281,8 @@
         display: flex;
         align-items: center;
         padding: 0.5rem 1rem 2rem 1rem;
+        overflow: hidden;
+
         
         a {
             margin-left: 1rem;
@@ -277,6 +293,10 @@
             color: $color-text-darkergrey;
             font-family: $font-3-style;
             font-weight: $font-normal;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             &:hover {
                 color: $color-text-blue-hover;
             }

@@ -17,14 +17,15 @@ import TermsView from './TermsView/TermsView';
 
 const FooterView = (props) => {    
     return (
-        <div>
+        <div className={classes.footerView}>
+            <div className={classes.page}>
             {props.page == "about" ? <AboutView/> : null}
             {props.page == "news" ? <NewsView/> : null}
             {props.page == "contact" ? <ContactView/> : null}
             {props.page == "sitemap" ? <SitemapView/> : null}
             {props.page == "policy" ? <PolicyView/> : null}
             {props.page == "terms" ? <TermsView/> : null}
-
+            </div>
         </div>
     );
 };

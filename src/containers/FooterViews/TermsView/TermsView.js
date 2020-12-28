@@ -5,10 +5,11 @@ import classes from './TermsView.module.scss';
 
 const TermsView = () => {
     return (
-        <div className={classes.termsPage}>
-            <div className={classes.termsContainer}>
+        <div className={classes.tos}>
+            <div className={classes.tos__header}>
                 <h1 className={classes.mainHeader}> Locus Terms of Service</h1>
-
+            </div>
+            <div className={classes.tos__intro}>
                 <h3 className={classes.header}>Introduction</h3>
                 <p className={classes.paragraph}>
                 Welcome to Leafedout.com (the “Site”). Please review the following Terms of 
@@ -25,11 +26,10 @@ const TermsView = () => {
                 ARE AT LEAST 18 YEARS OLD AND THAT YOU ARE LEGALLY ABLE TO ENTER INTO THIS
                 AGREEMENT.
                 </p>
-
-                <hr/>
-
+            </div>
+            <hr/>
+            <div className={classes.tos__privacy}>
                 <h3 className={classes.header}>Privacy Policy</h3>
-
                 <p className={classes.paragraph}>
                 The Company (LeafedOut) respects the privacy of its Service users. Please 
                 refer to the Company’s Privacy Policy(found in the Privacy/TOS section of 
@@ -37,9 +37,9 @@ const TermsView = () => {
                 pertains to your privacy. When you access or use the Service, you signify 
                 your agreement to this Privacy Policy.
                 </p>
-
-                <hr/>
-
+            </div>
+            <hr/>
+            <div className={classes.tos__services}>
                 <h3 className={classes.header}>About the Services</h3>
 
                 <p className={classes.paragraph}>
@@ -54,12 +54,10 @@ const TermsView = () => {
                 these Third-Party Providers. The Company has no control over the content
                 and performance of these Third-Party Providers.
                 </p>
-
-                <hr/>
-
-
+            </div>
+            <hr/>
+            <div className={classes.tos__rego}>
                 <h3 className={classes.header}>Registration; Rules for user conduct and use of the service</h3>
-
                 <p className={classes.paragraph}>
                 You need to be at least 18 years old and a resident of the United States to 
                 register for and use the Service.
@@ -73,11 +71,10 @@ const TermsView = () => {
                 responsible for any liabilities, losses, or damages arising out of the unauthorized
                 use of your member name, password and/or account.
                 </p>
-
-                <hr/>
-
+            </div>
+            <hr/>
+            <div className={classes.tos__restrictions}>
                 <h3 className={classes.header}>Use Restrictions</h3>
-
                 <p className={classes.paragraph}>
                 Your permission to use the Site is conditioned upon the following Use Restrictions
                 and Conduct Restrictions: You agree that you will not under any circumstances:
@@ -102,9 +99,9 @@ const TermsView = () => {
                 publish or link to malicious content intended to damage or disrupt another user’s
                 browser or computer.
                 </p>
-
-                <hr/>
-
+            </div>
+            <hr/>
+            <div className={classes.tos__conduct}>
                 <h3 className={classes.header}>Posting and Conduct Restrictions</h3>
 
                 <p className={classes.paragraph}> 
@@ -127,12 +124,10 @@ const TermsView = () => {
                 display or misuse of your User Content. The Company does not, and cannot, pre-screen
                 or monitor all User Content
                 </p>
-
-                <hr/>
-
-
+            </div>
+            <hr/>
+            <div className={classes.tos__disclaimer}>
                 <h3 className={classes.header}>Online Content Disclaimer</h3>
-
                 <p className={classes.paragraph}> 
                 Opinions, advice, statements, offers, or other information or content made available 
                 through the Service, but not directly by the Company, are those of their respective 
@@ -158,11 +153,10 @@ const TermsView = () => {
                 or others.. If you become aware of misuse of our Service, please contact us 
                 support@leafedout.com
                 </p>
-
-                <hr/>
-
+            </div>
+            <hr/>
+            <div className={classes.tos__copyright}>
                 <h3 className={classes.header}>Copyright Complaints and Copyright Agent</h3>
-
                 <p className={classes.paragraph}>
                 (a) Termination of Repeat Infringer Accounts. The Company respects the intellectual 
                 property rights of others and requests that the users do the same. Pursuant to 17 U.S.C.
@@ -171,12 +165,12 @@ const TermsView = () => {
                 Service who are repeat infringers. The Company may terminate access for participants or 
                 users who are found repeatedly to provide or post
                 </p>
+            </div>
+            <hr/>
 
-                <hr/>
 
-
+            <div className={classes.tos__intelprop}>
                 <h3 className={classes.header}>Intellectual Property</h3>
-
                 <p className={classes.paragraph}> 
                 You acknowledge and agree that we and our licensors retain ownership of all intellectual
                 property rights of any kind related to the Service, including applicable copyrights, 
@@ -184,24 +178,22 @@ const TermsView = () => {
                 mentioned on the Service may be trademarks of their respective owners. We reserve all
                  rights that are not expressly granted to you under this Agreement.
                 </p>
+            </div>
+            <hr/>
 
-                <hr/>
-
-
+            <div className={classes.tos__email}>
                 <h3 className={classes.header}>Email may not be used to provide notice</h3>
-
                 <p className={classes.paragraph}>
                 Communications made through the Service’s e-mail and messaging system, will not 
                 constitute legal notice to the Company or any of its officers, employees, agents or 
                 representatives in any situation where notice to the Company is required by contract or
                 any law or regulation.
                 </p>
+            </div>
+            <hr/>
 
-                <hr/>
-
-
+            <div className={classes.tos__comms}>
                 <h3 className={classes.header}>User consent to recieve communications in electronic form</h3>
-                
                 <p className={classes.paragraph}>
                 We will not send any unsolicited or thirty party communications to your email.
 
@@ -211,11 +203,10 @@ const TermsView = () => {
                 to you electronically satisfy any legal requirement that such communications would satisfy
                 if it were in writing. The foregoing does not affect your non-waivable rights.
                 </p>
-
-                <hr/>
-
+            </div>
+            <hr/>
+            <div className={classes.tos__warranties}>
                 <h3 className={classes.header}>User warranties, representations, and acknowledgements</h3>
-
                 <p className={classes.paragraph}>
                 You warrant and represent that you are at least 18 years old and that you are legally able to 
                 enter into this Agreement.
@@ -235,10 +226,9 @@ const TermsView = () => {
                 or the results of any interaction with, any Third-Party Provider or Site user, or the features, 
                 functionality or content of their respective websites or applications.
                 </p>
-
-                <hr/>
-
-
+            </div>
+            <hr/>
+            <div className={classes.tos__limitations}>
                 <h3 className={classes.header}>Limitation of damages, release and indemnification</h3>
                 
                 <p className={classes.paragraph}>
@@ -276,12 +266,11 @@ const TermsView = () => {
                 any intellectual property or other right of any person or entity, in each case whether or not
                 caused by the negligence of any Indemnified Party and whether or not the relevant claim has merit.
                 </p>
+            </div>
+            <hr/>
 
-                <hr/>
-
-
+            <div className={classes.tos__warrantyDisclaimer}>
                 <h3 className={classes.header}>Company warranty disclaimer</h3>
-
                 <p className={classes.paragraph}>
                 Please note that this is a beta version of the Site and the Services which is still undergoing
                 final testing before its official release.
@@ -296,12 +285,11 @@ const TermsView = () => {
                 CONTENT OR OTHER MATERIAL OBTAINED FROM THE SITE OR THE SERVICES. SOME JURISDICTIONS LIMIT OR DO 
                 NOT PERMIT DISCLAIMERS OF WARRANTY, SO THIS PROVISION MAY NOT APPLY TO YOU.   
                 </p> 
+            </div>
+            <hr/>
 
-                <hr/>
-
-
+            <div className={classes.tos__modifications}>
                 <h3 className={classes.header}>Modification of Terms of Use</h3>
-
                 <p className={classes.paragraph}>
                 We can amend these Terms of Use at any time and will update these Terms of Use in the event
                 of any such amendments. It is your sole responsibility to check the Site from time to time
@@ -315,12 +303,11 @@ const TermsView = () => {
                 of an officer of the Company. No purported waiver or modification of this Agreement by 
                 the Company via telephonic or email communications shall be valid.
                 </p>
+            </div>
+            <hr/>
 
-                <hr/>
-
-
+            <div className={classes.tos__generalTerms}>
                 <h3 className={classes.header}>General Terms</h3>
-
                 <p className={classes.paragraph}>
                 If any part of this Agreement is held invalid or unenforceable, that portion of the 
                 Agreement will be construed consistent with applicable law. The remaining portions 
@@ -350,13 +337,10 @@ const TermsView = () => {
                 IT SUPERSEDES ANY PROPOSAL OR PRIOR AGREEMENT ORAL OR WRITTEN, AND ANY OTHER 
                 COMMUNICATIONS BETWEEN US RELATING TO THE SUBJECT MATTER OF THIS AGREEMENT.
                 </p>
-
-                <hr/>
-
-
-
-
             </div>
+            <hr/>
+
+
         </div>
     );
 };

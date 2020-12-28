@@ -30,6 +30,9 @@ import DiveshopListingPanel from '../../components/Diveshop/DiveshopListingPanel
 
 import DisplayImage from '../../components/DisplayImage/DisplayImage';
 
+import GoogleMapLocation from '../../components/LocationMap/GoogleMapLocation';
+
+
 
 import WeatherContainer from '../../components/WeatherContainer/WeatherContainer';
 import CommPhotoPreview from './CommPhotoPreview/CommPhotoPreview';
@@ -381,27 +384,33 @@ const Details = (props) => {
                         ))}
 
                       </div>
-                  )}
+                    )}
+                     <div className={classes.leftContainer__mapHeaderContainer}>
+                        <h3>Where to find the dive site</h3>
+                    </div>
+                    <div className={classes.leftContainer__mapContainer}>
+                        <GoogleMapLocation location={site} />
+                    </div>
 
                   
-                  {reports.length == 0 && (
-                    <div className={classes.leftContainer__reportsContainer}>
-                    <h4>Dive Reports (0)</h4>
-                    <div className={classes.noReports}>
-                        <h3>There are currently no dive reports for this location.</h3>
-                        {isAuth ? 
-                          <a href="/profile/diveReports">Add a Dive Report</a> : 
-                          <span onClick={() =>  
-                                setAuthDrawer({
-                                    open: true,
-                                    login: true,
-                                    signup: false
-                                })}>Log in
-                          </span>
-                        }
-                    </div>
-                    </div>
-                  )}
+                    {reports.length == 0 && (
+                      <div className={classes.leftContainer__reportsContainer}>
+                      <h4>Dive Reports (0)</h4>
+                      <div className={classes.noReports}>
+                          <h3>There are currently no dive reports for this location.</h3>
+                          {isAuth ? 
+                            <a href="/profile/diveReports">Add a Dive Report</a> : 
+                            <span onClick={() =>  
+                                  setAuthDrawer({
+                                      open: true,
+                                      login: true,
+                                      signup: false
+                                  })}>Log in
+                            </span>
+                          }
+                      </div>
+                      </div>
+                    )}
 
 
 

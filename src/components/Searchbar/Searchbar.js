@@ -66,7 +66,7 @@ const Searchbar = () => {
                             <h3 className={classes.locationText}>Location</h3>
                             <input {...getInputProps({placeholder: "Where do you want to dive?"})} className={`${classes.searchInput} ${navbar == "main" ? classes.searchInput__main : null}`} value={searchValue} onClick={() => setSearchValue(null)}/>
                             <div className={classes.dropdownContainer}>
-                                {loading ? <div> ...loading </div> : null}
+                                {/* {loading ? <div> ...loading </div> : null} */}
                                 {suggestions.map(suggestion => {
 
                                   

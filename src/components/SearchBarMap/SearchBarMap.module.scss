@@ -68,11 +68,12 @@
 
 [data-reach-combobox-popover] {
     border: none;
-    border-radius: 0px 0px 5px 5px !important;
-    overflow: hidden;
-    transform: translate(-1.6rem,.2rem);
+    border-radius: 0rem 0rem 1rem 1rem !important;
+    transform: translate(-1.5rem,.2rem);
     width: 49rem !important;
     overflow: hidden;
+    position: relative;
+    z-index: 100;
 
 }
 

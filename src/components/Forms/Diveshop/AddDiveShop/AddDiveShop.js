@@ -9,6 +9,10 @@ import {
     CoordsContext,
 } from '../../../../context/DiveSiteContext';
 
+import { 
+    AccountContext,
+} from '../../../../context/AuthContext';
+
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 
@@ -30,7 +34,7 @@ const AddDiveShop = () => {
     //* Associated Dive Sites
 
     const [name, setName] = useState("");
-    const [area, setArea] = useState(""); //? THIS IS ALSO REFERED AS SUBURB
+    const [suburb, setSuburb] = useState(""); //? THIS IS ALSO REFERED AS SUBURB
     const [country, setCountry] = useState("");
     const [address, setAddress] = useState("");
     const [phone, setPhone] = useState();
@@ -49,6 +53,8 @@ const AddDiveShop = () => {
     const [addDiveShopModal, setAddDiveShopModal] = useContext(AddDiveShopModalContext);
 
     const [coords, setCoords] = useContext(CoordsContext);
+    const [account, setAccount] = useContext(AccountContext);
+
 
     const animatedComponents = makeAnimated();
 
@@ -97,10 +103,11 @@ const AddDiveShop = () => {
             },
             body: JSON.stringify({
                 diveShop: {
+                    userId: account.id,
                     latitude: coords.lat,
                     longitude: coords.lng,
                     name: name,
-                    area: area,
+                    suburb: suburb,
                     country: country,
                     address: address,
                     phone: phone,
@@ -119,7 +126,7 @@ const AddDiveShop = () => {
         })
         .then(result => {
             console.log(result);
-            
+            window.location.reload();
         })
         .catch(err => {
             console.log(err);
@@ -156,12 +163,12 @@ const AddDiveShop = () => {
                         <span className={classes.label}>Name</span>
                     </div>
                     
-                    <div className={classes.form__areaContainer}>
-                        <input className={`${classes.input} ${classes.input__area}`}
-                                //placeholder="Area / Suburb"
-                                value={area}
-                                onChange={e => setArea(e.target.value)} />
-                        <span>Area</span>
+                    <div className={classes.form__suburbContainer}>
+                        <input className={`${classes.input} ${classes.input__suburb}`}
+                                //placeholder="suburb / Suburb"
+                                value={suburb}
+                                onChange={e => setSuburb(e.target.value)} />
+                        <span>Suburb</span>
                     </div>
                     <div className={classes.form__countryContainer}>
                         <input className={`${classes.input} ${classes.input__country}`}

@@ -114,8 +114,21 @@
         display: flex;
         align-items: center;
         position: relative;
+        overflow: hidden;
 
         
+        &:hover {
+             a {
+                 color: $color-text-blue;
+             }
+
+             .icon {
+                 g path, path {
+                    fill: $color-text-blue;
+                }
+             }
+
+        }
 
         a {
             font-size: 1.6rem;
@@ -126,10 +139,16 @@
             transition: .2s ease;
             position: relative;
             z-index: 25;
+       
 
-            &:hover {
-                color: $color-text-blue;
-            }
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+
+            // &:hover {
+            //     color: $color-text-blue;
+            // }
             
         }
 
@@ -143,6 +162,21 @@
         display: flex;
         align-items: center;
         position: relative;
+        overflow: hidden;
+
+
+        &:hover {
+            a {
+                color: $color-text-blue;
+            }
+
+            .icon {
+                g path, path {
+                   fill: $color-text-blue;
+               }
+            }
+
+       }
 
 
         a {
@@ -170,6 +204,20 @@
         display: flex;
         align-items: center;
         position: relative;
+        overflow: hidden;
+
+        &:hover {
+            a {
+                color: $color-text-blue;
+            }
+
+            .icon {
+                g path, path {
+                   fill: $color-text-blue;
+               }
+            }
+
+       }
 
 
         a {
@@ -182,6 +230,10 @@
             z-index: 25;
 
             transition: .2s ease;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
 
             &:hover {
                 color: $color-text-blue;
@@ -197,6 +249,20 @@
         display: flex;
         align-items: center;
         position: relative;
+        overflow: hidden;
+
+        &:hover {
+            a {
+                color: $color-text-blue;
+            }
+
+            .icon {
+                g path, path {
+                   fill: $color-text-blue;
+               }
+            }
+
+       }
 
 
         a {
@@ -207,8 +273,11 @@
             color: $color-text-grey;
             position: relative;
             z-index: 25;
-
             transition: .2s ease;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
 
             &:hover {
                 color: $color-text-blue;
@@ -216,20 +285,10 @@
         }
     }
 
-    // .socialsContainer {
-    //     grid-row: 5 / 6;
-    //     grid-column: 2 / -1;
-
-    //     display: flex;
-    //     align-items: flex-end;
-    //     justify-content: space-evenly;
-    //     padding: 1rem;
-
-    // }
-
     .icon {
         width: 2rem;
         height: 2rem;
+        transition: .2s ease; 
         g path, path {
             fill: $color-text-grey;
         }
@@ -246,37 +305,7 @@
         }
     
         &__website {
-            
+
         }
-    
-        // &__facebook {
-        //     g path {
-        //         fill: #3b5998 !important;
-        //     }
-        //     transition: .2s ease;;
-        //     &:hover {
-        //         transform: scale(1.2);
-        //     }
-        // }
-    
-        // &__instagram {
-        //     g path {
-        //         fill: #DD2A7B !important;
-        //     }
-        //     transition: .2s ease;;
-        //     &:hover {
-        //         transform: scale(1.2);
-        //     }
-        // }
-    
-        // &__twitter {
-        //     g path {
-        //         fill: #00acee !important;
-        //     }
-        //     transition: .2s ease;;
-        //     &:hover {
-        //         transform: scale(1.2);
-        //     }
-        // }
     }
 }

@@ -188,7 +188,7 @@
         grid-column: 1 / 2;
         
         display: grid;
-        grid-template-rows: repeat(4, max-content);
+        grid-template-rows: repeat(6, max-content);
         grid-template-columns: 1fr ;
     
 
@@ -254,6 +254,7 @@
         padding: 2rem 0rem;
         border-bottom: 1px solid $color-lines;
 
+
         p {
             font-size: 1.6rem;
             font-family: $font-3-style;
@@ -262,8 +263,34 @@
         
     }
 
-    &__reportsContainer {
+    &__mapHeaderContainer {
+        margin-top: 2rem;
         grid-row: 4 / 5;
+        grid-column: 1 / -1;
+
+        h3 {
+            font-size: 2rem;
+            font-family: $font-1-style;
+            font-weight: $font-med;
+            padding-bottom: 1.5rem;
+        }
+
+    }
+
+    &__mapContainer {
+        margin-bottom: 2rem;
+
+        grid-row: 5 / 6;
+        grid-column: 1 / -1;
+
+        height: 40rem;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0px 4px 10px rgba($color-black, .25);
+    }
+
+    &__reportsContainer {
+        grid-row: 6 / 7;
         grid-column: 1 / -1;
         padding-top: 1rem;
         //background: rgba(199, 243, 243, .4);

@@ -6,6 +6,36 @@
         border-bottom: 1px solid $color-lines;
         padding-bottom: 1rem;
         //padding-left: 1.5rem;
+        position: relative;
+
+        &__legend {
+            position: absolute;
+            top: 0;
+            right: 0;
+            //background: orange;
+            display: grid;
+            grid-template-rows: max-content max-content;
+            grid-template-columns: max-content max-content;
+            grid-gap: 1rem;
+
+            font-size: 1.4rem;
+            font-family: $font-3-style;
+            font-weight: $font-normal;
+            color: $color-text-darkergrey;
+
+            span {
+                transform: translateY(.2rem);
+                text-align: right;
+            }
+
+            .marker {
+                width: 2.5rem;
+                height: 2.5rem;
+                justify-self: flex-end;
+            }
+        }
+
+
         &__totalSites {
             font-size: 1.8rem;
 

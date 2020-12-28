@@ -210,7 +210,7 @@ const DiveReportForm = (props) => {
                             {/* {!isLoading ? <h1>isLoading is False</h1> : <h1>isLoading is TRUE</h1>} */}
                         <select value={location} onChange={e => setLocation(e.target.value)} className={`${classes.input} ${classes.input__location}`}>
                                 {diveSites.map(site => (
-                                     <option value={site._id}>{site.name}, {site.area}, {site.country}</option>
+                                     <option value={site._id}>{site.name}, {site.suburb}, {site.country}</option>
                                 ))}
                         </select>
 

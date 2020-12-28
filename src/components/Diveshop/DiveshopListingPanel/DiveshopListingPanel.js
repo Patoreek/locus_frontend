@@ -9,9 +9,7 @@ import {ReactComponent as PhoneSVG} from '../../../assets/icons/phone.svg';
 import {ReactComponent as EmailSVG} from '../../../assets/icons/email.svg';
 import {ReactComponent as LocationSVG} from '../../../assets/icons/location_default.svg';
 import {ReactComponent as WebsiteSVG} from '../../../assets/icons/global.svg';
-import {ReactComponent as FacebookSVG} from '../../../assets/icons/facebook.svg';
-import {ReactComponent as InstagramSVG} from '../../../assets/icons/instagram.svg';
-import {ReactComponent as TwitterSVG} from '../../../assets/icons/twitter.svg';
+
 
 import { ShopContext } from '../../../context/DiveSiteContext';
 
@@ -66,7 +64,7 @@ const DivesiteListingPanel = (props) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={classes.address}>
-                        {shop.address}
+                        {shop.address ? shop.address : "N/A"}
                 </a>
         </div>
 
@@ -74,7 +72,7 @@ const DivesiteListingPanel = (props) => {
                 <PhoneSVG className={`${classes.icon} ${classes.icon__phone}`}/>
                 <a  href={"tel:" + shop.phone}
                     className={classes.phone}>
-                        {shop.phone}
+                        {shop.phone ? shop.phone : "N/A"}
                 </a>
         </div>
 
@@ -83,7 +81,7 @@ const DivesiteListingPanel = (props) => {
                 <EmailSVG className={`${classes.icon} ${classes.icon__email}`}/>
                 <a  href={"mailto:" + shop.email}
                     className={classes.email}>
-                        {shop.email}
+                        {shop.email ? shop.email : "N/A"}
                 </a>
         </div>
 
@@ -94,7 +92,7 @@ const DivesiteListingPanel = (props) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={classes.website}>
-                        {shop.website}
+                        {shop.website ? shop.website.replace(/^https?\:\/\//i, "") : "N/A"}
                 </a>
         </div>
 
