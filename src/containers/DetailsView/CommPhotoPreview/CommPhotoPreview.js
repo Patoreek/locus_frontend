@@ -1,8 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 
 import classes from './CommPhotoPreview.module.scss';
 
 import DisplayImage from '../../../components/DisplayImage/DisplayImage';
+
+import { AuthContext } from '../../../context/AuthContext';
 
 const CommPhotoPreview = (props) => {
 
@@ -12,6 +14,8 @@ const CommPhotoPreview = (props) => {
 
     const [selectedImage, setSelectedImage] = useState();
     const [enlargeImage, setEnlargeImage] = useState(false);
+
+    const [isAuth, setIsAuth] = useContext(AuthContext);
 
     useEffect(() => {
         async function getSite() {
@@ -92,7 +96,9 @@ const CommPhotoPreview = (props) => {
          {images.length <= 0 && (
             <div className={classes.noCommPhotos}>
               <h3 className={classes.noCommPhotos__header}> No Community Photos</h3>
-              <p className={classes.noCommPhotos__text}> To add photos for this dive site, add a new dive report with images and they will automatically appear in the appropriate dive sites images.</p>
+              {isAuth ? <p className={classes.noCommPhotos__text}> To add photos for this dive site, add a new dive report with images and they will automatically appear in the appropriate dive sites images.</p> : null }
+              {!isAuth ? <p className={classes.noCommPhotos__text}>There are no community images for this site currently. If you wish to add some images, please create an account and post a dive report with images.</p> : null }
+
             </div>
          )}
 

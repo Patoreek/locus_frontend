@@ -185,7 +185,7 @@ const DiveShopView = (props) => {
                                 </div>
                             
                                 <div className={classes.rightGrid__mapHeader}>
-                                    <h3>Find us here</h3>
+                                    <h3>Find {name} here</h3>
                                 </div>
                                 <div className={classes.rightGrid__map}>
                                     <GoogleMapLocation location={shop}/>

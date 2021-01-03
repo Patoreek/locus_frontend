@@ -1,4 +1,5 @@
 @import '../../sass/abstracts/variables';
+@import '../../sass/abstracts/mixins';
 
 .home {
     width: 100%;
@@ -26,6 +27,18 @@
         width: 100vw;
         padding: 12.5rem 5rem 7.5rem 5rem;
         display: grid;
+        position: relative;
+
+            &__notes {
+                position: absolute;
+                top: 10rem;
+                left: 2rem;
+                width:22rem;
+                font-size: 1.4rem;
+                font-family: $font-1-style;
+                font-weight: $font-med;
+                color: $color-white-pure;
+            }
         
             &__title {
                grid-row: 1 / 2;
@@ -128,30 +141,54 @@
         overflow: hidden;
 
         &__background {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: green;
+            width: 100vw;
+            @include respond(big-desktop) {
+                height: 40rem;
+                background: #01266C;
+            }
 
 
             .wave1 {
                 position: absolute;
-                bottom: 0;
+                bottom: -10rem;
                 left: 655px;
                 z-index: 5;
                 //opacity: 0%;
+
+                @include respond(big-desktop) {
+                    left: 90rem;
+                    bottom: 25rem;
+                }
+                
             }
 
             .wave2 {
                 position: absolute;
-                bottom: 0px;
+                bottom: 0rem;
                 left: 800px;
                 z-index: 4;
                 //opacity: 0%;
+                @include respond(big-desktop) {
+                    left: 170rem;
+                    bottom: 40rem;
+                }
 
                
             }
             .wave3 {
                 position: absolute;
-                bottom: 25px;
+                bottom: -8rem;
                 right: 0;
                 z-index: 3;
+                //opacity: 0%;
+                @include respond(big-desktop) {
+                    right: 100rem;
+                    bottom: 30rem;
+                }
             }
 
             .bubble {
@@ -165,6 +202,9 @@
                     width: 30rem; 
                     height: 30rem;
                     opacity: 75%;
+                    @include respond(big-desktop) {         
+                        bottom: -140rem;
+                    }
 
                 }
 
@@ -175,6 +215,11 @@
                     width: 10rem; 
                     height: 10rem;
                     opacity: 60%;
+                    @include respond(big-desktop) {         
+                        bottom: calc(20rem - 190rem);
+                        left: 50rem;
+                    }
+
                 }
 
                 &__3 {
@@ -184,6 +229,10 @@
                     width: 7.5rem; 
                     height: 7.5rem;
                     opacity: 45%;
+                    @include respond(big-desktop) {         
+                        bottom: calc(35rem - 80rem);
+                    }
+
                 }
 
                 &__4 {
@@ -193,6 +242,10 @@
                     width: 30rem; 
                     height: 30rem;
                     opacity: 75%;
+                    @include respond(big-desktop) {         
+                        bottom: calc(20rem - 40rem);
+                    }
+
                 }
 
                 &__5 {
@@ -203,6 +256,9 @@
                     width: 10rem; 
                     height: 10rem;
                     opacity: 50%;
+                    @include respond(big-desktop) {         
+                        bottom: calc(45rem - 80rem);
+                    }
                 }
             }
 

@@ -39,6 +39,8 @@ import CommPhotoPreview from './CommPhotoPreview/CommPhotoPreview';
 
 import Spinner from '../../components/Spinner/Spinner';
 
+import placeholderImage from '../../assets/images/placeholder_image.png';
+
 
 
 import classes from './DetailsView.module.scss';
@@ -57,6 +59,7 @@ const Details = (props) => {
     const [site, setSite] = useState(null);
     const [siteName, setSiteName] = useState();
     const [siteSuburb, setSiteSuburb] = useState();
+    const [linkSuburb, setLinkSuburb] = useState();
     const [siteCity, setSiteCity] = useState();
     const [siteState, setSiteState] = useState();
     const [siteCountry, setSiteCountry] = useState();
@@ -88,6 +91,8 @@ const Details = (props) => {
     const [nearbySites, setNearbySites] = useState([]);
 
     const [enlargeImage, setEnlargeImage] = useState(false);
+
+    const [placeholders, setPlaceholders] = useState([]);
 
 
     const [isLoading, setIsLoading] = useState(true);
@@ -166,7 +171,25 @@ const Details = (props) => {
             setSiteLongitude(site.longitude);
             getNearbyDiveSites(site.latitude, site.longitude);
             setSelectedSite(site);
+
+            if (site.suburb == "(Open Water)" || site.suburb == "N/A") {
+              setLinkSuburb('Dive Site');
+            } else {
+              setLinkSuburb(site.suburb);
+            }
+
             setIsLoading(false);
+            
+
+            if (site.images.length < 5) {
+              const totalPlaceholders = 5 - site.images.length;
+              let array = [];
+              for (let i = 0; i < totalPlaceholders; i++) {
+                array.push("");
+              }
+              console.log(array);
+              setPlaceholders(array);
+            }
 
             setMainImage(site.images[0]);    
           } catch (error) {
@@ -272,6 +295,7 @@ const Details = (props) => {
     // //console.log(weatherContent);
     //console.log(siteImages);
 
+  
     return (
       <div>
           {!isLoading && (
@@ -283,14 +307,14 @@ const Details = (props) => {
                 )}
 
                 <div className={classes.divesite__locationTop}>
-                  <a target="_blank" href={"http://www.google.com/search?q=" + siteName + "%2C+" + siteSuburb + "%2C+" + siteCountry}>{siteName} · {siteSuburb} · {siteCity} · {siteCountry}</a> {/* Should be a link to the map / google maps of the area?? */}
+                  <a target="_blank" href={"http://www.google.com/search?q=" + siteName + "%2C+" + linkSuburb + "%2C+" + siteCountry}>{siteName} · {linkSuburb} · {siteCity} · {siteCountry}</a> {/* Should be a link to the map / google maps of the area?? */}
                 </div>
                 
 
                 {/* //TODO: IMAGE GRID CONTAINER ////////////////// */}
                 <div className={classes.divesite__imageGridContainer}>
                   <div className={`${classes.image} ${classes.image__1}`} onClick={() => setEnlargeImage(true)}>
-                    <img className={classes.image} src={'http://localhost:8080/' + mainImage}/>
+                    <img className={classes.image} src={mainImage ? 'http://localhost:8080/' + mainImage : placeholderImage}/>
                   </div>
 
                   <div className={classes.rightContainer}>
@@ -302,6 +326,12 @@ const Details = (props) => {
                         }}>
                           <img className={classes.image} src={'http://localhost:8080/' + image}/>
                         </div>
+                    ))}
+                    {/* {enterPlaceholders()} */}
+                    {placeholders.map(placeholder => (
+                      <div className={classes.imageContainer}>
+                        <img className={classes.image} src={placeholderImage}/>
+                      </div>
                     ))}
 
 
@@ -315,7 +345,7 @@ const Details = (props) => {
                 {/* //TODO: END IMAGE GRID CONTAINER ////////////////// */}
                 <div className={classes.nameContainer}>
                         <h3 className={classes.name}>{siteName} · {siteSuburb} · {siteCity} · {siteCountry}</h3>
-                        <a target="_blank" href={"http://www.google.com/search?q=" + siteName + "%2C+" + siteSuburb + "%2C+" + siteCity + "%2C+"+ siteCountry}>{siteName}, {siteSuburb}, {siteCity}, {siteCountry}</a> {/* Should be a link to the map / google maps of the area?? */}
+                        <a target="_blank" href={"http://www.google.com/search?q=" + siteName + "%2C+" + linkSuburb + "%2C+" + siteCity + "%2C+"+ siteCountry}>{siteName}, {linkSuburb}, {siteCity}, {siteCountry}</a> {/* Should be a link to the map / google maps of the area?? */}
                         <a target="_blank" href={"https://maps.google.com/?q=" + siteLatitude + "," + siteLongitude}><GoogleMapSVG className={classes.googleMapSVG}/></a>
                         <div className={classes.ratingsContainer}>
                           <div className={classes.ratingsContainer__rating}>
@@ -345,8 +375,8 @@ const Details = (props) => {
                         <div className={classes.point}>
                           <DepthSVG className={classes.point__icon}/>   
                           <div className={classes.point__text}>         
-                            <span>Max Depth: {siteMaxDepth}m</span>
-                            <span>Average Depth: {siteAvgDepth}m</span>
+                            <span>Max Depth: {siteMaxDepth ? siteMaxDepth : "?"}m</span>
+                            <span>Average Depth: {siteAvgDepth ? siteAvgDepth : "?"}m</span>
                           </div>
                         </div>
                         <div className={classes.point}>
@@ -359,20 +389,24 @@ const Details = (props) => {
                         <div className={classes.point}>
                           <TemperatureSVG className={classes.point__icon}/>  
                           <div className={classes.point__text}>
-                            <span>{siteMinTemp}°C - {siteMaxTemp}°C</span>   
+                            <span>{siteMinTemp ? siteMinTemp : "?"}°C - {siteMaxTemp ? siteMaxTemp : "?"}°C</span>   
                           </div>       
                         </div>
                         <div className={classes.point}>
                           <VisibilitySVG className={classes.point__icon}/> 
                           <div className={classes.point__text}>           
-                            <span>{siteMinVis} - {siteMaxVis}m</span>
+                            <span>{siteMinVis ? siteMinVis : "?"}m - {siteMaxVis ? siteMaxVis : "?"}m</span>
                           </div>
                         </div>
                       
                     </div>
 
+                    <div className={classes.leftContainer__descriptionHeaderContainer}>
+                        <h3>Description</h3>
+                    </div>
                     <div className={classes.leftContainer__descriptionContainer}>
-                      <p>{siteDescription}</p>
+                      <p className={classes.description}>{siteDescription ? siteDescription : "There is currently no description on this site. If you have any information, images or videos you wish to share with us, please contact us via email or social media."}</p>
+                      <p className={classes.contribute}>*If you wish to contribute to adding information, images or videos for this dive site, please contact us via email or social media</p>
                     </div>
 
                     {/* //! DIVE REPORTS SECTION WILL GO HERE  */}
@@ -386,7 +420,7 @@ const Details = (props) => {
                       </div>
                     )}
                      <div className={classes.leftContainer__mapHeaderContainer}>
-                        <h3>Where to find the dive site</h3>
+                        <h3>Location</h3>
                     </div>
                     <div className={classes.leftContainer__mapContainer}>
                         <GoogleMapLocation location={site} />

@@ -89,12 +89,13 @@ const CommunityPhotos = (props) => {
             setMiddleColImages(middleColArray);
             setRightColImages(rightColArray);
 
-            setIsLoading(false)
+            setIsLoading(false);
 
       
             } catch (error) {
              console.log(error);
-             //setIsLoading(true);
+             setIsLoading(false);
+
             }
           }
 
@@ -123,7 +124,7 @@ const CommunityPhotos = (props) => {
         <div className={classes.communityPhotos}>
             {!isLoading && (
                 <div className={classes.communityPhotos__locationHeaderContainer}>
-                    <h1>{site.name} · {site.suburb} · {site.city} · {site.state} · {site.country}</h1>
+                    <h1>{site.name ? site.name : null} · {site.suburb ? site.suburb : null} · {site.city ? site.city : null} · {site.state ? site.state : null} · {site.country ? site.country : null}</h1>
                 </div>
             )}
             {!isLoading ? 
@@ -148,7 +149,7 @@ const CommunityPhotos = (props) => {
             )}
          
 
-            {!isLoading && (
+            {!isLoading && communityImages != [] && (
                 <div className={classes.grid}>
                     <div className={classes.grid__left}>
                         {leftColImages.map(image => (
@@ -177,6 +178,12 @@ const CommunityPhotos = (props) => {
                             </div>
                         ))}
                     </div>
+                </div>
+            )}
+
+            {!isLoading && communityImages == [] && (
+                <div>
+                    No Photos
                 </div>
             )}
 

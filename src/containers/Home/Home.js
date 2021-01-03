@@ -74,6 +74,11 @@ const Home = () => {
             <div className={`${classes.content}`}>
             <div className={classes.homeMainPage}>
                 <div className={authDrawer.open ? classes.groupedContent__disappear : classes.groupedContent__display}>
+                    <div className={classes.homeMainPage__notes}>
+                        <p>* Currently only NSW dive sites and dive shops available.</p>
+                        <p>* QLD, VIC, SA, WA, NT &amp; TAS dive sites and shops to be added.</p>
+
+                    </div>
                     <h1 className={classes.homeMainPage__title}>Explore Dive Sites</h1> 
                         {/* <p className={classes.homeDescription}> A description of what this website is trying to achieve</p> */}
                         <div className={classes.homeMainPage__searchContainer}>
@@ -128,8 +133,8 @@ const Home = () => {
                     <Wave1SVG className={classes.wave1} style={{ transform: `translateX(-${offsetY * 2.0}px)`}}/>
                     <Wave2SVG className={classes.wave2} style={{ transform: `translateX(-${offsetY * 1.9}px)`}}/>
                     <Wave3SVG className={classes.wave3} style={{ transform: `translateX(${offsetY * 1.7}px)`}}/>
-                    <BubbleSVG className={`${classes.bubble} ${classes.bubble__1}`} style={{ transform: `translate(-25%,-${offsetY * 0.9}px)`}}/>  //? CHANGE THESE TO rem ???
-                    <BubbleSVG className={`${classes.bubble} ${classes.bubble__2}`} style={{ transform: `translateY(-${offsetY * 1.4}px)`}}/>       //! Not Responsive. Only works currently on 13inch screen
+                    <BubbleSVG className={`${classes.bubble} ${classes.bubble__1}`} style={{ transform: `translate(-25%,-${offsetY * 0.9}px)`}}/>  {/* CHANGE THESE TO rem ??? */}
+                    <BubbleSVG className={`${classes.bubble} ${classes.bubble__2}`} style={{ transform: `translateY(-${offsetY * 1.4}px)`}}/>       {/* Not Responsive. Only works currently on 13inch screen */}
                     <BubbleSVG className={`${classes.bubble} ${classes.bubble__3}`} style={{ transform: `translateY(-${offsetY * 0.5}px)`}}/>
                     <BubbleSVG className={`${classes.bubble} ${classes.bubble__4}`} style={{ transform: `translate(50%,-${offsetY * 0.4}px)`}}/>
                     <BubbleSVG className={`${classes.bubble} ${classes.bubble__5}`} style={{ transform: `translateY(-${offsetY * 0.7}px)`}}/>

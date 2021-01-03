@@ -37,6 +37,8 @@ import {ReactComponent as FacebookSVG} from '../../../assets/icons/facebook.svg'
 import {ReactComponent as InstagramSVG} from '../../../assets/icons/instagram.svg';
 import {ReactComponent as TwitterSVG} from '../../../assets/icons/twitter.svg';
 
+import placeholderImage from '../../../assets/images/placeholder_image.png';
+
 
 
 import { MarkerClusterer } from 'react-google-maps/lib/components/addons/MarkerClusterer';
@@ -56,6 +58,10 @@ const GuestMap = (props) => {
     const loadDiveSitesInBounds = useContext(LoadDiveSiteInBoundsContext);
     const [isLoading, setIsLoading] = useState(true);
 
+
+    useEffect(() => {
+        console.log(diveSites);
+    }, [diveSites])
 
     const onMarkerClustererClick = (markerClusterer) => {
         const clickedMarkers = markerClusterer.getMarkers();
@@ -133,8 +139,8 @@ const GuestMap = (props) => {
                     >
                         <div className={classes.site}>
                             <div className={classes.site__imageContainer}>
-                                <a href={"/divesite/" + selectedSite._id}>
-                                    <img src={'http://localhost:8080/' + selectedSite.images[0]}
+                                <a href={"/divesite/" + selectedSite._id} target="_blank" rel="noopener noreferrer">
+                                    <img src={selectedSite.images[0] ? 'http://localhost:8080/' + selectedSite.images[0] : placeholderImage}
                                         className={classes.image}
                                     />
                                 </a>
@@ -153,8 +159,8 @@ const GuestMap = (props) => {
 
                             <div className={classes.site__nameContainer}>
                                 <h5  className={classes.name}>
-                                <a href={"/divesite/" + selectedSite._id}>
-                                        <span>{selectedSite.name} · {selectedSite.suburb}</span>
+                                <a href={"/divesite/" + selectedSite._id} target="_blank" rel="noopener noreferrer">
+                                        <span>{selectedSite.name} · {selectedSite.suburb == "(Open Water)" || "N/A" ? selectedSite.city : selectedSite.suburb}</span>
                                 </a>
                                 </h5>
                                 
@@ -185,7 +191,7 @@ const GuestMap = (props) => {
  
                     <div className={classes.shop}>
                             <div className={classes.shop__imageContainer}>
-                                <a href={"/diveshop/" + selectedShop._id}>
+                                <a href={"/diveshop/" + selectedShop._id} target="_blank" rel="noopener noreferrer">
                                     <img src={'http://localhost:8080/' + selectedShop.logo}
                                         className={classes.image}
                                     />
@@ -193,7 +199,7 @@ const GuestMap = (props) => {
                             </div>
                         
                             <div className={classes.shop__nameContainer}>
-                                <a href={"/diveshop/" + selectedShop._id} className={classes.name}>
+                                <a href={"/diveshop/" + selectedShop._id} target="_blank" rel="noopener noreferrer" className={classes.name}>
                                         <span>{selectedShop.name}</span>
                                         <br/>
                                 </a>
@@ -238,30 +244,6 @@ const GuestMap = (props) => {
 
                                 </a>        
                             </div>
-
-                            {/* <div className={classes.socialsContainer}>
-                                <div className={classes.socialsContainer__facebookContainer}>
-                                    <a  href={selectedShop.facebook}
-                                    target="_blank"
-                                    rel="noopener noreferrer">
-                                        <FacebookSVG className={`${classes.icon} ${classes.icon__facebook}`}/>
-                                    </a>
-                                </div>
-                                <div className={classes.socialsContainer__instagramContainer}>
-                                    <a  href={selectedShop.instagram}
-                                    target="_blank"
-                                    rel="noopener noreferrer">
-                                        <InstagramSVG className={`${classes.icon} ${classes.icon__instagram}`}/>
-                                    </a>
-                                </div>
-                                <div className={classes.socialsContainer__twitterContainer}>
-                                    <a  href={selectedShop.twitter}
-                                    target="_blank"
-                                    rel="noopener noreferrer">
-                                        <TwitterSVG className={`${classes.icon} ${classes.icon__twitter}`}/>
-                                    </a>
-                                </div>
-                            </div> */}
                     </div>
                    
                 </InfoWindow>

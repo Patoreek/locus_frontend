@@ -16,7 +16,7 @@ import { AuthContext,
          GlobalLoaderContext,
          LocationNameContext } from '../../context/AuthContext';
 
-         import { LoadDiveSiteInBoundsContext, LoadDiveShopsInBoundsContext } from '../../context/DiveSiteContext';
+         import { LoadDiveSiteInBoundsContext, LoadDiveShopsInBoundsContext, ScubaFilterContext, SnorkelFilterContext } from '../../context/DiveSiteContext';
 
 import MySitesMap from './MySitesMap/MySitesMap';
 import GuestMap from './GuestMap/GuestMap';
@@ -52,8 +52,32 @@ const Map = (props) => {
     const [zoom, setZoom] = useState(12);
     const [bounds, setBounds] = useState(); //new LatLngBounds()
 
+    const [startingCoords, setStartingCoords] = useState({ //* COORDINATES FOR SYDNEY, AUSTRALIA
+        lat: -33.928820,
+        lng: 151.209290,
+    });
+
+    const [scubaFilter, setScubaFilter] = useContext(ScubaFilterContext);
+    const [snorkelFilter, setSnorkelFilter] = useContext(SnorkelFilterContext);
+
+
 
     useEffect(() => {
+
+        //! TO GET LOCATION OF USER AND POSITION MAP DYNAMICALLY
+        // const successLocate = (pos) => {
+        //     const crd = pos.coords;
+        //     console.log(crd.latitude);
+        //     console.log(crd.longitude);
+        //     setStartingCoords({
+        //         lat: crd.latitude,
+        //         lng: crd.longitude,
+        //     });
+        // }
+        // const errorLocate = (err) => {
+        //     console.log(err);
+        //     console.log('Location access denied / failed.');
+        // }
        
         setBounds(new window.google.maps.LatLngBounds());
         if (isAuth){
@@ -72,11 +96,27 @@ const Map = (props) => {
             setIsLoading(false);
         } else {
             //console.log('Search Coords is NULL');
-            setLatitude(-33.928820);
-            setLongitude(151.209290);
+            //navigator.geolocation.getCurrentPosition(successLocate, errorLocate); //! DYNAMIC LOCATION POSITIONING
+
+            setLatitude(startingCoords.lat);
+            setLongitude(startingCoords.lng);
             setIsLoading(false);
         }
     },[]);
+
+    useEffect(() => {
+        onBoundsChanged();
+        // if (scubaFilter && !snorkelFilter){
+        //     console.log('searching for SCUBA Dive Sites only.');
+        // }
+        // if (snorkelFilter && !scubaFilter){
+        //     console.log('searching for Snorkelling Sites only.');
+        // }
+        // if ((scubaFilter && snorkelFilter) || (!scubaFilter && !snorkelFilter)) {
+        //     console.log('searching for All Sites.');
+        // }
+
+    }, [scubaFilter, snorkelFilter]);
 
 
     let timer;
@@ -117,7 +157,7 @@ const Map = (props) => {
             loadDiveSitesInBounds(mapBounds, setGlobalLoader);
             loadDiveShopsInBounds(mapBounds, setGlobalLoader);
         }, 1000);
-      }
+    }
 
     
     return (

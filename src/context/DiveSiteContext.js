@@ -16,6 +16,21 @@ export const ShopContext = createContext();
 
 export const GeoAreaContext = createContext();
 
+export const ScubaFilterContext = createContext();
+export const SnorkelFilterContext = createContext();
+
+export const LoadDiveSitesInBoundsInfiniteContext = createContext();
+
+export const PanelDiveSitesContext = createContext();
+
+
+export const ScrollCounterContext = createContext();
+export const HasMoreDataContext = createContext();
+
+
+
+
+
 
 
 
@@ -32,6 +47,9 @@ export const DiveSiteProvider = (props) => {
     const [moreDetails, setMoreDetails] = useState(false);
 
     const [diveSites, setDiveSites] = useState([]);
+
+    const [panelDiveSites, setPanelDiveSites] = useState([]);
+
 
     const [diveShops, setDiveShops] = useState([]);
 
@@ -50,8 +68,16 @@ export const DiveSiteProvider = (props) => {
 
     const [locationName, setLocationName] = useState("");
 
+    const [scubaFilter, setScubaFilter] = useState(false);
+    const [snorkelFilter, setSnorkelFilter] = useState(false);
+
+    const [scrollCounter, setScrollCounter] = useState(0);
+    const [hasMoreData, setHasMoreData] = useState(true);
+
+
     async function loadDiveSites() {
             // You can await here
+        //setDiveSites([]);
         console.log('IN LOAD DIVE SITE');
         const response = await fetch('http://localhost:8080/diveSites/getSites',{
             method: 'GET'
@@ -63,8 +89,63 @@ export const DiveSiteProvider = (props) => {
             // ...
     }
 
+    async function loadDiveSitesInBoundsInfinite(mapBounds) {
+        // You can await here
+        //setDiveSites([]);
+        console.log('loadDiveSitesInBoundsInfinite');
+        console.log(mapBounds);
+        console.log(scrollCounter);
+
+        const swLat = mapBounds.Wa.i;
+        const swLng = mapBounds.Ra.i;
+        const neLat = mapBounds.Wa.j;
+        const neLng = mapBounds.Ra.j;
+        
+
+        return fetch('http://localhost:8080/diveSites/loadDiveSitesInBoundsInfinite',{
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                swLat: swLat,
+                swLng: swLng,
+                neLat: neLat,
+                neLng: neLng,
+                scubaFilter: scubaFilter,
+                snorkelFilter: snorkelFilter,
+                scrollCounter: scrollCounter,
+            })
+        })
+        .then(res => {
+            return res.json();
+        })
+        .then(result => {
+            console.log(result.sites);
+            console.log("Results Length => " + result.sites.length);
+            console.log("Panel Dive Sites Length => " + panelDiveSites.length);
+
+
+            if (result.sites.length == 0){
+                setHasMoreData(false);
+            } else {
+                setPanelDiveSites(prevArray => [...prevArray, ...result.sites]);
+                setScrollCounter(scrollCounter + 1);
+            }
+
+
+       
+        })
+        .catch(err => {
+            console.log('Caught.');
+            console.log(err);  
+        });
+    }
+
     async function loadDiveSitesInBounds(mapBounds, setGlobalLoader) {
         // You can await here
+        setDiveSites([]);
         console.log('loadDiveSitesInBounds');
         console.log(mapBounds);
         // const swLat = mapBounds.Wa.i;
@@ -75,6 +156,7 @@ export const DiveSiteProvider = (props) => {
         const swLng = mapBounds.Ra.i;
         const neLat = mapBounds.Wa.j;
         const neLng = mapBounds.Ra.j;
+        
 
         return fetch('http://localhost:8080/diveSites/loadDiveSitesInBounds',{
             method: 'POST',
@@ -87,6 +169,8 @@ export const DiveSiteProvider = (props) => {
                 swLng: swLng,
                 neLat: neLat,
                 neLng: neLng,
+                scubaFilter: scubaFilter,
+                snorkelFilter: snorkelFilter
             })
         })
         .then(res => {
@@ -125,11 +209,15 @@ export const DiveSiteProvider = (props) => {
 
             Geocode.fromLatLng(centerLat, centerLng).then(
                 response => {
-                    //console.log(response);
+                    console.log(response);
                         if (response.results != []){
                             if (response.results[0].address_components.length > 2) {
-                                areaName = response.results[0].address_components[2].long_name;
-                                stateName = response.results[0].address_components[4].long_name;
+                                if (response.results[0].address_components[2]){
+                                    areaName = response.results[0].address_components[2].long_name;
+                                }
+                                if (response.results[0].address_components[4]){
+                                    stateName = response.results[0].address_components[4].long_name;
+                                }
                                 setGeoArea({
                                     area: areaName,
                                     state: stateName,
@@ -145,12 +233,6 @@ export const DiveSiteProvider = (props) => {
                 console.error(error);
                 }
             );
-
-
-
-
-
-
        
         })
         .catch(err => {
@@ -205,6 +287,8 @@ export const DiveSiteProvider = (props) => {
     }
 
 
+
+
     return (
         
         <SiteContext.Provider value = { [selectedSite, setSelectedSite] }>
@@ -217,9 +301,21 @@ export const DiveSiteProvider = (props) => {
         <DiveShopsContext.Provider value = { [diveShops, setDiveShops] }>
         <ShopContext.Provider value = { [selectedShop, setSelectedShop] }>
         <GeoAreaContext.Provider value = { [geoArea, setGeoArea] }>
+        <ScubaFilterContext.Provider value = { [scubaFilter, setScubaFilter] }>
+        <SnorkelFilterContext.Provider value = { [snorkelFilter, setSnorkelFilter] }>
+        <LoadDiveSitesInBoundsInfiniteContext.Provider value = { loadDiveSitesInBoundsInfinite }>
+        <PanelDiveSitesContext.Provider value = { [panelDiveSites, setPanelDiveSites] }>
+        <ScrollCounterContext.Provider value = { [scrollCounter, setScrollCounter] }>
+        <HasMoreDataContext.Provider value = { [hasMoreData, setHasMoreData] }>
 
-            {props.children}
+        {props.children}
 
+        </HasMoreDataContext.Provider>
+        </ScrollCounterContext.Provider>
+        </PanelDiveSitesContext.Provider>
+        </LoadDiveSitesInBoundsInfiniteContext.Provider>
+        </SnorkelFilterContext.Provider>
+        </ScubaFilterContext.Provider>
         </GeoAreaContext.Provider>  
         </ShopContext.Provider>  
         </DiveShopsContext.Provider>  

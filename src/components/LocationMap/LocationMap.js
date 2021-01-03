@@ -32,7 +32,7 @@ const LocationMap = (props) => {
     const [latitude, setLatitude] = useState(props.location.latitude);
     const [longitude, setLongitude ] = useState(props.location.longitude);
 
-    const [zoom, setZoom] = useState(16);
+    const [zoom, setZoom] = useState(12);
 
 
     

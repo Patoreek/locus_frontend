@@ -29,8 +29,8 @@ const CreateSiteForm = (props) => {
     const [name, setName] = useState("");
     const [suburb, setSuburb] = useState(null);
     const [city, setCity] = useState(null);
-    const [state, setState] = useState(null);
-    const [country, setCountry] = useState("");
+    const [state, setState] = useState("New South Wales"); //! CHANGE BACK TO "" OR NULL
+    const [country, setCountry] = useState("Australia"); //! CHANGE BACK TO "" OR NULL
     const [description, setDescription] = useState("");
     const [experience, setExperience] = useState();
     const [siteType, setSiteType] = useState("reef");
@@ -95,45 +95,6 @@ const CreateSiteForm = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // const name = name;
-        // const area = area;
-        // const description = description;
-        // const latitude = coordsLat;
-        // const longitude = coordsLng;
-        // const userId = account.id;
-
-        // const country = country;
-        
-
-        // const experience = experience;
-        // const siteType = siteType;
-        // const access = access;
-        // const maxDepth = maxDepth;
-        // const avgDepth = avgDepth;
-        // const minTemp = minTemp;
-        // const maxTemp = maxTemp;
-        // const minVis = minVis;
-        // const maxVis = maxVis;
-        // const suitable = suitable;
-
-
-        console.log('Name:' + name);
-        console.log('Area:' + suburb);
-        console.log('Country:' + country);
-        console.log('Description:' + description);
-        console.log('Site Type:' + siteType);
-        console.log('Access:' + access);
-        console.log('Max Depth:' + maxDepth);
-        console.log('Avg Depth:' + avgDepth);
-        console.log('Min Temp:' + minTemp);
-        console.log('Max Temp:' + maxTemp);
-        console.log('Min Vis:' + minVis);
-        console.log('Max Vis:' + maxVis);
-        console.log('suitablility:' + suitable);
-
-     
-
-
        createDiveSite();
        // name, area, description, type, latitude, longitude, userId, loadDiveSites, setShowAddModal
     }
@@ -176,7 +137,8 @@ const CreateSiteForm = (props) => {
                     <div className={classes.form__stateContainer}>
                         <input className={`${classes.input} ${classes.input__state}`}
                                 //placeholder="state / state"
-                                value={state}
+                                //value={state} //! CHANGE THIS BACK
+                                value="New South Wales"
                                 onChange={e => setState(e.target.value)} />
                         <span>State</span>
                     </div>
@@ -184,7 +146,8 @@ const CreateSiteForm = (props) => {
                     <div className={classes.form__countryContainer}>
                         <input className={`${classes.input} ${classes.input__country}`}
                                 //placeholder="Country"
-                                value={country}
+                                //value={country} //! CHANGE THIS BACK
+                                value="Australia"
                                 onChange={e => setCountry(e.target.value)} />
                         <span>Country</span>
                     </div>
@@ -203,25 +166,24 @@ const CreateSiteForm = (props) => {
                         <div className={classes.accessContainer}>
                             {/* <span className={classes.accessContainer__title}>Access from:</span> Dive Type */}
                             <select value={access} onChange={e => setAccess(e.target.value)} className={`${classes.input} ${classes.accessContainer__input}`}>
-                                <option value="beach">Beach</option>
-                                <option value="boat">Boat</option>
-                                <option value="dock">Dock</option>
-                                <option value="rocks">Rocks</option>
+                                <option value="Beach">Beach</option>
+                                <option value="Boat">Boat</option>
+                                <option value="Dock">Dock</option>
+                                <option value="Rocks">Rocks</option>
+                                <option value="Rocks">Ramp</option>
                             </select>
                             <span>Access</span>
                         </div>
                         
                         <div className={classes.siteTypeContainer}>
                             <select value={siteType} onChange={e => setSiteType(e.target.value)} className={`${classes.input} ${classes.siteTypeContainer__input}`}>
-                                <option value="reef">Reef</option>
-                                <option value="wreck">Wreck</option>
-                                <option value="cave">Cave</option>
-                                <option value="deep">Deep</option>
-                                <option value="drift">Drift</option>
-                                <option value="wall">Wall</option>
-                                <option value="ice">Ice</option>
-
-
+                                <option value="Reef">Reef</option>
+                                <option value="Wreck">Wreck</option>
+                                <option value="Cave">Cave</option>
+                                <option value="Deep">Deep</option>
+                                <option value="Drift">Drift</option>
+                                <option value="Wall">Wall</option>
+                                <option value="Ice">Ice</option>
                             </select>
                             <span>Site Type</span>
                         </div>
@@ -295,7 +257,7 @@ const CreateSiteForm = (props) => {
                     <div className={classes.form__section3}>
                         <div className={classes.experienceContainer}>
                             <select  value={experience} onChange={e => setExperience(e.target.value)}  className={classes.input}>
-                                <option value="Snorkeller">Snorkeller</option>
+                                <option value="Snorkel Friendly">Snorkel Friendly</option>
                                 <option value="Free Diver">Free Diver</option>
                                 <option value="Open Water Diver">Open Water Diver</option>
                                 <option value="Advanced Open Water Diver">Advanced Open Water Diver</option>
@@ -305,13 +267,14 @@ const CreateSiteForm = (props) => {
                                 <option value="Equipment Specialist Diver">Equipment Specialist Diver</option>
                                 <option value="Deep Diver">Deep Diver</option>
                                 <option value="Wreck Diver">Wreck Diver</option>
+                                <option value="Cave Diver">Wreck Diver</option>
                                 <option value="Sidemount Diver">Sidemount Diver</option>
                                 <option value="PADI Instructor">PADI Instructor</option>
                                 <option value="Divemaster">Divemaster</option>
 
                             </select>
                            
-                            <span>Diver Experience</span>
+                            <span>Experience</span>
                         </div>
                         
                     </div>
@@ -319,14 +282,11 @@ const CreateSiteForm = (props) => {
                     <div className={classes.form__section4}>
                         <div className={classes.suitableContainer}>
                             <select  value={suitable} onChange={e => setSuitable(e.target.value)}  className={classes.input}>
-                                <option value="Great location for kids">Great location for kids</option>
                                 <option value="Great for Snorkelling">Great for Snorkelling</option>
-                                <option value="Great for Scuba">Great for Scuba</option>
-                                <option value="Experienced Divers only">Experienced Divers only</option>
-                                <option value="Great for Free diving">Great for Free Diving</option>
-                                <option value="Calm Waters">Calm waters</option>
-                                <option value="Restaurants closeby">Restaurants closeby</option>
-                                <option value="Easy to get to">Easy to get to</option>
+                                <option value="Great for beginner SCUBA Divers">Great for beginner SCUBA Divers</option>
+                                <option value="Can be challenging">Can be challenging</option>
+                                <option value="Experienced Divers Only">Experienced Divers Only</option>
+                                <option value="Great for Free Diving">Great for Free Diving</option>
                             </select>
                             <span>Suitable for</span> {/* Dive Type */}
                         </div>

@@ -91,7 +91,7 @@ const Searchbar = () => {
                             </div>
                             <div className={classes.searchBar__searchBtnContainer}>
 
-                                <div className={classes.searchBtn} onClick={() => handleSelect()}>
+                                <div className={classes.searchBtn} onClick={() => handleSelect(address)}>
                                 
                                     <SearchSVG className={classes.searchSVG}/>
                                 </div>

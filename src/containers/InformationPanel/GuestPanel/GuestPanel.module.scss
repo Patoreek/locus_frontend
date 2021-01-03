@@ -1,7 +1,7 @@
 @import '../../../sass/abstracts/variables';
 
 .guestPanel {
-    padding: 2rem 1.5rem 2rem 1.5rem;
+    padding: 2rem 1rem 2rem 1.5rem;
     .topSection {
         border-bottom: 1px solid $color-lines;
         padding-bottom: 1rem;
@@ -35,6 +35,74 @@
             }
         }
 
+        &__filter {
+            
+            display: flex;
+            padding-top: 1rem;
+
+            //background: green;
+
+            .scubaFilter, .snorkelFilter {
+                padding: 0rem 2rem;
+                display: flex;
+                align-items: center;
+           
+
+                    //transform: scale(1.6);
+                input[type=checkbox] {
+                    transform: scale(1.2);
+                    position: relative;
+                    cursor: pointer;
+                }
+                input[type=checkbox]:before {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    width: 16px;
+                    height: 16px;
+                    top: 0;
+                    left: 0;
+                    border: 2px solid $color-lines;
+                    border-radius: 3px;
+                    background-color: white;
+    
+                    
+                }
+                input[type=checkbox]:checked:before {
+                    border: 2px solid $color-text-blue;     
+                }
+                input[type=checkbox]:checked:after {
+                    content: "";
+                    display: block;
+                    width: 5px;
+                    height: 10px;
+                    border: solid $color-text-blue;
+                    border-width: 0 2px 2px 0;
+                    -webkit-transform: rotate(45deg);
+                    -ms-transform: rotate(45deg);
+                    transform: rotate(45deg);
+                    position: absolute;
+                    top: 2px;
+                    left: 6px;
+                }
+            
+
+                &__label {
+                    margin-left: 1rem;
+                    font-size: 1.6rem;
+                    color: $color-text-darkgrey;
+                    font-family: $font-3-style;
+                    font-weight: $font-normal;
+                }
+            }
+            
+
+            .scubaFilter {
+                padding-left: .4rem;
+            }
+        }
+        
+
 
         &__totalSites {
             font-size: 1.8rem;
@@ -51,7 +119,6 @@
             font-family: $font-1-style;
             font-weight: $font-bold;
             color: $color-black;
-            padding-bottom: 1rem;
         }
 
         &__link { 
@@ -74,12 +141,30 @@
             padding: 0rem 1rem;
             font-size: 2.5rem;
             color: $color-text-darkgrey;
-
         }
     }
 
     .noResults {
         
+    }
+
+    .loadingData {
+        width: 99.5%;
+        height: 10rem;
+        margin: 1rem 0rem;
+        background: $color-white-pure;
+        box-shadow: 2px 2px 5px rgba($color-black, .25);
+        border-radius: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items:center;
+
+        &__end {
+            font-size: 1.8rem;
+            font-family: $font-3-style;
+            font-weight: $font-med;
+            color: $color-text-darkgrey;
+        }
     }
 
     .loadingContainer {

@@ -43,6 +43,20 @@ const SearchBarMap = (props) => {
                 }
             }
     );
+
+    const handleBtn = async (value) => {
+        try {
+            const results = await getGeocode({value});
+            const {lat, lng} = await getLatLng(results[0]);
+           // console.log(results);
+            //console.log(lat,lng);
+            panTo({lat, lng});
+            
+
+        } catch(error){
+            console.log(error);
+        }
+    }
     
 
     return (
@@ -89,7 +103,7 @@ const SearchBarMap = (props) => {
                     ))}
                 <ComboboxList/>
                 </ComboboxPopover>
-                <button className={classes.combobox__btn}><SearchSVG className={classes.searchSVG}/></button>
+                <button className={classes.combobox__btn} onClick={() => handleBtn(searchValue)}><SearchSVG className={classes.searchSVG}/></button>
             </Combobox>
 
         </div>

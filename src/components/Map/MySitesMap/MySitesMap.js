@@ -61,7 +61,7 @@ import {ReactComponent as FacebookSVG} from '../../../assets/icons/facebook.svg'
 import {ReactComponent as InstagramSVG} from '../../../assets/icons/instagram.svg';
 import {ReactComponent as TwitterSVG} from '../../../assets/icons/twitter.svg';
 
-
+import placeholderImage from '../../../assets/images/placeholder_image.png';
 
 
 
@@ -119,10 +119,6 @@ const MySitesMap = () => {
         //console.log(`Current clicked markers length: ${clickedMarkers.length}`)
         //console.log(clickedMarkers);
       }
-
-
-      console.log(account);
-
 
     return (
         <div>
@@ -198,8 +194,8 @@ const MySitesMap = () => {
  
                     <div className={classes.site}>
                             <div className={classes.site__imageContainer}>
-                                <a href={"/divesite/" + selectedSite._id}>
-                                    <img src={'http://localhost:8080/' + selectedSite.images[0]}
+                                <a href={"/divesite/" + selectedSite._id} target="_blank" rel="noopener noreferrer">
+                                    <img src={selectedSite.images[0] ? 'http://localhost:8080/' + selectedSite.images[0] : placeholderImage}
                                         className={classes.image}
                                     />
                                 </a>
@@ -222,7 +218,7 @@ const MySitesMap = () => {
 
                             <div className={classes.site__nameContainer}>
                                 <h5  className={classes.name}>
-                                <a href={"/divesite/" + selectedSite._id}>
+                                <a href={"/divesite/" + selectedSite._id} target="_blank" rel="noopener noreferrer">
                                         {selectedSite.name}, {selectedSite.suburb}
                                 </a>
                                 </h5>
@@ -257,7 +253,7 @@ const MySitesMap = () => {
  
                     <div className={classes.shop}>
                             <div className={classes.shop__imageContainer}>
-                                <a href={"/diveshop/" + selectedShop._id}>
+                                <a href={"/diveshop/" + selectedShop._id} target="_blank" rel="noopener noreferrer">
                                     <img src={'http://localhost:8080/' + selectedShop.logo}
                                         className={classes.image}
                                     />
@@ -273,7 +269,7 @@ const MySitesMap = () => {
 
 
                             <div className={classes.shop__nameContainer}>
-                                <a href={"/diveshop/" + selectedShop._id} className={classes.name}>
+                                <a href={"/diveshop/" + selectedShop._id} className={classes.name} target="_blank" rel="noopener noreferrer">
                                         <span>{selectedShop.name}</span>
                                         <br/>
                                 </a>
@@ -315,32 +311,6 @@ const MySitesMap = () => {
                                     {selectedShop.website ? selectedShop.website.replace(/^https?\:\/\//i, "") : 'N/A'}
                                 </a>        
                             </div>
-
-                            {/* <div className={classes.socialsContainer}>
-                                <div className={classes.socialsContainer__facebookContainer}>
-                                    <a  href={selectedShop.facebook}
-                                    target="_blank"
-                                    rel="noopener noreferrer">
-                                        <FacebookSVG className={`${classes.icon} ${classes.icon__facebook}`}/>
-                                    </a>
-                                </div>
-                                <div className={classes.socialsContainer__instagramContainer}>
-                                    <a  href={selectedShop.instagram}
-                                    target="_blank"
-                                    rel="noopener noreferrer">
-                                        <InstagramSVG className={`${classes.icon} ${classes.icon__instagram}`}/>
-                                    </a>
-                                </div>
-                                <div className={classes.socialsContainer__twitterContainer}>
-                                    <a  href={selectedShop.twitter}
-                                    target="_blank"
-                                    rel="noopener noreferrer">
-                                        <TwitterSVG className={`${classes.icon} ${classes.icon__twitter}`}/>
-                                    </a>
-                                </div>
-                            </div> */}
-
-            
                     </div>
                    
                 </InfoWindow>

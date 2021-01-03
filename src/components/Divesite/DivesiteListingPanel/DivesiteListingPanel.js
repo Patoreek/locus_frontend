@@ -14,6 +14,9 @@ import { SiteContext } from '../../../context/DiveSiteContext';
 
 import { ReactComponent as EditSVG } from '../../../assets/icons/edit.svg';
 
+import placeholderImage from '../../../assets/images/placeholder_image.png';
+
+
 
 const DivesiteListingPanel = (props) => {
 
@@ -43,12 +46,12 @@ const DivesiteListingPanel = (props) => {
     }
 
     return (
-        <div className={classes.site}>
-                    <a href={"/divesite/" + site._id} className={classes.site__link} target="_blank" rel="noopener noreferrer">
-                    </a>
+        <div className={classes.site} onClick={() => setSelectedSite(site)}>
+                    {/* <a href={"/divesite/" + site._id} className={classes.site__link} target="_blank" rel="noopener noreferrer">
+                    </a> */}
                     <div className={classes.site__imageContainer}>
                         <a href={"/divesite/" + site._id} target="_blank" rel="noopener noreferrer">
-                            <img src={'http://localhost:8080/' + site.images[0]}
+                            <img src={site.images[0] ? 'http://localhost:8080/' + site.images[0] : placeholderImage}
                                 className={classes.image}
                             />
                         </a>
@@ -62,7 +65,7 @@ const DivesiteListingPanel = (props) => {
                     <div className={classes.site__nameContainer}>
                         <h5  className={classes.siteName}>
                             <a href={"/divesite/" + site._id} target="_blank" rel="noopener noreferrer">
-                                {site.name}, {site.suburb}
+                                {site.name}, {site.suburb == "(Open Water)" || "N/A" ? site.city : site.suburb}
                             </a>
                         </h5>
                     </div>
@@ -86,7 +89,7 @@ const DivesiteListingPanel = (props) => {
                 
 
                     <div className={classes.site__descriptionContainer}>
-                        <p className={classes.siteDescription}> {site.description} </p>
+                        <p className={classes.siteDescription}> {site.description ? site.description : "There is currently no description on this site. If you have any information, images or videos you wish to share with us, please contact us via email or social media."} </p>
                     </div>
 
                     <div className={classes.site__ratingsContainer}>
