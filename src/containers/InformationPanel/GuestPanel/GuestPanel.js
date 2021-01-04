@@ -97,6 +97,7 @@ const GuestPanel = () => {
         } else {
             setList(null);
         }
+        console.log(diveShops);
     },[diveSites, diveShops]);
 
 
@@ -175,61 +176,84 @@ const GuestPanel = () => {
             </div>
 
             {/* <ToggleButtons/> */}
-            {!globalLoader.divesites && (
+            {/* {!globalLoader.divesites && ( */}
+            {list == 'DiveSites' && (
                 <div
                     id="scrollableDiv"
                     className={classes.scrollableDiv}
                 >
-                <InfiniteScroll
-                    className={classes.listings}
-                    dataLength={panelDiveSites.length}
-                    next={() => fetchData()}
-                    hasMore={hasMoreData}
-                    endMessage={
-                        <div className={classes.loadingData}>
-                            <p className={classes.loadingData__end}>No more Dive Sites in this area</p>
-                            <span className={classes.loadingData__instructions}>Move the map or zoom in to load again.</span>
-                        </div>
-                    }
-                    loader={
-                        <div className={classes.loadingData}>
-                            {/* <p>Loading more Dive Sites...</p> */}
-                            <SpinnerCircular size={40} color={'#1263fa'}/>
-                        </div>
-                    }
-                    scrollableTarget="scrollableDiv"
-                >
-                    {list == 'DiveSites' && (
-                        <div>
-                    
-                                {panelDiveSites.map(site => (
-                                    <DivesiteListingPanel site={site}/>
-                                    
-                                ))}
-                        </div>
-                    )}
-                </InfiniteScroll>
+                    <InfiniteScroll
+                        className={classes.listings}
+                        dataLength={panelDiveSites.length}
+                        next={() => fetchData()}
+                        hasMore={hasMoreData}
+                        endMessage={
+                            <div className={classes.loadingData}>
+                                <p className={classes.loadingData__end}>No more Dive Sites in this area</p>
+                                <span className={classes.loadingData__instructions}>Move the map or zoom in or out to load again.</span>
+                            </div>
+                        }
+                        loader={
+                            <div className={classes.loadingData}>
+                                {/* <p>Loading more Dive Sites...</p> */}
+                                <SpinnerCircular size={40} color={'#1263fa'}/>
+                            </div>
+                        }
+                        scrollableTarget="scrollableDiv"
+                    >
+                            <div>
+                        
+                                    {panelDiveSites.map(site => (
+                                        <DivesiteListingPanel site={site}/>
+                                        
+                                    ))}
+                            </div>
+                    </InfiniteScroll>
                 </div>
             )}
-            {!globalLoader.diveshops && (
-                <div>
-                        {list == 'DiveShops' && (
-                    <div>
-                        {diveShops.map(shop => (
-
-                            <DiveshopListingPanel shop={shop}/>
-
-                        ))}
-                    </div>
-                    )}
-
-                    {list == null && (
-                        <div className={classes.noResults}> 
-                            <h1>There are no Dive Sites or Dive Shops in this area.</h1>
-                        </div>
-                    )}
-                </div>
+            {/* )} */}
+            {/* {!globalLoader.diveshops && ( */}
+            {list == 'DiveShops' && (
+                    <div
+                        id="scrollableDiv"
+                        className={classes.scrollableDiv}
+                    >
+                        <InfiniteScroll
+                            className={classes.listings}
+                            dataLength={diveShops.length}
+                            //next={() => fetchData()}
+                            //hasMore={true}
+                            endMessage={
+                                <div className={classes.loadingData}>
+                                    <p className={classes.loadingData__end}>No more Dive Shops in this area</p>
+                                    <span className={classes.loadingData__instructions}>Move the map or zoom in or out to load again.</span>
+                                </div>
+                            }
+                            loader={
+                                <div className={classes.loadingData}>
+                                    {/* <p>Loading more Dive Sites...</p> */}
+                                    <SpinnerCircular size={40} color={'#1263fa'}/>
+                                </div>
+                            }
+                            scrollableTarget="scrollableDiv"
+                        >
+                            {list == 'DiveShops' && (
+                                <div>
+                                        {diveShops.map(shop => (
+                                            <DiveshopListingPanel shop={shop}/>
+                                        ))}
+                                </div>
+                            )}
+                        </InfiniteScroll>
+                    </div>                
             )}
+  
+            {/* )} */}
+                        {/* {list == null && (
+                                <div className={classes.noResults}> 
+                                    <h1>There are no Dive Sites or Dive Shops in this area.</h1>
+                                </div>
+                        )} */}
                 
                 
             

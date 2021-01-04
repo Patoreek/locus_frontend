@@ -10,7 +10,7 @@
         padding-bottom: 1rem;
         //padding-left: 1.5rem;
         position: relative;
-        height: 15.5rem;
+        height: 13.5rem;
 
         &__legend {
             position: absolute;
@@ -22,7 +22,7 @@
             grid-template-columns: max-content max-content;
             grid-gap: 1rem;
 
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-family: $font-3-style;
             font-weight: $font-normal;
             color: $color-text-darkergrey;
@@ -33,8 +33,8 @@
             }
 
             .marker {
-                width: 2.5rem;
-                height: 2.5rem;
+                width: 2.25rem;
+                height: 2.25rem;
                 justify-self: flex-end;
             }
         }
@@ -54,7 +54,7 @@
 
                     //transform: scale(1.6);
                 input[type=checkbox] {
-                    transform: scale(1.2);
+                    transform: scale(1);
                     position: relative;
                     cursor: pointer;
                 }
@@ -93,10 +93,13 @@
 
                 &__label {
                     margin-left: 1rem;
-                    font-size: 1.6rem;
+                    font-size: 1.4rem;
                     color: $color-text-darkgrey;
                     font-family: $font-3-style;
                     font-weight: $font-normal;
+                    transform: translateY(.2rem);
+
+
                 }
             }
             
@@ -109,7 +112,7 @@
 
 
         &__totalSites {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
 
             font-family: $font-3-style;
             font-weight: $font-med;
@@ -118,7 +121,7 @@
         }
 
         &__mapAreaText {
-            font-size: 2.2rem;
+            font-size: 1.6rem;
 
             font-family: $font-1-style;
             font-weight: $font-bold;
@@ -126,7 +129,7 @@
         }
 
         &__link { 
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             color: $color-text-darkgrey;
             font-family: $font-3-style;
             font-weight: $font-normal;
@@ -152,7 +155,7 @@
         position: relative;
         overflow: scroll;
        // background: orange;
-        height: calc(100% - 15.5rem);
+        height: calc(100% - 13.5rem);
     }
 
     .noResults {
