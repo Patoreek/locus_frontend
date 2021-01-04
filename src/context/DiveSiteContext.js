@@ -44,7 +44,6 @@ export const DiveSiteProvider = (props) => {
     
     const [ selectedSite, setSelectedSite ] = useState(null);
 
-    const [moreDetails, setMoreDetails] = useState(false);
 
     const [diveSites, setDiveSites] = useState([]);
 
@@ -89,18 +88,32 @@ export const DiveSiteProvider = (props) => {
             // ...
     }
 
-    async function loadDiveSitesInBoundsInfinite(mapBounds) {
+    async function loadDiveSitesInBoundsInfinite(mapBounds, mapMoved) {
         // You can await here
         //setDiveSites([]);
         console.log('loadDiveSitesInBoundsInfinite');
-        console.log(mapBounds);
-        console.log(scrollCounter);
+        //console.log(scrollCounter);
+
+        let counter;
+        let panelSites;
+
+        console.log("Map Moved: " + mapMoved);
+        
+        if (mapMoved == "TRUE") {
+            counter = 0;
+            panelSites = [];
+        } else {
+            counter = scrollCounter;
+            panelSites = panelDiveSites;
+        }
+
+        console.log("COUNTER = " + counter);
+        
 
         const swLat = mapBounds.Wa.i;
         const swLng = mapBounds.Ra.i;
         const neLat = mapBounds.Wa.j;
         const neLng = mapBounds.Ra.j;
-        
 
         return fetch('http://localhost:8080/diveSites/loadDiveSitesInBoundsInfinite',{
             method: 'POST',
@@ -115,7 +128,7 @@ export const DiveSiteProvider = (props) => {
                 neLng: neLng,
                 scubaFilter: scubaFilter,
                 snorkelFilter: snorkelFilter,
-                scrollCounter: scrollCounter,
+                scrollCounter: counter,
             })
         })
         .then(res => {
@@ -124,16 +137,26 @@ export const DiveSiteProvider = (props) => {
         .then(result => {
             console.log(result.sites);
             console.log("Results Length => " + result.sites.length);
-            console.log("Panel Dive Sites Length => " + panelDiveSites.length);
+            console.log("Panel Dive Sites Length => " + panelSites.length);
 
 
             if (result.sites.length == 0){
                 setHasMoreData(false);
-            } else {
-                setPanelDiveSites(prevArray => [...prevArray, ...result.sites]);
-                setScrollCounter(scrollCounter + 1);
+                setScrollCounter(0);
+            } else if (result.sites.length < 10 && panelSites.length == 0) {
+                setPanelDiveSites(result.sites);
+                setHasMoreData(false);
+                setScrollCounter(0);
             }
-
+            else {
+                if (mapMoved == "TRUE"){
+                    setPanelDiveSites(result.sites);
+                    setScrollCounter(1);
+                }else {
+                    setPanelDiveSites(prevArray => [...prevArray, ...result.sites]);
+                    setScrollCounter(scrollCounter + 1);
+                }
+            }
 
        
         })
@@ -147,11 +170,7 @@ export const DiveSiteProvider = (props) => {
         // You can await here
         setDiveSites([]);
         console.log('loadDiveSitesInBounds');
-        console.log(mapBounds);
-        // const swLat = mapBounds.Wa.i;
-        // const swLng = mapBounds.Sa.i;
-        // const neLat = mapBounds.Wa.j;
-        // const neLng = mapBounds.Sa.j;
+       
         const swLat = mapBounds.Wa.i;
         const swLng = mapBounds.Ra.i;
         const neLat = mapBounds.Wa.j;
@@ -244,12 +263,7 @@ export const DiveSiteProvider = (props) => {
     async function loadDiveShopsInBounds(mapBounds, setGlobalLoader) {
         // You can await here
         console.log('loadDiveShopsInBounds');
-        console.log(mapBounds);
-        // const swLat = mapBounds.Wa.i;
-        // const swLng = mapBounds.Sa.i;
-        // const neLat = mapBounds.Wa.j;
-        // const neLng = mapBounds.Sa.j;
-
+       
         const swLat = mapBounds.Wa.i;
         const swLng = mapBounds.Ra.i;
         const neLat = mapBounds.Wa.j;
@@ -295,7 +309,6 @@ export const DiveSiteProvider = (props) => {
         <DiveSitesContext.Provider value = { [diveSites, setDiveSites] }>
         <CoordsContext.Provider value = {[coords, setCoords]}>
         <LoadDiveSiteContext.Provider value = {loadDiveSites} >
-        <DetailsContext.Provider value = {[moreDetails, setMoreDetails]}>
         <LoadDiveSiteInBoundsContext.Provider value = {loadDiveSitesInBounds}>
         <LoadDiveShopsInBoundsContext.Provider value = {loadDiveShopsInBounds}>
         <DiveShopsContext.Provider value = { [diveShops, setDiveShops] }>
@@ -321,7 +334,6 @@ export const DiveSiteProvider = (props) => {
         </DiveShopsContext.Provider>  
         </LoadDiveShopsInBoundsContext.Provider>  
         </LoadDiveSiteInBoundsContext.Provider>  
-        </DetailsContext.Provider>  
         </LoadDiveSiteContext.Provider>        
         </CoordsContext.Provider>
         </DiveSitesContext.Provider>

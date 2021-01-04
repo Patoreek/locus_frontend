@@ -7,11 +7,10 @@ import * as serviceWorker from './serviceWorker';
 import { AuthProvider } from './context/AuthContext';
 
 ReactDOM.render(
-  <React.StrictMode>
+ 
     <AuthProvider>
       <App />
-    </AuthProvider>
-  </React.StrictMode>,
+    </AuthProvider>,
   document.getElementById('root')
 );
 

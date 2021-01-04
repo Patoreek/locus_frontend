@@ -16,7 +16,15 @@ import { AuthContext,
          GlobalLoaderContext,
          LocationNameContext } from '../../context/AuthContext';
 
-         import { LoadDiveSiteInBoundsContext, LoadDiveShopsInBoundsContext, ScubaFilterContext, SnorkelFilterContext } from '../../context/DiveSiteContext';
+import {   LoadDiveSiteInBoundsContext, 
+            LoadDiveShopsInBoundsContext, 
+            ScubaFilterContext, 
+            SnorkelFilterContext, 
+            LoadDiveSitesInBoundsInfiniteContext,
+            PanelDiveSitesContext,
+            ScrollCounterContext,
+            HasMoreDataContext,
+} from '../../context/DiveSiteContext';
 
 import MySitesMap from './MySitesMap/MySitesMap';
 import GuestMap from './GuestMap/GuestMap';
@@ -34,9 +42,14 @@ const Map = (props) => {
     const mapRef = useContext(MapRefContext);
     const loadDiveSitesInBounds = useContext(LoadDiveSiteInBoundsContext);
     const loadDiveShopsInBounds = useContext(LoadDiveShopsInBoundsContext);
+    const loadDiveSitesInBoundsInfinite = useContext(LoadDiveSitesInBoundsInfiniteContext);
+
     const [globalLoader, setGlobalLoader] = useContext(GlobalLoaderContext);  
 
     const [locationName, setLocationName] = useContext(LocationNameContext);
+    const [hasMoreData, setHasMoreData] = useContext(HasMoreDataContext);
+
+    
 
     const panTo = useContext(PanToContext);
     const onMapLoad = useContext(OnMapLoadContext);
@@ -59,6 +72,11 @@ const Map = (props) => {
 
     const [scubaFilter, setScubaFilter] = useContext(ScubaFilterContext);
     const [snorkelFilter, setSnorkelFilter] = useContext(SnorkelFilterContext);
+
+    const [panelDiveSites, setPanelDiveSites] = useContext(PanelDiveSitesContext);
+
+    const [scrollCounter, setScrollCounter] = useContext(ScrollCounterContext);
+
 
 
 
@@ -104,22 +122,9 @@ const Map = (props) => {
         }
     },[]);
 
-    useEffect(() => {
-        onBoundsChanged();
-        // if (scubaFilter && !snorkelFilter){
-        //     console.log('searching for SCUBA Dive Sites only.');
-        // }
-        // if (snorkelFilter && !scubaFilter){
-        //     console.log('searching for Snorkelling Sites only.');
-        // }
-        // if ((scubaFilter && snorkelFilter) || (!scubaFilter && !snorkelFilter)) {
-        //     console.log('searching for All Sites.');
-        // }
-
-    }, [scubaFilter, snorkelFilter]);
-
 
     let timer;
+
 
     const onBoundsChanged = () => {
 
@@ -130,32 +135,35 @@ const Map = (props) => {
         });
 
 
-        clearTimeout(timer);
-        timer = setTimeout(function() {
-        console.log("handleBoundsChanged")
-        const lat = mapRef.current.getCenter().lat()
-        const lng = mapRef.current.getCenter().lng()
-        const mapCenter = {
-          lat: lat,
-          lng: lng,
-        }
+            clearTimeout(timer);
+            timer = setTimeout(function() {
+            console.log("handleBoundsChanged")
+            const lat = mapRef.current.getCenter().lat()
+            const lng = mapRef.current.getCenter().lng()
+            const mapCenter = {
+            lat: lat,
+            lng: lng,
+            }
 
 
-        let testLat = 24.22;
-        let testLng = 130.50;
+            let testLat = 24.22;
+            let testLng = 130.50;
 
-        //const mapBounds = mapRef.current.getBounds().contains({lat: testLat, lng: testLng});
-        const mapBounds = mapRef.current.getBounds();
+            //const mapBounds = mapRef.current.getBounds().contains({lat: testLat, lng: testLng});
+            const mapBounds = mapRef.current.getBounds();
 
             if (locationName){
                 setLocationName("");
             }
         
-            //? LAT (UP & DOWN), LNG (LEFT TO RIGHT)
-            //? TO DETERMINE THE BOUNDS
-            //TODO: CREATE CHECK FUNCTION THAT CHECKS IF SITE IS IN THE BOUNDS. THIS FUNCTION SHOULD BE DONE WHEN GETTING DIVE SITES.
+            setPanelDiveSites([]);
+            setHasMoreData(true);
+           // setScrollCounter(0);
+
             loadDiveSitesInBounds(mapBounds, setGlobalLoader);
             loadDiveShopsInBounds(mapBounds, setGlobalLoader);
+            loadDiveSitesInBoundsInfinite(mapBounds, 'TRUE');
+
         }, 1000);
     }
 
@@ -175,19 +183,19 @@ const Map = (props) => {
                 >
                 {/* <SearchBarMap panTo={panTo}/>
                 <Locate panTo={panTo}/> */}
-            {!guestMap && (
-                    <MySitesMap/>
+                {!guestMap && (
+                        <MySitesMap/>
 
-            )}
+                )}
     
     
-            {guestMap && (
-                <GuestMap/>
-            )} 
+                {guestMap && (
+                    <GuestMap/>
+                )} 
     
-            </GoogleMap>
-            )}
-            
+                </GoogleMap>
+                )}
+                
             </div>
        
     );

@@ -2,7 +2,7 @@ import React, {useContext, useEffect} from 'react';
 import logo from './logo.svg';
 import classes from './App.module.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect, useLocation } from 'react-router-dom';
 
 
 import Navbar from './components/Navbar/Navbar';
@@ -47,9 +47,10 @@ function App() {
   const [account, setAccount] = useContext(AccountContext);
   const [isLoading, setIsLoading] = useContext(LoadingContext);
 
-
-
+  
+  
   useEffect(() => {
+  
     async function isLoggedIn() {
 
       try {
@@ -101,8 +102,8 @@ function App() {
         <DiveSiteProvider>
           <UserProvider>
             <Route path="/mySites" exact component={UserView}/>
-            <Route path="/addRequest" component={AddRequest}/>
-            <Route path="/changePassword" component={ChangePassword}/>
+            <Route path="/addRequest"  exact component={AddRequest}/>
+            <Route path="/changePassword"  exact component={ChangePassword}/>
             
             <Route path="/favourites" exact component={FavouritesView}/>
             <Route path="/profile" exact component={ProfileView}/>
@@ -110,24 +111,23 @@ function App() {
             <Route path="/editprofile" exact component={EditProfile}/>
     
             <Route path="/map" exact component={GuestView}/>
-            <Route path="/divesite/:id" component={DetailsView}/>
-            <Route path="/diveshop/:id" component={DiveShopView}/>
-            <Route path="/communityphotos/:siteId" component={CommunityPhotos}/>
-            <Route path="/profile/:userId" component={ProfileView}/>
+            <Route path="/divesite/:id" exact component={DetailsView}/>
+            <Route path="/diveshop/:id" exact component={DiveShopView}/>
+            <Route path="/communityphotos/:siteId" exact component={CommunityPhotos}/>
+            <Route path="/profile/:userId" exact component={ProfileView}/>
             </UserProvider>
         </DiveSiteProvider>
 
-        <Route path="/about" component={() => <FooterView page="about"/>}/>
-        <Route path="/advertise" component={() => <FooterView page="advertise"/>}/>
-        <Route path="/news" component={() => <FooterView page="news"/>}/>
-        <Route path="/contact" component={() => <FooterView page="contact"/>}/>
-        <Route path="/sitemap" component={() => <FooterView page="sitemap"/>}/>
-        <Route path="/terms" component={() => <FooterView page="terms"/>}/>
-        <Route path="/policy" component={() => <FooterView page="policy"/>}/>
+        <Route path="/about" exact component={() => <FooterView page="about"/>}/>
+        <Route path="/advertise" exact component={() => <FooterView page="advertise"/>}/>
+        <Route path="/news" exact component={() => <FooterView page="news"/>}/>
+        <Route path="/contact" exact component={() => <FooterView page="contact"/>}/>
+        <Route path="/sitemap" exact component={() => <FooterView page="sitemap"/>}/>
+        <Route path="/terms" exact component={() => <FooterView page="terms"/>}/>
+        <Route path="/policy" exact component={() => <FooterView page="policy"/>}/>
 
-        <Footer/>
+        {document.title != "Locus - Map" ? <Footer/> : null }
       
-      {/* API-KEY: AIzaSyA-9fLyV56TU5kt5qw3guZ4Vi3BXuDlNts */}
     </div>
     )}
     {isLoading === null && (

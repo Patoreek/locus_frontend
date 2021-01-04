@@ -1,5 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 
+import classes from './GuestView.module.scss';
+
 import InformationPanel from '../InformationPanel/InformationPanel';
 import Map from '../../components/Map/Map';
 import Details from '../DetailsView/DetailsView';
@@ -10,7 +12,7 @@ import { AuthContext,
          PanelSizeContext,
          LocateButtonContext } from '../../context/AuthContext';
 
-import { CoordsContext, DetailsContext } from '../../context/DiveSiteContext';
+import { CoordsContext } from '../../context/DiveSiteContext';
 
 import { useMediaQuery } from '../../CustomHooks/useMediaQuery';
 
@@ -26,24 +28,15 @@ const GuestView = () => {
 
         const [coords, setCoords] = useContext(CoordsContext);
 
-        const [moreDetails, setMoreDetails] = useContext(DetailsContext);
 
         const [isUserOnMap, setIsUserOnMap] = useContext(UserOnMapContext);
 
         const [guestViewLoaded, setGuestViewLoaded] = useState(false);
 
-        const isMobile = useMediaQuery('(max-width: 800px)');
-
         //setIsAuth(false);
         useEffect(() => {
 
             document.title = "Locus - Map";
-
-            if (isMobile) {
-                setMapSize("100vw");
-                setPanelSize("0vw");
-                
-            }
             
             console.log('[GuestView] isAuth in IF = ' + isAuth);
             if (isAuth){
@@ -66,27 +59,16 @@ const GuestView = () => {
 
         } 
 
-        let style;
-        if (moreDetails) {
-            style = {
-                height: "auto"
-            }
-        }
-
-
 
 
 
     return (
-        <div style={style}>
+        <div className={classes.guestView}>
 
 
-            {guestViewLoaded && !moreDetails && (
+            {guestViewLoaded && (
                     <InformationPanel/>
             )}
-
-            {!moreDetails && (
-            
 
                 <Map googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyA-9fLyV56TU5kt5qw3guZ4Vi3BXuDlNts&v=3.exp&libraries=geometry,drawing,places`}
                     loadingElement={<div style={{ 
@@ -113,14 +95,6 @@ const GuestView = () => {
                                     }}/>}
                     onMapClick = {onMapClick}
                 />
-
-            )}
-
-            {moreDetails && (
-                <Details/> 
-            )}
-                
-
         </div>
     );
 };

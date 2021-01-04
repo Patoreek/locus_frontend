@@ -14,7 +14,6 @@ import { AuthContext,
 import { DiveSitesContext,
          SiteContext,
          LoadDiveSiteInBoundsContext,
-         DetailsContext,
          ShopContext,
          DiveShopsContext } from '../../../context/DiveSiteContext';
 
@@ -50,7 +49,6 @@ const GuestMap = (props) => {
 
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
     const [selectedShop, setSelectedShop] = useContext(ShopContext);
-    const [moreDetails, setMoreDetails] = useContext(DetailsContext);
     const [diveSites, setDiveSites] = useContext(DiveSitesContext);
     const [diveShops, setDiveShops] = useContext(DiveShopsContext);
     const [isAuth, setIsAuth] = useContext(AuthContext);
@@ -60,7 +58,7 @@ const GuestMap = (props) => {
 
 
     useEffect(() => {
-        console.log(diveSites);
+        //console.log(diveSites);
     }, [diveSites])
 
     const onMarkerClustererClick = (markerClusterer) => {

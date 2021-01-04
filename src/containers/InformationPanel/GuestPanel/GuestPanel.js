@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect} from 'react';
+import React, { useState, useContext, useEffect, useRef} from 'react';
 
 import { useHistory } from "react-router-dom";
 
@@ -11,7 +11,6 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 
 import { DiveSitesContext,
-         DetailsContext,
          SiteContext,
          DiveShopsContext,
          ShopContext,
@@ -19,6 +18,7 @@ import { DiveSitesContext,
          ScubaFilterContext,
          SnorkelFilterContext,
          PanelDiveSitesContext,
+         LoadDiveSiteInBoundsContext,
          LoadDiveSitesInBoundsInfiniteContext,
          ScrollCounterContext,
          HasMoreDataContext } from '../../../context/DiveSiteContext';
@@ -47,8 +47,6 @@ const GuestPanel = () => {
 
     const [diveShops, setDiveShops] = useContext(DiveShopsContext);
 
-    const [moreDetails, setMoreDetails] = useContext(DetailsContext);
-
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
 
     const [selectedShop, setSelectedShop] = useContext(ShopContext);
@@ -74,10 +72,12 @@ const GuestPanel = () => {
 
     const [hasMoreData, setHasMoreData] = useContext(HasMoreDataContext);
 
+    const loadDiveSiteInBounds = useContext(LoadDiveSiteInBoundsContext);
+
 
 
     useEffect(() => {
-        fetchData();
+       // fetchData();
 
         return () => {
             setScrollCounter(0);
@@ -99,22 +99,35 @@ const GuestPanel = () => {
         }
     },[diveSites, diveShops]);
 
+
+
+
+    // const isInitialMountFilter = useRef(true);
+    // useEffect(() => {
+    //     if (isInitialMountFilter.current) {
+    //         isInitialMountFilter.current = false;
+    //     } else {
+    //         setHasMoreData(true);
+    //         const mapBounds = mapRef.current.getBounds();
+    //         setPanelDiveSites([]);
+    //         setScrollCounter(0);
+
+    //         loadDiveSitesInBoundsInfinite(mapBounds, "TRUE");
+    //         loadDiveSiteInBounds(mapBounds, setGlobalLoader);
+    //      }
+    // }, [scubaFilter]);
+
     let timer;
 
     const fetchData = () => {
 
         clearTimeout(timer);
-        timer = setTimeout(function() {
-        console.log("handleBoundsChanged")
-        const lat = mapRef.current.getCenter().lat()
-        const lng = mapRef.current.getCenter().lng()
-      
-        const mapBounds = mapRef.current.getBounds();
-           
-        loadDiveSitesInBoundsInfinite(mapBounds, scrollCounter);
-
-
-            //loadDiveShopsInBoundsInfinite(mapBounds, setGlobalLoader);
+            timer = setTimeout(function() {
+            console.log("handleBoundsChanged")
+            const lat = mapRef.current.getCenter().lat()
+            const lng = mapRef.current.getCenter().lng()
+            const mapBounds = mapRef.current.getBounds();
+            loadDiveSitesInBoundsInfinite(mapBounds, scrollCounter);
         }, 1000);
     }
 
@@ -163,33 +176,39 @@ const GuestPanel = () => {
 
             {/* <ToggleButtons/> */}
             {!globalLoader.divesites && (
-                <div className={classes.listings}>
+                <div
+                    id="scrollableDiv"
+                    className={classes.scrollableDiv}
+                >
+                <InfiniteScroll
+                    className={classes.listings}
+                    dataLength={panelDiveSites.length}
+                    next={() => fetchData()}
+                    hasMore={hasMoreData}
+                    endMessage={
+                        <div className={classes.loadingData}>
+                            <p className={classes.loadingData__end}>No more Dive Sites in this area</p>
+                            <span className={classes.loadingData__instructions}>Move the map or zoom in to load again.</span>
+                        </div>
+                    }
+                    loader={
+                        <div className={classes.loadingData}>
+                            {/* <p>Loading more Dive Sites...</p> */}
+                            <SpinnerCircular size={40} color={'#1263fa'}/>
+                        </div>
+                    }
+                    scrollableTarget="scrollableDiv"
+                >
                     {list == 'DiveSites' && (
                         <div>
-                           <InfiniteScroll
-                                dataLength={panelDiveSites.length}
-                                next={() => fetchData()}
-                                hasMore={hasMoreData}
-                                endMessage={
-                                    <div className={classes.loadingData}>
-                                        <p className={classes.loadingData__end}>No more Dive Sites in this area</p>
-                                    </div>
-                                  }
-                                loader={
-                                    <div className={classes.loadingData}>
-                                        {/* <p>Loading more Dive Sites...</p> */}
-                                        <SpinnerCircular size={40} color={'#1263fa'}/>
-                                    </div>
-                                }
-                                
-                           >
+                    
                                 {panelDiveSites.map(site => (
                                     <DivesiteListingPanel site={site}/>
                                     
                                 ))}
-                            </InfiniteScroll>
                         </div>
                     )}
+                </InfiniteScroll>
                 </div>
             )}
             {!globalLoader.diveshops && (

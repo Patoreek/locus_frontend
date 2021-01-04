@@ -1,12 +1,16 @@
 @import '../../../sass/abstracts/variables';
 
 .guestPanel {
-    padding: 2rem 1rem 2rem 1.5rem;
+    padding: 2rem 1rem .2rem 1.5rem;
+    position: relative;
+    height: 100%;
+
     .topSection {
         border-bottom: 1px solid $color-lines;
         padding-bottom: 1rem;
         //padding-left: 1.5rem;
         position: relative;
+        height: 15.5rem;
 
         &__legend {
             position: absolute;
@@ -144,18 +148,26 @@
         }
     }
 
+    .scrollableDiv {
+        position: relative;
+        overflow: scroll;
+       // background: orange;
+        height: calc(100% - 15.5rem);
+    }
+
     .noResults {
         
     }
 
     .loadingData {
-        width: 99.5%;
+        width: 98%;
         height: 10rem;
         margin: 1rem 0rem;
         background: $color-white-pure;
         box-shadow: 2px 2px 5px rgba($color-black, .25);
         border-radius: 1rem;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items:center;
 
@@ -163,6 +175,13 @@
             font-size: 1.8rem;
             font-family: $font-3-style;
             font-weight: $font-med;
+            color: $color-text-darkgrey;
+        }
+
+        &__instructions {
+            font-size: 1.6rem;
+            font-family: $font-3-style;
+            font-weight: $font-normal;
             color: $color-text-darkgrey;
         }
     }
