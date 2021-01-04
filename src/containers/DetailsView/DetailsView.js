@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 
-import { SiteContext,
-         DetailsContext } from '../../context/DiveSiteContext';
+import { SiteContext } from '../../context/DiveSiteContext';
 
 import { AuthContext, AuthDrawerContext} from '../../context/AuthContext';
 
@@ -50,7 +49,6 @@ const Details = (props) => {
    // console.log(siteId);
     
     const [selectedSite, setSelectedSite] = useContext(SiteContext);
-    const [moreDetails, setMoreDetails] = useContext(DetailsContext);
     const [isAuth, setIsAuth] = useContext(AuthContext);
     const [authDrawer, setAuthDrawer] = useContext(AuthDrawerContext);
 
@@ -111,12 +109,7 @@ const Details = (props) => {
         weekday[6] = "Sat";
 
 
-    // const isMobile = useMediaQuery('(max-width: 800px)');
 
-    const goBackHandler = () => {
-
-        setMoreDetails(false);
-    }
 
     const [index, setIndex] = useState(0);
 
@@ -224,7 +217,7 @@ const Details = (props) => {
               credentials: 'include',
             });
             const shops = await response.json();
-            //console.log(shops);
+            console.log(shops);
             setShops(shops.shops);
     
           } catch (error) {
@@ -253,6 +246,7 @@ const Details = (props) => {
               body: JSON.stringify({
                   lat: lat,
                   lng, lng,
+                  siteId: siteId
                   // swLat: swLat,
                   // swLng: swLng,
                   // neLat: neLat,
@@ -344,7 +338,7 @@ const Details = (props) => {
 
                 {/* //TODO: END IMAGE GRID CONTAINER ////////////////// */}
                 <div className={classes.nameContainer}>
-                        <h3 className={classes.name}>{siteName} · {siteSuburb} · {siteCity} · {siteCountry}</h3>
+                        <h3 className={classes.name}>{siteName} · {siteSuburb == "N/A" ? null : siteSuburb + " · "} {siteCity} · {siteCountry}</h3>
                         <a target="_blank" href={"http://www.google.com/search?q=" + siteName + "%2C+" + linkSuburb + "%2C+" + siteCity + "%2C+"+ siteCountry}>{siteName}, {linkSuburb}, {siteCity}, {siteCountry}</a> {/* Should be a link to the map / google maps of the area?? */}
                         <a target="_blank" href={"https://maps.google.com/?q=" + siteLatitude + "," + siteLongitude}><GoogleMapSVG className={classes.googleMapSVG}/></a>
                         <div className={classes.ratingsContainer}>
@@ -463,6 +457,12 @@ const Details = (props) => {
                   
                   <div className={classes.shopContainer}>
                       <h3> Dive Shops that dive at {siteName}</h3>
+                      {shops.length == 0 && (
+                        <div className={classes.noShops}>
+                          <h3 className={classes.noShops__text}>There are no shops associated with {siteName} yet.</h3>
+                          <p className={classes.noShops__contact}>If you know any dive shops that dive at {siteName} please contact us via email or social media.</p>
+                        </div>
+                      )}
                       {shops.map(shop => (
                         <DiveshopListingPanel shop={shop}/>
                       ))}
@@ -471,6 +471,12 @@ const Details = (props) => {
 
                   <div className={classes.nearbyDiveSites}>
                     <h3> Dive Sites that are near {siteName}</h3>
+                    {nearbySites.length == 0 && (
+                        <div className={classes.noNearbySites}>
+                          <h3 className={classes.noNearbySites__text}>There are no dive sites near {siteName}.</h3>
+                          <p className={classes.noNearbySites__contact}>If you know any dive sites near {siteName} please contact us via email or social media.</p>
+                        </div>
+                      )}
                     {nearbySites.map(site => (
                         <DivesiteListingPanel site={site}/>
                     ))}
