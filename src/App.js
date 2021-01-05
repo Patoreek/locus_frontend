@@ -114,7 +114,10 @@ function App() {
             <Route path="/divesite/:id" exact component={DetailsView}/>
             <Route path="/diveshop/:id" exact component={DiveShopView}/>
             <Route path="/communityphotos/:siteId" exact component={CommunityPhotos}/>
-            <Route path="/profile/:userId" exact component={ProfileView}/>
+            <Route path="/profile/:userId" component={ProfileView}/>
+            <Route path="/editprofile/:editProfile" component={ProfileView}/>
+
+
             </UserProvider>
         </DiveSiteProvider>
 

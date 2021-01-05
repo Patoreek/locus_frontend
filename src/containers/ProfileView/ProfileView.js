@@ -30,7 +30,7 @@ import ChangePassword from '../../containers/ChangePassword/ChangePassword';
 
 import classes from './ProfileView.module.scss';
 
-const ProfileView = () => {
+const ProfileView = (props) => {
 
     const [isAuth, setIsAuth] = useContext(AuthContext);
     const [ selectedSite, setSelectedSite ] = useContext(SiteContext);
@@ -59,22 +59,29 @@ const ProfileView = () => {
     const [changePWModal, setChangePWModal] = useState(false);
 
     let { userId } = useParams();
+    let { editProfile } = useParams();
+
 
 
     let history = useHistory();
 
-        if (!isAuth){
-            history.replace('/login');
-        }
-
-        // const siteLinkHandler = (site) => {
-        //     console.log('Site Name Pressed!');
-        //     console.log(site);
-        //     setSelectedSite(site);
-        //     setMoreDetails(!moreDetails);
-        // }
+    if (!isAuth){
+        history.replace('/login');
+    }
     
         useEffect(() => {
+
+            //params here
+
+            console.log(userId);
+            console.log(editProfile);
+
+            if (editProfile){
+                setEditModal(true);
+            } else {
+                setEditModal(false);
+            }
+
 
             const getProfileOther = (id) => {
                 return fetch('http://localhost:8080/user/viewProfile',{

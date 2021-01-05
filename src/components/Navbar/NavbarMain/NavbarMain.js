@@ -238,7 +238,7 @@ const NavbarMain = () => {
                                             <ProfileSVG className={classes.icon}/>
                                             <span>View Profile</span>
                                         </a>
-                                        <a href="/editprofile" className={classes.dropdown__editProfile}>
+                                        <a href="/editProfile/true" className={classes.dropdown__editProfile}>
                                             <EditProfileSVG className={classes.icon}/>
                                             <span>Edit Profile</span>
                                         </a>

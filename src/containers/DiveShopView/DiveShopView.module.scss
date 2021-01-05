@@ -88,6 +88,8 @@
                         font-family: $font-3-style;
                         font-weight: $font-med;
                         color: $color-text-darkgrey;
+                        transition: .2s ease;
+
 
                         &:hover {
                             text-decoration: underline;
@@ -110,6 +112,8 @@
                         font-family: $font-3-style;
                         font-weight: $font-med;
                         color: $color-text-darkgrey;
+                        transition: .2s ease;
+
 
                         &:hover {
                             text-decoration: underline;
@@ -130,7 +134,17 @@
             .leftGrid {
                 grid-row: 1 / -1;
                 grid-column: 1 / 2;
-                padding: 1rem;
+                padding: 2rem 1rem;
+
+                &__diveSitesHeader {
+                    h3 {
+                        font-size: 1.8rem;
+                        font-family: $font-1-style;
+                        font-weight: $font-med;
+                        color: $color-black;
+                        margin-bottom: 2rem;
+                    }
+                }
 
                 &__diveSites {
                     background: $color-white-pure;
@@ -138,95 +152,112 @@
                     box-shadow: 2px 2px 10px rgba($color-black, .25);
                     border-radius: 1rem;
                     overflow: hidden;
+                }
 
-                    h3 {
-                        font-size: 2rem;
-                        font-family: $font-1-style;
-                        font-weight: $font-med;
-                        color: $color-black;
-                    }
+                &__noSites {
+                    display: flex;
+                    flex-direction: column;
+                    text-align: center;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 0rem 5rem;
+                    min-height: 10.5rem;
+                }
 
+                &__noSitesText {
+                    font-size: 1.6rem;
+                    font-family: $font-1-style;
+                    font-weight: $font-med;
+                    color: $color-text-darkergrey;
+                }
+
+                &__noSitesContact {
+                    font-size: 1.2rem;
+                    font-family: $font-3-style;
+                    font-weight: $font-normal;
+                    color: $color-text-darkgrey;
                 }
             }
             .rightGrid {
                 grid-row: 1 / -1;
                 grid-column: 2 / 3;
-                padding: 1rem;
+                padding: 2rem 1rem;
                 display: grid;
-                grid-template-rows: max-content max-content;
+                grid-template-rows: repeat(6, max-content);
                 grid-template-columns: 1fr;
-            
-                &__contactInfo {
+
+
+
+                &__contactInfoHeader {
                     grid-row: 1 / 2;
                     grid-column: 1 / -1;
 
+                    h3 {
+                        font-size: 1.8rem;
+                        font-family: $font-1-style;
+                        font-weight: $font-med;
+                        color: $color-black;
+                        margin-bottom: 2rem;
+                    }
+                }
+
+                &__phoneContainer, &__emailContainer {
                     background: $color-white-pure;
-                    padding: 1.5rem 2.5rem;
                     box-shadow: 2px 2px 10px rgba($color-black, .25);
                     border-radius: 1rem;
                     overflow: hidden;
+                    padding: 1.5rem 2.5rem;
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 1.5rem;
 
-                    .titleContainer {
-                        border-bottom: 1px solid $color-lines;
-                        h5 {
-                            font-size: 2rem;
-                            font-family: $font-1-style;
-                            font-weight: $font-med;
-                            color: $color-black;
+                    a {
+                        font-size: 1.6rem;
+                        margin-left: 1rem;
+                        font-family: $font-3-style;
+                        font-weight: $font-med;
+                        color: $color-text-darkergrey;
+                        transition: .2s ease;
 
+                        &:hover {
+                            color: $color-text-blue-hover;
                         }
                     }
+                }
+     
 
-                    .phoneContainer {
-                        padding: 2.5rem 0rem 1rem 0rem;
-                        display: flex;
-                        align-items: center;
-
-                        a {
-                            font-size: 1.6rem;
-                            margin-left: 1rem;
-                            font-family: $font-3-style;
-                            font-weight: $font-med;
-                            color: $color-text-darkergrey;
-
-                            &:hover {
-                                color: $color-text-blue-hover;
-                            }
-                        }
+                    &__phoneContainer {
+                        grid-row: 2 / 3;
+                        grid-column: 1 / -1;
 
                     }
 
-                    .emailContainer {
-                        padding: 1rem 0rem;
-                        display: flex;
-                        align-items: center;
-
-                        a {
-                            font-size: 1.6rem;
-                            margin-left: 1rem;
-                            font-family: $font-3-style;
-                            font-weight: $font-med;
-                            color: $color-text-darkergrey;
-
-                            &:hover {
-                                color: $color-text-blue-hover;
-                            }
-                        }
+                    &__emailContainer {
+                        grid-row: 3 / 4;
+                        grid-column: 1 / -1;
                     }
 
                     .socialsContainer {
-                        grid-row: 6 / 7;
+                        grid-row: 4 / 5;
                         grid-column: 1 / -1;
                 
                         display: flex;
                         justify-content: space-evenly;
                         padding: 1rem;
+
+                        &__facebookContainer, &__twitterContainer, &__instagramContainer {
+                            background: $color-white-pure;
+                            box-shadow: 2px 2px 10px rgba($color-black, .25);
+                            border-radius: 1rem;
+                            overflow: hidden;
+                            padding: 1.5rem 2rem;
+                        }
                 
                     }
-                }
+                
 
                 &__mapHeader {
-                    grid-row: 2 / 3;
+                    grid-row: 5 / 6;
                     grid-column: 1 / -1;
                     margin-top: 2rem;
                     padding-left: 1rem;
@@ -238,7 +269,7 @@
 
                 &__map {
                     margin-top: 1rem;
-                    grid-row: 3 / 4;
+                    grid-row: 6 / 7;
                     grid-column: 1 / -1;
                     background: orange;
                     height: 30rem;

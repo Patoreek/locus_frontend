@@ -1,64 +1,58 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from "react";
 
-import GuestPanel from './GuestPanel/GuestPanel';
-import UserPanel from './UserPanel/UserPanel';
+import GuestPanel from "./GuestPanel/GuestPanel";
+import UserPanel from "./UserPanel/UserPanel";
 
-import Spinner from 'react-bootstrap/Spinner';
+import Spinner from "react-bootstrap/Spinner";
 
-import { AuthContext, 
-         UserOnMapContext, 
-         PanelSizeContext } from '../../context/AuthContext';
+import {
+  AuthContext,
+  UserOnMapContext,
+  PanelSizeContext,
+} from "../../context/AuthContext";
 
-import classes from './InformationPanel.module.scss';
+import classes from "./InformationPanel.module.scss";
 
 const InformationPanel = (props) => {
+  const [isAuth, setIsAuth] = useContext(AuthContext);
+  const [isUserOnMap, setIsUserOnMap] = useContext(UserOnMapContext);
 
-    const [isAuth, setIsAuth] = useContext(AuthContext);
-    const [isUserOnMap, setIsUserOnMap] = useContext(UserOnMapContext);
+  const [guestPanel, setGuestPanel] = useState(true);
+  const [panelLoaded, setPanelLoaded] = useState(false);
 
-    const [guestPanel, setGuestPanel] = useState(true);
-    const [panelLoaded, setPanelLoaded] = useState(false);
+  const [panelSize, setPanelSize] = useContext(PanelSizeContext);
 
-    const [ panelSize, setPanelSize ] = useContext(PanelSizeContext);
+  let panelDisplay;
 
-    let panelDisplay;
+  if (panelSize === "0vw") {
+    panelDisplay = "none";
+  } else {
+    panelDisplay = "inline-block";
+  }
 
-    if (panelSize === "0vw"){
-        panelDisplay = "none";
-    }else {
-        panelDisplay = "inline-block";
+  useEffect(() => {
+    console.log("[InfoPanel] isAuth = " + isAuth);
+    console.log("[InfoPanel] isUserOnMap = " + isUserOnMap);
+
+    if (isAuth) {
+      // IS LOGGED IN
+      console.log("[InfoPanel] in isAuth block");
+      if (!isUserOnMap) {
+        // NOT ON MAP
+        setGuestPanel(false);
+      }
     }
 
-    useEffect(() => {
-        console.log('[InfoPanel] isAuth = ' + isAuth);
-        console.log('[InfoPanel] isUserOnMap = ' + isUserOnMap);
+    setPanelLoaded(true);
+  }, []);
 
-        if (isAuth) { // IS LOGGED IN 
-            console.log('[InfoPanel] in isAuth block');
-            if (!isUserOnMap) { // NOT ON MAP
-                setGuestPanel(false);
-            }
-        }
-
-        setPanelLoaded(true);
-
-    },[]);
-
-    return (
-        <div className={classes.infoPanelContainer}>
-
-            {panelLoaded && guestPanel && (
-                <GuestPanel/>
-            )}
-            {panelLoaded && !guestPanel && (
-                <UserPanel/>
-            )}
-            {!panelLoaded && (
-                <Spinner animation="border" />  
-            )}
-
-        </div>
-    );
+  return (
+    <div className={classes.infoPanelContainer}>
+      {panelLoaded && guestPanel && <GuestPanel />}
+      {panelLoaded && !guestPanel && <UserPanel />}
+      {!panelLoaded && <Spinner animation="border" />}
+    </div>
+  );
 };
 
 export default InformationPanel;

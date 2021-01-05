@@ -24,6 +24,9 @@ import {ReactComponent as BubbleSVG} from '../../assets/images/Bubble.svg';
 import {ReactComponent as SearchSVG} from '../../assets/icons/magnifying-glass.svg';
 import {ReactComponent as DiverSVG} from '../../assets/icons/diver.svg';
 
+import {ReactComponent as ArrowDownSVG} from '../../assets/icons/arrow-down.svg';
+
+
 
 
 
@@ -125,6 +128,8 @@ const Home = () => {
                                     </div>
                                 </div>
                         </div>
+                
+                        <ArrowDownSVG className={classes.arrowSVG}/>
                 </div>
             </div>
 
