@@ -112,19 +112,19 @@ const UserSiteList = () => {
               Add a Dive Site, simply:
             </h3>
             <div className={classes.mySitesHome__stepsContainer}>
-              <div className={classes.step}>
+              <div className={`${classes.step} ${classes.step__1}`}>
                 <span className={classes.step__number}>1</span>
                 <ClickSVG className={classes.step__icon} />
                 <span className={classes.step__text}>
                   Click location on the map
                 </span>
               </div>
-              <div className={classes.step}>
+              <div className={`${classes.step} ${classes.step__2}`}>
                 <span className={classes.step__number}>2</span>
                 <FillFormSVG className={classes.step__icon} />
                 <span className={classes.step__text}>Fill in the form</span>
               </div>
-              <div className={classes.step}>
+              <div className={`${classes.step} ${classes.step__3}`}>
                 <span className={classes.step__number}>3</span>
                 <SubmitTickSVG className={classes.step__icon} />
                 <span className={classes.step__text}>Submit, you're done!</span>

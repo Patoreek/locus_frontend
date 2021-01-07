@@ -1,31 +1,87 @@
-@import '../../sass/abstracts/variables';
+@import "../../sass/abstracts/variables";
 
 .diveReports {
-    //background: pink;
-    width: 100%;
-    height: calc(100vh - 6rem); //* Make this the height of all containers
-    display: flex;
+  //background: pink;
+  width: 100%;
+  height: calc(100vh - 6rem); //* Make this the height of all containers
+  display: flex;
 
-    &__left {
-        background: $color-white;
-        flex-basis: 35vw;
-        border-right: 1px solid $color-lines;
+  &__left {
+    background: $color-white;
+    flex-basis: 35vw;
+    border-right: 1px solid $color-lines;
+  }
+
+  &__right {
+    flex-basis: 65vw;
+    overflow: scroll;
+    padding: 3rem 2rem;
+    color: $color-white;
+
+    background: url("../../assets/images/diveReportsBG.svg");
+    background-position: cover;
+    height: 100%;
+  }
+
+  .diveReportsHome {
+    &__header {
+      font-size: 10rem;
+      font-family: $font-1-style;
+      font-weight: $font-bold;
+      text-transform: uppercase;
+      text-shadow: 5px 5px 5px rgba($color-black, 0.25);
     }
 
-    &__right {
-        background: $color-white-pure;
-        flex-basis: 65vw;
-        height: 100%;
-        overflow: scroll;
-        padding: 5rem 0rem;
+    &__create,
+    &__share,
+    &__log,
+    &__improve {
+      display: flex;
+      align-items: center;
+      padding: 3rem 0rem;
 
+      .image {
+        flex-basis: 40%;
+      }
+
+      .text {
+        flex-basis: 60%;
+        padding: 0rem 2rem;
+        &__header {
+          font-size: 4rem;
+          font-family: $font-1-style;
+          font-weight: $font-bold;
+          text-transform: uppercase;
+          text-shadow: 5px 5px 5px rgba($color-black, 0.25);
+          padding-bottom: 2rem;
+        }
+
+        &__content {
+          font-size: 1.6rem;
+          font-family: $font-3-style;
+          font-weight: $font-normal;
+          text-shadow: 2px 2px 5px rgba($color-black, 0.25);
+        }
+      }
     }
+
+    &__feedback {
+      display: flex;
+      justify-content: center;
+      span {
+        font-size: 1.4rem;
+        font-family: $font-3-style;
+        font-weight: $font-normal;
+        text-shadow: 2px 2px 5px rgba($color-black, 0.25);
+      }
+    }
+  }
 }
 
 .spinnerContainer {
-    width: 100%;
-    min-height: 80vh;
-    display: flex;
-    justify-content: center;
-    margin-top: 0rem;
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  margin-top: 0rem;
 }

@@ -1,154 +1,151 @@
-@import '../../sass/abstracts/variables';
-
+@import "../../sass/abstracts/variables";
+@import "../../sass/abstracts/mixins";
 .weatherContainer {
+  background: $color-white-pure;
+  border-radius: 7px;
+  box-shadow: 2px 2px 10px rgba($color-black, 0.5);
+  min-height: 40rem;
+  position: relative;
+  overflow: hidden;
 
+  .selectedDay {
+    position: absolute;
+    background: rgb(58, 152, 196);
+    width: 100%;
+    height: 100%;
+    padding: 0rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    color: $color-white-pure;
+    text-shadow: 2px 2px 5px rgba($color-black, 0.5);
 
-    background: $color-white-pure;
-    border-radius: 7px;
-    box-shadow: 2px 2px 10px rgba($color-black, .5);
-    min-height: 40rem;
-    position: relative;
-    overflow: hidden;
+    &__background {
+      padding: 0rem;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 5;
+      transform: scale(1.2);
 
-    .selectedDay {
-        position: absolute;
-        background: rgb(58, 152, 196);
+      .background {
         width: 100%;
         height: 100%;
-        padding: 0rem;
+      }
+    }
+
+    &__title {
+      padding-top: 2rem;
+      font-size: 2rem;
+      font-weight: 500;
+      position: relative;
+      z-index: 10;
+      font-family: $font-1-style;
+      font-weight: $font-med;
+    }
+
+    &__day {
+      font-size: 4rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 10;
+      font-family: $font-1-style;
+      font-weight: $font-bold;
+    }
+
+    &__date {
+      font-size: 2rem;
+      font-weight: 500;
+      position: relative;
+      z-index: 10;
+      font-family: $font-3-style;
+      font-weight: $font-med;
+    }
+
+    &__temp {
+      position: relative;
+      font-size: 6.5rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 10;
+      line-height: 0.8;
+      font-family: $font-3-style;
+      font-weight: $font-med;
+    }
+
+    &__celius {
+      font-size: 3rem;
+      font-weight: 600;
+      position: absolute;
+      top: 0.5rem;
+      right: -2rem;
+      z-index: 10;
+      font-family: $font-3-style;
+      font-weight: $font-med;
+    }
+  }
+
+  .forecastContainer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: rgba(#363636, 0.35);
+    display: flex;
+    justify-content: center;
+    border-radius: 7px;
+    padding: 1rem;
+    width: 100%;
+    z-index: 15;
+
+    .dayContainer {
+      &__name {
+        text-align: center;
+        color: $color-white-pure;
+        font-family: $font-3-style;
+        font-weight: $font-med;
+      }
+
+      .day {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start;
-        color: $color-white-pure;
-        text-shadow: 2px 2px 5px rgba($color-black, .5);
-
-        &__background {
-            padding: 0rem;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            z-index: 5;
-            transform: scale(1.1);
-
-            .background {
-                width: 100%;
-                height: 100%;
-            }
+        transition: 0.2s ease;
+        background: rgba($color-white, 0.25);
+        border: 1px solid $weather-border-color;
+        border-radius: 100px;
+        margin: 0.3rem;
+        padding: 2.5rem 1.1rem;
+        @include respond(big-desktop) {
+          padding: 2.5rem 0.8rem;
         }
 
-        &__title {
-            padding-top: 2rem;
-            font-size: 2rem;
-            font-weight: 500;
-            position: relative;
-            z-index: 10;
-            font-family: $font-1-style;
-            font-weight: $font-med;
-        }
-
-        &__day {
-            font-size: 4rem;
-            font-weight: 600;
-            position: relative;
-            z-index: 10;
-            font-family: $font-1-style;
-            font-weight: $font-bold;
-        }
-
-        &__date {
-            font-size: 2rem;
-            font-weight: 500;
-            position: relative;
-            z-index: 10;
-            font-family: $font-3-style;
-            font-weight: $font-med;
+        &:hover {
+          background: rgba($color-white, 0.35);
         }
 
         &__temp {
-            position: relative;
-            font-size: 6.5rem;
-            font-weight: 600;
-            position: relative;
-            z-index: 10;
-            line-height: .8;
-            font-family: $font-3-style;
-            font-weight: $font-med;
+          color: $color-white-pure;
+          font-size: 1.6rem;
+          font-family: $font-1-style;
+          font-weight: $font-med;
         }
 
-        &__celius {
-            font-size: 3rem;
-            font-weight: 600;
-            position: absolute;
-            top: .5rem;
-            right: -2rem;
-            z-index: 10;
-            font-family: $font-3-style;
-            font-weight: $font-med;
+        &__weather {
+          .icon {
+            width: 2.5rem;
+            height: 2.5rem;
+          }
         }
+      }
+
+      .highlight {
+        background: rgba($color-white-pure, 0.5);
+
+        .highlightTemp {
+          color: $color-black-pure;
+        }
+      }
     }
-
-    .forecastContainer {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        background: rgba(#363636, .35);
-        display: flex;
-        justify-content: center;
-        border-radius: 7px;
-        padding: 1rem;
-        width: 100%;
-        z-index: 15;
-
-        .dayContainer {
-            
-
-            &__name {
-                text-align: center;
-                color: $color-white-pure;
-                font-family: $font-3-style;
-                font-weight: $font-med;
-            }
-
-
-            .day {
-                background: rgba($color-white, .25);
-                border: 1px solid $weather-border-color;
-                border-radius: 100px;
-                margin: .3rem;
-                padding: 2.5rem 1.1rem;
-                
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                transition: .2s ease;
-
-                &:hover{
-                    background: rgba($color-white, .35);
-                }
-
-                &__temp {
-                    color: $color-white-pure;
-                    font-size: 1.6rem;
-                    font-family: $font-1-style;
-                    font-weight: $font-med;
-                }
-
-                &__weather {
-                    .icon {
-                        width: 2.5rem;
-                        height: 2.5rem;
-                    }
-                }
-            }
-
-            .highlight {
-                background: rgba($color-white-pure, .5);
-
-                .highlightTemp {
-                    color: $color-black-pure
-                }
-            }
-        }
-    }
+  }
 }
