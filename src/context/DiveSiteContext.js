@@ -90,9 +90,20 @@ export const DiveSiteProvider = (props) => {
     console.log("COUNTER = " + counter);
 
     const swLat = mapBounds.Wa.i;
-    const swLng = mapBounds.Qa.i;
     const neLat = mapBounds.Wa.j;
-    const neLng = mapBounds.Qa.j;
+
+    let swLng;
+    let neLng;
+
+    if (mapBounds.Qa) {
+      console.log("In MapBounds Qa");
+      swLng = mapBounds.Qa.i;
+      neLng = mapBounds.Qa.j;
+    } else if (mapBounds.Ra) {
+      console.log("In Mapbounds Ra");
+      swLng = mapBounds.Ra.i;
+      neLng = mapBounds.Ra.j;
+    }
 
     return fetch(
       "http://localhost:8080/diveSites/loadDiveSitesInBoundsInfinite",
@@ -150,9 +161,20 @@ export const DiveSiteProvider = (props) => {
     console.log("loadDiveSitesInBounds");
 
     const swLat = mapBounds.Wa.i;
-    const swLng = mapBounds.Qa.i;
     const neLat = mapBounds.Wa.j;
-    const neLng = mapBounds.Qa.j;
+
+    let swLng;
+    let neLng;
+
+    if (mapBounds.Qa) {
+      console.log("In MapBounds Qa");
+      swLng = mapBounds.Qa.i;
+      neLng = mapBounds.Qa.j;
+    } else if (mapBounds.Ra) {
+      console.log("In Mapbounds Ra");
+      swLng = mapBounds.Ra.i;
+      neLng = mapBounds.Ra.j;
+    }
 
     return fetch("http://localhost:8080/diveSites/loadDiveSitesInBounds", {
       method: "POST",
@@ -237,10 +259,22 @@ export const DiveSiteProvider = (props) => {
     // You can await here
     console.log("loadDiveShopsInBounds");
     console.log(mapBounds);
+
     const swLat = mapBounds.Wa.i;
-    const swLng = mapBounds.Qa.i;
     const neLat = mapBounds.Wa.j;
-    const neLng = mapBounds.Qa.j;
+
+    let swLng;
+    let neLng;
+
+    if (mapBounds.Qa) {
+      console.log("In MapBounds Qa");
+      swLng = mapBounds.Qa.i;
+      neLng = mapBounds.Qa.j;
+    } else if (mapBounds.Ra) {
+      console.log("In Mapbounds Ra");
+      swLng = mapBounds.Ra.i;
+      neLng = mapBounds.Ra.j;
+    }
 
     return fetch("http://localhost:8080/diveShops/loadDiveShopsInBounds", {
       method: "POST",

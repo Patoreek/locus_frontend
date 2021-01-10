@@ -2,81 +2,79 @@
 
 $color-white-pure: #fff;
 $color-white: #eee;
-$color-white-bg: #FDFDFD;
+$color-white-bg: #fdfdfd;
 
 $color-black-pure: #000;
 $color-black: #0a0a0a;
-//$color-black-infoWindow-bg: rgb(21, 11, 56);
 $color-black-infoWindow-bg: #eeeeee;
-
 
 //* NAVIGATION
 
-$color-nav-bg: #F5F5F5;
+$color-nav-bg: #f5f5f5;
 $color-nav-bg-hover: #eeeeee;
 
-$login-nav-color-solid: #057BBE;
-$login-nav-color: linear-gradient(to bottom, #1792d7, #057BBE);  
-$signup-nav-color: linear-gradient(to bottom, #CD800D, #C26900);  //! NOT IN USE ATM
-$nav-blue-bg: linear-gradient(259deg, rgba(47,127,246,1) 0%, rgba(34,107,243,1) 50%, rgba(47,127,246,1) 100%); //! REMOVE THIS???
-$link-nav-hover: #E9EAEC;
+$login-nav-color-solid: #057bbe;
+$login-nav-color: linear-gradient(to bottom, #1792d7, #057bbe);
+$signup-nav-color: linear-gradient(
+  to bottom,
+  #cd800d,
+  #c26900
+); //! NOT IN USE ATM
+$nav-blue-bg: linear-gradient(
+  259deg,
+  rgba(47, 127, 246, 1) 0%,
+  rgba(34, 107, 243, 1) 50%,
+  rgba(47, 127, 246, 1) 100%
+); //! REMOVE THIS???
+$link-nav-hover: #e9eaec;
 
-$nav-list-icon-color: #2D7AC0;
+$nav-list-icon-color: #2d7ac0;
 $nav-list-icon-color-hover: #1a81e0;
 
-
-
 //*SEARCH
-$search-btn-color: #2A85DA;
+$search-btn-color: #2a85da;
 $search-btn-color-hover: #226bf3;
 
-
 //*LOGIN & SIGNUP FORMS
-$login-color-drawer-btn: linear-gradient(to bottom, #35ADF0, #1393DB);  
-
+$login-color-drawer-btn: linear-gradient(to bottom, #35adf0, #1393db);
 
 //* FOOTER
-$color-footer-bg: linear-gradient(to bottom, #2F4267, #2A3551);
-$color-footer-text: #9C9C9C;
-
-
+$color-footer-bg: linear-gradient(to bottom, #2f4267, #2a3551);
+$color-footer-text: #9c9c9c;
 
 //* BUTTON COLORS
-$color-btn-primary: linear-gradient(to bottom, #0863CE, #0870EA);
-$color-btn-cancel: #F4F4F4;
+$color-btn-primary: linear-gradient(to bottom, #0863ce, #0870ea);
+$color-btn-cancel: #f4f4f4;
 //$color-btn-add: linear-gradient(to bottom, #0ead23, #1aaa2d);
-$color-btn-add: linear-gradient(to bottom, rgba(#2be043, .75), rgba(#15d12e, .75));
+$color-btn-add: linear-gradient(
+  to bottom,
+  rgba(#2be043, 0.75),
+  rgba(#15d12e, 0.75)
+);
 
-$color-btn-delete: linear-gradient(to bottom, #DC0101, #CD2626);
-
+$color-btn-delete: linear-gradient(to bottom, #dc0101, #cd2626);
 
 //* WEATHER CONTAINER
 
-$weather-border-color: #D2D2D2;
-
-
-
-
+$weather-border-color: #d2d2d2;
 
 //* TEXT COLORS
-$color-link-grey: #C1B6B6;
-$color-text-grey: #B1B1B1;
-$color-text-darkgrey: #A8A8A8;
+$color-link-grey: #c1b6b6;
+$color-text-grey: #b1b1b1;
+$color-text-darkgrey: #a8a8a8;
 $color-text-darkergrey: #888686;
 $color-input-bg: #f0f0f0;
-$color-text-red: #DE300A;
+$color-text-red: #de300a;
 $color-text-red-hover: #de0a0a;
-$color-text-blue: #0769C3;
+$color-text-blue: #0769c3;
 $color-text-blue-hover: #1263fa;
-$color-text-green: #08DC5D;
-
+$color-text-green: #08dc5d;
 
 //* LINE & BORDER COLORS
-$color-lines: #D7D7D7;
+$color-lines: #d7d7d7;
 $color-lines-hover: #b6b6b6;
 $color-lines-focus: #666666;
-$image-border-color-infoPanel: #A8A8A8;
-
+$image-border-color-infoPanel: #a8a8a8;
 
 //* FONTS
 
@@ -85,6 +83,6 @@ $font-med: 500;
 $font-normal: 400;
 $font-light: 300;
 
-$font-1-style: 'Rubik', sans-serif; // Headings
-$font-2-style: 'Mitr', sans-serif; // Sub headings
-$font-3-style: 'Jost', sans-serif; // paragraphs
+$font-1-style: "Rubik", sans-serif; // Headings
+$font-2-style: "Mitr", sans-serif; // Sub headings
+$font-3-style: "Jost", sans-serif; // paragraphs

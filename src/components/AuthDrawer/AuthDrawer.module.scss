@@ -1,56 +1,56 @@
-@import '../../sass/abstracts/variables';
+@import "../../sass/abstracts/variables";
 
 .authDrawer {
-    width: 0vw; //? Opens to 40vw;
-    height: 100vh;
-    background: $color-white-bg;
-    position: fixed;
-    z-index: 50;
-    transition: .3s ease;
-    top: 0;
-    left:0 ;
+  width: 0vw; //? Opens to 40vw;
+  height: 100vh;
+  background: $color-white-bg;
+  position: fixed;
+  z-index: 1000;
+  transition: 0.3s ease;
+  top: 0;
+  left: 0;
 
-    color: $color-white;
-    opacity: 0;
-    border-right: 1px solid $color-lines;
+  color: $color-white;
+  opacity: 0;
+  border-right: 1px solid $color-lines;
 }
 
 .closeArrow {
-    position: absolute;
-    right: 0;
-    height: 2rem;
-    width: 2rem;
-    margin: 1rem 2rem;
-    fill: $color-black;
-    transition: .2s ease;
+  position: absolute;
+  right: 0;
+  height: 2rem;
+  width: 2rem;
+  margin: 1rem 2rem;
+  fill: $color-black;
+  transition: 0.2s ease;
 
-    &:hover {
-        fill: $color-text-blue;
-    }
+  &:hover {
+    fill: $color-text-blue;
+  }
 }
 
 .open {
-    width: 40vw;
-    opacity: 100%;
+  width: 40vw;
+  opacity: 100%;
 }
 
 .close {
-   width: 0vw;
-   //opacity: 0%;
+  width: 0vw;
+  //opacity: 0%;
 }
 
 .overlay {
-    width: 60vw;
-    height: 100vh;
-    //background: red;
-    position: fixed;
-    z-index: 50;
-    transition: .3s ease;
-    top: 0;
-    left:40vw ;
-    display: none;
+  width: 60vw;
+  height: 100vh;
+  //background: red;
+  position: fixed;
+  z-index: 50;
+  transition: 0.3s ease;
+  top: 0;
+  left: 40vw;
+  display: none;
 }
 
 .show {
-    display: block;
+  display: block;
 }

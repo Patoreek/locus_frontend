@@ -1,209 +1,217 @@
-@import '../../../sass/abstracts/variables';
+@import "../../../sass/abstracts/variables";
 
 .guestPanel {
-    padding: 2rem 1rem .2rem 1.5rem;
+  padding: 2rem 1rem 0.2rem 1.5rem;
+  position: relative;
+  height: 100%;
+
+  .topSection {
+    border-bottom: 1px solid $color-lines;
+    //padding-left: 1.5rem;
     position: relative;
-    height: 100%;
+    height: 14.5rem;
 
-    .topSection {
-        border-bottom: 1px solid $color-lines;
-        padding-bottom: 1rem;
-        //padding-left: 1.5rem;
-        position: relative;
-        height: 13.5rem;
+    &__legend {
+      position: absolute;
+      top: 0;
+      right: 0;
+      //background: orange;
+      display: grid;
+      grid-template-rows: max-content max-content;
+      grid-template-columns: max-content max-content;
+      grid-gap: 1rem;
 
-        &__legend {
-            position: absolute;
-            top: 0;
-            right: 0;
-            //background: orange;
-            display: grid;
-            grid-template-rows: max-content max-content;
-            grid-template-columns: max-content max-content;
-            grid-gap: 1rem;
+      font-size: 1.2rem;
+      font-family: $font-3-style;
+      font-weight: $font-normal;
+      color: $color-text-darkergrey;
 
-            font-size: 1.2rem;
-            font-family: $font-3-style;
-            font-weight: $font-normal;
-            color: $color-text-darkergrey;
+      span {
+        transform: translateY(0.2rem);
+        text-align: right;
+      }
 
-            span {
-                transform: translateY(.2rem);
-                text-align: right;
-            }
-
-            .marker {
-                width: 2.25rem;
-                height: 2.25rem;
-                justify-self: flex-end;
-            }
-        }
-
-        &__filter {
-            
-            display: flex;
-            padding-top: 1rem;
-
-            //background: green;
-
-            .scubaFilter, .snorkelFilter {
-                padding: 0rem 2rem;
-                display: flex;
-                align-items: center;
-           
-
-                    //transform: scale(1.6);
-                input[type=checkbox] {
-                    transform: scale(1);
-                    position: relative;
-                    cursor: pointer;
-                }
-                input[type=checkbox]:before {
-                    content: "";
-                    display: block;
-                    position: absolute;
-                    width: 16px;
-                    height: 16px;
-                    top: 0;
-                    left: 0;
-                    border: 2px solid $color-lines;
-                    border-radius: 3px;
-                    background-color: white;
-    
-                    
-                }
-                input[type=checkbox]:checked:before {
-                    border: 2px solid $color-text-blue;     
-                }
-                input[type=checkbox]:checked:after {
-                    content: "";
-                    display: block;
-                    width: 5px;
-                    height: 10px;
-                    border: solid $color-text-blue;
-                    border-width: 0 2px 2px 0;
-                    -webkit-transform: rotate(45deg);
-                    -ms-transform: rotate(45deg);
-                    transform: rotate(45deg);
-                    position: absolute;
-                    top: 2px;
-                    left: 6px;
-                }
-            
-
-                &__label {
-                    margin-left: 1rem;
-                    font-size: 1.4rem;
-                    color: $color-text-darkgrey;
-                    font-family: $font-3-style;
-                    font-weight: $font-normal;
-                    transform: translateY(.2rem);
-
-
-                }
-            }
-            
-
-            .scubaFilter {
-                padding-left: .4rem;
-            }
-        }
-        
-
-
-        &__totalSites {
-            font-size: 1.4rem;
-
-            font-family: $font-3-style;
-            font-weight: $font-med;
-            color: $color-text-darkergrey;
-
-        }
-
-        &__mapAreaText {
-            font-size: 1.6rem;
-
-            font-family: $font-1-style;
-            font-weight: $font-bold;
-            color: $color-black;
-        }
-
-        &__link { 
-            font-size: 1.4rem;
-            color: $color-text-darkgrey;
-            font-family: $font-3-style;
-            font-weight: $font-normal;
-
-            &:hover {
-                text-decoration: underline;
-                color: $color-text-blue;
-            }
-        }
-
-        &__linkActive {
-            font-weight: $font-med;
-        }
-
-        &__seeLinkSpacer {
-            padding: 0rem 1rem;
-            font-size: 2.5rem;
-            color: $color-text-darkgrey;
-        }
+      .marker {
+        width: 2.25rem;
+        height: 2.25rem;
+        justify-self: flex-end;
+      }
     }
 
-    .scrollableDiv {
-        position: relative;
-        overflow: scroll;
-       // background: orange;
-        height: calc(100% - 13.5rem);
-    }
+    &__filter {
+      display: flex;
+      align-items: center;
+      padding-top: 1rem;
 
-    .noResults {
-        
-    }
+      //background: green;
 
-    .loadingData {
-        width: 98%;
-        height: 10rem;
-        margin: 1rem 0rem;
-        background: $color-white-pure;
-        box-shadow: 2px 2px 5px rgba($color-black, .25);
-        border-radius: 1rem;
+      .scubaFilter,
+      .snorkelFilter {
+        padding: 0rem 2rem;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items:center;
-
-        &__end {
-            font-size: 1.8rem;
-            font-family: $font-3-style;
-            font-weight: $font-med;
-            color: $color-text-darkgrey;
-        }
-
-        &__instructions {
-            font-size: 1.6rem;
-            font-family: $font-3-style;
-            font-weight: $font-normal;
-            color: $color-text-darkgrey;
-        }
-    }
-
-    .loadingContainer {
-        margin-top: 5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
         align-items: center;
-        //background: red;
-        width: 100%;
 
-        &__text {
-            font-size: 1.6rem;
-            color: $color-black;
-            font-family: $font-3-style;
-            font-weight: $font-med;
+        //transform: scale(1.6);
+        input[type="checkbox"] {
+          transform: scale(1);
+          position: relative;
+          cursor: pointer;
         }
-    }
-}
+        input[type="checkbox"]:before {
+          content: "";
+          display: block;
+          position: absolute;
+          width: 16px;
+          height: 16px;
+          top: 0;
+          left: 0;
+          border: 2px solid $color-lines;
+          border-radius: 3px;
+          background-color: white;
+        }
+        input[type="checkbox"]:checked:before {
+          border: 2px solid $color-text-blue;
+        }
+        input[type="checkbox"]:checked:after {
+          content: "";
+          display: block;
+          width: 5px;
+          height: 10px;
+          border: solid $color-text-blue;
+          border-width: 0 2px 2px 0;
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+          position: absolute;
+          top: 2px;
+          left: 6px;
+        }
 
+        &__label {
+          margin-left: 1rem;
+          font-size: 1.4rem;
+          color: $color-text-darkgrey;
+          font-family: $font-3-style;
+          font-weight: $font-normal;
+          transform: translateY(0.2rem);
+        }
+      }
+
+      .scubaFilter {
+        padding-left: 0.4rem;
+      }
+
+      .filterBtn {
+        margin-left: 2rem;
+        .btn {
+          padding: 0.35rem 2rem;
+          font-size: 1.4rem;
+          font-family: $font-3-style;
+          font-weight: $font-normal;
+          color: $color-text-blue;
+          border: 2px solid $color-text-blue;
+          border-radius: 5px;
+          background: transparent;
+          transition: 0.2s ease;
+
+          &:hover {
+            background: $color-text-blue;
+            color: $color-white-pure;
+          }
+        }
+      }
+    }
+
+    &__totalSites {
+      font-size: 1.4rem;
+
+      font-family: $font-3-style;
+      font-weight: $font-med;
+      color: $color-text-darkergrey;
+    }
+
+    &__mapAreaText {
+      font-size: 1.6rem;
+
+      font-family: $font-1-style;
+      font-weight: $font-bold;
+      color: $color-black;
+    }
+
+    &__link {
+      font-size: 1.4rem;
+      color: $color-text-darkgrey;
+      font-family: $font-3-style;
+      font-weight: $font-normal;
+
+      &:hover {
+        text-decoration: underline;
+        color: $color-text-blue;
+      }
+    }
+
+    &__linkActive {
+      font-weight: $font-med;
+    }
+
+    &__seeLinkSpacer {
+      padding: 0rem 1rem;
+      font-size: 2.5rem;
+      color: $color-text-darkgrey;
+    }
+  }
+
+  .scrollableDiv {
+    position: relative;
+    overflow: scroll;
+    // background: orange;
+    height: calc(100% - 13.5rem);
+  }
+
+  .noResults {
+  }
+
+  .loadingData {
+    width: 98%;
+    height: 10rem;
+    margin: 1rem 0rem;
+    background: $color-white-pure;
+    box-shadow: 2px 2px 5px rgba($color-black, 0.25);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__end {
+      font-size: 1.8rem;
+      font-family: $font-3-style;
+      font-weight: $font-med;
+      color: $color-text-darkgrey;
+    }
+
+    &__instructions {
+      font-size: 1.6rem;
+      font-family: $font-3-style;
+      font-weight: $font-normal;
+      color: $color-text-darkgrey;
+    }
+  }
+
+  .loadingContainer {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    //background: red;
+    width: 100%;
+
+    &__text {
+      font-size: 1.6rem;
+      color: $color-black;
+      font-family: $font-3-style;
+      font-weight: $font-med;
+    }
+  }
+}

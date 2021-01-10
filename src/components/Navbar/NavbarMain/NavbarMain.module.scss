@@ -1,349 +1,332 @@
-@import '../../../sass/abstracts/variables';
-
+@import "../../../sass/abstracts/variables";
 
 .navbar {
-    background: $color-nav-bg;
-    border-bottom: 1px solid $color-lines;    
-    height: 6rem;
-    .navList {
-       // max-width: 1400px;
-        height: 100%;
-        padding: 0rem 1rem;
-        // display: flex;
-        // justify-content: space-between;
-        display: grid;
-        grid-template-rows: 1fr;
-        grid-template-columns: max-content 1fr max-content;
-        //grid-gap: 10rem;
+  background: $color-nav-bg;
+  border-bottom: 1px solid $color-lines;
+  height: 6rem;
+  .navList {
+    // max-width: 1400px;
+    height: 100%;
+    padding: 0rem 1rem;
+    // display: flex;
+    // justify-content: space-between;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: max-content 1fr max-content;
+    //grid-gap: 10rem;
 
-        .logoItem {
-            float: left;
-            height: 100%; 
-            width: 100%;
-            margin-right: 5rem;
+    .logoItem {
+      float: left;
+      height: 100%;
+      width: 100%;
+      margin-right: 5rem;
 
-            a {
-                .logo {
-                    height: 5rem;
-                }
-            }
+      a {
+        .logo {
+          height: 5rem;
         }
-
-        .searchbarContainer {
-            //margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            align-items:center;
-
-        }
-
-    
-
-
-        .rightNav {
-           display: flex;
-            //background: red;
-            align-items: center;
-
-          
-            
-            .mapLink, .favouritesLink, .diveReportsLink, .addSitesLink, .avatar {
-               
-                display: flex;
-                align-items: center; 
-                margin-right:2rem;
-                padding: .85rem;
-                border-radius: 50%;                 
-                background-size: 200%;
-                background-position: left;
-                transition: .3s ease;
-
-                &:hover {
-                    background-position: right;
-                    //transform: scale(1.05);
-
-                    a {
-                        transform: scale(1.05);
-                    }
-                }
-
-                a { 
-                    transition: .3s ease;
-                   
-                    
-                    .globeSVG, .favouriteSVG, .reportSVG, .addSVG {
-                        width: 3.7rem;
-                        height: 3.7rem;
-                        fill: $nav-list-icon-color;
-
-                        &:hover {
-                            fill: $nav-list-icon-color-hover;
-                        }
-                    }
-
-                    
-                   
-                }
-
-                .avatarImage {
-                    width: 4.35rem;
-                    height: 4.35rem;
-                    border-radius: 50%;
-                    border: 2px solid $nav-list-icon-color;
-                    transition: .3s ease;
-
-                    &:hover {
-                        border: 2px solid $nav-list-icon-color-hover;
-                        transform: scale(1.05);
-                     }
-                    
-                }
-            }
-
-            .dropdown {
-                //display: none;
-                position: absolute;
-                z-index: 75;
-                transition: .3s ease;
-                top: 8.5rem;
-                right: 1rem;
-                //transform: translate(-5.5rem, 10.8rem); 
-                // height: 22.5rem;                   
-                &__content {
-                    width: 25rem;
-                    height: 100%;
-                    background: $color-nav-bg;
-                    transition: .3s ease;
-                    opacity: 100%;
-                    padding: 1rem 1rem;
-                    border: 1px solid $color-lines;
-                    border-radius: 10px;
-                    position: relative;
-
-                    display: grid;
-                    grid-template-rows: repeat(6 ,max-content);
-                    grid-template-columns: max-content 1fr;
-
-
-                    @keyframes fadeInAnimation {
-                        0%   {opacity: 0%;
-                              height: 0%;}
-                       
-                        100% {opacity: 100%;
-                            height: 100%;}
-                    }
-                    animation-name: fadeInAnimation;
-                    animation-duration: .7s;
-                    
-                    
-                    &::before {
-                        content: "";
-                        display: block;
-                        position: absolute;
-                        left: 50%;
-                        transform: translate(-50%, -49%);
-                        top: -.5rem;
-                        width: 1.5rem;
-                        height: 1.5rem;
-                        background: $color-nav-bg;
-                        // clip-path: polygon(50% 0, 0% 100%, 100% 100%);
-                        clip-path: polygon(50% 25%, 0% 100%, 100% 100%);
-                    }
-
-                    
-                }
-
-                &__avatar {
-                    
-                    grid-row: 1 / span 2 ;
-                    grid-column: 1 / 2;
-
-                    .avatarImage {
-                        width: 5rem;
-                        height: 5rem;
-                        border-radius: 50%;
-                        border: 2px solid $color-text-grey;
-                        
-                    }
-                }
-
-
-                &__name {
-                    grid-row: 1 /  2;
-                    grid-column: 2 / 3;
-                    padding-left: .5rem;
-
-                    span {
-                        font-size: 1.6rem;
-                        font-family: $font-1-style;
-                        font-weight: $font-med;
-                    }
-                }
-
-                &__email {
-                    grid-row: 2 /  3;
-                    grid-column: 2 / 3;
-                    padding-left: .5rem;
-
-                    overflow: hidden; //* Change this later
-
-                    span {
-                        font-size: 1.2rem;
-                        color: $color-text-grey;
-                        font-family: $font-3-style;
-                        font-weight: $font-normal;
-                    }
-
-                }
-                
-                &__viewProfile {
-                    grid-row: 3 /  4;
-                    grid-column: 1 / span 2;
-                    margin-top: 1rem;
-
-                }
-
-                &__editProfile {
-                    grid-row: 4 / 5;
-                    grid-column: 1 / span 2;
-                    margin-top: .3rem;
-
-                }
-
-                &__logout, &__editProfile, &__viewProfile {
-                    padding: 0rem 1rem;
-                    display: flex;
-                    align-items: center;
-                    text-decoration: none;
-                    transition: .2s ease;
-                    
-                    span {
-                        font-size: 1.4rem;
-                        font-weight: 500;
-                        padding: 1rem;
-                        color: $color-black;
-                        font-family: $font-3-style;
-                        font-weight: $font-med;
-                        letter-spacing: 1px;
-                    }
-
-                    .icon {
-                        width: 1.75rem;
-                        height: 1.75rem;
-                        fill: $color-black;
-                    }
-
-                    &:hover {
-                        background: $nav-list-icon-color;
-                        border-radius: 5px;
-
-                        span {
-                            color: $color-white;
-
-                        }
-                        .icon {
-                            fill: $color-white;
-                        }
-                    }
-                }
-
-                &__separator {
-                    grid-row: 5 / 6;
-                    grid-column: 1 / span 2;
-                    background: $color-lines;
-                    width: 100%;
-                    height: 1px;
-                    margin: .3rem 0rem;
-                }
-
-                &__logout {
-                    grid-row: 6 / 7;
-                    grid-column: 1 / span 2;
-                    
-    
-                }
-
-                .fade {
-
-                    @keyframes fadeOutAnimation {
-                        0%   {opacity: 100%;
-                              z-index: 50;
-                              height: 100%;}
-                        98%  {opacity: 0%;
-                              z-index: 50;
-                              height: 0%;}
-                        100% {opacity: 0%;
-                            height: 0%;
-                            z-index: -200;
-                              display: none;
-                             }
-                    }
-                    position: relative;
-                    animation-name: fadeOutAnimation;
-                    animation-duration: .5s;
-                    opacity: 0%;
-                    height: 0%;
-                    z-index: -200;
-                    display: none;
-                    //height: 0%;
-                }
-
-
-                
-            }
-
-            .close {
-                transition: .5s ease;
-                height: 0rem;
-            }
-
-            .dropdownContainer:hover + .arrowContainer .arrow {
-                fill: $color-text-blue;
-                color: $color-text-blue;
-                text-decoration: none;
-            }
-    
-               
-            .btn {
-                width: 11rem;
-                font-size: 1.8rem;
-                padding:1rem 2rem;
-                margin: 0rem 1rem;
-                display: flex;
-                justify-content: center;
-                border-radius: 5px;
-                transition: .3s ease;
-                box-shadow: 0px 0px 0px rgba($color-black, .25);
-                font-weight: 500;
- 
-                span {
-                   //width: 100%;
-                   //background: pink;
-                   color: $color-white;
-                   text-align: center;
-                }
- 
-                &:hover {
-                    transform: translateY(-3px);
- 
-                }
-                
-               &__login {
-                    box-shadow:0px 0px 0px 2px $login-nav-color-solid inset;
-                    span {
-                        color: $login-nav-color-solid;
-                        font-family: $font-3-style;
-                        font-weight: $font-med;
-                    }
-               }
- 
-               &__signup {
-                   background: $login-nav-color;
-                   font-family: $font-3-style;
-                   font-weight: $font-med;
-               }
-            }
-             
-        }
+      }
     }
+
+    .searchbarContainer {
+      //margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .rightNav {
+      display: flex;
+      //background: red;
+      align-items: center;
+
+      .mapLink,
+      .favouritesLink,
+      .diveReportsLink,
+      .addSitesLink,
+      .avatar {
+        display: flex;
+        align-items: center;
+        margin-right: 2rem;
+        padding: 0.85rem;
+        border-radius: 50%;
+        background-size: 200%;
+        background-position: left;
+        transition: 0.3s ease;
+
+        &:hover {
+          background-position: right;
+          //transform: scale(1.05);
+
+          a {
+            transform: scale(1.05);
+          }
+        }
+
+        a {
+          transition: 0.3s ease;
+
+          .globeSVG,
+          .favouriteSVG,
+          .reportSVG,
+          .addSVG {
+            width: 3.7rem;
+            height: 3.7rem;
+            fill: $nav-list-icon-color;
+
+            &:hover {
+              fill: $nav-list-icon-color-hover;
+            }
+          }
+        }
+
+        .avatarImage {
+          width: 4.35rem;
+          height: 4.35rem;
+          border-radius: 50%;
+          border: 2px solid $nav-list-icon-color;
+          transition: 0.3s ease;
+
+          &:hover {
+            border: 2px solid $nav-list-icon-color-hover;
+            transform: scale(1.05);
+          }
+        }
+      }
+
+      .dropdown {
+        //display: none;
+        position: absolute;
+        z-index: 75;
+        transition: 0.3s ease;
+        top: 8.5rem;
+        right: 1rem;
+        //transform: translate(-5.5rem, 10.8rem);
+        // height: 22.5rem;
+        &__content {
+          width: 25rem;
+          height: 100%;
+          background: $color-nav-bg;
+          transition: 0.3s ease;
+          opacity: 100%;
+          padding: 1rem 1rem;
+          border: 1px solid $color-lines;
+          border-radius: 10px;
+          position: relative;
+
+          display: grid;
+          grid-template-rows: repeat(6, max-content);
+          grid-template-columns: max-content 1fr;
+
+          @keyframes fadeInAnimation {
+            0% {
+              opacity: 0%;
+              height: 0%;
+            }
+
+            100% {
+              opacity: 100%;
+              height: 100%;
+            }
+          }
+          animation-name: fadeInAnimation;
+          animation-duration: 0.7s;
+
+          &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -49%);
+            top: -0.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: $color-nav-bg;
+            // clip-path: polygon(50% 0, 0% 100%, 100% 100%);
+            clip-path: polygon(50% 25%, 0% 100%, 100% 100%);
+          }
+        }
+
+        &__avatar {
+          grid-row: 1 / span 2;
+          grid-column: 1 / 2;
+
+          .avatarImage {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            border: 2px solid $color-text-grey;
+          }
+        }
+
+        &__name {
+          grid-row: 1 / 2;
+          grid-column: 2 / 3;
+          padding-left: 0.5rem;
+
+          span {
+            font-size: 1.6rem;
+            font-family: $font-1-style;
+            font-weight: $font-med;
+          }
+        }
+
+        &__email {
+          grid-row: 2 / 3;
+          grid-column: 2 / 3;
+          padding-left: 0.5rem;
+
+          overflow: hidden; //* Change this later
+
+          span {
+            font-size: 1.2rem;
+            color: $color-text-grey;
+            font-family: $font-3-style;
+            font-weight: $font-normal;
+          }
+        }
+
+        &__viewProfile {
+          grid-row: 3 / 4;
+          grid-column: 1 / span 2;
+          margin-top: 1rem;
+        }
+
+        &__editProfile {
+          grid-row: 4 / 5;
+          grid-column: 1 / span 2;
+          margin-top: 0.3rem;
+        }
+
+        &__logout,
+        &__editProfile,
+        &__viewProfile {
+          padding: 0rem 1rem;
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+          transition: 0.2s ease;
+
+          span {
+            font-size: 1.4rem;
+            font-weight: 500;
+            padding: 1rem;
+            color: $color-black;
+            font-family: $font-3-style;
+            font-weight: $font-med;
+            letter-spacing: 1px;
+          }
+
+          .icon {
+            width: 1.75rem;
+            height: 1.75rem;
+            fill: $color-black;
+          }
+
+          &:hover {
+            background: $nav-list-icon-color;
+            border-radius: 5px;
+
+            span {
+              color: $color-white;
+            }
+            .icon {
+              fill: $color-white;
+            }
+          }
+        }
+
+        &__separator {
+          grid-row: 5 / 6;
+          grid-column: 1 / span 2;
+          background: $color-lines;
+          width: 100%;
+          height: 1px;
+          margin: 0.3rem 0rem;
+        }
+
+        &__logout {
+          grid-row: 6 / 7;
+          grid-column: 1 / span 2;
+        }
+
+        .fade {
+          @keyframes fadeOutAnimation {
+            0% {
+              opacity: 100%;
+              z-index: 50;
+              height: 100%;
+            }
+            98% {
+              opacity: 0%;
+              z-index: 50;
+              height: 0%;
+            }
+            100% {
+              opacity: 0%;
+              height: 0%;
+              z-index: -200;
+              display: none;
+            }
+          }
+          position: relative;
+          animation-name: fadeOutAnimation;
+          animation-duration: 0.5s;
+          opacity: 0%;
+          height: 0%;
+          z-index: -200;
+          display: none;
+          //height: 0%;
+        }
+      }
+
+      .close {
+        transition: 0.5s ease;
+        height: 0rem;
+      }
+
+      .dropdownContainer:hover + .arrowContainer .arrow {
+        fill: $color-text-blue;
+        color: $color-text-blue;
+        text-decoration: none;
+      }
+
+      .btn {
+        width: 11rem;
+        font-size: 1.8rem;
+        padding: 1rem 2rem;
+        margin: 0rem 1rem;
+        display: flex;
+        justify-content: center;
+        border-radius: 5px;
+        transition: 0.3s ease;
+        font-weight: 500;
+
+        span {
+          color: $color-white;
+          text-align: center;
+        }
+
+        &:hover {
+          transform: translateY(-3px);
+        }
+
+        &__login,
+        &__signup {
+          box-shadow: 0px 0px 0px 2px $login-nav-color-solid inset;
+          span {
+            color: $login-nav-color-solid;
+            font-family: $font-3-style;
+            font-weight: $font-med;
+          }
+        }
+
+        //    &__signup {
+        //        background: $login-nav-color;
+        //        font-family: $font-3-style;
+        //        font-weight: $font-med;
+        //    }
+      }
+    }
+  }
 }
