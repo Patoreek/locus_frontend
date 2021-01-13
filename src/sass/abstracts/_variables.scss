@@ -15,17 +15,6 @@ $color-nav-bg-hover: #eeeeee;
 
 $login-nav-color-solid: #057bbe;
 $login-nav-color: linear-gradient(to bottom, #1792d7, #057bbe);
-$signup-nav-color: linear-gradient(
-  to bottom,
-  #cd800d,
-  #c26900
-); //! NOT IN USE ATM
-$nav-blue-bg: linear-gradient(
-  259deg,
-  rgba(47, 127, 246, 1) 0%,
-  rgba(34, 107, 243, 1) 50%,
-  rgba(47, 127, 246, 1) 100%
-); //! REMOVE THIS???
 $link-nav-hover: #e9eaec;
 
 $nav-list-icon-color: #2d7ac0;
@@ -45,7 +34,6 @@ $color-footer-text: #9c9c9c;
 //* BUTTON COLORS
 $color-btn-primary: linear-gradient(to bottom, #0863ce, #0870ea);
 $color-btn-cancel: #f4f4f4;
-//$color-btn-add: linear-gradient(to bottom, #0ead23, #1aaa2d);
 $color-btn-add: linear-gradient(
   to bottom,
   rgba(#2be043, 0.75),

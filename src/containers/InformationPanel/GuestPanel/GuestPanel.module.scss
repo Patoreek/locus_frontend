@@ -171,7 +171,8 @@
   .noResults {
   }
 
-  .loadingData {
+  .loadingData,
+  .noData {
     width: 98%;
     height: 10rem;
     margin: 1rem 0rem;

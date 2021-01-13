@@ -17,6 +17,8 @@ import {
 } from "../../../context/DiveSiteContext";
 
 import markerSVG from "../../../assets/icons/location_blue.svg";
+import markerBoatSVG from "../../../assets/icons/location_blue_boat.svg";
+
 import markerShopSVG from "../../../assets/icons/location_orange.svg";
 
 import StarRating from "../../StarRating/StarRating";
@@ -78,7 +80,7 @@ const GuestMap = (props) => {
                 setSelectedSite(site);
               }}
               icon={{
-                url: markerSVG,
+                url: site.access == "Boat" ? markerBoatSVG : markerSVG,
                 scaledSize: new window.google.maps.Size(42, 42),
               }}
             />

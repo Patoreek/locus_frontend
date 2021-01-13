@@ -255,14 +255,16 @@
         padding: 1rem 2rem;
         display: flex;
         justify-content: center;
-        border-radius: 5px;
+        border-radius: 0.5rem;
         transition: 0.2s ease;
         box-shadow: 0px 0px 0px 2px $login-nav-color-solid inset;
-        font-weight: 500;
-        color: $color-text-blue;
         text-align: center;
         background: transparent;
         outline: none;
+
+        color: $color-text-blue;
+        font-family: $font-1-style;
+        font-weight: $font-med;
 
         &:hover {
           transform: translateY(-3px);

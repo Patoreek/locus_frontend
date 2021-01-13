@@ -173,13 +173,13 @@ const UserSiteList = () => {
               form will appear and fill out the details.
             </p>
             <div className={classes.diveShopBtnContainer}>
-              <button
+              <div
                 onClick={() => setDiveShopAdmin(true)}
                 className={classes.diveShopBtn}
               >
                 {" "}
                 See Dive shops
-              </button>
+              </div>
             </div>
           </div>
         )}

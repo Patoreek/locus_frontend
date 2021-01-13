@@ -221,7 +221,9 @@ const MySitesMap = () => {
             </div>
 
             <div className={classes.site__diveTypeContainer}>
-              <p className={classes.diveType}> Shore Dive · Great for Scuba </p>
+              <p className={classes.diveType}>
+                {selectedSite.siteType} · {selectedSite.suitable}
+              </p>
             </div>
 
             <div className={classes.site__editContainer}>

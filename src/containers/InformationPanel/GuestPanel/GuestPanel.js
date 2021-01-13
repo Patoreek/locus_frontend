@@ -276,12 +276,16 @@ const GuestPanel = () => {
         </div>
       )}
 
-      {/* )} */}
-      {/* {list == null && (
-                                <div className={classes.noResults}> 
-                                    <h1>There are no Dive Sites or Dive Shops in this area.</h1>
-                                </div>
-                        )} */}
+      {diveSites.length == 0 && diveShops.length == 0 && (
+        <div className={classes.noData}>
+          <p className={classes.noData__end}>
+            There are no dive sites or dive shops in this area
+          </p>
+          <span className={classes.noData__instructions}>
+            Move the map or zoom in or out to load again.
+          </span>
+        </div>
+      )}
 
       {globalLoader.divesites && globalLoader.diveshops && (
         <div className={classes.loadingContainer}>

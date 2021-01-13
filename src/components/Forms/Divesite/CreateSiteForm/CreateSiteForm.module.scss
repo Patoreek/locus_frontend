@@ -1,13 +1,211 @@
-@import '../../../../sass/abstracts/variables';
+@import "../../../../sass/abstracts/variables";
 
 .form {
-    padding:5rem 10rem;
+  padding: 5rem 10rem;
+  display: grid;
+  grid-template-rows: repeat(11, max-content);
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
+
+  span {
+    color: $color-lines;
+    font-size: 1.6rem;
+    background: $color-white-bg;
+    position: absolute;
+    top: -13px;
+    left: 10px;
+    z-index: 55;
+    padding: 0rem 0.7rem;
+    font-weight: 700;
+    transition: 0.3s ease;
+  }
+
+  .input {
+    width: 100%;
+    background: transparent;
+    border: 2px solid $color-lines;
+    padding: 1.2rem 1.5rem 1rem 1.5rem;
+    border-radius: 3px;
+    font-size: 1.6rem;
+    position: relative;
+    outline: none;
+    transition: 0.3s ease;
+
+    &::placeholder {
+      color: $color-text-grey;
+    }
+
+    &__name {
+    }
+
+    &__area {
+    }
+
+    &__description {
+      resize: none;
+    }
+
+    &__maxDepth {
+    }
+
+    &__avgDepth {
+    }
+
+    &__minTemp {
+      margin: 1rem 0rem;
+    }
+
+    &__maxTemp {
+      margin: 1rem 0rem;
+    }
+
+    &__minVis {
+      margin: 1rem 0rem;
+    }
+
+    &__maxVis {
+      margin: 1rem 0rem;
+    }
+
+    &__experience {
+      width: 100%;
+    }
+  }
+
+  &__headerContainer {
+    grid-row: 1 / 2;
+    grid-column: 1 / -1;
+
+    .header {
+      font-size: 3rem;
+    }
+  }
+
+  &__backBtnContainer {
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .backBtn {
+      font-size: 1.6rem;
+      position: relative;
+      top: 0px;
+      left: 0px;
+      padding: 0rem 0rem;
+      transition: 0.2s ease;
+
+      &:hover {
+        text-decoration: underline;
+        color: $color-text-blue;
+      }
+    }
+  }
+
+  &__nameContainer,
+  &__suburbContainer,
+  &__cityContainer,
+  &__stateContainer,
+  &__countryContainer,
+  &__descriptionContainer,
+  .accessContainer,
+  .siteTypeContainer,
+  .maxDepthContainer,
+  .avgDepthContainer,
+  .minTempContainer,
+  .maxTempContainer,
+  .minVisContainer,
+  .maxVisContainer,
+  .experienceContainer,
+  .suitableContainer {
+    position: relative;
+    z-index: 52;
+
+    &:hover .input {
+      border: 2px solid $color-lines-hover;
+    }
+    &:hover span {
+      color: $color-lines-hover;
+    }
+
+    textarea {
+      height: 15rem;
+    }
+
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background: transparent;
+    }
+
+    textarea:focus ~ span {
+      //color: $color-lines-focus;
+      color: $color-text-blue;
+    }
+
+    .input,
+    textarea {
+      &:focus {
+        //border: 2px solid $color-lines-focus;
+        border: 2px solid $color-text-blue;
+      }
+    }
+    .input:focus + span,
+    textarea:focus + span {
+      //color: $color-lines-focus;
+      color: $color-text-blue;
+    }
+  }
+
+  &__nameContainer {
+    grid-row: 2 / 3;
+    grid-column: 1 / -1;
+  }
+
+  &__suburbContainer {
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+  }
+
+  &__cityContainer {
+    grid-row: 3 / 4;
+    grid-column: 2 / 3;
+  }
+
+  &__stateContainer {
+    grid-row: 4 / 5;
+    grid-column: 1 / 2;
+  }
+  &__countryContainer {
+    grid-row: 4 / 5;
+    grid-column: 2 / 3;
+  }
+
+  &__descriptionContainer {
+    grid-row: 5 / 6;
+    grid-column: 1 / -1;
+  }
+
+  &__section1 {
+    grid-row: 6 / 7;
+    grid-column: 1 / -1;
+
     display: grid;
-    grid-template-rows: repeat(11, max-content);
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: max-content max-content;
+    grid-template-columns: 1fr 1fr;
     grid-gap: 2rem;
 
-    span {
+    .accessContainer {
+      grid-row: 1 / 2;
+      grid-column: 1 / 2;
+      display: flex;
+      align-items: center;
+
+      position: relative;
+      z-index: 52;
+
+      span {
         color: $color-lines;
         font-size: 1.6rem;
         background: $color-white-bg;
@@ -15,461 +213,224 @@
         top: -13px;
         left: 10px;
         z-index: 55;
-        padding: 0rem .7rem;
+        padding: 0rem 0.7rem;
         font-weight: 700;
-        transition: .3s ease;
+      }
 
+      &__input {
+        // background: $color-input-bg;
+        // padding: .5rem 1rem;
+        // margin-left: 1rem;
+        // font-size: 1.6rem;
+
+        // outline: none;
+        // border: none;
+        // border-radius: 5px;
+        // box-shadow: 2px 2px 5px rgba($color-black-pure, .2);
+        // width: 50%;
+      }
     }
+    .siteTypeContainer {
+      grid-row: 2 / 3;
+      grid-column: 1 / 2;
+      display: flex;
+      align-items: center;
 
-    
-    
+      position: relative;
+      z-index: 52;
 
-    .input {
-        width: 100%;
-        background: transparent;
-        border: 2px solid $color-lines;
-        padding: 1.2rem 1.5rem 1rem 1.5rem;
-        border-radius: 3px;
+      span {
+        color: $color-lines;
         font-size: 1.6rem;
-        position: relative;
-        outline: none;
-        transition: .3s ease;
-
-        &::placeholder {
-            color: $color-text-grey;
-        }
-
-      
-
-
-
-        &__name {
-
-        }
-
-        &__area {
-            
-        }
-
-        &__description {
-            resize: none;
-        }
-
-        &__maxDepth {
-            
-        }
-
-        &__avgDepth {
-            
-        }
-
-        &__minTemp {
-            margin: 1rem 0rem;
-        }
-
-        &__maxTemp {
-            margin: 1rem 0rem;
-        }
-
-        &__minVis {
-            margin: 1rem 0rem;
-        }
-
-        &__maxVis {
-            margin: 1rem 0rem;
-        }
-
-        &__experience {
-            width: 100%;
-        }
-
+        background: $color-white-bg;
+        position: absolute;
+        top: -13px;
+        left: 10px;
+        z-index: 55;
+        padding: 0rem 0.7rem;
+        font-weight: 700;
+      }
     }
 
+    .avgDepthContainer {
+      grid-row: 1 / 2;
+      grid-column: 2 / 3;
+      display: flex;
+      align-items: center;
 
-    &__headerContainer {
-        grid-row: 1 / 2;
-        grid-column: 1 / -1;
+      position: relative;
+      z-index: 52;
 
-        .header {
-            font-size: 3rem;
-        }
+      span {
+        color: $color-lines;
+        font-size: 1.6rem;
+        background: $color-white-bg;
+        position: absolute;
+        top: -13px;
+        left: 10px;
+        z-index: 55;
+        padding: 0rem 0.7rem;
+        font-weight: 700;
+      }
     }
 
-    &__backBtnContainer {
-        grid-row: 1 / 2;
-        grid-column: 2 / 3;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
+    .maxDepthContainer {
+      grid-row: 2 / 3;
+      grid-column: 2 / 3;
+      display: flex;
+      align-items: center;
 
+      position: relative;
+      z-index: 52;
 
-        .backBtn {
-            font-size: 1.6rem;
-            position: relative;
-            top: 0px;
-            left: 0px;
-            padding: 0rem 0rem;
-            transition: .2s ease;
-    
-            &:hover {
-                text-decoration: underline;
-                color: $color-text-blue;
-            }
-        }
-    }   
+      span {
+        color: $color-lines;
+        font-size: 1.6rem;
+        background: $color-white-bg;
+        position: absolute;
+        top: -13px;
+        left: 10px;
+        z-index: 55;
+        padding: 0rem 0.7rem;
+        font-weight: 700;
+      }
+    }
+  }
 
-    &__nameContainer, 
-    &__suburbContainer, 
-    &__cityContainer,
-    &__stateContainer,
-    &__countryContainer, 
-    &__descriptionContainer, 
-    .accessContainer, 
-    .siteTypeContainer, 
-    .maxDepthContainer, 
-    .avgDepthContainer,
+  &__section2 {
+    grid-row: 7 / 8;
+    grid-column: 1 / -1;
+
+    display: grid;
+    grid-template-rows: max-content;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+
+    .temperatureContainer {
+      grid-row: 1 / 2;
+      grid-column: 1 / 2;
+
+      &__title {
+        font-size: 1.8rem;
+      }
+    }
+
     .minTempContainer,
     .maxTempContainer,
     .minVisContainer,
-    .maxVisContainer,
-    .experienceContainer,
+    .maxVisContainer {
+      position: relative;
+      z-index: 52;
+
+      span {
+        color: $color-lines;
+        font-size: 1.6rem;
+        background: $color-white-bg;
+        position: absolute;
+        top: -3px;
+        left: 10px;
+        z-index: 55;
+        padding: 0rem 0.7rem;
+        font-weight: 700;
+      }
+    }
+
+    .visibilityContainer {
+      grid-row: 1 / 2;
+      grid-column: 2 / 3;
+      &__title {
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  &__section3 {
+    grid-row: 8 / 9;
+    grid-column: 1 / -1;
+
+    .experienceContainer {
+      position: relative;
+      z-index: 52;
+    }
+  }
+
+  &__section4 {
+    grid-row: 9 / 10;
+    grid-column: 1 / -1;
+
     .suitableContainer {
-        position: relative;
-        z-index: 52;
+      position: relative;
+      z-index: 52;
+    }
+  }
 
-        &:hover .input {
-            border: 2px solid $color-lines-hover;
-        }
-        &:hover span {
-            color: $color-lines-hover;
-        }
+  &__cancelBtnContainer {
+    grid-row: 10 / 11;
+    grid-column: 1 / 2;
 
-        textarea {
-            height: 15rem;
-        }
+    display: flex;
+    justify-content: flex-end;
 
-        select {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            background: transparent;
-        }
+    .cancelBtn {
+      padding: 1rem 2rem;
+      font-size: 1.6rem;
+      border: none;
+      background: $color-input-bg;
+      border-radius: 5px;
+      border: 1px solid $color-lines;
+      outline: none;
+      transition: 0.3s ease;
+      box-shadow: 0px 0px 0px rgba($color-black, 0.5);
 
-        textarea:focus ~ span {
-            //color: $color-lines-focus;
-            color: $color-text-blue;
-        }
+      &:hover {
+        transform: translate(0px, -3px);
+        box-shadow: 0px 3px 7px rgba($color-black, 0.3);
+      }
+    }
+  }
 
-        .input, textarea  {
-            &:focus {
-                //border: 2px solid $color-lines-focus;
-                border: 2px solid $color-text-blue;
+  &__addBtnContainer {
+    grid-row: 10 / 11;
+    grid-column: 2 / 3;
 
-            }
-        }
-        .input:focus + span, textarea:focus + span {
-            //color: $color-lines-focus;
-            color: $color-text-blue;
-        }
+    display: flex;
+    justify-content: flex-start;
+
+    .addBtn {
+      padding: 1rem 2rem;
+      font-size: 1.6rem;
+      border: none;
+      background: $color-btn-add;
+      border-radius: 5px;
+      border: 1px solid $color-lines;
+      color: $color-white;
+      outline: none;
+      transition: 0.3s ease;
+      box-shadow: 0px 0px 0px rgba($color-black, 0.5);
+
+      &:hover {
+        transform: translate(0px, -3px);
+        box-shadow: 0px 3px 7px rgba($color-black, 0.3);
+      }
+    }
+  }
+
+  &__messageContainer {
+    grid-row: 11 / 12;
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .successMsg {
+      color: $color-text-green;
+      font-size: 1.6rem;
     }
 
-    &__nameContainer {
-        grid-row: 2 / 3;
-        grid-column: 1 / -1;
-        
+    .errorMsg {
+      color: $color-text-red;
+      font-size: 1.6rem;
     }
-
-    &__suburbContainer {
-        grid-row: 3 / 4;
-        grid-column: 1 / 2;
-        
-    }
-
-    &__cityContainer {
-        grid-row: 3 / 4;
-        grid-column: 2 / 3;
-        
-    }
-
-    &__stateContainer {
-        grid-row: 4 / 5;
-        grid-column: 1 / 2;
-        
-    }
-    &__countryContainer {
-        grid-row: 4 / 5;
-        grid-column: 2 / 3;
-        
-    }
-
-    &__descriptionContainer {
-        grid-row: 5 / 6;
-        grid-column: 1 / -1;
-    }
-
-    &__section1 {
-        grid-row: 6 / 7;
-        grid-column: 1 / -1;
-
-        display: grid;
-        grid-template-rows: max-content max-content;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 2rem;
-
-        .accessContainer {
-            grid-row: 1 / 2;
-            grid-column: 1 / 2;
-            display: flex;
-            align-items: center;
-
-            position: relative;
-            z-index: 52;
-           
-            span {
-                color: $color-lines;
-                font-size: 1.6rem;
-                background: $color-white-bg;
-                position: absolute;
-                top: -13px;
-                left: 10px;
-                z-index: 55;
-                padding: 0rem .7rem;
-                font-weight: 700;
-            }
-
-            &__input {  
-                // background: $color-input-bg;
-                // padding: .5rem 1rem;
-                // margin-left: 1rem;
-                // font-size: 1.6rem;
-
-                // outline: none;
-                // border: none;
-                // border-radius: 5px;
-                // box-shadow: 2px 2px 5px rgba($color-black-pure, .2);
-                // width: 50%;
-            }
-        }
-        .siteTypeContainer {
-            grid-row: 2 / 3;
-            grid-column: 1 / 2;
-            display: flex;
-            align-items: center;
-
-            position: relative;
-            z-index: 52;
-           
-            span {
-                color: $color-lines;
-                font-size: 1.6rem;
-                background: $color-white-bg;
-                position: absolute;
-                top: -13px;
-                left: 10px;
-                z-index: 55;
-                padding: 0rem .7rem;
-                font-weight: 700;
-            }
-        }
-
-        .maxDepthContainer {
-            grid-row: 1 / 2;
-            grid-column: 2 / 3;
-            display: flex;
-            align-items: center;
-            
-            position: relative;
-            z-index: 52;
-           
-            span {
-                color: $color-lines;
-                font-size: 1.6rem;
-                background: $color-white-bg;
-                position: absolute;
-                top: -13px;
-                left: 10px;
-                z-index: 55;
-                padding: 0rem .7rem;
-                font-weight: 700;
-            }
-        }
-
-        .avgDepthContainer {
-            grid-row: 2 / 3;
-            grid-column: 2 / 3;
-            display: flex;
-            align-items: center;
-            
-            position: relative;
-            z-index: 52;
-           
-            span {
-                color: $color-lines;
-                font-size: 1.6rem;
-                background: $color-white-bg;
-                position: absolute;
-                top: -13px;
-                left: 10px;
-                z-index: 55;
-                padding: 0rem .7rem;
-                font-weight: 700;
-            }
-        }
-    }
-
-    &__section2 {
-        grid-row: 7 / 8;
-        grid-column: 1 / -1;
-
-        display: grid;
-        grid-template-rows: max-content;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 2rem;
-
-        .temperatureContainer {
-            grid-row: 1 / 2;
-            grid-column: 1 / 2;
-        
-            
-
-            &__title {
-                font-size: 1.8rem;
-            }
-           
-        }
-
-        .minTempContainer, .maxTempContainer, .minVisContainer, .maxVisContainer {
-            position: relative;
-            z-index: 52;
-
-            span {
-                color: $color-lines;
-                font-size: 1.6rem;
-                background: $color-white-bg;
-                position: absolute;
-                top: -3px;
-                left: 10px;
-                z-index: 55;
-                padding: 0rem .7rem;
-                font-weight: 700;
-            }
-        
-        }
-
-        
-        .visibilityContainer {
-            grid-row: 1 / 2;
-            grid-column: 2 / 3;
-            &__title {
-                font-size: 1.6rem;         
-            }
-
-           
-        }
-
-        
-        
-    }
-
-    &__section3 {
-        grid-row: 8 / 9;
-        grid-column: 1 / -1;
-
-        .experienceContainer {
-            position: relative;
-            z-index: 52;
-        }
-
-        
-
-    }
-
-    &__section4 {
-        grid-row: 9 / 10;
-        grid-column: 1 / -1;
-
-        .suitableContainer {
-            position: relative;
-            z-index: 52;
-        }
-        
-
-    }
-
-    &__cancelBtnContainer {
-        grid-row: 10 / 11;
-        grid-column: 1 / 2;
-
-        display: flex;
-        justify-content: flex-end;
-
-        .cancelBtn {
-            padding: 1rem 2rem;
-            font-size: 1.6rem;
-            border: none;
-            background: $color-input-bg;
-            border-radius: 5px;
-            border: 1px solid $color-lines;
-            outline: none;
-            transition: .3s ease;
-            box-shadow: 0px 0px 0px rgba($color-black, .5);
-
-            &:hover {
-                transform: translate(0px, -3px);
-                box-shadow: 0px 3px 7px rgba($color-black, .3);
-            }
-        }
-        
-    }
-
-    &__addBtnContainer {
-        grid-row: 10 / 11;
-        grid-column: 2 / 3;
-
-        display: flex;
-        justify-content: flex-start;
-
-        .addBtn {    
-            padding: 1rem 2rem;
-            font-size: 1.6rem;
-            border: none;
-            background: $color-btn-add;
-            border-radius: 5px;
-            border: 1px solid $color-lines;
-            color: $color-white;
-            outline: none;
-            transition: .3s ease;
-            box-shadow: 0px 0px 0px rgba($color-black, .5);
-
-            &:hover {
-                transform: translate(0px, -3px);
-                box-shadow: 0px 3px 7px rgba($color-black, .3);
-            }
-        }
-        
-    }
-
-
-    &__messageContainer {
-        grid-row: 11 / 12;
-        grid-column: 1 / -1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-
-
-        .successMsg {
-            color: $color-text-green;
-            font-size: 1.6rem;
-        }
-
-        .errorMsg {
-            color: $color-text-red;
-            font-size: 1.6rem;
-        }
-        
-    }
-
-
-
+  }
 }

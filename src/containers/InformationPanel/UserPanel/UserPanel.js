@@ -31,12 +31,12 @@ const UserPanel = () => {
   return (
     <div className={classes.userPanel}>
       {/* <ToggleButtons/> */}
-      {!showEditModal &&
-      !showAddModal &&
-      !showDeleteModal &&
-      !showAddRequestModal ? (
-        <MySitesHome />
-      ) : null}
+      {!showAddModal && !showDeleteModal && !showAddRequestModal && (
+        <div>
+          <MySitesHome />
+          {showEditModal && selectedSite != null ? <EditSiteForm /> : null}
+        </div>
+      )}
       {showEditModal && selectedSite != null ? <EditSiteForm /> : null}
       {showAddModal ? <CreateSiteForm /> : null}
       {showAddRequestModal ? <AddRequestForm /> : null}

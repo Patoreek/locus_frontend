@@ -179,6 +179,7 @@ const EditSiteForm = (props) => {
               className={`${classes.input} ${classes.input__upload}`}
               allowMultiple={false}
               name={"divesite"}
+              allowPaste={false}
               server={{
                 url:
                   "http://localhost:8080/diveSites/uploadImages/" +
@@ -208,44 +209,35 @@ const EditSiteForm = (props) => {
           <div className={classes.form__section1}>
             <div className={classes.accessContainer}>
               <select
-                value={access ? access : "Beach"}
+                value={access}
                 onChange={(e) => setAccess(e.target.value)}
                 className={`${classes.input} ${classes.accessContainer__input}`}
               >
+                <option value="Dock">Dock</option>
                 <option value="Beach">Beach</option>
                 <option value="Boat">Boat</option>
-                <option value="Dock">Dock</option>
                 <option value="Rocks">Rocks</option>
-                <option value="Rocks">Ramp</option>
+                <option value="Ramp">Ramp</option>
               </select>
               <span>Access</span>
             </div>
 
             <div className={classes.siteTypeContainer}>
               <select
-                value={siteType ? siteType : "Reef"}
+                value={siteType}
                 onChange={(e) => setSiteType(e.target.value)}
                 className={`${classes.input} ${classes.siteTypeContainer__input}`}
               >
-                <option value="Reef">Reef</option>
-                <option value="Wreck">Wreck</option>
+                <option value="Bridge">Bridge</option>
                 <option value="Cave">Cave</option>
                 <option value="Deep">Deep</option>
                 <option value="Drift">Drift</option>
-                <option value="Wall">Wall</option>
                 <option value="Ice">Ice</option>
+                <option value="Reef">Reef</option>
+                <option value="Wall">Wall</option>
+                <option value="Wreck">Wreck</option>
               </select>
               <span>Site Type</span>
-            </div>
-
-            <div className={classes.maxDepthContainer}>
-              <input
-                className={`${classes.input} ${classes.input__maxDepth}`}
-                //placeholder="Max Depth"
-                value={maxDepth}
-                onChange={(e) => setMaxDepth(e.target.value)}
-              />
-              <span>Max Depth</span>
             </div>
 
             <div className={classes.avgDepthContainer}>
@@ -256,6 +248,16 @@ const EditSiteForm = (props) => {
                 onChange={(e) => setAvgDepth(e.target.value)}
               />
               <span>Average Depth</span>
+            </div>
+
+            <div className={classes.maxDepthContainer}>
+              <input
+                className={`${classes.input} ${classes.input__maxDepth}`}
+                //placeholder="Max Depth"
+                value={maxDepth}
+                onChange={(e) => setMaxDepth(e.target.value)}
+              />
+              <span>Max Depth</span>
             </div>
           </div>
 
@@ -312,7 +314,7 @@ const EditSiteForm = (props) => {
           <div className={classes.form__section3}>
             <div className={classes.experienceContainer}>
               <select
-                value={experience ? experience : "Snorkel Friendly"}
+                value={experience}
                 onChange={(e) => setExperience(e.target.value)}
                 className={classes.input}
               >
@@ -330,7 +332,7 @@ const EditSiteForm = (props) => {
                 </option>
                 <option value="Deep Diver">Deep Diver</option>
                 <option value="Wreck Diver">Wreck Diver</option>
-                <option value="Cave Diver">Wreck Diver</option>
+                <option value="Cave Diver">Cave Diver</option>
                 <option value="Sidemount Diver">Sidemount Diver</option>
                 <option value="PADI Instructor">PADI Instructor</option>
                 <option value="Divemaster">Divemaster</option>
@@ -342,23 +344,17 @@ const EditSiteForm = (props) => {
           <div className={classes.form__section4}>
             <div className={classes.suitableContainer}>
               <select
-                value={suitable ? suitable : "Great for Snorkelling"}
+                value={suitable}
                 onChange={(e) => setSuitable(e.target.value)}
                 className={classes.input}
               >
-                <option value="Great for Snorkelling">
-                  Great for Snorkelling
-                </option>
-                <option value="Great for beginner SCUBA Divers">
-                  Great for beginner SCUBA Divers
-                </option>
-                <option value="Can be challenging">Can be challenging</option>
-                <option value="Experienced Divers Only">
-                  Experienced Divers Only
-                </option>
-                <option value="Great for Free Diving">
+                <option value="Great For All">Great For All</option>
+                <option value="Beginner Divers">Beginner Divers</option>
+                <option value="Novice Divers">Novice Divers</option>
+                <option value="Experienced Divers">Experienced Divers</option>
+                {/* <option value="Great for Free Diving">
                   Great for Free Diving
-                </option>
+                </option> */}
               </select>
               <span>Suitable for</span> {/* Dive Type */}
             </div>

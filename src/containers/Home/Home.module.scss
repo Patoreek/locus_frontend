@@ -407,6 +407,8 @@
 
           &:hover {
             transform: translateY(-0.5rem);
+            background: $color-white-pure;
+            color: $color-text-blue;
           }
           &:active {
             transform: translateY(-0.25rem);

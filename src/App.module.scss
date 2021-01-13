@@ -1,23 +1,22 @@
-@import './sass/abstracts/variables';
-@import './sass/abstracts/functions';
-@import './sass/abstracts/mixins';
+@import "./sass/abstracts/variables";
+@import "./sass/abstracts/functions";
+@import "./sass/abstracts/mixins";
 
-@import './sass/base/animations';
-@import './sass/base/utilities';
-@import './sass/base/base';
+@import "./sass/base/animations";
+@import "./sass/base/utilities";
+@import "./sass/base/base";
 
-@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap");
 
 .app {
-position: relative;
-width: 100vw;
-overflow: hidden;
-//float: right;
-display: flex;
-flex-direction: column;
-transition: .3s ease;
+  position: relative;
+  width: 100vw;
+  overflow: hidden;
+  //float: right;
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s ease;
+  background: #f5f5f5;
 }
-
-
