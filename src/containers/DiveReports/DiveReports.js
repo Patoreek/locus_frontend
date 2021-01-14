@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 
 import classes from "./DiveReports.module.scss";
 
-import DiveReportForm from "./DiveReportForm/DiveReportForm";
-import DiveReportList from "./DiveReportList/DiveReportList";
 import PreviewReport from "./PreviewReport/PreviewReport";
-import EditReport from "./EditReport/EditReport";
-import DeleteReport from "./DeleteReport/DeleteReport";
+import DiveReportList from "../../components/DiveReport/DiveReportList/DiveReportList";
+
+import DiveReportForm from "../../components/DiveReport/Forms/DiveReportForm/DiveReportForm";
+import EditReport from "../../components/DiveReport/Forms/EditReport/EditReport";
+import DeleteReport from "../../components/DiveReport/Forms/DeleteReport/DeleteReport";
 
 import Spinner from "../../components/Spinner/Spinner";
 

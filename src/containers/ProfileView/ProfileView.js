@@ -14,21 +14,21 @@ import { ReactComponent as CloseSVG } from "../../assets/icons/close.svg";
 
 import { useParams } from "react-router";
 
-import Details from "../DetailsView/DetailsView";
+import Details from "../DiveSiteView/DiveSiteView";
 
 import Spinner from "../../components/Spinner/Spinner";
 
 import StarRating from "../../components/StarRating/StarRating";
 import FavouriteButton from "../../components/Buttons/FavouriteButton/FavouriteButton";
-import DisplayReport from "../../components/DisplayReport/DisplayReport";
+import DisplayReport from "../../components/DiveReport/DisplayReport/DisplayReport";
 
 import DivesiteListingPanel from "../../components/Divesite/DivesiteListingPanel/DivesiteListingPanel";
 import DivesiteListingThumbnail from "../../components/Divesite/DivesiteListingThumbnail/DivesiteListingThumbnail";
 
 import avatarPlaceholder from "../../assets/images/avatar_placeholder.jpeg";
 
-import EditProfile from "../../containers/EditProfile/EditProfile";
-import ChangePassword from "../../containers/ChangePassword/ChangePassword";
+import EditProfile from "../../components/User/EditProfile/EditProfile";
+import ChangePassword from "../../components/User/ChangePassword/ChangePassword";
 
 import classes from "./ProfileView.module.scss";
 

@@ -9,15 +9,11 @@ import Footer from "./containers/Footer/Footer";
 
 import GuestView from "./containers/GuestView/GuestView";
 import UserView from "./containers/UserView/UserView";
-import DetailsView from "./containers/DetailsView/DetailsView";
-import LoginView from "./containers/LoginView/LoginView";
-import SignupView from "./containers/SignupView/SignupView";
+import DiveSiteView from "./containers/DiveSiteView/DiveSiteView";
 import FavouritesView from "./containers/FavouritesView/FavouritesView";
 import ProfileView from "./containers/ProfileView/ProfileView";
-import ViewProfileView from "./containers/ViewProfileView/ViewProfileView";
-import EditProfile from "./containers/EditProfile/EditProfile";
 import AddRequest from "./containers/AddRequest/AddRequest";
-import ChangePassword from "./containers/ChangePassword/ChangePassword";
+import ChangePassword from "./components/User/ChangePassword/ChangePassword";
 import DiveReports from "./containers/DiveReports/DiveReports";
 import CommunityPhotos from "./containers/CommunityPhotos/CommunityPhotos";
 import DiveShopView from "./containers/DiveShopView/DiveShopView";
@@ -137,7 +133,7 @@ function App() {
                 }
               />
 
-              <Route path="/divesite/:id" exact component={DetailsView} />
+              <Route path="/divesite/:id" exact component={DiveSiteView} />
               <Route path="/diveshop/:id" exact component={DiveShopView} />
               <Route
                 path="/communityphotos/:siteId"

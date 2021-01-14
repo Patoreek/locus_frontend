@@ -1,0 +1,63 @@
+@import "../../sass/abstracts/variables";
+
+.commPhotoPreview {
+  position: relative;
+  //background: orange;
+  width: 100%;
+  padding: 0rem 0.25rem;
+  height: 17rem;
+  overflow-y: hidden;
+  overflow-x: scroll;
+
+  .sliderContainer {
+    position: absolute;
+    //width: 100%;
+    top: 0;
+    left: 0;
+    //background: red;
+    overflow: scroll;
+    display: flex;
+
+    .imageContainer {
+      margin: 0.5rem 0.25rem;
+      border-radius: 1rem;
+      overflow: hidden;
+      &__image {
+        width: 25rem;
+        height: 15rem;
+        object-fit: cover;
+        transition: 0.4s ease;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  .noCommPhotos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 4rem;
+    margin-bottom: 1rem;
+
+    border-bottom: 1px solid $color-lines;
+
+    &__header {
+      font-size: 2.5rem;
+      padding-bottom: 1rem;
+      font-family: $font-1-style;
+      font-weight: $font-bold;
+    }
+
+    &__text {
+      font-size: 1.4rem;
+      font-weight: 500;
+      text-align: center;
+      color: $color-text-darkergrey;
+      font-family: $font-1-style;
+      font-weight: $font-normal;
+    }
+  }
+}

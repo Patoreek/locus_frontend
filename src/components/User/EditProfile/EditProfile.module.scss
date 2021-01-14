@@ -1,0 +1,268 @@
+@import "../../../sass/abstracts/variables";
+
+.form {
+  padding: 2.5rem 5rem;
+
+  display: grid;
+  grid-template-rows: repeat(9, max-content);
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
+  width: 100%;
+  margin: 0 auto;
+  background: $color-white-bg;
+
+  span {
+    color: $color-lines;
+    font-size: 1.6rem;
+    background: $color-white-bg;
+    position: absolute;
+    top: -13px;
+    left: 10px;
+    z-index: 55;
+    padding: 0rem 0.7rem;
+    font-weight: 700;
+    transition: 0.3s ease;
+    font-family: $font-3-style;
+    font-weight: $font-bold;
+  }
+
+  .input {
+    width: 100%;
+    background: transparent;
+    border: 2px solid $color-lines;
+    padding: 1.2rem 1.5rem 1rem 1.5rem;
+    border-radius: 3px;
+    font-size: 1.6rem;
+    position: relative;
+    outline: none;
+    transition: 0.3s ease;
+    font-family: $font-3-style;
+    font-weight: $font-normal;
+
+    // .input {
+    //     width: 100%;
+    //     background: $color-input-bg;
+    //     border: none;
+    //     padding: .4rem 1rem;
+    //     font-size: 1.6rem;
+    //     box-shadow: 2px 2px 5px rgba($color-black-pure, .2);
+    //     resize: none;
+    //     outline: none;
+    //     border-radius: 5px;
+
+    &::placeholder {
+      color: $color-text-grey;
+    }
+    &__name {
+    }
+
+    &__area {
+    }
+
+    &__upload {
+      background: transparent;
+    }
+
+    &__description {
+    }
+
+    &__maxDepth {
+    }
+
+    &__avgDepth {
+    }
+
+    &__minTemp {
+      margin: 1rem 0rem;
+    }
+
+    &__maxTemp {
+      margin: 1rem 0rem;
+    }
+
+    &__minVis {
+      margin: 1rem 0rem;
+    }
+
+    &__maxVis {
+      margin: 1rem 0rem;
+    }
+
+    &__experience {
+      //width: 80%;
+    }
+  }
+
+  &__firstNameContainer,
+  &__lastNameContainer,
+  &__cityContainer,
+  &__countryContainer,
+  &__bioContainer,
+  &__experienceContainer {
+    position: relative;
+    z-index: 52;
+
+    &:hover .input {
+      border: 2px solid $color-lines-hover;
+    }
+    &:hover span {
+      color: $color-lines-hover;
+    }
+
+    textarea {
+      height: 15rem;
+    }
+
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background: transparent;
+    }
+
+    textarea:focus ~ span {
+      //color: $color-lines-focus;
+      color: $color-text-blue;
+    }
+
+    .input,
+    textarea {
+      &:focus {
+        //border: 2px solid $color-lines-focus;
+        border: 2px solid $color-text-blue;
+      }
+    }
+    .input:focus + span,
+    textarea:focus + span {
+      //color: $color-lines-focus;
+      color: $color-text-blue;
+    }
+  }
+
+  &__headerContainer {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+
+    .header {
+      font-size: 3rem;
+    }
+  }
+
+  &__backBtnContainer {
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    span {
+      font-size: 1.6rem;
+      color: $color-text-blue;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__nameContainer {
+    grid-row: 2 / 3;
+    grid-column: 1 / -1;
+  }
+
+  &__cityContainer {
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+  }
+  &__countryContainer {
+    grid-row: 3/ 4;
+    grid-column: 2 / 3;
+  }
+
+  &__uploadContainer {
+    grid-row: 4 / 5;
+    grid-column: 1 / -1;
+  }
+
+  &__bioContainer {
+    grid-row: 5 / 6;
+    grid-column: 1 / -1;
+  }
+
+  &__experienceContainer {
+    grid-row: 6 / 7;
+    grid-column: 1 / span 2;
+  }
+
+  &__cancelBtnContainer {
+    grid-row: 7 / 8;
+    grid-column: 1 / 2;
+
+    display: flex;
+    justify-content: flex-end;
+
+    .cancelBtn {
+      padding: 1rem 2rem;
+      font-size: 1.6rem;
+      border: none;
+      background: $color-input-bg;
+      border-radius: 5px;
+      border: 1px solid $color-lines;
+      transition: 0.3s ease;
+      box-shadow: 0px 0px 0px rgba($color-black, 0.5);
+      font-family: $font-1-style;
+      font-weight: $font-med;
+      color: $color-text-darkgrey;
+
+      &:hover {
+        transform: translate(0px, -3px);
+        box-shadow: 0px 3px 7px rgba($color-black, 0.3);
+      }
+    }
+  }
+
+  &__editBtnContainer {
+    grid-row: 7 / 8;
+    grid-column: 2 / 3;
+
+    display: flex;
+    justify-content: flex-start;
+
+    .editBtn {
+      padding: 1rem 2rem;
+      font-size: 1.6rem;
+      border: none;
+      background: $color-btn-primary;
+      border-radius: 5px;
+      //border: 1px solid $color-lines;
+      color: $color-white;
+      transition: 0.3s ease;
+      box-shadow: 0px 0px 0px rgba($color-black, 0.5);
+      font-family: $font-1-style;
+      font-weight: $font-med;
+
+      &:hover {
+        transform: translate(0px, -3px);
+        box-shadow: 0px 3px 7px rgba($color-black, 0.3);
+      }
+    }
+  }
+
+  &__messageContainer {
+    grid-row: 8 / 9;
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .successMsg {
+      color: $color-text-green;
+      font-size: 1.6rem;
+    }
+
+    .errorMsg {
+      color: $color-text-red;
+      font-size: 1.6rem;
+    }
+  }
+}
