@@ -15,6 +15,11 @@ const DiveReportForm = (props) => {
   const [duration, setDuration] = useState();
   const [report, setReport] = useState();
 
+  const [locationErr, setLocationErr] = useState();
+  const [visibilityErr, setVisibilityErr] = useState();
+  const [durationErr, setDurationErr] = useState();
+  const [reportErr, setReportErr] = useState();
+
   const [diveSites, setDiveSites] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -35,8 +40,9 @@ const DiveReportForm = (props) => {
           }
         );
         const sites = await response.json();
-        //console.log(profile);
+        //console.log(sites);
         setDiveSites(sites.site);
+        setLocation(sites.site[0]._id);
         setIsLoading(false);
       } catch (error) {
         console.log(error);
@@ -52,10 +58,9 @@ const DiveReportForm = (props) => {
     console.log("cancelling...");
     props.setShowAdd(false);
   };
-  const submitHandler = (e) => {
-    console.log("submitting report...");
 
-    //validate();
+  const submitHandler = () => {
+    console.log("submitting report...");
 
     //! STATE HAS TO CHANGE BEFORE IT CHECKS THIS SO IT WORKS ON ONE CLICK;
     //? SOLUTION IMPLEMENTED ??? DOUBLE CHECK THIS
@@ -84,10 +89,7 @@ const DiveReportForm = (props) => {
           //errorMessage.push(result.message);
           setIsError(true);
         } else {
-          // setSuccess(true);
-          // setTimeout(() => {
-          //     history.push('/profile');
-          //   }, 1500);
+          window.location.reload();
         }
       })
       .catch((err) => {
@@ -97,95 +99,59 @@ const DiveReportForm = (props) => {
     //}
   };
 
-  // const validate = () => {
-  //     setLocationErr(false);
-  //     setLastnameErr(false);
-  //     setCityErr(false);
-  //     setCountryErr(false);
-  //     setExperienceErr(false);
-  //     setIsError(false);
+  const validate = () => {
+    setLocationErr(false);
+    setVisibilityErr(false);
+    setDurationErr(false);
+    setReportErr(false);
+    setIsError(false);
 
-  //     var letters = /^[a-zA-Z]+$/;
+    var numbers = /^[1-9]\d*$/;
+    let errorMessage = [];
 
-  //     let errorMessage = [];
+    if (visibility) {
+      if (!visibility.match(numbers)) {
+        errorMessage.push(
+          "There are letters or symbols in the Visibility field."
+        );
+        setVisibilityErr(true);
+        setIsError(true);
+      }
+    }
+    if (!visibility) {
+      errorMessage.push("Please add an estimate of the visbility.");
+      setVisibilityErr(true);
+      setIsError(true);
+    }
 
-  //     if(!firstName.match(letters)){
-  //         if(firstName == "") {
-  //             errorMessage.push("Please add your first name.");
-  //             setFirstnameErr(true);
-  //             setIsError(true);
-  //         } else {
-  //             errorMessage.push("There are numbers or symbols in your first name.");
-  //             setFirstnameErr(true);
-  //             setIsError(true);
-  //         }
-  //     }
+    if (duration) {
+      if (!duration.match(numbers)) {
+        errorMessage.push(
+          "There are letters or symbols in the duration field."
+        );
+        setDurationErr(true);
+        setIsError(true);
+      }
+    }
+    if (!duration) {
+      errorMessage.push("Please add an estimate of the visbility.");
+      setDurationErr(true);
+      setIsError(true);
+    }
+    if (report == null || report == "") {
+      errorMessage.push("Please add your report description.");
+      setReportErr(true);
+      setIsError(true);
+    }
 
-  //     if (firstName.length <= 1) {
-  //         errorMessage.push("Your first name is too short.");
-  //         setFirstnameErr(true);
-  //         setIsError(true);
+    setErrMsg(errorMessage);
+    console.log(errorMessage);
+    console.log(isError);
 
-  //     }
-
-  //      if (lastName.length <= 2) {
-  //         errorMessage.push("Your last name is too short.");
-  //         setLastnameErr(true);
-  //         setIsError(true);
-  //     }
-
-  //     if(!lastName.match(letters)){
-  //         if(lastName == "") {
-  //             errorMessage.push("Please add your last name.");
-  //             setLastnameErr(true);
-  //             setIsError(true);
-  //         } else {
-  //             errorMessage.push("There are numbers or symbols in your last name.");
-  //             setLastnameErr(true);
-  //             setIsError(true);
-  //         }
-  //     }
-
-  //     if (bio.length > 255){
-  //         errorMessage.push("Bio is too long.");
-  //         setBioErr(true);
-  //         setIsError(true);
-  //     }
-
-  //     if(!city.match(letters)){
-  //         if(city == "") {
-  //             errorMessage.push("Please add a city.");
-  //             setCityErr(true);
-  //             setIsError(true);
-  //         } else {
-  //             errorMessage.push("There are numbers or symbols in the city.");
-  //             setCityErr(true);
-  //             setIsError(true);
-  //         }
-  //     }
-
-  //     if(!country.match(letters)){
-  //         if(country == "") {
-  //             errorMessage.push("Please add a country.");
-  //             setCountryErr(true);
-  //             setIsError(true);
-  //         } else {
-  //             errorMessage.push("There are numbers or symbols in the country.");
-  //             setCountryErr(true);
-  //             setIsError(true);
-  //         }
-  //     }
-
-  //     if (experience == null || experience == ""){
-  //         errorMessage.push("Please choose your experience from the selection.");
-  //         setExperienceErr(true);
-  //         setIsError(true);
-  //     }
-
-  //     setErrMsg(errorMessage);
-  //     console.log(errorMessage);
-  //     console.log(isError);
-  // }
+    if (errorMessage.length == 0) {
+      submitHandler();
+    }
+  };
 
   return (
     <div className={classes.form}>
@@ -249,13 +215,9 @@ const DiveReportForm = (props) => {
       </div>
 
       <div className={classes.form__submitBtnContainer}>
-        <input
-          //placeholder="Edit"
-          type="submit"
-          value="Submit"
-          onClick={(e) => submitHandler(e)}
-          className={classes.submitBtn}
-        />
+        <button onClick={validate} className={classes.submitBtn}>
+          Submit
+        </button>
       </div>
 
       <div className={classes.form__messageContainer}>

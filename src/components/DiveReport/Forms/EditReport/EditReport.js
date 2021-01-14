@@ -19,6 +19,11 @@ const EditReport = (props) => {
   const [report, setReport] = useState();
   const [reportId, setReportId] = useState();
 
+  const [locationErr, setLocationErr] = useState();
+  const [visibilityErr, setVisibilityErr] = useState();
+  const [durationErr, setDurationErr] = useState();
+  const [reportErr, setReportErr] = useState();
+
   const [diveSites, setDiveSites] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -64,7 +69,8 @@ const EditReport = (props) => {
     console.log("cancelling...");
     props.setShowEdit(false);
   };
-  const submitHandler = (e) => {
+
+  const submitHandler = () => {
     console.log("submitting report...");
 
     //validate();
@@ -96,10 +102,7 @@ const EditReport = (props) => {
           //errorMessage.push(result.message);
           setIsError(true);
         } else {
-          // setSuccess(true);
-          // setTimeout(() => {
-          //     history.push('/profile');
-          //   }, 1500);
+          window.location.reload();
         }
       })
       .catch((err) => {
@@ -107,6 +110,64 @@ const EditReport = (props) => {
         //setSuccess('false');
       });
     //}
+  };
+
+  const validate = () => {
+    setLocationErr(false);
+    setVisibilityErr(false);
+    setDurationErr(false);
+    setReportErr(false);
+    setIsError(false);
+
+    var numbers = /^[1-9]\d*$/;
+    let errorMessage = [];
+
+    if (visibility) {
+      if (!visibility.match(numbers)) {
+        errorMessage.push(
+          "There are letters or symbols in the Visibility field."
+        );
+        setVisibilityErr(true);
+        setIsError(true);
+      }
+    }
+    if (!visibility) {
+      errorMessage.push("Please add an estimate of the visbility.");
+      setVisibilityErr(true);
+      setIsError(true);
+    }
+
+    if (duration) {
+      if (!duration.match(numbers)) {
+        errorMessage.push(
+          "There are letters or symbols in the duration field."
+        );
+        setDurationErr(true);
+        setIsError(true);
+      }
+    }
+    if (!duration) {
+      errorMessage.push("Please add an estimate of the visbility.");
+      setDurationErr(true);
+      setIsError(true);
+    }
+    if (report == null || report == "") {
+      errorMessage.push("Please add your report description.");
+      setReportErr(true);
+      setIsError(true);
+    }
+
+    if (errorMessage.length == 0) {
+      submitHandler();
+    }
+
+    setErrMsg(errorMessage);
+    console.log(errorMessage);
+    console.log(isError);
+
+    if (errorMessage.length == 0) {
+      submitHandler();
+    }
   };
 
   return (
@@ -192,13 +253,9 @@ const EditReport = (props) => {
       </div>
 
       <div className={classes.form__submitBtnContainer}>
-        <input
-          //placeholder="Edit"
-          type="submit"
-          value="Submit"
-          onClick={(e) => submitHandler(e)}
-          className={classes.submitBtn}
-        />
+        <button onClick={validate} className={classes.submitBtn}>
+          Edit
+        </button>
       </div>
 
       <div className={classes.form__messageContainer}>

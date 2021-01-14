@@ -7,7 +7,7 @@
   display: flex;
 
   &__left {
-    background: $color-white;
+    background: $color-white-pure;
     flex-basis: 35vw;
     border-right: 1px solid $color-lines;
   }
@@ -15,15 +15,13 @@
   &__right {
     flex-basis: 65vw;
     overflow: scroll;
-    padding: 3rem 2rem;
-    color: $color-white;
-
-    background: url("../../assets/images/diveReportsBG.svg");
-    background-position: cover;
-    height: 100%;
+    color: $color-white-pure;
   }
 
   .diveReportsHome {
+    background: url("../../assets/images/diveReportsBG.svg");
+    background-position: cover;
+    padding: 3rem 2rem;
     &__header {
       font-size: 10rem;
       font-family: $font-1-style;

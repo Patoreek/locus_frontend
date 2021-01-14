@@ -10,6 +10,8 @@ import { ReactComponent as DurationSVG } from "../../../assets/icons/time.svg";
 
 import DisplayImage from "../../DisplayImage/DisplayImage";
 
+import avatarPlaceholder from "../../../assets/images/avatar_placeholder.jpeg";
+
 const DisplayReport = (props) => {
   const [report, setReport] = useState(props.report);
 
@@ -58,7 +60,13 @@ const DisplayReport = (props) => {
     <div className={classes.report}>
       <div className={classes.report__topContainer}>
         <div className={classes.profilePic}>
-          <img src={"http://localhost:8080/" + report.userId.profilePic} />
+          <img
+            src={
+              report.userId.profilePic
+                ? "http://localhost:8080/" + report.userId.profilePic
+                : avatarPlaceholder
+            }
+          />
         </div>
         <div className={classes.nameContainer}>
           <div className={classes.nameContainer__name}>
@@ -74,7 +82,7 @@ const DisplayReport = (props) => {
       <div className={classes.report__infoContainer}>
         <div className={classes.location}>
           <LocationSVG className={classes.icon} />
-          <a href={"/divesite/" + report.siteId._id}>
+          <a href={"/divesite/" + report.siteId._id} target="_blank">
             {report.siteId.name}, {report.siteId.suburb},{" "}
             {report.siteId.country}
           </a>
