@@ -1,125 +1,119 @@
-@import '../../sass/abstracts/variables';
+@import "../../sass/abstracts/variables";
 
 .communityPhotos {
-    //background: orange;
-    padding: 5rem 2.5rem;
-    position: relative;
+  padding: 5rem 2.5rem;
+  position: relative;
 
-    &__locationHeaderContainer {
-        padding: 1rem 0rem;
+  &__locationHeaderContainer {
+    padding: 1rem 0rem;
 
-        h1 {
-            font-size: 3rem;
-            font-family: $font-1-style;
-            font-weight: $font-bold;
-            color: $color-black;
+    h1 {
+      font-size: 3rem;
+      font-family: $font-1-style;
+      font-weight: $font-bold;
+      color: $color-black;
+    }
+  }
+
+  &__pageHeaderContainer {
+    font-size: 2.5rem;
+    font-family: $font-1-style;
+    font-weight: $font-med;
+    color: $color-text-darkergrey;
+  }
+
+  &__googleLinks {
+    padding-bottom: 1rem;
+    span {
+      font-size: 1.6rem;
+      font-family: $font-3-style;
+      font-weight: $font-normal;
+      color: $color-text-darkgrey;
+
+      a:first-child {
+        padding-right: 1rem;
+      }
+
+      a:not(:first-child) {
+        padding: 0rem 1rem;
+      }
+
+      a {
+        font-family: $font-3-style;
+        font-weight: $font-normal;
+        color: $color-text-darkgrey;
+        transition: 0.1s ease;
+
+        &:hover {
+          color: $color-text-blue-hover;
         }
+      }
+    }
+  }
+
+  .grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: max-content;
+    grid-gap: 0.5rem;
+
+    .imageContainer {
+      overflow: hidden;
+      width: 100%;
+      position: relative;
+
+      &:hover .overlay {
+        opacity: 100%;
+      }
+
+      .overlay {
+        position: absolute;
+        right: 0;
+        left: 0;
+        background: linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.75) 0%,
+          rgba(255, 255, 255, 0) 35%,
+          rgba(255, 255, 255, 0) 65%,
+          rgba(0, 0, 0, 0.75) 100%
+        );
+        height: 100%;
+        opacity: 0%;
+        transition: 0.5s ease;
+      }
+
+      img {
+        width: 100%;
+        transition: 0.3s ease;
+      }
     }
 
-
-    &__pageHeaderContainer {
-        font-size: 2.5rem;
-        font-family: $font-1-style;
-        font-weight: $font-med;
-        color: $color-text-darkergrey;
-        
+    &__left,
+    &__middle,
+    &__right {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-auto-rows: max-content;
+      grid-gap: 0.5rem;
     }
 
-    &__googleLinks {
-        padding-bottom: 1rem;
-        span {
-            font-size: 1.6rem;
-            font-family: $font-3-style;
-            font-weight: $font-normal;
-            color: $color-text-darkgrey;
-
-            a:first-child {
-                padding-right: 1rem;
-            }
-
-            a:not(:first-child) {
-                padding: 0rem 1rem;
-            }
-
-            a {
-                font-family: $font-3-style;
-                font-weight: $font-normal;
-                color: $color-text-darkgrey;
-                transition: .1s ease;
-
-                &:hover {
-                    color: $color-text-blue-hover;
-
-                }
-            }
-        }
+    &__left {
     }
 
-
-    .grid {
-        max-width: 1400px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-auto-rows: max-content;
-        grid-gap: .5rem;
-
-        .imageContainer {
-            overflow: hidden;
-            width: 100%;
-            position: relative;
-
-            &:hover .overlay {
-                opacity: 100%;
-            }
-            
-
-            .overlay {
-                position: absolute;
-                right: 0;
-                left: 0;
-                background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, rgba(255,255,255,0) 35%, rgba(255,255,255,0) 65%, rgba(0,0,0,0.75) 100%);
-                height: 100%;
-                opacity: 0%;
-                transition: .5s ease;
-            }
-           
-            img {
-                width: 100%;
-                transition: .3s ease;
-
-
-               
-            }
-        }
-
-        &__left, &__middle, &__right {
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-auto-rows: max-content;
-            grid-gap: .5rem;
-        }
-
-        &__left {
-            //background: green;
-        }
-
-        &__middle {
-            //background: yellow;
-        }
-
-        &__right {
-            //background: steelblue;
-        }
+    &__middle {
     }
 
-    
+    &__right {
+    }
+  }
 }
 
 .spinnerContainer {
-    width: 100%;
-    min-height: 80vh;
-    display: flex;
-    justify-content: center;
-    margin-top: 0rem;
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  margin-top: 0rem;
 }

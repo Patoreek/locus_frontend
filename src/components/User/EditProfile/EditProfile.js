@@ -5,8 +5,6 @@ import { useHistory } from "react-router-dom";
 import { FilePond } from "react-filepond";
 import "../../../../node_modules/filepond/dist/filepond.min.css";
 
-import { Form, Col, Button } from "react-bootstrap";
-
 import { AccountContext } from "../../../context/AuthContext";
 
 import classes from "./EditProfile.module.scss";
@@ -43,7 +41,6 @@ const EditProfile = (props) => {
           credentials: "include",
         });
         const profile = await response.json();
-        console.log(profile);
         setFirstName(profile.firstName);
         setLastName(profile.lastName);
         setProfilePic(profile.profilePic);
@@ -58,11 +55,6 @@ const EditProfile = (props) => {
     }
     getProfile();
   }, []);
-
-  const cancelHandler = () => {
-    console.log("Cancel presesd");
-    history.push("/profile");
-  };
 
   const editProfileHandler = () => {
     setFirstnameErr(false);
@@ -149,13 +141,7 @@ const EditProfile = (props) => {
     }
 
     setErrMsg(errorMessage);
-    console.log(errorMessage);
-    console.log(isError);
 
-    //! STATE HAS TO CHANGE BEFORE IT CHECKS THIS SO IT WORKS ON ONE CLICK;
-    //? SOLUTION IMPLEMENTED ??? DOUBLE CHECK THIS
-    //* if (!isError) {
-    //if (isError == false || (isError != null && !isError )) {
     return fetch("http://localhost:8080/user/editProfile", {
       method: "POST",
       headers: {
@@ -175,7 +161,6 @@ const EditProfile = (props) => {
         return res.json();
       })
       .then((result) => {
-        console.log(result);
         if (!result.success) {
           errorMessage.push(result.message);
           setIsError(true);
@@ -190,12 +175,10 @@ const EditProfile = (props) => {
         console.log(err);
         setSuccess("false");
       });
-    //}
   };
 
   return (
     <div>
-      {/* IF showDeleteModal is false then show edit modal */}
       <div className={classes.form}>
         <div className={classes.form__backBtnContainer}>
           {/* <span className={classes.backBtn} onClick={cancelHandler}>Back to Profile</span> */}
@@ -206,7 +189,6 @@ const EditProfile = (props) => {
         <div className={classes.form__firstNameContainer}>
           <input
             className={`${classes.input} ${classes.input__firstName}`}
-            //placeholder="First name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
@@ -216,7 +198,6 @@ const EditProfile = (props) => {
         <div className={classes.form__lastNameContainer}>
           <input
             className={`${classes.input} ${classes.input__lastName}`}
-            //placeholder="Area / Suburb"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
           />
@@ -225,7 +206,6 @@ const EditProfile = (props) => {
         <div className={classes.form__cityContainer}>
           <input
             className={`${classes.input} ${classes.input__city}`}
-            //placeholder="City"
             value={city}
             onChange={(e) => setCity(e.target.value)}
           />
@@ -234,7 +214,6 @@ const EditProfile = (props) => {
         <div className={classes.form__countryContainer}>
           <input
             className={`${classes.input} ${classes.input__country}`}
-            //placeholder="Country"
             value={country}
             onChange={(e) => setCountry(e.target.value)}
           />
@@ -267,7 +246,6 @@ const EditProfile = (props) => {
             className={`${classes.input} ${classes.input__bio}`}
             rows="10"
             value={bio}
-            //placeholder="Bio"
             onChange={(e) => setBio(e.target.value)}
           />
           <span>Bio</span>
@@ -308,7 +286,6 @@ const EditProfile = (props) => {
 
         <div className={classes.form__editBtnContainer}>
           <input
-            //placeholder="Edit"
             type="submit"
             value="Edit"
             onClick={(e) => editProfileHandler(e)}

@@ -79,16 +79,10 @@ const GuestPanel = () => {
   const loadDiveSiteInBounds = useContext(LoadDiveSiteInBoundsContext);
 
   useEffect(() => {
-    // fetchData();
-
     return () => {
       setScrollCounter(0);
     };
   }, []);
-
-  useEffect(() => {
-    console.log(panelDiveSites);
-  }, [panelDiveSites]);
 
   useEffect(() => {
     if (diveSites.length >= 1) {
@@ -98,30 +92,13 @@ const GuestPanel = () => {
     } else {
       setList(null);
     }
-    console.log(diveShops);
   }, [diveSites, diveShops]);
-
-  // const isInitialMountFilter = useRef(true);
-  // useEffect(() => {
-  //     if (isInitialMountFilter.current) {
-  //         isInitialMountFilter.current = false;
-  //     } else {
-  //         setHasMoreData(true);
-  //         const mapBounds = mapRef.current.getBounds();
-  //         setPanelDiveSites([]);
-  //         setScrollCounter(0);
-
-  //         loadDiveSitesInBoundsInfinite(mapBounds, "TRUE");
-  //         loadDiveSiteInBounds(mapBounds, setGlobalLoader);
-  //      }
-  // }, [scubaFilter]);
 
   let timer;
 
   const fetchData = () => {
     clearTimeout(timer);
     timer = setTimeout(function () {
-      console.log("handleBoundsChanged");
       const lat = mapRef.current.getCenter().lat();
       const lng = mapRef.current.getCenter().lng();
       const mapBounds = mapRef.current.getBounds();
@@ -135,7 +112,6 @@ const GuestPanel = () => {
     loadDiveSitesInBoundsInfinite(mapBounds, "TRUE");
   };
 
-  //console.log('[GuestPanel] locationName = ' + locationName);
   return (
     <div className={classes.guestPanel}>
       <div className={classes.topSection}>
@@ -203,8 +179,6 @@ const GuestPanel = () => {
         </div>
       </div>
 
-      {/* <ToggleButtons/> */}
-      {/* {!globalLoader.divesites && ( */}
       {list == "DiveSites" && (
         <div id="scrollableDiv" className={classes.scrollableDiv}>
           <InfiniteScroll
@@ -224,7 +198,6 @@ const GuestPanel = () => {
             }
             loader={
               <div className={classes.loadingData}>
-                {/* <p>Loading more Dive Sites...</p> */}
                 <SpinnerCircular size={40} color={"#1263fa"} />
               </div>
             }
@@ -238,8 +211,6 @@ const GuestPanel = () => {
           </InfiniteScroll>
         </div>
       )}
-      {/* )} */}
-      {/* {!globalLoader.diveshops && ( */}
       {list == "DiveShops" && (
         <div id="scrollableDiv" className={classes.scrollableDiv}>
           <InfiniteScroll
@@ -259,7 +230,6 @@ const GuestPanel = () => {
             }
             loader={
               <div className={classes.loadingData}>
-                {/* <p>Loading more Dive Sites...</p> */}
                 <SpinnerCircular size={40} color={"#1263fa"} />
               </div>
             }

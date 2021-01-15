@@ -1,40 +1,39 @@
-import React, {useContext} from 'react';
+import React, { useContext } from "react";
 
-import classes from './DiveShopUserList.module.scss';
+import classes from "./DiveShopUserList.module.scss";
 
-import { DiveShopsContext, ShopContext } from '../../../../../context/DiveSiteContext';
-import { AccountContext } from '../../../../../context/AuthContext';
-import { EditDiveShopModalContext } from '../../../../../context/UserContext';
+import {
+  DiveShopsContext,
+  ShopContext,
+} from "../../../../../context/DiveSiteContext";
+import { AccountContext } from "../../../../../context/AuthContext";
+import { EditDiveShopModalContext } from "../../../../../context/UserContext";
 
-import DiveshopListingPanel from '../../../../../components/Diveshop/DiveshopListingPanel/DiveshopListingPanel';
+import DiveshopListingPanel from "../../../../../components/Diveshop/DiveshopListingPanel/DiveshopListingPanel";
 
 const DiveShopUserList = () => {
+  const [diveShops, setDiveShops] = useContext(DiveShopsContext);
+  const [account, setAccount] = useContext(AccountContext);
+  const [selectedShop, setSelectedShop] = useContext(ShopContext);
 
-    const [ diveShops, setDiveShops ] = useContext(DiveShopsContext);
-    const [ account, setAccount ] = useContext(AccountContext);
-    const [ selectedShop, setSelectedShop ] = useContext(ShopContext);
+  const [editDiveShopModal, setEditDiveShopModal] = useContext(
+    EditDiveShopModalContext
+  );
 
-    const [editDiveShopModal, setEditDiveShopModal] = useContext(EditDiveShopModalContext);
-
-
-
-
-
-    console.log(diveShops);
-    console.log(account);
-
-    return (
-        <div className={classes.diveShopUserList}>
-            <div className={classes.diveShopUserList__titleContainer}>
-                <h3 className={classes.header}> {account.username}'s Added Shops  ·   {diveShops.length} shops in the area</h3>
-            </div>
-            {diveShops.map(shop => (
-                <DiveshopListingPanel shop={shop} edit={true}/>
-            ))}
-        </div>
-            
-
-    );
+  return (
+    <div className={classes.diveShopUserList}>
+      <div className={classes.diveShopUserList__titleContainer}>
+        <h3 className={classes.header}>
+          {" "}
+          {account.username}'s Added Shops · {diveShops.length} shops in the
+          area
+        </h3>
+      </div>
+      {diveShops.map((shop) => (
+        <DiveshopListingPanel shop={shop} edit={true} />
+      ))}
+    </div>
+  );
 };
 
 export default DiveShopUserList;

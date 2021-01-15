@@ -1,25 +1,24 @@
 .form {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 10rem;
+  .header {
+    font-size: 2.5rem;
+
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .buttonContainer {
     margin: 0 auto;
-   // background: green;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding-top: 10rem;
-    .header {
-        font-size: 2.5rem;
 
-        margin-top: 20px;
-        text-align: center;
+    .yesButton,
+    .noButton {
+      margin: 10px;
+      font-size: 1.6rem;
     }
-    
-    .buttonContainer {
-        margin: 0 auto;
-
-        .yesButton, .noButton {
-            margin: 10px;
-            font-size: 1.6rem;
-        }
-    }
+  }
 }
-

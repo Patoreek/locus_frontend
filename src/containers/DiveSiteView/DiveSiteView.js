@@ -9,8 +9,6 @@ import StarRating from "../../components/StarRating/StarRating";
 import Comments from "../../components/Comments/Comments";
 import FavouriteButton from "../../components/Buttons/FavouriteButton/FavouriteButton";
 
-//TODO: V1.1 SVG Imports
-
 import { ReactComponent as ShoreSVG } from "../../assets/icons/shore.svg";
 import { ReactComponent as ReefSVG } from "../../assets/icons/reef.svg";
 import { ReactComponent as DepthSVG } from "../../assets/icons/depth.svg";
@@ -37,7 +35,6 @@ import classes from "./DiveSiteView.module.scss";
 
 const Details = (props) => {
   const siteId = props.match.params.id;
-  // console.log(siteId);
 
   const [selectedSite, setSelectedSite] = useContext(SiteContext);
   const [isAuth, setIsAuth] = useContext(AuthContext);
@@ -66,9 +63,6 @@ const Details = (props) => {
   const [siteLatitude, setSiteLatitude] = useState();
   const [siteLongitude, setSiteLongitude] = useState();
 
-  //const [siteComments, setSiteComments] = useState("");
-  //const [siteReview, setSiteReview] = useState("");
-  //const [tempImage, setTempImage] = useState();
   const [reports, setReports] = useState([]);
 
   const [mainImage, setMainImage] = useState();
@@ -100,14 +94,7 @@ const Details = (props) => {
     setIndex(selectedIndex);
   };
 
-  // console.log('SITE ID -->' + siteId);
-
   useEffect(() => {
-    //const siteLat = selectedSite.latitude;
-    //const siteLng = selectedSite.longitude
-    //console.log(siteLat);
-    //console.log(siteLng);
-
     async function getSite() {
       try {
         const response = await fetch(
@@ -118,7 +105,6 @@ const Details = (props) => {
           }
         );
         const results = await response.json();
-        //console.log(results);
         const site = results.site;
         setSite(site);
         setSiteName(site.name);
@@ -129,7 +115,6 @@ const Details = (props) => {
         setSiteImages(site.images);
         setSiteType(site.siteType);
         setSiteAccess(site.access);
-        //setSiteDescription(site.description);
         setSiteDescription(site.description.replace("/n", "<br/>"));
         setSiteAvgDepth(site.avgDepth);
         setSiteMaxDepth(site.maxDepth);
@@ -162,14 +147,12 @@ const Details = (props) => {
           for (let i = 0; i < totalPlaceholders; i++) {
             array.push("");
           }
-          console.log(array);
           setPlaceholders(array);
         }
 
         setMainImage(site.images[0]);
       } catch (error) {
         console.log(error);
-        //setIsLoading(true);
       }
     }
 
@@ -183,12 +166,9 @@ const Details = (props) => {
           }
         );
         const results = await response.json();
-        //console.log(results);
-        //const reports = results.reportsData;
         setReports(results.reportsData);
       } catch (error) {
         console.log(error);
-        //setIsLoading(true);
       }
     }
 
@@ -202,25 +182,13 @@ const Details = (props) => {
           }
         );
         const shops = await response.json();
-        console.log(shops);
         setShops(shops.shops);
       } catch (error) {
         console.log(error);
-        //setIsLoading(true);
       }
     }
 
     async function getNearbyDiveSites(lat, lng) {
-      // You can await here
-      console.log("getNearbyDiveSites");
-      console.log(lat);
-      console.log(lng);
-
-      // const swLat = mapBounds.Wa.i;
-      // const swLng = mapBounds.Sa.i;
-      // const neLat = mapBounds.Wa.j;
-      // const neLng = mapBounds.Sa.j;
-
       return fetch("http://localhost:8080/diveSites/findNearbyDiveSites", {
         method: "POST",
         credentials: "include",
@@ -232,21 +200,15 @@ const Details = (props) => {
           lng,
           lng,
           siteId: siteId,
-          // swLat: swLat,
-          // swLng: swLng,
-          // neLat: neLat,
-          // neLng: neLng,
         }),
       })
         .then((res) => {
           return res.json();
         })
         .then((result) => {
-          console.log(result.sites);
           setNearbySites(result.sites);
         })
         .catch((err) => {
-          console.log("Caught.");
           console.log(err);
         });
     }
@@ -266,17 +228,11 @@ const Details = (props) => {
   const imageHandler = (image) => {
     setMainImage(image);
   };
-  // // console.log('WEATHERCONTENT');
-  // // console.log(weatherContent);
-  // //console.log(weatherContent);
-  //console.log(siteImages);
 
   return (
     <div>
       {!isLoading && (
         <div className={classes.divesite}>
-          {/* <h3> isLoading is now turned OFF! Should be working...</h3> */}
-
           {enlargeImage && (
             <DisplayImage
               image={mainImage}
@@ -299,8 +255,7 @@ const Details = (props) => {
               }
             >
               {siteName} · {linkSuburb} · {siteCity} · {siteCountry}
-            </a>{" "}
-            {/* Should be a link to the map / google maps of the area?? */}
+            </a>
           </div>
 
           {/* //TODO: IMAGE GRID CONTAINER ////////////////// */}
@@ -324,7 +279,6 @@ const Details = (props) => {
                 <div
                   className={classes.imageContainer}
                   onClick={() => {
-                    // setTempImage(firstImage);
                     imageHandler(image);
                   }}
                 >
@@ -334,7 +288,6 @@ const Details = (props) => {
                   />
                 </div>
               ))}
-              {/* {enterPlaceholders()} */}
               {placeholders.map((placeholder) => (
                 <div className={classes.imageContainer}>
                   <img className={classes.image} src={placeholderImage} />
@@ -363,8 +316,7 @@ const Details = (props) => {
               }
             >
               {siteName}, {linkSuburb}, {siteCity}, {siteCountry}
-            </a>{" "}
-            {/* Should be a link to the map / google maps of the area?? */}
+            </a>
             <a
               target="_blank"
               href={
@@ -386,7 +338,6 @@ const Details = (props) => {
             </div>
           </div>
 
-          {/* USE FLEXBOX COLUMN */}
           <div className={classes.leftContainer}>
             <div className={classes.leftContainer__points}>
               <div className={classes.point}>
@@ -453,7 +404,6 @@ const Details = (props) => {
               </p>
             </div>
 
-            {/* //! DIVE REPORTS SECTION WILL GO HERE  */}
             {reports != [] && (
               <div className={classes.leftContainer__reportsContainer}>
                 <h4>Dive Reports ({reports.length})</h4>

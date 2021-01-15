@@ -67,7 +67,6 @@ const EditDiveShop = () => {
           }
         );
         const sites = await response.json();
-        //console.log(sites);
 
         let sitesArray = [];
 
@@ -77,10 +76,7 @@ const EditDiveShop = () => {
             label: site.name + ", " + site.suburb,
           });
         });
-        console.log("CONVERTED ARRAY");
-        console.log(sitesArray);
 
-        // setDiveSiteList(sites.site);
         setDiveSiteList(sitesArray);
         setIsLoading(false);
       } catch (error) {
@@ -92,8 +88,6 @@ const EditDiveShop = () => {
   }, []);
 
   const handleSubmit = () => {
-    console.log("Editing Dive Shop...");
-
     return fetch("http://localhost:8080/diveShops/editShop", {
       method: "POST",
       headers: {
@@ -121,7 +115,7 @@ const EditDiveShop = () => {
         return res.json();
       })
       .then((result) => {
-        console.log(result);
+        //console.log(result);
         window.location.reload();
       })
       .catch((err) => {
@@ -135,14 +129,14 @@ const EditDiveShop = () => {
   };
 
   const diveSitesHandler = (e) => {
-    console.log(e);
+    //console.log(e);
     let valueArray = [];
 
     e.map((obj) => {
       valueArray.push(obj.value);
     });
 
-    console.log(valueArray);
+    //console.log(valueArray);
 
     setAssociatedDiveSites(valueArray);
   };
@@ -166,7 +160,6 @@ const EditDiveShop = () => {
       <div className={classes.form__nameContainer}>
         <input
           className={`${classes.input} ${classes.input__name}`}
-          //placeholder="Name of Dive Site"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -176,7 +169,6 @@ const EditDiveShop = () => {
       <div className={classes.form__suburbContainer}>
         <input
           className={`${classes.input} ${classes.input__suburb}`}
-          //placeholder="suburb / Suburb"
           value={suburb}
           onChange={(e) => setSuburb(e.target.value)}
         />
@@ -185,7 +177,6 @@ const EditDiveShop = () => {
       <div className={classes.form__countryContainer}>
         <input
           className={`${classes.input} ${classes.input__country}`}
-          //placeholder="Country"
           value={country}
           onChange={(e) => setCountry(e.target.value)}
         />
@@ -238,7 +229,6 @@ const EditDiveShop = () => {
         <input
           className={`${classes.input} ${classes.input__phone}`}
           value={phone}
-          //placeholder="phone"
           onChange={(e) => setPhone(e.target.value)}
         />
         <span>Phone</span>
@@ -248,7 +238,6 @@ const EditDiveShop = () => {
         <input
           className={`${classes.input} ${classes.input__email}`}
           value={email}
-          //placeholder="email"
           onChange={(e) => setEmail(e.target.value)}
         />
         <span>Email</span>
@@ -258,7 +247,6 @@ const EditDiveShop = () => {
         <input
           className={`${classes.input} ${classes.input__address}`}
           value={address}
-          //placeholder="Address"
           onChange={(e) => setAddress(e.target.value)}
         />
         <span>Address</span>
@@ -268,7 +256,6 @@ const EditDiveShop = () => {
         <input
           className={`${classes.input} ${classes.input__website}`}
           value={website}
-          //placeholder="website"
           onChange={(e) => setWebsite(e.target.value)}
         />
         <span>Website</span>
@@ -278,7 +265,6 @@ const EditDiveShop = () => {
         <input
           className={`${classes.input} ${classes.input__facebook}`}
           value={facebook}
-          //placeholder="facebook"
           onChange={(e) => setFacebook(e.target.value)}
         />
         <span>Facebook</span>
@@ -288,7 +274,6 @@ const EditDiveShop = () => {
         <input
           className={`${classes.input} ${classes.input__instagram}`}
           value={instagram}
-          //placeholder="instagram"
           onChange={(e) => setInstagram(e.target.value)}
         />
         <span>Instagram</span>
@@ -298,7 +283,6 @@ const EditDiveShop = () => {
         <input
           className={`${classes.input} ${classes.input__twitter}`}
           value={twitter}
-          //placeholder="twitter"
           onChange={(e) => setTwitter(e.target.value)}
         />
         <span>Twitter</span>

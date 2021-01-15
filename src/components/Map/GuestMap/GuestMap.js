@@ -49,14 +49,8 @@ const GuestMap = (props) => {
   const loadDiveSitesInBounds = useContext(LoadDiveSiteInBoundsContext);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    //console.log(diveSites);
-  }, [diveSites]);
-
   const onMarkerClustererClick = (markerClusterer) => {
     const clickedMarkers = markerClusterer.getMarkers();
-    //console.log(`Current clicked markers length: ${clickedMarkers.length}`)
-    //console.log(clickedMarkers);
   };
 
   return (
@@ -102,7 +96,6 @@ const GuestMap = (props) => {
                 lng: parseFloat(shop.longitude),
               }}
               onClick={() => {
-                console.log(shop);
                 setSelectedShop(shop);
               }}
               icon={{
@@ -113,7 +106,7 @@ const GuestMap = (props) => {
           ))}
         </MarkerClusterer>
 
-        {selectedSite /* OVERLAYVIEW is needed here for custom CSS and window properties*/ && (
+        {selectedSite && (
           <InfoWindow
             position={{
               lat: parseFloat(selectedSite.latitude),
@@ -186,7 +179,7 @@ const GuestMap = (props) => {
           </InfoWindow>
         )}
 
-        {selectedShop /* OVERLAYVIEW is needed here for custom CSS and window properties*/ && (
+        {selectedShop && (
           <InfoWindow
             position={{
               lat: parseFloat(selectedShop.latitude),

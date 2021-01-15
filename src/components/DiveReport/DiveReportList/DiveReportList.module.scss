@@ -16,7 +16,6 @@
 
     padding-bottom: 1rem;
     border-bottom: 2px solid $color-lines;
-    //background:orange;
 
     .title {
       font-size: 1.8rem;
@@ -132,7 +131,6 @@
   &__addContainer {
     display: flex;
     align-items: center;
-    //background: $color-btn-add;
     justify-content: space-between;
     background: $color-btn-cancel;
     color: $color-text-grey;
@@ -146,22 +144,24 @@
       .addSVG {
         fill: $color-text-green;
       }
+
+      .addReportText {
+        color: $color-text-green;
+      }
     }
 
     .addReportText {
       font-size: 2rem;
       font-family: $font-1-style;
       font-weight: $font-med;
-
-      //color: $color-white-pure;
+      color: $color-text-darkergrey;
     }
 
     .addSVG {
       width: 3.5rem;
       height: 3.5rem;
       transition: 0.2s ease;
-
-      //fill: $color-white-pure;
+      color: $color-text-darkergrey;
     }
   }
 
@@ -196,7 +196,7 @@
   }
 
   &__feedback {
-    background: #4e89fd;
+    background: linear-gradient(to bottom, #4e89fd, #2a68e6);
     padding: 1rem 2.5rem;
     border-radius: 1rem;
     box-shadow: 2px 2px 5px rgba($color-black, 0.25);

@@ -15,13 +15,6 @@
   background: url("../../../../assets/images/AddDiveSiteBG.svg");
   background-position: cover;
   height: 100%;
-  //   &__background {
-  //     position: absolute;
-  //     top: 0;
-  //     left: 0;
-  //     width: 100%;
-  //     height: 100%;
-  //   }
   &__header {
     font-size: 3.5rem;
     font-weight: 500;
@@ -31,8 +24,6 @@
     font-family: $font-1-style;
     font-weight: $font-bold;
     color: #0a339e;
-    // color: white;
-    // text-shadow: 1px 1px 5px rgba($color-black, 0.25);
   }
 
   &__duplicate,
@@ -48,8 +39,6 @@
       font-weight: $font-med;
       color: $color-black;
       flex-basis: 100%;
-      //   color: white;
-      //   text-shadow: 1px 1px 5px rgba($color-black, 0.25);
     }
 
     .image {
@@ -64,18 +53,11 @@
     justify-content: space-around;
     .step {
       position: relative;
-      // background: linear-gradient(
-      //   0deg,
-      //   rgba(12, 63, 191, 1) 0%,
-      //   rgba(67, 120, 255, 1) 100%
-      // );
-      // border: 4px solid $color-text-blue;
       border: 3px solid $color-text-blue;
 
       box-shadow: 2px 2px 5px rgba($color-black, 0.45);
       border-radius: 1rem;
       padding: 1.5rem 0rem;
-      // color: $color-text-blue;
       color: $color-text-blue;
       fill: $color-text-blue;
       display: flex;

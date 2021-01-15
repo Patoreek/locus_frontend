@@ -8,8 +8,6 @@ import { AccountContext } from "../../../../context/AuthContext";
 
 import { AddRequestContext } from "../../../../context/UserContext";
 
-// import ImageUpload from '../../ImageUpload/ImageUpload';
-
 import classes from "./AddRequestForm.module.scss";
 
 const AddRequestForm = (props) => {
@@ -285,9 +283,7 @@ const AddRequestForm = (props) => {
     }
 
     setErrMsg(errorMessage);
-    console.log(errMsg);
 
-    console.log(isError);
     //! STATE HAS TO CHANGE BEFORE IT CHECKS THIS SO IT WORKS ON ONE CLICK;
 
     if (isError == false || (isError != null && !isError)) {
@@ -326,12 +322,10 @@ const AddRequestForm = (props) => {
           return res.json();
         })
         .then((result) => {
-          console.log(result);
+          //console.log(result);
           if (result.success) {
             setShowSuccessfulRequest(true);
           }
-          // setShowAddRequestModal(false);
-          // loadDiveSites();
         })
         .catch((err) => {
           console.log(err);
@@ -341,7 +335,6 @@ const AddRequestForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Submitting Request to add a dive site form...");
 
     setNameErr(false);
     setSuburbErr(false);
@@ -362,12 +355,10 @@ const AddRequestForm = (props) => {
     setIsError(false);
 
     requestAddDiveSite();
-    // name, area, description, type, latitude, longitude, userId, loadDiveSites, setShowAddModal
   };
 
   return (
     <div>
-      {/* IF showDeleteModal is false then show edit modal */}
       {!showSuccessfulRequest && (
         <div className={classes.form}>
           <div className={classes.form__backBtnContainer}>
@@ -384,7 +375,6 @@ const AddRequestForm = (props) => {
           <div className={classes.form__nameContainer}>
             <input
               className={`${classes.input} ${classes.input__name}`}
-              //placeholder="Name of Dive Site"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -394,7 +384,6 @@ const AddRequestForm = (props) => {
           <div className={classes.form__suburbContainer}>
             <input
               className={`${classes.input} ${classes.input__suburb}`}
-              //placeholder="suburb / Suburb"
               value={suburb}
               onChange={(e) => setSuburb(e.target.value)}
             />
@@ -404,7 +393,6 @@ const AddRequestForm = (props) => {
           <div className={classes.form__cityContainer}>
             <input
               className={`${classes.input} ${classes.input__city}`}
-              //placeholder="city / city"
               value={city}
               onChange={(e) => setCity(e.target.value)}
             />
@@ -414,7 +402,6 @@ const AddRequestForm = (props) => {
           <div className={classes.form__stateContainer}>
             <input
               className={`${classes.input} ${classes.input__state}`}
-              //placeholder="state / state"
               value={state}
               onChange={(e) => setState(e.target.value)}
             />
@@ -424,7 +411,6 @@ const AddRequestForm = (props) => {
           <div className={classes.form__countryContainer}>
             <input
               className={`${classes.input} ${classes.input__country}`}
-              //placeholder="Country"
               value={country}
               onChange={(e) => setCountry(e.target.value)}
             />
@@ -436,7 +422,6 @@ const AddRequestForm = (props) => {
               className={`${classes.input} ${classes.input__description}`}
               rows="10"
               value={description}
-              //placeholder="Description"
               onChange={(e) => setDescription(e.target.value)}
             />
             <span>Description</span>
@@ -477,10 +462,8 @@ const AddRequestForm = (props) => {
             </div>
 
             <div className={classes.avgDepthContainer}>
-              {/* <span className={classes.avgDepthContainer__title}>Avg Depth</span> */}
               <input
                 className={`${classes.input} ${classes.input__avgDepth}`}
-                //placeholder="Max Depth"
                 value={avgDepth}
                 onChange={(e) => setAvgDepth(e.target.value)}
               />
@@ -488,10 +471,8 @@ const AddRequestForm = (props) => {
             </div>
 
             <div className={classes.maxDepthContainer}>
-              {/* <span className={classes.maxDepthContainer__title}>Max Depth</span> */}
               <input
                 className={`${classes.input} ${classes.input__maxDepth}`}
-                //placeholder="Max Depth"
                 value={maxDepth}
                 onChange={(e) => setMaxDepth(e.target.value)}
               />
@@ -507,7 +488,6 @@ const AddRequestForm = (props) => {
               <div className={classes.minTempContainer}>
                 <input
                   className={`${classes.input} ${classes.input__minTemp}`}
-                  //placeholder="Average Minimum Temperature"
                   value={minTemp}
                   onChange={(e) => setMinTemp(e.target.value)}
                 />
@@ -516,7 +496,6 @@ const AddRequestForm = (props) => {
               <div className={classes.maxTempContainer}>
                 <input
                   className={`${classes.input} ${classes.input__maxTemp}`}
-                  //placeholder="Average Maximum Temperature"
                   value={maxTemp}
                   onChange={(e) => setMaxTemp(e.target.value)}
                 />
@@ -531,7 +510,6 @@ const AddRequestForm = (props) => {
               <div className={classes.minVisContainer}>
                 <input
                   className={`${classes.input} ${classes.input__minVis}`}
-                  // placeholder="Average Minimum Visibility"
                   value={minVis}
                   onChange={(e) => setMinVis(e.target.value)}
                 />
@@ -540,7 +518,6 @@ const AddRequestForm = (props) => {
               <div className={classes.maxVisContainer}>
                 <input
                   className={`${classes.input} ${classes.input__maxVis}`}
-                  // placeholder="Average Maximum Visibility"
                   value={maxVis}
                   onChange={(e) => setMaxVis(e.target.value)}
                 />
@@ -595,11 +572,8 @@ const AddRequestForm = (props) => {
                 <option value="Beginner Divers">Beginner Divers</option>
                 <option value="Novice Divers">Novice Divers</option>
                 <option value="Experienced Divers">Experienced Divers</option>
-                {/* <option value="Great for Free Diving">
-                  Great for Free Diving
-                </option> */}
               </select>
-              <span>Suitable for</span> {/* Dive Type */}
+              <span>Suitable for</span>
             </div>
           </div>
 
@@ -642,8 +616,7 @@ const AddRequestForm = (props) => {
           </h4>
 
           <a href="/map" className={classes.successfulContainer__backBtn}>
-            {" "}
-            Back to map{" "}
+            Back to map
           </a>
         </div>
       )}

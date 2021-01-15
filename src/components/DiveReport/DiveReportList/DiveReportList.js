@@ -10,7 +10,6 @@ import { ReactComponent as FeedbackSVG } from "../../../assets/images/feedback.s
 
 const DiveReportList = (props) => {
   const addHandler = () => {
-    //console.log('adding a dive report');
     props.setShowEdit(false);
     props.setShowDelete(false);
     props.setShowPreview(false);
@@ -18,7 +17,6 @@ const DiveReportList = (props) => {
   };
 
   const previewHandler = (id) => {
-    // props.setReportId(id);
     props.setShowEdit(false);
     props.setShowDelete(false);
     props.setShowPreview(false);
@@ -40,7 +38,6 @@ const DiveReportList = (props) => {
     props.setShowAdd(false);
     props.setShowDelete(false);
     props.findReport(id, "delete");
-    //  console.log('deleting a dive report');
   };
 
   const dateHandler = (createdAt) => {
@@ -57,7 +54,6 @@ const DiveReportList = (props) => {
           Dive Reports · (
           {props.diveReports.length > 0 ? props.diveReports.length : "0"})
         </h2>
-        {/* <AddSVG className={classes.addBtn} onClick={addHandler}/> */}
       </div>
 
       <div>

@@ -19,7 +19,6 @@ import GoogleMapLocation from "../../components/LocationMap/GoogleMapLocation";
 const DiveShopView = (props) => {
   const shopId = props.match.params.id;
 
-  //TODO: ADD STATE, SET STATE FROM API, RENDER TO DOM
   const [shop, setShop] = useState();
   const [name, setName] = useState();
   const [area, setArea] = useState();
@@ -40,9 +39,6 @@ const DiveShopView = (props) => {
   const [englargeBanner, setEnlargeBanner] = useState(false);
   const [englargeLogo, setEnlargeLogo] = useState(false);
 
-  //? associated dive sites
-  //? trading hours
-
   useEffect(() => {
     async function getShop() {
       try {
@@ -54,8 +50,6 @@ const DiveShopView = (props) => {
           }
         );
         const results = await response.json();
-        console.log(results);
-        //   const site = results.site;
 
         const shop = results.shop;
         setShop(shop);
@@ -75,7 +69,6 @@ const DiveShopView = (props) => {
         setIsLoading(false);
       } catch (error) {
         console.log(error);
-        //setIsLoading(true);
       }
     }
 

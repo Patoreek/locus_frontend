@@ -27,9 +27,7 @@ const CommPhotoPreview = (props) => {
           }
         );
         const results = await response.json();
-        console.log(results);
-        //   setCommunityImages(results.communityImages);
-        //   setIsLoading(false);
+        //console.log(results);
 
         let imagesArray = [];
 
@@ -52,7 +50,6 @@ const CommPhotoPreview = (props) => {
         setImages(imagesArray);
       } catch (error) {
         console.log(error);
-        //setIsLoading(true);
       }
     }
 
@@ -60,12 +57,9 @@ const CommPhotoPreview = (props) => {
   }, []);
 
   const imageHandler = (image) => {
-    console.log(image);
     setSelectedImage(image);
     setEnlargeImage(true);
   };
-
-  console.log(images);
 
   return (
     <div className={classes.commPhotoPreview}>

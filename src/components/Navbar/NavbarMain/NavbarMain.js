@@ -60,11 +60,6 @@ const NavbarMain = () => {
         return res.json();
       })
       .then((resData) => {
-        //  console.log('resData!!!!!!');
-        console.log(resData);
-        //   console.log('ACCOUNT ROLE BELOW!!');
-        //  console.log(account.role);
-
         if (resData.firstName) {
           setFirstName(resData.firstName);
         }
@@ -83,19 +78,15 @@ const NavbarMain = () => {
         setIsLoading(false);
       })
       .catch((err) => {
-        console.log("Caught. Could not retrieve user info");
         console.log(err);
-        // history.push("/login");
       });
   };
 
   useEffect(() => {
     const url = window.location.pathname;
     if (url.includes("map") || url.includes("mySites")) {
-      // console.log('[SearchbarMap] Page is on a MAP!');
       setNavbar("map");
     } else {
-      // console.log('[SearchbarMap] Page is NOT on a MAP!');
       setNavbar("main");
     }
 
@@ -108,14 +99,12 @@ const NavbarMain = () => {
 
   const authDrawerHandler = (option) => {
     if (option === "login") {
-      // console.log('login screen will appear.');
       setAuthDrawer({
         open: true,
         login: true,
         signup: false,
       });
     } else if (option === "signup") {
-      // console.log('signup screen will appear.');
       setAuthDrawer({
         open: true,
         login: false,
@@ -125,11 +114,6 @@ const NavbarMain = () => {
   };
 
   const logoutHandler = () => {
-    // setIsAuth(false);
-    // setAccount({
-    //     id: null,
-    //     username: null
-    // });
     return fetch("http://localhost:8080/logout", {
       method: "POST",
       headers: {
@@ -144,19 +128,13 @@ const NavbarMain = () => {
         return res.json();
       })
       .then((res) => {
-        console.log(res);
         setIsAuth(false);
-        history.push("/"); //REDIRECT TO HOME
+        history.push("/");
       })
       .catch((err) => {
         console.log(err);
       });
   };
-
-  // console.log('[NavBar accountID]' + account.id);
-  // console.log('[NavBar accountName]' + account.username);
-  // console.log('[ NavBar ] Account Info Below');
-  //console.log(account);
 
   return (
     <div>
@@ -179,7 +157,6 @@ const NavbarMain = () => {
             </div>
 
             <div className={classes.rightNav}>
-              {/* IF LOGGED IN SHOW THIS */}
               <div className={classes.mapLink}>
                 <a href="/map">
                   <GlobeSVG className={classes.globeSVG} />
@@ -201,7 +178,7 @@ const NavbarMain = () => {
                   </a>
                 </div>
               )}
-              {/* //! HERE GOES THE PROFILE AVATAR & THE DROPDOWN WITH VIEW & EDIT PROFILE AND ALSO THE LOGOUT BTN */}
+              {/* //TODO\\ HERE GOES THE PROFILE AVATAR & THE DROPDOWN WITH VIEW & EDIT PROFILE AND ALSO THE LOGOUT BTN */}
               {isAuth && (
                 <div
                   className={classes.avatar}
@@ -304,8 +281,6 @@ const NavbarMain = () => {
                 </div>
               )}
 
-              {/* IF NOT LOGGED IN SHOW THIS */}
-
               {!isAuth ? (
                 <div
                   className={`${classes.btn} ${classes.btn__login}`}
@@ -325,14 +300,6 @@ const NavbarMain = () => {
             </div>
           </div>
         </nav>
-        {/* <nav className={classes.NavBarMobile}>
-                <ul className={classes.uList}>
-                        <li className={classes.listItem} onClick={sideDrawerHandler}><FaBars className={classes.toggleButton}/></li>
-                        <li className={classes.logoItem}>
-                            <a href="/"><LogoSVG/></a>
-                        </li>
-                </ul>
-                </nav> */}
       </header>
 
       <AuthDrawer />

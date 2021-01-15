@@ -59,7 +59,6 @@ const UserView = (props) => {
   let history = useHistory();
 
   useEffect(() => {
-    // if (!isLoading){
     console.log("[UserView] isBusy in IF = " + isLoading);
     console.log("[UserView] isAuth in IF = " + isAuth);
     if (!isAuth) {
@@ -70,23 +69,15 @@ const UserView = (props) => {
     return () => {
       setUserViewLoaded(false);
     };
-    // }
   }, []);
 
   const onMapClick = (event) => {
-    console.log("CLICKED!");
-    console.log(diveShopAdmin);
-    //console.log(addRequest);
-
     if (diveShopAdmin) {
-      //console.log('using the map for dive shop admin use');
       setCoords({
         lat: event.latLng.lat(),
         lng: event.latLng.lng(),
       });
       setAddDiveShopModal(true);
-      //setShowEditDiveShopModal(true);
-      // setShowDeleteDiveShopModal(true);
     } else {
       if (showEditModal) {
         setShowEditModal(false);
@@ -106,8 +97,6 @@ const UserView = (props) => {
         setSelectedSite(null);
       }
     }
-
-    // console.log('[AdminView OnMapClick Selected Site] ' + selectedSite);
   };
 
   return (
@@ -123,7 +112,6 @@ const UserView = (props) => {
                 width: "45vw",
                 display: "inline-block",
                 transition: "1s ease",
-                /*border: "2px solid orange"*/
               }}
             />
           }
@@ -133,7 +121,6 @@ const UserView = (props) => {
                 height: "97vh",
                 width: "45vw",
                 display: "inline-block",
-                /*border: "2px solid purple",*/
                 boxSizing: "border-box",
                 transition: "1s ease",
               }}
@@ -145,7 +132,6 @@ const UserView = (props) => {
                 height: "97vh",
                 width: "45vw",
                 display: "inline-block",
-                /*border: "2px solid green"*/
               }}
             />
           }

@@ -4,26 +4,17 @@ import classes from "./GuestView.module.scss";
 
 import InformationPanel from "../../components/InformationPanel/InformationPanel";
 import Map from "../../components/Map/Map";
-import Details from "../DiveSiteView/DiveSiteView";
 
 import {
   AuthContext,
   UserOnMapContext,
-  MapSizeContext,
-  PanelSizeContext,
   LocateButtonContext,
 } from "../../context/AuthContext";
 
 import { CoordsContext } from "../../context/DiveSiteContext";
 
-import { useMediaQuery } from "../../CustomHooks/useMediaQuery";
-
 const GuestView = () => {
   const [isAuth, setIsAuth] = useContext(AuthContext);
-
-  const [mapSize, setMapSize] = useContext(MapSizeContext);
-
-  const [panelSize, setPanelSize] = useContext(PanelSizeContext);
 
   const [locateButtonStyle, setLocateButtonStyle] = useContext(
     LocateButtonContext
@@ -39,7 +30,6 @@ const GuestView = () => {
   useEffect(() => {
     document.title = "Locus - Map";
 
-    console.log("[GuestView] isAuth in IF = " + isAuth);
     if (isAuth) {
       setIsUserOnMap(true);
     }
@@ -47,7 +37,6 @@ const GuestView = () => {
     return () => {
       setGuestViewLoaded(false);
     };
-    //console.log("[GuestView] isAuth " + isAuth);
   }, []);
 
   const onMapClick = (event) => {
@@ -70,8 +59,6 @@ const GuestView = () => {
               width: "45vw",
               display: "inline-block",
               transition: "1s ease",
-
-              /*border: "2px solid orange"*/
             }}
           />
         }
@@ -80,7 +67,7 @@ const GuestView = () => {
             style={{
               height: "97vh",
               width: "45vw",
-              display: "inline-block" /*border: "2px solid purple",*/,
+              display: "inline-block",
               boxSizing: "border-box",
               transition: "1s ease",
             }}
@@ -93,7 +80,6 @@ const GuestView = () => {
               width: "45vw",
               display: "inline-block",
               transition: "1s ease",
-              /*border: "2px solid green"*/
             }}
           />
         }

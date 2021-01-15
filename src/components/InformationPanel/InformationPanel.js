@@ -31,12 +31,8 @@ const InformationPanel = (props) => {
   }
 
   useEffect(() => {
-    console.log("[InfoPanel] isAuth = " + isAuth);
-    console.log("[InfoPanel] isUserOnMap = " + isUserOnMap);
-
     if (isAuth) {
       // IS LOGGED IN
-      console.log("[InfoPanel] in isAuth block");
       if (!isUserOnMap) {
         // NOT ON MAP
         setGuestPanel(false);

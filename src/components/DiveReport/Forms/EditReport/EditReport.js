@@ -34,8 +34,6 @@ const EditReport = (props) => {
   const [errMsg, setErrMsg] = useState([]);
 
   useEffect(() => {
-    console.log(account);
-
     setLocation(props.currentReport.siteId._id);
     setVisibility(props.currentReport.visibility);
     setDuration(props.currentReport.duration);
@@ -52,7 +50,6 @@ const EditReport = (props) => {
           }
         );
         const sites = await response.json();
-        //console.log(profile);
         setDiveSites(sites.site);
         setIsLoading(false);
       } catch (error) {
@@ -63,22 +60,11 @@ const EditReport = (props) => {
     getSites();
   }, []);
 
-  //console.log(diveSites);
-
   const cancelHandler = () => {
-    console.log("cancelling...");
     props.setShowEdit(false);
   };
 
   const submitHandler = () => {
-    console.log("submitting report...");
-
-    //validate();
-
-    //! STATE HAS TO CHANGE BEFORE IT CHECKS THIS SO IT WORKS ON ONE CLICK;
-    //? SOLUTION IMPLEMENTED ??? DOUBLE CHECK THIS
-    //* if (!isError) {
-    //if (isError == false || (isError != null && !isError )) {
     return fetch("http://localhost:8080/user/diveReports/editReport", {
       method: "POST",
       headers: {
@@ -97,9 +83,7 @@ const EditReport = (props) => {
         return res.json();
       })
       .then((result) => {
-        console.log(result);
         if (!result.success) {
-          //errorMessage.push(result.message);
           setIsError(true);
         } else {
           window.location.reload();
@@ -107,9 +91,7 @@ const EditReport = (props) => {
       })
       .catch((err) => {
         console.log(err);
-        //setSuccess('false');
       });
-    //}
   };
 
   const validate = () => {
@@ -162,8 +144,6 @@ const EditReport = (props) => {
     }
 
     setErrMsg(errorMessage);
-    console.log(errorMessage);
-    console.log(isError);
 
     if (errorMessage.length == 0) {
       submitHandler();
@@ -180,7 +160,6 @@ const EditReport = (props) => {
       </div>
 
       <div className={classes.form__locationContainer}>
-        {/* {!isLoading ? <h1>isLoading is False</h1> : <h1>isLoading is TRUE</h1>} */}
         <select
           value={location}
           value={location}
@@ -220,7 +199,6 @@ const EditReport = (props) => {
           className={`${classes.input} ${classes.input__report}`}
           rows="50"
           value={report}
-          //placeholder="report"
           onChange={(e) => setReport(e.target.value)}
         />
         <span>Report</span>

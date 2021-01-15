@@ -40,14 +40,10 @@ const DiveReports = () => {
           }
         );
         const reports = await response.json();
-        console.log(reports);
         setDiveReports(reports.reportsData);
         setIsLoading(false);
-        // setDiveSites(sites.site);
-        // setIsLoading(false);
       } catch (error) {
         console.log(error);
-        //setIsLoading(null);
       }
     }
 
@@ -72,7 +68,6 @@ const DiveReports = () => {
         return res.json();
       })
       .then((resData) => {
-        console.log(resData);
         setCurrentReport(resData.report);
         setIsLoading(false);
 
@@ -85,20 +80,9 @@ const DiveReports = () => {
         }
       })
       .catch((err) => {
-        console.log("Caught.");
         console.log(err);
-        // setErrMsg('Error. Please Try again.');
-        // setSuccessMsg(null);
-        // history.push("/login");
       });
   };
-
-  // useEffect(() => {
-  //     if (currentReport != null){
-  //         if ()
-  //         setShowPreview(true);
-  //     }
-  // }, [currentReport])
 
   return (
     <div className={classes.diveReports}>
@@ -194,7 +178,6 @@ const DiveReports = () => {
             setShowDelete={setShowDelete}
           />
         )}
-        {/* <DiveReportForm/> */}
         {isLoading && (
           <div className={classes.spinnerContainer}>
             <Spinner />

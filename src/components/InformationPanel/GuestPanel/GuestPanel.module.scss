@@ -7,7 +7,6 @@
 
   .topSection {
     border-bottom: 1px solid $color-lines;
-    //padding-left: 1.5rem;
     position: relative;
     height: 14.5rem;
 
@@ -42,16 +41,12 @@
       display: flex;
       align-items: center;
       padding-top: 1rem;
-
-      //background: green;
-
       .scubaFilter,
       .snorkelFilter {
         padding: 0rem 2rem;
         display: flex;
         align-items: center;
 
-        //transform: scale(1.6);
         input[type="checkbox"] {
           transform: scale(1);
           position: relative;
@@ -164,7 +159,6 @@
   .scrollableDiv {
     position: relative;
     overflow: scroll;
-    // background: orange;
     height: calc(100% - 13.5rem);
   }
 
@@ -205,7 +199,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    //background: red;
     width: 100%;
 
     &__text {

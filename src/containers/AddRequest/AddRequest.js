@@ -31,20 +31,13 @@ const AddRequest = (props) => {
   );
   const [showSiteList, setShowSiteList] = useContext(SiteListContext);
 
-  // const handleClose = () => setShowAddModal(false);
-  // const handleShow = () => setShowAddModal(true);
-
   let history = useHistory();
 
   useEffect(() => {
-    console.log("In add request.");
     setShowSiteList(false);
 
     document.title = "Locus - Add Site Request";
 
-    // if (!isLoading){
-    // console.log('[UserView] isBusy in IF = ' + isLoading);
-    // console.log('[UserView] isAuth in IF = ' + isAuth);
     if (!isAuth) {
       history.replace("/login");
     }
@@ -54,7 +47,6 @@ const AddRequest = (props) => {
       setUserViewLoaded(false);
       setShowSiteList(true);
     };
-    // }
   }, []);
 
   const onMapClick = (event) => {
@@ -62,8 +54,6 @@ const AddRequest = (props) => {
       lat: event.latLng.lat(),
       lng: event.latLng.lng(),
     });
-
-    console.log("CLICKED!");
     setShowAddRequestModal(true);
   };
 
@@ -80,7 +70,6 @@ const AddRequest = (props) => {
                 width: "45vw",
                 display: "inline-block",
                 transition: "1s ease",
-                /*border: "2px solid orange"*/
               }}
             />
           }
@@ -90,7 +79,6 @@ const AddRequest = (props) => {
                 height: "97vh",
                 width: "45vw",
                 display: "inline-block",
-                /*border: "2px solid purple",*/
                 boxSizing: "border-box",
                 transition: "1s ease",
               }}
@@ -102,7 +90,6 @@ const AddRequest = (props) => {
                 height: "97vh",
                 width: "45vw",
                 display: "inline-block",
-                /*border: "2px solid green"*/
               }}
             />
           }

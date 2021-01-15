@@ -40,7 +40,6 @@ const DiveReportForm = (props) => {
           }
         );
         const sites = await response.json();
-        //console.log(sites);
         setDiveSites(sites.site);
         setLocation(sites.site[0]._id);
         setIsLoading(false);
@@ -52,20 +51,11 @@ const DiveReportForm = (props) => {
     getSites();
   }, []);
 
-  //console.log(diveSites);
-
   const cancelHandler = () => {
-    console.log("cancelling...");
     props.setShowAdd(false);
   };
 
   const submitHandler = () => {
-    console.log("submitting report...");
-
-    //! STATE HAS TO CHANGE BEFORE IT CHECKS THIS SO IT WORKS ON ONE CLICK;
-    //? SOLUTION IMPLEMENTED ??? DOUBLE CHECK THIS
-    //* if (!isError) {
-    //if (isError == false || (isError != null && !isError )) {
     return fetch("http://localhost:8080/user/diveReports/addReport", {
       method: "POST",
       headers: {
@@ -84,7 +74,6 @@ const DiveReportForm = (props) => {
         return res.json();
       })
       .then((result) => {
-        console.log(result);
         if (!result.success) {
           //errorMessage.push(result.message);
           setIsError(true);
@@ -96,7 +85,6 @@ const DiveReportForm = (props) => {
         console.log(err);
         //setSuccess('false');
       });
-    //}
   };
 
   const validate = () => {
@@ -145,8 +133,6 @@ const DiveReportForm = (props) => {
     }
 
     setErrMsg(errorMessage);
-    console.log(errorMessage);
-    console.log(isError);
 
     if (errorMessage.length == 0) {
       submitHandler();
@@ -163,7 +149,6 @@ const DiveReportForm = (props) => {
       </div>
 
       <div className={classes.form__locationContainer}>
-        {/* {!isLoading ? <h1>isLoading is False</h1> : <h1>isLoading is TRUE</h1>} */}
         <select
           value={location}
           onChange={(e) => setLocation(e.target.value)}
@@ -202,7 +187,6 @@ const DiveReportForm = (props) => {
           className={`${classes.input} ${classes.input__report}`}
           rows="50"
           value={report}
-          //placeholder="report"
           onChange={(e) => setReport(e.target.value)}
         />
         <span>Report</span>

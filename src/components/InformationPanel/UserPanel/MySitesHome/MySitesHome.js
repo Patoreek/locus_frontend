@@ -46,8 +46,6 @@ const UserSiteList = () => {
 
   useEffect(() => {
     async function loadMyDiveSites() {
-      // console.log('[UserSiteList] Account = ' + account.id);
-      // You can await here
       try {
         const response = await fetch(
           "http://localhost:8080/diveSites/mySites/" + account.id,
@@ -59,20 +57,16 @@ const UserSiteList = () => {
           }
         );
         const data = await response.json();
-        //const sites = data.sites;
         setSites(data.sites);
         setDiveSitesLoaded(true);
       } catch (err) {}
     }
 
     loadMyDiveSites();
-    //console.log('[UserSiteList]' + sites);
   }, [showAddModal, showDeleteModal, showEditModal]);
 
   useEffect(() => {
     async function loadMyDiveShops() {
-      // console.log('[UserSiteList] Account = ' + account.id);
-      // You can await here
       try {
         const response = await fetch(
           "http://localhost:8080/diveShops/myShops/" + account.id,
@@ -84,7 +78,6 @@ const UserSiteList = () => {
           }
         );
         const data = await response.json();
-        console.log(data.shops);
         setShops(data.shops);
         setDiveShopsLoaded(true);
       } catch (err) {}
@@ -101,7 +94,7 @@ const UserSiteList = () => {
 
   return (
     <div>
-      {/* //* WHAT IS DISPLAYED INITIALLY TO ADMIN */}
+      {/* //* WHAT IS DISPLAYED WHEN A USER FIRST VISITS THIS PAGE */}
       {!listLoading &&
         !showAddRequestModal &&
         !diveShopAdmin &&

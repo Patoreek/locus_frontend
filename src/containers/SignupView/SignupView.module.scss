@@ -125,20 +125,17 @@
       }
 
       textarea:focus ~ span {
-        //color: $color-lines-focus;
         color: $color-text-blue;
       }
 
       .input,
       textarea {
         &:focus {
-          //border: 2px solid $color-lines-focus;
           border: 2px solid $color-text-blue;
         }
       }
       .input:focus + span,
       textarea:focus + span {
-        //color: $color-lines-focus;
         color: $color-text-blue;
       }
     }
@@ -178,13 +175,6 @@
 
       display: flex;
       align-items: baseline;
-
-      //background: pink;
-
-      // input {
-      //     transform: translateY(3px);
-      //     outline: green;
-      // }
 
       .errorBorderColor[type="checkbox"]:before {
         border: 2px solid $color-text-red;

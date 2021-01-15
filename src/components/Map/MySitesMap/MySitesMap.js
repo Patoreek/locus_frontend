@@ -40,11 +40,6 @@ import markerSVG from "../../../assets/icons/location_blue.svg";
 import markerShopSVG from "../../../assets/icons/location_orange.svg";
 import markerBlackSVG from "../../../assets/icons/location_darkgrey.svg";
 
-// import EditSiteForm from '../../Forms/EditSiteForm/EditSiteForm';
-// import DeleteContainer from '../../Forms/Divesite/DeleteContainer/DeleteContainer';
-// import ImageUpload from '../../ImageUpload/ImageUpload';
-// import CommonFeatures from '../../Forms/EditSiteForm/CommonFeatures/CommonFeatures';
-
 import { ReactComponent as PhoneSVG } from "../../../assets/icons/phone.svg";
 import { ReactComponent as EmailSVG } from "../../../assets/icons/email.svg";
 import { ReactComponent as LocationSVG } from "../../../assets/icons/location_default.svg";
@@ -90,12 +85,7 @@ const MySitesMap = () => {
   );
   const [diveShopAdmin, setDiveShopAdmin] = useContext(DiveShopAdminContext);
 
-  // useEffect(() => {
-  //     loadDiveSites();
-  // }, []); //remove diveSites for performance
-
   const editSiteHandler = () => {
-    //console.log('[Selected Site]' + selectedSite);
     if (account.email == "patrick.minda@hotmail.com") {
       setShowDeleteModal(false);
       setShowEditModal(true);
@@ -104,8 +94,6 @@ const MySitesMap = () => {
 
   const onMarkerClustererClick = (markerClusterer) => {
     const clickedMarkers = markerClusterer.getMarkers();
-    //console.log(`Current clicked markers length: ${clickedMarkers.length}`)
-    //console.log(clickedMarkers);
   };
 
   return (
@@ -153,7 +141,6 @@ const MySitesMap = () => {
               lng: parseFloat(shop.longitude),
             }}
             onClick={() => {
-              console.log(shop);
               setSelectedShop(shop);
               if (account.email == "patrick.minda@hotmail.com") {
                 setDiveShopAdmin(true);
@@ -174,14 +161,6 @@ const MySitesMap = () => {
               lat: parseFloat(coords.lat),
               lng: parseFloat(coords.lng),
             }}
-            // onClick={() =>{
-            //     console.log(shop);
-            //     setSelectedShop(shop);
-            //     if (account.email == "patrick.minda@hotmail.com"){
-            //         setDiveShopAdmin(true);
-            //         setEditDiveShopModal(true);
-            //     }
-            // }}
             icon={{
               url: markerBlackSVG,
               scaledSize: new window.google.maps.Size(42, 42),
@@ -190,7 +169,7 @@ const MySitesMap = () => {
         )}
       </MarkerClusterer>
 
-      {selectedSite /* OVERLAYVIEW is needed here for custom CSS and window properties*/ && (
+      {selectedSite && (
         <InfoWindow
           position={{
             lat: parseFloat(selectedSite.latitude),
@@ -198,7 +177,6 @@ const MySitesMap = () => {
           }}
           onCloseClick={() => {
             setShowEditModal(false);
-            //setSelectedShop(null);
             setSelectedSite(null);
           }}
         >
@@ -266,7 +244,7 @@ const MySitesMap = () => {
         </InfoWindow>
       )}
 
-      {selectedShop /* OVERLAYVIEW is needed here for custom CSS and window properties*/ && (
+      {selectedShop && (
         <InfoWindow
           position={{
             lat: parseFloat(selectedShop.latitude),
@@ -292,13 +270,6 @@ const MySitesMap = () => {
                 />
               </a>
             </div>
-
-            {/* <div className={classes.shop__editContainer}>
-                                <EditSVG className={classes.edit} onClick={() => {
-                                    setShowAddModal(false);
-                                    setEditDiveShopModal(true);
-                                }}/>
-                            </div> */}
 
             <div className={classes.shop__nameContainer}>
               <a

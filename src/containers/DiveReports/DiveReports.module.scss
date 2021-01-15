@@ -1,9 +1,8 @@
 @import "../../sass/abstracts/variables";
 
 .diveReports {
-  //background: pink;
   width: 100%;
-  height: calc(100vh - 6rem); //* Make this the height of all containers
+  height: calc(100vh - 6rem);
   display: flex;
 
   &__left {

@@ -140,20 +140,17 @@
     }
 
     textarea:focus ~ span {
-      //color: $color-lines-focus;
       color: $color-text-blue;
     }
 
     .input,
     textarea {
       &:focus {
-        //border: 2px solid $color-lines-focus;
         border: 2px solid $color-text-blue;
       }
     }
     .input:focus + span,
     textarea:focus + span {
-      //color: $color-lines-focus;
       color: $color-text-blue;
     }
   }
@@ -218,16 +215,6 @@
       }
 
       &__input {
-        // background: $color-input-bg;
-        // padding: .5rem 1rem;
-        // margin-left: 1rem;
-        // font-size: 1.6rem;
-
-        // outline: none;
-        // border: none;
-        // border-radius: 5px;
-        // box-shadow: 2px 2px 5px rgba($color-black-pure, .2);
-        // width: 50%;
       }
     }
     .siteTypeContainer {

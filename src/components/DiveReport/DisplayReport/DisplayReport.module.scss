@@ -2,7 +2,6 @@
 
 .report {
   background: $color-white-pure;
-  //background: pink;
   padding: 1.5rem;
   margin: 2rem 0rem;
   border-radius: 5px;
@@ -27,8 +26,6 @@
       overflow: hidden;
 
       img {
-        // width: 4.5rem;
-        // height: 4.5rem;
         width: 5.25rem;
         height: 5.25rem;
       }
@@ -179,7 +176,6 @@
     grid-column: 1 / -1;
     overflow-y: hidden;
     overflow-x: scroll;
-    //background: orange;
     padding: 1rem;
     border-top: 1px solid $color-lines;
     position: relative;

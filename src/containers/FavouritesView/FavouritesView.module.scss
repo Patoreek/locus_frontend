@@ -1,14 +1,13 @@
-@import '../../sass/abstracts/variables';
+@import "../../sass/abstracts/variables";
 
 .favouritesPage {
-    min-height: 80vh;
+  min-height: 80vh;
 }
 
-
 .spinnerContainer {
-    width: 100%;
-    min-height: 80vh;
-    display: flex;
-    justify-content: center;
-    margin-top: 0rem;
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  margin-top: 0rem;
 }

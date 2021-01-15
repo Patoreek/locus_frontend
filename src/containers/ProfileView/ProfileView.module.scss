@@ -79,7 +79,6 @@
       width: 100%;
       grid-template-rows: 0.5fr max-content 0.5fr 0.5fr;
       grid-template-columns: 1fr 0.4fr;
-      //background: pink;
 
       &__nameContainer {
         grid-row: 1 / 2;
@@ -115,7 +114,6 @@
         display: flex;
 
         .iconPinContainer {
-          //background: yellow;
           display: flex;
           align-items: center;
 
@@ -138,8 +136,6 @@
           height: 100%;
           display: flex;
           align-items: center;
-
-          // background: rgb(0, 255, 128);
         }
       }
 
@@ -148,11 +144,9 @@
         grid-column: 1 / 2;
         display: flex;
         width: 70%;
-        //background: orange;
 
         .xpIconContainer {
           height: 100%;
-          // background: rgb(30, 204, 88);
           display: flex;
           align-items: center;
 
@@ -171,7 +165,6 @@
           color: $color-text-darkergrey;
           font-family: $font-3-style;
           font-weight: $font-normal;
-          //background: aqua;
           height: 100%;
           display: flex;
           align-items: center;
@@ -186,7 +179,6 @@
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        // background: rgb(0, 255, 85);
         padding-right: 1rem;
 
         .edit {
@@ -239,18 +231,14 @@
       background: $color-white-pure;
 
       position: relative;
-      //height: 33rem;
 
       .sliderContainer {
         display: flex;
-        //position: absolute;
         width: 200%;
       }
 
       .noSitesContainer {
-        //position: relative;
         background: orange;
-        //width: 100%;
         display: flex;
       }
 

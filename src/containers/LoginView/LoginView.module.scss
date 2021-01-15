@@ -40,7 +40,6 @@
   }
 
   .loginForm {
-    //background: orange;
     display: grid;
     grid-template-rows: repeat(5, max-content);
     grid-template-columns: repeat(2, 1fr);
@@ -157,20 +156,17 @@
       }
 
       textarea:focus ~ span {
-        //color: $color-lines-focus;
         color: $color-text-blue;
       }
 
       .input,
       textarea {
         &:focus {
-          //border: 2px solid $color-lines-focus;
           border: 2px solid $color-text-blue;
         }
       }
       .input:focus + span,
       textarea:focus + span {
-        //color: $color-lines-focus;
         color: $color-text-blue;
       }
     }

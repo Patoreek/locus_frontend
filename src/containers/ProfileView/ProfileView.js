@@ -1,11 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
-import {
-  AuthContext,
-  LoadingContext,
-  AuthDrawerContext,
-  AccountContext,
-} from "../../context/AuthContext";
+import { AuthContext, AccountContext } from "../../context/AuthContext";
 import { SiteContext, DetailsContext } from "../../context/DiveSiteContext";
 
 import { ReactComponent as PinSVG } from "../../assets/icons/location_default.svg";
@@ -13,8 +8,6 @@ import { ReactComponent as XpSVG } from "../../assets/icons/userXP.svg";
 import { ReactComponent as CloseSVG } from "../../assets/icons/close.svg";
 
 import { useParams } from "react-router";
-
-import Details from "../DiveSiteView/DiveSiteView";
 
 import Spinner from "../../components/Spinner/Spinner";
 
@@ -34,11 +27,7 @@ import classes from "./ProfileView.module.scss";
 
 const ProfileView = (props) => {
   const [isAuth, setIsAuth] = useContext(AuthContext);
-  const [selectedSite, setSelectedSite] = useContext(SiteContext);
-  const [authDrawer, setAuthDrawer] = useContext(AuthDrawerContext);
   const [account, setAccount] = useContext(AccountContext);
-
-  //const [moreDetails, setMoreDetails] = useContext(DetailsContext);
 
   const [isLoading, setIsLoading] = useState(true);
   const [profileID, setProfileID] = useState("");
@@ -67,11 +56,6 @@ const ProfileView = (props) => {
   }
 
   useEffect(() => {
-    //params here
-
-    console.log(userId);
-    console.log(editProfile);
-
     if (editProfile) {
       setEditModal(true);
     } else {
@@ -93,7 +77,6 @@ const ProfileView = (props) => {
           return res.json();
         })
         .then((profile) => {
-          console.log(profile);
           setFirstName(profile.firstName);
           setLastName(profile.lastName);
           if (profile.profilePic) {
@@ -109,21 +92,17 @@ const ProfileView = (props) => {
           setIsLoading(false);
         })
         .catch((err) => {
-          console.log("Caught.");
           console.log(err);
-          // history.push("/login");
         });
     };
 
     async function getProfile() {
-      console.log("getting profile...");
       try {
         const response = await fetch("http://localhost:8080/user/getProfile", {
           method: "GET",
           credentials: "include",
         });
         const profile = await response.json();
-        console.log(profile);
         setProfileID(profile._id);
         setFirstName(profile.firstName);
         setLastName(profile.lastName);
@@ -154,8 +133,6 @@ const ProfileView = (props) => {
           }
         );
         const reports = await response.json();
-        console.log("GOT REPORTS...");
-        console.log(reports);
         setReports(reports.reportsData);
       } catch (error) {
         console.log(error);
@@ -298,13 +275,6 @@ const ProfileView = (props) => {
               <div className={classes.noReports}>
                 <h3>There are currently no dive reports from {firstName}.</h3>
                 {!userId ? <a href="/diveReports">Add a Dive Report</a> : null}
-                {/* <span onClick={() =>  
-                                                setAuthDrawer({
-                                                    open: true,
-                                                    login: true,
-                                                    signup: false
-                                                })}>Log in
-                                            </span> */}
               </div>
             </div>
           )}

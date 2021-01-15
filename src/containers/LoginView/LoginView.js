@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 
 import classes from "./LoginView.module.scss";
 
-import { Form, Button, Row, Col } from "react-bootstrap";
 import {
   AuthContext,
   AccountContext,
@@ -31,7 +30,6 @@ const LoginView = () => {
 
   const handleCheckbox = () => {
     setIsChecked(!isChecked);
-    // console.log(isChecked);
   };
 
   const loginHandler = () => {
@@ -53,39 +51,16 @@ const LoginView = () => {
         return res.json();
       })
       .then((resData) => {
-        console.log("resData!!!!!!");
-        console.log(resData);
         setIsAuth(true);
-        // setAccount({
-        //     id: resData._id,
-        //     username: resData.username,
-        //     firstName: resData.firstName,
-        //     lastName: resData.lastName,
-        //     email: resData.email,
-        //     role: resData.role
-        // });
         setAccount(resData);
-
         setAuthDrawer(false);
-        console.log(account);
-        //window.location.reload();
-        //localStorage.setItem("email", resData.email);
-        //history.push("/map");
-      })
-      .then((res) => {
-        console.log("LOGGING IN... Account Context is....");
-        console.log(account);
       })
       .catch((err) => {
-        console.log("Caught.");
         console.log(err);
         setErrMsg("Invalid Username and/or password.");
         setIsAuth(false);
-        // history.push("/login");
       });
   };
-
-  //console.log(isAuth);
 
   return (
     <div className={classes.login}>
@@ -117,7 +92,6 @@ const LoginView = () => {
           <input
             type="email"
             placeholder=""
-            //value={localStorage.email ? localStorage.email : null}
             onChange={(e) => setInputEmail(e.target.value)}
             className={classes.input}
           />
@@ -154,8 +128,7 @@ const LoginView = () => {
             onClick={() => authDrawerHandler("forgotPw")}
           >
             Forgot password?
-          </span>{" "}
-          {/* //? Change to a tag with a link */}
+          </span>
         </div>
       </div>
     </div>

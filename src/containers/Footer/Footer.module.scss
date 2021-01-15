@@ -1,116 +1,100 @@
-@import '../../sass/abstracts/variables';
+@import "../../sass/abstracts/variables";
 
 .footer {
-    width: 100vw;
-    height: auto;
-    background: $color-footer-bg;
-    border-top: 1px solid rgba($color-lines, .4);
-    display: grid;
-    grid-template-rows: repeat(3, max-content);
-    grid-template-columns: 30rem 1fr 30rem;
-    padding: 2rem 5rem;
-    transform: translateY(-.4rem);
+  width: 100vw;
+  height: auto;
+  background: $color-footer-bg;
+  border-top: 1px solid rgba($color-lines, 0.4);
+  display: grid;
+  grid-template-rows: repeat(3, max-content);
+  grid-template-columns: 30rem 1fr 30rem;
+  padding: 2rem 5rem;
+  transform: translateY(-0.4rem);
 
-    .logoContainer {
-        grid-row: 1 / 2;
-        grid-column: 1 / -1;
-        display: flex;
-        justify-content: center;
-        padding-bottom: 3rem;
-        
-    }
-    
-    .logo {
-        
-    }
+  .logoContainer {
+    grid-row: 1 / 2;
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 3rem;
+  }
 
-    .footerList {
-        grid-row: 2 / 3;
-        grid-column: 1 / -1;
+  .logo {
+  }
 
-        list-style: none;
-        width: 100%;
-        
-        display: flex;
-        justify-content: space-between;
+  .footerList {
+    grid-row: 2 / 3;
+    grid-column: 1 / -1;
 
-       
-        .listItem a {
-            font-size: 1.2rem;
-            color: $color-footer-text;
-        }
-        
-        .listItem a:hover {
-            color: #eee;
-            text-decoration: none;
-        }
+    list-style: none;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+
+    .listItem a {
+      font-size: 1.2rem;
+      color: $color-footer-text;
     }
 
-
-    .mailContainer {
-        grid-row: 3 / 4;
-        grid-column: 1 / 2;
-        padding-top: 3rem;
-
-        a {
-            display: flex;
-       
-            .mailIcon {
-               color: $color-footer-text;
-               height: 100%;
-               width: 2rem;
-            }
-    
-            .email {
-                color: $color-footer-text;
-               font-size: 1.2rem;
-            }
-            
-            .email:hover {
-               
-            }
-        }
-       
+    .listItem a:hover {
+      color: #eee;
+      text-decoration: none;
     }
-    
-    .socialContainer {
-        grid-row: 3 / 4;
-        grid-column: 2 / 3;
-        padding-top: 3rem;
+  }
 
-        display: flex;
-        justify-content: center;
-        
+  .mailContainer {
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+    padding-top: 3rem;
 
-        &__logo {
-            width: 2rem;
-            margin: 0rem 2.5rem;
-            color: $color-footer-text;
-            transition: .2s ease;
+    a {
+      display: flex;
 
-            &:hover {
-                transform: scale(1.1);
-            }
+      .mailIcon {
+        color: $color-footer-text;
+        height: 100%;
+        width: 2rem;
+      }
 
-        }
-    
-    }
-    
-    .copyrightContainer {
-        grid-row: 3 / 4;
-        grid-column: 3 / 4;
-        padding-top: 3rem;
+      .email {
         color: $color-footer-text;
         font-size: 1.2rem;
-        display: flex;
-        justify-content: flex-end;
-        
+      }
     }
-    
+  }
+
+  .socialContainer {
+    grid-row: 3 / 4;
+    grid-column: 2 / 3;
+    padding-top: 3rem;
+
+    display: flex;
+    justify-content: center;
+
+    &__logo {
+      width: 2rem;
+      margin: 0rem 2.5rem;
+      color: $color-footer-text;
+      transition: 0.2s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .copyrightContainer {
+    grid-row: 3 / 4;
+    grid-column: 3 / 4;
+    padding-top: 3rem;
+    color: $color-footer-text;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: flex-end;
+  }
 }
 
 .hide {
-    display: none;
+  display: none;
 }
-
-

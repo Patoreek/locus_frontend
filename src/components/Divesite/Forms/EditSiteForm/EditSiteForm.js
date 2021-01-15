@@ -86,7 +86,7 @@ const EditSiteForm = (props) => {
         return res.json();
       })
       .then((result) => {
-        console.log(result);
+        //console.log(result);
         setShowEditModal(false);
         loadDiveSites();
       })
@@ -97,14 +97,11 @@ const EditSiteForm = (props) => {
 
   const handleEditSiteSubmit = (event) => {
     event.preventDefault();
-
-    console.log("handleEditSiteSubmit");
     editDiveSite();
   };
 
   return (
     <div>
-      {/* IF showDeleteModal is false then show edit modal */}
       {!showDeleteModal && (
         <div className={classes.form}>
           <div className={classes.form__backBtnContainer}>
@@ -128,7 +125,6 @@ const EditSiteForm = (props) => {
           <div className={classes.form__nameContainer}>
             <input
               className={`${classes.input} ${classes.input__name}`}
-              //placeholder="Name of Dive Site"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -138,7 +134,6 @@ const EditSiteForm = (props) => {
           <div className={classes.form__suburbContainer}>
             <input
               className={`${classes.input} ${classes.input__suburb}`}
-              //placeholder="suburb / Suburb"
               value={suburb}
               onChange={(e) => setSuburb(e.target.value)}
             />
@@ -148,7 +143,6 @@ const EditSiteForm = (props) => {
           <div className={classes.form__cityContainer}>
             <input
               className={`${classes.input} ${classes.input__city}`}
-              //placeholder="city / city"
               value={city}
               onChange={(e) => setCity(e.target.value)}
             />
@@ -158,7 +152,6 @@ const EditSiteForm = (props) => {
           <div className={classes.form__stateContainer}>
             <input
               className={`${classes.input} ${classes.input__state}`}
-              //placeholder="state / state"
               value={state}
               onChange={(e) => setState(e.target.value)}
             />
@@ -168,7 +161,6 @@ const EditSiteForm = (props) => {
           <div className={classes.form__countryContainer}>
             <input
               className={`${classes.input} ${classes.input__country}`}
-              //placeholder="Country"
               value={country}
               onChange={(e) => setCountry(e.target.value)}
             />
@@ -200,7 +192,6 @@ const EditSiteForm = (props) => {
               className={`${classes.input} ${classes.input__description}`}
               rows="10"
               value={description}
-              //placeholder="Description"
               onChange={(e) => setDescription(e.target.value)}
             />
             <span>Description</span>
@@ -243,7 +234,6 @@ const EditSiteForm = (props) => {
             <div className={classes.avgDepthContainer}>
               <input
                 className={`${classes.input} ${classes.input__avgDepth}`}
-                //placeholder="Max Depth"
                 value={avgDepth}
                 onChange={(e) => setAvgDepth(e.target.value)}
               />
@@ -253,7 +243,6 @@ const EditSiteForm = (props) => {
             <div className={classes.maxDepthContainer}>
               <input
                 className={`${classes.input} ${classes.input__maxDepth}`}
-                //placeholder="Max Depth"
                 value={maxDepth}
                 onChange={(e) => setMaxDepth(e.target.value)}
               />
@@ -269,7 +258,6 @@ const EditSiteForm = (props) => {
               <div className={classes.minTempContainer}>
                 <input
                   className={`${classes.input} ${classes.input__minTemp}`}
-                  //placeholder="Average Minimum Temperature"
                   value={minTemp}
                   onChange={(e) => setMinTemp(e.target.value)}
                 />
@@ -278,7 +266,6 @@ const EditSiteForm = (props) => {
               <div className={classes.maxTempContainer}>
                 <input
                   className={`${classes.input} ${classes.input__maxTemp}`}
-                  //placeholder="Average Maximum Temperature"
                   value={maxTemp}
                   onChange={(e) => setMaxTemp(e.target.value)}
                 />
@@ -293,7 +280,6 @@ const EditSiteForm = (props) => {
               <div className={classes.minVisContainer}>
                 <input
                   className={`${classes.input} ${classes.input__minVis}`}
-                  // placeholder="Average Minimum Visibility"
                   value={minVis}
                   onChange={(e) => setMinVis(e.target.value)}
                 />
@@ -302,7 +288,6 @@ const EditSiteForm = (props) => {
               <div className={classes.maxVisContainer}>
                 <input
                   className={`${classes.input} ${classes.input__maxVis}`}
-                  // placeholder="Average Maximum Visibility"
                   value={maxVis}
                   onChange={(e) => setMaxVis(e.target.value)}
                 />
@@ -352,11 +337,8 @@ const EditSiteForm = (props) => {
                 <option value="Beginner Divers">Beginner Divers</option>
                 <option value="Novice Divers">Novice Divers</option>
                 <option value="Experienced Divers">Experienced Divers</option>
-                {/* <option value="Great for Free Diving">
-                  Great for Free Diving
-                </option> */}
               </select>
-              <span>Suitable for</span> {/* Dive Type */}
+              <span>Suitable for</span>
             </div>
           </div>
 

@@ -1,4 +1,4 @@
-import React, { useState, createContext, useRef, useCallback } from 'react';
+import React, { useState, createContext, useRef, useCallback } from "react";
 
 export const AuthContext = createContext();
 
@@ -36,9 +36,6 @@ export const SignUpSuccessContext = createContext();
 
 export const LocationNameContext = createContext();
 
-
-
-
 //TODO: SEARCHBAR MAP FUNCTIONS AND REF
 
 export const MapRefContext = createContext();
@@ -49,199 +46,185 @@ export const PanToContext = createContext();
 
 export const SearchValueContext = createContext();
 
-
-
 //* GLOBAL LOADER
 export const GlobalLoaderContext = createContext();
 
-
-
-
-
-
-
 export const AuthProvider = (props) => {
+  const [isAuth, setIsAuth] = useState(false);
 
+  const [account, setAccount] = useState(null);
 
-    const [isAuth, setIsAuth] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
+  const [isUserOnMap, setIsUserOnMap] = useState(false); // Add
 
-    // const [account, setAccount] = useState({
-    //     id: null,
-    //     username: '',
-    //     firstName: '',
-    //     lastName: '',
-    //     email: '',
-    //     role: ''
-    // });
-    const [account, setAccount] = useState(null);
+  const [favButton, setFavButton] = useState(true);
 
-    const [ isLoading, setIsLoading ] = useState(true);
+  const [favourites, setFavourites] = useState(null);
 
-    const [ isUserOnMap, setIsUserOnMap ] = useState(false); // Add
+  const [panelSize, setPanelSize] = useState("30vw");
 
-    const [favButton, setFavButton] = useState(true);
+  const [mapSize, setMapSize] = useState("70vw"); // 70vw
 
-    const [favourites, setFavourites] = useState(null);
+  const [locateButtonStyle, setLocateButtonStyle] = useState({
+    left: "80vw",
+    display: null,
+  });
 
-    const [panelSize, setPanelSize] = useState("30vw");
+  const [searchCoordinates, setSearchCoordinates] = useState({
+    lat: null,
+    lng: null,
+  });
 
-    const [mapSize, setMapSize] = useState("70vw"); // 70vw
+  //* V1.1 Updates
 
+  const [authDrawer, setAuthDrawer] = useState({
+    open: false,
+    login: false,
+    signup: false,
+    forgotPW: false,
+  });
 
-    const [locateButtonStyle, setLocateButtonStyle] = useState({
-        left: "80vw",
-        display: null
-    });
-
-    const [searchCoordinates, setSearchCoordinates] = useState({
-      lat: null,
-      lng: null
-    });
-
-    //* V1.1 Updates
-
-
-  //TODO: CHANGE HERE TO TOGGLE AUTH DRAWER
-    const [authDrawer, setAuthDrawer] = useState({
-      open: false,
-      login: false, 
-      signup: false,
-      forgotPW: false
-    });
-
-    const authDrawerHandler = (option) => {
-      if (option === 'login') {
-        setAuthDrawer({
-          open: true,
-          login: true,
-          signup: false,
-          forgotPW: false,
-        });
-      } else if (option === 'signup') {
-        setAuthDrawer({
-          open: true,             
-          login: false,
-          signup: true,
-          forgotPW: false,
-        });
-      }  else if (option === 'forgotPw') {
-        setAuthDrawer({
-          open: true,             
-          login: false,
-          signup: false,
-          forgotPw: true,
-        });
-      }
+  const authDrawerHandler = (option) => {
+    if (option === "login") {
+      setAuthDrawer({
+        open: true,
+        login: true,
+        signup: false,
+        forgotPW: false,
+      });
+    } else if (option === "signup") {
+      setAuthDrawer({
+        open: true,
+        login: false,
+        signup: true,
+        forgotPW: false,
+      });
+    } else if (option === "forgotPw") {
+      setAuthDrawer({
+        open: true,
+        login: false,
+        signup: false,
+        forgotPw: true,
+      });
     }
+  };
 
-    const [navbar, setNavbar] = useState("main");
+  const [navbar, setNavbar] = useState("main");
 
-    const [signUpSuccess, setSignUpSuccess] = useState(null);
+  const [signUpSuccess, setSignUpSuccess] = useState(null);
 
-    const [locationName, setLocationName] = useState();
+  const [locationName, setLocationName] = useState();
 
-    const [searchValue, setSearchValue] = useState();
+  const [searchValue, setSearchValue] = useState();
 
-    const [globalLoader, setGlobalLoader] = useState({ //* TRUE = is currently loading || FALSE = is done loading
-          divesites: false,
-          diveshops: false,
-    });
+  const [globalLoader, setGlobalLoader] = useState({
+    //* TRUE = is currently loading || FALSE = is done loading
+    divesites: false,
+    diveshops: false,
+  });
 
+  const mapRef = useRef();
+  const onMapLoad = useCallback((map) => {
+    mapRef.current = map;
+  }, []);
 
+  const panTo = useCallback(({ lat, lng }) => {
+    mapRef.current.panTo({ lat, lng });
+    //mapRef.current.setZoom(14);
+  }, []);
 
+  async function getFavourites(setIsLoading) {
+    try {
+      const response = await fetch("http://localhost:8080/user/getFavourites", {
+        method: "GET",
+        credentials: "include",
+      });
+      const favourites = await response.json();
 
-    //TODO: SEARCH MAP REF AND OTHERS
-
-    const mapRef = useRef();
-    const onMapLoad = useCallback((map) => {
-        //console.log('Map = ' + map);
-        mapRef.current = map;
-        //console.log("In onMapLoad");
-        //console.log(mapRef.current);
-    }, [],);
-
-    const panTo = useCallback(({ lat, lng }) => {
-        mapRef.current.panTo({ lat, lng });
-        //mapRef.current.setZoom(14);
-      }, []);
-
-
-    
-
-    async function getFavourites(setIsLoading) {
-
-        try {
-          const response = await fetch('http://localhost:8080/user/getFavourites',{
-            method: 'GET',
-            credentials: 'include',
-          });
-          const favourites = await response.json();
-          console.log('FAVOURITES CONSOLE LOG');
-          console.log(favourites.favSites);
-          setFavourites(favourites.favSites);
-          if (setIsLoading != null){
-              setIsLoading(false);
-          }
-  
-        } catch (error) {
-         console.log(error);
-         setIsLoading(null);
-        }
+      setFavourites(favourites.favSites);
+      if (setIsLoading != null) {
+        setIsLoading(false);
       }
+    } catch (error) {
+      console.log(error);
+      setIsLoading(null);
+    }
+  }
 
-   
-
-
-    return (
-        <AuthContext.Provider value = {[isAuth, setIsAuth]}>
-        <AccountContext.Provider value = {[account, setAccount]}>
-        <LoadingContext.Provider value = {[isLoading, setIsLoading]}>
-        <UserOnMapContext.Provider value = {[isUserOnMap, setIsUserOnMap]}>
-        <FavButtonContext.Provider value = {[favButton, setFavButton]}>
-        <FavouritesContext.Provider value = {[favourites, setFavourites]}>
-        <MapSizeContext.Provider value = {[mapSize, setMapSize]}>
-        <PanelSizeContext.Provider value = {[panelSize, setPanelSize]}>
-        <GetFavouritesContext.Provider value = {getFavourites}>
-        <SearchCoordsContext.Provider value = {[searchCoordinates, setSearchCoordinates]}>
-        <LocateButtonContext.Provider value = {[locateButtonStyle, setLocateButtonStyle]}>
-        {/* //* V1.1 Updates */}
-        <AuthDrawerContext.Provider value = {[authDrawer, setAuthDrawer]}>
-        <AuthDrawerHandlerContext.Provider value = {authDrawerHandler}>
-        <NavbarContext.Provider value = {[navbar, setNavbar]}>
-        <MapRefContext.Provider value = {mapRef}>
-        <OnMapLoadContext.Provider value = {onMapLoad}>
-        <PanToContext.Provider value = {panTo}>
-        <SignUpSuccessContext.Provider value = {[signUpSuccess, setSignUpSuccess]}>
-        <LocationNameContext.Provider value = {[locationName, setLocationName]}>
-        <SearchValueContext.Provider value = {[searchValue, setSearchValue]}>
-        <GlobalLoaderContext.Provider value = {[globalLoader, setGlobalLoader]}>
-        
-        {props.children}
-        
-        </GlobalLoaderContext.Provider>
-        </SearchValueContext.Provider>
-        </LocationNameContext.Provider>
-        </SignUpSuccessContext.Provider>
-        </PanToContext.Provider>
-        </OnMapLoadContext.Provider>
-        </MapRefContext.Provider>
-        </NavbarContext.Provider>
-        </AuthDrawerHandlerContext.Provider>
-        </AuthDrawerContext.Provider>
-        {/* //* END V1.1 Updates */}
-        </LocateButtonContext.Provider>
-        </SearchCoordsContext.Provider>
-        </GetFavouritesContext.Provider>
-        </PanelSizeContext.Provider>
-        </MapSizeContext.Provider>
-        </FavouritesContext.Provider>
-        </FavButtonContext.Provider>       
-        </UserOnMapContext.Provider>
+  return (
+    <AuthContext.Provider value={[isAuth, setIsAuth]}>
+      <AccountContext.Provider value={[account, setAccount]}>
+        <LoadingContext.Provider value={[isLoading, setIsLoading]}>
+          <UserOnMapContext.Provider value={[isUserOnMap, setIsUserOnMap]}>
+            <FavButtonContext.Provider value={[favButton, setFavButton]}>
+              <FavouritesContext.Provider value={[favourites, setFavourites]}>
+                <MapSizeContext.Provider value={[mapSize, setMapSize]}>
+                  <PanelSizeContext.Provider value={[panelSize, setPanelSize]}>
+                    <GetFavouritesContext.Provider value={getFavourites}>
+                      <SearchCoordsContext.Provider
+                        value={[searchCoordinates, setSearchCoordinates]}
+                      >
+                        <LocateButtonContext.Provider
+                          value={[locateButtonStyle, setLocateButtonStyle]}
+                        >
+                          <AuthDrawerContext.Provider
+                            value={[authDrawer, setAuthDrawer]}
+                          >
+                            <AuthDrawerHandlerContext.Provider
+                              value={authDrawerHandler}
+                            >
+                              <NavbarContext.Provider
+                                value={[navbar, setNavbar]}
+                              >
+                                <MapRefContext.Provider value={mapRef}>
+                                  <OnMapLoadContext.Provider value={onMapLoad}>
+                                    <PanToContext.Provider value={panTo}>
+                                      <SignUpSuccessContext.Provider
+                                        value={[
+                                          signUpSuccess,
+                                          setSignUpSuccess,
+                                        ]}
+                                      >
+                                        <LocationNameContext.Provider
+                                          value={[
+                                            locationName,
+                                            setLocationName,
+                                          ]}
+                                        >
+                                          <SearchValueContext.Provider
+                                            value={[
+                                              searchValue,
+                                              setSearchValue,
+                                            ]}
+                                          >
+                                            <GlobalLoaderContext.Provider
+                                              value={[
+                                                globalLoader,
+                                                setGlobalLoader,
+                                              ]}
+                                            >
+                                              {props.children}
+                                            </GlobalLoaderContext.Provider>
+                                          </SearchValueContext.Provider>
+                                        </LocationNameContext.Provider>
+                                      </SignUpSuccessContext.Provider>
+                                    </PanToContext.Provider>
+                                  </OnMapLoadContext.Provider>
+                                </MapRefContext.Provider>
+                              </NavbarContext.Provider>
+                            </AuthDrawerHandlerContext.Provider>
+                          </AuthDrawerContext.Provider>
+                        </LocateButtonContext.Provider>
+                      </SearchCoordsContext.Provider>
+                    </GetFavouritesContext.Provider>
+                  </PanelSizeContext.Provider>
+                </MapSizeContext.Provider>
+              </FavouritesContext.Provider>
+            </FavButtonContext.Provider>
+          </UserOnMapContext.Provider>
         </LoadingContext.Provider>
-        </AccountContext.Provider>
-        </AuthContext.Provider>
-
-    );
-}
-
+      </AccountContext.Provider>
+    </AuthContext.Provider>
+  );
+};

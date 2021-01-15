@@ -31,7 +31,7 @@ const DisplayReport = (props) => {
   };
 
   const imageHandler = (report, i) => {
-    console.log(report);
+    //console.log(report);
     const image = report.images[i];
     const userId = report.userId._id;
     const firstName = report.userId.firstName;

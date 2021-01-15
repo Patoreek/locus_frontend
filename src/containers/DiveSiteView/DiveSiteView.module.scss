@@ -1,11 +1,8 @@
 @import "../../sass/abstracts/variables";
 
 .divesite {
-  // min-height: 100vh;
   width: 100vw;
-  //height: 200vh;
-  //background: #FDFDFD;
-  //background: orange;
+
   padding: 2rem 5rem;
   max-width: 1600px;
   margin: 0 auto;
@@ -14,7 +11,6 @@
   display: grid;
   grid-template-rows: repeat(4, max-content);
   grid-template-columns: 1fr 1fr;
-  //background: rgb(255, 124, 124);
 
   h3 {
     color: black;
@@ -54,8 +50,6 @@
     z-index: 50;
 
     .image {
-      // width: 150px;
-      // height: 100px;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -82,7 +76,6 @@
       grid-column: 2 / 3;
 
       display: grid;
-      //grid-template-rows: max-content;
       grid-auto-rows: max-content;
       grid-template-columns: 1fr;
       grid-gap: 0.5rem;
@@ -106,10 +99,6 @@
           }
         }
       }
-
-      // &__image1, &__image2, &__image3, &__image4 {
-      //     overflow: hidden;
-      // }
     }
   }
 
@@ -149,8 +138,6 @@
     }
 
     .ratingsContainer {
-      // display: flex;
-      //background: purple;
       padding-bottom: 0.5rem;
       position: absolute;
       top: 0;
@@ -160,13 +147,8 @@
       }
 
       &__favBtn {
-        //margin-left: 10rem;
         width: 3.5rem;
-        //background: red;
         margin-top: 0.5rem;
-        //display: flex;
-        //justify-content: center;
-        //align-items: center;
       }
     }
   }
@@ -195,7 +177,6 @@
         display: grid;
         grid-template-rows: repeat(2, 1fr);
         grid-template-columns: max-content 1fr;
-        //background: aqua;
         grid-gap: 1rem;
 
         &__icon {
@@ -205,7 +186,6 @@
           width: 6rem;
           height: 6rem;
           path {
-            //fill: $color-text-blue;
             fill: $color-text-darkergrey;
           }
         }
@@ -213,7 +193,6 @@
         &__text {
           grid-row: 1 / -1;
           grid-column: 2 / 3;
-          //background: green;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -231,7 +210,6 @@
     &__descriptionHeaderContainer {
       grid-row: 3 / 4;
       grid-column: 1 / -1;
-      //background: orange;
       padding: 2rem 0rem;
 
       h3 {
@@ -245,7 +223,6 @@
     &__descriptionContainer {
       grid-row: 4 / 5;
       grid-column: 1 / -1;
-      //background: orange;
       padding-bottom: 2rem;
       border-bottom: 1px solid $color-lines;
 
@@ -295,7 +272,6 @@
       grid-row: 7 / 8;
       grid-column: 1 / -1;
       padding-top: 1rem;
-      //background: rgba(199, 243, 243, .4);
       padding: 1rem;
 
       h4 {
@@ -353,7 +329,6 @@
   &__rightContainer {
     grid-row: 4 / -1;
     grid-column: 2 / 3;
-    //background: yellow;
     display: grid;
     grid-template-rows: repeat(4, max-content);
     grid-template-columns: 1fr;
@@ -363,8 +338,6 @@
       grid-column: 1 / -1;
 
       position: relative;
-
-      //background: pink;
 
       .photoLink {
         color: $color-text-grey;

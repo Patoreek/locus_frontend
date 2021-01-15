@@ -25,12 +25,8 @@ const UserPanel = () => {
     AddRequestContext
   );
 
-  // console.log(selectedSite);
-  let form;
-
   return (
     <div className={classes.userPanel}>
-      {/* <ToggleButtons/> */}
       {!showAddModal && !showDeleteModal && !showAddRequestModal && (
         <div>
           <MySitesHome />
@@ -40,8 +36,6 @@ const UserPanel = () => {
       {showEditModal && selectedSite != null ? <EditSiteForm /> : null}
       {showAddModal ? <CreateSiteForm /> : null}
       {showAddRequestModal ? <AddRequestForm /> : null}
-
-      {/* //TODO: ADD FORMS HERE WITH LOGIC */}
     </div>
   );
 };

@@ -1,51 +1,50 @@
 .userViewPage {
-    float:left;
-    width: 100%;
-    height: 97vh;
+  float: left;
+  width: 100%;
+  height: 97vh;
 }
 
 .AddModal {
-    width: 50vw;
-    max-width: none!important;
-    margin-top: 20vh;
-    margin-left:40vw;
+  width: 50vw;
+  max-width: none !important;
+  margin-top: 20vh;
+  margin-left: 40vw;
 }
 
 .AddModalHeader {
-    width: 100%;
-    margin: 0 auto;
-    text-align: left;
-    font-size: 18px;
-
+  width: 100%;
+  margin: 0 auto;
+  text-align: left;
+  font-size: 18px;
 }
 
 .AddModalBody {
-    height: 40vh;
+  height: 40vh;
 }
 
 .CloseAddModalButton {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
-@media screen and (max-width:800px) {
-    .AddModal {
-        width: 90vw;
-        max-width: none!important;
-        margin-top: 15vh;
-        margin-left:5vw;
-    }
-    
-    .AddModalHeader {
-        width: 100%;
-        margin: 0 auto;
-        text-align: left;
-    }
-    
-    .AddModalBody {
-        height: 50vh;
-    }
-    
-    .CloseAddModalButton {
-        margin: 0 auto;
-    }
+@media screen and (max-width: 800px) {
+  .AddModal {
+    width: 90vw;
+    max-width: none !important;
+    margin-top: 15vh;
+    margin-left: 5vw;
+  }
+
+  .AddModalHeader {
+    width: 100%;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .AddModalBody {
+    height: 50vh;
+  }
+
+  .CloseAddModalButton {
+    margin: 0 auto;
+  }
 }

@@ -67,17 +67,14 @@
       &__pointsContainer {
         grid-row: 3 / 4;
         grid-column: 1 / -1;
-        // background: orange;
         display: flex;
         justify-content: space-around;
         margin-top: 5rem;
         .point {
-          //background: navy;
           width: 32rem;
           display: grid;
           grid-template-rows: repeat(3, max-content);
           grid-template-columns: 1fr;
-          //grid-gap: 1rem;
 
           &__icon {
             width: 5.5rem;
@@ -151,7 +148,6 @@
     .homeContent {
       width: 100vw;
       height: auto;
-      //background: url('../../assets/images/home_content_bg.png');
       background-size: cover;
       padding: 5rem;
       position: relative;
@@ -173,7 +169,6 @@
           bottom: -10rem;
           left: 655px;
           z-index: 5;
-          //opacity: 0%;
 
           @include respond(big-desktop) {
             left: 90rem;
@@ -186,7 +181,6 @@
           bottom: 0rem;
           left: 800px;
           z-index: 4;
-          //opacity: 0%;
           @include respond(big-desktop) {
             left: 170rem;
             bottom: 40rem;
@@ -197,7 +191,6 @@
           bottom: -8rem;
           right: 0;
           z-index: 3;
-          //opacity: 0%;
           @include respond(big-desktop) {
             right: 85rem;
             bottom: 30rem;
@@ -261,7 +254,6 @@
             bottom: calc(45rem - 800px);
             right: 15rem;
             z-index: 6;
-            //transform: translate(50%, 25%);
             width: 10rem;
             height: 10rem;
             opacity: 50%;
@@ -307,7 +299,6 @@
 
         .contentRight {
           width: 50%;
-          //background: orange;
           height: 100vh;
           display: grid;
           grid-template-rows: repeat(12, max-content);

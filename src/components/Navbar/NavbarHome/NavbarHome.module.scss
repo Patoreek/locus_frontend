@@ -7,14 +7,11 @@
   width: 100vw;
   height: 6rem;
   .navList {
-    // max-width: 1400px;
     height: 100%;
 
     padding: 0.5rem 1rem;
     display: flex;
     justify-content: space-between;
-
-    //grid-gap: 10rem;
 
     .logoItem {
       float: left;
@@ -31,7 +28,6 @@
 
     .rightNav {
       display: flex;
-      //background: red;
       align-items: center;
 
       .mapLink,
@@ -50,7 +46,6 @@
 
         &:hover {
           background-position: right;
-          //transform: scale(1.05);
 
           a {
             transform: scale(1.05);
@@ -89,14 +84,12 @@
       }
 
       .dropdown {
-        //display: none;
         position: absolute;
         z-index: 75;
         transition: 0.3s ease;
         top: 8.5rem;
         right: 1rem;
-        //transform: translate(-5.5rem, 10.8rem);
-        // height: 22.5rem;
+
         &__content {
           width: 25rem;
           height: 100%;
@@ -136,7 +129,6 @@
             width: 1.5rem;
             height: 1.5rem;
             background: $color-nav-bg;
-            // clip-path: polygon(50% 0, 0% 100%, 100% 100%);
             clip-path: polygon(50% 25%, 0% 100%, 100% 100%);
           }
         }
@@ -170,6 +162,7 @@
           grid-column: 2 / 3;
           padding-left: 0.5rem;
 
+          //? ???
           overflow: hidden; //* Change this later
 
           span {
@@ -270,7 +263,6 @@
           height: 0%;
           z-index: -200;
           display: none;
-          //height: 0%;
         }
       }
 
@@ -291,8 +283,6 @@
         font-weight: 500;
 
         span {
-          //width: 100%;
-          //background: pink;
           color: $color-white;
           text-align: center;
           transition: 0.3s ease;

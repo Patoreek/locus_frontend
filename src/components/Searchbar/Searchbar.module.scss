@@ -1,137 +1,120 @@
-@import '../../sass/abstracts/variables';
+@import "../../sass/abstracts/variables";
 
 .searchBar {
-    background: rgb(243, 243, 243);
-    color: #0a0a0a;
-    display: grid;
-    grid-template-rows: repeat(2, max-content);
-    grid-template-columns: 1fr max-content;
-    border-radius: 5px;
-    overflow: hidden;
-    margin: 0 auto;
-    width: 75rem;
+  background: rgb(243, 243, 243);
+  color: #0a0a0a;
+  display: grid;
+  grid-template-rows: repeat(2, max-content);
+  grid-template-columns: 1fr max-content;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0 auto;
+  width: 75rem;
 
+  &__mainbar {
+    width: 60rem;
+  }
 
-    &__mainbar {
-       width: 60rem;
+  &__searchInputContainerMain {
+    padding: 0.6rem 1.5rem !important;
+  }
+
+  &__searchInputContainer {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    padding: 1.5rem;
+    background: $color-white;
+
+    .locationText {
+      grid-row: 1 / 2;
+      grid-column: 1 / 2;
+      font-size: 1.4rem;
+      margin-bottom: 0.3rem;
+      font-family: $font-1-style;
+      font-weight: $font-bold;
+      color: $color-black;
     }
 
-    &__searchInputContainerMain {
-        padding: .6rem 1.5rem !important;
+    .searchInput {
+      background: $color-white;
 
-    }
+      border: none;
+      outline: none;
+      font-size: 1.4rem;
+      width: 55.4rem;
+      font-family: $font-3-style;
+      font-weight: $font-normal;
+      &__main {
+        font-size: 1.4rem;
+        width: 46rem;
 
- &__searchInputContainer {
-     grid-row: 2 / 3;
-     grid-column: 1 / 2;
-     padding: 1.5rem;
-     background: $color-white;
-
-
-
-     .locationText {
-         grid-row: 1 / 2;
-         grid-column: 1 / 2;
-         font-size: 1.4rem;
-         margin-bottom: .3rem;
-         font-family: $font-1-style;
-         font-weight: $font-bold;
-         color: $color-black;
-
-     }
-
-
-     .searchInput {
-         //max-width: 650px;
-         background: $color-white;
-
-         border:none;
-         outline: none;
-         font-size: 1.4rem;
-         width: 55.4rem;
-         font-family: $font-3-style;
-         font-weight: $font-normal;
-         &__main {
-             font-size: 1.4rem;
-             width: 46rem;
-             
-
-             &::placeholder {
-                font-size: 1.4rem !important;
-                color: $color-text-darkgrey;
-                font-family: $font-3-style;
-                font-weight: $font-normal;
-            }
-         }
-
-         &::placeholder {
-            font-size: 1.4rem;
+        &::placeholder {
+          font-size: 1.4rem !important;
+          color: $color-text-darkgrey;
+          font-family: $font-3-style;
+          font-weight: $font-normal;
         }
+      }
 
-         &:focus {
-             outline: none;
-             
-         }
-     }
-    
-     
- }
- 
+      &::placeholder {
+        font-size: 1.4rem;
+      }
 
- 
- .dropdownContainer { //! FIX THIS 
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .dropdownContainer {
+    //! FIX THIS
     position: absolute;
-    //  background: red;
-    transform: translate(-1.5rem,.20rem);
+    transform: translate(-1.5rem, 0.2rem);
     width: 49rem;
     border-radius: 0px 0px 5px 5px;
     overflow: hidden;
     //  width: 0%;
- 
 
-     .suggestions {
-         background: $color-white;
-         padding: 1.6rem 1.5rem;
-         font-size: 1.4rem;
+    .suggestions {
+      background: $color-white;
+      padding: 1.6rem 1.5rem;
+      font-size: 1.4rem;
 
-         &:hover {
-             background: $link-nav-hover;
-         }
-     }
- 
- }
+      &:hover {
+        background: $link-nav-hover;
+      }
+    }
+  }
 
- &__searchBtnContainer {
-     grid-row: 1 / -1;
-     grid-column: 2 / 3;
+  &__searchBtnContainer {
+    grid-row: 1 / -1;
+    grid-column: 2 / 3;
 
-     .searchBtn {
-         background: #2A85DA;
-         display: flex;
-         align-items: center;
-         justify-content: center;
-         height: 100%;
-         padding: 1rem 2.5rem;
-         transition: .2s ease;
-         width: 11rem;
-    
-         &:hover {
-             background: $search-btn-color-hover;
-         }
+    .searchBtn {
+      background: #2a85da;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 1rem 2.5rem;
+      transition: 0.2s ease;
+      width: 11rem;
 
-         &:hover span {
-             transform: scale(1.05);
-         }
+      &:hover {
+        background: $search-btn-color-hover;
+      }
 
-         .searchSVG {
-            height: 2rem;
-            width: 2rem;
-            g path {
-                fill: $color-white;
-            }
+      &:hover span {
+        transform: scale(1.05);
+      }
+
+      .searchSVG {
+        height: 2rem;
+        width: 2rem;
+        g path {
+          fill: $color-white;
         }
-     }
-
- }
-
+      }
+    }
+  }
 }

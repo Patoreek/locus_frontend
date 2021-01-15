@@ -55,8 +55,6 @@ export const DiveSiteProvider = (props) => {
   const [hasMoreData, setHasMoreData] = useState(true);
 
   async function loadDiveSites() {
-    // You can await here
-    //setDiveSites([]);
     console.log("IN LOAD DIVE SITE");
     const response = await fetch("http://localhost:8080/diveSites/getSites", {
       method: "GET",
@@ -65,19 +63,11 @@ export const DiveSiteProvider = (props) => {
     const sites = data.site;
     setDiveSites(sites);
     return true;
-    // ...
   }
 
   async function loadDiveSitesInBoundsInfinite(mapBounds, mapMoved) {
-    // You can await here
-    //setDiveSites([]);
-    console.log("loadDiveSitesInBoundsInfinite");
-    //console.log(scrollCounter);
-
     let counter;
     let panelSites;
-
-    console.log("Map Moved: " + mapMoved);
 
     if (mapMoved == "TRUE") {
       counter = 0;
@@ -87,8 +77,6 @@ export const DiveSiteProvider = (props) => {
       panelSites = panelDiveSites;
     }
 
-    console.log("COUNTER = " + counter);
-
     const swLat = mapBounds.Wa.i;
     const neLat = mapBounds.Wa.j;
 
@@ -96,11 +84,9 @@ export const DiveSiteProvider = (props) => {
     let neLng;
 
     if (mapBounds.Qa) {
-      console.log("In MapBounds Qa");
       swLng = mapBounds.Qa.i;
       neLng = mapBounds.Qa.j;
     } else if (mapBounds.Ra) {
-      console.log("In Mapbounds Ra");
       swLng = mapBounds.Ra.i;
       neLng = mapBounds.Ra.j;
     }
@@ -128,10 +114,6 @@ export const DiveSiteProvider = (props) => {
         return res.json();
       })
       .then((result) => {
-        console.log(result.sites);
-        console.log("Results Length => " + result.sites.length);
-        console.log("Panel Dive Sites Length => " + panelSites.length);
-
         if (result.sites.length == 0) {
           setHasMoreData(false);
           setScrollCounter(0);
@@ -150,15 +132,12 @@ export const DiveSiteProvider = (props) => {
         }
       })
       .catch((err) => {
-        console.log("Caught.");
         console.log(err);
       });
   }
 
   async function loadDiveSitesInBounds(mapBounds, setGlobalLoader) {
-    // You can await here
     setDiveSites([]);
-    console.log("loadDiveSitesInBounds");
 
     const swLat = mapBounds.Wa.i;
     const neLat = mapBounds.Wa.j;
@@ -167,11 +146,9 @@ export const DiveSiteProvider = (props) => {
     let neLng;
 
     if (mapBounds.Qa) {
-      console.log("In MapBounds Qa");
       swLng = mapBounds.Qa.i;
       neLng = mapBounds.Qa.j;
     } else if (mapBounds.Ra) {
-      console.log("In Mapbounds Ra");
       swLng = mapBounds.Ra.i;
       neLng = mapBounds.Ra.j;
     }
@@ -195,7 +172,6 @@ export const DiveSiteProvider = (props) => {
         return res.json();
       })
       .then((result) => {
-        //console.log(result.sites);
         setDiveSites(result.sites);
         setGlobalLoader((prevState) => ({
           ...prevState,
@@ -223,7 +199,7 @@ export const DiveSiteProvider = (props) => {
 
         Geocode.fromLatLng(centerLat, centerLng).then(
           (response) => {
-            console.log(response);
+            //console.log(response);
             if (response.results != []) {
               if (response.results[0].address_components.length > 2) {
                 if (response.results[0].address_components[2]) {
@@ -240,9 +216,6 @@ export const DiveSiteProvider = (props) => {
                 });
               }
             }
-
-            // console.log(areaName);
-            // console.log(stateName);
           },
           (error) => {
             console.error(error);
@@ -250,15 +223,12 @@ export const DiveSiteProvider = (props) => {
         );
       })
       .catch((err) => {
-        console.log("Caught.");
         console.log(err);
       });
   }
 
   async function loadDiveShopsInBounds(mapBounds, setGlobalLoader) {
-    // You can await here
-    console.log("loadDiveShopsInBounds");
-    console.log(mapBounds);
+    //console.log(mapBounds);
 
     const swLat = mapBounds.Wa.i;
     const neLat = mapBounds.Wa.j;
@@ -267,11 +237,9 @@ export const DiveSiteProvider = (props) => {
     let neLng;
 
     if (mapBounds.Qa) {
-      console.log("In MapBounds Qa");
       swLng = mapBounds.Qa.i;
       neLng = mapBounds.Qa.j;
     } else if (mapBounds.Ra) {
-      console.log("In Mapbounds Ra");
       swLng = mapBounds.Ra.i;
       neLng = mapBounds.Ra.j;
     }
@@ -293,7 +261,6 @@ export const DiveSiteProvider = (props) => {
         return res.json();
       })
       .then((result) => {
-        console.log(result.shops);
         setDiveShops(result.shops);
         setGlobalLoader((prevState) => ({
           ...prevState,
@@ -301,7 +268,6 @@ export const DiveSiteProvider = (props) => {
         }));
       })
       .catch((err) => {
-        console.log("Caught.");
         console.log(err);
       });
   }

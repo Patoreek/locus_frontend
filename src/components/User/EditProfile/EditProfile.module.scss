@@ -39,17 +39,6 @@
     font-family: $font-3-style;
     font-weight: $font-normal;
 
-    // .input {
-    //     width: 100%;
-    //     background: $color-input-bg;
-    //     border: none;
-    //     padding: .4rem 1rem;
-    //     font-size: 1.6rem;
-    //     box-shadow: 2px 2px 5px rgba($color-black-pure, .2);
-    //     resize: none;
-    //     outline: none;
-    //     border-radius: 5px;
-
     &::placeholder {
       color: $color-text-grey;
     }
@@ -89,7 +78,6 @@
     }
 
     &__experience {
-      //width: 80%;
     }
   }
 
@@ -120,20 +108,17 @@
     }
 
     textarea:focus ~ span {
-      //color: $color-lines-focus;
       color: $color-text-blue;
     }
 
     .input,
     textarea {
       &:focus {
-        //border: 2px solid $color-lines-focus;
         border: 2px solid $color-text-blue;
       }
     }
     .input:focus + span,
     textarea:focus + span {
-      //color: $color-lines-focus;
       color: $color-text-blue;
     }
   }
@@ -233,7 +218,6 @@
       border: none;
       background: $color-btn-primary;
       border-radius: 5px;
-      //border: 1px solid $color-lines;
       color: $color-white;
       transition: 0.3s ease;
       box-shadow: 0px 0px 0px rgba($color-black, 0.5);

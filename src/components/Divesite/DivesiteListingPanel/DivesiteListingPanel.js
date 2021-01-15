@@ -6,7 +6,6 @@ import { AuthContext } from "../../../context/AuthContext";
 
 import StarRating from "../../../components/StarRating/StarRating";
 import FavouriteButton from "../../../components/Buttons/FavouriteButton/FavouriteButton";
-import EllipsesButton from "../../../components/Buttons/EllipsesButton/EllipsesButton";
 
 import {
   EditModalContext,
@@ -46,8 +45,6 @@ const DivesiteListingPanel = (props) => {
 
   return (
     <div className={classes.site} onClick={() => setSelectedSite(site)}>
-      {/* <a href={"/divesite/" + site._id} className={classes.site__link} target="_blank" rel="noopener noreferrer">
-                    </a> */}
       <div className={classes.site__imageContainer}>
         <a
           href={"/divesite/" + site._id}
@@ -125,12 +122,6 @@ const DivesiteListingPanel = (props) => {
       <div className={classes.site__ratingsContainer}>
         {/* <StarRating site={site}/> */}
       </div>
-
-      {/* <div className={classes.site__moreDetailsContainer}>
-                                <a href={"/divesite/" + site._id} className={classes.moreDetailsButton}>
-                                        More Details...
-                                    </a>
-                    </div> */}
     </div>
   );
 };

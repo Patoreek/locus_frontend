@@ -22,8 +22,6 @@ import "@reach/combobox/styles.css";
 
 import classes from "./SearchBarMap.module.scss";
 
-import Locate from "../Locate/Locate";
-
 import { ReactComponent as SearchSVG } from "../../assets/icons/magnifying-glass.svg";
 
 const SearchBarMap = (props) => {
@@ -49,8 +47,6 @@ const SearchBarMap = (props) => {
     try {
       const results = await getGeocode({ value });
       const { lat, lng } = await getLatLng(results[0]);
-      // console.log(results);
-      //console.log(lat,lng);
       panTo({ lat, lng });
     } catch (error) {
       console.log(error);
@@ -62,21 +58,16 @@ const SearchBarMap = (props) => {
       <Combobox
         onSelect={async (address) => {
           setValue(address, false);
-          // console.log('[searchbarmap]');
           setLocationName(address);
           setSearchValue(address);
           clearSuggestions();
           try {
             const results = await getGeocode({ address });
             const { lat, lng } = await getLatLng(results[0]);
-            // console.log(results);
-            //console.log(lat,lng);
             panTo({ lat, lng });
           } catch (error) {
             console.log(error);
           }
-
-          //console.log(address);
         }}
       >
         <span className={classes.combobox__title}>Location</span>

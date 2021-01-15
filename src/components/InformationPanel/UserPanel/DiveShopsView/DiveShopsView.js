@@ -34,8 +34,6 @@ const DiveShopsView = (props) => {
 
   const shops = props.shops;
 
-  console.log(shops);
-
   return (
     <div className={classes.diveShopsView}>
       {!addDiveShopModal && !editDiveShopModal && !deleteDiveShopModal && (

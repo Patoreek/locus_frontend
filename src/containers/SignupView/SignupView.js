@@ -157,8 +157,6 @@ const SignupView = () => {
     setErrMsg(errorMessage);
 
     if (errMsg.length === 0) {
-      console.log("All Fields look good... fetching from API...");
-
       return fetch("http://localhost:8080/signup", {
         method: "POST",
         headers: {
@@ -179,14 +177,12 @@ const SignupView = () => {
           return res.json();
         })
         .then((resData) => {
-          console.log(resData);
           if (!resData.success) {
             errorMessage.push(resData.message);
             setIsError(true);
           } else {
             setSuccess(true);
             setSignUpSuccess(true);
-            // errorMessage.push("Sign up successful");
             authDrawerHandler("login");
           }
         })
@@ -196,13 +192,8 @@ const SignupView = () => {
     }
   };
 
-  // useEffect(() => {
-  //     console.log('in Use Effect.... IsError = ' + isError);
-  // }, [isError])
-
   const handleCheckbox = () => {
     setIsChecked(!isChecked);
-    // console.log(isChecked);
   };
 
   return (

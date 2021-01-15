@@ -39,11 +39,8 @@ const DeleteReport = (props) => {
         return res.json();
       })
       .then((result) => {
-        console.log(result);
-        if (!result.success) {
-          //errorMessage.push(result.message);
-          //setIsError(true);
-        } else {
+        //console.log(result);
+        if (result.success) {
           window.location.reload();
         }
       })
