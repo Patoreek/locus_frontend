@@ -1,22 +1,20 @@
 @import "../../../sass/abstracts/variables";
 
 .navbar {
-  background: $color-nav-bg;
+  background: $color-white-pure;
   border-bottom: 1px solid $color-lines;
   height: 6rem;
   .navList {
     height: 100%;
+    width: 100vw;
     padding: 0rem 1rem;
-
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: max-content 1fr max-content;
+    display: flex;
+    justify-content: space-between;
 
     .logoItem {
       float: left;
       height: 100%;
-      width: 100%;
-      margin-right: 5rem;
+      width: auto;
 
       a {
         .logo {
@@ -66,10 +64,11 @@
           .addSVG {
             width: 3.7rem;
             height: 3.7rem;
-            fill: $nav-list-icon-color;
+            //fill: $nav-list-icon-color;
+            fill: $color-text-blue;
 
             &:hover {
-              fill: $nav-list-icon-color-hover;
+              fill: $color-text-blue-hover;
             }
           }
         }
@@ -78,11 +77,11 @@
           width: 4.35rem;
           height: 4.35rem;
           border-radius: 50%;
-          border: 2px solid $nav-list-icon-color;
+          border: 2px solid $color-text-blue;
           transition: 0.3s ease;
 
           &:hover {
-            border: 2px solid $nav-list-icon-color-hover;
+            border: 2px solid $color-text-blue-hover;
             transform: scale(1.05);
           }
         }
@@ -98,7 +97,7 @@
         &__content {
           width: 25rem;
           height: 100%;
-          background: $color-nav-bg;
+          background: $color-white-pure;
           transition: 0.3s ease;
           opacity: 100%;
           padding: 1rem 1rem;
@@ -133,7 +132,7 @@
             top: -0.5rem;
             width: 1.5rem;
             height: 1.5rem;
-            background: $color-nav-bg;
+            background: $color-white-pure;
             clip-path: polygon(50% 25%, 0% 100%, 100% 100%);
           }
         }
@@ -146,7 +145,7 @@
             width: 5rem;
             height: 5rem;
             border-radius: 50%;
-            border: 2px solid $color-text-grey;
+            border: 2px solid $color-text-blue;
           }
         }
 
@@ -292,20 +291,20 @@
         transition: 0.3s ease;
         font-weight: 500;
 
-        span {
-          color: $color-white;
-          text-align: center;
-        }
-
         &:hover {
           transform: translateY(-3px);
+          background: $color-text-blue;
+
+          span {
+            color: $color-white-pure;
+          }
         }
 
         &__login,
         &__signup {
-          box-shadow: 0px 0px 0px 2px $login-nav-color-solid inset;
+          box-shadow: 0px 0px 0px 2px $color-text-blue inset;
           span {
-            color: $login-nav-color-solid;
+            color: $color-text-blue;
             font-family: $font-3-style;
             font-weight: $font-med;
           }

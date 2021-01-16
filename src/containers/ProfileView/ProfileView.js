@@ -252,9 +252,7 @@ const ProfileView = (props) => {
                     <DivesiteListingThumbnail site={report.siteId} />
                   ))}
                   <div className={classes.noMoreSites}>
-                    <p>
-                      {firstName} hasn't made any more reports on his dives.
-                    </p>
+                    <p>{firstName} hasn't visited any other locations.</p>
                   </div>
                 </div>
               </div>

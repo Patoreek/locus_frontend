@@ -41,6 +41,7 @@
         font-family: $font-1-style;
         font-weight: $font-med;
         color: $color-white-pure;
+        text-shadow: 2px 2px 5px rgba($color-black, 0.75);
       }
 
       &__title {
@@ -105,6 +106,7 @@
               text-transform: uppercase;
               font-family: $font-2-style;
               font-weight: $font-bold;
+              text-shadow: 4px 4px 5px rgba($color-black, 0.75);
             }
           }
 
@@ -114,6 +116,7 @@
               font-size: 1.5rem;
               font-family: $font-3-style;
               font-weight: $font-light;
+              text-shadow: 2px 2px 5px rgba($color-text-darkergrey, 0.5);
             }
           }
         }
@@ -166,34 +169,34 @@
 
         .wave1 {
           position: absolute;
-          bottom: -10rem;
+          bottom: 0rem;
           left: 655px;
           z-index: 5;
 
           @include respond(big-desktop) {
             left: 90rem;
-            bottom: 25rem;
+            bottom: 20rem;
           }
         }
 
         .wave2 {
           position: absolute;
-          bottom: 0rem;
+          bottom: 10rem;
           left: 800px;
           z-index: 4;
           @include respond(big-desktop) {
             left: 170rem;
-            bottom: 40rem;
+            bottom: 35rem;
           }
         }
         .wave3 {
           position: absolute;
-          bottom: -8rem;
+          bottom: 2rem;
           right: 0;
           z-index: 3;
           @include respond(big-desktop) {
             right: 85rem;
-            bottom: 30rem;
+            bottom: 25rem;
           }
         }
 
@@ -282,6 +285,7 @@
               font-family: $font-2-style;
               font-weight: $font-bold;
               text-transform: uppercase;
+              text-shadow: 4px 4px 5px rgba($color-black, 0.25);
             }
           }
 
@@ -324,52 +328,62 @@
       }
       &__2 {
         width: 100%;
-        height: 100vh;
+        max-width: 1400px;
+        margin: 0 auto;
+        height: auto;
         background-size: cover;
-        display: grid;
-        grid-gap: 5rem;
-        grid-template-rows: repeat(2, 1fr);
-        grid-template-columns: repeat(2, 1fr);
         position: relative;
         z-index: 20;
+        display: flex;
+        flex-direction: column;
 
-        .mapContainer {
-          grid-row: 1 / 2;
-          grid-column: 2 / 3;
-
+        .topSection {
           display: flex;
-          flex-direction: column;
           justify-content: space-between;
-          width: 50rem;
+          .mapContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            width: 50rem;
 
-          &__text {
-            font-size: 1.8rem;
-            width: 90%;
-            hyphens: auto;
-            font-family: $font-3-style;
-            font-weight: $font-normal;
-            color: $color-white-pure;
-            padding-top: 5rem;
+            &__text {
+              font-size: 1.8rem;
+              width: 90%;
+              hyphens: auto;
+              font-family: $font-3-style;
+              font-weight: $font-normal;
+              color: $color-white-pure;
+              text-shadow: 4px 4px 5px rgba($color-black, 0.5);
+
+              //padding-top: 5rem;
+            }
           }
         }
 
-        .signUpContainer {
-          grid-row: 2 / 3;
-          grid-column: 1 / 2;
-          width: 50rem;
-
+        .botSection {
           display: flex;
-          flex-direction: column;
           justify-content: space-between;
+          padding-top: 2rem;
+          .signUpContainer {
+            grid-row: 2 / 3;
+            grid-column: 1 / 2;
+            width: 50rem;
 
-          &__text {
-            font-size: 1.8rem;
-            width: 90%;
-            hyphens: auto;
-            font-family: $font-3-style;
-            font-weight: $font-normal;
-            color: $color-white-pure;
-            padding-top: 5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+
+            &__text {
+              font-size: 1.8rem;
+              width: 90%;
+              hyphens: auto;
+              font-family: $font-3-style;
+              font-weight: $font-normal;
+              color: $color-white-pure;
+              padding-top: 5rem;
+              text-shadow: 4px 4px 5px rgba($color-black, 0.5);
+            }
           }
         }
 

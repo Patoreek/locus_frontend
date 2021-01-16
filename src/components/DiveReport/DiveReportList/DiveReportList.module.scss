@@ -48,9 +48,6 @@
     box-shadow: 2px 2px 5px rgba($color-black, 0.25);
     border: 1px solid rgba($color-lines, 0.5);
     transition: 0.3s ease;
-    &:hover {
-      transform: scale(1.01);
-    }
 
     .locationContainer {
       grid-row: 1 / 2;
@@ -61,8 +58,18 @@
         font-family: $font-1-style;
         font-weight: $font-med;
         color: $color-black;
+        transition: 0.2s ease;
       }
     }
+
+    &:hover {
+      transform: scale(1.01);
+
+      .location {
+        color: $color-text-blue;
+      }
+    }
+
     .dateContainer {
       grid-row: 2 / 3;
       grid-column: 1 / 2;
@@ -136,32 +143,60 @@
     color: $color-text-grey;
     fill: $color-text-grey;
     transition: all 0.2s ease;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: -10rem;
+      width: 0%;
+      height: 100%;
+      background: $color-text-green;
+      z-index: 5;
+      clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
+      transition: 0.5s ease;
+    }
 
     &:hover {
       background: $color-white-pure;
       color: $color-text-green;
 
       .addSVG {
-        fill: $color-text-green;
+        //fill: $color-text-green;
+        fill: $color-white-pure;
       }
 
       .addReportText {
-        color: $color-text-green;
+        //color: $color-text-green;
+        color: $color-white-pure;
+      }
+
+      &::before {
+        width: 200%;
       }
     }
 
     .addReportText {
       font-size: 2rem;
-      font-family: $font-1-style;
+      font-family: $font-3-style;
       font-weight: $font-med;
-      color: $color-text-darkergrey;
+      color: $color-text-darkgrey;
+      position: relative;
+      z-index: 10;
+      transition: 0.4s ease;
     }
 
     .addSVG {
       width: 3.5rem;
       height: 3.5rem;
-      transition: 0.2s ease;
-      color: $color-text-darkergrey;
+      transition: 0.6s ease;
+      color: $color-text-darkgrey;
+      position: relative;
+      z-index: 10;
     }
   }
 

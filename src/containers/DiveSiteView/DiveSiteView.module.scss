@@ -6,7 +6,7 @@
   padding: 2rem 5rem;
   max-width: 1600px;
   margin: 0 auto;
-  background: #f5f5f5;
+  background: $color-white-pure;
 
   display: grid;
   grid-template-rows: repeat(4, max-content);

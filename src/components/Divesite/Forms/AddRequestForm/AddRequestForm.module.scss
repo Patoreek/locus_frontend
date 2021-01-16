@@ -367,22 +367,27 @@
     justify-content: flex-end;
 
     .cancelBtn {
+      font-size: 1.8rem;
       padding: 1rem 2rem;
-      font-size: 1.6rem;
-      border: none;
-      background: $color-input-bg;
-      border-radius: 5px;
-      border: 1px solid $color-lines;
+      display: flex;
+      justify-content: center;
+      border-radius: 0.5rem;
+      transition: 0.2s ease;
+      box-shadow: 0px 0px 0px 2px $color-text-darkgrey inset;
+      text-align: center;
+      background: transparent;
       outline: none;
-      transition: 0.3s ease;
-      box-shadow: 0px 0px 0px rgba($color-black, 0.5);
+      border: none;
+
+      color: $color-text-darkgrey;
       font-family: $font-1-style;
       font-weight: $font-med;
-      color: $color-text-darkgrey;
 
       &:hover {
-        transform: translate(0px, -3px);
-        box-shadow: 0px 3px 7px rgba($color-black, 0.3);
+        transform: translateY(-3px);
+        box-shadow: 0px 0px 0px 2px $color-text-darkergrey inset;
+        color: $color-text-darkergrey;
+        //background: $color-text-grey;
       }
     }
   }
@@ -395,22 +400,28 @@
     justify-content: flex-start;
 
     .addBtn {
+      font-size: 1.8rem;
       padding: 1rem 2rem;
-      font-size: 1.6rem;
-      border: none;
-      background: $color-btn-add;
-      border-radius: 5px;
-      border: 1px solid $color-lines;
-      color: $color-white;
+      display: flex;
+      justify-content: center;
+      border-radius: 0.5rem;
+      transition: 0.2s ease;
+      box-shadow: 0px 0px 0px 2px $color-text-green inset;
+      text-align: center;
+      background: transparent;
       outline: none;
-      transition: 0.3s ease;
-      box-shadow: 0px 0px 0px rgba($color-black, 0.5);
+      border: none;
+
+      color: $color-text-green;
       font-family: $font-1-style;
       font-weight: $font-med;
 
       &:hover {
-        transform: translate(0px, -3px);
-        box-shadow: 0px 3px 7px rgba($color-black, 0.3);
+        transform: translateY(-3px);
+        color: $color-text-green-hover;
+        box-shadow: 0px 0px 0px 2px $color-text-green-hover inset;
+
+        //background: $login-nav-color-solid;
       }
     }
   }

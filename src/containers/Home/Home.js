@@ -67,7 +67,9 @@ const Home = () => {
               }
             >
               <div className={classes.homeMainPage__notes}>
-                <p>* Currently only NSW dive sites and dive shops available.</p>
+                <p>
+                  * Currently only NSW dive sites and dive shops are available.
+                </p>
                 <p>
                   * QLD, VIC, SA, WA, NT &amp; TAS dive sites and shops to be
                   added.
@@ -88,12 +90,15 @@ const Home = () => {
                     <GlobeSVG className={classes.icon} />
                   </div>
                   <div className={classes.point__title}>
-                    <h4>Dive sites across the globe</h4>
+                    <h4>Dive sites across NSW</h4> {/* //! UPDATE THIS */}
                   </div>
                   <div className={classes.point__description}>
                     <p>
-                      Find dive sites anywhere in the world. With new dive sites
-                      added and updated through the community.
+                      {" "}
+                      {/* //! UPDATE THIS */}
+                      Find dive sites anywhere in the New South Wales. With new
+                      dive sites added and updated through the community. (QLD
+                      coming soon)
                     </p>
                   </div>
                 </div>
@@ -108,9 +113,9 @@ const Home = () => {
                   </div>
                   <div className={classes.point__description}>
                     <p>
-                      No matter what skill you are, there is a dive site for
-                      you. Either for a casual snorkel or a deep wreck dive,
-                      there is a location for everyone!
+                      No matter what skill you are, there is a spot for you.
+                      Either for a casual snorkel or a deep wreck dive, there is
+                      a location for everyone!
                     </p>
                   </div>
                 </div>
@@ -121,13 +126,13 @@ const Home = () => {
                     <BinocularsSVG className={classes.icon} />
                   </div>
                   <div className={classes.point__title}>
-                    <h4>Dive Reports</h4>
+                    <h4>Find a dive shop</h4>
                   </div>
                   <div className={classes.point__description}>
                     <p>
-                      Keep logs of your dives for yourself and others to see.
-                      Explore certain dive sites reports to get real experiences
-                      of peoples dives.
+                      Find Dive shops around NSW. Find out where they dive and
+                      get in contact with them for a booking for a particular
+                      site.
                     </p>
                   </div>
                 </div>
@@ -177,17 +182,17 @@ const Home = () => {
               <div className={classes.contentLeft}>
                 <div className={classes.contentLeft__titleContainer}>
                   <h3>
-                    Snorkel, scuba or free dive, theres locations all around the
-                    world waiting to be explored.
+                    Snorkel, scuba or free dive, there's locations all around
+                    the world waiting to be explored.
                   </h3>
                 </div>
                 <div className={classes.contentLeft__textContainer}>
                   <p>
-                    Locus is a dive site location service for many locations
-                    across the globe. We provide information on theses sites to
-                    help find the most suitable site for you. With sites being
-                    added frequently, you will always find a new place to
-                    explore.
+                    Locus is a dive site location app which marks many
+                    snorkelling and scuba diving locations across the globe. We
+                    provide information on theses sites to help find the most
+                    suitable site for you. With sites being added frequently,
+                    you will always find a new place to explore.
                   </p>
                 </div>
               </div>
@@ -206,41 +211,52 @@ const Home = () => {
             </div>
 
             <div className={classes.homeContent__2}>
-              <img
-                className={`${classes.image} ${classes.image__3}`}
-                src={homeImg3}
-                alt="birds eye view of beach"
-              />
-              <div className={classes.mapContainer}>
-                <p className={classes.mapContainer__text}>
-                  Press the button below to go to the map or scroll up and type
-                  in a location that you want to dive. Explore around the area
-                  to discover the dive sites.
-                </p>
-                <a href="/map" className={`${classes.btn} ${classes.btn__map}`}>
-                  <SearchSVG className={classes.searchSVG} />
-                  Start Searching!
-                </a>
+              <div className={classes.topSection}>
+                <img
+                  className={`${classes.image} ${classes.image__3}`}
+                  src={homeImg3}
+                  alt="man snorkelling and taking a dive underwater"
+                />
+                <div className={classes.mapContainer}>
+                  <p className={classes.mapContainer__text}>
+                    Whether you just want to have a casual snorkel or you want
+                    to find a thrilling dive, Locus gives you options to find
+                    the next location. Dive shops are also available. They
+                    currently show the dive sites they hold events and they also
+                    take bookings for those sites. Press the button below to go
+                    to the Map and start searching for your next adventure!
+                  </p>
+                  <a
+                    href="/map"
+                    className={`${classes.btn} ${classes.btn__map}`}
+                  >
+                    <SearchSVG className={classes.searchSVG} />
+                    Start Searching!
+                  </a>
+                </div>
               </div>
-              <img
-                className={`${classes.image} ${classes.image__4}`}
-                src={homeImg4}
-                alt="turtle gliding through the water"
-              />
-              <div className={classes.signUpContainer}>
-                <p className={classes.signUpContainer__text}>
-                  Come join our community of marine enthusiasts and adventurers
-                  that help provide information to others. You can request to
-                  add a dive site and be able to add dive reports for others to
-                  see and hear your experience.
-                </p>
-                <button
-                  className={`${classes.btn} ${classes.btn__signUp}`}
-                  onClick={signupHandler}
-                >
-                  <DiverSVG className={classes.diverSVG} />
-                  Sign up now!
-                </button>
+              <div className={classes.botSection}>
+                <div className={classes.signUpContainer}>
+                  <p className={classes.signUpContainer__text}>
+                    Come join our community of marine enthusiasts and
+                    adventurers that help provide information to others. You can
+                    request to add dive sites and also be able to add dive
+                    reports for others to see images you have captured and read
+                    your experience.
+                  </p>
+                  <button
+                    className={`${classes.btn} ${classes.btn__signUp}`}
+                    onClick={signupHandler}
+                  >
+                    <DiverSVG className={classes.diverSVG} />
+                    Sign up now!
+                  </button>
+                </div>
+                <img
+                  className={`${classes.image} ${classes.image__4}`}
+                  src={homeImg4}
+                  alt="a group of diver huddled together in the water"
+                />
               </div>
             </div>
           </div>

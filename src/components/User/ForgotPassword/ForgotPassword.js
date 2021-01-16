@@ -56,7 +56,7 @@ const ForgotPassword = () => {
 
       <div className={classes.forgotPw__btnContainer}>
         <button type="submit" onClick={sendEmail} className={classes.btn}>
-          Send Email
+          Send
         </button>
       </div>
 

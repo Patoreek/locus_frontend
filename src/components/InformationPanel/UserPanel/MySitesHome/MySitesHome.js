@@ -127,17 +127,16 @@ const UserSiteList = () => {
               <DiverSVG className={classes.image} />
               <p className={classes.text}>
                 To avoid duplicates dive sites being added, we will review the
-                dive site you wish to add and check whether the dive site is
-                already in the system and check if the dive site a valid dive
-                location.
+                dive site you wish to add and check if the dive site is a valid
+                location and if it's already in the system.
               </p>
             </div>
             <div className={classes.mySitesHome__gather}>
               <p className={classes.text}>
-                We are continously adding new dive sites across the world.
-                Currently working on gathering dive sites and shops in
-                Australia, we hope to expand throughout oceania and the rest of
-                the world.
+                We are continously adding new dive sites onto the platform. Our
+                focus is currently on gathering dive sites and shops in
+                Australia, and will eventually expand throughout Oceania and the
+                rest of the world.
               </p>
               <GlobeSVG className={classes.image} />
             </div>

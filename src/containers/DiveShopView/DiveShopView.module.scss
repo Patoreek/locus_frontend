@@ -3,6 +3,7 @@
 .diveShop {
   min-height: calc(100vh - 6rem);
   margin: 0 auto;
+  background: $color-white-pure;
 
   .banner {
     width: 100%;
@@ -133,11 +134,11 @@
         }
 
         &__diveSites {
-          background: $color-white-pure;
-          padding: 1.5rem 2.5rem;
-          box-shadow: 2px 2px 10px rgba($color-black, 0.25);
-          border-radius: 1rem;
-          overflow: hidden;
+          //background: $color-white-pure;
+          //padding: 1.5rem 2.5rem;
+          //box-shadow: 2px 2px 10px rgba($color-black, 0.25);
+          //border-radius: 1rem;
+          //overflow: hidden;
         }
 
         &__noSites {

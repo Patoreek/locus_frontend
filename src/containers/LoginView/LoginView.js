@@ -28,6 +28,20 @@ const LoginView = () => {
 
   let history = useHistory();
 
+  let passwordInput = document.getElementById("passwordInput");
+
+  window.addEventListener(
+    "keydown",
+    function (event) {
+      switch (event.code) {
+        case "Enter":
+          loginHandler();
+          break;
+      }
+    },
+    true
+  );
+
   const handleCheckbox = () => {
     setIsChecked(!isChecked);
   };
@@ -104,6 +118,7 @@ const LoginView = () => {
             placeholder=""
             onChange={(e) => setInputPassword(e.target.value)}
             className={classes.input}
+            id="passwordInput"
           />
           <span>Password</span>
           <p className={classes.errMsg}>{errMsg}</p>
