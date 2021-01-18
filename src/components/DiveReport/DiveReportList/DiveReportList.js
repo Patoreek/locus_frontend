@@ -66,8 +66,8 @@ const DiveReportList = (props) => {
             <AddSVG className={classes.addBtn} onClick={addHandler} />
           </div>
         </div>
-        {props.diveReports.map((report) => (
-          <div className={classes.diveReportList__reportContainer}>
+        {props.diveReports.map((report, i) => (
+          <div className={classes.diveReportList__reportContainer} key={i}>
             <div
               className={classes.locationContainer}
               onClick={() => previewHandler(report._id)}

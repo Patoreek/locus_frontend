@@ -156,7 +156,7 @@ const SignupView = () => {
     }
     setErrMsg(errorMessage);
 
-    if (errMsg.length === 0) {
+    if (errorMessage.length === 0) {
       return fetch("http://localhost:8080/signup", {
         method: "POST",
         headers: {
@@ -305,8 +305,10 @@ const SignupView = () => {
         </div>
 
         <div className={classes.form__errorContainer}>
-          {errMsg.map((message) => (
-            <p className={classes.errMsg}>{message}</p>
+          {errMsg.map((message, i) => (
+            <p className={classes.errMsg} key={i}>
+              {message}
+            </p>
           ))}
         </div>
 

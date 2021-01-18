@@ -1,0 +1,32 @@
+@import "../../sass/abstracts/variables";
+.underConstruction {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: rgba($color-white-pure, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__svg {
+    width: 50rem;
+  }
+
+  &__text {
+    font-size: 3.5rem;
+    font-family: $font-1-style;
+    font-weight: $font-bold;
+    color: $color-black;
+  }
+
+  &__later {
+    font-size: 1.6rem;
+    font-family: $font-1-style;
+    font-weight: $font-med;
+    color: $color-text-darkergrey;
+  }
+}

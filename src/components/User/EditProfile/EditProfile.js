@@ -16,7 +16,7 @@ const EditProfile = (props) => {
   const [bio, setBio] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
-  const [experience, setExperience] = useState("");
+  const [experience, setExperience] = useState("Snorkeller");
   const [success, setSuccess] = useState(null);
 
   //TODO: ERROR Variables.
@@ -68,76 +68,72 @@ const EditProfile = (props) => {
 
     let errorMessage = [];
 
-    if (!firstName.match(letters)) {
-      if (firstName == "") {
-        errorMessage.push("Please add your first name.");
-        setFirstnameErr(true);
-        setIsError(true);
-      } else {
+    if (firstName) {
+      if (!firstName.match(letters)) {
         errorMessage.push("There are numbers or symbols in your first name.");
         setFirstnameErr(true);
         setIsError(true);
       }
-    }
-
-    if (firstName.length <= 1) {
-      errorMessage.push("Your first name is too short.");
+      if (firstName.length <= 1) {
+        errorMessage.push("Your first name is too short.");
+        setFirstnameErr(true);
+        setIsError(true);
+      }
+    } else {
+      errorMessage.push("Please add your first name.");
       setFirstnameErr(true);
       setIsError(true);
     }
 
-    if (lastName.length <= 2) {
-      errorMessage.push("Your last name is too short.");
-      setLastnameErr(true);
-      setIsError(true);
-    }
-
-    if (!lastName.match(letters)) {
-      if (lastName == "") {
-        errorMessage.push("Please add your last name.");
-        setLastnameErr(true);
-        setIsError(true);
-      } else {
+    if (lastName) {
+      if (!lastName.match(letters)) {
         errorMessage.push("There are numbers or symbols in your last name.");
         setLastnameErr(true);
         setIsError(true);
       }
-    }
-
-    if (bio.length > 255) {
-      errorMessage.push("Bio is too long.");
-      setBioErr(true);
+      if (lastName.length <= 1) {
+        errorMessage.push("Your last name is too short.");
+        setLastnameErr(true);
+        setIsError(true);
+      }
+    } else {
+      errorMessage.push("Please add your last name.");
+      setLastnameErr(true);
       setIsError(true);
     }
 
-    if (!city.match(letters)) {
-      if (city == "") {
-        errorMessage.push("Please add a city.");
-        setCityErr(true);
+    if (bio) {
+      if (bio.length > 255) {
+        errorMessage.push("Bio is too long.");
+        setBioErr(true);
         setIsError(true);
-      } else {
+      }
+    }
+
+    if (city) {
+      if (!city.match(letters)) {
         errorMessage.push("There are numbers or symbols in the city.");
         setCityErr(true);
         setIsError(true);
       }
-    }
-
-    if (!country.match(letters)) {
-      if (country == "") {
-        errorMessage.push("Please add a country.");
-        setCountryErr(true);
-        setIsError(true);
-      } else {
-        errorMessage.push("There are numbers or symbols in the country.");
-        setCountryErr(true);
+      if (city.length < 2) {
+        errorMessage.push("Your city name is too short.");
+        setCityErr(true);
         setIsError(true);
       }
     }
 
-    if (experience == null || experience == "") {
-      errorMessage.push("Please choose your experience from the selection.");
-      setExperienceErr(true);
-      setIsError(true);
+    if (country) {
+      if (!country.match(letters)) {
+        errorMessage.push("There are numbers or symbols in the country.");
+        setCountryErr(true);
+        setIsError(true);
+      }
+      if (country.length <= 3) {
+        errorMessage.push("Your country name is too short.");
+        setCountryErr(true);
+        setIsError(true);
+      }
     }
 
     setErrMsg(errorMessage);
@@ -167,7 +163,7 @@ const EditProfile = (props) => {
         } else {
           setSuccess(true);
           setTimeout(() => {
-            history.push("/profile");
+            window.location.reload();
           }, 1500);
         }
       })

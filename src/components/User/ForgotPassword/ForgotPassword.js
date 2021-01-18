@@ -7,28 +7,32 @@ const ForgotPassword = () => {
   const [success, setSuccess] = useState(null);
 
   const sendEmail = () => {
-    return fetch("http://localhost:8080/user/resetPassword/", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: inputEmail,
-      }),
-    })
-      .then((res) => {
-        return res.json();
+    if (inputEmail) {
+      return fetch("http://localhost:8080/user/resetPassword/", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: inputEmail,
+        }),
       })
-      .then((resData) => {
-        if (resData.success) {
-          setSuccess(true);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        setSuccess(false);
-      });
+        .then((res) => {
+          return res.json();
+        })
+        .then((resData) => {
+          if (resData.success) {
+            setSuccess(true);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setSuccess(false);
+        });
+    } else {
+      setSuccess(false);
+    }
   };
 
   return (

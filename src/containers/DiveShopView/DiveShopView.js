@@ -84,7 +84,7 @@ const DiveShopView = (props) => {
   }, [isLoading]);
 
   return (
-    <div>
+    <div className={classes.container}>
       {!isLoading && (
         <div className={classes.diveShop}>
           {englargeBanner ? (
@@ -147,8 +147,8 @@ const DiveShopView = (props) => {
                   <h3> Sites that {name} dive at</h3>
                 </div>
                 <div className={classes.leftGrid__diveSites}>
-                  {diveSites.map((site) => (
-                    <DivesiteListingPanel site={site} />
+                  {diveSites.map((site, i) => (
+                    <DivesiteListingPanel site={site} key={i} />
                   ))}
                   {diveSites.length == 0 && (
                     <div className={classes.leftGrid__noSites}>

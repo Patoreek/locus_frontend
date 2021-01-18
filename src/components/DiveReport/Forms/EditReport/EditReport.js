@@ -10,14 +10,13 @@ import { FilePond } from "react-filepond";
 import "filepond/dist/filepond.min.css";
 
 const EditReport = (props) => {
-  const [selectedSite, setSelectedSite] = useContext(SiteContext);
   const [account, setAccount] = useContext(AccountContext);
 
-  const [location, setLocation] = useState();
-  const [visibility, setVisibility] = useState();
-  const [duration, setDuration] = useState();
-  const [report, setReport] = useState();
-  const [reportId, setReportId] = useState();
+  const [location, setLocation] = useState("");
+  const [visibility, setVisibility] = useState("");
+  const [duration, setDuration] = useState("");
+  const [report, setReport] = useState("");
+  const [reportId, setReportId] = useState("");
 
   const [locationErr, setLocationErr] = useState();
   const [visibilityErr, setVisibilityErr] = useState();
@@ -166,8 +165,8 @@ const EditReport = (props) => {
           onChange={(e) => setLocation(e.target.value)}
           className={`${classes.input} ${classes.input__location}`}
         >
-          {diveSites.map((site) => (
-            <option value={site._id}>
+          {diveSites.map((site, i) => (
+            <option value={site._id} key={i}>
               {site.name}, {site.area}, {site.country}
             </option>
           ))}

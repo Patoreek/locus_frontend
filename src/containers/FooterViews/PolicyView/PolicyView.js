@@ -2,9 +2,13 @@ import React from "react";
 
 import classes from "./PolicyView.module.scss";
 
+import UnderConstruction from "../../../components/UnderConstruction/UnderConstruction";
+
 const PolicyView = () => {
   return (
     <div className={classes.policy}>
+      <UnderConstruction />
+
       <div className={classes.policy__header}>
         <h1 className={classes.mainHeader}> Locus Private Policy</h1>
       </div>

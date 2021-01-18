@@ -173,9 +173,10 @@ const CommunityPhotos = (props) => {
       {!isLoading && communityImages != [] && (
         <div className={classes.grid}>
           <div className={classes.grid__left}>
-            {leftColImages.map((image) => (
+            {leftColImages.map((image, i) => (
               <div
                 className={classes.imageContainer}
+                key={i}
                 onClick={() => previewImageHandler(image)}
               >
                 <div className={classes.overlay}></div>
@@ -184,9 +185,10 @@ const CommunityPhotos = (props) => {
             ))}
           </div>
           <div className={classes.grid__middle}>
-            {middleColImages.map((image) => (
+            {middleColImages.map((image, i) => (
               <div
                 className={classes.imageContainer}
+                key={i}
                 onClick={() => previewImageHandler(image)}
               >
                 <div className={classes.overlay}></div>
@@ -195,9 +197,10 @@ const CommunityPhotos = (props) => {
             ))}
           </div>
           <div className={classes.grid__right}>
-            {rightColImages.map((image) => (
+            {rightColImages.map((image, i) => (
               <div
                 className={classes.imageContainer}
+                key={i}
                 onClick={() => previewImageHandler(image)}
               >
                 <div className={classes.overlay}></div>

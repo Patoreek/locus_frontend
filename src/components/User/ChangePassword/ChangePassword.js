@@ -10,7 +10,7 @@ const ChangePassword = (props) => {
   const [newPassword, setNewPassword] = useState();
   const [newPassword2, setNewPassword2] = useState();
 
-  const [errMsg, setErrMsg] = useState(null);
+  const [errMsg, setErrMsg] = useState([]);
   const [successMsg, setSuccessMsg] = useState(null);
 
   const cancelHandler = () => {
@@ -35,26 +35,50 @@ const ChangePassword = (props) => {
       })
       .then((resData) => {
         if (resData.success) {
-          setErrMsg(null);
+          setErrMsg([]);
           setSuccessMsg(resData.message);
+        } else {
+          setErrMsg(["Your password is incorrect. please try again."]);
         }
       })
       .catch((err) => {
         console.log(err);
-        setErrMsg("Error. Please Try again.");
+
+        setErrMsg(["Error. Please Try again"]);
         setSuccessMsg(null);
       });
   };
 
   const changeHandler = () => {
+    let errArray = [];
+
     if (password == null || newPassword == null || newPassword2 == null) {
-      setErrMsg("All fields are required.");
+      errArray.push("All fields are required.");
     }
-    if (newPassword != newPassword2) {
-      setErrMsg("Passwords do not match. Please try again.");
+
+    if (password) {
+      if (password.length < 8) {
+        errArray.push(
+          "Your password is not long enough. please re enter your password."
+        );
+      }
     }
-    if (newPassword === newPassword2 && password !== null) {
-      changePassword();
+
+    if (newPassword && newPassword2) {
+      if (newPassword != newPassword2) {
+        errArray.push("New passwords do not match. Please try again.");
+      }
+      if (newPassword.length < 8 || newPassword2.length < 8) {
+        errArray.push("One of the new passwords is not long enough.");
+      }
+    }
+
+    setErrMsg(errArray);
+
+    if (errArray.length == 0) {
+      if (newPassword === newPassword2) {
+        changePassword();
+      }
     }
   };
 
@@ -103,9 +127,9 @@ const ChangePassword = (props) => {
             </button>
           </div>
           <div className={classes.grid__messages}>
-            {errMsg !== null ? (
-              <span className={classes.error}> {errMsg} </span>
-            ) : null}
+            {errMsg.map((msg) => (
+              <p className={classes.error}> {msg} </p>
+            ))}
             {successMsg !== null ? (
               <span className={classes.success}> {successMsg} </span>
             ) : null}

@@ -27,7 +27,7 @@
       font-family: $font-1-style;
       font-weight: $font-bold;
       text-transform: uppercase;
-      text-shadow: 5px 5px 5px rgba($color-black, 0.25);
+      text-shadow: 5px 5px 5px rgba($color-black, 0.35);
     }
 
     &__create,
@@ -50,7 +50,7 @@
           font-family: $font-1-style;
           font-weight: $font-bold;
           text-transform: uppercase;
-          text-shadow: 5px 5px 5px rgba($color-black, 0.25);
+          text-shadow: 5px 5px 5px rgba($color-black, 0.35);
           padding-bottom: 2rem;
         }
 
@@ -58,7 +58,7 @@
           font-size: 1.6rem;
           font-family: $font-3-style;
           font-weight: $font-normal;
-          text-shadow: 2px 2px 5px rgba($color-black, 0.25);
+          text-shadow: 5px 5px 5px rgba($color-black, 0.35);
         }
       }
     }
@@ -70,7 +70,7 @@
         font-size: 1.4rem;
         font-family: $font-3-style;
         font-weight: $font-normal;
-        text-shadow: 2px 2px 5px rgba($color-black, 0.25);
+        text-shadow: 5px 5px 5px rgba($color-black, 0.35);
       }
     }
   }

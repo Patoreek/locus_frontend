@@ -173,9 +173,10 @@ const WeatherContainer = (props) => {
       </div>
 
       <div className={classes.forecastContainer}>
-        {daily.map((day) => (
+        {daily.map((day, i) => (
           <div
             className={classes.dayContainer}
+            key={i}
             onClick={() => setSelectedDay(day)}
           >
             <h3 className={classes.dayContainer__name}>{day.day}</h3>

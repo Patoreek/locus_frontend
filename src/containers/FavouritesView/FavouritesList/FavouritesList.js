@@ -46,8 +46,8 @@ const FavouritesList = (props) => {
       )}
       {favourites.length > 0 && (
         <div className={classes.favourites}>
-          {favourites.map((favourite) => (
-            <DivesiteListingPanel site={favourite} />
+          {favourites.map((favourite, i) => (
+            <DivesiteListingPanel site={favourite} key={i} />
           ))}
         </div>
       )}

@@ -20,21 +20,21 @@ const AddRequestForm = (props) => {
 
   const [showSuccessfulRequest, setShowSuccessfulRequest] = useState(false); //! change to FALSE
 
-  const [name, setName] = useState(null);
-  const [suburb, setSuburb] = useState(null);
-  const [city, setCity] = useState(null);
-  const [state, setState] = useState(null);
-  const [country, setCountry] = useState(null);
-  const [description, setDescription] = useState(null);
+  const [name, setName] = useState("");
+  const [suburb, setSuburb] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [country, setCountry] = useState("");
+  const [description, setDescription] = useState("");
   const [experience, setExperience] = useState("Snorkel Friendly");
   const [siteType, setSiteType] = useState("reef");
   const [access, setAccess] = useState("rocks");
-  const [maxDepth, setMaxDepth] = useState();
-  const [avgDepth, setAvgDepth] = useState();
-  const [minTemp, setMinTemp] = useState();
-  const [maxTemp, setMaxTemp] = useState();
-  const [minVis, setMinVis] = useState();
-  const [maxVis, setMaxVis] = useState();
+  const [maxDepth, setMaxDepth] = useState("");
+  const [avgDepth, setAvgDepth] = useState("");
+  const [minTemp, setMinTemp] = useState("");
+  const [maxTemp, setMaxTemp] = useState("");
+  const [minVis, setMinVis] = useState("");
+  const [maxVis, setMaxVis] = useState("");
   const [suitable, setSuitable] = useState("Great For All");
 
   const coordsLat = coords.lat;
@@ -67,6 +67,8 @@ const AddRequestForm = (props) => {
     var numbers = /^[1-9]\d*$/;
 
     let errorMessage = [];
+
+    console.log("adding divesite...");
 
     if (name) {
       if (!name.match(letters)) {
@@ -286,7 +288,8 @@ const AddRequestForm = (props) => {
 
     //! STATE HAS TO CHANGE BEFORE IT CHECKS THIS SO IT WORKS ON ONE CLICK;
 
-    if (isError == false || (isError != null && !isError)) {
+    if (errorMessage.length == 0) {
+      console.log("no errors");
       return fetch("http://localhost:8080/diveSites/addRequestSite", {
         method: "POST",
         headers: {

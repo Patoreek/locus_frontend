@@ -28,19 +28,22 @@ const LoginView = () => {
 
   let history = useHistory();
 
-  let passwordInput = document.getElementById("passwordInput");
+  // let passwordInput = document.getElementById("passwordInput");
 
-  window.addEventListener(
-    "keydown",
-    function (event) {
-      switch (event.code) {
-        case "Enter":
-          loginHandler();
-          break;
-      }
-    },
-    true
-  );
+  // window.addEventListener(
+  //   "keydown",
+  //   function (event) {
+  //     switch (event.code) {
+  //       case "Enter":
+  //         setTimeout(() => {
+  //           loginHandler();
+  //           window.location.reload();
+  //         }, 1000);
+  //         break;
+  //     }
+  //   },
+  //   true
+  // );
 
   const handleCheckbox = () => {
     setIsChecked(!isChecked);
@@ -50,30 +53,34 @@ const LoginView = () => {
     const email = inputEmail;
     const password = inputPassword;
 
-    return fetch("http://localhost:8080/login", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    })
-      .then((res) => {
-        return res.json();
+    if (email && password) {
+      return fetch("http://localhost:8080/login", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
       })
-      .then((resData) => {
-        setIsAuth(true);
-        setAccount(resData);
-        setAuthDrawer(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setErrMsg("Invalid Username and/or password.");
-        setIsAuth(false);
-      });
+        .then((res) => {
+          return res.json();
+        })
+        .then((resData) => {
+          setIsAuth(true);
+          setAccount(resData);
+          setAuthDrawer(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setErrMsg("Invalid Username and/or password.");
+          setIsAuth(false);
+        });
+    } else {
+      setErrMsg("Please fill out both the fields above.");
+    }
   };
 
   return (

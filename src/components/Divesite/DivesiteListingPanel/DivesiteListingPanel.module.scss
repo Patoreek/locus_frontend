@@ -11,7 +11,7 @@
   box-shadow: 2px 2px 5px rgba($color-black, 0.25);
   position: relative;
   overflow: hidden;
-  width: 98%;
+  width: 99%;
 
   //* HIDDEN LAYER
   &__link {
@@ -90,6 +90,7 @@
         font-family: $font-1-style;
         font-weight: $font-bold;
         color: $color-black;
+        transition: 0.2s ease;
 
         &:hover {
           color: $color-text-blue;

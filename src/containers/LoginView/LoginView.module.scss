@@ -217,6 +217,14 @@
       input[type="checkbox"] {
         position: relative;
         cursor: pointer;
+        transform: translate(1px, 1px);
+
+        &:focus {
+          outline: none;
+          &::before {
+            border: 2px solid $color-text-blue;
+          }
+        }
       }
       input[type="checkbox"]:before {
         content: "";
@@ -229,6 +237,7 @@
         border: 2px solid $color-lines;
         border-radius: 3px;
         background-color: white;
+        transform: translate(-1px, -1px);
       }
       input[type="checkbox"]:checked:before {
         border: 2px solid $color-text-blue;
@@ -244,8 +253,8 @@
         -ms-transform: rotate(45deg);
         transform: rotate(45deg);
         position: absolute;
-        top: 2px;
-        left: 6px;
+        top: 1px;
+        left: 5px;
       }
     }
 

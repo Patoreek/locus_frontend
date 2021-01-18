@@ -44,7 +44,11 @@ const DivesiteListingPanel = (props) => {
   };
 
   return (
-    <div className={classes.site} onClick={() => setSelectedSite(site)}>
+    <div
+      className={classes.site}
+      onClick={() => setSelectedSite(site)}
+      key={site._id}
+    >
       <div className={classes.site__imageContainer}>
         <a
           href={"/divesite/" + site._id}

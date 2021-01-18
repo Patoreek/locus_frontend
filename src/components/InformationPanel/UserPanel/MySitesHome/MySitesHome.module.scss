@@ -11,6 +11,7 @@
 
 .mySitesHome {
   padding: 2rem;
+  padding-bottom: 7.5rem;
   position: relative;
   background: url("../../../../assets/images/AddDiveSiteBG.svg");
   background-position: cover;
@@ -24,6 +25,7 @@
     font-family: $font-1-style;
     font-weight: $font-bold;
     color: #0a339e;
+    text-shadow: 5px 5px 5px rgba($color-text-darkergrey, 0.25);
   }
 
   &__duplicate,
@@ -39,6 +41,7 @@
       font-weight: $font-med;
       color: $color-black;
       flex-basis: 100%;
+      text-shadow: 5px 5px 5px rgba($color-text-darkergrey, 0.25);
     }
 
     .image {

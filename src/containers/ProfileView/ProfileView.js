@@ -51,10 +51,6 @@ const ProfileView = (props) => {
 
   let history = useHistory();
 
-  if (!isAuth) {
-    history.replace("/login");
-  }
-
   useEffect(() => {
     if (editProfile) {
       setEditModal(true);
@@ -248,8 +244,8 @@ const ProfileView = (props) => {
               </h4>
               <div className={classes.divedAtContainer}>
                 <div className={classes.sliderContainer}>
-                  {reports.map((report) => (
-                    <DivesiteListingThumbnail site={report.siteId} />
+                  {reports.map((report, i) => (
+                    <DivesiteListingThumbnail site={report.siteId} key={i} />
                   ))}
                   <div className={classes.noMoreSites}>
                     <p>{firstName} hasn't visited any other locations.</p>
@@ -262,8 +258,8 @@ const ProfileView = (props) => {
           {reports != [] && (
             <div className={classes.reportsContainer}>
               <h4>Dive Reports ({reports.length})</h4>
-              {reports.map((report) => (
-                <DisplayReport report={report} />
+              {reports.map((report, i) => (
+                <DisplayReport report={report} key={i} />
               ))}
             </div>
           )}
@@ -281,8 +277,8 @@ const ProfileView = (props) => {
             <h3 className={classes.header}>{firstName}'s Favourites</h3>
             <div className={classes.favourites}>
               {favourites.length > 0
-                ? favourites.map((favourite) => (
-                    <DivesiteListingPanel site={favourite.site} />
+                ? favourites.map((favourite, i) => (
+                    <DivesiteListingPanel site={favourite.site} key={i} />
                   ))
                 : null}
               {favourites.length <= 0 && (

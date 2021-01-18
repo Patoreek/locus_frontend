@@ -116,7 +116,7 @@ export const AuthProvider = (props) => {
 
   const [locationName, setLocationName] = useState();
 
-  const [searchValue, setSearchValue] = useState();
+  const [searchValue, setSearchValue] = useState("");
 
   const [globalLoader, setGlobalLoader] = useState({
     //* TRUE = is currently loading || FALSE = is done loading

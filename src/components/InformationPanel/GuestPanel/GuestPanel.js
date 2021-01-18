@@ -78,7 +78,14 @@ const GuestPanel = () => {
 
   const loadDiveSiteInBounds = useContext(LoadDiveSiteInBoundsContext);
 
+  const [hightlightFilter, setHighlightFilter] = useState(false);
+
+  const [initalLoad, setInitalLoad] = useState(false);
+
+  const [filterPressed, setFilterPressed] = useState(false);
+
   useEffect(() => {
+    setInitalLoad(true);
     return () => {
       setScrollCounter(0);
     };
@@ -94,6 +101,12 @@ const GuestPanel = () => {
     }
   }, [diveSites, diveShops]);
 
+  useEffect(() => {
+    if (initalLoad) {
+      setHighlightFilter(true);
+    }
+  }, [scubaFilter, snorkelFilter]);
+
   let timer;
 
   const fetchData = () => {
@@ -107,6 +120,7 @@ const GuestPanel = () => {
   };
 
   const filterHandler = () => {
+    setHighlightFilter(false);
     const mapBounds = mapRef.current.getBounds();
     loadDiveSiteInBounds(mapBounds, setGlobalLoader);
     loadDiveSitesInBoundsInfinite(mapBounds, "TRUE");
@@ -122,8 +136,9 @@ const GuestPanel = () => {
           <OrangeMarkerSVG className={classes.marker} />
         </div>
         <p className={classes.topSection__totalSites}>
-          {diveSites ? diveSites.length : "0"} sites ·{" "}
-          {locationName ? locationName : null}
+          {diveSites && diveSites.length < 100 ? diveSites.length : null}
+          {diveSites && diveSites.length > 100 ? "100+" : null}
+          {!diveSites ? "0" : null} sites · {locationName ? locationName : null}
           {!locationName && !globalLoader.diveshops && !globalLoader.divesites
             ? geoArea.area + " · " + geoArea.state
             : null}
@@ -134,47 +149,60 @@ const GuestPanel = () => {
             ? "near " + geoArea.area + ", " + geoArea.state
             : null}
         </h3>
-        <span
-          className={`${classes.topSection__link} ${
-            list == "DiveSites" ? classes.topSection__linkActive : null
-          }`}
-          onClick={() => setList("DiveSites")}
-        >
-          ({diveSites.length}) Dive Sites
-        </span>
-        <span className={classes.topSection__seeLinkSpacer}>·</span>
-        <span
-          className={`${classes.topSection__link} ${
-            list == "DiveShops" ? classes.topSection__linkActive : null
-          }`}
-          onClick={() => setList("DiveShops")}
-        >
-          ({diveShops.length}) See Dive Shops
-        </span>
 
-        <div className={classes.topSection__filter}>
-          <div className={classes.scubaFilter}>
-            <input
-              type="checkbox"
-              checked={scubaFilter}
-              onChange={() => setScubaFilter(!scubaFilter)}
-              className={classes.scubaFilter__checkbox}
-            />
-            <span className={classes.scubaFilter__label}> Scuba </span>
+        <div className={classes.optionsContainer}>
+          <div className={classes.optionsContainer__listType}>
+            <span
+              className={`${classes.link} ${
+                list == "DiveSites" ? classes.linkActive : null
+              }`}
+              onClick={() => setList("DiveSites")}
+            >
+              ({diveSites.length}) Dive Sites
+            </span>
+            <span className={classes.linkSpacer}>·</span>
+            <span
+              className={`${classes.link} ${
+                list == "DiveShops" ? classes.linkActive : null
+              }`}
+              onClick={() => setList("DiveShops")}
+            >
+              ({diveShops.length}) See Dive Shops
+            </span>
           </div>
-          <div className={classes.snorkelFilter}>
-            <input
-              type="checkbox"
-              checked={snorkelFilter}
-              onChange={() => setSnorkelFilter(!snorkelFilter)}
-              className={classes.snorkelFilter__checkbox}
-            />
-            <span className={classes.snorkelFilter__label}> Snorkel </span>
-          </div>
-          <div className={classes.filterBtn}>
-            <button className={classes.btn} onClick={filterHandler}>
-              Filter
-            </button>
+
+          <div className={classes.optionsContainer__filter}>
+            <div className={classes.filter}>
+              <div className={classes.filter__scubaFilter}>
+                <input
+                  type="checkbox"
+                  checked={scubaFilter}
+                  onChange={() => setScubaFilter(!scubaFilter)}
+                  className={classes.filter__checkbox}
+                />
+                <span className={classes.filter__label}> Scuba </span>
+              </div>
+              <div className={classes.filter__snorkelFilter}>
+                <input
+                  type="checkbox"
+                  checked={snorkelFilter}
+                  onChange={() => setSnorkelFilter(!snorkelFilter)}
+                  className={classes.filter__checkbox}
+                />
+                <span className={classes.filter__label}> Snorkel </span>
+              </div>
+
+              <div className={classes.filterBtn}>
+                <button
+                  className={`${classes.btn}  ${
+                    hightlightFilter ? classes.highlight : null
+                  }`}
+                  onClick={filterHandler}
+                >
+                  Filter
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -204,8 +232,8 @@ const GuestPanel = () => {
             scrollableTarget="scrollableDiv"
           >
             <div>
-              {panelDiveSites.map((site) => (
-                <DivesiteListingPanel site={site} />
+              {panelDiveSites.map((site, i) => (
+                <DivesiteListingPanel site={site} key={i} />
               ))}
             </div>
           </InfiniteScroll>
@@ -237,8 +265,8 @@ const GuestPanel = () => {
           >
             {list == "DiveShops" && (
               <div>
-                {diveShops.map((shop) => (
-                  <DiveshopListingPanel shop={shop} />
+                {diveShops.map((shop, i) => (
+                  <DiveshopListingPanel shop={shop} key={i} />
                 ))}
               </div>
             )}

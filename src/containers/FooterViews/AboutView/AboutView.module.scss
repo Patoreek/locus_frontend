@@ -1,25 +1,32 @@
 @import "../../../sass/abstracts/variables";
 
 .aboutUsPage {
-    .aboutUs, .mission, .overview, .guide {
-        padding: 3rem 0rem;
+  position: relative;
+  width: 100vw;
+  min-height: 85vh;
+  .aboutUs,
+  .mission,
+  .overview,
+  .guide {
+    display: none; //! CHANGE WHEN I WANT TO SHOW
+    padding: 3rem 0rem;
 
-        &__header {
-            padding-bottom: 1.5rem;
-        }
+    &__header {
+      padding-bottom: 1.5rem;
     }
+  }
 
-    .header {
-        font-size: 2.5rem;
-        font-family: $font-1-style;
-        font-weight: $font-bold;
-        color: $color-black;
-    }
+  .header {
+    font-size: 2.5rem;
+    font-family: $font-1-style;
+    font-weight: $font-bold;
+    color: $color-black;
+  }
 
-    .text {
-        font-size: 1.8rem;
-        font-family: $font-3-style;
-        font-weight: $font-normal;
-        color: $color-text-darkergrey;
-    }
+  .text {
+    font-size: 1.8rem;
+    font-family: $font-3-style;
+    font-weight: $font-normal;
+    color: $color-text-darkergrey;
+  }
 }

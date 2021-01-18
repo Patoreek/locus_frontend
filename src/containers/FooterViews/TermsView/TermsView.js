@@ -1,22 +1,23 @@
 import React from "react";
 
 import classes from "./TermsView.module.scss";
+import UnderConstruction from "../../../components/UnderConstruction/UnderConstruction";
 
 const TermsView = () => {
   return (
     <div className={classes.tos}>
+      <UnderConstruction />
+
       <div className={classes.tos__header}>
         <h1 className={classes.mainHeader}> Locus Terms of Service</h1>
       </div>
       <div className={classes.tos__intro}>
         <h3 className={classes.header}>Introduction</h3>
         <p className={classes.paragraph}>
-          Welcome to Leafedout.com (the “Site”). Please review the following
-          Terms of Use carefully because they represent a binding agreement
-          (“Agreement”) between you and Leafedout (the “Company”). By using the
-          Site, its “Premium Vendors” or “Vendor of the Week” services (the
-          “Premium Services”), or any other services provided in connection with
-          the Site (collectively the “Services”), you agree to abide by these
+          Welcome to Locus. Please review the following Terms of Use carefully
+          because they represent a binding agreement (“Agreement”) between you
+          and Locus (the “Company”). By using the Site, any of the services
+          provided in connection with the Site, you agree to abide by these
           Terms of Use, as they may be amended by the Company from time to time
           in its sole discretion. If at any time you find these Terms of Use
           unacceptable, you must immediately leave the Site and cease all use of
@@ -29,9 +30,9 @@ const TermsView = () => {
       <div className={classes.tos__privacy}>
         <h3 className={classes.header}>Privacy Policy</h3>
         <p className={classes.paragraph}>
-          The Company (LeafedOut) respects the privacy of its Service users.
-          Please refer to the Company’s Privacy Policy(found in the Privacy/TOS
-          section of the site), which explains how we collect, use, and disclose
+          The Company (Locus) respects the privacy of its Service users. Please
+          refer to the Company’s Privacy Policy(found in the Privacy/TOS section
+          of the site), which explains how we collect, use, and disclose
           information that pertains to your privacy. When you access or use the
           Service, you signify your agreement to this Privacy Policy.
         </p>
@@ -41,17 +42,17 @@ const TermsView = () => {
         <h3 className={classes.header}>About the Services</h3>
 
         <p className={classes.paragraph}>
-          The Services allow you to connect and message with other people who
-          can legally possess and use marijuana based on the laws of their
-          respective states and/or counties, whether such possession and use is
-          recreationally or medically legal. The Site may also have among its
-          registered users third-party businesses offering content, products, or
-          services which may be procured through third-party websites,
-          applications, or advertisements (“Third-Party Providers”). Your use of
-          such content, products, or services will be subject to the respective
-          terms of use and privacy policies of these Third-Party Providers. The
-          Company has no control over the content and performance of these
-          Third-Party Providers.
+          The Services allow you to find locations, find shops, connect and
+          message with other people who are interested in Scuba diving
+          predominately. The site also suits snorkellers and other water
+          activities. The Site may also have among its registered users
+          third-party businesses offering content, products, or services which
+          may be procured through third-party websites, applications, or
+          advertisements (“Third-Party Providers”). Your use of such content,
+          products, or services will be subject to the respective terms of use
+          and privacy policies of these Third-Party Providers. The Company has
+          no control over the content and performance of these Third-Party
+          Providers.
         </p>
       </div>
       <hr />
@@ -60,17 +61,16 @@ const TermsView = () => {
           Registration; Rules for user conduct and use of the service
         </h3>
         <p className={classes.paragraph}>
-          You need to be at least 18 years old and a resident of the United
-          States to register for and use the Service. You must abide by any
-          legal guidelines around the usage and/or donation of cannabis and
-          cannabis related product based in your respective state and county. If
-          you are a user who signs up for the Service, it will create a
-          personalized account which includes a unique username and a password
-          to access the Service and to receive messages from other users . You
-          agree to notify us immediately of any unauthorized use of your
-          password and/or account. The Company will not be responsible for any
-          liabilities, losses, or damages arising out of the unauthorized use of
-          your member name, password and/or account.
+          You need to be at least 18 years old to register for and use the
+          Service. You must abide by any legal guidelines regarding licensing
+          and locations based in your respective state and county. If you are a
+          user who signs up for the Service, it will create a personalized
+          account which includes a unique username and a password to access the
+          Service and to receive messages from other users . You agree to notify
+          us immediately of any unauthorized use of your password and/or
+          account. The Company will not be responsible for any liabilities,
+          losses, or damages arising out of the unauthorized use of your member
+          name, password and/or account.
         </p>
       </div>
       <hr />
@@ -145,7 +145,7 @@ const TermsView = () => {
           violates, or is alleged to violate, the law or this agreement or which
           might be offensive, or that might violate the rights, harm, or
           threaten the safety of users or others.. If you become aware of misuse
-          of our Service, please contact us support@leafedout.com
+          of our Service, please contact us locus@gmail.com
         </p>
       </div>
       <hr />
@@ -154,6 +154,7 @@ const TermsView = () => {
           Copyright Complaints and Copyright Agent
         </h3>
         <p className={classes.paragraph}>
+          {/* //! MIGHT NEED AN AUSTRALIAN ONE FOR THIS */}
           (a) Termination of Repeat Infringer Accounts. The Company respects the
           intellectual property rights of others and requests that the users do
           the same. Pursuant to 17 U.S.C. 512(i) of the United States Copyright
@@ -217,20 +218,19 @@ const TermsView = () => {
           You warrant and represent that you are at least 18 years old and that
           you are legally able to enter into this Agreement. You warrant and
           represent that your intended and actual use of the Site and the
-          Services will not violate the laws of the state of your domicile,
-          including to the extent those laws make possession and use of
-          marijuana illegal. You acknowledge and agree that Company makes no
-          guarantees about, and assumes no responsibility for, the accuracy,
-          content, or quality of any of the content, products, or services
-          offered by Third-Party Providers. You acknowledge and agree that the
-          Company is not affiliated with, nor does it endorse in any way, either
-          expressly or impliedly through mere inclusion on the Site, any of the
-          Third-Party Providers, or any of their services, products, or content.
-          You further understand and agree that the Company is not responsible
-          or liable to you for any loss or damages related to the behavior, acts
-          or omissions of, or the results of any interaction with, any
-          Third-Party Provider or Site user, or the features, functionality or
-          content of their respective websites or applications.
+          Services will not violate the laws of the state of your domicile. You
+          acknowledge and agree that Company makes no guarantees about, and
+          assumes no responsibility for, the accuracy, content, or quality of
+          any of the content, products, or services offered by Third-Party
+          Providers. You acknowledge and agree that the Company is not
+          affiliated with, nor does it endorse in any way, either expressly or
+          impliedly through mere inclusion on the Site, any of the Third-Party
+          Providers, or any of their services, products, or content. You further
+          understand and agree that the Company is not responsible or liable to
+          you for any loss or damages related to the behavior, acts or omissions
+          of, or the results of any interaction with, any Third-Party Provider
+          or Site user, or the features, functionality or content of their
+          respective websites or applications.
         </p>
       </div>
       <hr />
@@ -240,6 +240,7 @@ const TermsView = () => {
         </h3>
 
         <p className={classes.paragraph}>
+          {/* //! CHANGE THIS ALSO???? */}
           TO THE EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE
           COMPANY, ITS AFFILIATES, DIRECTORS,OR EMPLOYEES, OR ITS LICENSORS OR
           PARTNERS, BE LIABLE TO YOU FOR ANY HARM, LOSS OF PROFITS, USE, OR
@@ -333,6 +334,7 @@ const TermsView = () => {
       <div className={classes.tos__generalTerms}>
         <h3 className={classes.header}>General Terms</h3>
         <p className={classes.paragraph}>
+          {/* //! CHANGE THIS */}
           If any part of this Agreement is held invalid or unenforceable, that
           portion of the Agreement will be construed consistent with applicable
           law. The remaining portions will remain in full force and effect. Any

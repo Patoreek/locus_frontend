@@ -1,10 +1,12 @@
 import React from "react";
-
 import classes from "./NewsView.module.scss";
+
+import UnderConstruction from "../../../components/UnderConstruction/UnderConstruction";
 
 const NewsView = () => {
   return (
     <div className={classes.news}>
+      <UnderConstruction />
       <div className={classes.news__header}>
         <h1 className={classes.header}>Locus News</h1>
       </div>

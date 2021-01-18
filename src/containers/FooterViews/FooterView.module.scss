@@ -1,8 +1,10 @@
+@import "../../sass/abstracts/variables";
 .footerView {
-  padding: 0rem 5rem;
   min-height: 85vh;
+  margin: 0 auto;
+  background: $color-white-pure;
+
   .page {
-    padding: 1rem;
     max-width: 1400px;
     margin: 0 auto;
   }

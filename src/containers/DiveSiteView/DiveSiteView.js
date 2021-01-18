@@ -9,8 +9,22 @@ import StarRating from "../../components/StarRating/StarRating";
 import Comments from "../../components/Comments/Comments";
 import FavouriteButton from "../../components/Buttons/FavouriteButton/FavouriteButton";
 
-import { ReactComponent as ShoreSVG } from "../../assets/icons/shore.svg";
+//* ACCESS ICONS
+import { ReactComponent as BeachSVG } from "../../assets/icons/shore.svg";
+import { ReactComponent as DockSVG } from "../../assets/icons/dock.svg";
+import { ReactComponent as BoatSVG } from "../../assets/icons/boat.svg";
+import { ReactComponent as RocksSVG } from "../../assets/icons/rocks.svg";
+import { ReactComponent as RampSVG } from "../../assets/icons/ramp.svg";
+
+//* SITE TYPE ICONS
 import { ReactComponent as ReefSVG } from "../../assets/icons/reef.svg";
+import { ReactComponent as BridgeSVG } from "../../assets/icons/bridge.svg";
+import { ReactComponent as CaveSVG } from "../../assets/icons/cave.svg";
+import { ReactComponent as DeepSVG } from "../../assets/icons/deep.svg";
+import { ReactComponent as DriftSVG } from "../../assets/icons/drift.svg";
+import { ReactComponent as IceSVG } from "../../assets/icons/ice.svg";
+import { ReactComponent as WreckSVG } from "../../assets/icons/wreck.svg";
+
 import { ReactComponent as DepthSVG } from "../../assets/icons/depth.svg";
 import { ReactComponent as XpSVG } from "../../assets/icons/experience.svg";
 import { ReactComponent as TemperatureSVG } from "../../assets/icons/temperature.svg";
@@ -33,7 +47,7 @@ import placeholderImage from "../../assets/images/placeholder_image.png";
 
 import classes from "./DiveSiteView.module.scss";
 
-const Details = (props) => {
+const DiveSiteView = (props) => {
   const siteId = props.match.params.id;
 
   const [selectedSite, setSelectedSite] = useContext(SiteContext);
@@ -230,7 +244,7 @@ const Details = (props) => {
   };
 
   return (
-    <div>
+    <div className={classes.container}>
       {!isLoading && (
         <div className={classes.divesite}>
           {enlargeImage && (
@@ -275,9 +289,10 @@ const Details = (props) => {
             </div>
 
             <div className={classes.rightContainer}>
-              {siteImages.map((image) => (
+              {siteImages.map((image, i) => (
                 <div
                   className={classes.imageContainer}
+                  key={i}
                   onClick={() => {
                     imageHandler(image);
                   }}
@@ -288,8 +303,8 @@ const Details = (props) => {
                   />
                 </div>
               ))}
-              {placeholders.map((placeholder) => (
-                <div className={classes.imageContainer}>
+              {placeholders.map((placeholder, i) => (
+                <div className={classes.imageContainer} key={i}>
                   <img className={classes.image} src={placeholderImage} />
                 </div>
               ))}
@@ -333,7 +348,7 @@ const Details = (props) => {
                 {/* <StarRating site={selectedSite}/> */}
               </div>
               <div className={classes.ratingsContainer__favBtn}>
-                <FavouriteButton site={selectedSite} />
+                {isAuth ? <FavouriteButton site={selectedSite} /> : null}
               </div>
             </div>
           </div>
@@ -341,13 +356,52 @@ const Details = (props) => {
           <div className={classes.leftContainer}>
             <div className={classes.leftContainer__points}>
               <div className={classes.point}>
-                <ShoreSVG className={classes.point__icon} />
+                {siteAccess == "Beach" ? (
+                  <BeachSVG className={classes.point__icon} />
+                ) : null}
+                {siteAccess == "Boat" ? (
+                  <BoatSVG className={classes.point__icon} />
+                ) : null}
+                {siteAccess == "Rocks" ? (
+                  <RocksSVG className={classes.point__icon} />
+                ) : null}
+                {siteAccess == "Ramp" ? (
+                  <RampSVG className={classes.point__icon} />
+                ) : null}
+                {siteAccess == "Dock" ? (
+                  <DockSVG className={classes.point__icon} />
+                ) : null}
+
                 <div className={classes.point__text}>
                   <span>Access from {siteAccess}</span>
                 </div>
               </div>
               <div className={classes.point}>
-                <ReefSVG className={classes.point__icon} />
+                {siteType == "Reef" ? (
+                  <ReefSVG className={classes.point__icon} />
+                ) : null}
+                {siteType == "Wall" ? (
+                  <ReefSVG className={classes.point__icon} />
+                ) : null}
+                {siteType == "Bridge" ? (
+                  <BridgeSVG className={classes.point__icon} />
+                ) : null}
+                {siteType == "Cave" ? (
+                  <CaveSVG className={classes.point__icon} />
+                ) : null}
+                {siteType == "Deep" ? (
+                  <DeepSVG className={classes.point__icon} />
+                ) : null}
+                {siteType == "Drift" ? (
+                  <DriftSVG className={classes.point__icon} />
+                ) : null}
+                {siteType == "Ice" ? (
+                  <IceSVG className={classes.point__icon} />
+                ) : null}
+                {siteType == "Wreck" ? (
+                  <WreckSVG className={classes.point__icon} />
+                ) : null}
+
                 <div className={classes.point__text}>
                   <span>{siteType} Dive</span>
                 </div>
@@ -407,8 +461,8 @@ const Details = (props) => {
             {reports != [] && (
               <div className={classes.leftContainer__reportsContainer}>
                 <h4>Dive Reports ({reports.length})</h4>
-                {reports.map((report) => (
-                  <DisplayReport report={report} />
+                {reports.map((report, i) => (
+                  <DisplayReport report={report} key={i} />
                 ))}
               </div>
             )}
@@ -473,8 +527,8 @@ const Details = (props) => {
                   </p>
                 </div>
               )}
-              {shops.map((shop) => (
-                <DiveshopListingPanel shop={shop} />
+              {shops.map((shop, i) => (
+                <DiveshopListingPanel shop={shop} key={i} />
               ))}
             </div>
 
@@ -491,8 +545,8 @@ const Details = (props) => {
                   </p>
                 </div>
               )}
-              {nearbySites.map((site) => (
-                <DivesiteListingPanel site={site} />
+              {nearbySites.map((site, i) => (
+                <DivesiteListingPanel site={site} key={i} />
               ))}
             </div>
           </div>
@@ -507,4 +561,4 @@ const Details = (props) => {
   );
 };
 
-export default Details;
+export default DiveSiteView;

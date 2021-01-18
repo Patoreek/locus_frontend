@@ -2,12 +2,10 @@ import React, { useState, useContext, useEffect } from "react";
 import classes from "./DiveReportForm.module.scss";
 
 import { AccountContext } from "../../../../context/AuthContext";
-import { SiteContext } from "../../../../context/DiveSiteContext";
 
 import { ReactComponent as BackSVG } from "../../../../assets/icons/arrow-left.svg";
 
 const DiveReportForm = (props) => {
-  const [selectedSite, setSelectedSite] = useContext(SiteContext);
   const [account, setAccount] = useContext(AccountContext);
 
   const [location, setLocation] = useState();
@@ -147,16 +145,17 @@ const DiveReportForm = (props) => {
       <div className={classes.form__backContainer}>
         <BackSVG className={classes.backSVG} onClick={cancelHandler} />
       </div>
-
       <div className={classes.form__locationContainer}>
         <select
           value={location}
           onChange={(e) => setLocation(e.target.value)}
           className={`${classes.input} ${classes.input__location}`}
         >
-          {diveSites.map((site) => (
-            <option value={site._id}>
-              {site.name}, {site.suburb}, {site.country}
+          {diveSites.map((site, i) => (
+            <option value={site._id} key={i}>
+              {site.name},{" "}
+              {site.suburb == "N/A" || !site.suburb ? null : site.suburb + ","}
+              {site.country}
             </option>
           ))}
         </select>

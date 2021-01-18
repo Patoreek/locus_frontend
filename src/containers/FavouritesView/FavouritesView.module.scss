@@ -2,12 +2,15 @@
 
 .favouritesPage {
   min-height: 80vh;
+  background: $color-white-pure;
 }
 
 .spinnerContainer {
-  width: 100%;
+  margin: 0 auto;
+  width: 100vw;
   min-height: 80vh;
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-top: 0rem;
 }

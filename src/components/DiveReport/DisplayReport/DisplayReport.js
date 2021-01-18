@@ -70,7 +70,7 @@ const DisplayReport = (props) => {
         </div>
         <div className={classes.nameContainer}>
           <div className={classes.nameContainer__name}>
-            <a href={"/profile/" + report.userId._id}>
+            <a href={"/userprofile/" + report.userId._id}>
               {report.userId.firstName} {report.userId.lastName}
             </a>
           </div>
@@ -106,7 +106,7 @@ const DisplayReport = (props) => {
           <div className={classes.container}>
             <div className={classes.imageSlideshow}>
               {report.images.map((image, i) => (
-                <div className={classes.imgContainer}>
+                <div className={classes.imgContainer} key={i}>
                   <img
                     src={"http://localhost:8080/" + image}
                     onClick={() => imageHandler(report, i)}

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 
 import { Button } from "react-bootstrap";
 
@@ -27,9 +27,14 @@ const FavouriteButton = (props) => {
 
   const getFavourites = useContext(GetFavouritesContext);
 
+  const isChecked = useRef(true);
+
   useEffect(() => {
     setSite(props.site);
-    checkUserRelation();
+    if (isChecked) {
+      checkUserRelation();
+    }
+    return () => (isChecked.current = false);
   }, []);
 
   async function removeFromFavourite(selectedSite, setIsLoading) {
@@ -74,7 +79,6 @@ const FavouriteButton = (props) => {
     });
     const data = await response.json();
     const isFav = data.isFav;
-
     if (isFav) {
       setFavButton(true);
     } else {

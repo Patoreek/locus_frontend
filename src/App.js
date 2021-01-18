@@ -46,12 +46,9 @@ function App() {
           credentials: "include",
         });
         const json = await response.json();
-        console.log(json);
+        //console.log(json);
 
         if (json.isLoggedIn) {
-          console.log("[loggedIn] = " + json.user._id);
-          console.log("[loggedIn] = " + json.user);
-          console.log("USER IS STILL LOGGED IN");
           setIsAuth(true);
           setAccount({
             id: json.user._id,
@@ -60,7 +57,7 @@ function App() {
           });
           setIsLoading(false);
         } else {
-          console.log("THERE IS NO SESSION");
+          //console.log("THERE IS NO SESSION");
           setIsLoading(false);
         }
       } catch (error) {
@@ -112,6 +109,7 @@ function App() {
                   isAuth ? <FavouritesView /> : <Redirect to="/map" />
                 }
               />
+              <Route path="/userprofile/:userId" component={ProfileView} />
               <Route
                 path="/profile"
                 exact
@@ -119,6 +117,7 @@ function App() {
                   isAuth ? <ProfileView /> : <Redirect to="/map" />
                 }
               />
+
               <Route
                 path="/editprofile/:editProfile"
                 render={() =>
@@ -132,7 +131,6 @@ function App() {
                   isAuth ? <DiveReports /> : <Redirect to="/map" />
                 }
               />
-
               <Route path="/divesite/:id" exact component={DiveSiteView} />
               <Route path="/diveshop/:id" exact component={DiveShopView} />
               <Route
@@ -140,7 +138,6 @@ function App() {
                 exact
                 component={CommunityPhotos}
               />
-              <Route path="/profile/:userId" component={ProfileView} />
               <Route path="/map" exact component={GuestView} />
             </UserProvider>
           </DiveSiteProvider>

@@ -89,12 +89,15 @@ const NavbarMain = () => {
     } else {
       setNavbar("main");
     }
-
-    getProfile();
+    if (isAuth) {
+      getProfile();
+    }
   }, []);
 
   useEffect(() => {
-    getProfile();
+    if (isAuth) {
+      getProfile();
+    }
   }, [isAuth]);
 
   const authDrawerHandler = (option) => {
@@ -114,26 +117,28 @@ const NavbarMain = () => {
   };
 
   const logoutHandler = () => {
-    return fetch("http://localhost:8080/logout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify({
-        logout: true,
-      }),
-    })
-      .then((res) => {
-        return res.json();
+    if (isAuth) {
+      return fetch("http://localhost:8080/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          logout: true,
+        }),
       })
-      .then((res) => {
-        setIsAuth(false);
-        history.push("/");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          setIsAuth(false);
+          history.push("/");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   return (

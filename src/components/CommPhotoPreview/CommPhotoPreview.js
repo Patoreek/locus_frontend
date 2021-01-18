@@ -66,8 +66,8 @@ const CommPhotoPreview = (props) => {
       {!images == [] && (
         <div>
           <div className={classes.sliderContainer}>
-            {images.map((image) => (
-              <div className={classes.imageContainer}>
+            {images.map((image, i) => (
+              <div className={classes.imageContainer} key={i}>
                 <img
                   src={"http://localhost:8080/" + image.image}
                   className={classes.imageContainer__image}

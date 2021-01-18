@@ -42,36 +42,9 @@ const NavbarHome = () => {
   let history = useHistory();
 
   useEffect(() => {
-    const getProfile = () => {
-      return fetch("http://localhost:8080/user/getProfile", {
-        method: "GET",
-        credentials: "include",
-      })
-        .then((res) => {
-          return res.json();
-        })
-        .then((resData) => {
-          if (resData.firstName) {
-            setFirstName(resData.firstName);
-          }
-          if (resData.lastName) {
-            setLastName(resData.lastName);
-          }
-          if (resData.profilePic) {
-            setUserPicture(resData.profilePic);
-          }
-          if (resData.role) {
-            setAccountRole(resData.role);
-          }
-          if (resData.email) {
-            setEmail(resData.email);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    getProfile();
+    if (isAuth) {
+      getProfile();
+    }
   }, [isAuth]);
 
   const authDrawerHandler = (option) => {
@@ -90,29 +63,61 @@ const NavbarHome = () => {
     }
   };
 
-  const logoutHandler = () => {
-    return fetch("http://localhost:8080/logout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+  const getProfile = () => {
+    return fetch("http://localhost:8080/user/getProfile", {
+      method: "GET",
       credentials: "include",
-      body: JSON.stringify({
-        logout: true,
-      }),
     })
       .then((res) => {
         return res.json();
       })
-      .then((res) => {
-        setIsAuth(false);
-        setAccount(null);
-
-        history.push("/");
+      .then((resData) => {
+        if (resData.firstName) {
+          setFirstName(resData.firstName);
+        }
+        if (resData.lastName) {
+          setLastName(resData.lastName);
+        }
+        if (resData.profilePic) {
+          setUserPicture(resData.profilePic);
+        }
+        if (resData.role) {
+          setAccountRole(resData.role);
+        }
+        if (resData.email) {
+          setEmail(resData.email);
+        }
       })
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const logoutHandler = () => {
+    if (isAuth) {
+      return fetch("http://localhost:8080/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          logout: true,
+        }),
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          setIsAuth(false);
+          setAccount(null);
+
+          history.push("/");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   return (

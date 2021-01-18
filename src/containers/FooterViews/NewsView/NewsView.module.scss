@@ -1,6 +1,8 @@
 @import "../../../sass/abstracts/variables";
 
 .news {
+  position: relative;
+  overflow: hidden;
   &__header {
     padding: 2.5rem 0rem 1rem 0rem;
     border-bottom: 1px solid $color-lines;

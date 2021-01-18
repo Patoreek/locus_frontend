@@ -1,7 +1,9 @@
 @import "../../../sass/abstracts/variables";
 
 .tos {
+  position: relative;
   padding: 3rem 0rem;
+  background: $color-white-pure;
 
   .header {
     font-size: 2.5rem;
@@ -16,6 +18,7 @@
     font-family: $font-3-style;
     font-weight: $font-normal;
     color: $color-text-darkergrey;
+    display: none;
   }
 
   &__header {
