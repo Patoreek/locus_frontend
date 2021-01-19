@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 
 import classes from "./SignupView.module.scss";
 
@@ -38,6 +38,12 @@ const SignupView = () => {
   const [success, setSuccess] = useState(null);
 
   const [isError, setIsError] = useState(true);
+
+  const usernameInputRef = useRef();
+
+  useEffect(() => {
+    usernameInputRef.current.focus();
+  }, []);
 
   const validateEmail = (email) => {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -213,6 +219,7 @@ const SignupView = () => {
         <div className={classes.form__username}>
           <input
             type="text"
+            ref={usernameInputRef}
             onChange={(e) => setInputUsername(e.target.value)}
             className={`${classes.input} ${
               usernameErr ? classes.errorBorderColor : null

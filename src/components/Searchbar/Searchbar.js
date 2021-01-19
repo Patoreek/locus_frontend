@@ -74,7 +74,7 @@ const Searchbar = () => {
                 navbar == "main" ? classes.searchInput__main : null
               }`}
               value={searchValue}
-              onClick={() => setSearchValue("")}
+              onClick={() => setSearchValue(null)}
             />
             <div className={classes.dropdownContainer}>
               {suggestions.map((suggestion) => {

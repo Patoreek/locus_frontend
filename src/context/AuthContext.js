@@ -49,6 +49,8 @@ export const SearchValueContext = createContext();
 //* GLOBAL LOADER
 export const GlobalLoaderContext = createContext();
 
+export const ShowWelcomeContext = createContext();
+
 export const AuthProvider = (props) => {
   const [isAuth, setIsAuth] = useState(false);
 
@@ -109,6 +111,8 @@ export const AuthProvider = (props) => {
       });
     }
   };
+
+  const [showWelcome, setShowWelcome] = useState(false);
 
   const [navbar, setNavbar] = useState("main");
 
@@ -204,7 +208,14 @@ export const AuthProvider = (props) => {
                                                 setGlobalLoader,
                                               ]}
                                             >
-                                              {props.children}
+                                              <ShowWelcomeContext.Provider
+                                                value={[
+                                                  showWelcome,
+                                                  setShowWelcome,
+                                                ]}
+                                              >
+                                                {props.children}
+                                              </ShowWelcomeContext.Provider>
                                             </GlobalLoaderContext.Provider>
                                           </SearchValueContext.Provider>
                                         </LocationNameContext.Provider>

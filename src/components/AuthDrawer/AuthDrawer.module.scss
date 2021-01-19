@@ -1,4 +1,5 @@
 @import "../../sass/abstracts/variables";
+@import "../../sass/abstracts/mixins";
 
 .authDrawer {
   width: 0vw; //? Opens to 40vw;
@@ -32,6 +33,12 @@
 .open {
   width: 40vw;
   opacity: 100%;
+  @include respond(tab-land) {
+    width: 55vw;
+  }
+  @include respond(tab-port) {
+    width: 80vw;
+  }
 }
 
 .close {

@@ -17,11 +17,13 @@ import { MdFavoriteBorder } from "react-icons/md";
 import avatarPlaceholder from "../../../assets/images/avatar_placeholder.jpeg";
 
 import AuthDrawer from "../../AuthDrawer/AuthDrawer";
+import WelcomeModal from "../../WelcomeModal/WelcomeModal";
 
 import {
   AuthContext,
   AccountContext,
   AuthDrawerContext,
+  ShowWelcomeContext,
 } from "../../../context/AuthContext";
 
 const NavbarHome = () => {
@@ -30,6 +32,8 @@ const NavbarHome = () => {
   const [account, setAccount] = useContext(AccountContext);
 
   const [authDrawer, setAuthDrawer] = useContext(AuthDrawerContext);
+
+  const [showWelcome, setShowWelcome] = useContext(ShowWelcomeContext);
 
   const [dropdown, setDropdown] = useState(false); //! Change to False
   const [userPicture, setUserPicture] = useState(null);
@@ -278,6 +282,7 @@ const NavbarHome = () => {
       </header>
 
       <AuthDrawer />
+      {showWelcome ? <WelcomeModal /> : null}
     </div>
   );
 };

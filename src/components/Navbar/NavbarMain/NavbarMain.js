@@ -17,12 +17,14 @@ import { MdFavoriteBorder } from "react-icons/md";
 import AuthDrawer from "../../AuthDrawer/AuthDrawer";
 import SearchBarMap from "../../SearchBarMap/SearchBarMap";
 import Searchbar from "../../Searchbar/Searchbar";
+import WelcomeModal from "../../WelcomeModal/WelcomeModal";
 
 import {
   AuthContext,
   AccountContext,
   AuthDrawerContext,
   PanToContext,
+  ShowWelcomeContext,
 } from "../../../context/AuthContext";
 
 import avatarPlaceholder from "../../../assets/images/avatar_placeholder.jpeg";
@@ -33,6 +35,8 @@ const NavbarMain = () => {
   const [account, setAccount] = useContext(AccountContext);
 
   const [authDrawer, setAuthDrawer] = useContext(AuthDrawerContext);
+
+  const [showWelcome, setShowWelcome] = useContext(ShowWelcomeContext);
 
   const panTo = useContext(PanToContext);
 
@@ -60,6 +64,15 @@ const NavbarMain = () => {
         return res.json();
       })
       .then((resData) => {
+        setAccount({
+          id: resData._id,
+          firstName: resData.firstName,
+          lastName: resData.lastName,
+          email: resData.email,
+          role: resData.role,
+          profilePic: resData.profilePic,
+        });
+
         if (resData.firstName) {
           setFirstName(resData.firstName);
         }
@@ -133,6 +146,7 @@ const NavbarMain = () => {
         })
         .then((res) => {
           setIsAuth(false);
+          setAccount(null);
           history.push("/");
         })
         .catch((err) => {
@@ -308,6 +322,8 @@ const NavbarMain = () => {
       </header>
 
       <AuthDrawer />
+
+      {showWelcome ? <WelcomeModal /> : null}
     </div>
   );
 };

@@ -63,7 +63,7 @@
           font-size: 1.4rem;
           color: $color-text-darkgrey;
           font-family: $font-3-style;
-          font-weight: $font-normal;
+          font-weight: $font-med;
 
           &:hover {
             text-decoration: underline;
@@ -72,7 +72,7 @@
         }
 
         .linkActive {
-          font-weight: $font-med;
+          font-weight: $font-bold;
         }
 
         .linkSpacer {
@@ -145,7 +145,7 @@
             font-size: 1.4rem;
             color: $color-text-darkgrey;
             font-family: $font-3-style;
-            font-weight: $font-normal;
+            font-weight: $font-med;
             transform: translateY(0.2rem);
           }
 

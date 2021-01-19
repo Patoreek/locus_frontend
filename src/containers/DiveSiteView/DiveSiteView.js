@@ -79,7 +79,7 @@ const DiveSiteView = (props) => {
 
   const [reports, setReports] = useState([]);
 
-  const [mainImage, setMainImage] = useState();
+  const [mainImage, setMainImage] = useState(null);
 
   const [shops, setShops] = useState([]);
 
@@ -163,8 +163,9 @@ const DiveSiteView = (props) => {
           }
           setPlaceholders(array);
         }
-
-        setMainImage(site.images[0]);
+        if (site.images[0]) {
+          setMainImage(site.images[0]);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -276,7 +277,12 @@ const DiveSiteView = (props) => {
           <div className={classes.divesite__imageGridContainer}>
             <div
               className={`${classes.image} ${classes.image__1}`}
-              onClick={() => setEnlargeImage(true)}
+              onClick={() => {
+                console.log(mainImage);
+                if (mainImage != null) {
+                  setEnlargeImage(true);
+                }
+              }}
             >
               <img
                 className={classes.image}

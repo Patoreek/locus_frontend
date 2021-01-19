@@ -98,7 +98,7 @@ const UserSiteList = () => {
       {!listLoading &&
         !showAddRequestModal &&
         !diveShopAdmin &&
-        account.email != "patrick.minda@hotmail.com" && (
+        account.email != process.env.REACT_APP_ADMIN_EMAIL && (
           <div className={classes.mySitesHome}>
             {/* <BgSVG className={classes.mySitesHome__background} /> */}
             <h3 className={classes.mySitesHome__header}>
@@ -155,7 +155,7 @@ const UserSiteList = () => {
       {!listLoading &&
         !showAddRequestModal &&
         !diveShopAdmin &&
-        account.email === "patrick.minda@hotmail.com" && (
+        account.email === process.env.REACT_APP_ADMIN_EMAIL && (
           <div className={classes.addRequestContainer}>
             <h3 className={classes.addRequestContainer__header}>
               My Sites · Add & Edit Sites

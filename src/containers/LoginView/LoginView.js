@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import classes from "./LoginView.module.scss";
@@ -9,6 +9,7 @@ import {
   AuthDrawerHandlerContext,
   AuthDrawerContext,
   SignUpSuccessContext,
+  ShowWelcomeContext,
 } from "../../context/AuthContext";
 
 import { ReactComponent as LogoSVG } from "../../assets/logo/LocusLogo_black.svg";
@@ -23,10 +24,17 @@ const LoginView = () => {
   const authDrawerHandler = useContext(AuthDrawerHandlerContext);
   const [authDrawer, setAuthDrawer] = useContext(AuthDrawerContext);
   const [signUpSuccess, setSignUpSuccess] = useContext(SignUpSuccessContext);
+  const [showWelcome, setShowWelcome] = useContext(ShowWelcomeContext);
 
   const [errMsg, setErrMsg] = useState("");
 
   let history = useHistory();
+
+  const emailInputRef = useRef();
+
+  useEffect(() => {
+    emailInputRef.current.focus();
+  }, []);
 
   // let passwordInput = document.getElementById("passwordInput");
 
@@ -70,7 +78,16 @@ const LoginView = () => {
         })
         .then((resData) => {
           setIsAuth(true);
-          setAccount(resData);
+          console.log(resData);
+          setAccount({
+            id: resData._id,
+            firstName: resData.firstName,
+            lastName: resData.lastName,
+            email: resData.email,
+            role: resData.role,
+            profilePic: resData.profilePic,
+          });
+          setShowWelcome(true);
           setAuthDrawer(false);
         })
         .catch((err) => {
@@ -112,6 +129,7 @@ const LoginView = () => {
         <div className={classes.loginForm__email}>
           <input
             type="email"
+            ref={emailInputRef}
             placeholder=""
             onChange={(e) => setInputEmail(e.target.value)}
             className={classes.input}

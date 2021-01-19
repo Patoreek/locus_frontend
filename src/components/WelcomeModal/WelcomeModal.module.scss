@@ -1,0 +1,97 @@
+@import "../../sass/abstracts/variables";
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba($color-black, 0.6);
+  z-index: 100;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .welcomeModal {
+    background: $color-white-pure;
+    width: 40rem;
+    height: 40rem;
+    border-radius: 1rem;
+    box-shadow: 4px 4px 5px rgba($color-black-pure, 0.25);
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__close {
+      width: 2rem;
+      height: 2rem;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      fill: $color-lines;
+      transition: 0.2s ease;
+
+      &:hover {
+        fill: $color-text-grey;
+        transform: scale(1.025);
+      }
+    }
+
+    &__welcome {
+      font-size: 2.5rem;
+      color: $color-black;
+      font-family: $font-1-style;
+      font-weight: $font-med;
+      padding-bottom: 2.5rem;
+    }
+
+    .avatarContainer {
+      height: 12.5rem;
+      width: 12.5rem;
+      border-radius: 50rem;
+      overflow: hidden;
+      border: 2px solid $color-lines;
+
+      &__img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &__profile {
+      padding-top: 5.5rem;
+
+      font-size: 1.6rem;
+      color: $color-text-darkgrey;
+      font-family: $font-3-style;
+      font-weight: $font-med;
+
+      a {
+      }
+    }
+
+    &__reports {
+      font-size: 1.6rem;
+      color: $color-text-darkgrey;
+      font-family: $font-3-style;
+      font-weight: $font-med;
+
+      a {
+      }
+    }
+
+    &__add {
+      font-size: 1.6rem;
+      color: $color-text-darkgrey;
+      font-family: $font-3-style;
+      font-weight: $font-med;
+
+      a {
+      }
+    }
+  }
+}
