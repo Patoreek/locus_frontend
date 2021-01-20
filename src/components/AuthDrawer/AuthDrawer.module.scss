@@ -10,9 +10,8 @@
   transition: 0.3s ease;
   top: 0;
   left: 0;
-
   color: $color-white;
-  opacity: 0;
+  opacity: 0%;
   border-right: 1px solid $color-lines;
 }
 
@@ -32,7 +31,7 @@
 
 .open {
   width: 40vw;
-  opacity: 100%;
+  opacity: 100% !important;
   @include respond(tab-land) {
     width: 55vw;
   }
