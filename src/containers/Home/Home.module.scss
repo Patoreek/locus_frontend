@@ -7,7 +7,7 @@
   color: white;
   position: relative;
   transition: 0.3s ease;
-  opacity: 100%;
+
   .content {
     transition: 0.3s ease;
 
@@ -165,12 +165,12 @@
       @keyframes arrowAnimate {
         0% {
           transform: scale(1) translate(-50%, 0%);
-          opacity: 100%;
+          opacity: 1;
         }
 
         100% {
           transform: scale(0.8) translate(-60%, 50%);
-          opacity: 0%;
+          opacity: 0;
         }
       }
     }
@@ -244,7 +244,7 @@
 
             width: 30rem;
             height: 30rem;
-            opacity: 75%;
+            opacity: 0.75;
             @include respond(big-desktop) {
               bottom: -140rem;
             }
@@ -256,7 +256,7 @@
             z-index: 6;
             width: 10rem;
             height: 10rem;
-            opacity: 60%;
+            opacity: 0.6;
             @include respond(big-desktop) {
               bottom: calc(20rem - 190rem);
               left: 50rem;
@@ -269,7 +269,7 @@
             z-index: 6;
             width: 7.5rem;
             height: 7.5rem;
-            opacity: 45%;
+            opacity: 0.45;
             @include respond(big-desktop) {
               bottom: calc(35rem - 80rem);
             }
@@ -281,7 +281,7 @@
             z-index: 6;
             width: 30rem;
             height: 30rem;
-            opacity: 75%;
+            opacity: 0.75;
             @include respond(big-desktop) {
               bottom: calc(20rem - 40rem);
             }
@@ -293,7 +293,7 @@
             z-index: 6;
             width: 10rem;
             height: 10rem;
-            opacity: 50%;
+            opacity: 0.5;
             @include respond(big-desktop) {
               bottom: calc(45rem - 80rem);
             }
@@ -557,11 +557,11 @@
     transition: 1s ease;
 
     &__disappear {
-      opacity: 0%;
+      opacity: 0;
     }
 
     &__display {
-      opacity: 100%;
+      opacity: 100;
     }
   }
 }
