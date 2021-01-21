@@ -27,7 +27,9 @@ const CommunityPhotos = (props) => {
     async function getSite() {
       try {
         const response = await fetch(
-          "http://localhost:8080/diveSites/getCommunityPhotos/" + siteId,
+          process.env.REACT_APP_BACKEND +
+            "diveSites/getCommunityPhotos/" +
+            siteId,
           {
             method: "GET",
             credentials: "include",

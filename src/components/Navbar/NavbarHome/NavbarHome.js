@@ -68,33 +68,35 @@ const NavbarHome = () => {
   };
 
   const getProfile = () => {
-    return fetch(process.env.REACT_APP_BACKEND + "user/getProfile", {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((res) => {
-        return res.json();
+    if (isAuth) {
+      return fetch(process.env.REACT_APP_BACKEND + "user/getProfile", {
+        method: "GET",
+        credentials: "include",
       })
-      .then((resData) => {
-        if (resData.firstName) {
-          setFirstName(resData.firstName);
-        }
-        if (resData.lastName) {
-          setLastName(resData.lastName);
-        }
-        if (resData.profilePic) {
-          setUserPicture(resData.profilePic);
-        }
-        if (resData.role) {
-          setAccountRole(resData.role);
-        }
-        if (resData.email) {
-          setEmail(resData.email);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((res) => {
+          return res.json();
+        })
+        .then((resData) => {
+          if (resData.firstName) {
+            setFirstName(resData.firstName);
+          }
+          if (resData.lastName) {
+            setLastName(resData.lastName);
+          }
+          if (resData.profilePic) {
+            setUserPicture(resData.profilePic);
+          }
+          if (resData.role) {
+            setAccountRole(resData.role);
+          }
+          if (resData.email) {
+            setEmail(resData.email);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   const logoutHandler = () => {

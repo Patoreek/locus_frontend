@@ -43,7 +43,7 @@ const DiveShopView = (props) => {
     async function getShop() {
       try {
         const response = await fetch(
-          "http://localhost:8080/diveShops/findShop/" + shopId,
+          process.env.REACT_APP_BACKEND + "diveShops/findShop/" + shopId,
           {
             method: "GET",
             credentials: "include",

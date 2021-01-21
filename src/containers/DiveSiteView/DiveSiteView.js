@@ -112,7 +112,7 @@ const DiveSiteView = (props) => {
     async function getSite() {
       try {
         const response = await fetch(
-          "http://localhost:8080/diveSites/findSite/" + siteId,
+          process.env.REACT_APP_BACKEND + "diveSites/findSite/" + siteId,
           {
             method: "GET",
             credentials: "include",
@@ -174,7 +174,9 @@ const DiveSiteView = (props) => {
     async function getReportsForSite() {
       try {
         const response = await fetch(
-          "http://localhost:8080/user/diveReports/getReportsForSite/" + siteId,
+          process.env.REACT_APP_BACKEND +
+            "user/diveReports/getReportsForSite/" +
+            siteId,
           {
             method: "GET",
             credentials: "include",
@@ -190,7 +192,9 @@ const DiveSiteView = (props) => {
     async function getAssociatedShops() {
       try {
         const response = await fetch(
-          "http://localhost:8080/diveSites/getAssociatedShops/" + siteId,
+          process.env.REACT_APP_BACKEND +
+            "diveSites/getAssociatedShops/" +
+            siteId,
           {
             method: "GET",
             credentials: "include",
@@ -204,19 +208,22 @@ const DiveSiteView = (props) => {
     }
 
     async function getNearbyDiveSites(lat, lng) {
-      return fetch("http://localhost:8080/diveSites/findNearbyDiveSites", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          lat: lat,
-          lng,
-          lng,
-          siteId: siteId,
-        }),
-      })
+      return fetch(
+        process.env.REACT_APP_BACKEND + "diveSites/findNearbyDiveSites",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            lat: lat,
+            lng,
+            lng,
+            siteId: siteId,
+          }),
+        }
+      )
         .then((res) => {
           return res.json();
         })
