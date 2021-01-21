@@ -56,9 +56,13 @@ export const DiveSiteProvider = (props) => {
 
   async function loadDiveSites() {
     console.log("IN LOAD DIVE SITE");
-    const response = await fetch("http://localhost:8080/diveSites/getSites", {
-      method: "GET",
-    });
+    //const response = await fetch("http://localhost:8080/diveSites/getSites", {
+    const response = await fetch(
+      process.env.REACT_APP_BACKEND + "diveSites/getSites",
+      {
+        method: "GET",
+      }
+    );
     const data = await response.json();
     const sites = data.site;
     setDiveSites(sites);
@@ -92,7 +96,7 @@ export const DiveSiteProvider = (props) => {
     }
 
     return fetch(
-      "http://localhost:8080/diveSites/loadDiveSitesInBoundsInfinite",
+      process.env.REACT_APP_BACKEND + "diveSites/loadDiveSitesInBoundsInfinite",
       {
         method: "POST",
         credentials: "include",
@@ -153,21 +157,24 @@ export const DiveSiteProvider = (props) => {
       neLng = mapBounds.Ra.j;
     }
 
-    return fetch("http://localhost:8080/diveSites/loadDiveSitesInBounds", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        swLat: swLat,
-        swLng: swLng,
-        neLat: neLat,
-        neLng: neLng,
-        scubaFilter: scubaFilter,
-        snorkelFilter: snorkelFilter,
-      }),
-    })
+    return fetch(
+      process.env.REACT_APP_BACKEND + "diveSites/loadDiveSitesInBounds",
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          swLat: swLat,
+          swLng: swLng,
+          neLat: neLat,
+          neLng: neLng,
+          scubaFilter: scubaFilter,
+          snorkelFilter: snorkelFilter,
+        }),
+      }
+    )
       .then((res) => {
         return res.json();
       })
@@ -195,7 +202,7 @@ export const DiveSiteProvider = (props) => {
         let areaName = "";
         let stateName = "";
 
-        Geocode.setApiKey("AIzaSyAWZiRAil_IM3HX-FzHeZetG7zJpQB3B4Q");
+        Geocode.setApiKey(process.env.REACT_APP_GEOCODE_API_KEY);
 
         Geocode.fromLatLng(centerLat, centerLng).then(
           (response) => {
@@ -244,19 +251,22 @@ export const DiveSiteProvider = (props) => {
       neLng = mapBounds.Ra.j;
     }
 
-    return fetch("http://localhost:8080/diveShops/loadDiveShopsInBounds", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        swLat: swLat,
-        swLng: swLng,
-        neLat: neLat,
-        neLng: neLng,
-      }),
-    })
+    return fetch(
+      process.env.REACT_APP_BACKEND + "diveShops/loadDiveShopsInBounds",
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          swLat: swLat,
+          swLng: swLng,
+          neLat: neLat,
+          neLng: neLng,
+        }),
+      }
+    )
       .then((res) => {
         return res.json();
       })
