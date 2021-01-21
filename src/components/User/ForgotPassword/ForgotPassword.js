@@ -8,7 +8,7 @@ const ForgotPassword = () => {
 
   const sendEmail = () => {
     if (inputEmail) {
-      return fetch("http://localhost:8080/user/resetPassword/", {
+      return fetch(process.env.REACT_APP_BACKEND + "user/resetPassword/", {
         method: "POST",
         credentials: "include",
         headers: {

@@ -180,7 +180,7 @@ const CommunityPhotos = (props) => {
                 onClick={() => previewImageHandler(image)}
               >
                 <div className={classes.overlay}></div>
-                <img src={"http://localhost:8080/" + image.image} />
+                <img src={process.env.REACT_APP_BACKEND + image.image} />
               </div>
             ))}
           </div>
@@ -192,7 +192,7 @@ const CommunityPhotos = (props) => {
                 onClick={() => previewImageHandler(image)}
               >
                 <div className={classes.overlay}></div>
-                <img src={"http://localhost:8080/" + image.image} />
+                <img src={process.env.REACT_APP_BACKEND + image.image} />
               </div>
             ))}
           </div>
@@ -204,7 +204,7 @@ const CommunityPhotos = (props) => {
                 onClick={() => previewImageHandler(image)}
               >
                 <div className={classes.overlay}></div>
-                <img src={"http://localhost:8080/" + image.image} />
+                <img src={process.env.REACT_APP_BACKEND + image.image} />
               </div>
             ))}
           </div>

@@ -27,7 +27,7 @@ const WelcomeModal = () => {
         setLastName(account.lastName);
       }
       if (account.profilePic) {
-        setPicture("http://localhost:8080/" + account.profilePic);
+        setPicture(process.env.REACT_APP_BACKEND + account.profilePic);
       }
     }
   }, [account]);

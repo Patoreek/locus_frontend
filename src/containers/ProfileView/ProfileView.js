@@ -59,7 +59,7 @@ const ProfileView = (props) => {
     }
 
     const getProfileOther = (id) => {
-      return fetch("http://localhost:8080/user/viewProfile", {
+      return fetch(process.env.REACT_APP_BACKEND + "user/viewProfile", {
         method: "POST",
         credentials: "include",
         headers: {
@@ -76,7 +76,7 @@ const ProfileView = (props) => {
           setFirstName(profile.firstName);
           setLastName(profile.lastName);
           if (profile.profilePic) {
-            setProfilePic("http://localhost:8080/" + profile.profilePic);
+            setProfilePic(process.env.REACT_APP_BACKEND + profile.profilePic);
           } else {
             setProfilePic(avatarPlaceholder);
           }
@@ -94,16 +94,19 @@ const ProfileView = (props) => {
 
     async function getProfile() {
       try {
-        const response = await fetch("http://localhost:8080/user/getProfile", {
-          method: "GET",
-          credentials: "include",
-        });
+        const response = await fetch(
+          process.env.REACT_APP_BACKEND + "user/getProfile",
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
         const profile = await response.json();
         setProfileID(profile._id);
         setFirstName(profile.firstName);
         setLastName(profile.lastName);
         if (profile.profilePic) {
-          setProfilePic("http://localhost:8080/" + profile.profilePic);
+          setProfilePic(process.env.REACT_APP_BACKEND + profile.profilePic);
         } else {
           setProfilePic(avatarPlaceholder);
         }
@@ -122,7 +125,9 @@ const ProfileView = (props) => {
     async function getReports(id) {
       try {
         const response = await fetch(
-          "http://localhost:8080/user/diveReports/getReportsForUser/" + id,
+          process.env.REACT_APP_BACKEND +
+            "user/diveReports/getReportsForUser/" +
+            id,
           {
             method: "GET",
             credentials: "include",

@@ -40,7 +40,7 @@ const AddDiveShop = () => {
     async function getSites() {
       try {
         const response = await fetch(
-          "http://localhost:8080/diveSites/getSites",
+          process.env.REACT_APP_BACKEND + "diveSites/getSites",
           {
             method: "GET",
             credentials: "include",
@@ -68,7 +68,7 @@ const AddDiveShop = () => {
   }, []);
 
   const handleSubmit = () => {
-    return fetch("http://localhost:8080/diveShops/addShop", {
+    return fetch(process.env.REACT_APP_BACKEND + "diveShops/addShop", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

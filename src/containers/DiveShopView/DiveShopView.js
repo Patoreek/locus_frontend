@@ -105,7 +105,7 @@ const DiveShopView = (props) => {
             className={classes.banner}
             onClick={() => setEnlargeBanner(true)}
           >
-            <img src={"http://localhost:8080/" + banner} />
+            <img src={process.env.REACT_APP_BACKEND + banner} />
           </div>
           <div className={classes.mainGrid}>
             <div className={classes.mainGrid__topContainer}>
@@ -113,7 +113,7 @@ const DiveShopView = (props) => {
                 className={classes.imageContainer}
                 onClick={() => setEnlargeLogo(true)}
               >
-                <img src={"http://localhost:8080/" + logo} />
+                <img src={process.env.REACT_APP_BACKEND + logo} />
               </div>
               <div className={classes.shopInfo}>
                 <div className={classes.nameContainer}>

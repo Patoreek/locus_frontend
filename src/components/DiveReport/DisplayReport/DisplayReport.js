@@ -63,7 +63,7 @@ const DisplayReport = (props) => {
           <img
             src={
               report.userId.profilePic
-                ? "http://localhost:8080/" + report.userId.profilePic
+                ? process.env.REACT_APP_BACKEND + report.userId.profilePic
                 : avatarPlaceholder
             }
           />
@@ -108,7 +108,7 @@ const DisplayReport = (props) => {
               {report.images.map((image, i) => (
                 <div className={classes.imgContainer} key={i}>
                   <img
-                    src={"http://localhost:8080/" + image}
+                    src={process.env.REACT_APP_BACKEND + image}
                     onClick={() => imageHandler(report, i)}
                   />
                 </div>

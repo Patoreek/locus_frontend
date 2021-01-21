@@ -18,7 +18,7 @@ const ChangePassword = (props) => {
   };
 
   const changePassword = () => {
-    return fetch("http://localhost:8080/user/changePassword", {
+    return fetch(process.env.REACT_APP_BACKEND + "user/changePassword", {
       method: "POST",
       credentials: "include",
       headers: {

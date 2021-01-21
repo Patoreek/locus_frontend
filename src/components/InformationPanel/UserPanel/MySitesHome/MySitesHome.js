@@ -48,7 +48,7 @@ const UserSiteList = () => {
     async function loadMyDiveSites() {
       try {
         const response = await fetch(
-          "http://localhost:8080/diveSites/mySites/" + account.id,
+          process.env.REACT_APP_BACKEND + "diveSites/mySites/" + account.id,
           {
             method: "GET",
             headers: {
@@ -69,7 +69,7 @@ const UserSiteList = () => {
     async function loadMyDiveShops() {
       try {
         const response = await fetch(
-          "http://localhost:8080/diveShops/myShops/" + account.id,
+          process.env.REACT_APP_BACKEND + "diveShops/myShops/" + account.id,
           {
             method: "GET",
             headers: {

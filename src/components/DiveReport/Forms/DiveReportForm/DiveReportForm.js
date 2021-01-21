@@ -31,7 +31,7 @@ const DiveReportForm = (props) => {
     async function getSites() {
       try {
         const response = await fetch(
-          "http://localhost:8080/diveSites/getSites",
+          process.env.REACT_APP_BACKEND + "diveSites/getSites",
           {
             method: "GET",
             credentials: "include",
@@ -54,7 +54,7 @@ const DiveReportForm = (props) => {
   };
 
   const submitHandler = () => {
-    return fetch("http://localhost:8080/user/diveReports/addReport", {
+    return fetch(process.env.REACT_APP_BACKEND + "user/diveReports/addReport", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

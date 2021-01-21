@@ -16,9 +16,14 @@ const DeleteDiveShop = () => {
   let history = useHistory();
 
   const deleteHandler = () => {
-    fetch("http://localhost:8080/diveShops/deleteShop/" + selectedShop._id, {
-      method: "DELETE",
-    })
+    fetch(
+      process.env.REACT_APP_BACKEND +
+        "diveShops/deleteShop/" +
+        selectedShop._id,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => {
         if (res.status !== 200 && res.status !== 201) {
           throw new Error("Deleting a site failed!");

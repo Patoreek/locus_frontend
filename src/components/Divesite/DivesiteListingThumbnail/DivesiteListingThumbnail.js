@@ -15,7 +15,7 @@ const DivesiteListingThumbnail = (props) => {
       <div className={classes.thumbnail__image}>
         <a href={"/divesite/" + site._id}>
           <img
-            src={"http://localhost:8080/" + site.images[0]}
+            src={process.env.REACT_APP_BACKEND + site.images[0]}
             className={classes.image}
           />
         </a>

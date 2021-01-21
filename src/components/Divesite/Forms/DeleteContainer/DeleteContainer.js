@@ -39,9 +39,12 @@ const DeleteContainer = (props) => {
     // console.log("Deleting id " + selectedSite._id);
     const siteId = selectedSite._id;
 
-    fetch("http://localhost:8080/diveSites/deleteDiveSite/" + siteId, {
-      method: "DELETE",
-    })
+    fetch(
+      process.env.REACT_APP_BACKEND + "diveSites/deleteDiveSite/" + siteId,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => {
         if (res.status !== 200 && res.status !== 201) {
           throw new Error("Deleting a site failed!");

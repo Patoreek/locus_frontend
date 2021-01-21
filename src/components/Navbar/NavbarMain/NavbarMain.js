@@ -56,7 +56,7 @@ const NavbarMain = () => {
   let history = useHistory();
 
   const getProfile = () => {
-    return fetch("http://localhost:8080/user/getProfile", {
+    return fetch(process.env.REACT_APP_BACKEND + "user/getProfile", {
       method: "GET",
       credentials: "include",
     })
@@ -131,7 +131,7 @@ const NavbarMain = () => {
 
   const logoutHandler = () => {
     if (isAuth) {
-      return fetch("http://localhost:8080/logout", {
+      return fetch(process.env.REACT_APP_BACKEND + "logout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -213,7 +213,7 @@ const NavbarMain = () => {
                   {userPicture ? (
                     <img
                       className={classes.avatarImage}
-                      src={"http://localhost:8080/" + userPicture}
+                      src={process.env.REACT_APP_BACKEND + userPicture}
                       alt="placeholder of users face."
                     />
                   ) : null}
@@ -242,7 +242,7 @@ const NavbarMain = () => {
                       {userPicture ? (
                         <img
                           className={classes.avatarImage}
-                          src={"http://localhost:8080/" + userPicture}
+                          src={process.env.REACT_APP_BACKEND + userPicture}
                           alt="placeholder of users face."
                         />
                       ) : null}

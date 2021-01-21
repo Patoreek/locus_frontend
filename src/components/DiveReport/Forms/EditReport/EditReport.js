@@ -42,7 +42,7 @@ const EditReport = (props) => {
     async function getSites() {
       try {
         const response = await fetch(
-          "http://localhost:8080/diveSites/getSites",
+          process.env.REACT_APP_BACKEND + "diveSites/getSites",
           {
             method: "GET",
             credentials: "include",
@@ -64,20 +64,23 @@ const EditReport = (props) => {
   };
 
   const submitHandler = () => {
-    return fetch("http://localhost:8080/user/diveReports/editReport", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify({
-        reportId: reportId,
-        location: location,
-        visibility: visibility,
-        duration: duration,
-        report: report,
-      }),
-    })
+    return fetch(
+      process.env.REACT_APP_BACKEND + "user/diveReports/editReport",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          reportId: reportId,
+          location: location,
+          visibility: visibility,
+          duration: duration,
+          report: report,
+        }),
+      }
+    )
       .then((res) => {
         return res.json();
       })
@@ -210,7 +213,8 @@ const EditReport = (props) => {
           name={"profilePicture"}
           server={{
             url:
-              "http://localhost:8080/user/diveReports/uploadImagesForReport/" +
+              process.env.REACT_APP_BACKEND +
+              "user/diveReports/uploadImagesForReport/" +
               reportId +
               "?folder=divereport&userId=" +
               account.id +

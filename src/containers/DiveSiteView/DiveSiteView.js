@@ -288,7 +288,7 @@ const DiveSiteView = (props) => {
                 className={classes.image}
                 src={
                   mainImage
-                    ? "http://localhost:8080/" + mainImage
+                    ? process.env.REACT_APP_BACKEND + mainImage
                     : placeholderImage
                 }
               />
@@ -305,7 +305,7 @@ const DiveSiteView = (props) => {
                 >
                   <img
                     className={classes.image}
-                    src={"http://localhost:8080/" + image}
+                    src={process.env.REACT_APP_BACKEND + image}
                   />
                 </div>
               ))}

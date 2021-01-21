@@ -35,8 +35,8 @@ const DisplayImage = (props) => {
           <img
             src={
               image.image
-                ? "http://localhost:8080/" + image.image
-                : "http://localhost:8080/" + image
+                ? process.env.REACT_APP_BACKEND + image.image
+                : process.env.REACT_APP_BACKEND + image
             }
           />
           <div className={classes.textContainer}>
@@ -74,8 +74,8 @@ const DisplayImage = (props) => {
             className={classes.closeSVG}
             onClick={() => props.setEnlargeImage(false)}
           />
-          {banner ? <img src={"http://localhost:8080/" + banner} /> : null}
-          {logo ? <img src={"http://localhost:8080/" + logo} /> : null}
+          {banner ? <img src={process.env.REACT_APP_BACKEND + banner} /> : null}
+          {logo ? <img src={process.env.REACT_APP_BACKEND + logo} /> : null}
 
           <div className={classes.textContainer}>
             <div className={classes.textContainer__locationContainer}>

@@ -36,7 +36,7 @@ const WeatherContainer = (props) => {
     async function getWeather() {
       try {
         const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&appid=cae87fcf9eb012eba96c36c752131310&units=metric`,
+          `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`,
           {
             method: "GET",
           }

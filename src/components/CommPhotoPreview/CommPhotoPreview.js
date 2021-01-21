@@ -20,7 +20,9 @@ const CommPhotoPreview = (props) => {
     async function getSite() {
       try {
         const response = await fetch(
-          "http://localhost:8080/diveSites/getCommunityPhotos/" + siteId,
+          process.env.REACT_APP_BACKEND +
+            "diveSites/getCommunityPhotos/" +
+            siteId,
           {
             method: "GET",
             credentials: "include",
@@ -69,7 +71,7 @@ const CommPhotoPreview = (props) => {
             {images.map((image, i) => (
               <div className={classes.imageContainer} key={i}>
                 <img
-                  src={"http://localhost:8080/" + image.image}
+                  src={process.env.REACT_APP_BACKEND + image.image}
                   className={classes.imageContainer__image}
                   onClick={() => imageHandler(image)}
                 />

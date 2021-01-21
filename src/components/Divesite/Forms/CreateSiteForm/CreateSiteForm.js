@@ -39,7 +39,7 @@ const CreateSiteForm = (props) => {
   const coordsLng = coords.lng;
 
   const createDiveSite = () => {
-    return fetch("http://localhost:8080/diveSites/createSite", {
+    return fetch(process.env.REACT_APP_BACKEND + "diveSites/createSite", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

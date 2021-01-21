@@ -42,7 +42,7 @@ const ReviewStars = (props) => {
     async function checkRating() {
       try {
         const response = await fetch(
-          "http://localhost:8080/diveSites/getRating",
+          process.env.REACT_APP_BACKEND + "diveSites/getRating",
           {
             method: "POST",
             headers: {

@@ -51,7 +51,9 @@ const EditSiteForm = (props) => {
 
   const editDiveSite = () => {
     return fetch(
-      "http://localhost:8080/diveSites/editDiveSite/" + selectedSite._id,
+      process.env.REACT_APP_BACKEND +
+        "diveSites/editDiveSite/" +
+        selectedSite._id,
       {
         method: "POST",
         headers: {
@@ -174,7 +176,8 @@ const EditSiteForm = (props) => {
               allowPaste={false}
               server={{
                 url:
-                  "http://localhost:8080/diveSites/uploadImages/" +
+                  process.env.REACT_APP_BACKEND +
+                  "diveSites/uploadImages/" +
                   selectedSite._id +
                   "?folder=divesite&name=" +
                   name +

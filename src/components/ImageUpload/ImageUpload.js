@@ -18,7 +18,9 @@ const ImageUpload = () => {
         name={"divesiteImages"}
         server={{
           url:
-            "http://localhost:8080/diveSites/uploadImages/" + selectedSite._id,
+            process.env.REACT_APP_BACKEND +
+            "diveSites/uploadImages/" +
+            selectedSite._id,
           process: {
             withCredentials: true,
           },

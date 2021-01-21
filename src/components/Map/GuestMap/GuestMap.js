@@ -126,7 +126,7 @@ const GuestMap = (props) => {
                   <img
                     src={
                       selectedSite.images[0]
-                        ? "http://localhost:8080/" + selectedSite.images[0]
+                        ? process.env.REACT_APP_BACKEND + selectedSite.images[0]
                         : placeholderImage
                     }
                     className={classes.image}
@@ -198,7 +198,7 @@ const GuestMap = (props) => {
                   rel="noopener noreferrer"
                 >
                   <img
-                    src={"http://localhost:8080/" + selectedShop.logo}
+                    src={process.env.REACT_APP_BACKEND + selectedShop.logo}
                     className={classes.image}
                   />
                 </a>

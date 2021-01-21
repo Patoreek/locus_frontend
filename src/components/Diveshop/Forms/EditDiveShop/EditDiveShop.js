@@ -60,7 +60,7 @@ const EditDiveShop = () => {
     async function getSites() {
       try {
         const response = await fetch(
-          "http://localhost:8080/diveSites/getSites",
+          process.env.REACT_APP_BACKEND + "diveSites/getSites",
           {
             method: "GET",
             credentials: "include",
@@ -88,7 +88,7 @@ const EditDiveShop = () => {
   }, []);
 
   const handleSubmit = () => {
-    return fetch("http://localhost:8080/diveShops/editShop", {
+    return fetch(process.env.REACT_APP_BACKEND + "diveShops/editShop", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -191,7 +191,8 @@ const EditDiveShop = () => {
           name={"diveshop"}
           server={{
             url:
-              "http://localhost:8080/diveShops/uploadLogo/" +
+              process.env.REACT_APP_BACKEND +
+              "diveShops/uploadLogo/" +
               selectedShop._id +
               "?folder=diveshop&name=" +
               name +
@@ -211,7 +212,8 @@ const EditDiveShop = () => {
           name={"diveshop"}
           server={{
             url:
-              "http://localhost:8080/diveShops/uploadBanner/" +
+              process.env.REACT_APP_BACKEND +
+              "diveShops/uploadBanner/" +
               selectedShop._id +
               "?folder=diveshop&name=" +
               name +

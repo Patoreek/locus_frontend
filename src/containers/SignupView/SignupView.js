@@ -163,7 +163,7 @@ const SignupView = () => {
     setErrMsg(errorMessage);
 
     if (errorMessage.length === 0) {
-      return fetch("http://localhost:8080/signup", {
+      return fetch(process.env.REACT_APP_BACKEND + "signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -25,16 +25,19 @@ const DeleteReport = (props) => {
   };
 
   const deleteHandler = () => {
-    return fetch("http://localhost:8080/user/diveReports/deleteReport", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify({
-        reportId: reportId,
-      }),
-    })
+    return fetch(
+      process.env.REACT_APP_BACKEND + "user/diveReports/deleteReport",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          reportId: reportId,
+        }),
+      }
+    )
       .then((res) => {
         return res.json();
       })

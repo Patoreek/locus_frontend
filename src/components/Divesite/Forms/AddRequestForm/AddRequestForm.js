@@ -290,7 +290,7 @@ const AddRequestForm = (props) => {
 
     if (errorMessage.length == 0) {
       console.log("no errors");
-      return fetch("http://localhost:8080/diveSites/addRequestSite", {
+      return fetch(process.env.REACT_APP_BACKEND + "diveSites/addRequestSite", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
