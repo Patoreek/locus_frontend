@@ -181,7 +181,7 @@ function App() {
           {document.title != "Locus - Map" ? <Footer /> : null}
         </div>
       )}
-      {isLoading === null && <h1>Error Loading</h1>}
+      {/* {isLoading === null && <h1>Error Loading</h1>} */}
     </BrowserRouter>
   );
 }
