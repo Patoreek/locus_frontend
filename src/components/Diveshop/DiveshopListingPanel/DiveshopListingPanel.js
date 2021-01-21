@@ -43,7 +43,7 @@ const DivesiteListingPanel = (props) => {
           rel="noopener noreferrer"
         >
           <img
-            src={"http://localhost:8080/" + shop.logo}
+            src={process.env.REACT_APP_BACKEND + shop.logo}
             className={classes.image}
           />
         </a>

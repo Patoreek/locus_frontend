@@ -58,7 +58,7 @@ const DivesiteListingPanel = (props) => {
           <img
             src={
               site.images[0]
-                ? "http://localhost:8080/" + site.images[0]
+                ? process.env.REACT_APP_BACKEND + site.images[0]
                 : placeholderImage
             }
             className={classes.image}
