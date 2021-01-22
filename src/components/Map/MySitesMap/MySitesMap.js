@@ -51,6 +51,7 @@ import { ReactComponent as TwitterSVG } from "../../../assets/icons/twitter.svg"
 import placeholderImage from "../../../assets/images/placeholder_image.png";
 
 import classes from "./MySitesMap.module.scss";
+import "../GuestMap/GuestMap.css";
 
 const MySitesMap = () => {
   const [selectedSite, setSelectedSite] = useContext(SiteContext);

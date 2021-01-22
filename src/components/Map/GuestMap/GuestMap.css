@@ -1,35 +1,32 @@
-
 /* TODO:// THIS IS STYLING FOR THE INFOWINDOW CLOSE BUTTON */
 .gm-style .gm-style-iw-c {
-    padding: 0px;
-    width: 30rem;
-    /* height: 40rem; */
-
+  padding: 0px;
+  width: 30rem;
+  /* height: 40rem; */
 }
 
 .gm-style-iw-d {
-    overflow: hidden !important;
+  overflow: hidden !important;
 }
 
 .gm-ui-hover-effect {
-    background:url('../../../assets/icons/close_grey.svg') !important;
-    width: 16px !important;
-    height: 16px !important;
-    background-size: cover !important;
-    transform: translate(-75%, 75%);
-    opacity: 100%;
+  background: url("../../../assets/icons/close_grey.svg") !important;
+  width: 16px !important;
+  height: 16px !important;
+  background-size: cover !important;
+  transform: translate(-75%, 75%);
+  opacity: 1;
+  z-index: 100;
 }
 
 .gm-ui-hover-effect:hover {
-
-    transform: translate(-75%, 75%) scale(1.1);
-   
+  transform: translate(-75%, 75%) scale(1.1);
 }
 
 .gm-ui-hover-effect img {
-    display: none !important;
+  display: none !important;
 }
 
 .gm-style .gm-style-iw-t::after {
-    display: none;
+  display: none;
 }
