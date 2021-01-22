@@ -86,7 +86,7 @@ const SignupView = () => {
 
     // Firstname and Lastname must be > 1 character and must not have numbers or symbols
 
-    var letters = /^[a-zA-Z]+$/;
+    var letters = /^[a-zA-Z\s]+$/;
 
     if (firstName.match(letters)) {
       setIsError(false);
