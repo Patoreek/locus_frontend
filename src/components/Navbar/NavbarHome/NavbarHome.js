@@ -46,9 +46,7 @@ const NavbarHome = () => {
   let history = useHistory();
 
   useEffect(() => {
-    if (isAuth) {
-      getProfile();
-    }
+    getProfile();
   }, [isAuth]);
 
   const authDrawerHandler = (option) => {
@@ -68,35 +66,36 @@ const NavbarHome = () => {
   };
 
   const getProfile = () => {
-    if (isAuth) {
-      return fetch(process.env.REACT_APP_BACKEND + "user/getProfile", {
-        method: "GET",
-        credentials: "include",
+    console.log("getting user...");
+    return fetch(process.env.REACT_APP_BACKEND + "user/getProfile", {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((res) => {
+        return res.json();
       })
-        .then((res) => {
-          return res.json();
-        })
-        .then((resData) => {
-          if (resData.firstName) {
-            setFirstName(resData.firstName);
-          }
-          if (resData.lastName) {
-            setLastName(resData.lastName);
-          }
-          if (resData.profilePic) {
-            setUserPicture(resData.profilePic);
-          }
-          if (resData.role) {
-            setAccountRole(resData.role);
-          }
-          if (resData.email) {
-            setEmail(resData.email);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+      .then((resData) => {
+        if (resData.firstName) {
+          setFirstName(resData.firstName);
+        }
+        if (resData.lastName) {
+          setLastName(resData.lastName);
+        }
+        if (resData.profilePic) {
+          setUserPicture(resData.profilePic);
+        }
+        if (resData.role) {
+          setAccountRole(resData.role);
+        }
+        if (resData.email) {
+          setEmail(resData.email);
+        }
+        setIsAuth(true);
+      })
+      .catch((err) => {
+        setIsAuth(false);
+        //console.log(err);
+      });
   };
 
   const logoutHandler = () => {

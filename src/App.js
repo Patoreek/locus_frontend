@@ -41,10 +41,13 @@ function App() {
   useEffect(() => {
     async function isLoggedIn() {
       try {
-        const response = await fetch("http://localhost:8080/loggedIn", {
-          method: "GET",
-          credentials: "include",
-        });
+        const response = await fetch(
+          process.env.REACT_APP_BCAKEND + "loggedIn",
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
         const json = await response.json();
         //console.log(json);
 

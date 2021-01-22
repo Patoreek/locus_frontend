@@ -88,10 +88,13 @@ const NavbarMain = () => {
         if (resData.email) {
           setEmail(resData.email);
         }
+        setIsAuth(true);
+
         setIsLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        setIsAuth(false);
+        //console.log(err);
       });
   };
 
@@ -108,9 +111,7 @@ const NavbarMain = () => {
   }, []);
 
   useEffect(() => {
-    if (isAuth) {
-      getProfile();
-    }
+    getProfile();
   }, [isAuth]);
 
   const authDrawerHandler = (option) => {
