@@ -22,6 +22,8 @@ import HomeView from "./containers/Home/Home";
 
 import FooterView from "./containers/FooterViews/FooterView";
 
+import Spinner from "./components/Spinner/Spinner";
+
 import { UserProvider } from "./context/UserContext";
 import {
   AuthContext,
