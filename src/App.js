@@ -109,13 +109,20 @@ function App() {
                 }
               />
 
-              <Route
+              {isAuth ? (
+                <Route path="/favourites" exact component={FavouritesView} />
+              ) : (
+                <Redirect to="/map" />
+              )}
+
+              {/* <Route
                 path="/favourites"
                 exact
                 render={() =>
                   isAuth ? <FavouritesView /> : <Redirect to="/map" />
                 }
-              />
+              /> */}
+
               <Route path="/userprofile/:userId" component={ProfileView} />
               <Route
                 path="/profile"

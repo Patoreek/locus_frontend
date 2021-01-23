@@ -67,19 +67,16 @@ const FavouriteButton = (props) => {
   }
 
   async function checkUserRelation() {
-    const response = await fetch(
-      process.env.REACT_APP_BACKEND + "user/checkFavourites",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          selectedSiteId: props.site._id,
-        }),
-      }
-    );
+    const response = await fetch("/api/user/checkFavourites", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        selectedSiteId: props.site._id,
+      }),
+    });
     const data = await response.json();
     const isFav = data.isFav;
     if (isFav) {
