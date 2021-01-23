@@ -94,13 +94,10 @@ const ProfileView = (props) => {
 
     async function getProfile() {
       try {
-        const response = await fetch(
-          process.env.REACT_APP_BACKEND + "user/getProfile",
-          {
-            method: "GET",
-            credentials: "include",
-          }
-        );
+        const response = await fetch("/api/user/getProfile", {
+          method: "GET",
+          credentials: "include",
+        });
         const profile = await response.json();
         setProfileID(profile._id);
         setFirstName(profile.firstName);
@@ -125,9 +122,7 @@ const ProfileView = (props) => {
     async function getReports(id) {
       try {
         const response = await fetch(
-          process.env.REACT_APP_BACKEND +
-            "user/diveReports/getReportsForUser/" +
-            id,
+          "/api/user/diveReports/getReportsForUser/" + id,
           {
             method: "GET",
             credentials: "include",
