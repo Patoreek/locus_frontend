@@ -70,6 +70,10 @@ function App() {
     isLoggedIn();
   }, []);
 
+  useEffect(() => {
+    console.log(isAuth);
+  }, [isAuth]);
+
   return (
     <BrowserRouter>
       {!isLoading && (
