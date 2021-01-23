@@ -47,6 +47,10 @@ const NavbarHome = () => {
 
   useEffect(() => {
     getProfile();
+  }, []);
+
+  useEffect(() => {
+    getProfile();
   }, [isAuth]);
 
   const authDrawerHandler = (option) => {

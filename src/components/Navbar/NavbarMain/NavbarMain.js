@@ -105,9 +105,8 @@ const NavbarMain = () => {
     } else {
       setNavbar("main");
     }
-    if (isAuth) {
-      getProfile();
-    }
+
+    getProfile();
   }, []);
 
   useEffect(() => {
