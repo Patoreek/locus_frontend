@@ -131,7 +131,7 @@ const NavbarMain = () => {
 
   const logoutHandler = () => {
     if (isAuth) {
-      return fetch(process.env.REACT_APP_BACKEND + "logout", {
+      return fetch("/api/logout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
