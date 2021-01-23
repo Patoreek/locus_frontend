@@ -42,7 +42,7 @@ function App() {
     async function isLoggedIn() {
       try {
         const response = await fetch(
-          process.env.REACT_APP_BCAKEND + "loggedIn",
+          process.env.REACT_APP_BACKEND + "loggedIn",
           {
             method: "GET",
             credentials: "include",
