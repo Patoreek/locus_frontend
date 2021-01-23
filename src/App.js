@@ -105,19 +105,11 @@ function App() {
                 render={() => (isAuth ? <ChangePassword /> : null)}
               />
 
-              {isAuth ? (
-                <Route path="/favourites" exact component={FavouritesView} />
-              ) : (
-                <Redirect to="/map" />
-              )}
-
-              {/* <Route
+              <Route
                 path="/favourites"
                 exact
-                render={() =>
-                  isAuth ? <FavouritesView /> : null
-                }
-              /> */}
+                render={() => (isAuth ? <FavouritesView /> : null)}
+              />
               <Route path="/userprofile/:userId" component={ProfileView} />
               <Route
                 path="/profile"
@@ -182,8 +174,6 @@ function App() {
           />
 
           {document.title != "Locus - Map" ? <Footer /> : null}
-
-          <Route path="/" component={GuestView} />
         </div>
       )}
       {/* {isLoading === null && <h1>Error Loading</h1>} */}
