@@ -62,7 +62,8 @@ const LoginView = () => {
     const password = inputPassword;
 
     if (email && password) {
-      return fetch(process.env.REACT_APP_BACKEND + "api/login", {
+      //return fetch(process.env.REACT_APP_BACKEND + "api/login", {
+      return fetch("/api/login", {
         method: "POST",
         credentials: "include",
         headers: {
