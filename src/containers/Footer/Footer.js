@@ -64,9 +64,9 @@ const Footer = () => {
       </div>
 
       <div className={classes.mailContainer}>
-        <a href="mailto:locusdiving@gmail.com">
+        <a href="mailto:admin@locus.com">
           <IoIosMail className={classes.mailIcon} />
-          <p className={classes.email}>support@locus.com</p>
+          <p className={classes.email}>admin@locus.com</p>
         </a>
       </div>
 
