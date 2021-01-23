@@ -295,6 +295,7 @@ const AddRequestForm = (props) => {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({
           diveSite: {
             userId: account.id,
