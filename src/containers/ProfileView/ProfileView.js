@@ -190,7 +190,10 @@ const ProfileView = (props) => {
           <div className={classes.profile}>
             <div className={classes.profileLeft}>
               <div className={classes.profileLeft__pictureContainer}>
-                <img src={profilePic} className={classes.picture} />
+                <img
+                  src={profilePic ? profilePic : avatarPlaceholder}
+                  className={classes.picture}
+                />
               </div>
             </div>
 

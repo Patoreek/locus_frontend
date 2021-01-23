@@ -32,13 +32,10 @@ const DiveReports = () => {
   useEffect(() => {
     async function getReports() {
       try {
-        const response = await fetch(
-          process.env.REACT_APP_BACKEND + "user/diveReports/getReports",
-          {
-            method: "GET",
-            credentials: "include",
-          }
-        );
+        const response = await fetch("/api/user/diveReports/getReports", {
+          method: "GET",
+          credentials: "include",
+        });
         const reports = await response.json();
         setDiveReports(reports.reportsData);
         setIsLoading(false);
@@ -54,19 +51,16 @@ const DiveReports = () => {
 
   const findReport = (id, handlerType) => {
     setIsLoading(true);
-    return fetch(
-      process.env.REACT_APP_BACKEND + "user/diveReports/findReport",
-      {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          reportId: id,
-        }),
-      }
-    )
+    return fetch("/api/user/diveReports/findReport", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        reportId: id,
+      }),
+    })
       .then((res) => {
         return res.json();
       })

@@ -36,13 +36,10 @@ const EditProfile = (props) => {
   useEffect(() => {
     async function getProfile() {
       try {
-        const response = await fetch(
-          process.env.REACT_APP_BACKEND + "user/getProfile",
-          {
-            method: "GET",
-            credentials: "include",
-          }
-        );
+        const response = await fetch("/api/user/getProfile", {
+          method: "GET",
+          credentials: "include",
+        });
         const profile = await response.json();
         setFirstName(profile.firstName);
         setLastName(profile.lastName);
@@ -141,7 +138,7 @@ const EditProfile = (props) => {
 
     setErrMsg(errorMessage);
 
-    return fetch(process.env.REACT_APP_BACKEND + "user/editProfile", {
+    return fetch("/api/user/editProfile", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

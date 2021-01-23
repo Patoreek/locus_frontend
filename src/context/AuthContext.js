@@ -140,13 +140,10 @@ export const AuthProvider = (props) => {
 
   async function getFavourites(setIsLoading) {
     try {
-      const response = await fetch(
-        process.env.REACT_APP_BACKEND + "user/getFavourites",
-        {
-          method: "GET",
-          credentials: "include",
-        }
-      );
+      const response = await fetch("/api/user/getFavourites", {
+        method: "GET",
+        credentials: "include",
+      });
       const favourites = await response.json();
 
       setFavourites(favourites.favSites);

@@ -18,7 +18,7 @@ const ChangePassword = (props) => {
   };
 
   const changePassword = () => {
-    return fetch(process.env.REACT_APP_BACKEND + "user/changePassword", {
+    return fetch("/api/user/changePassword", {
       method: "POST",
       credentials: "include",
       headers: {
