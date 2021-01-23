@@ -92,57 +92,53 @@ function App() {
               <Route
                 path="/mySites"
                 exact
-                render={() => (isAuth ? <UserView /> : <Redirect to="/map" />)}
+                render={() => (isAuth ? <UserView /> : null })}
               />
               <Route
                 path="/addRequest"
                 exact
                 render={() =>
-                  isAuth ? <AddRequest /> : <Redirect to="/map" />
+                  isAuth ? <AddRequest /> : null }
                 }
               />
               <Route
                 path="/changePassword"
                 exact
                 render={() =>
-                  isAuth ? <ChangePassword /> : <Redirect to="/map" />
+                  isAuth ? <ChangePassword /> : null }
                 }
               />
 
-              {isAuth ? (
-                <Route path="/favourites" exact component={FavouritesView} />
-              ) : (
-                <Redirect to="/map" />
-              )}
+
+              {isAuth ? <Route path="/favourites" exact component={FavouritesView} /> : <Redirect to="/map"/>}
 
               {/* <Route
                 path="/favourites"
                 exact
                 render={() =>
-                  isAuth ? <FavouritesView /> : <Redirect to="/map" />
+                  isAuth ? <FavouritesView /> : null }
                 }
               /> */}
-
               <Route path="/userprofile/:userId" component={ProfileView} />
               <Route
                 path="/profile"
                 exact
                 render={() =>
-                  isAuth ? <ProfileView /> : <Redirect to="/map" />
+                  isAuth ? <ProfileView /> : null }
                 }
               />
 
               <Route
                 path="/editprofile/:editProfile"
                 render={() =>
-                  isAuth ? <ProfileView /> : <Redirect to="/map" />
+                  isAuth ? <ProfileView /> : null }
                 }
               />
               <Route
                 path="/diveReports"
                 exact
                 render={() =>
-                  isAuth ? <DiveReports /> : <Redirect to="/map" />
+                  isAuth ? <DiveReports /> : null }
                 }
               />
               <Route path="/divesite/:id" exact component={DiveSiteView} />
@@ -153,6 +149,8 @@ function App() {
                 component={CommunityPhotos}
               />
               <Route path="/map" exact component={GuestView} />
+              <Route path="/" component={GuestView} />
+
             </UserProvider>
           </DiveSiteProvider>
 
