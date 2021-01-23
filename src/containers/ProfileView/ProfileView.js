@@ -164,7 +164,7 @@ const ProfileView = (props) => {
   };
 
   return (
-    <div>
+    <div className={classes.profileView}>
       {editModal && (
         <div className={classes.modalOverlay} onClick={closeModal}></div>
       )}

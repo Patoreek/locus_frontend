@@ -76,6 +76,11 @@ function App() {
 
   return (
     <BrowserRouter>
+      {isLoading && (
+        <div className={classes.spinnerContainer}>
+          <Spinner />
+        </div>
+      )}
       {!isLoading && (
         <div className={classes.app}>
           <DiveSiteProvider>
