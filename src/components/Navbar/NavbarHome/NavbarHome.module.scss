@@ -95,7 +95,7 @@
           height: 100%;
           background: $color-nav-bg;
           transition: 0.3s ease;
-          opacity: 100%;
+          opacity: 1;
           padding: 1rem 1rem;
           border: 1px solid $color-lines;
           border-radius: 10px;
@@ -107,12 +107,12 @@
 
           @keyframes fadeInAnimation {
             0% {
-              opacity: 0%;
+              opacity: 0;
               height: 0%;
             }
 
             100% {
-              opacity: 100%;
+              opacity: 1;
               height: 100%;
             }
           }
@@ -240,17 +240,17 @@
         .fade {
           @keyframes fadeOutAnimation {
             0% {
-              opacity: 100%;
+              opacity: 1;
               z-index: 50;
               height: 100%;
             }
             98% {
-              opacity: 0%;
+              opacity: 0;
               z-index: 50;
               height: 0%;
             }
             100% {
-              opacity: 0%;
+              opacity: 0;
               height: 0%;
               z-index: -200;
               display: none;
@@ -259,7 +259,7 @@
           position: relative;
           animation-name: fadeOutAnimation;
           animation-duration: 0.5s;
-          opacity: 0%;
+          opacity: 0;
           height: 0%;
           z-index: -200;
           display: none;
@@ -312,5 +312,5 @@
 }
 
 .hide {
-  opacity: 0%;
+  opacity: 0;
 }

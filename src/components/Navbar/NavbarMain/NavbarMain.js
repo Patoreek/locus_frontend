@@ -56,7 +56,7 @@ const NavbarMain = () => {
   let history = useHistory();
 
   const getProfile = () => {
-    return fetch(process.env.REACT_APP_BACKEND + "user/getProfile", {
+    return fetch("/api/user/getProfile", {
       method: "GET",
       credentials: "include",
     })
