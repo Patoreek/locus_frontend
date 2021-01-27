@@ -1,4 +1,26 @@
+@import "../../sass/abstracts/mixins";
+
 .guestView {
-    height: calc(100vh - 6rem);
-    width: 100vw;
+  height: calc(100vh - 6rem);
+  width: 100vw;
+}
+
+.loadingElement,
+.mapElement,
+.containerElement {
+  height: 97vh;
+  width: 45vw;
+  display: inline-block;
+  box-sizing: border-box;
+  transition: 1s ease;
+}
+
+.mobile {
+  height: 100vh;
+  width: 100vw;
+  display: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  transition: 1s ease;
 }

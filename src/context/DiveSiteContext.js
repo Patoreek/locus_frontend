@@ -81,6 +81,8 @@ export const DiveSiteProvider = (props) => {
       panelSites = panelDiveSites;
     }
 
+    console.log(mapBounds);
+
     const swLat = mapBounds.Wa.i;
     const neLat = mapBounds.Wa.j;
 
@@ -148,6 +150,8 @@ export const DiveSiteProvider = (props) => {
 
     let swLng;
     let neLng;
+
+    console.log(mapBounds);
 
     if (mapBounds.Qa) {
       swLng = mapBounds.Qa.i;
@@ -242,6 +246,8 @@ export const DiveSiteProvider = (props) => {
 
     let swLng;
     let neLng;
+
+    console.log(mapBounds);
 
     if (mapBounds.Qa) {
       swLng = mapBounds.Qa.i;

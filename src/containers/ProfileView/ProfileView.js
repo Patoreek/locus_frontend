@@ -57,9 +57,29 @@ const ProfileView = (props) => {
     } else {
       setEditModal(false);
     }
+    if (userId) {
+      getProfileOther(userId);
+      getReports(userId);
+    } else {
+      getProfile();
+      //getReports(account.id);
+    }
+  }, []);
 
-    const getProfileOther = (id) => {
-      return fetch(process.env.REACT_APP_BACKEND + "user/viewProfile", {
+  useEffect(() => {
+    //console.log(userId);
+    if (account != null && !userId) {
+      getReports(account.id);
+    }
+    //console.log(account);
+  }, [account]);
+
+  const getProfileOther = (id) => {
+    return fetch(
+      process.env.REACT_APP_ENV == "production"
+        ? process.env.REACT_APP_BACKEND + "user/viewProfile"
+        : process.env.REACT_APP_LOCAL_BACKEND + "user/viewProfile",
+      {
         method: "POST",
         credentials: "include",
         headers: {
@@ -68,38 +88,12 @@ const ProfileView = (props) => {
         body: JSON.stringify({
           userId: id,
         }),
+      }
+    )
+      .then((res) => {
+        return res.json();
       })
-        .then((res) => {
-          return res.json();
-        })
-        .then((profile) => {
-          setFirstName(profile.firstName);
-          setLastName(profile.lastName);
-          if (profile.profilePic) {
-            setProfilePic(process.env.REACT_APP_BACKEND + profile.profilePic);
-          } else {
-            setProfilePic(avatarPlaceholder);
-          }
-          setBio(profile.bio);
-          setCity(profile.city);
-          setCountry(profile.country);
-          setExperience(profile.experience);
-          setFavourites(profile.favouritesData);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-
-    async function getProfile() {
-      try {
-        const response = await fetch("/api/user/getProfile", {
-          method: "GET",
-          credentials: "include",
-        });
-        const profile = await response.json();
-        setProfileID(profile._id);
+      .then((profile) => {
         setFirstName(profile.firstName);
         setLastName(profile.lastName);
         if (profile.profilePic) {
@@ -113,37 +107,64 @@ const ProfileView = (props) => {
         setExperience(profile.experience);
         setFavourites(profile.favouritesData);
         setIsLoading(false);
-      } catch (error) {
-        console.log(error);
-        setIsLoading(null);
-      }
-    }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-    async function getReports(id) {
-      try {
-        const response = await fetch(
-          "/api/user/diveReports/getReportsForUser/" + id,
-          {
-            method: "GET",
-            credentials: "include",
-          }
-        );
-        const reports = await response.json();
-        setReports(reports.reportsData);
-      } catch (error) {
-        console.log(error);
-        setIsLoading(null);
+  async function getProfile() {
+    try {
+      const response = await fetch(
+        process.env.REACT_APP_ENV == "production"
+          ? "/api/user/getProfile"
+          : process.env.REACT_APP_LOCAL_BACKEND + "user/getProfile",
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
+      const profile = await response.json();
+      setProfileID(profile._id);
+      setFirstName(profile.firstName);
+      setLastName(profile.lastName);
+      if (profile.profilePic) {
+        setProfilePic(process.env.REACT_APP_BACKEND + profile.profilePic);
+      } else {
+        setProfilePic(avatarPlaceholder);
       }
+      setBio(profile.bio);
+      setCity(profile.city);
+      setCountry(profile.country);
+      setExperience(profile.experience);
+      setFavourites(profile.favouritesData);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(null);
     }
+  }
 
-    if (userId) {
-      getProfileOther(userId);
-      getReports(userId);
-    } else {
-      getReports(account.id);
-      getProfile(account.id);
+  async function getReports(id) {
+    try {
+      const response = await fetch(
+        process.env.REACT_APP_ENV == "production"
+          ? "/api/user/diveReports/getReportsForUser/" + id
+          : process.env.REACT_APP_LOCAL_BACKEND +
+              "user/diveReports/getReportsForUser/" +
+              id,
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
+      const reports = await response.json();
+      setReports(reports.reportsData);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(null);
     }
-  }, []);
+  }
 
   useEffect(() => {
     if (!firstName || !lastName) {
@@ -281,6 +302,7 @@ const ProfileView = (props) => {
             <div className={classes.favourites}>
               {favourites.length > 0
                 ? favourites.map((favourite, i) => (
+                    // <h1>hello</h1>
                     <DivesiteListingPanel site={favourite.site} key={i} />
                   ))
                 : null}

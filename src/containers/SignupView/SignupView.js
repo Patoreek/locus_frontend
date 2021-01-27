@@ -163,22 +163,27 @@ const SignupView = () => {
     setErrMsg(errorMessage);
 
     if (errorMessage.length === 0) {
-      return fetch(process.env.REACT_APP_BACKEND + "signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user: {
-            username: username,
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            password: password,
-            confirmPassword: confirmPassword,
+      return fetch(
+        process.env.REACT_APP_ENV == "production"
+          ? process.env.REACT_APP_BACKEND + "signup"
+          : process.env.REACT_APP_LOCAL_BACKEND + "signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
           },
-        }),
-      })
+          body: JSON.stringify({
+            user: {
+              username: username,
+              firstName: firstName,
+              lastName: lastName,
+              email: email,
+              password: password,
+              confirmPassword: confirmPassword,
+            },
+          }),
+        }
+      )
         .then((res) => {
           return res.json();
         })

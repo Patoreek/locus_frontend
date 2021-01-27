@@ -290,38 +290,43 @@ const AddRequestForm = (props) => {
 
     if (errorMessage.length == 0) {
       console.log("no errors");
-      return fetch(process.env.REACT_APP_BACKEND + "diveSites/addRequestSite", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          diveSite: {
-            userId: account.id,
-            userFirstName: account.firstName,
-            userLastName: account.lastName,
-            name: name,
-            suburb: suburb,
-            city: city,
-            state: state,
-            country: country,
-            latitude: coordsLat,
-            longitude: coordsLng,
-            description: description,
-            siteType: siteType,
-            access: access,
-            avgDepth: avgDepth,
-            maxDepth: maxDepth,
-            minTemp: minTemp,
-            maxTemp: maxTemp,
-            minVis: minVis,
-            maxVis: maxVis,
-            suitable: suitable,
-            experience: experience,
+      return fetch(
+        process.env.REACT_APP_ENV == "production"
+          ? process.env.REACT_APP_BACKEND + "diveSites/addRequestSite"
+          : process.env.REACT_APP_LOCAL_BACKEND + "diveSites/addRequestSite",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
           },
-        }),
-      })
+          credentials: "include",
+          body: JSON.stringify({
+            diveSite: {
+              userId: account.id,
+              userFirstName: account.firstName,
+              userLastName: account.lastName,
+              name: name,
+              suburb: suburb,
+              city: city,
+              state: state,
+              country: country,
+              latitude: coordsLat,
+              longitude: coordsLng,
+              description: description,
+              siteType: siteType,
+              access: access,
+              avgDepth: avgDepth,
+              maxDepth: maxDepth,
+              minTemp: minTemp,
+              maxTemp: maxTemp,
+              minVis: minVis,
+              maxVis: maxVis,
+              suitable: suitable,
+              experience: experience,
+            },
+          }),
+        }
+      )
         .then((res) => {
           return res.json();
         })

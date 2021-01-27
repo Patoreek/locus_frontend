@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import classes from "./App.module.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Redirect, useLocation } from "react-router-dom";
+import { isMobile } from "react-device-detect";
 
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./containers/Footer/Footer";
@@ -44,7 +45,9 @@ function App() {
     async function isLoggedIn() {
       try {
         const response = await fetch(
-          process.env.REACT_APP_BACKEND + "loggedIn",
+          process.env.REACT_APP_ENV == "production"
+            ? process.env.REACT_APP_BACKEND + "loggedIn"
+            : process.env.REACT_APP_LOCAL_BACKEND + "loggedIn",
           {
             method: "GET",
             credentials: "include",
@@ -72,9 +75,9 @@ function App() {
     isLoggedIn();
   }, []);
 
-  useEffect(() => {
-    console.log(isAuth);
-  }, [isAuth]);
+  // useEffect(() => {
+  //   console.log(isAuth);
+  // }, [isAuth]);
 
   return (
     <BrowserRouter>
@@ -83,7 +86,7 @@ function App() {
           <Spinner />
         </div>
       )}
-      {!isLoading && (
+      {!isLoading && !isMobile && (
         <div className={classes.app}>
           <DiveSiteProvider>
             <Navbar />
@@ -184,6 +187,97 @@ function App() {
         </div>
       )}
       {/* {isLoading === null && <h1>Error Loading</h1>} */}
+      {isMobile && (
+        <div className={classes.app}>
+          <DiveSiteProvider>
+            <Navbar />
+            <Route path="/" exact component={HomeView} />
+            <Route path="/map/:view" exact component={GuestView} />{" "}
+            {/* depending the 'view' it will load the map but change whether you see the map or the listings with the searchbar*/}
+            {/* A new component that is a simple list of login, signup. if logged in then show profile, edit profile, dive reports, request to add a site, logout, change password. These will link to a page / modal*/}
+            <UserProvider>
+              <Route
+                path="/mySites"
+                exact
+                render={() => (isAuth ? <UserView /> : null)}
+              />
+              <Route
+                path="/addRequest"
+                exact
+                render={() => (isAuth ? <AddRequest /> : null)}
+              />
+              <Route
+                path="/changePassword"
+                exact
+                render={() => (isAuth ? <ChangePassword /> : null)}
+              />
+              <Route
+                path="/favourites"
+                exact
+                render={() => (isAuth ? <FavouritesView /> : null)}
+              />
+              <Route path="/userprofile/:userId" component={ProfileView} />
+              <Route
+                path="/profile"
+                exact
+                render={() => (isAuth ? <ProfileView /> : null)}
+              />
+              <Route
+                path="/editprofile/:editProfile"
+                render={() => (isAuth ? <ProfileView /> : null)}
+              />
+              <Route
+                path="/diveReports"
+                exact
+                render={() => (isAuth ? <DiveReports /> : null)}
+              />
+              <Route path="/divesite/:id" exact component={DiveSiteView} />
+              <Route path="/diveshop/:id" exact component={DiveShopView} />
+              <Route
+                path="/communityphotos/:siteId"
+                exact
+                component={CommunityPhotos}
+              />
+              <Route path="/map" exact component={GuestView} />
+            </UserProvider>
+          </DiveSiteProvider>
+          <Route
+            path="/about"
+            exact
+            component={() => <FooterView page="about" />}
+          />
+          <Route
+            path="/advertise"
+            exact
+            component={() => <FooterView page="advertise" />}
+          />
+          <Route
+            path="/news"
+            exact
+            component={() => <FooterView page="news" />}
+          />
+          <Route
+            path="/contact"
+            exact
+            component={() => <FooterView page="contact" />}
+          />
+          <Route
+            path="/sitemap"
+            exact
+            component={() => <FooterView page="sitemap" />}
+          />
+          <Route
+            path="/terms"
+            exact
+            component={() => <FooterView page="terms" />}
+          />
+          <Route
+            path="/policy"
+            exact
+            component={() => <FooterView page="policy" />}
+          />
+        </div>
+      )}
     </BrowserRouter>
   );
 }

@@ -56,10 +56,15 @@ const NavbarMain = () => {
   let history = useHistory();
 
   const getProfile = () => {
-    return fetch("/api/user/getProfile", {
-      method: "GET",
-      credentials: "include",
-    })
+    return fetch(
+      process.env.REACT_APP_ENV == "production"
+        ? "/api/user/getProfile"
+        : process.env.REACT_APP_LOCAL_BACKEND + "user/getProfile",
+      {
+        method: "GET",
+        credentials: "include",
+      }
+    )
       .then((res) => {
         return res.json();
       })
@@ -131,16 +136,21 @@ const NavbarMain = () => {
 
   const logoutHandler = () => {
     if (isAuth) {
-      return fetch("/api/logout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          logout: true,
-        }),
-      })
+      return fetch(
+        process.env.REACT_APP_ENV == "production"
+          ? "/api/logout"
+          : process.env.REACT_APP_LOCAL_BACKEND + "logout",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({
+            logout: true,
+          }),
+        }
+      )
         .then((res) => {
           return res.json();
         })

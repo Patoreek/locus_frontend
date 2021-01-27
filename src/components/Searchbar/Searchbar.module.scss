@@ -1,4 +1,5 @@
 @import "../../sass/abstracts/variables";
+@import "../../sass/abstracts/mixins";
 
 .searchBar {
   background: rgb(243, 243, 243);
@@ -13,6 +14,10 @@
 
   &__mainbar {
     width: 60rem;
+
+    @include respond(phone) {
+      width: 45rem !important;
+    }
   }
 
   &__searchInputContainerMain {
@@ -44,6 +49,10 @@
       width: 55.4rem;
       font-family: $font-3-style;
       font-weight: $font-normal;
+
+      @include respond(phone) {
+        width: 25rem !important;
+      }
       &__main {
         font-size: 1.4rem;
         width: 46rem;
@@ -99,6 +108,10 @@
       padding: 1rem 2.5rem;
       transition: 0.2s ease;
       width: 11rem;
+
+      @include respond(phone) {
+        width: 10rem !important;
+      }
 
       &:hover {
         background: $search-btn-color-hover;

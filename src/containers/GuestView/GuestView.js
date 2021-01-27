@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 
 import classes from "./GuestView.module.scss";
+import { isMobile } from "react-device-detect";
 
 import InformationPanel from "../../components/InformationPanel/InformationPanel";
 import Map from "../../components/Map/Map";
@@ -54,33 +55,23 @@ const GuestView = () => {
         googleMapURL={process.env.REACT_APP_GOOGLE_MAPS_KEY}
         loadingElement={
           <div
-            style={{
-              height: "97vh",
-              width: "45vw",
-              display: "inline-block",
-              transition: "1s ease",
-            }}
+            className={`${classes.loadingElement} ${
+              isMobile ? classes.mobile : null
+            }`}
           />
         }
         containerElement={
           <div
-            style={{
-              height: "97vh",
-              width: "45vw",
-              display: "inline-block",
-              boxSizing: "border-box",
-              transition: "1s ease",
-            }}
+            className={`${classes.containerElement} ${
+              isMobile ? classes.mobile : null
+            }`}
           />
         }
         mapElement={
           <div
-            style={{
-              height: "97vh",
-              width: "45vw",
-              display: "inline-block",
-              transition: "1s ease",
-            }}
+            className={`${classes.mapElement} ${
+              isMobile ? classes.mobile : null
+            }`}
           />
         }
         onMapClick={onMapClick}

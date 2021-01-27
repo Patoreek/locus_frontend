@@ -1,0 +1,84 @@
+@import "../../../sass/abstracts/variables";
+
+.navbarMobile {
+  position: fixed;
+  z-index: 200;
+  bottom: 0;
+  left: 0;
+  background: $color-white-pure;
+  border-top: 1px solid $color-lines;
+  width: 100vw;
+  height: 10rem;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  &__iconContainer {
+    position: relative;
+    z-index: 200;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $color-white-pure;
+
+    &:not(:last-child) {
+      border-right: 1px solid rgba($color-lines, 0.25);
+    }
+
+    .svg {
+      width: 5rem;
+      height: 5rem;
+
+      g path,
+      path {
+        fill: $color-text-blue;
+      }
+    }
+  }
+
+  .active {
+    background: $color-text-blue;
+
+    .svg {
+      g path,
+      path {
+        fill: $color-white-pure;
+      }
+    }
+  }
+
+  .popupModal {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: $color-white-pure;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    transition: 0.3s ease;
+
+    overflow-y: scroll;
+
+    .list {
+      padding: 2.5rem 5rem;
+      &__item {
+        padding: 5rem 2rem;
+        border-bottom: 1px solid $color-lines;
+        a,
+        span {
+          font-size: 3.5rem;
+          color: $color-black;
+          font-family: $font-3-style;
+          font-weight: $font-bold;
+        }
+      }
+    }
+  }
+
+  .modalClose {
+    transform: translateY(100vh);
+  }
+}

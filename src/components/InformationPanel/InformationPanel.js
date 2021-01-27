@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { isMobile } from "react-device-detect";
 
 import GuestPanel from "./GuestPanel/GuestPanel";
 import UserPanel from "./UserPanel/UserPanel";
@@ -43,7 +44,11 @@ const InformationPanel = (props) => {
   }, []);
 
   return (
-    <div className={classes.infoPanelContainer}>
+    <div
+      className={`${classes.infoPanelContainer} ${
+        isMobile ? classes.mobile : null
+      }`}
+    >
       {panelLoaded && guestPanel && <GuestPanel />}
       {panelLoaded && !guestPanel && <UserPanel />}
       {!panelLoaded && <Spinner animation="border" />}

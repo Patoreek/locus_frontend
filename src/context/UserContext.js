@@ -19,8 +19,8 @@ export const EditDiveShopModalContext = createContext();
 export const DeleteDiveShopModalContext = createContext();
 
 export const UserProvider = (props) => {
-  const [showEditModal, setShowEditModal] = useState(null);
-  const [showDeleteModal, setShowDeleteModal] = useState(null);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showAddRequestModal, setShowAddRequestModal] = useState(false);
   const [showSiteList, setShowSiteList] = useState(false);

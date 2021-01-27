@@ -1,0 +1,75 @@
+.userView {
+  height: calc(100vh - 6rem);
+  width: 100vw;
+}
+
+.loadingElement,
+.mapElement,
+.containerElement {
+  height: 97vh;
+  width: 45vw;
+  display: inline-block;
+  box-sizing: border-box;
+  transition: 1s ease;
+}
+
+.mobile {
+  height: 100vh;
+  width: 100vw;
+  display: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  transition: 1s ease;
+}
+
+// .userViewPage {
+//   float: left;
+//   width: 100%;
+//   height: 97vh;
+// }
+
+// .AddModal {
+//   width: 50vw;
+//   max-width: none !important;
+//   margin-top: 20vh;
+//   margin-left: 40vw;
+// }
+
+// .AddModalHeader {
+//   width: 100%;
+//   margin: 0 auto;
+//   text-align: left;
+//   font-size: 18px;
+// }
+
+// .AddModalBody {
+//   height: 40vh;
+// }
+
+// .CloseAddModalButton {
+//   margin: 0 auto;
+// }
+
+// @media screen and (max-width: 800px) {
+//   .AddModal {
+//     width: 90vw;
+//     max-width: none !important;
+//     margin-top: 15vh;
+//     margin-left: 5vw;
+//   }
+
+//   .AddModalHeader {
+//     width: 100%;
+//     margin: 0 auto;
+//     text-align: left;
+//   }
+
+//   .AddModalBody {
+//     height: 50vh;
+//   }
+
+//   .CloseAddModalButton {
+//     margin: 0 auto;
+//   }
+// }

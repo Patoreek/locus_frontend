@@ -119,6 +119,9 @@
         @include respond(big-desktop) {
           padding: 2.5rem 0.8rem;
         }
+        @include respond(phone) {
+          padding: 2.5rem 0.6rem;
+        }
 
         &:hover {
           background: rgba($color-white, 0.35);

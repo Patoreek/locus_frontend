@@ -63,17 +63,22 @@ const LoginView = () => {
 
     if (email && password) {
       //return fetch(process.env.REACT_APP_BACKEND + "api/login", {
-      return fetch("/api/login", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      })
+      return fetch(
+        process.env.REACT_APP_ENV == "production"
+          ? "/api/login"
+          : process.env.REACT_APP_LOCAL_BACKEND + "login",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
+        }
+      )
         .then((res) => {
           return res.json();
         })

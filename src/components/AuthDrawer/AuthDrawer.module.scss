@@ -24,6 +24,12 @@
   fill: $color-black;
   transition: 0.2s ease;
 
+  @include respond(phone) {
+    height: 5rem;
+    width: 5rem;
+    margin: 2.5rem 2.5rem;
+  }
+
   &:hover {
     fill: $color-text-blue;
   }
@@ -37,6 +43,9 @@
   }
   @include respond(tab-port) {
     width: 80vw;
+  }
+  @include respond(phone) {
+    width: 100vw;
   }
 }
 
