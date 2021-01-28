@@ -83,8 +83,16 @@ export const DiveSiteProvider = (props) => {
 
     console.log(mapBounds);
 
-    const swLat = mapBounds.Wa.i;
-    const neLat = mapBounds.Wa.j;
+    let swLat;
+    let neLat;
+
+    if (mapBounds.Wa) {
+      swLat = mapBounds.Wa.i;
+      neLat = mapBounds.Wa.j;
+    } else if (mapBounds.Va) {
+      swLat = mapBounds.Va.i;
+      neLat = mapBounds.Va.j;
+    }
 
     let swLng;
     let neLng;
@@ -145,13 +153,21 @@ export const DiveSiteProvider = (props) => {
   async function loadDiveSitesInBounds(mapBounds, setGlobalLoader) {
     setDiveSites([]);
 
-    const swLat = mapBounds.Wa.i;
-    const neLat = mapBounds.Wa.j;
+    console.log(mapBounds);
+
+    let swLat;
+    let neLat;
+
+    if (mapBounds.Wa) {
+      swLat = mapBounds.Wa.i;
+      neLat = mapBounds.Wa.j;
+    } else if (mapBounds.Va) {
+      swLat = mapBounds.Va.i;
+      neLat = mapBounds.Va.j;
+    }
 
     let swLng;
     let neLng;
-
-    console.log(mapBounds);
 
     if (mapBounds.Qa) {
       swLng = mapBounds.Qa.i;
@@ -240,14 +256,21 @@ export const DiveSiteProvider = (props) => {
 
   async function loadDiveShopsInBounds(mapBounds, setGlobalLoader) {
     //console.log(mapBounds);
+    console.log(mapBounds);
 
-    const swLat = mapBounds.Wa.i;
-    const neLat = mapBounds.Wa.j;
+    let swLat;
+    let neLat;
+
+    if (mapBounds.Wa) {
+      swLat = mapBounds.Wa.i;
+      neLat = mapBounds.Wa.j;
+    } else if (mapBounds.Va) {
+      swLat = mapBounds.Va.i;
+      neLat = mapBounds.Va.j;
+    }
 
     let swLng;
     let neLng;
-
-    console.log(mapBounds);
 
     if (mapBounds.Qa) {
       swLng = mapBounds.Qa.i;

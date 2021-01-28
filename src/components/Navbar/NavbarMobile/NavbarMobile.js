@@ -171,6 +171,7 @@ const NavbarMobile = () => {
         onClick={() => {
           activeHandler("search");
           //history.push("/map"); SEARCHBAR WITH LISTING
+          history.push("/search");
           setOpenModal(false);
         }}
       >

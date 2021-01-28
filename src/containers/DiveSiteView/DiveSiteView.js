@@ -112,7 +112,11 @@ const DiveSiteView = (props) => {
     async function getSite() {
       try {
         const response = await fetch(
-          process.env.REACT_APP_BACKEND + "diveSites/findSite/" + siteId,
+          process.env.REACT_APP_ENV == "production"
+            ? process.env.REACT_APP_BACKEND + "diveSites/findSite/" + siteId
+            : process.env.REACT_APP_LOCAL_BACKEND +
+                "diveSites/findSite/" +
+                siteId,
           {
             method: "GET",
             credentials: "include",
@@ -174,9 +178,13 @@ const DiveSiteView = (props) => {
     async function getReportsForSite() {
       try {
         const response = await fetch(
-          process.env.REACT_APP_BACKEND +
-            "user/diveReports/getReportsForSite/" +
-            siteId,
+          process.env.REACT_APP_ENV == "production"
+            ? process.env.REACT_APP_BACKEND +
+                "user/diveReports/getReportsForSite/" +
+                siteId
+            : process.env.REACT_APP_LOCAL_BACKEND +
+                "user/diveReports/getReportsForSite/" +
+                siteId,
           {
             method: "GET",
             credentials: "include",
@@ -192,9 +200,13 @@ const DiveSiteView = (props) => {
     async function getAssociatedShops() {
       try {
         const response = await fetch(
-          process.env.REACT_APP_BACKEND +
-            "diveSites/getAssociatedShops/" +
-            siteId,
+          process.env.REACT_APP_ENV == "production"
+            ? process.env.REACT_APP_BACKEND +
+                "diveSites/getAssociatedShops/" +
+                siteId
+            : process.env.REACT_APP_LOCAL_BACKEND +
+                "diveSites/getAssociatedShops/" +
+                siteId,
           {
             method: "GET",
             credentials: "include",
@@ -209,7 +221,10 @@ const DiveSiteView = (props) => {
 
     async function getNearbyDiveSites(lat, lng) {
       return fetch(
-        process.env.REACT_APP_BACKEND + "diveSites/findNearbyDiveSites",
+        process.env.REACT_APP_ENV == "production"
+          ? process.env.REACT_APP_BACKEND + "diveSites/findNearbyDiveSites"
+          : process.env.REACT_APP_LOCAL_BACKEND +
+              "diveSites/findNearbyDiveSites",
         {
           method: "POST",
           credentials: "include",

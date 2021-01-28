@@ -46,7 +46,7 @@ const InformationPanel = (props) => {
   return (
     <div
       className={`${classes.infoPanelContainer} ${
-        isMobile ? classes.mobile : null
+        isMobile ? classes.mobileMap : null
       }`}
     >
       {panelLoaded && guestPanel && <GuestPanel />}

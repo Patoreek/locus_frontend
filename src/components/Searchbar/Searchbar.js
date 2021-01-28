@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import { isMobile } from "react-device-detect";
 
 import classes from "./Searchbar.module.scss";
 
@@ -46,7 +47,11 @@ const Searchbar = () => {
     setAddress(value);
     setSearchCoordinates(latLng);
     setSearchValue(value);
-    history.push("/map");
+    if (isMobile) {
+      history.push("/search");
+    } else {
+      history.push("/map");
+    }
   };
   return (
     <PlacesAutocomplete
@@ -73,8 +78,9 @@ const Searchbar = () => {
               className={`${classes.searchInput} ${
                 navbar == "main" ? classes.searchInput__main : null
               }`}
-              value={searchValue}
-              onClick={() => setSearchValue(null)}
+              value={address}
+              //onClick={() => setSearchValue(null)}
+              //onChange={(e) => setSearchValue(e.target.value)}
             />
             <div className={classes.dropdownContainer}>
               {suggestions.map((suggestion) => {

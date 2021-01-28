@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 
 import { useHistory } from "react-router-dom";
+import { isMobile } from "react-device-detect";
 
 import Spinner from "../../../components/Spinner/Spinner";
 import { SpinnerCircular } from "spinners-react";
@@ -27,6 +28,7 @@ import {
   LocationNameContext,
   GlobalLoaderContext,
   MapRefContext,
+  SearchCoordsContext,
 } from "../../../context/AuthContext";
 import ToggleButtons from "../ToggleButtons/ToggleButtons";
 
@@ -84,12 +86,22 @@ const GuestPanel = () => {
 
   const [filterPressed, setFilterPressed] = useState(false);
 
+  const [searchCoordinates, setSearchCoordinates] = useContext(
+    SearchCoordsContext
+  );
+
   useEffect(() => {
     setInitalLoad(true);
     return () => {
       setScrollCounter(0);
     };
   }, []);
+
+  // useEffect(() => {
+  //   if (isMobile) {
+  //     getNearbyDiveSites(searchCoordinates.lat, searchCoordinates.lng);
+  //   }
+  // }, [searchCoordinates]);
 
   useEffect(() => {
     if (diveSites.length >= 1) {
@@ -110,13 +122,17 @@ const GuestPanel = () => {
   let timer;
 
   const fetchData = () => {
-    clearTimeout(timer);
-    timer = setTimeout(function () {
-      const lat = mapRef.current.getCenter().lat();
-      const lng = mapRef.current.getCenter().lng();
-      const mapBounds = mapRef.current.getBounds();
-      loadDiveSitesInBoundsInfinite(mapBounds, scrollCounter);
-    }, 1000);
+    if (!isMobile) {
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        const lat = mapRef.current.getCenter().lat();
+        const lng = mapRef.current.getCenter().lng();
+        const mapBounds = mapRef.current.getBounds();
+        loadDiveSitesInBoundsInfinite(mapBounds, scrollCounter);
+      }, 1000);
+    } else {
+      getNearbyDiveSites(searchCoordinates.lat, searchCoordinates.lng);
+    }
   };
 
   const filterHandler = () => {
@@ -125,6 +141,37 @@ const GuestPanel = () => {
     loadDiveSiteInBounds(mapBounds, setGlobalLoader);
     loadDiveSitesInBoundsInfinite(mapBounds, "TRUE");
   };
+
+  async function getNearbyDiveSites(lat, lng) {
+    return fetch(
+      process.env.REACT_APP_ENV == "production"
+        ? process.env.REACT_APP_BACKEND + "diveSites/findNearbyDiveSites"
+        : process.env.REACT_APP_LOCAL_BACKEND + "diveSites/findNearbyDiveSites",
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          lat: lat,
+          lng,
+          lng,
+          //siteId: siteId,
+        }),
+      }
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((result) => {
+        console.log(result.sites);
+        setDiveSites(result.sites);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   return (
     <div className={classes.guestPanel}>

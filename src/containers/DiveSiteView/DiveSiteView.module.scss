@@ -59,6 +59,11 @@
       position: relative;
       z-index: 50;
 
+      @include respond(phone) {
+        grid-template-rows: repeat(4, 12.5rem) max-content;
+        grid-template-columns: 1fr;
+      }
+
       .image {
         width: 100%;
         height: 100%;
@@ -78,6 +83,11 @@
         &__1 {
           grid-row: 1 / -1;
           grid-column: 1 / 2;
+
+          @include respond(phone) {
+            grid-row: 1 / 4;
+            grid-column: 1 / 2;
+          }
         }
       }
 
@@ -95,7 +105,23 @@
         padding-right: 0.5rem;
         overflow: scroll;
         position: relative;
-        z-index: 50;
+
+        @include respond(phone) {
+          grid-row: 4 / 5;
+          grid-column: 1 / 2;
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 110%;
+          width: 100%;
+          grid-auto-rows: none;
+          grid-template-rows: 1fr;
+          grid-template-columns: repeat(
+            20,
+            1fr
+          ); //TODO: find another solution to this (can only hold 20 images untill it breaks)
+          padding-bottom: 1rem;
+        }
         // //height: 100%;
         .imageContainer {
           // height: 12.5rem;
@@ -105,6 +131,11 @@
           overflow: hidden;
           position: relative;
           z-index: 50;
+
+          @include respond(phone) {
+            height: 100%;
+            width: 12.5rem;
+          }
 
           img {
             transition: 0.3s ease;
@@ -119,6 +150,10 @@
         -webkit-appearance: none;
         width: 7px;
         padding: 0.1rem 0rem;
+
+        @include respond(phone) {
+          height: 5px;
+        }
       }
 
       ::-webkit-scrollbar-thumb {

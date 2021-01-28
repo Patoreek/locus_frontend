@@ -18,6 +18,7 @@ import ChangePassword from "./components/User/ChangePassword/ChangePassword";
 import DiveReports from "./containers/DiveReports/DiveReports";
 import CommunityPhotos from "./containers/CommunityPhotos/CommunityPhotos";
 import DiveShopView from "./containers/DiveShopView/DiveShopView";
+import MobileSearchPanel from "./containers/MobileSearchPanel/MobileSearchPanel";
 
 import HomeView from "./containers/Home/Home";
 
@@ -136,6 +137,7 @@ function App() {
                 exact
                 render={() => (isAuth ? <DiveReports /> : null)}
               />
+
               <Route path="/divesite/:id" exact component={DiveSiteView} />
               <Route path="/diveshop/:id" exact component={DiveShopView} />
               <Route
@@ -231,6 +233,8 @@ function App() {
                 exact
                 render={() => (isAuth ? <DiveReports /> : null)}
               />
+              <Route path="/search" exact component={MobileSearchPanel} />
+
               <Route path="/divesite/:id" exact component={DiveSiteView} />
               <Route path="/diveshop/:id" exact component={DiveShopView} />
               <Route
@@ -276,6 +280,7 @@ function App() {
             exact
             component={() => <FooterView page="policy" />}
           />
+          {document.title != "Locus - Map" ? <Footer /> : null}
         </div>
       )}
     </BrowserRouter>

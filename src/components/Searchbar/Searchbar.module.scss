@@ -11,17 +11,23 @@
   overflow: hidden;
   margin: 0 auto;
   width: 75rem;
+  @include respond(phone) {
+    border-radius: 0px;
+  }
 
   &__mainbar {
     width: 60rem;
 
     @include respond(phone) {
-      width: 45rem !important;
+      width: 100% !important;
     }
   }
 
   &__searchInputContainerMain {
     padding: 0.6rem 1.5rem !important;
+    @include respond(phone) {
+      padding: 2rem 2.5rem !important;
+    }
   }
 
   &__searchInputContainer {
@@ -38,6 +44,11 @@
       font-family: $font-1-style;
       font-weight: $font-bold;
       color: $color-black;
+
+      @include respond(phone) {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+      }
     }
 
     .searchInput {
@@ -52,6 +63,7 @@
 
       @include respond(phone) {
         width: 25rem !important;
+        font-size: 1.8rem !important;
       }
       &__main {
         font-size: 1.4rem;
@@ -62,11 +74,17 @@
           color: $color-text-darkgrey;
           font-family: $font-3-style;
           font-weight: $font-normal;
+          @include respond(phone) {
+            font-size: 1.8rem !important;
+          }
         }
       }
 
       &::placeholder {
         font-size: 1.4rem;
+        @include respond(phone) {
+          font-size: 1.8rem !important;
+        }
       }
 
       &:focus {
@@ -83,11 +101,19 @@
     border-radius: 0px 0px 5px 5px;
     overflow: hidden;
     //  width: 0%;
+    @include respond(phone) {
+      width: 80% !important;
+      z-index: 100 !important;
+    }
 
     .suggestions {
       background: $color-white;
       padding: 1.6rem 1.5rem;
       font-size: 1.4rem;
+
+      @include respond(phone) {
+        font-size: 1.8rem !important;
+      }
 
       &:hover {
         background: $link-nav-hover;
@@ -124,6 +150,10 @@
       .searchSVG {
         height: 2rem;
         width: 2rem;
+        @include respond(phone) {
+          height: 3.5rem;
+          width: 3.5rem;
+        }
         g path {
           fill: $color-white;
         }

@@ -1,4 +1,5 @@
 @import "../../sass/abstracts/variables";
+@import "../../sass/abstracts/mixins";
 
 .container {
   margin: 0 auto;
@@ -32,9 +33,19 @@
       grid-template-rows: max-content max-content;
       grid-template-columns: 1fr;
 
+      @include respond(phone) {
+        padding: 0rem 2rem 10rem 2rem;
+        grid-auto-rows: max-content;
+        grid-template-columns: 1fr;
+      }
+
       &__topContainer {
         margin-bottom: -6rem;
         display: flex;
+
+        @include respond(phone) {
+          padding-bottom: 2.5rem;
+        }
 
         .imageContainer {
           grid-row: 1 / -1;
@@ -65,6 +76,7 @@
           grid-template-rows: repeat(3, max-content);
           grid-template-columns: 1fr;
           grid-gap: 1rem;
+
           .nameContainer {
             grid-row: 1 / 2;
             grid-column: 2 / 3;
@@ -127,13 +139,22 @@
         display: grid;
         grid-template-rows: max-content;
         grid-template-columns: 1fr 0.5fr;
-
         border-top: 1px solid $color-lines;
+
+        @include respond(phone) {
+          grid-auto-rows: max-content;
+          grid-template-columns: 1fr;
+        }
 
         .leftGrid {
           grid-row: 1 / -1;
           grid-column: 1 / 2;
           padding: 2rem 1rem;
+
+          @include respond(phone) {
+            grid-row: 2 / 3;
+            grid-column: 1 / 2;
+          }
 
           &__diveSitesHeader {
             h3 {
@@ -184,6 +205,11 @@
           display: grid;
           grid-template-rows: repeat(6, max-content);
           grid-template-columns: 1fr;
+
+          @include respond(phone) {
+            grid-row: 1 / 2;
+            grid-column: 1 / 2;
+          }
 
           &__contactInfoHeader {
             grid-row: 1 / 2;

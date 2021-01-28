@@ -1,4 +1,5 @@
 @import "../../sass/abstracts/variables";
+@import "../../sass/abstracts/mixins";
 
 .footer {
   width: 100vw;
@@ -9,6 +10,12 @@
   grid-template-rows: repeat(3, max-content);
   grid-template-columns: 30rem 1fr 30rem;
   padding: 2rem 5rem;
+
+  @include respond(phone) {
+    padding: 2rem 0rem 12.5rem 0rem;
+    grid-template-columns: 100vw;
+    text-align: center;
+  }
 
   .logoContainer {
     grid-row: 1 / 2;
@@ -31,9 +38,20 @@
     display: flex;
     justify-content: space-around;
 
+    @include respond(phone) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
     .listItem a {
       font-size: 1.2rem;
       color: $color-footer-text;
+
+      @include respond(phone) {
+        font-size: 2.5rem;
+        padding: 3rem 0rem;
+      }
     }
 
     .listItem a:hover {
@@ -47,18 +65,32 @@
     grid-column: 1 / 2;
     padding-top: 3rem;
 
+    @include respond(phone) {
+      grid-row: 6 / 7;
+      grid-column: 1 / 2;
+      padding: 0rem 2rem;
+    }
+
     a {
       display: flex;
+      align-items: center;
 
       .mailIcon {
         color: $color-footer-text;
         height: 100%;
         width: 2rem;
+        @include respond(phone) {
+          width: 4rem;
+        }
       }
 
       .email {
         color: $color-footer-text;
         font-size: 1.2rem;
+
+        @include respond(phone) {
+          font-size: 1.6rem;
+        }
       }
     }
   }
@@ -71,11 +103,24 @@
     display: flex;
     justify-content: center;
 
+    @include respond(phone) {
+      grid-row: 3 / 4;
+      grid-column: 1 / 2;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      height: 25rem;
+    }
+
     &__logo {
       width: 2rem;
       margin: 0rem 2.5rem;
       color: $color-footer-text;
       transition: 0.2s ease;
+
+      @include respond(phone) {
+        width: 5rem;
+      }
 
       &:hover {
         transform: scale(1.1);
@@ -91,6 +136,13 @@
     font-size: 1.2rem;
     display: flex;
     justify-content: flex-end;
+
+    @include respond(phone) {
+      grid-row: 6 / 7;
+      grid-column: 1 / 2;
+      padding: 0rem 2rem;
+      font-size: 1.6rem;
+    }
   }
 }
 

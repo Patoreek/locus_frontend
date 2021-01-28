@@ -148,6 +148,10 @@
           grid-row: 3 / 4;
           grid-column: 1 / -1;
 
+          @include respond(phone) {
+            width: 100%;
+          }
+
           display: flex;
 
           .iconPinContainer {
@@ -181,6 +185,10 @@
           grid-column: 1 / 2;
           display: flex;
           width: 70%;
+          @include respond(phone) {
+            padding-top: 1rem;
+            width: 100%;
+          }
 
           .xpIconContainer {
             height: 100%;
@@ -215,6 +223,7 @@
           @include respond(phone) {
             grid-row: 5 / 6;
             grid-column: 1 / -1;
+            padding-top: 2.5rem;
           }
 
           height: 100%;
