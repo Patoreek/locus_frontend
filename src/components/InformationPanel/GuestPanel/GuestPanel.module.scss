@@ -200,7 +200,7 @@
 
               &:hover {
                 background: $color-text-blue;
-                color: $color-white-pure;
+                color: $color-white-pure !important;
               }
 
               &:focus {
@@ -214,10 +214,11 @@
               animation-duration: 1s;
               animation-iteration-count: infinite;
               animation-direction: alternate;
+              transition: 0.2s ease;
 
               &:hover {
                 background: transparent;
-                color: $color-text-blue;
+                color: $color-text-blue !important;
               }
 
               @keyframes glow {
