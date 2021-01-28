@@ -238,22 +238,18 @@ const NavbarMobile = () => {
         <div className={classes.list}>
           {!isAuth && (
             <div>
-              <div className={classes.list__item}>
-                <span
-                  className={classes.login}
-                  onClick={() => authDrawerHandler("login")}
-                >
-                  Login
-                </span>
+              <div
+                className={classes.list__item}
+                onClick={() => authDrawerHandler("login")}
+              >
+                <span className={classes.login}>Login</span>
               </div>
 
-              <div className={classes.list__item}>
-                <span
-                  className={classes.signup}
-                  onClick={() => authDrawerHandler("signup")}
-                >
-                  Signup
-                </span>
+              <div
+                className={classes.list__item}
+                onClick={() => authDrawerHandler("signup")}
+              >
+                <span className={classes.signup}>Signup</span>
               </div>
             </div>
           )}
@@ -307,8 +303,8 @@ const NavbarMobile = () => {
                 //TODO: Maybe make a setting tab that has change password, edit profile and other setting options later
                 <a href="/change">Change Password</a>
               </div> */}
-              <div className={classes.list__item}>
-                <div className={classes.iconContainer} onClick={logoutHandler}>
+              <div className={classes.list__item} onClick={logoutHandler}>
+                <div className={classes.iconContainer}>
                   <LogoutSVG className={classes.icon} />
                 </div>
                 <div className={classes.labelContainer}>
