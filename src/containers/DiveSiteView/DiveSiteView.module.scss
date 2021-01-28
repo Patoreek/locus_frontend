@@ -38,6 +38,10 @@
         font-weight: $font-normal;
         transition: 0.2s ease;
 
+        @include respond(phone) {
+          font-size: 2.25rem;
+        }
+
         &:hover {
           color: $color-text-blue;
         }
@@ -180,6 +184,10 @@
       padding-bottom: 1rem;
       width: 87%;
 
+      @include respond(phone) {
+        width: 100%;
+      }
+
       .name {
         font-size: 3.5rem;
         font-family: $font-1-style;
@@ -187,7 +195,7 @@
         padding-bottom: 1.5rem;
 
         @include respond(phone) {
-          font-size: 2.5rem;
+          font-size: 3rem;
         }
       }
 
@@ -199,6 +207,10 @@
         font-family: $font-3-style;
         font-weight: $font-normal;
 
+        @include respond(phone) {
+          font-size: 2rem;
+        }
+
         &:hover {
           color: $color-text-darkergrey;
         }
@@ -208,6 +220,11 @@
           margin-left: 2rem;
           width: 3rem;
           height: 3rem;
+
+          @include respond(phone) {
+            width: 4rem;
+            height: 4rem;
+          }
         }
       }
 
@@ -223,6 +240,11 @@
         &__favBtn {
           width: 3.5rem;
           margin-top: 0.5rem;
+          @include respond(phone) {
+            width: 4rem;
+            height: 4rem;
+            transform: translate(0rem, 7.5rem);
+          }
         }
       }
     }
@@ -259,6 +281,10 @@
 
             width: 6rem;
             height: 6rem;
+            @include respond(phone) {
+              width: 7.5rem;
+              height: 7.5rem;
+            }
             path {
               fill: $color-text-darkergrey;
             }
@@ -276,6 +302,10 @@
               color: $color-text-darkergrey;
               font-family: $font-3-style;
               font-weight: $font-normal;
+
+              @include respond(phone) {
+                font-size: 2.25rem;
+              }
             }
           }
         }
@@ -291,6 +321,9 @@
           font-family: $font-1-style;
           font-weight: $font-med;
           padding-bottom: 0rem;
+          @include respond(phone) {
+            font-size: 3rem;
+          }
         }
       }
 
@@ -307,6 +340,9 @@
           color: $color-black;
           white-space: pre-wrap;
           padding-right: 1rem;
+          @include respond(phone) {
+            font-size: 2.25rem;
+          }
         }
 
         .contribute {
@@ -314,6 +350,10 @@
           font-family: $font-3-style;
           font-weight: $font-normal;
           color: $color-text-grey;
+
+          @include respond(phone) {
+            font-size: 2.1rem;
+          }
         }
       }
 
@@ -327,6 +367,9 @@
           font-family: $font-1-style;
           font-weight: $font-med;
           padding-bottom: 1.5rem;
+          @include respond(phone) {
+            font-size: 3rem;
+          }
         }
       }
 
@@ -356,6 +399,10 @@
           font-size: 2rem;
           font-family: $font-1-style;
           font-weight: $font-med;
+
+          @include respond(phone) {
+            font-size: 3rem;
+          }
         }
 
         .noReports {
@@ -374,6 +421,9 @@
             font-family: $font-1-style;
             font-weight: $font-med;
             color: $color-text-darkergrey;
+            @include respond(phone) {
+              font-size: 2.25rem;
+            }
           }
 
           a,
@@ -393,6 +443,10 @@
             color: $color-text-blue;
             font-family: $font-1-style;
             font-weight: $font-med;
+
+            @include respond(phone) {
+              font-size: 2.25rem;
+            }
 
             &:hover {
               transform: translateY(-3px);
@@ -430,6 +484,10 @@
           font-weight: $font-normal;
           transition: 0.2s ease;
 
+          @include respond(phone) {
+            font-size: 2.25rem;
+          }
+
           &:hover {
             color: $color-text-blue;
           }
@@ -454,6 +512,10 @@
           font-family: $font-1-style;
           font-weight: $font-med;
           padding-bottom: 1.5rem;
+
+          @include respond(phone) {
+            font-size: 3rem;
+          }
         }
 
         .noShops {
@@ -474,6 +536,9 @@
             font-weight: $font-med;
             color: $color-text-darkergrey;
             text-align: center;
+            @include respond(phone) {
+              font-size: 2.25rem;
+            }
           }
 
           &__contact {
@@ -482,6 +547,10 @@
             font-weight: $font-normal;
             color: $color-text-darkgrey;
             text-align: center;
+            @include respond(phone) {
+              font-size: 2rem;
+              color: $color-text-darkergrey;
+            }
           }
         }
       }

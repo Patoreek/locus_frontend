@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import classes from "./EditReport.module.scss";
+import { isMobile } from "react-device-detect";
 
 import { AccountContext } from "../../../../context/AuthContext";
 import { SiteContext } from "../../../../context/DiveSiteContext";
@@ -61,6 +62,9 @@ const EditReport = (props) => {
 
   const cancelHandler = () => {
     props.setShowEdit(false);
+    if (isMobile) {
+      props.setShowList(true);
+    }
   };
 
   const submitHandler = () => {

@@ -14,6 +14,7 @@ const DiveReportList = (props) => {
     props.setShowDelete(false);
     props.setShowPreview(false);
     props.setShowAdd(true);
+    props.setShowList(false);
   };
 
   const previewHandler = (id) => {
@@ -22,6 +23,7 @@ const DiveReportList = (props) => {
     props.setShowPreview(false);
     props.setShowAdd(false);
     props.findReport(id, "preview");
+    props.setShowList(false);
   };
 
   const editHandler = (id) => {
@@ -30,6 +32,7 @@ const DiveReportList = (props) => {
     props.setShowPreview(false);
     props.setShowAdd(false);
     props.findReport(id, "edit");
+    props.setShowList(false);
   };
 
   const deleteHandler = (id) => {
@@ -38,6 +41,7 @@ const DiveReportList = (props) => {
     props.setShowAdd(false);
     props.setShowDelete(false);
     props.findReport(id, "delete");
+    props.setShowList(false);
   };
 
   const dateHandler = (createdAt) => {

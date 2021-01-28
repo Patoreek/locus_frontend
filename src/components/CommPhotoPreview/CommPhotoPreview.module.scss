@@ -1,4 +1,5 @@
 @import "../../sass/abstracts/variables";
+@import "../../sass/abstracts/mixins";
 
 .commPhotoPreview {
   position: relative;
@@ -7,6 +8,10 @@
   height: 17rem;
   overflow-y: hidden;
   overflow-x: scroll;
+
+  @include respond(phone) {
+    height: auto;
+  }
 
   .sliderContainer {
     position: absolute;
@@ -46,6 +51,10 @@
       padding-bottom: 1rem;
       font-family: $font-1-style;
       font-weight: $font-bold;
+
+      @include respond(phone) {
+        font-size: 3.5rem;
+      }
     }
 
     &__text {
@@ -55,6 +64,11 @@
       color: $color-text-darkergrey;
       font-family: $font-1-style;
       font-weight: $font-normal;
+
+      @include respond(phone) {
+        font-size: 2rem;
+        padding-bottom: 7rem;
+      }
     }
   }
 }

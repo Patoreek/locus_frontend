@@ -1,10 +1,14 @@
 @import "../../../sass/abstracts/variables";
+@import "../../../sass/abstracts/mixins";
 
 .diveReportList {
   padding: 5rem 2rem;
   position: relative;
   height: 100%;
   overflow: scroll;
+  @include respond(phone) {
+    padding: 7.5rem 2rem;
+  }
 
   &__titleContainer {
     position: absolute;
@@ -22,6 +26,9 @@
       font-family: $font-1-style;
       font-weight: $font-bold;
       color: $color-black;
+      @include respond(phone) {
+        font-size: 2.5rem;
+      }
     }
 
     .addBtn {
@@ -59,6 +66,10 @@
         font-weight: $font-med;
         color: $color-black;
         transition: 0.2s ease;
+
+        @include respond(phone) {
+          font-size: 2.5rem;
+        }
       }
     }
 
@@ -79,6 +90,10 @@
         font-family: $font-3-style;
         font-weight: $font-med;
         color: $color-text-darkergrey;
+
+        @include respond(phone) {
+          font-size: 2.25rem;
+        }
       }
     }
 
@@ -99,6 +114,11 @@
         margin-right: 2rem;
 
         transition: 0.3s ease;
+
+        @include respond(phone) {
+          width: 4.25rem;
+          height: 4.25rem;
+        }
 
         &:hover {
           transform: scale(1.05);
@@ -126,6 +146,11 @@
         height: 2.5rem;
         fill: $color-text-grey;
         transition: 0.3s ease;
+
+        @include respond(phone) {
+          width: 4.25rem;
+          height: 4.25rem;
+        }
 
         &:hover {
           fill: $color-text-red;
@@ -188,6 +213,10 @@
       position: relative;
       z-index: 10;
       transition: 0.2s ease;
+
+      @include respond(phone) {
+        font-size: 3rem;
+      }
     }
 
     .addSVG {
@@ -197,6 +226,10 @@
       color: $color-text-darkgrey;
       position: relative;
       z-index: 10;
+      @include respond(phone) {
+        width: 4.25rem;
+        height: 4.25rem;
+      }
     }
   }
 
@@ -214,6 +247,10 @@
       font-weight: $font-bold;
       color: $color-black;
       margin-bottom: 2rem;
+
+      @include respond(phone) {
+        font-size: 3.5rem;
+      }
     }
 
     .pressBtn,
@@ -223,10 +260,16 @@
       font-family: $font-3-style;
       font-weight: $font-normal;
       color: $color-text-darkergrey;
+      @include respond(phone) {
+        font-size: 2.25rem;
+      }
     }
     .improvement {
       font-size: 1.2rem;
       color: $color-text-darkgrey;
+      @include respond(phone) {
+        font-size: 2rem;
+      }
     }
   }
 
@@ -245,12 +288,21 @@
       flex-basis: 20%;
       width: 5.5rem;
       height: 5.5rem;
+
+      @include respond(phone) {
+        width: 7.5rem;
+        height: 7.5rem;
+      }
     }
     .text {
       flex-basis: 80%;
       font-size: 1.4rem;
       font-family: $font-3-style;
       font-weight: $font-med;
+
+      @include respond(phone) {
+        font-size: 2.25rem;
+      }
     }
   }
 }

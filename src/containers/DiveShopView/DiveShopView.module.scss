@@ -34,7 +34,7 @@
       grid-template-columns: 1fr;
 
       @include respond(phone) {
-        padding: 0rem 2rem 10rem 2rem;
+        padding: 0rem 1rem 10rem 1rem;
         grid-auto-rows: max-content;
         grid-template-columns: 1fr;
       }
@@ -44,7 +44,7 @@
         display: flex;
 
         @include respond(phone) {
-          padding-bottom: 2.5rem;
+          padding-bottom: 5.5rem;
         }
 
         .imageContainer {
@@ -52,12 +52,17 @@
           grid-column: 1 / 2;
 
           background: white;
-          border-radius: 50%;
+          border-radius: 500rem;
           overflow: hidden;
           transform: translateY(-7rem);
           width: 20rem;
           height: 20rem;
           border: 2px solid rgba($color-lines, 0.3);
+
+          @include respond(phone) {
+            height: auto;
+            width: 30rem;
+          }
 
           img {
             width: 100%;
@@ -104,6 +109,11 @@
               color: $color-text-darkgrey;
               transition: 0.2s ease;
 
+              @include respond(phone) {
+                font-size: 2rem;
+                color: $color-text-darkergrey;
+              }
+
               &:hover {
                 text-decoration: underline;
                 color: $color-text-blue;
@@ -125,6 +135,11 @@
               font-weight: $font-med;
               color: $color-text-darkgrey;
               transition: 0.2s ease;
+
+              @include respond(phone) {
+                font-size: 2rem;
+                color: $color-text-darkergrey;
+              }
 
               &:hover {
                 text-decoration: underline;
@@ -163,6 +178,10 @@
               font-weight: $font-med;
               color: $color-black;
               margin-bottom: 2rem;
+
+              @include respond(phone) {
+                font-size: 2.75rem;
+              }
             }
           }
 
@@ -189,6 +208,10 @@
             font-family: $font-1-style;
             font-weight: $font-med;
             color: $color-text-darkergrey;
+
+            @include respond(phone) {
+              font-size: 2.25rem;
+            }
           }
 
           &__noSitesContact {
@@ -196,6 +219,11 @@
             font-family: $font-3-style;
             font-weight: $font-normal;
             color: $color-text-darkgrey;
+
+            @include respond(phone) {
+              font-size: 2rem;
+              color: $color-text-darkergrey;
+            }
           }
         }
         .rightGrid {
@@ -221,6 +249,10 @@
               font-weight: $font-med;
               color: $color-black;
               margin-bottom: 2rem;
+
+              @include respond(phone) {
+                font-size: 2.75rem;
+              }
             }
           }
 
@@ -242,6 +274,10 @@
               font-weight: $font-med;
               color: $color-text-darkergrey;
               transition: 0.2s ease;
+
+              @include respond(phone) {
+                font-size: 2.25rem;
+              }
 
               &:hover {
                 color: $color-text-blue-hover;
@@ -275,6 +311,10 @@
               overflow: hidden;
               padding: 1rem 1.5rem;
 
+              @include respond(phone) {
+                padding: 2rem 2.5rem;
+              }
+
               &:hover {
                 .icon {
                   transform: scale(1.1);
@@ -294,6 +334,12 @@
             color: $color-black;
             padding-top: 2rem;
             border-top: 1px solid $color-lines;
+
+            @include respond(phone) {
+              h3 {
+                font-size: 2.75rem;
+              }
+            }
           }
 
           &__map {
@@ -313,7 +359,10 @@
   .icon {
     width: 2rem;
     height: 2rem;
-
+    @include respond(phone) {
+      width: 3rem;
+      height: 3rem;
+    }
     g path,
     path {
       fill: $color-text-darkergrey;
@@ -324,6 +373,10 @@
     &__twitter {
       width: 2rem;
       height: 2rem;
+      @include respond(phone) {
+        width: 4rem;
+        height: 4rem;
+      }
     }
 
     &__location,

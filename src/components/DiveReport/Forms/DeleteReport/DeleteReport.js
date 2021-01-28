@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import classes from "./DeleteReport.module.scss";
 import { format } from "date-fns";
+import { isMobile } from "react-device-detect";
 
 const DeleteReport = (props) => {
   const [name, setName] = useState();
@@ -22,6 +23,9 @@ const DeleteReport = (props) => {
 
   const cancelHandler = () => {
     props.setShowDelete(false);
+    if (isMobile) {
+      props.setShowList(true);
+    }
   };
 
   const deleteHandler = () => {

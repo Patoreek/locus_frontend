@@ -1,27 +1,59 @@
 @import "../../sass/abstracts/variables";
+@import "../../sass/abstracts/mixins";
 
 .diveReports {
-  width: 100%;
+  width: 100vw;
   height: calc(100vh - 6rem);
   display: flex;
   background: $color-white-pure;
+
+  @include respond(phone) {
+    display: grid;
+    grid-template-columns: 100vw 100vw;
+    grid-template-rows: max-content;
+    overflow: hidden;
+  }
 
   &__left {
     background: $color-white-pure;
     flex-basis: 35vw;
     border-right: 1px solid $color-lines;
+    transition: 0.4s ease;
+
+    @include respond(phone) {
+      grid-row: 1 / 2;
+      grid-column: 2 / 3;
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      z-index: 100;
+    }
   }
 
   &__right {
     flex-basis: 65vw;
     overflow: scroll;
     color: $color-white-pure;
+    @include respond(phone) {
+      grid-row: 1 / 2;
+      grid-column: 1 / 2;
+      width: 100vw;
+      height: 100vh;
+    }
+  }
+
+  .showList {
+    transform: translateX(-100vw);
   }
 
   .diveReportsHome {
     background: url("../../assets/images/diveReportsBG.svg");
     background-position: cover;
     padding: 3rem 2rem;
+
+    @include respond(phone) {
+      padding: 5rem 2rem 10rem 2rem;
+    }
     &__header {
       font-size: 10rem;
       font-family: $font-1-style;
@@ -38,6 +70,10 @@
       align-items: center;
       padding: 3rem 0rem;
 
+      @include respond(phone) {
+        padding: 0rem;
+      }
+
       .image {
         flex-basis: 40%;
       }
@@ -52,6 +88,9 @@
           text-transform: uppercase;
           text-shadow: 5px 5px 5px rgba($color-black, 0.35);
           padding-bottom: 2rem;
+          @include respond(phone) {
+            font-size: 4rem;
+          }
         }
 
         &__content {
@@ -59,6 +98,41 @@
           font-family: $font-3-style;
           font-weight: $font-normal;
           text-shadow: 5px 5px 5px rgba($color-black, 0.35);
+          @include respond(phone) {
+            font-size: 1.8rem;
+          }
+        }
+      }
+    }
+
+    &__reportsMenuBtn {
+      display: flex;
+      justify-content: center;
+      padding-bottom: 2rem;
+      .reportsMenuBtn {
+        align-self: center;
+        width: 60%;
+        padding: 1rem 0rem;
+        border-radius: 0.5rem;
+        outline: none;
+        transition: 0.2s ease;
+
+        font-size: 2rem;
+        font-family: $font-3-style;
+        font-weight: $font-bold;
+        text-transform: uppercase;
+        color: $color-white-pure;
+
+        border: 2px solid $color-white-pure;
+
+        background: transparent;
+        &:hover {
+          transform: translateY(-0.5rem);
+          background: $color-white-pure;
+          color: $color-text-blue;
+        }
+        &:active {
+          transform: translateY(-0.25rem);
         }
       }
     }
@@ -71,6 +145,11 @@
         font-family: $font-3-style;
         font-weight: $font-normal;
         text-shadow: 5px 5px 5px rgba($color-black, 0.35);
+
+        @include respond(phone) {
+          padding-top: 1rem;
+          font-size: 1.8rem;
+        }
       }
     }
   }

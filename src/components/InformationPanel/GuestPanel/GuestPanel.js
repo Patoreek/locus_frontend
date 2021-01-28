@@ -97,11 +97,12 @@ const GuestPanel = () => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   if (isMobile) {
-  //     getNearbyDiveSites(searchCoordinates.lat, searchCoordinates.lng);
-  //   }
-  // }, [searchCoordinates]);
+  useEffect(() => {
+    if (isMobile) {
+      getNearbyDiveSites(searchCoordinates.lat, searchCoordinates.lng);
+      getNearbyDiveShops(searchCoordinates.lat, searchCoordinates.lng);
+    }
+  }, [searchCoordinates]);
 
   useEffect(() => {
     if (diveSites.length >= 1) {
@@ -122,55 +123,92 @@ const GuestPanel = () => {
   let timer;
 
   const fetchData = () => {
-    if (!isMobile) {
-      clearTimeout(timer);
-      timer = setTimeout(function () {
-        const lat = mapRef.current.getCenter().lat();
-        const lng = mapRef.current.getCenter().lng();
-        const mapBounds = mapRef.current.getBounds();
-        loadDiveSitesInBoundsInfinite(mapBounds, scrollCounter);
-      }, 1000);
-    } else {
-      getNearbyDiveSites(searchCoordinates.lat, searchCoordinates.lng);
-    }
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      const lat = mapRef.current.getCenter().lat();
+      const lng = mapRef.current.getCenter().lng();
+      const mapBounds = mapRef.current.getBounds();
+      loadDiveSitesInBoundsInfinite(mapBounds, scrollCounter);
+    }, 1000);
   };
 
   const filterHandler = () => {
     setHighlightFilter(false);
-    const mapBounds = mapRef.current.getBounds();
-    loadDiveSiteInBounds(mapBounds, setGlobalLoader);
-    loadDiveSitesInBoundsInfinite(mapBounds, "TRUE");
+    if (!isMobile) {
+      const mapBounds = mapRef.current.getBounds();
+      loadDiveSiteInBounds(mapBounds, setGlobalLoader);
+      loadDiveSitesInBoundsInfinite(mapBounds, "TRUE");
+    } else {
+      // FILTER CURRENTLY NOT WORKING ON MOBILE (TO BE ADDED!)
+    }
   };
 
   async function getNearbyDiveSites(lat, lng) {
-    return fetch(
-      process.env.REACT_APP_ENV == "production"
-        ? process.env.REACT_APP_BACKEND + "diveSites/findNearbyDiveSites"
-        : process.env.REACT_APP_LOCAL_BACKEND + "diveSites/findNearbyDiveSites",
-      {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          lat: lat,
-          lng,
-          lng,
-          //siteId: siteId,
-        }),
-      }
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((result) => {
-        console.log(result.sites);
-        setDiveSites(result.sites);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (lat && lng) {
+      return fetch(
+        process.env.REACT_APP_ENV == "production"
+          ? process.env.REACT_APP_BACKEND + "diveSites/findNearbyDiveSites"
+          : process.env.REACT_APP_LOCAL_BACKEND +
+              "diveSites/findNearbyDiveSites",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            lat: lat,
+            lng: lng,
+            //siteId: siteId,
+          }),
+        }
+      )
+        .then((res) => {
+          return res.json();
+        })
+        .then((result) => {
+          //console.log(result.sites);
+          setDiveSites(result.sites);
+          setPanelDiveSites(result.sites);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }
+
+  async function getNearbyDiveShops(lat, lng) {
+    //console.log("getting nearby dive shops");
+    if (lat && lng) {
+      return fetch(
+        process.env.REACT_APP_ENV == "production"
+          ? process.env.REACT_APP_BACKEND + "diveShops/findNearbyDiveShops"
+          : process.env.REACT_APP_LOCAL_BACKEND +
+              "diveShops/findNearbyDiveShops",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            lat: lat,
+            lng: lng,
+            //siteId: siteId,
+          }),
+        }
+      )
+        .then((res) => {
+          return res.json();
+        })
+        .then((result) => {
+          //console.log(result.shops);
+          setDiveShops(result.shops);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
 
   return (
@@ -256,34 +294,43 @@ const GuestPanel = () => {
 
       {list == "DiveSites" && (
         <div id="scrollableDiv" className={classes.scrollableDiv}>
-          <InfiniteScroll
-            className={classes.listings}
-            dataLength={panelDiveSites.length}
-            next={() => fetchData()}
-            hasMore={hasMoreData}
-            endMessage={
-              <div className={classes.loadingData}>
-                <p className={classes.loadingData__end}>
-                  No more Dive Sites in this area
-                </p>
-                <span className={classes.loadingData__instructions}>
-                  Move the map or zoom in or out to load again.
-                </span>
+          {!isMobile && (
+            <InfiniteScroll
+              className={classes.listings}
+              dataLength={panelDiveSites.length}
+              next={() => fetchData()}
+              hasMore={hasMoreData}
+              endMessage={
+                <div className={classes.loadingData}>
+                  <p className={classes.loadingData__end}>
+                    No more Dive Sites in this area
+                  </p>
+                  <span className={classes.loadingData__instructions}>
+                    Move the map or zoom in or out to load again.
+                  </span>
+                </div>
+              }
+              loader={
+                <div className={classes.loadingData}>
+                  <SpinnerCircular size={40} color={"#1263fa"} />
+                </div>
+              }
+              scrollableTarget="scrollableDiv"
+            >
+              <div>
+                {panelDiveSites.map((site, i) => (
+                  <DivesiteListingPanel site={site} key={i} />
+                ))}
               </div>
-            }
-            loader={
-              <div className={classes.loadingData}>
-                <SpinnerCircular size={40} color={"#1263fa"} />
-              </div>
-            }
-            scrollableTarget="scrollableDiv"
-          >
+            </InfiniteScroll>
+          )}
+          {isMobile && (
             <div>
               {panelDiveSites.map((site, i) => (
                 <DivesiteListingPanel site={site} key={i} />
               ))}
             </div>
-          </InfiniteScroll>
+          )}
         </div>
       )}
       {list == "DiveShops" && (

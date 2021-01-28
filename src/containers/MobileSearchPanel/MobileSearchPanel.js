@@ -1,8 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 
 import classes from "./MobileSearchPanel.module.scss";
-import { isMobile } from "react-device-detect";
-
 import Searchbar from "../../components/Searchbar/Searchbar";
 
 import {

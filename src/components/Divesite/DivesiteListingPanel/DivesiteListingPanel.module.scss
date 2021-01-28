@@ -1,4 +1,5 @@
 @import "../../../sass/abstracts/variables";
+@import "../../../sass/abstracts/mixins";
 
 .site {
   display: grid;
@@ -76,6 +77,10 @@
       color: $color-text-darkgrey;
       font-family: $font-3-style;
       font-weight: $font-med;
+      @include respond(phone) {
+        color: $color-text-darkergrey;
+        font-size: 1.8rem;
+      }
     }
   }
   &__nameContainer {
@@ -91,6 +96,9 @@
         font-weight: $font-bold;
         color: $color-black;
         transition: 0.2s ease;
+        @include respond(phone) {
+          font-size: 2.5rem;
+        }
 
         &:hover {
           color: $color-text-blue;
@@ -125,6 +133,11 @@
       font-family: $font-3-style;
       font-weight: $font-normal;
       color: $color-black;
+
+      @include respond(phone) {
+        font-size: 2rem;
+        -webkit-line-clamp: 5;
+      }
     }
   }
   &__ratingsContainer {

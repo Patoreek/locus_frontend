@@ -8,6 +8,10 @@
   position: relative;
   overflow: hidden;
 
+  @include respond(phone) {
+    min-height: 50rem;
+  }
+
   .selectedDay {
     position: absolute;
     background: rgb(58, 152, 196);
@@ -43,6 +47,10 @@
       z-index: 10;
       font-family: $font-1-style;
       font-weight: $font-med;
+
+      @include respond(phone) {
+        font-size: 4rem;
+      }
     }
 
     &__day {
@@ -52,6 +60,10 @@
       z-index: 10;
       font-family: $font-1-style;
       font-weight: $font-bold;
+      @include respond(phone) {
+        font-size: 7rem;
+        line-height: 0.85;
+      }
     }
 
     &__date {
@@ -61,6 +73,9 @@
       z-index: 10;
       font-family: $font-3-style;
       font-weight: $font-med;
+      @include respond(phone) {
+        font-size: 3rem;
+      }
     }
 
     &__temp {
@@ -72,6 +87,9 @@
       line-height: 0.8;
       font-family: $font-3-style;
       font-weight: $font-med;
+      @include respond(phone) {
+        font-size: 10.5rem;
+      }
     }
 
     &__celius {
@@ -104,6 +122,9 @@
         color: $color-white-pure;
         font-family: $font-3-style;
         font-weight: $font-med;
+        @include respond(phone) {
+          font-size: 2.5rem;
+        }
       }
 
       .day {
@@ -132,6 +153,10 @@
           font-size: 1.6rem;
           font-family: $font-1-style;
           font-weight: $font-med;
+
+          @include respond(phone) {
+            font-size: 2.25rem;
+          }
         }
 
         &__weather {

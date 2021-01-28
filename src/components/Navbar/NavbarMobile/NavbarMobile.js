@@ -16,6 +16,14 @@ import { ReactComponent as SearchSVG } from "../../../assets/icons/magnifying-gl
 import { ReactComponent as GlobeSVG } from "../../../assets/icons/globe.svg";
 import { ReactComponent as UserSVG } from "../../../assets/icons/user.svg";
 
+import { ReactComponent as ProfileSVG } from "../../../assets/icons/profile.svg";
+import { ReactComponent as EditProfileSVG } from "../../../assets/icons/edit_profile.svg";
+import { MdFavoriteBorder } from "react-icons/md";
+import { ReactComponent as ReportsSVG } from "../../../assets/icons/report.svg";
+import { ReactComponent as LogoutSVG } from "../../../assets/icons/logout.svg";
+
+import avatarPlaceholder from "../../../assets/images/avatar_placeholder.jpeg";
+
 const NavbarMobile = () => {
   const [active, setActive] = useState("home");
   const [openModal, setOpenModal] = useState(false);
@@ -23,6 +31,11 @@ const NavbarMobile = () => {
   const [isAuth, setIsAuth] = useContext(AuthContext);
   const [authDrawer, setAuthDrawer] = useContext(AuthDrawerContext);
   const [account, setAccount] = useContext(AccountContext);
+
+  const [userPicture, setUserPicture] = useState(null);
+  const [firstName, setFirstName] = useState(null);
+  const [lastName, setLastName] = useState(null);
+  const [email, setEmail] = useState(null);
 
   let history = useHistory();
 
@@ -59,21 +72,18 @@ const NavbarMobile = () => {
           profilePic: resData.profilePic,
         });
 
-        // if (resData.firstName) {
-        //   setFirstName(resData.firstName);
-        // }
-        // if (resData.lastName) {
-        //   setLastName(resData.lastName);
-        // }
-        // if (resData.profilePic) {
-        //   setUserPicture(resData.profilePic);
-        // }
-        // if (resData.role) {
-        //   setAccountRole(resData.role);
-        // }
-        // if (resData.email) {
-        //   setEmail(resData.email);
-        // }
+        if (resData.firstName) {
+          setFirstName(resData.firstName);
+        }
+        if (resData.lastName) {
+          setLastName(resData.lastName);
+        }
+        if (resData.profilePic) {
+          setUserPicture(resData.profilePic);
+        }
+        if (resData.email) {
+          setEmail(resData.email);
+        }
         setIsAuth(true);
 
         //setIsLoading(false);
@@ -150,6 +160,8 @@ const NavbarMobile = () => {
     }
   };
 
+  //console.log(account);
+
   return (
     <div className={classes.navbarMobile}>
       <div
@@ -205,15 +217,43 @@ const NavbarMobile = () => {
           !openModal ? classes.modalClose : null
         }`}
       >
+        {isAuth && (
+          <div className={classes.accountDetails}>
+            <div className={classes.accountDetails__picture}>
+              <img
+                src={
+                  userPicture
+                    ? process.env.REACT_APP_BACKEND + userPicture
+                    : avatarPlaceholder
+                }
+                className={classes.profilePic}
+              />
+            </div>
+            <p className={classes.accountDetails__email}>{email}</p>
+            <h2 className={classes.accountDetails__name}>
+              {firstName} {lastName}
+            </h2>
+          </div>
+        )}
         <div className={classes.list}>
           {!isAuth && (
             <div>
               <div className={classes.list__item}>
-                <span onClick={() => authDrawerHandler("login")}>Login</span>
+                <span
+                  className={classes.login}
+                  onClick={() => authDrawerHandler("login")}
+                >
+                  Login
+                </span>
               </div>
 
               <div className={classes.list__item}>
-                <span onClick={() => authDrawerHandler("signup")}>Signup</span>
+                <span
+                  className={classes.signup}
+                  onClick={() => authDrawerHandler("signup")}
+                >
+                  Signup
+                </span>
               </div>
             </div>
           )}
@@ -221,26 +261,59 @@ const NavbarMobile = () => {
           {isAuth && (
             <div>
               <div className={classes.list__item}>
-                <a href="/profile">Profile</a>
+                <a href="/profile">
+                  <div className={classes.iconContainer}>
+                    <ProfileSVG className={classes.icon} />
+                  </div>
+                  <div className={classes.labelContainer}>
+                    <span className={classes.label}>Profile</span>
+                  </div>
+                </a>
               </div>
               <div className={classes.list__item}>
-                <a href="/editprofile/true">Edit Profile</a>
+                <a href="/editprofile/true">
+                  <div className={classes.iconContainer}>
+                    <EditProfileSVG className={classes.icon} />
+                  </div>
+                  <div className={classes.labelContainer}>
+                    <span className={classes.label}>Edit Profile</span>
+                  </div>
+                </a>
               </div>
               <div className={classes.list__item}>
-                <a href="/favourites">Favourites</a>
+                <a href="/favourites">
+                  <div className={classes.iconContainer}>
+                    <MdFavoriteBorder className={classes.icon} />
+                  </div>
+                  <div className={classes.labelContainer}>
+                    <span className={classes.label}>Favourites</span>
+                  </div>
+                </a>
               </div>
               <div className={classes.list__item}>
-                <a href="/diveReports">Dive Reports</a>
+                <a href="/diveReports">
+                  <div className={classes.iconContainer}>
+                    <ReportsSVG className={classes.icon} />
+                  </div>
+                  <div className={classes.labelContainer}>
+                    <span className={classes.label}>Dive Reports</span>
+                  </div>
+                </a>
               </div>
-              <div className={classes.list__item}>
+              {/* <div className={classes.list__item}>
                 <a href="/addRequest">Request to add a dive site</a>
-              </div>
+              </div> */}
               {/* <div className={classes.list__item}>
                 //TODO: Maybe make a setting tab that has change password, edit profile and other setting options later
                 <a href="/change">Change Password</a>
               </div> */}
               <div className={classes.list__item}>
-                <span onClick={logoutHandler}>Logout</span>
+                <div className={classes.iconContainer} onClick={logoutHandler}>
+                  <LogoutSVG className={classes.icon} />
+                </div>
+                <div className={classes.labelContainer}>
+                  <span className={classes.label}>Logout</span>
+                </div>
               </div>
             </div>
           )}

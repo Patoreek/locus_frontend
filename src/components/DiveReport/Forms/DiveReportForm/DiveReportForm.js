@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import { isMobile } from "react-device-detect";
 import classes from "./DiveReportForm.module.scss";
 
 import { AccountContext } from "../../../../context/AuthContext";
@@ -51,6 +52,9 @@ const DiveReportForm = (props) => {
 
   const cancelHandler = () => {
     props.setShowAdd(false);
+    if (isMobile) {
+      props.setShowList(true);
+    }
   };
 
   const submitHandler = () => {

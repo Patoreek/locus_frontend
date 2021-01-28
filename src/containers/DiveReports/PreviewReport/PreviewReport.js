@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { format } from "date-fns";
+import { isMobile } from "react-device-detect";
 
 import classes from "./PreviewReport.module.scss";
 
@@ -37,8 +38,11 @@ const PreviewReport = (props) => {
     //setIsLoading(false);
   }, [props.currentReport]);
 
-  const backHandler = () => {
+  const cancelHandler = () => {
     props.setShowPreview(false);
+    if (isMobile) {
+      props.setShowList(true);
+    }
   };
 
   const editHandler = () => {
@@ -61,7 +65,10 @@ const PreviewReport = (props) => {
             <h1>Preview Report</h1>
           </div>
           <div className={classes.previewReport__backBtn}>
-            <BackBtnSVG className={classes.backBtnSVG} onClick={backHandler} />
+            <BackBtnSVG
+              className={classes.backBtnSVG}
+              onClick={cancelHandler}
+            />
           </div>
           <div className={classes.previewReport__optionsContainer}>
             <div

@@ -16,6 +16,10 @@
 
     font-family: $font-1-style;
     font-weight: $font-bold;
+
+    @include respond(phone) {
+      font-size: 3.25rem;
+    }
   }
 
   .favourites {

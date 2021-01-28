@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 
 import { AuthDrawerContext, NavbarContext } from "../../context/AuthContext";
+import { isMobile } from "react-device-detect";
 
 import classes from "./Home.module.scss";
 
@@ -79,9 +80,11 @@ const Home = () => {
                 Explore Dive Sites
               </h1>
               {/* <p className={classes.homeDescription}> A description of what this website is trying to achieve</p> */}
-              <div className={classes.homeMainPage__searchContainer}>
-                <Searchbar />
-              </div>
+              {!isMobile && (
+                <div className={classes.homeMainPage__searchContainer}>
+                  <Searchbar />
+                </div>
+              )}
 
               <div className={classes.homeMainPage__pointsContainer}>
                 {/* //TODO|||||||||| DIVE SITES ACROSS THE GLOBE ||||||||||||||||||||||| */}

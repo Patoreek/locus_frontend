@@ -78,7 +78,7 @@
       .mailIcon {
         color: $color-footer-text;
         height: 100%;
-        width: 2rem;
+        width: 2.5rem;
         @include respond(phone) {
           width: 4rem;
         }
@@ -87,6 +87,7 @@
       .email {
         color: $color-footer-text;
         font-size: 1.2rem;
+        margin: 0.5rem;
 
         @include respond(phone) {
           font-size: 1.6rem;

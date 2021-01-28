@@ -1,9 +1,14 @@
 @import "../../../sass/abstracts/variables";
+@import "../../../sass/abstracts/mixins";
 
 .guestPanel {
   padding: 2rem 1rem 0.2rem 1.5rem;
   position: relative;
   height: 100%;
+
+  @include respond(phone) {
+    padding: 2rem 0.5rem 20rem 0.5rem;
+  }
 
   .topSection {
     border-bottom: 1px solid $color-lines;
@@ -24,6 +29,10 @@
       font-weight: $font-normal;
       color: $color-text-darkergrey;
 
+      @include respond(phone) {
+        font-size: 1.8rem;
+      }
+
       span {
         transform: translateY(0.2rem);
         text-align: right;
@@ -42,6 +51,10 @@
       font-family: $font-3-style;
       font-weight: $font-med;
       color: $color-text-darkergrey;
+
+      @include respond(phone) {
+        font-size: 2.15rem;
+      }
     }
 
     &__mapAreaText {
@@ -50,6 +63,10 @@
       font-family: $font-1-style;
       font-weight: $font-bold;
       color: $color-black;
+
+      @include respond(phone) {
+        font-size: 2.25rem;
+      }
     }
 
     .optionsContainer {
@@ -57,13 +74,24 @@
       align-items: center;
       justify-content: space-between;
       padding-bottom: 1rem;
+      @include respond(phone) {
+        display: block;
+      }
 
       &__listType {
+        @include respond(phone) {
+          width: 100vw;
+          padding: 1rem 0rem;
+        }
         .link {
           font-size: 1.4rem;
           color: $color-text-darkgrey;
           font-family: $font-3-style;
           font-weight: $font-med;
+
+          @include respond(phone) {
+            font-size: 2.15rem;
+          }
 
           &:hover {
             text-decoration: underline;
@@ -83,6 +111,10 @@
       }
 
       &__filter {
+        @include respond(phone) {
+          width: 100vw;
+          display: none;
+        }
         .filter {
           display: flex;
           align-items: center;

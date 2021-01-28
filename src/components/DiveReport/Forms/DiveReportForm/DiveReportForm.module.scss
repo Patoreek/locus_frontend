@@ -1,4 +1,5 @@
 @import "../../../../sass/abstracts/variables";
+@import "../../../../sass/abstracts/mixins";
 
 .form {
   padding: 5rem 15rem;
@@ -11,6 +12,11 @@
   height: 100%;
   margin: 0 auto;
   background: $color-white-pure;
+
+  @include respond(phone) {
+    padding: 5rem 2rem;
+    grid-gap: 5rem;
+  }
 
   span {
     color: $color-lines;
@@ -25,6 +31,12 @@
     transition: 0.3s ease;
     font-family: $font-3-style;
     font-weight: $font-bold;
+
+    @include respond(phone) {
+      top: -8px;
+      left: 10px;
+      font-size: 2.25rem;
+    }
   }
 
   .input {
@@ -39,6 +51,10 @@
     transition: 0.3s ease;
     font-family: $font-3-style;
     font-weight: $font-normal;
+
+    @include respond(phone) {
+      font-size: 2.25rem;
+    }
   }
 
   &__locationContainer,
@@ -162,6 +178,10 @@
       font-family: $font-1-style;
       font-weight: $font-med;
 
+      @include respond(phone) {
+        font-size: 2.5rem;
+      }
+
       &:hover {
         transform: translateY(-3px);
         box-shadow: 0px 0px 0px 2px $color-text-darkergrey inset;
@@ -194,6 +214,10 @@
       color: $color-text-blue;
       font-family: $font-1-style;
       font-weight: $font-med;
+
+      @include respond(phone) {
+        font-size: 2.5rem;
+      }
 
       &:hover {
         transform: translateY(-3px);

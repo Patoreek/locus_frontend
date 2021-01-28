@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { isMobile } from "react-device-detect";
 
 import classes from "./DiveReports.module.scss";
 
@@ -28,6 +29,9 @@ const DiveReports = () => {
   const [showDelete, setShowDelete] = useState(false);
 
   const [currentReport, setCurrentReport] = useState(null);
+
+  //* FOR MOBILE VIEW
+  const [showList, setShowList] = useState(false);
 
   useEffect(() => {
     async function getReports() {
@@ -94,7 +98,11 @@ const DiveReports = () => {
 
   return (
     <div className={classes.diveReports}>
-      <div className={classes.diveReports__left}>
+      <div
+        className={`${classes.diveReports__left} ${
+          isMobile && showList ? classes.showList : null
+        }`}
+      >
         {!isLoading && (
           <DiveReportList
             diveReports={diveReports}
@@ -104,6 +112,7 @@ const DiveReports = () => {
             setShowEdit={setShowEdit}
             setShowDelete={setShowDelete}
             findReport={findReport}
+            setShowList={setShowList}
           />
         )}
       </div>
@@ -160,6 +169,16 @@ const DiveReports = () => {
               </div>
               <ImproveSVG className={classes.image} />
             </div>
+            {isMobile && (
+              <div className={classes.diveReportsHome__reportsMenuBtn}>
+                <button
+                  className={classes.reportsMenuBtn}
+                  onClick={() => setShowList(true)}
+                >
+                  Start
+                </button>
+              </div>
+            )}
             <div className={classes.diveReportsHome__feedback}>
               <span>
                 If you have any feedback or suggestions for improvements to any
@@ -168,9 +187,15 @@ const DiveReports = () => {
             </div>
           </div>
         )}
-        {!isLoading && showAdd && <DiveReportForm setShowAdd={setShowAdd} />}
+        {!isLoading && showAdd && (
+          <DiveReportForm setShowAdd={setShowAdd} setShowList={setShowList} />
+        )}
         {!isLoading && showEdit && (
-          <EditReport currentReport={currentReport} setShowEdit={setShowEdit} />
+          <EditReport
+            currentReport={currentReport}
+            setShowEdit={setShowEdit}
+            setShowList={setShowList}
+          />
         )}
         {!isLoading && showPreview && (
           <PreviewReport
@@ -178,12 +203,14 @@ const DiveReports = () => {
             setShowPreview={setShowPreview}
             setShowEdit={setShowEdit}
             setShowDelete={setShowDelete}
+            setShowList={setShowList}
           />
         )}
         {!isLoading && showDelete && (
           <DeleteReport
             currentReport={currentReport}
             setShowDelete={setShowDelete}
+            setShowList={setShowList}
           />
         )}
         {isLoading && (
