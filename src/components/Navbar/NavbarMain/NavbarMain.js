@@ -111,11 +111,15 @@ const NavbarMain = () => {
       setNavbar("main");
     }
 
-    getProfile();
+    if (isAuth) {
+      getProfile();
+    }
   }, []);
 
   useEffect(() => {
-    getProfile();
+    if (isAuth) {
+      getProfile();
+    }
   }, [isAuth]);
 
   const authDrawerHandler = (option) => {

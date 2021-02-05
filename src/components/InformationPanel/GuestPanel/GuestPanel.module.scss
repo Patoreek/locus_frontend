@@ -243,24 +243,29 @@
     position: relative;
     overflow: scroll;
     height: calc(100% - 9rem);
-  }
 
-  ::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 9px;
-  }
+    ::-webkit-scrollbar {
+      -webkit-appearance: none;
+      width: 7px;
+      padding: 0.1rem 0rem;
 
-  ::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: rgba($color-text-blue, 0.5);
-    box-shadow: 0 0 1px $color-text-blue;
-
-    &:hover {
-      background-color: rgba($color-text-blue, 0.85);
+      @include respond(phone) {
+        height: 5px;
+      }
     }
 
-    &:active {
-      background-color: rgba($color-text-blue, 0.65);
+    ::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: rgba($color-text-blue, 0.5);
+      box-shadow: 0 0 1px $color-text-blue;
+
+      &:hover {
+        background-color: rgba($color-text-blue, 0.85);
+      }
+
+      &:active {
+        background-color: rgba($color-text-blue, 0.65);
+      }
     }
   }
 
