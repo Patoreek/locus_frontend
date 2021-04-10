@@ -2,17 +2,17 @@
 @import "../../sass/abstracts/mixins";
 
 .combobox {
-  width: 60rem;
+  width: 37rem;
   background: $color-white;
-  padding: 0.6rem 1.5rem;
-  border-radius: 3px;
+  padding: 0.2rem 1.5rem;
+  border-radius: 5px;
 
   overflow: hidden;
   position: relative;
   z-index: 50;
 
   &__title {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-family: $font-1-style;
     font-weight: $font-bold;
   }
@@ -22,7 +22,7 @@
     background: $color-white;
     border: none;
     outline: none;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-family: $font-3-style;
     font-weight: $font-normal;
 
@@ -38,14 +38,12 @@
     top: 0;
     right: 0;
     height: 100%;
-    padding: 0rem 2.5rem;
     border: none;
     background: $search-btn-color;
     color: $color-white;
     text-transform: uppercase;
     outline: none;
-    width: 11rem;
-    font-size: 1.4rem;
+    width: 6.5rem;
     transition: 0.3s ease;
 
     &:hover {
@@ -66,8 +64,8 @@
 [data-reach-combobox-popover] {
   border: none;
   border-radius: 0rem 0rem 1rem 1rem !important;
-  transform: translate(-1.5rem, 0.2rem);
-  width: 49rem !important;
+  transform: translate(-1.5rem, -0.1rem);
+  width: 30.5rem !important;
   overflow: hidden;
   position: relative;
   z-index: 100;
@@ -76,7 +74,7 @@
 [data-reach-combobox-option] {
   background: $color-white;
   list-style: none;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   padding: 1rem 1.5rem;
 
   &:hover {
@@ -90,8 +88,8 @@
 }
 
 .searchSVG {
-  width: 2rem;
-  height: 2rem;
+  height: 1.6rem;
+  width: 1.6rem;
   g path {
     fill: $color-white;
   }

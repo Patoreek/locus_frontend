@@ -106,7 +106,7 @@ const UserView = (props) => {
       {userViewLoaded && (
         <Map
           googleMapURL={process.env.REACT_APP_GOOGLE_MAPS_KEY}
-          oadingElement={
+          loadingElement={
             <div
               className={`${classes.loadingElement} ${
                 isMobile ? classes.mobile : null

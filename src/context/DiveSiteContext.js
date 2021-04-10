@@ -54,6 +54,46 @@ export const DiveSiteProvider = (props) => {
   const [scrollCounter, setScrollCounter] = useState(0);
   const [hasMoreData, setHasMoreData] = useState(true);
 
+  const getMapCorners = (mapBounds) => {
+    let swLat;
+    let neLat;
+
+    // Wa | Va | La
+    // can change from ().i & .j)
+    // now its (.i & .g)
+
+    if (mapBounds.Wa) {
+      swLat = mapBounds.Wa.i;
+      neLat = mapBounds.Wa.g;
+    } else if (mapBounds.Va) {
+      swLat = mapBounds.Va.i;
+      neLat = mapBounds.Va.g;
+    } else if (mapBounds.Ta) {
+      swLat = mapBounds.Ta.i;
+      neLat = mapBounds.Ta.g;
+    }
+
+    let swLng;
+    let neLng;
+
+    // Qa | Ra
+
+    if (mapBounds.Qa) {
+      swLng = mapBounds.Qa.i;
+      neLng = mapBounds.Qa.j;
+    } else if (mapBounds.Ra) {
+      swLng = mapBounds.Ra.i;
+      neLng = mapBounds.Ra.g;
+    } else if (mapBounds.La) {
+      swLng = mapBounds.La.i;
+      neLng = mapBounds.La.g;
+    }
+
+    const corners = [swLat, neLat, swLng, neLng];
+    //const corners = [1, 2, 3, 4];
+    return corners;
+  };
+
   async function loadDiveSites() {
     console.log("IN LOAD DIVE SITE");
     //const response = await fetch("http://localhost:8080/diveSites/getSites", {
@@ -81,29 +121,15 @@ export const DiveSiteProvider = (props) => {
       panelSites = panelDiveSites;
     }
 
-    console.log(mapBounds);
+    //console.log(mapBounds);
 
-    let swLat;
-    let neLat;
-
-    if (mapBounds.Wa) {
-      swLat = mapBounds.Wa.i;
-      neLat = mapBounds.Wa.j;
-    } else if (mapBounds.Va) {
-      swLat = mapBounds.Va.i;
-      neLat = mapBounds.Va.j;
-    }
-
-    let swLng;
-    let neLng;
-
-    if (mapBounds.Qa) {
-      swLng = mapBounds.Qa.i;
-      neLng = mapBounds.Qa.j;
-    } else if (mapBounds.Ra) {
-      swLng = mapBounds.Ra.i;
-      neLng = mapBounds.Ra.j;
-    }
+    const mapCorners = getMapCorners(mapBounds);
+    let swLat = mapCorners[0];
+    let neLat = mapCorners[1];
+    let swLng = mapCorners[2];
+    let neLng = mapCorners[3];
+    // console.log("mapCorners");
+    // console.log(mapCorners);
 
     return fetch(
       process.env.REACT_APP_BACKEND + "diveSites/loadDiveSitesInBoundsInfinite",
@@ -155,27 +181,24 @@ export const DiveSiteProvider = (props) => {
 
     console.log(mapBounds);
 
-    let swLat;
-    let neLat;
+    const mapCorners = getMapCorners(mapBounds);
+    let swLat = mapCorners[0];
+    let neLat = mapCorners[1];
+    let swLng = mapCorners[2];
+    let neLng = mapCorners[3];
 
-    if (mapBounds.Wa) {
-      swLat = mapBounds.Wa.i;
-      neLat = mapBounds.Wa.j;
-    } else if (mapBounds.Va) {
-      swLat = mapBounds.Va.i;
-      neLat = mapBounds.Va.j;
-    }
+    console.log("swLat");
+    console.log(swLat);
+    console.log("neLat");
+    console.log(neLat);
+    console.log("swLng");
+    console.log(swLng);
+    console.log("neLng");
+    console.log(neLng);
 
-    let swLng;
-    let neLng;
-
-    if (mapBounds.Qa) {
-      swLng = mapBounds.Qa.i;
-      neLng = mapBounds.Qa.j;
-    } else if (mapBounds.Ra) {
-      swLng = mapBounds.Ra.i;
-      neLng = mapBounds.Ra.j;
-    }
+    console.log(
+      process.env.REACT_APP_BACKEND + "diveSites/loadDiveSitesInBounds"
+    );
 
     return fetch(
       process.env.REACT_APP_BACKEND + "diveSites/loadDiveSitesInBounds",
@@ -205,6 +228,8 @@ export const DiveSiteProvider = (props) => {
           divesites: false,
         }));
 
+        console.log(result.sites);
+
         //*GET LOCATION NAME
 
         if (swLng - neLng > 180 || neLng - swLng > 180) {
@@ -226,7 +251,7 @@ export const DiveSiteProvider = (props) => {
 
         Geocode.fromLatLng(centerLat, centerLng).then(
           (response) => {
-            //console.log(response);
+            console.log(response);
             if (response.results != []) {
               if (response.results[0].address_components.length > 2) {
                 if (response.results[0].address_components[2]) {
@@ -256,29 +281,12 @@ export const DiveSiteProvider = (props) => {
 
   async function loadDiveShopsInBounds(mapBounds, setGlobalLoader) {
     //console.log(mapBounds);
-    console.log(mapBounds);
 
-    let swLat;
-    let neLat;
-
-    if (mapBounds.Wa) {
-      swLat = mapBounds.Wa.i;
-      neLat = mapBounds.Wa.j;
-    } else if (mapBounds.Va) {
-      swLat = mapBounds.Va.i;
-      neLat = mapBounds.Va.j;
-    }
-
-    let swLng;
-    let neLng;
-
-    if (mapBounds.Qa) {
-      swLng = mapBounds.Qa.i;
-      neLng = mapBounds.Qa.j;
-    } else if (mapBounds.Ra) {
-      swLng = mapBounds.Ra.i;
-      neLng = mapBounds.Ra.j;
-    }
+    const mapCorners = getMapCorners(mapBounds);
+    let swLat = mapCorners[0];
+    let neLat = mapCorners[1];
+    let swLng = mapCorners[2];
+    let neLng = mapCorners[3];
 
     return fetch(
       process.env.REACT_APP_BACKEND + "diveShops/loadDiveShopsInBounds",

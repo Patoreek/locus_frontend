@@ -204,13 +204,13 @@ const NavbarMain = () => {
                 </div>
               )}
 
-              {isAuth && (
+              {/* {isAuth && (
                 <div className={classes.diveReportsLink}>
                   <a href="/diveReports">
                     <ReportSVG className={classes.reportSVG} />
                   </a>
                 </div>
-              )}
+              )} */}
               {/* //TODO\\ HERE GOES THE PROFILE AVATAR & THE DROPDOWN WITH VIEW & EDIT PROFILE AND ALSO THE LOGOUT BTN */}
               {isAuth && (
                 <div

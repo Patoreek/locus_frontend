@@ -3,22 +3,25 @@
 .navbar {
   background: $color-white-pure;
   border-bottom: 1px solid $color-lines;
-  height: 6rem;
+  height: 4.85rem;
   .navList {
     height: 100%;
     width: 100vw;
     padding: 0rem 1rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     .logoItem {
       float: left;
       height: 100%;
       width: auto;
+      display: flex;
+      align-items: center;
 
       a {
         .logo {
-          height: 5rem;
+          height: 3.5rem;
         }
       }
     }
@@ -40,7 +43,7 @@
       .avatar {
         display: flex;
         align-items: center;
-        margin-right: 2rem;
+        margin-right: 0rem;
         padding: 0.85rem;
         border-radius: 50%;
         background-size: 200%;
@@ -62,8 +65,8 @@
           .favouriteSVG,
           .reportSVG,
           .addSVG {
-            width: 3.7rem;
-            height: 3.7rem;
+            width: 2.5rem;
+            height: 2.5rem;
             //fill: $nav-list-icon-color;
             fill: $color-text-blue;
 
@@ -74,10 +77,10 @@
         }
 
         .avatarImage {
-          width: 4.35rem;
-          height: 4.35rem;
+          width: 2.5rem;
+          height: 2.5rem;
           border-radius: 50%;
-          border: 2px solid $color-text-blue;
+          border: 1px solid $color-text-blue;
           transition: 0.3s ease;
 
           &:hover {
@@ -91,7 +94,7 @@
         position: absolute;
         z-index: 75;
         transition: 0.3s ease;
-        top: 8.5rem;
+        top: 6rem;
         right: 1rem;
 
         &__content {
@@ -127,7 +130,7 @@
             content: "";
             display: block;
             position: absolute;
-            left: 50%;
+            left: 73%;
             transform: translate(-50%, -49%);
             top: -0.5rem;
             width: 1.5rem;
@@ -140,10 +143,11 @@
         &__avatar {
           grid-row: 1 / span 2;
           grid-column: 1 / 2;
-
+          display: flex;
+          align-items: center;
           .avatarImage {
-            width: 5rem;
-            height: 5rem;
+            width: 3rem;
+            height: 3rem;
             border-radius: 50%;
             border: 2px solid $color-lines;
           }
@@ -155,7 +159,7 @@
           padding-left: 0.5rem;
 
           span {
-            font-size: 1.6rem;
+            font-size: 1.2rem;
             font-family: $font-1-style;
             font-weight: $font-med;
           }
@@ -179,13 +183,13 @@
         &__viewProfile {
           grid-row: 3 / 4;
           grid-column: 1 / span 2;
-          margin-top: 1rem;
+          margin-top: 0.3rem;
         }
 
         &__editProfile {
           grid-row: 4 / 5;
           grid-column: 1 / span 2;
-          margin-top: 0.3rem;
+          margin-top: 0rem;
         }
 
         &__logout,
@@ -198,9 +202,9 @@
           transition: 0.2s ease;
 
           span {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 500;
-            padding: 1rem;
+            padding: 0.5rem 1rem;
             color: $color-black;
             font-family: $font-3-style;
             font-weight: $font-med;
@@ -208,8 +212,8 @@
           }
 
           .icon {
-            width: 1.75rem;
-            height: 1.75rem;
+            width: 1.6rem;
+            height: 1.6rem;
             fill: $color-black;
           }
 

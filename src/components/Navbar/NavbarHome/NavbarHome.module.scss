@@ -18,10 +18,12 @@
       height: 100%;
       width: 100%;
       margin-right: 5rem;
+      display: flex;
+      align-items: center;
 
       a {
         .logo {
-          height: 5rem;
+          height: 3.5rem;
         }
       }
     }
@@ -37,7 +39,7 @@
       .avatar {
         display: flex;
         align-items: center;
-        margin-right: 2rem;
+        margin-right: 0rem;
         padding: 0.85rem;
         border-radius: 50%;
         background-size: 200%;
@@ -59,8 +61,8 @@
           .favouriteSVG,
           .reportSVG,
           .addSVG {
-            width: 3.7rem;
-            height: 3.7rem;
+            width: 2.5rem;
+            height: 2.5rem;
             fill: $color-white;
 
             &:hover {
@@ -70,8 +72,8 @@
         }
 
         .avatarImage {
-          width: 4.35rem;
-          height: 4.35rem;
+          width: 2.5rem;
+          height: 2.5rem;
           border-radius: 50%;
           border: 2px solid $color-white;
           transition: 0.3s ease;

@@ -2,15 +2,15 @@
 @import "../../../sass/abstracts/mixins";
 
 .favouritesList {
-  padding: 5rem;
+  padding: 2rem 5rem;
   @include respond(phone) {
     padding: 5rem 1rem;
   }
 
   &__header {
     border-bottom: 1px solid $color-lines;
-    padding-bottom: 2rem;
-    font-size: 2.5rem;
+    padding-bottom: 1rem;
+    font-size: 2rem;
     font-weight: 700;
     margin-bottom: 2.5rem;
 
