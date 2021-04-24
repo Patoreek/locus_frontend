@@ -71,6 +71,9 @@ export const DiveSiteProvider = (props) => {
     } else if (mapBounds.Ta) {
       swLat = mapBounds.Ta.i;
       neLat = mapBounds.Ta.g;
+    } else if (mapBounds.Ua) {
+      swLat = mapBounds.Ua.i;
+      neLat = mapBounds.Ua.g;
     }
 
     let swLng;

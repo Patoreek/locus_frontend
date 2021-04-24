@@ -175,27 +175,27 @@ const DiveSiteView = (props) => {
       }
     }
 
-    async function getReportsForSite() {
-      try {
-        const response = await fetch(
-          process.env.REACT_APP_ENV == "production"
-            ? process.env.REACT_APP_BACKEND +
-                "user/diveReports/getReportsForSite/" +
-                siteId
-            : process.env.REACT_APP_LOCAL_BACKEND +
-                "user/diveReports/getReportsForSite/" +
-                siteId,
-          {
-            method: "GET",
-            credentials: "include",
-          }
-        );
-        const results = await response.json();
-        setReports(results.reportsData);
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    // async function getReportsForSite() {
+    //   try {
+    //     const response = await fetch(
+    //       process.env.REACT_APP_ENV == "production"
+    //         ? process.env.REACT_APP_BACKEND +
+    //             "user/diveReports/getReportsForSite/" +
+    //             siteId
+    //         : process.env.REACT_APP_LOCAL_BACKEND +
+    //             "user/diveReports/getReportsForSite/" +
+    //             siteId,
+    //       {
+    //         method: "GET",
+    //         credentials: "include",
+    //       }
+    //     );
+    //     const results = await response.json();
+    //     setReports(results.reportsData);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // }
 
     async function getAssociatedShops() {
       try {
@@ -220,6 +220,7 @@ const DiveSiteView = (props) => {
     }
 
     async function getNearbyDiveSites(lat, lng) {
+      console.log("getting nearby divesites.");
       return fetch(
         process.env.REACT_APP_ENV == "production"
           ? process.env.REACT_APP_BACKEND + "diveSites/findNearbyDiveSites"
@@ -233,9 +234,9 @@ const DiveSiteView = (props) => {
           },
           body: JSON.stringify({
             lat: lat,
-            lng,
-            lng,
+            lng: lng,
             siteId: siteId,
+            limit: 10,
           }),
         }
       )
@@ -250,7 +251,7 @@ const DiveSiteView = (props) => {
         });
     }
     getAssociatedShops();
-    getReportsForSite();
+    //getReportsForSite();
     getSite();
   }, []);
 
@@ -486,14 +487,14 @@ const DiveSiteView = (props) => {
               </p>
             </div>
 
-            {reports != [] && (
+            {/* {reports != [] && (
               <div className={classes.leftContainer__reportsContainer}>
                 <h4>Dive Reports ({reports.length})</h4>
                 {reports.map((report, i) => (
                   <DisplayReport report={report} key={i} />
                 ))}
               </div>
-            )}
+            )} */}
             <div className={classes.leftContainer__mapHeaderContainer}>
               <h3>Location</h3>
             </div>
@@ -501,7 +502,7 @@ const DiveSiteView = (props) => {
               <GoogleMapLocation location={site} />
             </div>
 
-            {reports.length == 0 && (
+            {/* {reports.length == 0 && (
               <div className={classes.leftContainer__reportsContainer}>
                 <h4>Dive Reports (0)</h4>
                 <div className={classes.noReports}>
@@ -525,11 +526,11 @@ const DiveSiteView = (props) => {
                   )}
                 </div>
               </div>
-            )}
+            )} */}
           </div>
 
           <div className={classes.divesite__rightContainer}>
-            <div className={classes.commPhotosContainer}>
+            {/* <div className={classes.commPhotosContainer}>
               <a
                 href={"/communityphotos/" + siteId}
                 className={classes.photoLink}
@@ -537,7 +538,7 @@ const DiveSiteView = (props) => {
                 See all community photos
               </a>
               <CommPhotoPreview siteId={siteId} />
-            </div>
+            </div> */}
             <div className={classes.weatherContainer}>
               <WeatherContainer site={selectedSite} />
             </div>
@@ -559,24 +560,25 @@ const DiveSiteView = (props) => {
                 <DiveshopListingPanel shop={shop} key={i} />
               ))}
             </div>
-
-            <div className={classes.nearbyDiveSites}>
-              <h3> Dive Sites that are near {siteName}</h3>
-              {nearbySites.length == 0 && (
-                <div className={classes.noNearbySites}>
-                  <h3 className={classes.noNearbySites__text}>
-                    There are no dive sites near {siteName}.
-                  </h3>
-                  <p className={classes.noNearbySites__contact}>
-                    If you know any dive sites near {siteName} please contact us
-                    via email or social media.
-                  </p>
-                </div>
-              )}
-              {nearbySites.map((site, i) => (
+          </div>
+          <div className={classes.nearbyDiveSites}>
+            <h3> Dive Sites that are near {siteName}</h3>
+            {nearbySites.length == 0 && (
+              <div className={classes.noNearbySites}>
+                <h3 className={classes.noNearbySites__text}>
+                  There are no dive sites near {siteName}.
+                </h3>
+                <p className={classes.noNearbySites__contact}>
+                  If you know any dive sites near {siteName} please contact us
+                  via email or social media.
+                </p>
+              </div>
+            )}
+            {nearbySites.map((site, i) => (
+              <div className={classes.divesiteListingContainer}>
                 <DivesiteListingPanel site={site} key={i} />
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       )}
